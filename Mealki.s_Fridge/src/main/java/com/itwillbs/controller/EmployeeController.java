@@ -27,18 +27,18 @@ public class EmployeeController {
 		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
 		
 		if(employeeDTO2 != null) {
-			System.out.println("ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ ì¼ì¹˜");
+			System.out.println("·Î±×ÀÎ ¼º°ø");
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
-			return "redirect:/employee/main";
+			return "redirect:/main/main";
 		}else {
-			System.out.println("ì•„ì´ë”” ë¹„ë°€ë²ˆí˜¸ í‹€ë¦¼");
+			System.out.println("·Î±×ÀÎ ½ÇÆĞ");
 			return "employee/msg";
 		}
 		
 	}
 	
-	@RequestMapping(value = "/employee/main", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/main", method = RequestMethod.GET)
 	public String main() {
-		return "employee/main";
+		return "main/main";
 	}
 }
