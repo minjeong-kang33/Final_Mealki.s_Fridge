@@ -11,19 +11,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="css/vendors/feather/feather.css">
-  <link rel="stylesheet" href="css/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="css/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="css/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="css/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="css/js/select.dataTables.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/css/vert	ical-layout-light/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="css/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
 
 </head>
@@ -55,7 +55,7 @@
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
                 <div class="card-people mt-auto">
-                  <img src="images/dashboard/people.svg" alt="people">
+                  <img src="${pageContext.request.contextPath}/resources/maincss/images/dashboard/people.svg" alt="people">
                   <div class="weather-info">
                     <div class="d-flex">
                       <div>
@@ -587,7 +587,7 @@
                   <ul class="icon-data-list">
                     <li>
                       <div class="d-flex">
-                        <img src="css/images/faces/face1.jpg" alt="user">
+                        <img src="${pageContext.request.contextPath}/resources/maincss/css/images/faces/face1.jpg" alt="user">
                         <div>
                           <p class="text-info mb-1">Isabella Becker</p>
                           <p class="mb-0">Sales dashboard have been created</p>
@@ -597,7 +597,7 @@
                     </li>
                     <li>
                       <div class="d-flex">
-                        <img src="css/images/faces/face2.jpg" alt="user">
+                        <img src="${pageContext.request.contextPath}/resources/maincss/css/images/faces/face2.jpg" alt="user">
                         <div>
                           <p class="text-info mb-1">Adam Warren</p>
                           <p class="mb-0">You have done a great job #TW111</p>
@@ -607,7 +607,7 @@
                     </li>
                     <li>
                       <div class="d-flex">
-                      <img src="css/images/faces/face3.jpg" alt="user">
+                      <img src="${pageContext.request.contextPath}/resources/maincss/css/images/faces/face3.jpg" alt="user">
                      <div>
                       <p class="text-info mb-1">Leonard Thornton</p>
                       <p class="mb-0">Sales dashboard have been created</p>
@@ -617,7 +617,7 @@
                     </li>
                     <li>
                       <div class="d-flex">
-                        <img src="css/images/faces/face4.jpg" alt="user">
+                        <img src="${pageContext.request.contextPath}/resources/maincss/css/images/faces/face4.jpg" alt="user">
                         <div>
                           <p class="text-info mb-1">George Morrison</p>
                           <p class="mb-0">Sales dashboard have been created</p>
@@ -627,7 +627,7 @@
                     </li>
                     <li>
                       <div class="d-flex">
-                        <img src="css/images/faces/face5.jpg" alt="user">
+                        <img src="${pageContext.request.contextPath}/resources/maincss/css/images/faces/face5.jpg" alt="user">
                         <div>
                         <p class="text-info mb-1">Ryan Cortez</p>
                         <p class="mb-0">Herbs are fun and easy to grow.</p>
@@ -688,26 +688,27 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="css/vendors/js/vendor.bundle.base.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="css/vendors/chart.js/Chart.min.js"></script>
-  <script src="css/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="css/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="css/js/dataTables.select.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="css/js/off-canvas.js"></script>
-  <script src="css/js/hoverable-collapse.js"></script>
-  <script src="css/js/template.js"></script>
-  <script src="css/js/settings.js"></script>
-  <script src="css/js/todolist.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/off-canvas.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/hoverable-collapse.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/template.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/settings.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="css/js/dashboard.js"></script>
-  <script src="css/js/Chart.roundedBarCharts.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
 </body>
 
 </html>

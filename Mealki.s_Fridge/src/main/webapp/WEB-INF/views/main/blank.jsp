@@ -10,20 +10,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
   <title>Skydash Admin</title>
   <!-- plugins:css -->
-  <link rel="stylesheet" href="css/vendors/feather/feather.css">
-  <link rel="stylesheet" href="css/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" href="css/vendors/css/vendor.bundle.base.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/css/vendor.bundle.base.css">
   <!-- endinject -->
   <!-- Plugin css for this page -->
-  <link rel="stylesheet" href="css/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
-  <link rel="stylesheet" href="css/vendors/ti-icons/css/themify-icons.css">
-  <link rel="stylesheet" type="text/css" href="css/js/select.dataTables.min.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="css/css/vertical-layout-light/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="css/images/favicon.png" />
-  <link rel="stylesheet" href="css/css/blank.css">
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+
 </head>
 <body>
 
@@ -31,8 +31,8 @@
   
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
-    <jsp:include page="top.jsp" /> 
-    <jsp:include page="sidebar.jsp" /> 
+    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/top.jsp" /> 
+    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/sidebar.jsp" /> 
 <!-- 헤더, 사이드바,개인설정 끝 -->
  
       
@@ -79,7 +79,7 @@
         
         
 <!-- 푸터시작 -->
-     <jsp:include page="footer.jsp" /> 
+     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/footer.jsp" /> 
 <!--  푸터 끝 -->
 
 <!-- partial -->
@@ -91,25 +91,25 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="vendors/js/vendor.bundle.base.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="vendors/chart.js/Chart.min.js"></script>
-  <script src="vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="js/dataTables.select.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dataTables.select.min.js"></script>
 
   <!-- End plugin js for this page -->
   <!-- inject:js -->
-  <script src="js/off-canvas.js"></script>
-  <script src="js/hoverable-collapse.js"></script>
-  <script src="js/template.js"></script>
-  <script src="js/settings.js"></script>
-  <script src="js/todolist.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/off-canvas.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/hoverable-collapse.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/template.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/settings.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/todolist.js"></script>
   <!-- endinject -->
   <!-- Custom js for this page-->
-  <script src="js/dashboard.js"></script>
-  <script src="js/Chart.roundedBarCharts.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 </body>
 </html>
