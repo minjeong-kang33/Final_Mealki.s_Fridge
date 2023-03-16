@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -28,6 +29,12 @@
 
 </head>
 <body>
+
+<!-- 민정: 아이디값 없으면 로그인 화면으로. 시작 -->
+<c:if test="${empty sessionScope.emp_num }">
+	<c:redirect url="/employee/login"></c:redirect>
+</c:if>
+<!-- 민정: 아이디값 없으면 로그인 화면으로. 끝-->
 
   <div class="container-scroller">
   
