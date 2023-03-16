@@ -45,4 +45,11 @@ public class EmployeeController {
 	public String main() {
 		return "main/main";
 	}
+
+	@RequestMapping(value = "/employee/blank", method = RequestMethod.GET)
+	public String blank() {
+		return "/employee/blank";
+	}
+	
+	
 }
