@@ -26,5 +26,19 @@
 	<context:component-scan base-package="com.itwillbs.service" />
 	<context:component-scan base-package="com.itwillbs.dao" />
 	
+		<!--파일업로드 객체 생성 , 업로드할 파일 크기 지정 : 10M -->
+	<beans:bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<beans:property name="maxUploadSize" value="10485760"></beans:property>
+	</beans:bean>
+	
+	
+		<!-- 파일 업로드 경로 설정-->
+		
+		<!-- id는 employeeUpload 이런식으로 지어서 변수명 겹치지 않도록 해주세요. -->
+	
+	
+		<!-- 파일 업로드 경로 설정끝 이 사이에 넣으세요 -->
+	
+	
 	
 </beans:beans>
