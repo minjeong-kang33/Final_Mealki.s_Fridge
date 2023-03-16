@@ -27,14 +27,18 @@ public class EmployeeController {
 		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
 		
 		if(employeeDTO2 != null) {
-			System.out.println("로그인 성공");
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
 			return "redirect:/main/main";
 		}else {
-			System.out.println("로그인 실패");
-			return "employee/msg";
+			return "main/loginErrorMsg";
 		}
-		
+	}
+	
+	@RequestMapping(value = "/main/logout", method = RequestMethod.GET)
+	public String logout(HttpSession session) {
+		System.out.println("MemberController logout()");
+		session.invalidate();
+		return "redirect:/main/main";
 	}
 	
 	@RequestMapping(value = "/main/main", method = RequestMethod.GET)
