@@ -1,5 +1,7 @@
+<%@page import="java.util.ArrayList"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+ <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -44,22 +46,72 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">작업지시등록</h3>
-                  <h6 class="font-weight-normal mb-0">생산관리<span class="text-primary">-작업지시등록</span></h6>
+                  <h3 class="font-weight-bold">작업지시관리</h3>
+                  <h6 class="font-weight-normal mb-0">생산관리<span class="text-primary">-작업지시등록 및 현황</span></h6>
                 </div>
                 
           <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-          
-          
-          
+
+		<!-- 작업지시등록버튼 -->
+		<td>
+			<a href=# onclick="return wo_insert();" class="btn">등록</a> 
+		</td>
+		
+		
+		<table border="1">
+			<tr>
+				<td>작업지시번호</td>
+				<td>수주번호</td>
+				<td>지시자</td>
+				<td>작업지시일자</td>
+				<td>작업상태</td>
+			</tr>
+
+			<c:forEach var="WorkorderDTO" items="${workorderList}">
+				<tr>
+					<td>${WorkorderDTO.wo_num}</td>
+					<td>${WorkorderDTO.business_num}</td>
+					<td>${WorkorderDTO.wo_emp}</td>
+					<td>${WorkorderDTO.wo_date}</td>
+					<td>${WorkorderDTO.wo_state}</td>
+				</tr>
+			</c:forEach>
+		</table>
+
+
+
+					<script text="text/javascript">
+						function wo_insert() {
+						//	수정팝업창 크기 조절과 팝업 위치 조절
+							var _width = '900';
+							var _height = '900';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.name = "wo_insert";
+							window.open(
+							"${pageContext.request.contextPath}/workorder/wo_insert",
+							"작업지시등록",popOption);}
+					</script>
+         
             
  <!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+    	 <c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+			<a href="${pageContext.request.contextPath}/workorder/blank?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">[10 페이지 이전]</a>
+		</c:if>
+
+		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+			<a href="${pageContext.request.contextPath}/workorder/blank?pageNum=${i}">${i}</a>
+		</c:forEach>
+
+		<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+			<a href="${pageContext.request.contextPath}/workorder/blank?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">[10 페이지 다음]</a>
+		</c:if>
 <!-- 페이징 끝 -->
             </div>
             
