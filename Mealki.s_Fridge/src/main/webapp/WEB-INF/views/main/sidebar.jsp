@@ -44,7 +44,7 @@
         
 <!--  사원관리 메뉴 -->
           <li class="nav-item">
-            <a class="nav-link" href="${pageContext.request.contextPath}/employee/blank">
+            <a class="nav-link" href="${pageContext.request.contextPath}/employee/employeemManagement">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">사원관리</span>
             </a>
