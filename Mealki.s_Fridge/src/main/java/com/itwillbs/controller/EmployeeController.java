@@ -46,9 +46,9 @@ public class EmployeeController {
 		return "main/main";
 	}
 
-	@RequestMapping(value = "/employee/blank", method = RequestMethod.GET)
+	@RequestMapping(value = "/employee/employeemManagement", method = RequestMethod.GET)
 	public String blank() {
-		return "/employee/blank";
+		return "/employee/employeemManagement";
 	}
 	
 	
