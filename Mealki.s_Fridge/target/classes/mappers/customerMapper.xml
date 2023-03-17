@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.customerMapper">
+
+    <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
+        select * from customer
+        order by cust_num desc 
+        limit #{startRow} , #{pageSize}    	
+    </select>
+    
+    <select id="getCustomerCount" resultType="java.lang.Integer">
+        select count(*) from customer 
+    </select>
+    
+    <select id="getCustomer" resultType="com.itwillbs.domain.CustomerDTO">
+        select * from customer
+        where cust_num = #{cust_num}   	
+    </select>	
+
+</mapper>

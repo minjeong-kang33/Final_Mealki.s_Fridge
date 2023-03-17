@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -47,30 +47,72 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
+                  <h3 class="font-weight-bold">거래처관리</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
-          
+          <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-<!--             1.<br> -->
-<!--             이 안에서 본문을 작성하시되 자유롭게 div를 이용하여 구역을 나누어주세요. <br> -->
-<!--             본문이 짧으시면 따로 css파일 생성하여 해당 클래스(contentbody)의 height를 1000px이상으로 주시면 됩니다. <br> -->
-<!--             단 [css/blank.css]에서는 절대 높이조절 하지 말아주세요 다른분들도 다 수정됩니다...대참사 <br> -->
-<!--             contentbody 는 차후 원활한 css 수정을 위해 본문길이(height) 외에는 건들이지말아주세요. <br>  -->
+            <div id="table_search">
             
-<!--             <br> -->
+            	<form action="${pageContext.request.contextPath}/business/customer/customerList" name="searchCustomer" method="post" >
+	            	<select name="search_option">
+	            		<option value=""> 선택하세요 </option>
+	            		<option value="emp_Kname"> 거래처코드 </option>
+	            		<option value="emp_num"> 거래처명 </option>
+	            		<option value="emp_tel"> 업태 </option>
+	            	</select>
+	            <input type="text" name="search" class="search" >
+	            <button type="submit" >검색</button>
+            	</form>
+            </div>
             
-<!--             2.<br> -->
-<!--             폭감을 짐작하실 수 있도록 background: pink; 스타일을 넣어뒀습니다.<br> -->
-<!--             어느정도의 폭감인지 확인 후 스타일은 지우고 사용 해 주세요.<Br> -->
+			<div id="table_content">
+			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">          
+				<table border="1">
+					<tr><td><input type="checkbox" name="allCustomers" value="${CustomerDTO.cust_num}" id="checkAll"></td>
+					<td>거래처코드</td><td>거래처명</td><td>대표자명</td><td>대표전화번호</td>
+					<td>주소</td><td>업태</td><td>종목</td><td>담당자이메일</td></tr>
+				
+				<c:forEach var="CustomerDTO" items="${customerList }">
+				
+					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.cust_num}"></td>
+					    <td><a href=# style="color: black">${CustomerDTO.cust_num}</a></td>
+					    <td><a href=# style="color: black">${CustomerDTO.cust_name}</a></td>
+					    <td>${CustomerDTO.boss_name}</td>
+					    <td>${CustomerDTO.cust_tel}</td>
+					    <td>${CustomerDTO.cust_adress}, ${CustomerDTO.cust_adress2}</td>
+					    <td>${CustomerDTO.cust_uptae}</td>
+					    <td>${CustomerDTO.cust_jongmok}</td>
+					    <td>${CustomerDTO.man_email}</td></tr>
+				    
+				</c:forEach>
+				
+				</table>
+				</form>
+			</div>
+				<input type="submit" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
+			<div>
+				
+			</div>
+			
  
  <!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+</c:if>
+
 <!-- 페이징 끝 -->
             </div>
             
