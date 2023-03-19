@@ -65,7 +65,7 @@
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
             <div id="top_table" >
