@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.placeOrderMapper">
+	<select id="getWarehouseList" resultType="com.itwillbs.domain.WarehouseDTO">
+		select * from warehouse
+		order by whs_num
+	</select>
+	
+	<select id="getStk_qnt" resultType="com.itwillbs.domain.StockDTO">
+		select stk_qnt from stock
+		where item_num=#{item_num}
+	</select>
+	
+</mapper>
