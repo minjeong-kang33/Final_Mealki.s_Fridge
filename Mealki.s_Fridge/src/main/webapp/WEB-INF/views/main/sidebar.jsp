@@ -75,7 +75,7 @@
             <div class="collapse" id="form-elements">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"><a class="nav-link" href="#">재고현황</a></li>
-                <li class="nav-item"><a class="nav-link" href="#">발주관리</a></li>
+                <li class="nav-item"><a class="nav-link" href="${pageContext.request.contextPath}/wms/placeorder/insertOrder">발주관리</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">입고관리</a></li>
                 <li class="nav-item"><a class="nav-link" href="#">출고관리</a></li>
               </ul>
