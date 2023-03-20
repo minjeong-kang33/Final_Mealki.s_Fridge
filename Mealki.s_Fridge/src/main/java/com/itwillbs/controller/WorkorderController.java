@@ -74,9 +74,9 @@ public class WorkorderController {
 		return "mps/workorder/InsertForm";
 	}
 	
-	@RequestMapping(value = "/workorder/sj_search", method = RequestMethod.GET)
-	public String sj_search() {
-		System.out.println("WorkorderController sj_search()");
+	@RequestMapping(value = "/workorder/SujuSearch", method = RequestMethod.GET)
+	public String SujuSearch() {
+		System.out.println("WorkorderController SujuSearch()");
 		return "mps/workorder/SujuSearch";
 	}
 	
