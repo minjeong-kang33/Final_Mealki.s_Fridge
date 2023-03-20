@@ -124,7 +124,7 @@ h4{
 
 .contentbody{
    width: 100%;
-   height: 2000px; 
+   height: 1000px; 
    padding: 20px 20px;
 }
 
@@ -141,7 +141,6 @@ h4{
    width: 100%;
 }
 
-
 ul,li {list-style:none;}
 
 /*tab css*/
@@ -155,3 +154,14 @@ ul,li {list-style:none;}
 .tabnav li a:hover,
 .tabnav li a.active{background:#fff; color:#4B49AC; }
 .tabcontent{padding: 20px; height:244px; border-top:none; background-color: #fff; margin-right: 50px;}
+
+
+/* 수정하기 버튼 */
+
+.updateBtn{
+	width: 140px;
+	float: right;
+	margin-right: 20px;
+}
+.btn btn-outline-primary btn-fw{
+}
