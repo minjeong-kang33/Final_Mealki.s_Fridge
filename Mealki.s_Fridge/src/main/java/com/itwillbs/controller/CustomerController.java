@@ -25,7 +25,7 @@ public class CustomerController {
 	public String customerList(HttpServletRequest request, Model model) {
 		System.out.println("CustomerController customerList()");
 		
-		int pageSize=5;
+		int pageSize=10;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -70,7 +70,13 @@ public class CustomerController {
 		int num=Integer.parseInt(request.getParameter("cust_num"));
 		
 	return "redirect:business/customer/customerList";
-}
+	}
+	
+	@RequestMapping(value = "/business/customer/insertCustomer", method = RequestMethod.GET)
+	public String insertCustomer() {
+	
+	return "business/customer/insertCustomer";
+	}
 	
 
 }
