@@ -91,7 +91,7 @@
             </a>
             <div class="collapse" id="charts">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">작업지시관리</a></li>
+                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mps/workorder/list">작업지시관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#">생산관리(관리자)</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#">생산관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#">품질관리</a></li>
