@@ -92,7 +92,7 @@
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
 							window.name = "wo_insert";
 							window.open(
-							"${pageContext.request.contextPath}/workorder/wo_insert",
+							"${pageContext.request.contextPath}/workorder/InsertForm",
 							"작업지시등록",popOption);}
 					</script>
          

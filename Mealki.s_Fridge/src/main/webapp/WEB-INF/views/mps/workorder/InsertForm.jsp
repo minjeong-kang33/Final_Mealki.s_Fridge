@@ -21,7 +21,7 @@
 		let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
 		window.name = "sj_search";
 		window.open(
-		"${pageContext.request.contextPath}/workorder/sj_search",
+		"${pageContext.request.contextPath}/workorder/SujuSearch",
 		"수주번호검색",popOption);}
 	</script>
 </body>
