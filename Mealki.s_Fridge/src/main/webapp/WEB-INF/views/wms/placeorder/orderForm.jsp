@@ -24,7 +24,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empMamagment.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/orderForm.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empMamageTab.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
@@ -60,93 +60,64 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">발주 등록</h3>
-                  <!-- <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6> -->
+                  <h3 class="font-weight-bold">자재 관리</h3>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
-          
-<!--  본문 내용 시작 -->
+                <div class="tab">
+				    <ul class="tabnav">
+				      <li><a href="#tab01">발주 등록</a></li>
+				      <li><a href="#tab02">발주 현황</a></li>
+				    </ul>
+				    
+				    <div class="tabcontent">
+				      <div id="tab01">
+				      <h4> | 필수 입력 사항 </h4>
+<!--  발주 등록 시작 -->
+
             <div id="top_table" >
             	<div id="table_search">
+            	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
             	<span id="select_search">
-            	
-		            	<form name="search" method="post" action="/employee/listEmployee">
-			            	<select name="search_option">
-			            		<option value=""> 선택하세요 </option>
-			            		<option value="emp_Kname"> 이름 </option>
-			            		<option value="emp_num"> 사번 </option>
-			            		<option value="emp_tel"> 내선번호 </option>
-			            		<option value="emp_phone"> 휴대폰번호 </option>
-			            		<option value="dept_num"> 부서 </option>
-			            	</select>
-		            	</form>
+			        <span id="order_date_search">발주일<input type="date" id="currentDate" readonly></span>
+			        <span id="due_date_search">납기일<input type="date" id="currentDate" min="currentDate" max="2023-12-31" value=""></span>
+			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name="search" id="findEmp_num">
+			   			<span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span></span>
+			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="search">
+			        	<span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span></span>
 	            </span>
-	            <span id="text_search"><input class="input-search" type="text" name="search"></span>
-		        <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onclick="location.href='#'"></span>
- 				<span id="checkbox_search"><input type="checkbox" name="check"> 퇴사자 포함</span>
- 				<span id="insertEmployee">
- 					<button class="btn btn-danger btn-sm dropdown-toggle" type="button" id="dropdownMenuSizeButton3" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="background-color: #4B49AC; border-color: #4B49AC">
-                        직원등록
-                    </button>
-                      <div class="dropdown-menu" aria-labelledby="dropdownMenuSizeButton3">
-                        <a class="dropdown-item" href="#">개별 등록</a>
-                        <div class="dropdown-divider"></div>
-                        <a class="dropdown-item" href="#">일괄 등록</a>
- 				</span>
 
- 				</div>
  				<br>
-            </div>
-            <div class="emp_table">
-            	<h4> | 기본 정보 </h4>
+            
+            	<h4> | 발주 항목 등록 </h4>
 				<table border="1">
-					 <tr><th>사번</th><th>성명</th><th>직책</td><th>직급</th><th>부서</th><th>입사일자</th><th>전화번호</th><th>이메일</th></tr>
-					 <tr><td>12314</td><td>홍길동</td><td>팀장</td><td>대리</td><td>생산팀</td><td>2023.03.17</td><td>010-0000-0000</td><td>aa@gmail.com</td></tr>
-					 <tr><td>12314</td><td>홍길동</td><td>팀장</td><td>대리</td><td>생산팀</td><td>2023.03.17</td><td>010-0000-0000</td><td>aa@gmail.com</td></tr>
-					 <tr><td>12314</td><td>홍길동</td><td>팀장</td><td>대리</td><td>생산팀</td><td>2023.03.17</td><td>010-0000-0000</td><td>aa@gmail.com</td></tr>
-					 <tr><td>12314</td><td>홍길동</td><td>팀장</td><td>대리</td><td>생산팀</td><td>2023.03.17</td><td>010-0000-0000</td><td>aa@gmail.com</td></tr>
-					 <tr><td>12314</td><td>홍길동</td><td>팀장</td><td>대리</td><td>생산팀</td><td>2023.03.17</td><td>010-0000-0000</td><td>aa@gmail.com</td></tr>
+					 <tr><th>체크</th><th>품번</th><th>품명</td><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
+					 <tr><td>체크</td>
+					 	 <td><input type="text" name="" id="findProducts"></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="number" name=""></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td>
+					 	 <td><input type="text" name="" readonly></td></tr>
 				</table>
 				<hr>
-				
-				<div class="emp_details">
-	   			<h4> | 상세 정보 </h4>
-	   			
-	   			<div class="emp_info">
-		   			<div class="emp_img"><input type="image" src="${pageContext.request.contextPath}/resources/employee/emp_default.png" id="employee_default"></div>
-		   			<div class="emp_infoDetails">
-		   				<table border="1" class="emp_details_table">
-		   				<tr class="tr"><th class="th">사번</th><td>12314</td><th class="th">이름</th><td>홍길동</td></tr>
-		   				<tr class="tr"><th class="th">영문성명</th><td>hong</td><th class="th">이메일주소</th><td>aa@gmail.com</td></tr>
-		   				<tr class="tr"><th class="th">생년월일</th><td>1995.08.11</td><th class="th">성별</th><td>남</td></tr>
-		   				<tr class="tr"><th class="th">휴대폰번호</th><td>010-0000-0000</td><th class="th">내선번호</th><td>051-751-9999</td></tr>
-		   				<tr class="tr"><th class="th">자택주소</th><td colspan="3">부산시 남구 어쩌구</td></tr>
-		   				</table>
-		   			</div>
-	   			</div>
-	   			
-	   			  <div class="tab">
-				    <ul class="tabnav">
-				      <li><a href="#tab01">탭1</a></li>
-				      <li><a href="#tab02">탭2</a></li>
-				    </ul>
-				    <div class="tabcontent">
-				      <div id="tab01">tab1 content</div>
+	   		
+	   		</form>
+            </div>
+ <!--  발주 등록 끝 -->   
+				      
+				      
+				      </div>
+				      </div>
 				      <div id="tab02">tab2 content</div>
 				    </div>
 				  </div>
-	   		</div>
-	   		
-	   		</div>
-	   		
-	   		
-            
-       
-            	
-
-            
- <!--  본문내용 끝 -->    
+          <div class="contentbody"> 
+          
+ 
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
@@ -172,6 +143,43 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+<script type="text/javascript">
+/* 입고창고 찾기 */
+ $('#findWarehouse').on("click",function(e){
+	
+	e.preventDefault();
+	
+	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findWarehouse";
+	let popOption = "width = 300px, height=300px, top=300px, left=300px, scrollbars=no, resizable = no";
+	
+	window.open(popUrl,"입고 창고",popOption);	
+	
+}); 
+
+/* 담당자 찾기 */
+$('#findEmp_num').on("click",function(e){
+	
+	e.preventDefault();
+	
+	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findEmp_num";
+	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes";
+	
+	window.open(popUrl,"담당자 찾기",popOption);	
+	
+});
+
+/* 상품찾기 */
+$('#findProducts').on("click",function(e){
+	
+	e.preventDefault();
+	
+	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findProducts}";
+	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes";
+	
+	window.open(popUrl,"상품 찾기",popOption);	
+	
+});
+</script>
 
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
