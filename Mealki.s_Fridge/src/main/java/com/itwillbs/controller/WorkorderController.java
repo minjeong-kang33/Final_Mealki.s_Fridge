@@ -22,7 +22,7 @@ public class WorkorderController {
 	@Inject
 	private WorkorderService workorderService;
 	
-	@RequestMapping(value = "mps/workorder/blank", method = RequestMethod.GET)
+	@RequestMapping(value = "mps/workorder/list", method = RequestMethod.GET)
 	public String workorderlist(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController workorderlist()");
 		// 한 화면에 보여줄 글 개수 설정
@@ -65,19 +65,19 @@ public class WorkorderController {
 				model.addAttribute("workorderList", workorderList);
 				model.addAttribute("pageDTO", pageDTO);
 				
-				return "mps/workorder/blank";
+				return "mps/workorder/list";
 	}
 	
-	@RequestMapping(value = "/workorder/wo_insert", method = RequestMethod.GET)
+	@RequestMapping(value = "/workorder/InsertForm", method = RequestMethod.GET)
 	public String workorderinsert() {
 		System.out.println("WorkorderController workorderinsert()");
-		return "mps/workorder/wo_insert";
+		return "mps/workorder/InsertForm";
 	}
 	
 	@RequestMapping(value = "/workorder/sj_search", method = RequestMethod.GET)
 	public String sj_search() {
 		System.out.println("WorkorderController sj_search()");
-		return "mps/workorder/sj_search";
+		return "mps/workorder/SujuSearch";
 	}
 	
 	
