@@ -14,4 +14,15 @@
 		limit #{startRow}, #{pageSize}
 	</select>
 	
+	<select id="getContractCount" resultType="java.lang.Integer">
+      	select count(*) from contract
+    </select>
+    
+	<select id="getcontractList" resultType="com.itwillbs.domain.WorkorderDTO">
+		select * 
+		from contract
+		order by business_date desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
 </mapper>

@@ -9,6 +9,8 @@
 <body>
 <input type="button" value="닫기" onclick="window.close()">
     
+    
+    
     <script>
         function setParentText(){
         	opener.document.getElementById("pInput").value = document.getElementById("cInput").value

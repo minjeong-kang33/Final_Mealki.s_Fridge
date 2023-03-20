@@ -250,8 +250,8 @@
 					 </script>
        				 <script text="text/javascript">
 						function wo_insert() {
-							var _width = '400';
-							var _height = '200';
+							var _width = '550';
+							var _height = '600';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;

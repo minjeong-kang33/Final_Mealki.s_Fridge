@@ -10,4 +10,8 @@ public interface WorkorderService {
 	public int getWorkorderCount();
 
 	public List<WorkorderDTO> getworkorderList(PageDTO pageDTO);
+
+	public List<WorkorderDTO> getcontractList(PageDTO pageDTO);
+
+	public int getContractCount();
 }

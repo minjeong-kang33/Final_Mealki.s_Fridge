@@ -25,7 +25,7 @@ public class WorkorderController {
 	@RequestMapping(value = "mps/workorder/list", method = RequestMethod.GET)
 	public String workorderlist(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController workorderlist()");
-		// 한 화면에 보여줄 글 개수 설정
+				// 한 화면에 보여줄 글 개수 설정
 				int pageSize=10;
 				// 현페이지 번호 가져오기
 				String pageNum=request.getParameter("pageNum");
@@ -69,8 +69,48 @@ public class WorkorderController {
 	}
 	
 	@RequestMapping(value = "/workorder/InsertForm", method = RequestMethod.GET)
-	public String workorderinsert() {
+	public String workorderinsert(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController workorderinsert()");
+		// 한 화면에 보여줄 글 개수 설정
+		int pageSize=10;
+		// 현페이지 번호 가져오기
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {
+			//pageNum 없으면 1페이지 설정
+			pageNum="1";
+		}
+		// 페이지번호를 => 정수형 변경
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO=new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		List<WorkorderDTO> contractList=workorderService.getcontractList(pageDTO);
+		
+		// 페이징 처리
+		int count = workorderService.getContractCount();
+		int pageBlock =10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+		 	endPage = pageCount;
+		 }
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		
+		
+		
+		model.addAttribute("contractList", contractList);
+		model.addAttribute("pageDTO", pageDTO);
+		
 		return "mps/workorder/InsertForm";
 	}
 	

@@ -35,4 +35,26 @@ public class WorkorderServiceImpl implements WorkorderService{
 		return workorderDAO.getWorkorderList(pageDTO);
 	}
 	
+	@Override
+	public int getContractCount() {
+		System.out.println("WorkorderServiceImpl getcontractCount()");
+		
+		
+		return workorderDAO.getContractCount();
+	}
+
+	
+
+	@Override
+	public List<WorkorderDTO> getcontractList(PageDTO pageDTO) {
+		System.out.println("WorkorderServiceImpl getcontractList()");
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return workorderDAO.getcontractList(pageDTO);
+	}
+	
 }

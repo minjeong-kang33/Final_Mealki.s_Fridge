@@ -11,5 +11,9 @@ public interface WorkorderDAO {
 
 	public List<WorkorderDTO> getWorkorderList(PageDTO pageDTO);
 
+	public List<WorkorderDTO> getcontractList(PageDTO pageDTO);
+
+	public int getContractCount();
+
 	
 }

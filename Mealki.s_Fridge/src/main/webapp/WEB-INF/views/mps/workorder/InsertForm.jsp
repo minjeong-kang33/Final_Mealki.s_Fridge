@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@page import="java.util.ArrayList"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,22 +9,35 @@
 <title>밀키의 냉장고</title>
 </head>
 <body>
-수주번호검색<br>
 
-	<a href=# onclick="return SujuSearch();" class="btn">검색</a> 
+	수주번호검색
+	<br>
+	<a href=# onclick="return SujuSearch();" class="btn">검색</a>
+	<br>
+	<table border="1">
+		<tr>
+			<td>수주번호</td>
+			<td>품목명</td>
+			<td>수주업체</td>
+			<td>수주일자</td>
+			<td>납품일자</td>
+		</tr>
 
-	<script text="text/javascript">
-		function SujuSearch() {
-		//	수정팝업창 크기 조절과 팝업 위치 조절
-		var _width = '400';
-		var _height = '400';
-		var _left = Math.ceil((window.screen.width - _width) / 2);
-		var _top = Math.ceil((window.screen.height - _height) / 2);
-		let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-		window.name = "sj_search";
-		window.open(
-		"${pageContext.request.contextPath}/workorder/SujuSearch",
-		"수주번호검색",popOption);}
-	</script>
+		<c:forEach var="WorkorderDTO" items="${contractList}">
+			<tr>
+				<td>${WorkorderDTO.business_num}</td>
+				<td>${WorkorderDTO.item_name}</td>
+				<td>${WorkorderDTO.business_name}</td>
+				<td>${WorkorderDTO.business_date}</td>
+				<td>${WorkorderDTO.out_date}</td>
+			</tr>
+		</c:forEach>
+
+	</table>
+	
+
+
+	<input type="button" value="닫기" onclick="window.close()">
+
 </body>
 </html>
