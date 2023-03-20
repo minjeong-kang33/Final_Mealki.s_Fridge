@@ -26,6 +26,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 </head>
 <body>
 
@@ -55,47 +56,172 @@
 <!--  본문 내용 시작 -->
 
 		<!-- 작업지시등록버튼 -->
-		<td>
-			<a href=# onclick="return wo_insert();" class="btn">등록</a> 
-		</td>
+		<a href=# onclick="return wo_insert();" class="btn">등록</a> 
 		
 		
-		<table border="1">
-			<tr>
-				<td>작업지시번호</td>
-				<td>수주번호</td>
-				<td>지시자</td>
-				<td>작업지시일자</td>
-				<td>작업상태</td>
-			</tr>
+				<div class="tab">
+				    <ul class="tabnav">
+				      <li><a href="#tab01">전체</a></li>
+				      <li><a href="#tab02">대기</a></li>
+				      <li><a href="#tab03">진행중</a></li>
+				      <li><a href="#tab04">완료</a></li>
+				    </ul>
+				    <div class="tabcontent">
+				    
+				      <div id="tab01">
+				      	<table border="1">
+						<tr>
+							<td>작업지시번호</td>
+							<td>수주번호</td>
+							<td>지시자</td>
+							<td>작업지시일자</td>
+							<td>작업상태</td>
+						</tr>
 
-			<c:forEach var="WorkorderDTO" items="${workorderList}">
-				<tr>
-					<td>${WorkorderDTO.wo_num}</td>
-					<td>${WorkorderDTO.business_num}</td>
-					<td>${WorkorderDTO.wo_emp}</td>
-					<td>${WorkorderDTO.wo_date}</td>
-					<td>${WorkorderDTO.wo_state}</td>
-				</tr>
-			</c:forEach>
-		</table>
+						<c:forEach var="WorkorderDTO" items="${workorderList}">
+						<tr>
+							<td>${WorkorderDTO.wo_num}</td>
+							<td>${WorkorderDTO.business_num}</td>
+							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_date}</td>
+							<td>${WorkorderDTO.wo_state}</td>
+						</tr>
+						</c:forEach>
+						
+						</table>
+						<!-- 탭 페이징처리 -->
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							</c:if>
+
+							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							</c:forEach>
+
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							</c:if>
+				      </div>
+				      
+				      <div id="tab02">
+				      	<table border="1">
+						<tr>
+							<td>작업지시번호</td>
+							<td>수주번호</td>
+							<td>지시자</td>
+							<td>작업지시일자</td>
+							<td>작업상태</td>
+						</tr>
+						
+						<c:forEach var="WorkorderDTO" items="${workorderList}">
+						<tr>
+							<c:if test="${WorkorderDTO.wo_state == '대기'}">
+							<td>${WorkorderDTO.wo_num}</td>
+							<td>${WorkorderDTO.business_num}</td>
+							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_date}</td>
+							<td>${WorkorderDTO.wo_state}</td>
+							</c:if>
+						</tr>
+						</c:forEach>
+
+						</table>
+							<!-- 탭 페이징처리 -->
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							</c:if>
+
+							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							</c:forEach>
+
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							</c:if>
+				      </div>
+				      
+				      <div id="tab03">
+				      	<table border="1">
+						<tr>
+							<td>작업지시번호</td>
+							<td>수주번호</td>
+							<td>지시자</td>
+							<td>작업지시일자</td>
+							<td>작업상태</td>
+						</tr>
+					
+						<c:forEach var="WorkorderDTO" items="${workorderList}">
+						<tr>
+							<c:if test="${WorkorderDTO.wo_state == '진행중'}">
+							<td>${WorkorderDTO.wo_num}</td>
+							<td>${WorkorderDTO.business_num}</td>
+							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_date}</td>
+							<td>${WorkorderDTO.wo_state}</td>
+							</c:if>
+						</tr>
+						</c:forEach>
+												
+						</table>
+						<!-- 탭 페이징처리 -->
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							</c:if>
+
+							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							</c:forEach>
+
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							</c:if>
+				      </div>
+				      
+				      <div id="tab04">
+				      	<table border="1">
+						<tr>
+							<td>작업지시번호</td>
+							<td>수주번호</td>
+							<td>지시자</td>
+							<td>작업지시일자</td>
+							<td>작업상태</td>
+						</tr>
+						
+						<c:forEach var="WorkorderDTO" items="${workorderList}">
+						<tr>
+							<c:if test="${WorkorderDTO.wo_state == '완료'}">
+							<td>${WorkorderDTO.wo_num}</td>
+							<td>${WorkorderDTO.business_num}</td>
+							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_date}</td>
+							<td>${WorkorderDTO.wo_state}</td>
+							</c:if>
+						</tr>
+						</c:forEach>
+					
+						</table>
+						<!-- 탭 페이징처리 -->
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							</c:if>
+
+							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							</c:forEach>
+
+							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							</c:if>
+				      </div>
+				      
+				    </div>
+				  </div>
 
 
 
-					<script text="text/javascript">
-						function wo_insert() {
-						//	수정팝업창 크기 조절과 팝업 위치 조절
-							var _width = '900';
-							var _height = '900';
-							var _left = Math.ceil((window.screen.width - _width) / 2);
-							var _top = Math.ceil((window.screen.height - _height) / 2);
-							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-							window.name = "wo_insert";
-							window.open(
-							"${pageContext.request.contextPath}/workorder/InsertForm",
-							"작업지시등록",popOption);}
-					</script>
-         
+
+					
+  
             
  <!--  본문내용 끝 -->    
         
@@ -119,8 +245,32 @@
           
         </div>
         
-<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
-        
+<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. 그렇다면 여기를 스크립트자리로 쓰겠습니다 -->
+					 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
+					 </script>
+       				 <script text="text/javascript">
+						function wo_insert() {
+							var _width = '900';
+							var _height = '900';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.name = "wo_insert";
+							window.open(
+							"${pageContext.request.contextPath}/workorder/InsertForm",
+							"작업지시등록",popOption);}
+					</script>
+      				<script type="text/javascript">
+  						$(function(){
+  						$('.tabcontent > div').hide();
+ 						 $('.tabnav a').click(function () {
+   						 $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+    					$('.tabnav a').removeClass('active');
+    					$(this).addClass('active');
+    					return false;
+  						}).filter(':eq(0)').click();
+  						});
+  					</script>
         
 <!-- 푸터시작 -->
      <jsp:include page="../../main/footer.jsp" /> 
