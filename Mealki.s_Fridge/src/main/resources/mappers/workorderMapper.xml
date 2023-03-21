@@ -25,4 +25,19 @@
 		limit #{startRow}, #{pageSize}
 	</select>
 	
+	<select id="ContractSearch" resultType="com.itwillbs.domain.WorkorderDTO">
+		select * 
+		from contract
+		where business_num = #{keyword}
+	</select>
+	
+	<select id="WoInsert" resultType="com.itwillbs.domain.WorkorderDTO">
+		select c.business_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		from recipe r, contract c, products p
+		where r.item_name=c.item_name
+		and r.item_name=p.item_name
+		and r.item_name=(select item_name from contract where business_num=#{num});
+	</select>
+	
+	
 </mapper>

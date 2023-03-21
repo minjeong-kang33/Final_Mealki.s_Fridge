@@ -56,5 +56,21 @@ public class WorkorderServiceImpl implements WorkorderService{
 		
 		return workorderDAO.getcontractList(pageDTO);
 	}
+
+	@Override
+	public WorkorderDTO ContractSearch(String keyword) {
+		System.out.println("WorkorderServiceImpl ContractSearch()");
+		
+		
+		return workorderDAO.ContractSearch(keyword);
+	}
+
+	@Override
+	public List<WorkorderDTO> WoInsert(String num) {
+		System.out.println("WorkorderServiceImpl WoInsert()");
+		
+		
+		return workorderDAO.WoInsert(num);
+	}
 	
 }

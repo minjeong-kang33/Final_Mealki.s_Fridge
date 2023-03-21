@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.WorkorderDTO;
@@ -68,11 +69,16 @@ public class WorkorderController {
 				return "mps/workorder/list";
 	}
 	
-	@RequestMapping(value = "/workorder/InsertForm", method = RequestMethod.GET)
-	public String workorderinsert(HttpServletRequest request, Model model) {
-		System.out.println("WorkorderController workorderinsert()");
+	@RequestMapping(value = "/workorder/ContractList", method = RequestMethod.GET)
+	public String ContractList(HttpServletRequest request, Model model) {
+		System.out.println("WorkorderController ContractList()");
+		
+		// 검색
+		
+		
+		
 		// 한 화면에 보여줄 글 개수 설정
-		int pageSize=10;
+		int pageSize=5;
 		// 현페이지 번호 가져오기
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
@@ -111,13 +117,37 @@ public class WorkorderController {
 		model.addAttribute("contractList", contractList);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		return "mps/workorder/InsertForm";
+		return "mps/workorder/ContractList";
 	}
 	
-	@RequestMapping(value = "/workorder/SujuSearch", method = RequestMethod.GET)
-	public String SujuSearch() {
-		System.out.println("WorkorderController SujuSearch()");
-		return "mps/workorder/SujuSearch";
+	@RequestMapping(value = "/workorder/ContractSearch", method = RequestMethod.GET)
+	public String ContractSearch(HttpServletRequest request, Model model) {
+		System.out.println("WorkorderController ContractSearch()");
+
+		String keyword=request.getParameter("keyword");
+		
+//		List<WorkorderDTO> workorderDTO = workorderService.getContractSearch(keyword);
+//		model.addAttribute("WorkorderDTO", workorderDTO);
+		
+		WorkorderDTO workorderDTO=workorderService.ContractSearch(keyword);
+		
+		model.addAttribute("workorderDTO", workorderDTO);
+		
+		return "mps/workorder/ContractSearch";
+	}
+	
+	@RequestMapping(value = "/workorder/WoInsert", method = RequestMethod.GET)
+	public String WoInsert(HttpServletRequest request, Model model) {
+		System.out.println("WorkorderController WoInsert()");
+		
+		String num=request.getParameter("business_num");
+		
+		List<WorkorderDTO> WoInsert=workorderService.WoInsert(num);
+		
+		model.addAttribute("WoInsert", WoInsert);
+		// 주소변경 없이 이동
+		// /WEB-INF/views/board/writeForm.jsp
+		return "mps/workorder/WoInsert";
 	}
 	
 	

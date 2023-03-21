@@ -14,4 +14,13 @@ public interface WorkorderService {
 	public List<WorkorderDTO> getcontractList(PageDTO pageDTO);
 
 	public int getContractCount();
+
+	public WorkorderDTO ContractSearch(String keyword);
+
+	public List<WorkorderDTO> WoInsert(String num);
+
+
+
 }
+
+

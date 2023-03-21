@@ -22,7 +22,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
@@ -56,7 +56,7 @@
 <!--  본문 내용 시작 -->
 
 		<!-- 작업지시등록버튼 -->
-		<a href=# onclick="return wo_insert();" class="btn">등록</a> 
+		<a href=# onclick="return ContractList();" class="btn">등록</a> 
 		
 		
 				<div class="tab">
@@ -71,11 +71,11 @@
 				      <div id="tab01">
 				      	<table border="1">
 						<tr>
-							<td>작업지시번호</td>
-							<td>수주번호</td>
-							<td>지시자</td>
-							<td>작업지시일자</td>
-							<td>작업상태</td>
+							<th>작업지시번호</th>
+							<th>수주번호</th>
+							<th>지시자</th>
+							<th>작업지시일자</th>
+							<th>작업상태</th>
 						</tr>
 
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
@@ -91,26 +91,26 @@
 						</table>
 						<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
 							</c:forEach>
 
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
 				      </div>
 				      
 				      <div id="tab02">
 				      	<table border="1">
 						<tr>
-							<td>작업지시번호</td>
-							<td>수주번호</td>
-							<td>지시자</td>
-							<td>작업지시일자</td>
-							<td>작업상태</td>
+							<th>작업지시번호</th>
+							<th>수주번호</th>
+							<th>지시자</th>
+							<th>작업지시일자</th>
+							<th>작업상태</th>
 						</tr>
 						
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
@@ -128,26 +128,26 @@
 						</table>
 							<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
 							</c:forEach>
 
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
 				      </div>
 				      
 				      <div id="tab03">
 				      	<table border="1">
 						<tr>
-							<td>작업지시번호</td>
-							<td>수주번호</td>
-							<td>지시자</td>
-							<td>작업지시일자</td>
-							<td>작업상태</td>
+							<th>작업지시번호</th>
+							<th>수주번호</th>
+							<th>지시자</th>
+							<th>작업지시일자</th>
+							<th>작업상태</th>
 						</tr>
 					
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
@@ -165,26 +165,26 @@
 						</table>
 						<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
 							</c:forEach>
 
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
 				      </div>
 				      
 				      <div id="tab04">
 				      	<table border="1">
 						<tr>
-							<td>작업지시번호</td>
-							<td>수주번호</td>
-							<td>지시자</td>
-							<td>작업지시일자</td>
-							<td>작업상태</td>
+							<th>작업지시번호</th>
+							<th>수주번호</th>
+							<th>지시자</th>
+							<th>작업지시일자</th>
+							<th>작업상태</th>
 						</tr>
 						
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
@@ -202,15 +202,15 @@
 						</table>
 						<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
 
 							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
 							</c:forEach>
 
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
 				      </div>
 				      
@@ -227,17 +227,7 @@
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-    	 <c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-			<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">[10 페이지 이전]</a>
-		</c:if>
-
-		<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-			<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${i}">${i}</a>
-		</c:forEach>
-
-		<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-			<a href="${pageContext.request.contextPath}/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">[10 페이지 다음]</a>
-		</c:if>
+    	
 <!-- 페이징 끝 -->
             </div>
             
@@ -249,15 +239,15 @@
 					 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
        				 <script text="text/javascript">
-						function wo_insert() {
-							var _width = '550';
-							var _height = '600';
+						function ContractList() {
+							var _width = '630';
+							var _height = '350';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
 							window.name = "wo_insert";
 							window.open(
-							"${pageContext.request.contextPath}/workorder/InsertForm",
+							"${pageContext.request.contextPath}/workorder/ContractList",
 							"작업지시등록",popOption);}
 					</script>
       				<script type="text/javascript">

@@ -15,5 +15,9 @@ public interface WorkorderDAO {
 
 	public int getContractCount();
 
+	public WorkorderDTO ContractSearch(String keyword);
+
+	public List<WorkorderDTO> WoInsert(String num);
+
 	
 }

@@ -1,6 +1,7 @@
 package com.itwillbs.domain;
 
 public class WorkorderDTO {
+	private String keyword;
 	//	workorder 관련
 	private String wo_num;
 	private String business_num;
@@ -15,7 +16,18 @@ public class WorkorderDTO {
 	private String business_date;
 	private String out_date;
 	private String item_num;
+	private int contract_qty;
+	// recipe 관련
+	private String r_name;
 	
+	
+	
+	public int getContract_qty() {
+		return contract_qty;
+	}
+	public void setContract_qty(int contract_qty) {
+		this.contract_qty = contract_qty;
+	}
 	public String getItem_name() {
 		return item_name;
 	}
@@ -87,6 +99,18 @@ public class WorkorderDTO {
 	}
 	public void setManu_name(String manu_name) {
 		this.manu_name = manu_name;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getR_name() {
+		return r_name;
+	}
+	public void setR_name(String r_name) {
+		this.r_name = r_name;
 	}
 	
 		
