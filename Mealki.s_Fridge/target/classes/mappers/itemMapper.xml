@@ -3,8 +3,13 @@
 
 <mapper namespace="com.itwillbs.mappers.itemMapper">
     <select id="getItemList" resultType="com.itwillbs.domain.ItemDTO">
-        select *
-        from products;
+        select * from products
+        order by item_num desc
+        limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="getItemCount" resultType="java.lang.Integer">
+    select count(*) from products
     </select>
 
 <!--     <insert id="insertItem"> -->

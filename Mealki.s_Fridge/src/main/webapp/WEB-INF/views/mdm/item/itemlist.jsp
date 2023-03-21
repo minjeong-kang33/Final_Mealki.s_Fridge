@@ -103,11 +103,35 @@
 				
 			</div>
 			
+	<script>
+		document.addEventListener("DOMContentLoaded", function() {
+  		let checkAll = document.querySelector("#checkAll");
+  		let checkboxes = document.querySelectorAll("input[name='selectItem']");
+
+  		checkAll.addEventListener("change", function() {
+   		 for (let checkbox of checkboxes) {
+  		 	   checkbox.checked = checkAll.checked;
+  		  }
+ 		 });
+		});
+	</script>
+			
  
  <!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+</c:if>
 
 
 <!-- 페이징 끝 -->
