@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="com.itwillbs.mappers.contractMapper">
+
+<!-- 	id="이름" sql구문 하나 하나 이름 
+        ? 대신에 BoardDTO 멤버변수명 #{id} -->
+	 <insert id="contractInsertBoard">
+    	INSERT INTO contract(business_num,
+    						cust_num,
+    						item_num,
+    						item_name,
+    						business_name,
+    						business_date,
+    						out_date,
+    						incharge_code,
+    						incharge_name) 
+    	VALUES(#{business_num},
+    			#{cust_num},
+    			#{item_num},
+    			#{item_name},
+    			#{business_name},
+    			#{business_date},
+    			#{out_date},
+    			#{incharge_code},
+    			#{incharge_name})
+    </insert>
+	
+	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
+        SELECT business_num, cust_num, item_num, item_name, business_name,
+        		business_date,out_date,incharge_code,incharge_name
+        from contract
+		order by business_num desc
+		limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="selectContractTotal" resultType="java.lang.Integer">
+    	SELECT COUNT(*) total FROM contract
+    </select>
+
+	 <select id="getContractCount" resultType="java.lang.Integer">
+        select count(*) from contract 
+    </select>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
