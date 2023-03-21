@@ -33,6 +33,40 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		return sqlSession.selectList(namespace+".getWorkorderList", pageDTO);
 	}
 	
+	@Override
+	public int getContractCount() {
+		System.out.println("WorkorderDAOImpl getConstractCount()");
+		
+		return sqlSession.selectOne(namespace+".getContractCount");
+	}
+	
+	@Override
+	public List<WorkorderDTO> getcontractList(PageDTO pageDTO) {
+		System.out.println("WorkorderDAOImpl getcontractList()");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getcontractList", pageDTO);
+	}
+
+	@Override
+	public WorkorderDTO ContractSearch(String keyword) {
+		System.out.println("WorkorderDAOImpl ContractSearch()");
+		System.out.println(keyword);
+		
+		
+		return sqlSession.selectOne(namespace+".ContractSearch", keyword);
+	}
+
+	@Override
+	public List<WorkorderDTO> WoInsert(String num) {
+		System.out.println("WorkorderDAOImpl WoInsert()");
+		System.out.println(num);
+		
+		return sqlSession.selectList(namespace+".WoInsert", num);
+	}
+	
+	
+	
 	
 	
 }
