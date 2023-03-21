@@ -1,12 +1,14 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.domain.WarehouseDTO;
@@ -15,23 +17,26 @@ import com.itwillbs.domain.WarehouseDTO;
 public class PlaceOrderDAOImpl implements PlaceOrderDAO{
 	@Inject
 	private SqlSession sqlSession;
-	private WarehouseDTO warehouseDTO;
 	private static final String namespace="com.itwillbs.mappers.placeOrderMapper";
 	
 	@Override
-	public List<WarehouseDTO> getWarehouseList(PageDTO pageDTO) {
+	public List<WarehouseDTO> getWarehouseList() {
 		System.out.println("PlaceOrderDAOImpl getWarehouseList()");
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectList(namespace+".getWarehouseList", pageDTO);
+		return sqlSession.selectList(namespace+".getWarehouseList");
 	}
 
 	@Override
 	public int getStk_qnt() {
-		
+		System.out.println("PlaceOrderDAOImpl getStk_qnt()");
 		return sqlSession.selectOne(namespace+".getStk_qnt", namespace);
 	}
-	
+
+	@Override
+	public List<Map<String, Object>> getItemListMap() {
+		System.out.println("PlaceOrderDAOImpl getItemListMap()");
+		return sqlSession.selectList(namespace+".getItemListMap");
+	}
 	
 	
 	
