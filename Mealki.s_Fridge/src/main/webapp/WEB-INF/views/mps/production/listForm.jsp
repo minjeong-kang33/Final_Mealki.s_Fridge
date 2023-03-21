@@ -31,8 +31,8 @@
   
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/top.jsp" /> 
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/sidebar.jsp" /> 
+    <jsp:include page="../../main/top.jsp" /> 
+    <jsp:include page="../../main/sidebar.jsp" /> 
 <!-- 헤더, 사이드바,개인설정 끝 -->
  
       
@@ -51,17 +51,34 @@
           <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-            1.<br>
-            이 안에서 본문을 작성하시되 자유롭게 div를 이용하여 구역을 나누어주세요. <br>
-            본문이 짧으시면 따로 css파일 생성하여 해당 클래스(contentbody)의 height를 1000px이상으로 주시면 됩니다. <br>
-            단 [css/blank.css]에서는 절대 높이조절 하지 말아주세요 다른분들도 다 수정됩니다...대참사 <br>
-            contentbody 는 차후 원활한 css 수정을 위해 본문길이(height) 외에는 건들이지말아주세요. <br> 
-            
-            <br>
-            
-            2.<br>
-            폭감을 짐작하실 수 있도록 background: pink; 스타일을 넣어뒀습니다.<br>
-            어느정도의 폭감인지 확인 후 스타일은 지우고 사용 해 주세요.<Br>
+	<table border='1' align="center">
+		<tr align="center">
+			<th>작업지시번호</th> <!-- th width="15%" -->
+			<th>라인명</th>
+			<th>라인코드</th>
+			<th>품명</th>
+			<th>품번</th>
+			<th>수주량</th>
+			<th>하루생산량</th>
+			<th>불량</th>
+			<th>작업자</th>
+			<th>작업시작일</th>
+			<th>작업마감일</th>
+         </tr>
+         <tr align="center">
+			<th>wo000001</th> <!-- th width="15%" -->
+			<th>가공1</th>
+			<th>l0000001</th>
+			<th>김치찌개</th>
+			<th>p0000001</th>
+			<th>100</th>
+			<th>90</th>
+			<th>10</th>
+			<th>홍길동</th>
+			<th>2023-03-16 05:21:38</th>
+			<th>2023-03-16 05:21:38</th>
+         </tr>
+    </table>
             
  <!--  본문내용 끝 -->    
         
@@ -79,7 +96,7 @@
         
         
 <!-- 푸터시작 -->
-     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/footer.jsp" /> 
+     <jsp:include page="../../main/footer.jsp" /> 
 <!--  푸터 끝 -->
 
 <!-- partial -->
