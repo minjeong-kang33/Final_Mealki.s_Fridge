@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ItemDAO;
 import com.itwillbs.domain.ItemDTO;
+import com.itwillbs.domain.PageDTO;
 
 @Service
 public class ItemServiceImpl implements ItemService {
@@ -16,10 +17,24 @@ public class ItemServiceImpl implements ItemService {
 	private ItemDAO itemDAO;
 	
 	@Override
-	public List<ItemDTO> getItemList() {
+	public List<ItemDTO> getItemList(PageDTO pageDTO) {
 		System.out.println("ItemServiceImpl getItemList()");
 		
-		return itemDAO.getItemList();
+		// 시작하는 행번호 구하기
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return itemDAO.getItemList(pageDTO);
+	}
+
+	@Override
+	public int getItemCount() {
+		System.out.println("ItemServiceImpl getItemCount()");
+		
+		return itemDAO.getItemCount();
 	}
 
 //	@Override

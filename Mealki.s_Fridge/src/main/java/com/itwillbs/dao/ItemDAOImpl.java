@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ItemDTO;
+import com.itwillbs.domain.PageDTO;
 
 @Repository
 public class ItemDAOImpl implements ItemDAO {
@@ -21,9 +22,21 @@ public class ItemDAOImpl implements ItemDAO {
 	private static final String namespace="com.itwillbs.mappers.itemMapper";
 	
 	 @Override
-	    public List<ItemDTO> getItemList() {
-	        return sqlSession.selectList(namespace+".getItemList");
+	    public List<ItemDTO> getItemList(PageDTO pageDTO) {
+		 System.out.println("ItemDAOImpl getItemList()");
+		 
+		 	pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		 
+	        return sqlSession.selectList(namespace+".getItemList", pageDTO);
 	    }
+	 
+	 @Override
+	 public int getItemCount() {
+		 System.out.println("ItemDAOImpl getItemCount()");
+		 
+		 return sqlSession.selectOne(namespace+".getItemCount");
+	 }
+	 
 //
 //	    @Override
 //	    public void insertItem(ItemDTO item) {
@@ -47,4 +60,5 @@ public class ItemDAOImpl implements ItemDAO {
 //	        map.put("itemType", itemType);
 //	        return sqlSession.selectList(namespace+".searchItem", map);
 //	    }
+
 	}
