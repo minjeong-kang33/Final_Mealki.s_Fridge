@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
      <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -66,15 +69,19 @@ th,td{
                   <h6 class="font-weight-normal mb-0">수주관리 <span class="text-primary">수주관리</span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-          
+         <caption>
+        <div>일반게시판목록</div>
+        <div>Total: ${total }</div>
+        </caption>   
 <table>
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
-        
+      
 		<tr align="center">
 			
+			<th></th>
 			<th>수주번호</th> <!-- th width="15%" -->
 			<th>거래처코드</th>
 			<th>품목코드</th>
@@ -84,15 +91,16 @@ th,td{
 			<th>납품예정일</th>
 			<th>담당자코드</th>
 			<th>담당자</th>
+			<th>수주수량</th>
          </tr>
          
-<%--          <c:set var="cnt" value="1"/> --%>
+         <c:set var="cnt" value="1"/>
          
          <c:forEach var="ContractDTO" items="${resultList}">
          
          <tr align="center">
          
-<%--          	<td>${cnt}</td> --%>
+         	<td>${cnt}</td>
          	<td>${ContractDTO.business_num }</td>
          	<td>${ContractDTO.cust_num }</td>
          	<td>${ContractDTO.item_num }</td>
@@ -102,14 +110,15 @@ th,td{
          	<td>${ContractDTO.out_date }</td>
          	<td>${ContractDTO.incharge_code }</td>
          	<td>${ContractDTO.incharge_name }</td>
+         	<td>${ContractDTO.contract_qty }</td>
          </tr>	
          
-<%--          <c:set var="cnt" value="${cnt+1}" /> --%>
+         <c:set var="cnt" value="${cnt+1}" />
          
          </c:forEach>
          
       	 <tr align="center">
-			<th colspan="9"> <!-- return false? -->
+			<th colspan="10"> <!-- return false? -->
 			<button type="submit" >저장</button><!-- onclick="fn_submit();return false;" -->
 			<button type="reset">취소</button>
 			<button type="submit">신규</button>
@@ -120,23 +129,24 @@ th,td{
 
 </table>
 
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-            
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
-<!--      페이징 -->
+
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+</c:if>
+
+<div>
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${i}">${i}</a> 
+</c:forEach>
+</div>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+</c:if>
 <!-- 페이징 끝 -->
 <!--             </div> -->
             
