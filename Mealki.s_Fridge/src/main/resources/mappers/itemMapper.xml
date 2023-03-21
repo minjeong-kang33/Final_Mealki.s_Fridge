@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.itemMapper">
+    <select id="getItemList" resultType="com.itwillbs.domain.ItemDTO">
+        select *
+        from products;
+    </select>
+
+<!--     <insert id="insertItem"> -->
+<!--         insert into item -->
+<!--         values (#{itemNum}, #{itemType}, #{itemName}, #{weight}, #{supplier}, #{supplyPrice}, #{salesPrice}, #{itemImage}) -->
+<!--     </insert> -->
+
+<!--     <update id="updateItem"> -->
+<!--         update item -->
+<!--         set itemType = #{itemType}, -->
+<!--             itemName = #{itemName}, -->
+<!--             weight = #{weight}, -->
+<!--             supplier = #{supplier}, -->
+<!--             supplyPrice = #{supplyPrice}, -->
+<!--             salesPrice = #{salesPrice}, -->
+<!--             itemImage = #{itemImage} -->
+<!--         where itemNum -->
+<!--          </update> -->
+
+<!-- <delete id="deleteItem"> -->
+<!--     delete from item -->
+<!--     where itemNum = #{itemNum} -->
+<!-- </delete> -->
+
+<!-- <select id="searchItem" parameterType="java.util.Map" resultType="com.itwillbs.domain.ItemDTO"> -->
+<!--     select * -->
+<!--     from item -->
+<!--     where itemName like '%' || #{itemName} || '%' -->
+<!--     and itemType like '%' || #{itemType} || '%' -->
+<!-- </select> -->
+</mapper>
