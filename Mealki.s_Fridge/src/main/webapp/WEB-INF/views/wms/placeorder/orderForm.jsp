@@ -90,15 +90,15 @@
             	<h4> | 발주 항목 등록 </h4>
 				<table border="1" id="dynamicTable">
 					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
-					 <tr><td><input type="text" name="item_num" id="findProducts" value=""></td>
-					 	 <td><input type="text" name="item_name" value="" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="supplier" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="weight" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="stk_qnt" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="number" name=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td></tr>
+					 <tr><td><input type="text" name="item_num" id="item_num" onclick="findProducts()"></td>
+					 	 <td><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="number" name="order_qty" id="order_qty"></td>
+					 	 <td><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();"></td></tr>
 				</table>
 				<button type="submit">저장</button>
 				<hr>
@@ -193,6 +193,13 @@
 	window.open(popUrl,"입고 창고",popOption);	
 	
 }); 
+
+ $("#order_qty").change(function(){
+	var order_qty = document.getElementById('order_qty').value;
+	var supply_price = document.getElementById('supply_price').value;
+	order_sum.value = order_qty*supply_price;
+	order_vat.value = (order_qty*supply_price)*0.1;
+	});
 </script>
 <script type="text/javascript">
 /* 담당자 찾기 */
@@ -207,18 +214,18 @@ $('#findEmp_num').on("click",function(e){
 	
 });
 
-/* 상품찾기 */
-$('#findProducts').on("click",function(e){
-	
-	e.preventDefault();
-	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findProducts";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
-	
-	window.open(popUrl,"상품 찾기",popOption);	
-	
-});
-
+</script>
+<script type="text/javascript">
+/* 상품찾기 */    
+        var openWin;
+    
+        function findProducts()
+        {
+            window.name = "parentForm";
+            openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
+                    "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+        }
+ 
 </script>
 
   <!-- plugins:js -->
