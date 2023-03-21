@@ -22,49 +22,55 @@
 
 			<c:forEach var="dto" items="${itemListMap }">
 				<tr class="row_a">
-					<td>${dto.item_num }</td>
-					<td>${dto.item_name }</td>
-					<td>${dto.weight }</td>
-					<td>${dto.stk_qnt }</td>
-					<td>${dto.supplier }</td>
-					<td>${dto.supply_price }</td>
+					<td id="item_num">${dto.item_num }</td>
+					<td id="item_name">${dto.item_name }</td>
+					<td id="weight">${dto.weight }</td>
+					<td id="stk_qnt">${dto.stk_qnt }</td>
+					<td id="supplier">${dto.supplier }</td>
+					<td ondblclick="setParentText()" id="supply_price">${dto.supply_price }</td>
 				</tr>
 			</c:forEach>
 	</table>
-
+	<input type="submit">
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script>
-/* 		detailView(item_num,item_name,weight,stk_qnt,supplier)
-		{
-			window.opener.document.getElementById("text").value = document.getElementById("text").value;
-			window.opener.document.OFsearch.item_num.value = item_num;
-			window.opener.document.OFsearch.item_name.value = item_name;
-			window.opener.document.OFsearch.weight.value = weight;
-			window.opener.document.OFsearch.stk_qnt.value = stk_qnt;
-			window.opener.document.OFsearch.supplier.value = supplier;
-			window.opener.document.OFsearch.submit(); //폼 전송
 
-			self.close(); //자식창 닫기
-
-		} */
-	</script>
 	<script type="text/javascript">
-		/* $(function() {
+		 $(function() {
 			$(".row_a").click(function() {
 				var checkList = $(this);
 				var td = checkList.children();
-				var item_num = td.eq(1).text();
-
-				var str = "<input value="+item_num+" id=item_name >";
-				$("#click_result").html(str);
-			});
-		}); */
-/* 
-		function setParentText() {
-			opener.document.getElementById("findProducts").value = document.getElementById("item_name").value;
-			opener.document.getElementById("findProducts").value = document.getElementById("item_name").value;
+				
+				var item_num = td.eq(0).text();
+				var item_name = td.eq(1).text();
+				var weight = td.eq(2).text();
+				var stk_qnt = td.eq(3).text();
+				var supplier = td.eq(4).text();
+				var supply_price = td.eq(5).text();
+				/* alert(item_num+' '+item_name+' '+weight+' '+stk_qnt);  */
+				
+				/* opener.document.getElementById("item_name").value = document.getElementById("item_name").value; */
+			opener.document.getElementById("item_num").value = document.getElementById("item_num").innerText;
+			opener.document.getElementById("item_name").value = document.getElementById("item_name").innerText;
+			opener.document.getElementById("weight").value = document.getElementById("weight").innerText;
+			opener.document.getElementById("stk_qnt").value = document.getElementById("stk_qnt").innerText;
+			opener.document.getElementById("supplier").value = document.getElementById("supplier").innerText;
+			opener.document.getElementById("supply_price").value = document.getElementById("supply_price").innerText;
 			window.close();
-		} */
+				
+				/* var str = "<input value="+item_num+" id=item_name >";
+				$("#click_result").html(str); */
+			});
+		}); 
+ 
+		/* function setParentText() {
+			opener.document.getElementById("item_num").value = document.getElementById("item_num").value;
+			opener.document.getElementById("item_name").value = document.getElementById("item_name").value;
+			opener.document.getElementById("weight").value = document.getElementById("weight").value;
+			opener.document.getElementById("stk_qnt").value = document.getElementById("stk_qnt").value;
+			opener.document.getElementById("supplier").value = document.getElementById("supplier").value;
+			opener.document.getElementById("supply_price").value = document.getElementById("supply_price").value;
+			window.close();
+		}  */
 	</script>
 </body>
 </html>
