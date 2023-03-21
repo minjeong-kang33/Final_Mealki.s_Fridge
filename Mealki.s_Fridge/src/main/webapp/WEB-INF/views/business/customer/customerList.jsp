@@ -26,6 +26,10 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+
 
 </head>
 <body>
@@ -47,7 +51,7 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">거래처관리</h3>
+                  <h3 class="font-weight-bold">거래처 관리</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
@@ -63,16 +67,16 @@
 	            		<option value="emp_tel"> 업태 </option>
 	            	</select>
 	            <input type="text" name="search" class="search" >
-	            <button type="submit" >검색</button>
+	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onclick="location.href='#'">
             	</form>
             </div>
             
 			<div id="table_content">
 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">          
 				<table border="1">
-					<tr><td><input type="checkbox" name="allCustomers" value="${CustomerDTO.cust_num}" id="checkAll"></td>
-					<td>거래처코드</td><td>거래처명</td><td>대표자명</td><td>대표전화번호</td>
-					<td>주소</td><td>업태</td><td>종목</td><td>담당자이메일</td></tr>
+					<tr><th><input type="checkbox" name="allCustomers" value="${CustomerDTO.cust_num}" id="checkAll"></th>
+					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
+					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
 				
@@ -91,9 +95,11 @@
 				</table>
 				</form>
 			</div>
-				<input type="submit" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
-			<div>
 				
+			<div id="button2">
+				<input type="submit" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
+				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer">
+				<input type="button" id="new_customer" value="신규등록"></a>
 			</div>
 			
  

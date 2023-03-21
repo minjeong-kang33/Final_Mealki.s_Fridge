@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,9 +41,10 @@
     return false;
   }).filter(':eq(0)').click();
   });
+  
+  
   </script>
-  
-  
+
 </head>
 <body>
   <div class="container-scroller">
@@ -71,8 +74,8 @@
             <div id="top_table" >
                <div id="table_search">
                <div id="select_search">
-                     <form name="search" method="post" action="/employee/listEmployee" id="selectBox">
-                        <select name="search_option" class="search_option">
+                     <form name="search" method="get" action="/employee/listEmployee" id="selectBox" name="selectBox2" onsubmit="return fun1()">
+                        <select name="search_option" class="search_option" name="info2">
                            <option value=""> 선택하세요 </option>
                            <option value="emp_Kname"> 이름 </option>
                            <option value="emp_num"> 사번 </option>
@@ -80,11 +83,10 @@
                            <option value="emp_phone"> 휴대폰번호 </option>
                            <option value="dept_num"> 부서 </option>
                         </select>
+                        <span id="text_search"><input class="input-search" type="text" name="search"></span>
+	                    <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
+	                  	 <span id="checkbox_search"><input type="checkbox" name="check"> 퇴사자 포함</span>
                      </form>
-                     
-                     <span id="text_search"><input class="input-search" type="text" name="search"></span>
-                    <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onclick="location.href='#'"></span>
-                   <span id="checkbox_search"><input type="checkbox" name="check"> 퇴사자 포함</span>
                </div>
               
              <div id="insertEmployee">
@@ -148,30 +150,22 @@
                   <div id="tab02">tab2 content</div>
                 </div>
               </div>
+               <div class="updateBtn">
+               <button type="button" class="btn btn-outline-primary btn-fw">수정하기</button>
+               </div>
             </div>
             
             </div>
-            
-            
-            
-       
-               
-
             
  <!--  본문내용 끝 -->    
-        
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
 <!-- 페이징 끝 -->
             </div>
-            
           </div>
-          
         </div>
         
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
-        
         
 <!-- 푸터시작 -->
      <jsp:include page="../main/footer.jsp" /> 

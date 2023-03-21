@@ -60,7 +60,7 @@
             <div class="collapse" id="ui-basic">
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="#">소요량관리</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">품목관리</a></li>
+                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mdm/item/itemlist">품목관리</a></li>
               </ul>
             </div>
           </li>
@@ -109,7 +109,7 @@
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="#">거래처관리</a></li>
+                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/contract/customerList">거래처관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/contract/contractWrite">수주관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#">출하관리</a></li>
               </ul>
