@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
 <!DOCTYPE html>
 <html>
 <head>
@@ -60,7 +61,7 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">자재 관리</h3>
+                  <h3 class="font-weight-bold">발주 관리</h3>
                 </div>
                 
                 <div class="tab">
@@ -78,41 +79,78 @@
             	<div id="table_search">
             	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
             	<span id="select_search">
-			        <span id="order_date_search">발주일<input type="date" id="currentDate" readonly></span>
-			        <span id="due_date_search">납기일<input type="date" id="currentDate" min="currentDate" max="2023-12-31" value=""></span>
-			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name="search" id="findEmp_num">
-			   			<span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span></span>
-			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="search">
-			        	<span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span></span>
+			        <span id="order_date_search">발주일<input type="date" id="currentDate" readonly class="input-search"></span>
+			        <span id="due_date_search">납기일<input type="date" class="input-search"></span>
+			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name="search" id="findEmp_num"></span>
+			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="search"></span>
 	            </span>
 
  				<br>
             
             	<h4> | 발주 항목 등록 </h4>
-				<table border="1">
-					 <tr><th>체크</th><th>품번</th><th>품명</td><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
-					 <tr><td>체크</td>
-					 	 <td><input type="text" name="" id="findProducts"></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td>
+				<table border="1" id="dynamicTable">
+					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
+					 <tr><td><input type="text" name="item_num" id="findProducts" value=""></td>
+					 	 <td><input type="text" name="item_name" value="" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="supplier" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="weight" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="stk_qnt" readonly onfocus="this.blur();" value=""></td>
 					 	 <td><input type="number" name=""></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td>
-					 	 <td><input type="text" name="" readonly></td></tr>
+					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td></tr>
 				</table>
+				<button type="submit">저장</button>
 				<hr>
 	   		
 	   		</form>
             </div>
- <!--  발주 등록 끝 -->   
+
 				      
 				      
 				      </div>
 				      </div>
-				      <div id="tab02">tab2 content</div>
+ <!--  발주 등록 끝 -->   				     
+				      <div id="tab02">
+<!--  발주 현황 시작 -->				      
+				      <h4> | 검색 </h4>
+				      <div id="top_table" >
+            	<div id="table_search">
+            	<span id="select_search">
+			        <span>발주번호<input type="text" id="order_num_search2"></span>
+			        <span>발주일<input type="date" id="order_date_search2"></span>
+			   		<span>납기일<input type="date" id="due_date_search2"></span>
+			        <span>품명<input type="text" id="pd_num_search2"></span>
+	            </span>
+
+ 				<br>
+            
+            	<h4> | 발주 내역 목록 </h4>
+				<table border="1">
+					 <tr><th>발주번호</th><th>품명</th><th>발주수량</th><th>단위</th><th>거래처명</th><th>발주일</th><th>납기일</th><th>입고창고</th><th>단가총계</th><th>부가세</th><th>담당자</th></tr>
+					 <tr><td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td>
+					 	 <td></td></tr>
+				</table>
+				<hr>
+	   		
+            </div>
+
+				      
+				      
+				      </div>
+				      </div>
+				      
+<!--  발주 현황 끝 -->  				      
+				      </div>
 				    </div>
 				  </div>
           <div class="contentbody"> 
@@ -121,7 +159,7 @@
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+
 <!-- 페이징 끝 -->
             </div>
             
@@ -155,14 +193,15 @@
 	window.open(popUrl,"입고 창고",popOption);	
 	
 }); 
-
+</script>
+<script type="text/javascript">
 /* 담당자 찾기 */
 $('#findEmp_num').on("click",function(e){
 	
 	e.preventDefault();
 	
 	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findEmp_num";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes";
+	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
 	
 	window.open(popUrl,"담당자 찾기",popOption);	
 	
@@ -173,12 +212,13 @@ $('#findProducts').on("click",function(e){
 	
 	e.preventDefault();
 	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findProducts}";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes";
+	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findProducts";
+	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
 	
 	window.open(popUrl,"상품 찾기",popOption);	
 	
 });
+
 </script>
 
   <!-- plugins:js -->
