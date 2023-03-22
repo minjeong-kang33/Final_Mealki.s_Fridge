@@ -10,7 +10,6 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.CustomerDAO;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PageDTO2;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{

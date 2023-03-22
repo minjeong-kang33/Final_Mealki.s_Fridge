@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PageDTO2;
 import com.itwillbs.service.CustomerService;
 
 @Controller

@@ -4,7 +4,6 @@ import java.util.List;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PageDTO2;
 
 public interface CustomerService {
 	
