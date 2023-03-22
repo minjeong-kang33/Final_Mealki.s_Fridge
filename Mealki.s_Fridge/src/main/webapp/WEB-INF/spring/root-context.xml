@@ -7,6 +7,11 @@
 	<!-- 디비연결 객체생성 -->
 	<bean id="dataSource" class="org.springframework.jdbc.datasource.DriverManagerDataSource">
 		<property name="driverClassName" value="com.mysql.cj.jdbc.Driver"></property>
+<!-- 		백업 DB -->
+<!-- 		<property name="url" value="jdbc:mysql://kangsang.gonetis.com:11030/team1_milki"></property> -->
+<!-- 		<property name="url" value="jdbc:mysql://kangsang.ddns.net:11030/team1_milki"></property> -->
+
+<!-- 		메인 DB -->
 		<property name="url" value="jdbc:mysql://itwillbs-rds-class1-team1.cwyqfeylunq5.ap-northeast-2.rds.amazonaws.com:3306/team1_milki"></property>
 		<property name="username" value="root"></property>
 		<property name="password" value="class11020"></property>

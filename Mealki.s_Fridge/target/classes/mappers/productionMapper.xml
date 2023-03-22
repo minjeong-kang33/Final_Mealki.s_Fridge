@@ -6,4 +6,25 @@
 <!--         select * from employee -->
 <!--         where emp_num = #{emp_num} and emp_pass = #{emp_pass} -->
     </select>
+    
+    
+    <!-- 	https://mybatis.org/mybatis-3/ -->
+    <resultMap type="map" id="productionMap">
+<!--    column="디비열이름" property="멤버변수이름" -->
+    	<id column="manu_num" property="manu_num"/>
+    	<result column="wo_num" property="wo_num"/>
+    	<result column="manu_name" property="manu_name"/>
+    	<result column="manu_code" property="manu_code"/>
+    	<result column="item_name" property="item_name"/>
+    	<result column="item_num" property="item_num"/>
+    	<result column="manu_tocount" property="manu_tocount"/>
+    	<result column="manu_fail" property="manu_fail"/>
+    	<result column="emp_Kname" property="emp_Kname"/>
+    	<result column="manu_sdate" property="manu_sdate"/>
+    	<result column="manu_date" property="manu_date"/>
+    </resultMap>
+    
+    <select id="getProductionListMap" resultMap="productionMap">
+    	select * from productstatus
+    </select>
 </mapper>
