@@ -24,7 +24,9 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
+ 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empManageTab.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript">
@@ -38,6 +40,7 @@
 	  }).filter(':eq(0)').click();
 	  });
 	  </script>
+
 
 </head>
 <body>
@@ -62,16 +65,38 @@
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
+					<div id="search_div" >
+		               <div id="table_search" >
+		               <div id="search_select_div">
+		                     <form name="search" method="post" action="${pageContext.request.contextPath}/employee/Store" id="selectBox" name="selectBox2" onsubmit="return fun1()">
+		                       <span id="store_date"> 입고일자 <input type="date" id="startDate" name="startDate">  ~ <input type="date" id="endDate" name="endDate"></span>
+		                       <span id="emp_num_search">담당자<input class="input-search" type="text" name="emp_num" id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
+		                       
+		                    <!-- <select name="search_option" class="search_option">
+		                           <option value=""> 선택하세요 </option>
+		                           <option value="emp_Kname"> 이름 </option>
+		                       </select>
+		                        <span id="text_search"><input class="input-search" type="text" name="keyword"></span>
+			                    <s pan id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
+			                  	 <span id="checkbox_search"><input type="checkbox" name="check" name="search_check"> 퇴사자 포함</span>--> 
+		                     </form>
+		               </div>
+		              
+		             </div>
+		            </div>
+
            <div class="tab">
 	       	<ul class="tabnav">
-	         <li><a href="#tab01">입고관리</a></li>
-	         <li><a href="#tab02">입고내역</a></li>
+	         <li><a href="#tab01">전체</a></li>
+	         <li><a href="#tab02">입고완료</a></li>
 	        </ul>
 	        <div class="tabcontent" >
-		        <div id="tab01" style="background-color: pink; width: 100%;">
+		        <div id="tab01" style="background-color: pink; width: 100%;"> <!-- tab 1내용 -->
+		        
+		        
 			        <div class="emp_infoDetails" style="width: 100%;">
 				        <table border="1" class="emp_details_table" style="width: 100%; table-layout: fixed;">
 				           <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직급</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
@@ -131,6 +156,31 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
+
+  <script>
+  <!--  입고날짜 시작일 기본값 오늘 날짜로  -->
+	document.getElementById('startDate').valueAsDate = new Date();
+
+  <!--  입고날짜 종료일 기본값 일주일 뒤로  -->
+	var today = new Date();
+	var Oneweek = new Date(today.setDate(today.getDate() + 6));
+	document.getElementById('endDate').valueAsDate = Oneweek;
+
+  </script>
+
+<script type="text/javascript">
+/* 담당자 찾기 (팝업 방법1)*/
+ var openWin;
+
+ function findEmployee()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findEmp_num",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+
+ </script>
 
 </body>
 </html>
