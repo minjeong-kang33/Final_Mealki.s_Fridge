@@ -8,9 +8,10 @@
     </select>
     
     <select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
-		select * 
-		from workorder
-		order by wo_num desc
+		select w.wo_num, w.business_num, w.wo_date, w.wo_state, w.wo_qty, manu_name, w.item_name, e.emp_Kname as wo_emp
+		from workorder w, employee e
+		where w.wo_emp=e.emp_num
+		order by wo_date desc
 		limit #{startRow}, #{pageSize}
 	</select>
 	
@@ -32,7 +33,7 @@
 	</select>
 	
 	<select id="WoInsert" resultType="com.itwillbs.domain.WorkorderDTO">
-		select c.business_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		select c.business_num, c.item_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
 		from recipe r, contract c, products p
 		where r.item_name=c.item_name
 		and r.item_name=p.item_name

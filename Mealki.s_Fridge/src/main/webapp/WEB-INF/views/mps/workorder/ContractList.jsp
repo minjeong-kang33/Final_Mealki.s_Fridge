@@ -31,7 +31,7 @@
 		</tr>
 
 		<c:forEach var="WorkorderDTO" items="${contractList}">
-			<tr onClick="location.href='${pageContext.request.contextPath}/workorder/WoInsert?business_num=${WorkorderDTO.business_num}'">
+			<tr onClick="location.href='${pageContext.request.contextPath}/workorder/WoInsert?business_num=${WorkorderDTO.business_num}';WoInsert();">
 				<td>${WorkorderDTO.business_num}</td>
 				<td>${WorkorderDTO.item_name}</td>
 				<td>${WorkorderDTO.contract_qty}</td>
@@ -40,13 +40,22 @@
 				<td>${WorkorderDTO.out_date}</td>
 			</tr>
 		</c:forEach>
-
-	</table>
+	</table>	
 	
-
-
 	<input type="button" value="닫기" onclick="window.close()">
 	
-
+	<script type="text/javascript">
+	function WoInsert() {
+		var _width = '630';
+		var _height = '350';
+		var _left = Math.ceil((window.screen.width - _width) / 2);
+		var _top = Math.ceil((window.screen.height - _height) / 2);
+		let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+		window.resizeTo(800,800);
+		window.moveTo(500,150);
+	};
+	</script>
+<%-- 	"location.href='${pageContext.request.contextPath}/workorder/WoInsert?business_num=${WorkorderDTO.business_num}'" --%>
+<!-- window.resizeTo(200,200); -->
 </body>
 </html>
