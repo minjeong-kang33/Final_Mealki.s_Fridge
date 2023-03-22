@@ -37,53 +37,37 @@
 		  var custNum = document.querySelector('.cust_num');
 		  // business_num의 값을 cust_num에 복사
 		  custNum.value = businessNum.value;
-		}
+		}	
 	</script>
    <!-- 주소값 api -->
- <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
-<script>
-    function sample4_execDaumPostcode() {
-        new daum.Postcode({
-            oncomplete: function(data) {
+ <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
+		function sample4_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+					var fullRoadAddr = data.roadAddress; 
+					var extraRoadAddr = ''; 
 
-                var roadAddr = data.roadAddress; // 도로명 주소 변수
-                var extraRoadAddr = ''; // 참고 항목 변수
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+						extraRoadAddr += data.bname;
+					}
 
-                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
-                    extraRoadAddr += data.bname;
-                }
-                if(data.buildingName !== '' && data.apartment === 'Y'){
-                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
-                }
-                if(extraRoadAddr !== ''){
-                    extraRoadAddr = ' (' + extraRoadAddr + ')';
-                }
+					if(data.buildingName !== '' && data.apartment === 'Y'){
+					   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
 
-                document.getElementById('sample4_postcode').value = data.zonecode;
-                document.getElementById("sample4_roadAddress").value = roadAddr;
-                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+					if(extraRoadAddr !== ''){
+						extraRoadAddr = ' (' + extraRoadAddr + ')';
+					}
 
-                if(roadAddr !== ''){
-                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
-                } else {
-                    document.getElementById("sample4_extraAddress").value = '';
-                }
-
-                var guideTextBox = document.getElementById("guide");
-
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-    
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
-            }
-        }).open();
-    }
-</script>
+					document.getElementById('sample4_postcode').value = data.zonecode;
+					document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+					document.getElementById('guide').innerHTML = '';
+					document.getElementById('sample4_detailAddress').focus();
+				}
+			}).open();
+		}
+	</script>
 	
 </head>
 <body>
@@ -131,7 +115,7 @@
 							<label>사업자번호(필수)</label> 
 								<input type="text" name="business_num" class="business_num" onkeyup="updateCustNum()"><br>
 							<label>거래처코드</label> 
-								<input type="text" name="cust_num" class="cust_num" ><br>
+								<input type="text" name="cust_num" class="cust_num" readonly><br>
 							<label>거래처명(필수)</label> 
 								<input type="text" name="cust_name" class="cust_name"><br>
 							<label>대표자명(필수)</label> 
@@ -191,8 +175,8 @@
 						<div class="clear"></div>
 						<div id="buttons" style="text-align:center;">
 						
-							<input type="submit" value="등록하기" class="submit"> 
-							<input type="reset" value="초기화하기" class="cancel">
+							<input type="submit" value="등록하기" class="btn btn-primary"> 
+							<input type="reset" value="초기화하기" class="btn btn-primary">
 							
 						</div>
 				</form>
