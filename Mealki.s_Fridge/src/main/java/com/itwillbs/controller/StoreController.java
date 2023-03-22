@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 
 @Controller
-public class storeController {
+public class StoreController {
 
 	
 	@RequestMapping(value = "/wms/store/insertStore", method = RequestMethod.GET)

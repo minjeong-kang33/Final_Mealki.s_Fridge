@@ -4,7 +4,9 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
+import javax.swing.plaf.IconUIResource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -50,15 +52,31 @@ public class EmployeeController {
 		return "main/main";
 	}
 	
+	
 	@RequestMapping(value = "/employee/empManage", method = RequestMethod.GET)
 	public String empManage(Model model) {
 		System.out.println("MemberController empManage");
 		
-		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap();
+			
+		return "/employee/empManage";
+	}
+	
+	@RequestMapping(value = "/employee/employeeList", method = RequestMethod.GET)
+	public String employeeList(Model model, HttpServletRequest request) {
+		System.out.println("MemberController employeeList");
+		
+		String search_option = request.getParameter("search_option");
+		String keyword = request.getParameter("keyword");
+		
+		System.out.println(search_option);
+		System.err.println(keyword);
+		
+		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap(model, request);
 		model.addAttribute("employeeListMap",employeeListMap);
+		model.addAttribute("search_option",search_option);
+		model.addAttribute("keyword",keyword);
 		
 		return "/employee/empManage";
 	}
-
 	
 }

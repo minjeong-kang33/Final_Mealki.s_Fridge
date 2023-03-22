@@ -4,9 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+import org.springframework.ui.Model;
 
 import com.itwillbs.domain.EmployeeDTO;
 
@@ -25,9 +27,8 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> getEmployeeListMap() {
+	public List<Map<String, Object>> getEmployeeListMap(Model model, HttpServletRequest request) {
 		System.out.println("EmployeeDAOImpl getEmployeeListMap");
-		
 		return sqlSession.selectList(namespace+".getEmployeeListMap");
 	}
 	

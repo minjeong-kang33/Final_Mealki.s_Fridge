@@ -14,7 +14,8 @@
 	    emp_email
 		from employee join department
 		on dept_num = dept_deptNum
-		order by emp_joinDate desc;
+		where #{search_option} like CONCAT('%',#{keyword},'%')
+		order by emp_joinDate desc
     </select>
     
 </mapper>
