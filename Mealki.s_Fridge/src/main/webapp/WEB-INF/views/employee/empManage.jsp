@@ -221,6 +221,7 @@ $("#emp_search_table tr").click(function(){
      <jsp:include page="../main/footer.jsp" /> 
 <!--  푸터 끝 -->
 
+
 <!-- partial -->
       </div>
       <!-- main-panel ends -->

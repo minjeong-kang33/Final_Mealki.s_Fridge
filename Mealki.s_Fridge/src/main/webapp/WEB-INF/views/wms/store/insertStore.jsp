@@ -28,7 +28,6 @@
 <body>
 
   <div class="container-scroller">
-  
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
     <jsp:include page="../../main/top.jsp" /> 

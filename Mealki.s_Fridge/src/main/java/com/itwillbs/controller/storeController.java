@@ -13,5 +13,6 @@ public class storeController {
 	public String insertStore() {
 		System.out.println("storeController insertStore");
 		return "wms/store/insertStore";
+		
 	}
 }
