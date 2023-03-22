@@ -11,6 +11,17 @@
     <select id="getItemCount" resultType="java.lang.Integer">
     select count(*) from products
     </select>
+    
+    <insert id="saveItemImage" parameterType="java.util.Map">
+    INSERT INTO item_images (item_num, image_name)
+    VALUES (#{itemNum}, #{imageName})
+  </insert>
+
+  <select id="getItemImage" resultType="java.lang.String" parameterType="java.lang.String">
+    SELECT image_name
+    FROM item_images
+    WHERE item_num = #{itemNum}
+  </select>
 
 <!--     <insert id="insertItem"> -->
 <!--         insert into item -->

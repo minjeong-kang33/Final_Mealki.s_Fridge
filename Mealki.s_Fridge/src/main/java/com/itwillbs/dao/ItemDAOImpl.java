@@ -4,6 +4,7 @@ package com.itwillbs.dao;
 
 import java.util.List;
 //import java.util.Map;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,6 +37,18 @@ public class ItemDAOImpl implements ItemDAO {
 		 
 		 return sqlSession.selectOne(namespace+".getItemCount");
 	 }
+
+	@Override
+	public void saveItemImage(String itemNum, String imageName) {
+		 sqlSession.insert("itemMapper.saveItemImage", Map.of("itemNum", itemNum, "imageName", imageName));
+		
+	}
+
+	@Override
+	public String getItemImage(String itemNum) {
+		return sqlSession.selectOne("itemMapper.getItemImage", itemNum);
+
+	}
 	 
 //
 //	    @Override
