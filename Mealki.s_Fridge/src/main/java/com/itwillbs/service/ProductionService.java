@@ -1,5 +1,8 @@
 package com.itwillbs.service;
 
-public interface ProductionService {
+import java.util.List;
+import java.util.Map;
 
+public interface ProductionService {
+	public List<Map<String, Object>> getProductionListMap();
 }
