@@ -10,12 +10,36 @@
     </select>
     
     <select id="getCustomerCount" resultType="java.lang.Integer">
-        select count(*) from customer 
+        select count(*) from customer
     </select>
     
     <select id="getCustomer" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
         where cust_num = #{cust_num}   	
-    </select>	
+    </select>
+    
+<!--     <select id="getCustomerListTest" resultType="com.itwillbs.domain.CustomerDTO"> -->
+<!--         select * from customer -->
+        
+<!--         <if test='searchType.equals("cust_num")'> -->
+<!--         where cust_num like concat('%', #{keyword}, '%') -->
+<!--         </if> -->
+        
+<!--         <if test='searchType.equals("cust_name")'> -->
+<!--         where cust_name like concat('%', #{keyword}, '%') -->
+<!--         </if> -->
+        
+<!--         <if test='searchType.equals("cust_uptae")'> -->
+<!--         where cust_uptae like concat('%', #{keyword}, '%') -->
+<!--         </if> -->
+        
+<!--         order by cust_num desc  -->
+<!--         limit #{startRow} , #{pageSize}    	 -->
+<!--     </select> -->
+    
+    <insert id="insertCustomer">
+    	insert into customer(cust_gubun2,cust_gubun1,business_num,cust_num,cust_name,boss_name,cust_tel,cust_uptae,cust_jongmok,man_name,man_tel,man_email,fax,cust_post_num,cust_address,cust_address2,url_path,remarks) 
+    	values(#{cust_gubun2},#{cust_gubun1},#{business_num},#{cust_num},#{cust_name},#{boss_name},#{cust_tel},#{cust_uptae},#{cust_jongmok},#{man_name},#{man_tel},#{man_email},#{fax},#{cust_post_num},#{cust_address},#{cust_address2},#{url_path},#{remarks})
+    </insert>	
 
 </mapper>

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PageDTO2;
 import com.itwillbs.service.CustomerService;
 
 @Controller
@@ -77,6 +78,20 @@ public class CustomerController {
 	
 	return "business/customer/insertCustomer";
 	}
+	@RequestMapping(value = "/business/customer/insertCustomerPro", method = RequestMethod.POST)
+	public String insertCustomerPro(CustomerDTO customerDTO) {
+		System.out.println("CustomerController insertCustomerPro()");
+		//회원가입 처리 부모인터페이스 MemberService, 
+		//           자식클래스 MemberServiceImpl
+		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
+		// 메서드 호출
+		customerService.insertCustomer(customerDTO);
+		
+//		주소줄 변경하면서 이동
+		return "redirect:/business/customer/customerList";
+	}
+	
+	
 	
 
 }

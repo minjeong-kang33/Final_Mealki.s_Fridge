@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.CustomerDAO;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PageDTO2;
 
 @Service
 public class CustomerServiceImpl implements CustomerService{
@@ -41,6 +43,13 @@ public class CustomerServiceImpl implements CustomerService{
 		System.out.println("CustomerDAOImpl getCustomer()");
 		
 		return customerDAO.getCustomer(num);
+	}
+
+	@Override
+	public void insertCustomer(CustomerDTO customerDTO) {
+		System.out.println("CustomerServiceImpl insertCustomer()");
+
+		customerDAO.insertCustomer(customerDTO);	
 	}
 	
 	
