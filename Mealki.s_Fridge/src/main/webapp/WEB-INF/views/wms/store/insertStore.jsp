@@ -23,6 +23,21 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empManageTab.js"></script>
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+	<script type="text/javascript">
+	  $(function(){
+	  $('.tabcontent > div').hide();
+	  $('.tabnav a').click(function () {
+	    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+	    $('.tabnav a').removeClass('active');
+	    $(this).addClass('active');
+	    return false;
+	  }).filter(':eq(0)').click();
+	  });
+	  </script>
 
 </head>
 <body>
@@ -43,24 +58,30 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
+                  <h3 class="font-weight-bold">입고관리</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
           <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-            1.<br>
-            이 안에서 본문을 작성하시되 자유롭게 div를 이용하여 구역을 나누어주세요. <br>
-            본문이 짧으시면 따로 css파일 생성하여 해당 클래스(contentbody)의 height를 1000px이상으로 주시면 됩니다. <br>
-            단 [css/blank.css]에서는 절대 높이조절 하지 말아주세요 다른분들도 다 수정됩니다...대참사 <br>
-            contentbody 는 차후 원활한 css 수정을 위해 본문길이(height) 외에는 건들이지말아주세요. <br> 
-            
-            <br>
-            
-            2.<br>
-            폭감을 짐작하실 수 있도록 background: pink; 스타일을 넣어뒀습니다.<br>
-            어느정도의 폭감인지 확인 후 스타일은 지우고 사용 해 주세요.<Br>
+           <div class="tab">
+	       	<ul class="tabnav">
+	         <li><a href="#tab01">입고관리</a></li>
+	         <li><a href="#tab02">입고내역</a></li>
+	        </ul>
+	        <div class="tabcontent" >
+		        <div id="tab01" style="background-color: pink; width: 100%;">
+			        <div class="emp_infoDetails" style="width: 100%;">
+				        <table border="1" class="emp_details_table" style="width: 100%; table-layout: fixed;">
+				           <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직급</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
+				           <tr class="tr"><th class="th">재직구분</th><td>재직</td><th class="th">입사일자</th><td>2023.03.14</td><th class="th">퇴사일자</th><td> </td><th class="th">휴직일자</th><td>과장</td></tr>
+				        </table>
+			        </div>
+		        </div>
+		       	<div id="tab02">tab2 content</div>
+	       </div>
+            </div>
             
  <!--  본문내용 끝 -->    
         

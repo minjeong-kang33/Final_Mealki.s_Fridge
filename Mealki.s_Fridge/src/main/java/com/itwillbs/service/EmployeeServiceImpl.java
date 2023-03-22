@@ -4,8 +4,10 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Service;
+import org.springframework.ui.Model;
 
 import com.itwillbs.dao.EmployeeDAO;
 import com.itwillbs.domain.EmployeeDTO;
@@ -24,9 +26,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getEmployeeListMap() {
+	public List<Map<String, Object>> getEmployeeListMap(Model model, HttpServletRequest request) {
 		System.out.println("EmployeeServiceImpl getEmployeeList");
-		return employeeDAO.getEmployeeListMap();
+		return employeeDAO.getEmployeeListMap(model, request);
 	}
 
 	
