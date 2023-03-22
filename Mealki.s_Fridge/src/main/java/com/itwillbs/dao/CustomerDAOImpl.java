@@ -9,7 +9,6 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PageDTO2;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
