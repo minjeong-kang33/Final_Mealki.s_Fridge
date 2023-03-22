@@ -10,8 +10,11 @@ import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
@@ -30,7 +33,7 @@ public class ItemController {
     	
     	int pageSize=10;
     	
-    	// 현페이지 번호 가져오기
+    // 현페이지 번호 가져오기
     			String pageNum=request.getParameter("pageNum");
     			if(pageNum==null) {
     				//pageNum 없으면 1페이지 설정
@@ -68,5 +71,11 @@ public class ItemController {
         return "mdm/item/itemlist";
     }
 
+    @PostMapping("/uploadImage")
+    public String uploadImage(@RequestParam("item_image") MultipartFile file, Model model) {
+
+      return "redirect:/mdm/item/itemlist";
+    }
+    
    
 }
