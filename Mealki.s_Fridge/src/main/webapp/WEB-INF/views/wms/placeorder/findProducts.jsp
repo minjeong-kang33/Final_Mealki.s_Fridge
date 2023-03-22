@@ -31,7 +31,7 @@
 				</tr>
 			</c:forEach>
 	</table>
-	<input type="submit">
+
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 
 	<script type="text/javascript">
@@ -46,9 +46,7 @@
 				var stk_qnt = td.eq(3).text();
 				var supplier = td.eq(4).text();
 				var supply_price = td.eq(5).text();
-				/* alert(item_num+' '+item_name+' '+weight+' '+stk_qnt);  */
-				
-				/* opener.document.getElementById("item_name").value = document.getElementById("item_name").value; */
+
 			opener.document.getElementById("item_num").value = document.getElementById("item_num").innerText;
 			opener.document.getElementById("item_name").value = document.getElementById("item_name").innerText;
 			opener.document.getElementById("weight").value = document.getElementById("weight").innerText;
@@ -57,20 +55,11 @@
 			opener.document.getElementById("supply_price").value = document.getElementById("supply_price").innerText;
 			window.close();
 				
-				/* var str = "<input value="+item_num+" id=item_name >";
-				$("#click_result").html(str); */
+
 			});
 		}); 
  
-		/* function setParentText() {
-			opener.document.getElementById("item_num").value = document.getElementById("item_num").value;
-			opener.document.getElementById("item_name").value = document.getElementById("item_name").value;
-			opener.document.getElementById("weight").value = document.getElementById("weight").value;
-			opener.document.getElementById("stk_qnt").value = document.getElementById("stk_qnt").value;
-			opener.document.getElementById("supplier").value = document.getElementById("supplier").value;
-			opener.document.getElementById("supply_price").value = document.getElementById("supply_price").value;
-			window.close();
-		}  */
+
 	</script>
 </body>
 </html>
