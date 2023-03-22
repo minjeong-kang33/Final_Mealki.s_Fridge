@@ -1,5 +1,8 @@
 package com.itwillbs.dao;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
@@ -19,6 +22,13 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		System.out.println("EmployeeDAOImpl userCheck()");
 		
 		return sqlSession.selectOne(namespace+".userCheck", employeeDTO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getEmployeeListMap() {
+		System.out.println("EmployeeDAOImpl getEmployeeListMap");
+		
+		return sqlSession.selectList(namespace+".getEmployeeListMap");
 	}
 	
 }
