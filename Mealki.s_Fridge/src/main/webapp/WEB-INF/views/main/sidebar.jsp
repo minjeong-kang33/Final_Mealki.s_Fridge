@@ -110,7 +110,7 @@
             </a>
             <div class="collapse" id="tables">
               <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/contract/customerList">거래처관리</a></li>
+                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/customer/customerList">거래처관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/contract/contractWrite">수주관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="#">출하관리</a></li>
               </ul>

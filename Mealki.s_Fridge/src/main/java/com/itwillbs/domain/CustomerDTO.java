@@ -15,8 +15,8 @@ public class CustomerDTO {
 	private String man_email;
 	private String fax;
 	private int cust_post_num;
-	private String cust_adress;
-	private String cust_adress2;
+	private String cust_address;
+	private String cust_address2;
 	private String url_path;
 	private String remarks;
 	public String getCust_num() {
@@ -103,17 +103,17 @@ public class CustomerDTO {
 	public void setCust_post_num(int cust_post_num) {
 		this.cust_post_num = cust_post_num;
 	}
-	public String getCust_adress() {
-		return cust_adress;
+	public String getCust_address() {
+		return cust_address;
 	}
-	public void setCust_adress(String cust_adress) {
-		this.cust_adress = cust_adress;
+	public void setCust_address(String cust_address) {
+		this.cust_address = cust_address;
 	}
-	public String getCust_adress2() {
-		return cust_adress2;
+	public String getCust_address2() {
+		return cust_address2;
 	}
-	public void setCust_adress2(String cust_adress2) {
-		this.cust_adress2 = cust_adress2;
+	public void setCust_address2(String cust_address2) {
+		this.cust_address2 = cust_address2;
 	}
 	public String getUrl_path() {
 		return url_path;

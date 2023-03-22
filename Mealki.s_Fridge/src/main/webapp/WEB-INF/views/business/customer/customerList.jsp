@@ -29,7 +29,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-
+  
 
 </head>
 <body>
@@ -62,9 +62,9 @@
             	<form action="${pageContext.request.contextPath}/business/customer/customerList" name="searchCustomer" method="post" >
 	            	<select name="search_option">
 	            		<option value=""> 선택하세요 </option>
-	            		<option value="emp_Kname"> 거래처코드 </option>
-	            		<option value="emp_num"> 거래처명 </option>
-	            		<option value="emp_tel"> 업태 </option>
+	            		<option value="cust_num"> 거래처코드 </option>
+	            		<option value="cust_name"> 거래처명 </option>
+	            		<option value="cust_uptae"> 업태 </option>
 	            	</select>
 	            <input type="text" name="search" class="search" >
 	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onclick="location.href='#'">
@@ -85,7 +85,7 @@
 					    <td><a href=# style="color: black">${CustomerDTO.cust_name}</a></td>
 					    <td>${CustomerDTO.boss_name}</td>
 					    <td>${CustomerDTO.cust_tel}</td>
-					    <td>${CustomerDTO.cust_adress}, ${CustomerDTO.cust_adress2}</td>
+					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
 					    <td>${CustomerDTO.cust_uptae}</td>
 					    <td>${CustomerDTO.cust_jongmok}</td>
 					    <td>${CustomerDTO.man_email}</td></tr>

@@ -29,7 +29,62 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+	<script>
+		function updateCustNum() {
+		  // business_num 요소를 가져옴
+		  var businessNum = document.querySelector('.business_num');
+		  // cust_num 요소를 가져옴
+		  var custNum = document.querySelector('.cust_num');
+		  // business_num의 값을 cust_num에 복사
+		  custNum.value = businessNum.value;
+		}
+	</script>
+   <!-- 주소값 api -->
+ <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+    function sample4_execDaumPostcode() {
+        new daum.Postcode({
+            oncomplete: function(data) {
 
+                var roadAddr = data.roadAddress; // 도로명 주소 변수
+                var extraRoadAddr = ''; // 참고 항목 변수
+
+                if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+                    extraRoadAddr += data.bname;
+                }
+                if(data.buildingName !== '' && data.apartment === 'Y'){
+                   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+                }
+                if(extraRoadAddr !== ''){
+                    extraRoadAddr = ' (' + extraRoadAddr + ')';
+                }
+
+                document.getElementById('sample4_postcode').value = data.zonecode;
+                document.getElementById("sample4_roadAddress").value = roadAddr;
+                document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
+
+                if(roadAddr !== ''){
+                    document.getElementById("sample4_extraAddress").value = extraRoadAddr;
+                } else {
+                    document.getElementById("sample4_extraAddress").value = '';
+                }
+
+                var guideTextBox = document.getElementById("guide");
+
+                if(data.autoRoadAddress) {
+                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
+                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
+                    guideTextBox.style.display = 'block';
+    
+                } else {
+                    guideTextBox.innerHTML = '';
+                    guideTextBox.style.display = 'none';
+                }
+            }
+        }).open();
+    }
+</script>
+	
 </head>
 <body>
 
@@ -63,8 +118,8 @@
 					<fieldset>
 						<div class="radio-wrap">
 							<label>거래처구분(필수)</label>	
-								<input type="radio" name="cust_gubun2" value="사업자" checked>사업자(개인)
-								<input type="radio" name="cust_gubun2" value="사업자" >사업자(해외)	 
+								<input type="radio" name="cust_gubun2" value="사업자(개인)" checked>사업자(개인)
+								<input type="radio" name="cust_gubun2" value="사업자(해외)" >사업자(해외)	 
 							  	<input type="radio" name="cust_gubun2" value="개인">개인<br>	
 					  	</div>
 					  	<div class="radio-wrap">
@@ -74,9 +129,9 @@
 					  	</div>
 					  	<div class="form-group">
 							<label>사업자번호(필수)</label> 
-								<input type="text" name="business_num" class="business_num"><br>
+								<input type="text" name="business_num" class="business_num" onkeyup="updateCustNum()"><br>
 							<label>거래처코드</label> 
-								<input type="text" name="cust_num" class="cust_num" readonly><br>
+								<input type="text" name="cust_num" class="cust_num" ><br>
 							<label>거래처명(필수)</label> 
 								<input type="text" name="cust_name" class="cust_name"><br>
 							<label>대표자명(필수)</label> 
@@ -94,7 +149,7 @@
 								<select name="cust_jongmok">
 									<option value=""> 선택하세요 </option>
 									<option value="과실류 도/소매업">과실류 도/소매업</option>
-									<option value="채소류 도/소매업">채소류 도/소매업</option>
+									<option value="채소류, 서류 및 향신작물류 도매업">채소류, 서류 및 향신작물류 도매업</option>
 									<option value="신선, 냉동 및 기타 수산물 도/소매업">신선, 냉동 및 기타 수산물 도/소매업</option>
 									<option value="건어물 및 젓갈류 도/소매업">건어물 및 젓갈류 도/소매업</option>
 									<option value="빵류,과자류,당류,초콜릿 도/소매업">빵류,과자류,당류,초콜릿 도/소매업</option>
@@ -118,7 +173,7 @@
 							<label>담당자 이메일</label> 
 								<input type="email" name="man_email" class="man_email"><br>
 							<label>FAX</label> 
-								<input type="text" name="cust_fax" class="cust_fax"><br>
+								<input type="text" name="fax" class="fax"><br>
 							<label>주소</label>
 						<div>
 								<input type="text" id="sample4_postcode" name="cust_post_num" style="float:left;" class="cust_post_num" placeholder="우편번호">
@@ -128,15 +183,15 @@
 								<span id="guide" style="color:#999;display:none"></span><br>
 								<input type="text" id="sample4_detailAddress" class="cust_address2" placeholder="상세주소" name="cust_address2"><br>
 						<label>홈페이지</label> 
-								<input type="text" name="business_num" class="business_num"><br>
+								<input type="text" name="url_path" class="business_num"><br>
 						<label>적요</label>
-								<textarea type="text" name="rsmarks" class="remarks" style="height: 300px;" rows="3" name="bcontent" placeholder="글 내용을 작성하세요"></textarea><br>
+								<textarea type="text" name="remarks" class="remarks" style="height: 300px;" rows="3" placeholder="글 내용을 작성하세요"></textarea><br>
 						</div>
 					</fieldset>
 						<div class="clear"></div>
 						<div id="buttons" style="text-align:center;">
 						
-							<input type="submit" value="등록하기" class="submit" onclick="fun1()"> 
+							<input type="submit" value="등록하기" class="submit"> 
 							<input type="reset" value="초기화하기" class="cancel">
 							
 						</div>

@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PageDTO2;
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
@@ -29,7 +30,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public int getCustomerCount() {
-		System.out.println("CustomerDAOImpl getCustomerList()");
+		System.out.println("CustomerDAOImpl getCustomerListTest()");
 		
 		return sqlSession.selectOne(namespace+".getCustomerCount");
 	}
@@ -39,6 +40,13 @@ public class CustomerDAOImpl implements CustomerDAO{
 		System.out.println("CustomerDAOImpl getCustomer()");
 		
 		return sqlSession.selectOne(namespace+".getCustomer", num);
+	}
+
+	@Override
+	public void insertCustomer(CustomerDTO customerDTO) {
+		System.out.println("CustomerDAOImpl insertCustomer()");
+		//메서드 호출
+		sqlSession.insert(namespace+".insertCustomer", customerDTO);
 	}
 	
 
