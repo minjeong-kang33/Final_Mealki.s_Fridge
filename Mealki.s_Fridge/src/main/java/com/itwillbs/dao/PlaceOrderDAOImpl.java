@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
@@ -37,6 +38,26 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO{
 		System.out.println("PlaceOrderDAOImpl getItemListMap()");
 		return sqlSession.selectList(namespace+".getItemListMap");
 	}
+
+	@Override
+	public List<EmployeeDTO> getEmployeeList() {
+		System.out.println("PlaceOrderDAOImpl getEmployeeList()");
+		return sqlSession.selectList(namespace+".getEmployeeList");
+	}
+
+	@Override
+	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
+		System.out.println("PlaceOrderDAOImpl insertOrder()");
+		sqlSession.insert(namespace+".insertOrder", placeOrderDTO);
+	}
+
+	@Override
+	public Integer getMaxOrderNum() {
+		System.out.println("PlaceOrderDAOImpl getMaxOrderNum()");
+		return sqlSession.selectOne(namespace+".getMaxOrderNum");
+	}
+	
+	
 	
 	
 	

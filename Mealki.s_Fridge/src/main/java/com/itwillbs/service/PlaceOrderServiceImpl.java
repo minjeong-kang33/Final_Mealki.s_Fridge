@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ItemDAO;
 import com.itwillbs.dao.PlaceOrderDAO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
@@ -36,6 +37,30 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	public List<Map<String, Object>> getItemListMap() {
 		System.out.println("PlaceOrderServiceImpl getItemListMap()");
 		return placeOrderDAO.getItemListMap();
+	}
+
+	@Override
+	public List<EmployeeDTO> getEmployeeList() {
+		System.out.println("PlaceOrderServiceImpl getEmployeeList()");
+		return placeOrderDAO.getEmployeeList();
+	}
+
+	@Override
+	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
+		System.out.println("PlaceOrderServiceImpl placeOrderDTO()");
+		
+		if(placeOrderDAO.getMaxOrderNum() == null) {
+			//게시판 글 없음 => 1 설정
+			String order_code = "WO";
+			int max_num = 1;
+			placeOrderDTO.setOrder_num(order_code.concat(String.valueOf(max_num)));
+		}else {
+			
+			
+			/* placeOrderDTO.setOrder_num(placeOrderDAO.getMaxOrderNum()+1); */
+		}
+		
+		placeOrderDAO.insertOrder(placeOrderDTO);
 	}
 	
 	
