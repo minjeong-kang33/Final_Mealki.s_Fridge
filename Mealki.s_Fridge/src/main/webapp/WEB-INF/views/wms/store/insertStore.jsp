@@ -20,7 +20,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
@@ -31,8 +31,8 @@
   
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/top.jsp" /> 
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/sidebar.jsp" /> 
+    <jsp:include page="../../main/top.jsp" /> 
+    <jsp:include page="../../main/sidebar.jsp" /> 
 <!-- 헤더, 사이드바,개인설정 끝 -->
  
       
@@ -79,7 +79,7 @@
         
         
 <!-- 푸터시작 -->
-     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/footer.jsp" /> 
+     <jsp:include page="../../main/footer.jsp" /> 
 <!--  푸터 끝 -->
 
 <!-- partial -->

@@ -144,7 +144,7 @@ $("#emp_search_table tr").click(function(){
             </div>
             <div class="emp_table">
                <h4> | 기본 정보 </h4>
-               <div style="OVERFLOW-Y:auto; width:100%; height:200px;">
+               <div class="scrollBar">
             <table border="1" id="emp_search_table">
                 <tr><th>사번</th><th>성명</th><th>직급</td>
                 <th>직위</th><th>부서</th><th>입사일자</th>
