@@ -41,9 +41,46 @@
     return false;
   }).filter(':eq(0)').click();
   });
-  
-  
   </script>
+ 
+<script>
+function fun1() {
+	
+	alert("dd");
+	
+	if(document.search.search_option.value=="") {
+		alert("검색 조건을 선택하세요")
+		document.search.search_option.focus();
+		return;
+	}
+	if(document.search.keyword.value==0) {
+		alert("검색어를 입력하세요");
+		document.search.keyword.focus();
+		return;
+		}
+		document.search.submit();
+}
+</script>
+
+<script type="text/javascript">
+
+$("#emp_search_table tr").click(function(){ 
+	var str = ""
+		var tdArr = new Array();	// 배열 선언
+		
+		var tr = $(this);
+		var td = tr.children();
+		
+		td.each(function(i){
+			tdArr.push(td.eq(i).text());
+		});
+		
+		var emp_num = td.eq(0).text();
+		
+	});
+
+</script>
+
 
 </head>
 <body>
@@ -74,8 +111,8 @@
             <div id="top_table" >
                <div id="table_search">
                <div id="select_search">
-                     <form name="search" method="get" action="/employee/listEmployee" id="selectBox" name="selectBox2" onsubmit="return fun1()">
-                        <select name="search_option" class="search_option" name="info2">
+                     <form name="search" method="get" action="/employee/employeeList" id="selectBox" name="selectBox2" onsubmit="fun1()">
+                        <select name="search_option" class="search_option">
                            <option value=""> 선택하세요 </option>
                            <option value="emp_Kname"> 이름 </option>
                            <option value="emp_num"> 사번 </option>
@@ -83,7 +120,7 @@
                            <option value="emp_phone"> 휴대폰번호 </option>
                            <option value="dept_num"> 부서 </option>
                         </select>
-                        <span id="text_search"><input class="input-search" type="text" name="search"></span>
+                        <span id="text_search"><input class="input-search" type="text" name="keyword"></span>
 	                    <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
 	                  	 <span id="checkbox_search"><input type="checkbox" name="check"> 퇴사자 포함</span>
                      </form>
@@ -107,14 +144,27 @@
             </div>
             <div class="emp_table">
                <h4> | 기본 정보 </h4>
+               <div class="scrollBar">
             <table border="1" id="emp_search_table">
-                <tr><th>사번</th><th>성명</th><th>직책</td><th>직급</th><th>부서</th><th>입사일자</th><th>전화번호</th><th>이메일</th></tr>
+                <tr><th>사번</th><th>성명</th><th>직급</td>
+                <th>직위</th><th>부서</th><th>입사일자</th>
+                <th>내선번호</th><th>이메일</th></tr>
+
+					<c:forEach var="dto" items="${employeeListMap }">
+	    		
+		    		<tr><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_position}</td>
+		    		<td>${dto.dept_duty}</td><td>${dto.dept_duty}</td><td>${dto.emp_joinDate}</td>
+		    		<td>${dto.emp_tel}</td><td>${dto.emp_email}</td></tr>
+		    		
+					</c:forEach>
+ 
+        <!--     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
                 <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>  -->   
             </table>
+            </div>
             <hr>
             
             <div class="emp_details">
@@ -170,6 +220,7 @@
 <!-- 푸터시작 -->
      <jsp:include page="../main/footer.jsp" /> 
 <!--  푸터 끝 -->
+
 
 <!-- partial -->
       </div>

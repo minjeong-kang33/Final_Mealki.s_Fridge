@@ -1,9 +1,13 @@
 package com.itwillbs.controller;
 
+import java.util.List;
+import java.util.Map;
+
 import javax.inject.Inject;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -45,11 +49,16 @@ public class EmployeeController {
 	public String main() {
 		return "main/main";
 	}
-
+	
 	@RequestMapping(value = "/employee/empManage", method = RequestMethod.GET)
-	public String blank() {
+	public String empManage(Model model) {
+		System.out.println("MemberController empManage");
+		
+		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap();
+		model.addAttribute("employeeListMap",employeeListMap);
+		
 		return "/employee/empManage";
 	}
-	
+
 	
 }

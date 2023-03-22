@@ -20,7 +20,21 @@ public class EmployeeDTO {
 	private Date emp_joinDate;
 	private Date emp_leaveDate;
 	private Date emp_absenceDate;
+	private String dept_position;
+	private String dept_duty;
 	
+	public String getDept_position() {
+		return dept_position;
+	}
+	public void setDept_position(String dept_position) {
+		this.dept_position = dept_position;
+	}
+	public String getDept_duty() {
+		return dept_duty;
+	}
+	public void setDept_duty(String dept_duty) {
+		this.dept_duty = dept_duty;
+	}
 	public int getEmp_num() {
 		return emp_num;
 	}
