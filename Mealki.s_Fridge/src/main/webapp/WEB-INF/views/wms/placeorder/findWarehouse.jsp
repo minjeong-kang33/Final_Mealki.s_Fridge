@@ -11,7 +11,7 @@
 </head>
 <body>
 
-	<h4>| 필수 입력 사항</h4>
+	<h4>| 창고 목록</h4>
 	<table id="example-table-1">
 		<tr>
 			<th>창고 번호</th>
@@ -20,7 +20,7 @@
 			<c:forEach var="WarehouseDTO" items="${warehouseList }">
 				<tr class="row_a">
 					<td id="click_result" style="display: none;"></td>
-					<td>${WarehouseDTO.whs_num }</td>
+					<td ondblclick="setParentText()">${WarehouseDTO.whs_num }</td>
 					<td ondblclick="setParentText()">${WarehouseDTO.whs_name }</td>
 			</c:forEach>
 	</table>
@@ -31,15 +31,15 @@
 		$( ".row_a" ).click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var whs_name = td.eq(2).text();
+			var whs_num = td.eq(1).text();
 			
-			var str = "<input value="+whs_name+" id=whs_name >";
+			var str = "<input value="+whs_num+" id=whs_num >";
 			$("#click_result").html(str);
 		});
 	});
 	
 	function setParentText(){
-    	opener.document.getElementById("findWarehouse").value = document.getElementById("whs_name").value;
+    	opener.document.getElementById("findWarehouse").value = document.getElementById("whs_num").value;
     	window.close();
     }
 	</script>

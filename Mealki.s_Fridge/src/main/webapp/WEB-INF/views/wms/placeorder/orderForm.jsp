@@ -79,10 +79,10 @@
             	<div id="table_search">
             	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
             	<span id="select_search">
-			        <span id="order_date_search">발주일<input type="date" id="currentDate" readonly class="input-search"></span>
+			        <span id="order_date_search">발주일<input type="date" id="currentDate" class="input-search"></span>
 			        <span id="due_date_search">납기일<input type="date" class="input-search"></span>
-			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name="search" id="findEmp_num"></span>
-			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="search"></span>
+			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name=emp_num id="findEmp_num" onclick="findEmployee()"></span>
+			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="whs_num"></span>
 	            </span>
 
  				<br>
@@ -90,15 +90,15 @@
             	<h4> | 발주 항목 등록 </h4>
 				<table border="1" id="dynamicTable">
 					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
-					 <tr><td><input type="text" name="item_num" id="findProducts" value=""></td>
-					 	 <td><input type="text" name="item_name" value="" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="supplier" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="weight" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="stk_qnt" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="number" name=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td>
-					 	 <td><input type="text" name="" readonly onfocus="this.blur();" value=""></td></tr>
+					 <tr><td><input type="text" name="item_num" id="item_num" onclick="findProducts()"></td>
+					 	 <td><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
+					 	 <td><input type="number" name="order_qty" id="order_qty"></td>
+					 	 <td><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();" value=""></td>
+					 	 <td><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();"></td></tr>
 				</table>
 				<button type="submit">저장</button>
 				<hr>
@@ -182,6 +182,17 @@
   </div>
   <!-- container-scroller -->
 <script type="text/javascript">
+
+/* 담당자 찾기 */
+ var openWin;
+
+ function findEmployee()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findEmp_num",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+
 /* 입고창고 찾기 */
  $('#findWarehouse').on("click",function(e){
 	
@@ -190,34 +201,27 @@
 	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findWarehouse";
 	let popOption = "width = 300px, height=300px, top=300px, left=300px, scrollbars=no, resizable = no";
 	
-	window.open(popUrl,"입고 창고",popOption);	
+	window.open(popUrl,"입고 창고",popOption);
 	
 }); 
-</script>
-<script type="text/javascript">
-/* 담당자 찾기 */
-$('#findEmp_num').on("click",function(e){
-	
-	e.preventDefault();
-	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findEmp_num";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
-	
-	window.open(popUrl,"담당자 찾기",popOption);	
-	
-});
 
-/* 상품찾기 */
-$('#findProducts').on("click",function(e){
-	
-	e.preventDefault();
-	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findProducts";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
-	
-	window.open(popUrl,"상품 찾기",popOption);	
-	
-});
+ /* 상품찾기 */    
+ var openWin;
+
+ function findProducts()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+
+/* 금액 계산하기 */
+ $("#order_qty").change(function(){
+	var order_qty = document.getElementById('order_qty').value;
+	var supply_price = document.getElementById('supply_price').value;
+	order_sum.value = order_qty*supply_price;
+	order_vat.value = (order_qty*supply_price)*0.1;
+	});
 
 </script>
 

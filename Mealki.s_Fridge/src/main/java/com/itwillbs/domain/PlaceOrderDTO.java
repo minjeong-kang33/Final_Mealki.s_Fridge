@@ -3,6 +3,7 @@ package com.itwillbs.domain;
 public class PlaceOrderDTO {
 	private String order_num;
 	private String item_num;
+	private int order_qty;
 	private int order_sum;
 	private int order_vat;
 	private int order_date;
@@ -20,6 +21,12 @@ public class PlaceOrderDTO {
 	}
 	public void setItem_num(String item_num) {
 		this.item_num = item_num;
+	}
+	public int getOrder_qty() {
+		return order_qty;
+	}
+	public void setOrder_qty(int order_qty) {
+		this.order_qty = order_qty;
 	}
 	public int getOrder_sum() {
 		return order_sum;

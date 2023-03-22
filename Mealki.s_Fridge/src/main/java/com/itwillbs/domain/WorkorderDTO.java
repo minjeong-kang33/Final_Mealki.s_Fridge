@@ -1,7 +1,8 @@
 package com.itwillbs.domain;
 
 public class WorkorderDTO {
-
+	private String keyword;
+	//	workorder 관련
 	private String wo_num;
 	private String business_num;
 	private String wo_emp;
@@ -9,7 +10,54 @@ public class WorkorderDTO {
 	private int wo_qty;
 	private String manu_name;
 	private String wo_state;
+	// contract 관련
+	private String item_name;
+	private String business_name;
+	private String business_date;
+	private String out_date;
+	private String item_num;
+	private int contract_qty;
+	// recipe 관련
+	private String r_name;
 	
+	
+	
+	public int getContract_qty() {
+		return contract_qty;
+	}
+	public void setContract_qty(int contract_qty) {
+		this.contract_qty = contract_qty;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+	public String getBusiness_name() {
+		return business_name;
+	}
+	public void setBusiness_name(String business_name) {
+		this.business_name = business_name;
+	}
+	public String getBusiness_date() {
+		return business_date;
+	}
+	public void setBusiness_date(String business_date) {
+		this.business_date = business_date;
+	}
+	public String getOut_date() {
+		return out_date;
+	}
+	public void setOut_date(String out_date) {
+		this.out_date = out_date;
+	}
+	public String getItem_num() {
+		return item_num;
+	}
+	public void setItem_num(String item_num) {
+		this.item_num = item_num;
+	}
 	public String getWo_state() {
 		return wo_state;
 	}
@@ -51,6 +99,18 @@ public class WorkorderDTO {
 	}
 	public void setManu_name(String manu_name) {
 		this.manu_name = manu_name;
+	}
+	public String getKeyword() {
+		return keyword;
+	}
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
+	public String getR_name() {
+		return r_name;
+	}
+	public void setR_name(String r_name) {
+		this.r_name = r_name;
 	}
 	
 		
