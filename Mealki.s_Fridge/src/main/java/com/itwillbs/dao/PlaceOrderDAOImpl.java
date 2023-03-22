@@ -15,50 +15,47 @@ import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.domain.WarehouseDTO;
 
 @Repository
-public class PlaceOrderDAOImpl implements PlaceOrderDAO{
+public class PlaceOrderDAOImpl implements PlaceOrderDAO {
 	@Inject
 	private SqlSession sqlSession;
-	private static final String namespace="com.itwillbs.mappers.placeOrderMapper";
-	
+	private static final String namespace = "com.itwillbs.mappers.placeOrderMapper";
+
 	@Override
 	public List<WarehouseDTO> getWarehouseList() {
 		System.out.println("PlaceOrderDAOImpl getWarehouseList()");
-		
-		return sqlSession.selectList(namespace+".getWarehouseList");
+
+		return sqlSession.selectList(namespace + ".getWarehouseList");
 	}
 
 	@Override
 	public int getStk_qnt() {
 		System.out.println("PlaceOrderDAOImpl getStk_qnt()");
-		return sqlSession.selectOne(namespace+".getStk_qnt", namespace);
+		return sqlSession.selectOne(namespace + ".getStk_qnt", namespace);
 	}
 
 	@Override
 	public List<Map<String, Object>> getItemListMap() {
 		System.out.println("PlaceOrderDAOImpl getItemListMap()");
-		return sqlSession.selectList(namespace+".getItemListMap");
+		return sqlSession.selectList(namespace + ".getItemListMap");
 	}
 
 	@Override
 	public List<EmployeeDTO> getEmployeeList() {
 		System.out.println("PlaceOrderDAOImpl getEmployeeList()");
-		return sqlSession.selectList(namespace+".getEmployeeList");
+		return sqlSession.selectList(namespace + ".getEmployeeList");
 	}
 
 	@Override
 	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderDAOImpl insertOrder()");
-		sqlSession.insert(namespace+".insertOrder", placeOrderDTO);
+		sqlSession.insert(namespace + ".insertOrder", placeOrderDTO);
 	}
 
 	@Override
-	public Integer getMaxOrderNum() {
-		System.out.println("PlaceOrderDAOImpl getMaxOrderNum()");
-		return sqlSession.selectOne(namespace+".getMaxOrderNum");
+	public List<PlaceOrderDTO> getOrderList() {
+		System.out.println("PlaceOrderDAOImpl getOrderList()");
+
+		return sqlSession.selectList(namespace + ".getOrderList");
 	}
-	
-	
-	
-	
-	
+
 }

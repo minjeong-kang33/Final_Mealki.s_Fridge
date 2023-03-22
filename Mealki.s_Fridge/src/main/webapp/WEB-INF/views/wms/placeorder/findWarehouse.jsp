@@ -19,9 +19,8 @@
 
 			<c:forEach var="WarehouseDTO" items="${warehouseList }">
 				<tr class="row_a">
-					<td id="click_result" style="display: none;"></td>
-					<td ondblclick="setParentText()">${WarehouseDTO.whs_num }</td>
-					<td ondblclick="setParentText()">${WarehouseDTO.whs_name }</td>
+					<td>${WarehouseDTO.whs_num }</td>
+					<td>${WarehouseDTO.whs_name }</td>
 			</c:forEach>
 	</table>
 
@@ -31,17 +30,12 @@
 		$( ".row_a" ).click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var whs_num = td.eq(1).text();
+			var whs_num = td.eq(0).text();
 			
-			var str = "<input value="+whs_num+" id=whs_num >";
-			$("#click_result").html(str);
+			opener.document.getElementById("findWarehouse").value = whs_num;
+			window.close();
 		});
 	});
-	
-	function setParentText(){
-    	opener.document.getElementById("findWarehouse").value = document.getElementById("whs_num").value;
-    	window.close();
-    }
 	</script>
 </body>
 </html>

@@ -5,15 +5,21 @@
 <mapper namespace="com.itwillbs.mappers.placeOrderMapper">
 	<insert id="insertOrder">
 		insert into placeorder
-		values(#{order_num},#{item_num},#{order_qty},#{order_sum},#{order_vat},#{order_date},#{due_date},#{whs_num},#{emp_num})
+		values(#{order_num},#{item_num},#{item_name},#{order_qty},#{order_sum},#{order_vat},#{order_date},#{due_date},#{whs_num},#{emp_num})
 	</insert>
-	
+
 	<select id="getWarehouseList"
 		resultType="com.itwillbs.domain.WarehouseDTO">
 		select * from warehouse
 		order by whs_num
 	</select>
-
+	
+	<select id="getOrderList"
+		resultType="com.itwillbs.domain.PlaceOrderDTO">
+		select * from placeorder
+		order by order_num desc
+	</select>
+	
 	<select id="getStk_qnt"
 		resultType="com.itwillbs.domain.StockDTO">
 		select stk_qnt from stock
