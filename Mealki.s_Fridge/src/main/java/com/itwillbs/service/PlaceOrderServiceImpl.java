@@ -49,18 +49,14 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderServiceImpl placeOrderDTO()");
 		
-		if(placeOrderDAO.getMaxOrderNum() == null) {
-			//게시판 글 없음 => 1 설정
-			String order_code = "WO";
-			int max_num = 1;
-			placeOrderDTO.setOrder_num(order_code.concat(String.valueOf(max_num)));
-		}else {
-			
-			
-			/* placeOrderDTO.setOrder_num(placeOrderDAO.getMaxOrderNum()+1); */
-		}
-		
 		placeOrderDAO.insertOrder(placeOrderDTO);
+	}
+
+	@Override
+	public List<PlaceOrderDTO> getOrderList() {
+		System.out.println("PlaceOrderServiceImpl getOrderList");
+
+		return placeOrderDAO.getOrderList();
 	}
 	
 	

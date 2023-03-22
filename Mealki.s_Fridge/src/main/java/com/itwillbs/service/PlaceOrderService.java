@@ -18,5 +18,6 @@ public interface PlaceOrderService {
 	
 	public void insertOrder(PlaceOrderDTO placeOrderDTO);
 	
+	public List<PlaceOrderDTO> getOrderList();
 	
 }

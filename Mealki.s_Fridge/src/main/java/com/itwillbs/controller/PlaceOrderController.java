@@ -24,18 +24,20 @@ public class PlaceOrderController {
 	private PlaceOrderService placeOrderService;
 
 	@RequestMapping(value = "/wms/placeorder/insertOrder", method = RequestMethod.GET)
-	public String insertOrder() {
+	public String insertOrder(Model model) {
 		System.out.println("PlaceOrderController insertOrder");
-
+		
+		List<PlaceOrderDTO> orderList = placeOrderService.getOrderList();
+		model.addAttribute("orderList", orderList);
 		return "wms/placeorder/orderForm";
 	}
 	
-	@RequestMapping(value = "/wms/placeorder/insertOrderPro", method = RequestMethod.GET)
+	@RequestMapping(value = "/wms/placeorder/insertOrderPro", method = RequestMethod.POST)
 	public String insertOrderPro(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderController insertOrderPro");
-		placeOrderService.insertOrder(placeOrderDTO);
 		
-		return "wms/placeorder/orderForm";
+		placeOrderService.insertOrder(placeOrderDTO);
+		return "redirect:/wms/placeorder/insertOrder";
 	}
 
 	@RequestMapping(value = "/wms/placeorder/findWarehouse", method = RequestMethod.GET)
@@ -67,7 +69,6 @@ public class PlaceOrderController {
 
 		return "wms/placeorder/findEmp_num";
 	}
-	
 	
 
 }

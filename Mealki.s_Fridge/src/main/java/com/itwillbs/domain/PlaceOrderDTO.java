@@ -1,12 +1,16 @@
 package com.itwillbs.domain;
 
+import java.sql.Date;
+
 public class PlaceOrderDTO {
 	private String order_num;
 	private String item_num;
+	private String item_name;
 	private int order_qty;
 	private int order_sum;
 	private int order_vat;
-	private int order_date;
+	private Date order_date;
+	private Date due_date;
 	private String whs_num;
 	private int emp_num;
 	
@@ -21,6 +25,12 @@ public class PlaceOrderDTO {
 	}
 	public void setItem_num(String item_num) {
 		this.item_num = item_num;
+	}
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
 	}
 	public int getOrder_qty() {
 		return order_qty;
@@ -40,11 +50,17 @@ public class PlaceOrderDTO {
 	public void setOrder_vat(int order_vat) {
 		this.order_vat = order_vat;
 	}
-	public int getOrder_date() {
+	public Date getOrder_date() {
 		return order_date;
 	}
-	public void setOrder_date(int order_date) {
+	public void setOrder_date(Date order_date) {
 		this.order_date = order_date;
+	}
+	public Date getDue_date() {
+		return due_date;
+	}
+	public void setDue_date(Date due_date) {
+		this.due_date = due_date;
 	}
 	public String getWhs_num() {
 		return whs_num;

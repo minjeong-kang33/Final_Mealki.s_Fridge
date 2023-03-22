@@ -19,6 +19,6 @@ public interface PlaceOrderDAO {
 	
 	public void insertOrder(PlaceOrderDTO placeOrderDTO);
 	
-	public Integer getMaxOrderNum();
+	public List<PlaceOrderDTO> getOrderList();
 
 }
