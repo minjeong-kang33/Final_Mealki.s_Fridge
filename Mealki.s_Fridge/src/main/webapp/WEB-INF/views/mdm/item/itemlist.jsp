@@ -26,6 +26,10 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/item.css">	
+
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+
 
 </head>
 <body>
@@ -53,6 +57,14 @@
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
+<style>
+
+#table_content {
+  overflow-x: auto;
+}
+</style>
+
+<!-- 		품목검색버튼, 항목선택 -->
             <div id="table_search">
 
             	<form action="${pageContext.request.contextPath}/mdm/item/serchItem" name="searchCustomer" method="post" >
@@ -66,11 +78,16 @@
             	</form>
             </div>
             
-            <br>
+<!-- 		상품추가 및 상품저장 버튼 -->
+			<div id="item_buttons">
+  				<button type="button" id="addItemButton">품목추가</button>
+  				<button type="button" id="saveItemButton">품목저장</button>
+			</div>
             
+<!--        품목리스트 -->
 			<div id="table_content">
-			 <form action="${pageContext.request.contextPath}/mdm/item/insertItem" method="post">          
-				<table border="1">
+			 <form action="${pageContext.request.contextPath}/mdm/item/uploadImage" method="post" enctype="multipart/form-data">          
+				<table border="1" id="itemTable" >
 					<tr><td><input type="checkbox" name="itemCheckAll" value="${ItemDTO.item_num}" id="checkAll"></td>
 				 	<td>품목 코드</td>
             	 	<td>품목 유형</td>
@@ -100,22 +117,100 @@
 			</div>
 				
 			<div>
-				
-			</div>
-			
-	<script>
-		document.addEventListener("DOMContentLoaded", function() {
-  		let checkAll = document.querySelector("#checkAll");
-  		let checkboxes = document.querySelectorAll("input[name='selectItem']");
 
-  		checkAll.addEventListener("change", function() {
-   		 for (let checkbox of checkboxes) {
+			</div>
+
+<!-- 			체크박스 all선택 -->
+		<script>
+			document.addEventListener("DOMContentLoaded", function() {
+  			let checkAll = document.querySelector("#checkAll");
+  			let checkboxes = document.querySelectorAll("input[name='selectItem']");
+
+  			checkAll.addEventListener("change", function() {
+   			 for (let checkbox of checkboxes) {
   		 	   checkbox.checked = checkAll.checked;
-  		  }
- 		 });
-		});
-	</script>
+  			  }
+ 			 });
+			});
+		
+			// 상품추가 버튼 이벤트
+			document.getElementById("addItemButton").addEventListener("click", function() {
+			  let itemTable = document.getElementById("itemTable");
+			  let newRow = itemTable.insertRow(-1);
+
+			  newRow.innerHTML = `
+			    <td><input type="checkbox" name="selectItem"></td>
+			    <td>
+		        <select name="item_prefix">
+		          <option value="P">P</option>
+		          <option value="I">I</option>
+		        </select>
+			    <input type="text" name="item_num" placeholder="품목 코드"></td>
+			    </td>
+			    <td>
+			      <select name="item_type">
+			        <option value="냉동완제품">냉동완제품</option>
+			        <option value="냉장완제품">냉장완제품</option>
+			        <option value="냉동식자재">냉동식자재</option>
+			        <option value="냉장식자재">냉장식자재</option>
+			      </select>
+			    </td>
+			    <td><input type="text" name="item_name" placeholder="품목명"></td>
+			    <td><input type="text" name="weight" placeholder="중량(g)"></td>
+			    <td><input type="text" name="supplier" placeholder="납입처"></td>
+			    <td><input type="text" name="supply_price" placeholder="납입 단가(원)"></td>
+			    <td><input type="text" name="sales_price" placeholder="출고 단가(원)"></td>
+			    <td><input type="file" name="item_image" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
+
+			    let selectItemPrefix = newRow.querySelector("select[name='item_prefix']");
+			    let inputItemNum = newRow.querySelector("input[name='item_num']");
+
+			    selectItemPrefix.addEventListener("change", function() {
+			      let prefix = selectItemPrefix.value;
+			      let itemNum = "";
+
+			      if (prefix === "P") {
+			        itemNum = "P001";
+			      } else if (prefix === "I") {
+			        itemNum = "I001";
+			      }
+
+			      inputItemNum.value = itemNum;
+			    });
+			});
 			
+			
+
+			// 상품저장 버튼 이벤트
+			  document.getElementById("saveItemButton").addEventListener("click", function() {
+			  let form = document.querySelector("form");
+			  form.submit();
+			});
+			
+			// 상품저장 
+			
+			// 이미지 미리보기 기능
+			  function previewImage(input) {
+				  if (input.files && input.files[0]) {
+				    let reader = new FileReader();
+
+				    reader.onload = function (e) {
+				      let imgPreview = document.createElement("img");
+				      imgPreview.src = e.target.result;
+				      imgPreview.width = 100; // 이미지 미리보기 크기 조절
+				      imgPreview.height = 100;
+				      
+				      let td = input.parentNode;
+				      td.innerHTML = "";
+				      td.appendChild(imgPreview);
+				      td.appendChild(input);
+				    };
+
+				    reader.readAsDataURL(input.files[0]);
+				  }
+				}
+			
+ 		</script>
  
  <!--  본문내용 끝 -->    
         
