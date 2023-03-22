@@ -79,10 +79,10 @@
             	<div id="table_search">
             	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
             	<span id="select_search">
-			        <span id="order_date_search">발주일<input type="date" id="currentDate" readonly class="input-search"></span>
+			        <span id="order_date_search">발주일<input type="date" id="currentDate" class="input-search"></span>
 			        <span id="due_date_search">납기일<input type="date" class="input-search"></span>
-			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name="search" id="findEmp_num"></span>
-			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="search"></span>
+			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name=emp_num id="findEmp_num" onclick="findEmployee()"></span>
+			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="whs_num"></span>
 	            </span>
 
  				<br>
@@ -182,6 +182,17 @@
   </div>
   <!-- container-scroller -->
 <script type="text/javascript">
+
+/* 담당자 찾기 */
+ var openWin;
+
+ function findEmployee()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findEmp_num",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+
 /* 입고창고 찾기 */
  $('#findWarehouse').on("click",function(e){
 	
@@ -190,42 +201,28 @@
 	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findWarehouse";
 	let popOption = "width = 300px, height=300px, top=300px, left=300px, scrollbars=no, resizable = no";
 	
-	window.open(popUrl,"입고 창고",popOption);	
+	window.open(popUrl,"입고 창고",popOption);
 	
 }); 
 
+ /* 상품찾기 */    
+ var openWin;
+
+ function findProducts()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+
+/* 금액 계산하기 */
  $("#order_qty").change(function(){
 	var order_qty = document.getElementById('order_qty').value;
 	var supply_price = document.getElementById('supply_price').value;
 	order_sum.value = order_qty*supply_price;
 	order_vat.value = (order_qty*supply_price)*0.1;
 	});
-</script>
-<script type="text/javascript">
-/* 담당자 찾기 */
-$('#findEmp_num').on("click",function(e){
-	
-	e.preventDefault();
-	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findEmp_num";
-	let popOption = "width = 650px, height=600px, top=300px, left=300px, scrollbars=yes, resizable = no";
-	
-	window.open(popUrl,"담당자 찾기",popOption);	
-	
-});
 
-</script>
-<script type="text/javascript">
-/* 상품찾기 */    
-        var openWin;
-    
-        function findProducts()
-        {
-            window.name = "parentForm";
-            openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
-                    "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
-        }
- 
 </script>
 
   <!-- plugins:js -->
