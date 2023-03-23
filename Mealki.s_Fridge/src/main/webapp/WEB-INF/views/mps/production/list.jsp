@@ -66,24 +66,21 @@
 								<div id="search_bar">
 									<div id="table_search">
 										<div id="select_search">
-											<form name="search" method="post"
-												action="/production/list" id="search"
-												name="listbox" onsubmit="">
+											<form action="${pageContext.request.contextPath}/mps/production/list" method="GET">
 												<label>작업지시번호 : </label>
-												<input type="text" name="suju">
+												<input type="search" name="wo_num"/>
 												<label>라인명 : </label>
-												<input type="text" name="line">
+												<input type="text" name="manu_name">
 												<label>품명 : </label>
-												<input type="text" name="item">
+												<input type="text" name="item_name">
 												<label>작업일시 : </label>
-												<input type="date" name="date">
+												<input type="date" name="manu_sdate">
 												 - <label>마감일시 : </label>
-												<input type="date" name="date">
+												<input type="date" name="manu_date">
 												<label>작업자 : </label>
-												<input type="text" name="name">
-												<button class="btn btn-primary"
-													type="button" id="IconButton6">
-													<a>조회</a>
+												<input type="text" name="emp_Kname">
+												<button class="btn btn-primary" type="submit" id="IconButton6">
+												<a>조회</a>
 												</button>
 											</form>
 										</div>
@@ -108,13 +105,13 @@
 												<th>작업시작일</th>
 												<th>작업마감일</th>
 									         </tr>
-									       		<c:forEach var="dto" items="${productionListMap }">
+									       		<c:forEach var="dto" items="${productionListMap}">
 													<tr>
-														<td>${dto.wo_num }</td><td>${dto.manu_name }</td>
-														<td>${dto.manu_code }</td><td>${dto.item_name }</td>
-														<td>${dto.item_num }</td><td>${dto.manu_tocount }</td>
-														<td>${dto.manu_fail }</td><td>${dto.emp_Kname }</td>
-														<td>${dto.manu_sdate }</td><td>${dto.manu_date }</td>
+														<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
+														<td>${dto.manu_code}</td><td>${dto.item_name}</td>
+														<td>${dto.item_num}</td><td>${dto.manu_tocount}</td>
+														<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td>
+														<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td>
 													</tr>
 												</c:forEach>
 									    </table>
