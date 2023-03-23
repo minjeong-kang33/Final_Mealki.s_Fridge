@@ -120,8 +120,10 @@
               </div>
             </div>
           </div>
+          
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+<!-- Order Details -->          
+            <%-- <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Order Details</p>
@@ -147,8 +149,10 @@
                   <canvas id="order-chart"></canvas>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
+            </div> --%>
+
+<!-- Sales Report -->            
+            <%-- <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                  <div class="d-flex justify-content-between">
@@ -160,10 +164,12 @@
                   <canvas id="sales-chart"></canvas>
                 </div>
               </div>
-            </div>
+            </div> --%>
           </div>
+          
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+<!-- Detailed Reports -->          
+<%--             <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body">
                   <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
@@ -340,10 +346,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --%>
           </div>
           <div class="row">
-            <div class="col-md-7 grid-margin stretch-card">
+<!-- Top Products -->          
+            <!-- <div class="col-md-7 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-0">Top Products</p>
@@ -405,8 +412,10 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-5 grid-margin stretch-card">
+            </div> -->
+
+<!-- To Do Lists -->            
+            <!-- <div class="col-md-5 grid-margin stretch-card">
 							<div class="card">
 								<div class="card-body">
 									<h4 class="card-title">To Do Lists</h4>
@@ -465,10 +474,11 @@
 									</div>
 								</div>
 							</div>
-            </div>
+            </div> -->
           </div>
           <div class="row">
-            <div class="col-md-4 stretch-card grid-margin">
+<!-- Projects -->          
+            <!-- <div class="col-md-4 stretch-card grid-margin">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title mb-0">Projects</p>
@@ -522,10 +532,13 @@
                   </div>
                 </div>
               </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin">
-              <div class="row">
-                <div class="col-md-12 grid-margin stretch-card">
+            </div> -->
+            
+<!-- charts, Number of Meetings-->            
+<!--             <div class="col-md-4 stretch-card grid-margin">
+              <div class="row"> -->
+     <!-- charts -->         
+                <!-- <div class="col-md-12 grid-margin stretch-card">
                   <div class="card">
                     <div class="card-body">
                       <p class="card-title">Charts</p>
@@ -569,8 +582,9 @@
                       </div>  
                     </div>
                   </div>
-                </div>
-                <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
+                </div> -->
+     <!-- Number of Meetings -->                 
+                <!-- <div class="col-md-12 stretch-card grid-margin grid-margin-md-0">
                   <div class="card data-icon-card-primary">
                     <div class="card-body">
                       <p class="card-title text-white">Number of Meetings</p>                      
@@ -584,10 +598,12 @@
                       </div>
                     </div>
                   </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-md-4 stretch-card grid-margin">
+                </div> -->
+<!--               </div>
+            </div> -->
+
+<!-- Notifications -->            
+            <%-- <div class="col-md-4 stretch-card grid-margin">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Notifications</p>
@@ -645,9 +661,11 @@
                   </ul>
                 </div>
               </div>
-            </div>
+            </div> --%>
           </div>
-          <div class="row">
+
+<!-- Advanced Table -->          
+          <!-- <div class="row">
             <div class="col-md-12 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
@@ -677,7 +695,7 @@
 
                 
               </div>
-            </div>
+            </div> -->
         </div>
         <!-- content-wrapper ends -->
         
@@ -698,7 +716,7 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script> --%>
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net/jquery.dataTables.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dataTables.select.min.js"></script>
