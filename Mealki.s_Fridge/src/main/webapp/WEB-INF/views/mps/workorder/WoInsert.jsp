@@ -5,26 +5,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css"
-	href="${pageContext.request.contextPath}/resources/mps/woinsert.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/woinsert.css">
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 </head>
 <body>
+
 	<h1>작업지시서 등록</h1>
+	<form action="${pageContext.request.contextPath}/mps/workorder/WoInsertPro" method="post">
 	<b>작성일 : </b>
 	<div id="current_date"></div>
-	<script>
-		date = new Date();
-		year = date.getFullYear();
-		month = date.getMonth() + 1;
-		day = date.getDate();
-		document.getElementById("current_date").innerHTML = year + "년 " + month
-				+ "월 " + day + "일";
-	</script>
-	
 <%-- 	<b>작성자 : ${sessionScope.emp_num}</b> --%>
-
 	<table>
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
 			<tr>
@@ -33,12 +24,14 @@
 			</tr>
 			<tr>
 				<td colspan="2"><b>생산라인</b></td>
-				<td colspan="2"><select id="line">
+				<td colspan="2">
+					<select id="manu_name" name="manu_name">
 						<option value="" disabled selected hidden>--생산라인선택--</option>
 						<option value="1">가공1</option>
 						<option value="2">가공2</option>
 						<option value="3">가공3</option>
-				</select></td>
+					</select>
+				</td>
 			</tr>
 			<tr>
 				<td><b>품목코드</b></td>
@@ -69,10 +62,25 @@
 		</c:forEach>
 	</table>
 
+		<input type="hidden" name="wo_emp" value="${sessionScope.emp_num}">
+		<input type="hidden" name="contract_qty" value="${WorkorderDTO.contract_qty}">
+		<input type="hidden" name="business_num" value="${WorkorderDTO.business_num}">
+		<input type="hidden" name="item_name" value="${WorkorderDTO.item_name}">
 	<div class="button">
-		<input type="button" value="등록" onclick=> <input type="button"
-			value="취소" onclick="window.close()">
+		<input type="submit" value="등록" > 
+		<input type="button" value="취소" onclick="window.close()">
 	</div>
-
+	
+</form>
+		
 </body>
+		
+	<script>
+		date = new Date();
+		year = date.getFullYear();
+		month = date.getMonth() + 1;
+		day = date.getDate();
+   		document.getElementById("current_date").innerHTML = year + "년 " + month
+				+ "월 " + day + "일";
+	</script>
 </html>

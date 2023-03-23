@@ -19,5 +19,8 @@ public interface WorkorderDAO {
 
 	public List<WorkorderDTO> WoInsert(String num);
 
+	public void insertWorkorder(WorkorderDTO workorderDTO);
+
+
 	
 }

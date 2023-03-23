@@ -64,7 +64,7 @@ public class WorkorderServiceImpl implements WorkorderService{
 		
 		return workorderDAO.ContractSearch(keyword);
 	}
-
+	
 	@Override
 	public List<WorkorderDTO> WoInsert(String num) {
 		System.out.println("WorkorderServiceImpl WoInsert()");
@@ -72,5 +72,14 @@ public class WorkorderServiceImpl implements WorkorderService{
 		
 		return workorderDAO.WoInsert(num);
 	}
+
+	@Override
+	public void insertWorkorder(WorkorderDTO workorderDTO) {
+		System.out.println("WorkorderServiceImpl insertWorkorder()");
+		
+		
+		workorderDAO.insertWorkorder(workorderDTO);
+	}
 	
+
 }

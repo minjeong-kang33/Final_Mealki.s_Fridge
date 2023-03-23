@@ -138,5 +138,16 @@ public class WorkorderController {
 		return "mps/workorder/WoInsert";
 	}
 	
+	@RequestMapping(value = "/mps/workorder/WoInsertPro", method = RequestMethod.POST)
+	public String WoInsertPro(HttpServletRequest request) {
+		System.out.println("WorkorderController WoInsertPro()");
+		System.out.println(request.getParameter("wo_emp"));
+		
+//		WorkorderDTO workorderDTO
+//		workorderService.insertWorkorder(workorderDTO);
+		
+		return "mps/workorder/WoInsert";
+	}
+	
 	
 }

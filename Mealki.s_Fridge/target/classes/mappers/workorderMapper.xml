@@ -40,5 +40,11 @@
 		and r.item_name=(select item_name from contract where business_num=#{num});
 	</select>
 	
+	<insert id="insertWorkorder">
+		insert into workorder(wo_num, business_num, wo_date, wo_state, wo_qty, manu_name, item_name, wo_emp)
+		values("1", #{business_num}, now(), default, #{contract_qty}, #{line}, #{item_name}, #{emp_num})
+	
+	</insert>
+	
 	
 </mapper>
