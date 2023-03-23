@@ -9,4 +9,6 @@ import com.itwillbs.domain.PlaceOrderDTO;
 public interface StoreService {
 	
 	public List<Map<String, Object>> getItemListMapStore();
+	
+	public List<Map<String, Object>> getPlaceOrderListStore();
 }

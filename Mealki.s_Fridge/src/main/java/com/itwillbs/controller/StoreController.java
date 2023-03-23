@@ -23,8 +23,12 @@ public class StoreController {
 	private StoreService storeService;
 	
 	@RequestMapping(value = "/wms/store/insertStore", method = RequestMethod.GET)
-	public String insertStore() {
+	public String insertStore(HttpServletRequest request, Model model) {
 		System.out.println("storeController insertStore");
+		
+		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore();
+		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
+		
 		return "wms/store/insertStore";
 	}
 	

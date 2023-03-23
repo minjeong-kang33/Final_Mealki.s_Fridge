@@ -99,22 +99,38 @@
 		        
 		        	<form>
 				        <div class="store_total_div" style="width: 100%;">
-					        <table border="1" class="store_total_table" style="width: 100%; table-layout: fixed;">
-								<tr><th>입고관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th><th>재고수량</th><th>진행현황</th><th>입고처리</th></tr>
+					        <table border="1" class="store_total_table" style="width: 100%;">
+								<tr><th>CKBOX</th><th>입고관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th><th>재고수량</th><th>진행현황</th><th>입고처리</th></tr>
        <!--나중에지우기  -->        <tr><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
-						        <c:forEach var="StoreDTO" items="${orderListStore }">
+						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
-										<td>${PlaceOrderDTO.num }</td> <!-- 입고관리번호 -->
+										<td> <input type="checkbox"> </td>
+										<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
-										<td>${PlaceOrderDTO.itme_name }</td> <!-- 품명 -->
-										<td>${PlaceOrderDTO.order_qty }</td> <!-- 발주수량 -->
+										<td>${StoreDTO.item_name }</td> <!-- 품명 -->
+										<td>${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 										<td><input type="text"></td> <!-- 입고수량 -->
-										<td>${PlaceOrderDTO.stk_qnt }</td> <!-- 재고수량 -->
-										<td>${PlaceOrderDTO.sto_progress }</td> <!-- 진행현황 -->
+										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
+										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 										<td><input type="button"></td> <!-- 입고처리 -->
 									</tr>
 						 		</c:forEach>
 					        </table>
+					        
+	<!-- 페이징 -->
+	
+	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+	</c:if>
+	
+	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}">${i}</a> 
+	</c:forEach>
+	
+	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+	</c:if>
+					        
 			       		 </div>
 			        </form>
 		        </div>

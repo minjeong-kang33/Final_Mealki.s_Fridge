@@ -7,4 +7,6 @@ public interface StoreDAO {
 
 	public List<Map<String, Object>> getItemListMapStore();
 	
+	public List<Map<String, Object>> getPlaceOrderListStore();
+	
 }
