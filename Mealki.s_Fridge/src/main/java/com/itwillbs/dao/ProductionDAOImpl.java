@@ -11,6 +11,8 @@ import org.springframework.stereotype.Repository;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itwillbs.domain.ProductionDTO;
+
 @Repository
 public class ProductionDAOImpl implements ProductionDAO{
 	
@@ -20,9 +22,8 @@ public class ProductionDAOImpl implements ProductionDAO{
 	private static final String namespace="com.itwillbs.mappers.productionMapper";
 
 	@Override
-	public List<Map<String, Object>> getProductionListMap(ModelAndView modelAndView, HttpServletRequest request) {
-		System.out.println("MemberDAOImpl getProductionListMap()");
-		return sqlSession.selectList(namespace+".getProductionListMap");
-		
+	public List<Map<String, Object>> getProductionListMap(ProductionDTO productDTO) {
+		System.out.println("ProductionDAOImpl getProductionListMap()");
+		return sqlSession.selectList(namespace+".getProductionListMap", productDTO);
 	}
 }
