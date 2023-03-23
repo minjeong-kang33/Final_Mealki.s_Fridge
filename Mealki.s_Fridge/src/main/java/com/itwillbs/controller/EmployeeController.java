@@ -24,22 +24,22 @@ public class EmployeeController {
 	private EmployeeService employeeService;
 	
 	@RequestMapping(value = "/main/login", method = RequestMethod.GET)
-	public String login() {
-		return "main/login";
-	}
-	
-	@RequestMapping(value = "/main/loginPro", method = RequestMethod.POST)
-	public String loginPro(EmployeeDTO employeeDTO, HttpSession session) {
-		System.out.println("EmployeeController loginPro()");
-		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
-		
-		if(employeeDTO2 != null) {
-			session.setAttribute("emp_num", employeeDTO.getEmp_num());
-			return "redirect:/main/main";
-		}else {
-			return "main/loginErrorMsg";
-		}
-	}
+	   public String login() {
+	      return "main/login";
+	   }
+
+	   @RequestMapping(value = "/main/loginPro", method = RequestMethod.POST)
+	   public String loginPro(EmployeeDTO employeeDTO, HttpSession session) {
+	      System.out.println("EmployeeController loginPro()");
+	      EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
+
+	      if(employeeDTO2 != null) {
+		 session.setAttribute("emp_num", employeeDTO.getEmp_num());
+		 return "redirect:/main/main";
+	      }else {
+		 return "main/loginErrorMsg";
+	      }
+	   }
 	
 	@RequestMapping(value = "/main/logout", method = RequestMethod.GET)
 	public String logout(HttpSession session) {
