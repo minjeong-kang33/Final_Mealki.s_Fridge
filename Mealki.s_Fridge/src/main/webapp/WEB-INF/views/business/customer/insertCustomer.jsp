@@ -167,7 +167,7 @@
 								<span id="guide" style="color:#999;display:none"></span><br>
 								<input type="text" id="sample4_detailAddress" class="cust_address2" placeholder="상세주소" name="cust_address2"><br>
 						<label>홈페이지</label> 
-								<input type="text" name="url_path" class="business_num"><br>
+								<input type="text" name="url_path" class="url_path"><br>
 						<label>적요</label>
 								<textarea type="text" name="remarks" class="remarks" style="height: 300px;" rows="3" placeholder="글 내용을 작성하세요"></textarea><br>
 						</div>

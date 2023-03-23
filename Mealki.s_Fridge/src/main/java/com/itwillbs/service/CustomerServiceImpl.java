@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -11,6 +12,7 @@ import com.itwillbs.dao.CustomerDAO;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
 
+
 @Service
 public class CustomerServiceImpl implements CustomerService{
 	
@@ -19,7 +21,7 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public List<CustomerDTO> getCustomerList(PageDTO pageDTO) {
-		System.out.println("CustomerDAOImpl getCustomerList()");
+		System.out.println("CustomerServiceImpl getCustomerList()");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 		int endRow = startRow+pageDTO.getPageSize()-1;
@@ -32,14 +34,14 @@ public class CustomerServiceImpl implements CustomerService{
 
 	@Override
 	public int getCustomerCount() {
-		System.out.println("CustomerDAOImpl getCustomerCount()");
+		System.out.println("CustomerServiceImpl getCustomerCount()");
 		
 		return customerDAO.getCustomerCount();
 	}
 
 	@Override
 	public CustomerDTO getCustomer(int num) {
-		System.out.println("CustomerDAOImpl getCustomer()");
+		System.out.println("CustomerServiceImpl getCustomer()");
 		
 		return customerDAO.getCustomer(num);
 	}
@@ -50,6 +52,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 		customerDAO.insertCustomer(customerDTO);	
 	}
+
+//	@Override
+//	public List<Map<String, Object>> getCustomerListMap(SearchPageDTO searchPageDTO) {
+//		System.out.println("CustomerServiceImpl getCustomerList");
+//		
+//		return customerDAO.getCustomerListMap(searchPageDTO);
+//	}
 	
 	
 

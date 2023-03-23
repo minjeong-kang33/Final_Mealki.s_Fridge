@@ -29,7 +29,29 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script type="text/javascript">
+	  function openDetail(cust_num) {
+		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?cust_num="+cust_num, "popup", "width=1000, height=1000, scrollbars=yes");
+		}
+  </script>
   
+  <script> //검색어
+	function fun1() {
+		
+		if(document.search.search_option.value=="") {
+			alert("검색 조건을 선택하세요")
+			document.search.search_option.focus();
+			return false;
+		}
+		if(document.search.keyword.value==0) {
+			alert("검색어를 입력하세요");
+			document.search.keyword.focus();
+			return false;
+			}
+		
+			document.search.submit();
+	}
+  </script>
 
 </head>
 <body>
@@ -59,15 +81,15 @@
 <!--  본문 내용 시작 -->
             <div id="table_search">
             
-            	<form action="${pageContext.request.contextPath}/business/customer/customerList" name="searchCustomer" method="post" >
-	            	<select name="search_option">
+            	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get" onsubmit="return fun1()">
+	            	<select name="search_option" class="search_option">
 	            		<option value=""> 선택하세요 </option>
 	            		<option value="cust_num"> 거래처코드 </option>
 	            		<option value="cust_name"> 거래처명 </option>
 	            		<option value="cust_uptae"> 업태 </option>
 	            	</select>
-	            <input type="text" name="search" class="search" >
-	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onclick="location.href='#'">
+	            <input type="text" name="keyword" class="input-search" >
+	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
             	</form>
             </div>
             
@@ -81,8 +103,8 @@
 				<c:forEach var="CustomerDTO" items="${customerList }">
 				
 					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.cust_num}"></td>
-					    <td><a href=# style="color: black">${CustomerDTO.cust_num}</a></td>
-					    <td><a href=# style="color: black">${CustomerDTO.cust_name}</a></td>
+					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
+					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_name}</td>
 					    <td>${CustomerDTO.boss_name}</td>
 					    <td>${CustomerDTO.cust_tel}</td>
 					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>

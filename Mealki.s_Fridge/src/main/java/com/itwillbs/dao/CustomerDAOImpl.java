@@ -1,6 +1,7 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -9,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+
 
 @Repository
 public class CustomerDAOImpl implements CustomerDAO{
@@ -29,7 +31,7 @@ public class CustomerDAOImpl implements CustomerDAO{
 
 	@Override
 	public int getCustomerCount() {
-		System.out.println("CustomerDAOImpl getCustomerListTest()");
+		System.out.println("CustomerDAOImpl getCustomerList()");
 		
 		return sqlSession.selectOne(namespace+".getCustomerCount");
 	}
@@ -47,6 +49,14 @@ public class CustomerDAOImpl implements CustomerDAO{
 		//메서드 호출
 		sqlSession.insert(namespace+".insertCustomer", customerDTO);
 	}
+
+//	@Override
+//	public List<Map<String, Object>> getCustomerListMap(SearchPageDTO searchPageDTO) {
+//		System.out.println("CustomerDAOImpl getCustomerListMap");
+//		
+//		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
+//		return sqlSession.selectList(namespace+".getCustomerListMap",searchPageDTO);
+//	}
 	
 
 }
