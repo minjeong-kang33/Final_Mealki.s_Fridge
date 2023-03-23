@@ -74,7 +74,7 @@
 		                     <form name="search" method="post" action="${pageContext.request.contextPath}/employee/Store" id="selectBox" name="selectBox2" onsubmit="return fun1()">
 		                       <span id="store_date"> 입고일자 <input type="date" id="startDate" name="startDate">  ~ <input type="date" id="endDate" name="endDate"></span>
 		                       <span id="emp_num_search">담당자<input class="input-search" type="text" name="emp_num" id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
-		                       
+		                       <span id="products_search"> 품명 <input type="text" name="item_name" id="item_name" onclick="findProduct()" ></span>
 		                    <!-- <select name="search_option" class="search_option">
 		                           <option value=""> 선택하세요 </option>
 		                           <option value="emp_Kname"> 이름 </option>
@@ -180,6 +180,16 @@
            "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
  }
 
+ /* 상품찾기 */    
+ var openWin;
+
+ function findProduct()
+ {
+  window.name = "parentForm";
+  openWin = window.open("${pageContext.request.contextPath}/wms/store/findProduct",
+           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+ }
+ 
  </script>
 
 </body>
