@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.SearchDTO;
 import com.itwillbs.service.EmployeeService;
 
 
@@ -67,14 +68,23 @@ public class EmployeeController {
 		
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
+		String search_check = request.getParameter("search_check");
 		
 		System.out.println(search_option);
-		System.err.println(keyword);
+		System.out.println(keyword);
+		System.out.println(search_check);
 		
-		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap(model, request);
+		SearchDTO searchDTO = new SearchDTO();
+		searchDTO.setKeyword(keyword);
+		searchDTO.setSearch_option(search_option);
+		searchDTO.setSearch_check(search_check);
+		
+		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap(searchDTO);
 		model.addAttribute("employeeListMap",employeeListMap);
 		model.addAttribute("search_option",search_option);
 		model.addAttribute("keyword",keyword);
+		
+		
 		
 		return "/employee/empManage";
 	}

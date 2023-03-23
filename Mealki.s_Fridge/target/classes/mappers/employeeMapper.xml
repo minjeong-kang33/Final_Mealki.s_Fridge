@@ -14,6 +14,28 @@
 	    emp_email
 		from employee join department
 		on dept_num = dept_deptNum
+		where 
+			<if test="search_option == 'emp_Kname'.toString()">
+				emp_Kname like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="search_option == 'emp_num'.toString()">
+				emp_num like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="search_option == 'emp_tel'.toString()">
+				emp_tel like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="search_option == 'emp_phone'.toString()">
+				emp_phone like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+			<if test="search_option == 'dept_num'.toString()">
+				department.dept_deptName like CONCAT('%', #{keyword}, '%')
+			</if>
+			
+		
 		order by emp_joinDate desc
     </select>
     

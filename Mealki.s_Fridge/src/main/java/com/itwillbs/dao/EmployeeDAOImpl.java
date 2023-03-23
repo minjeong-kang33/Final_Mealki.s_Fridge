@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.SearchDTO;
 
 @Repository
 public class EmployeeDAOImpl implements EmployeeDAO{
@@ -27,9 +28,11 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>> getEmployeeListMap(Model model, HttpServletRequest request) {
+	public List<Map<String, Object>> getEmployeeListMap(SearchDTO searchDTO) {
 		System.out.println("EmployeeDAOImpl getEmployeeListMap");
-		return sqlSession.selectList(namespace+".getEmployeeListMap");
+		
+		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
+		return sqlSession.selectList(namespace+".getEmployeeListMap",searchDTO);
 	}
 	
 }
