@@ -8,8 +8,10 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.itwillbs.domain.ProductionDTO;
+
 public interface ProductionDAO {
 	
-	public List<Map<String, Object>> getProductionListMap(ModelAndView modelAndView, HttpServletRequest request);
+	public List<Map<String, Object>> getProductionListMap(ProductionDTO productDTO);
 
 }

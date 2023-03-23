@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -53,7 +54,7 @@
 <!--  본문 내용 시작 -->
 
 			<div id="writebody">
-				<form action="${pageContext.request.contextPath}mps/production/writePro" id="join" method="post">
+				<form action="${pageContext.request.contextPath}mps/production/writePro" id="join" method="GET">
 				<label>라인명 : </label>
 				<select name="lineselect">
             		<option value=" ">라인을 선택하세요</option>
@@ -63,25 +64,41 @@
           		</select>
           		
 				<label>작업지시번호 : </label>
-				<input type="text" name="suju">
+				<input type="text" name="wo_num">
+				
 				<label>품명 : </label>
-				<input type="text" name="item">
-				<label>생산량 : </label>
-				<input type="text" name="work">
-				<label>불량 : </label>
-				<input type="text" name="fail">
+				<input type="text" name="item_name">
+								
 				<label>작업자 : </label>
-				<input type="text" name="name">
-				</form>
-				<button class="btn btn-primary" type="button" id="IconButton6">
+				<input type="text" name="emp_Kname">
+				
+				<label>생산량 : </label>
+				<input type="text" name="manu_tocount">
+
+				<label>불량 : </label>
+				<input type="text" name="manu_fail">
+				
+				
+			<c:if test="${ ! empty manu_sdate }">
+				<c:if test="${sessionScope.id eq 'admin'}">
+					<button class="btn btn-primary" type="submit" id="IconButton6">
+					<a>시작</a>
+					</button>
+				</c:if>
+			</c:if>
+				<button class="btn btn-primary" type="submit" id="IconButton6">
 				<a>시작</a>
 				</button>
-				<button class="btn btn-primary" type="button" id="IconButton6">
+				
+				<button class="btn btn-primary" type="submit" id="IconButton6">
 				<a>완료</a>
 				</button>
-				<button class="btn btn-primary" type="reset" id="IconButton6">
+				
+				<button class="btn btn-primary" type="submit" id="IconButton6">
 				<a>취소</a>
 				</button>
+				
+				</form>
 			</div>
  <!--  본문내용 끝 -->    
         

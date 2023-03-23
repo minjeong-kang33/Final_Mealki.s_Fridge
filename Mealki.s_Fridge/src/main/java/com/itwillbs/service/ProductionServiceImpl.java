@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.itwillbs.dao.ProductionDAO;
+import com.itwillbs.domain.ProductionDTO;
 
 @Service
 public class ProductionServiceImpl implements ProductionService{
@@ -19,10 +20,10 @@ public class ProductionServiceImpl implements ProductionService{
 	private ProductionDAO productionDAO;
 	
 	@Override
-	public List<Map<String, Object>> getProductionListMap(ModelAndView modelAndView, HttpServletRequest request) {
-		System.out.println("MemberServiceImpl updateMember()");
+	public List<Map<String, Object>> getProductionListMap(ProductionDTO productDTO) {
+		System.out.println("ProductionServiceImpl ListMap()");
 		
-		return productionDAO.getProductionListMap(modelAndView, request);
+		return productionDAO.getProductionListMap(productDTO);
 	}
 
 }

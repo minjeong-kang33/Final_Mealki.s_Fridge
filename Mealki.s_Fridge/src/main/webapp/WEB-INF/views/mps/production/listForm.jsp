@@ -135,7 +135,7 @@
 				<!-- 푸터시작 -->
 				<jsp:include page="../../main/footer.jsp" />
 				<!--  푸터 끝 -->
-
+int weight = a*b
 				<!-- partial -->
 			</div>
 			<!-- main-panel ends -->

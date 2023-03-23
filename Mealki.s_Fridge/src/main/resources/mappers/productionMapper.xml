@@ -11,14 +11,10 @@
     <!-- 	https://mybatis.org/mybatis-3/ -->
     <resultMap type="map" id="productionMap">
 <!--    column="디비열이름" property="멤버변수이름" -->
-<!--     	<id column="manu_num" property="manu_num"/> -->
+    	<id column="manu_num" property="manu_num"/>
     	<result property="wo_num" column="wo_num"/>
     	<result column="manu_name" property="manu_name"/>
-    	<result column="manu_code" property="manu_code"/>
     	<result column="item_name" property="item_name"/>
-    	<result column="item_num" property="item_num"/>
-    	<result column="manu_tocount" property="manu_tocount"/>
-    	<result column="manu_fail" property="manu_fail"/>
     	<result column="emp_Kname" property="emp_Kname"/>
     	<result column="manu_sdate" property="manu_sdate"/>
     	<result column="manu_date" property="manu_date"/>
@@ -27,7 +23,12 @@
     <select id="getProductionListMap" resultMap="productionMap">
     	select * from productstatus
     	<where>
-    	<if test="wo_num != null">wo_num = '#{wo_num}' </if>
+    		<if test="wo_num != null and !wo_num.equals('')">wo_num like CONCAT('%',#{wo_num},'%') </if>
+			<if test="manu_name != null and !manu_name.equals('')">OR manu_name like CONCAT('%',#{manu_name},'%')</if>
+			<if test="item_name != null and !item_name.equals('')">OR item_name like CONCAT('%',#{item_name},'%')</if>
+			<if test="emp_Kname != null and !emp_Kname.equals('')">OR emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
+<!-- 			작업 보류 -->
+<!-- 			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_sdate} and #{manu_date}</if> -->
     	</where>
     </select>
 
