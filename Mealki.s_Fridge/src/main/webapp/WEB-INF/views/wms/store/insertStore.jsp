@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>  
 <!DOCTYPE html>
 <html>
 <head>
@@ -96,13 +97,26 @@
 	        <div class="tabcontent" >
 		        <div id="tab01" style="background-color: pink; width: 100%;"> <!-- tab 1내용 -->
 		        
-		        
-			        <div class="emp_infoDetails" style="width: 100%;">
-				        <table border="1" class="emp_details_table" style="width: 100%; table-layout: fixed;">
-				           <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직급</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
-				           <tr class="tr"><th class="th">재직구분</th><td>재직</td><th class="th">입사일자</th><td>2023.03.14</td><th class="th">퇴사일자</th><td> </td><th class="th">휴직일자</th><td>과장</td></tr>
-				        </table>
-			        </div>
+		        	<form>
+				        <div class="store_total_div" style="width: 100%;">
+					        <table border="1" class="store_total_table" style="width: 100%; table-layout: fixed;">
+								<tr><th>입고관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th><th>재고수량</th><th>진행현황</th><th>입고처리</th></tr>
+       <!--나중에지우기  -->        <tr><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
+						        <c:forEach var="StoreDTO" items="${orderListStore }">
+									<tr>
+										<td>${PlaceOrderDTO.num }</td> <!-- 입고관리번호 -->
+										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
+										<td>${PlaceOrderDTO.itme_name }</td> <!-- 품명 -->
+										<td>${PlaceOrderDTO.order_qty }</td> <!-- 발주수량 -->
+										<td><input type="text"></td> <!-- 입고수량 -->
+										<td>${PlaceOrderDTO.stk_qnt }</td> <!-- 재고수량 -->
+										<td>${PlaceOrderDTO.sto_progress }</td> <!-- 진행현황 -->
+										<td><input type="button"></td> <!-- 입고처리 -->
+									</tr>
+						 		</c:forEach>
+					        </table>
+			       		 </div>
+			        </form>
 		        </div>
 		       	<div id="tab02">tab2 content</div>
 	       </div>
