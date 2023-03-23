@@ -695,7 +695,7 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
+  <%-- <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script> --%>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>

@@ -2,19 +2,26 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwillbs.mappers.employeeMapper">
-	<select id="userCheck" resultType="com.itwillbs.domain.EmployeeDTO">
-        select * from employee
-        where emp_num = #{emp_num} and emp_pass = #{emp_pass}
-    </select>
-    
-    <select id="getEmployeeListMap" resultType="map">
-    	select emp_num, emp_Kname, dept_position, dept_duty, department.dept_deptName, 
-		DATE_FORMAT(emp_joinDate, '%Y-%m-%d')as emp_joinDate, 
-	    concat(substring(concat('0',emp_tel) from 1 for 3),'-',substring(concat('0',emp_tel) from 4 for 3),'-',substring(concat('0',emp_tel) from 7 for 4)) as emp_tel, 
-	    emp_email
+	<select id="userCheck"
+		resultType="com.itwillbs.domain.EmployeeDTO">
+		select * from employee
+		where emp_num = #{emp_num} and
+		emp_pass = #{emp_pass}
+	</select>
+
+	<select id="getEmployeeListMap" resultType="map">
+		select emp_num,
+		emp_Kname, dept_position, dept_duty,
+		department.dept_deptName,
+		DATE_FORMAT(emp_joinDate, '%Y-%m-%d')as emp_joinDate,
+		concat(substring(concat('0',emp_tel) from 1 for
+		3),'-',substring(concat('0',emp_tel) from 4 for
+		3),'-',substring(concat('0',emp_tel) from 7 for 4)) as emp_tel,
+		emp_email
 		from employee join department
 		on dept_num = dept_deptNum
-		order by emp_joinDate desc
-    </select>
-    
+		order
+		by emp_joinDate desc
+	</select>
+	
 </mapper>
