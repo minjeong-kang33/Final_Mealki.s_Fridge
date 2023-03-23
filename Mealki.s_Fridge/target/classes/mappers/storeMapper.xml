@@ -12,5 +12,21 @@
 		where supplier is not null and products.item_type like '%식자재'
 	</select>
 
+	<select id="getPlaceOrderListStore" resultType="map">
+		select sto_num, ifnull(store.sto_progress,'미입고') as sto_progress, placeorder.order_qty, products.item_name, stock.stk_qnt
+		from store 
+		right Outer join placeorder on placeorder.order_num = store.order_num
+		left outer join products on placeorder.item_num = products.item_num
+		left join stock on products.item_num = stock.item_num
+	</select>
+
+
+<!-- 
+select s.sto_num, s.sto_progress, st.stk_qnt
+from store s join placeorder p
+on s.order_num = p.order_num
+join stock st
+on st.item_num = p.item_num
+order by s.sto_num desc; -->
 
 </mapper>

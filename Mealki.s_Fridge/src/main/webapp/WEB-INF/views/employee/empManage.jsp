@@ -162,7 +162,7 @@ function fun1() {
 					<c:forEach var="dto" items="${employeeListMap }">
 	    		
 		    		<tr class="emp_search_table_tr"><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_position}</td>
-		    		<td>${dto.dept_duty}</td><td>${dto.dept_duty}</td><td>${dto.emp_joinDate}</td>
+		    		<td>${dto.dept_position}</td><td>${dto.dept_duty}</td><td>${dto.emp_joinDate}</td>
 		    		<td>${dto.emp_tel}</td><td>${dto.emp_email}</td></tr>
 		    		
 					</c:forEach>
