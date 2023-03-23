@@ -18,23 +18,22 @@
         where cust_num = #{cust_num}   	
     </select>
     
-<!--     <select id="getCustomerListTest" resultType="com.itwillbs.domain.CustomerDTO"> -->
-<!--         select * from customer -->
-        
-<!--         <if test='searchType.equals("cust_num")'> -->
-<!--         where cust_num like concat('%', #{keyword}, '%') -->
-<!--         </if> -->
-        
-<!--         <if test='searchType.equals("cust_name")'> -->
-<!--         where cust_name like concat('%', #{keyword}, '%') -->
-<!--         </if> -->
-        
-<!--         <if test='searchType.equals("cust_uptae")'> -->
-<!--         where cust_uptae like concat('%', #{keyword}, '%') -->
-<!--         </if> -->
-        
-<!--         order by cust_num desc  -->
-<!--         limit #{startRow} , #{pageSize}    	 -->
+<!--     <select id="getCustomerListMap" resultType="map"> -->
+<!--     	select * from customer  -->
+<!-- 		where  -->
+<!-- 			<if test="search_option == 'cust_num'.toString()"> -->
+<!-- 				cust_num like CONCAT('%', #{keyword}, '%') -->
+<!-- 			</if> -->
+			
+<!-- 			<if test="search_option == 'cust_name'.toString()"> -->
+<!-- 				cust_name like CONCAT('%', #{keyword}, '%') -->
+<!-- 			</if> -->
+			
+<!-- 			<if test="search_option == 'cust_uptae'.toString()"> -->
+<!-- 				cust_uptae like CONCAT('%', #{keyword}, '%')  -->
+				
+<!-- 			</if> -->
+<!-- 			order by cust_num desc -->
 <!--     </select> -->
     
     <insert id="insertCustomer">

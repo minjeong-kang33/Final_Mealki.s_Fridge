@@ -1,10 +1,11 @@
 package com.itwillbs.dao;
 
 import java.util.List;
-
+import java.util.Map;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SearchPageDTO;
 
 public interface CustomerDAO {
 	
@@ -15,5 +16,7 @@ public interface CustomerDAO {
 	public CustomerDTO getCustomer(int num);
 	
 	public void insertCustomer(CustomerDTO customerDTO);
+	
+//	public List<Map<String, Object>> getCustomerListMap(SearchPageDTO searchPageDTO);
 
 }

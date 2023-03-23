@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -9,7 +10,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
@@ -25,6 +25,16 @@ public class CustomerController {
 	public String customerList(HttpServletRequest request, Model model) {
 		System.out.println("CustomerController customerList()");
 		
+//		String search_option = request.getParameter("search_option");
+//		String keyword = request.getParameter("keyword");
+//		
+//		System.out.println(search_option);
+//		System.out.println(keyword);
+//		
+//		SearchPageDTO searchPageDTO = new SearchPageDTO();
+//		searchPageDTO.setKeyword(keyword);
+//		searchPageDTO.setSearch_option(search_option);
+	
 		int pageSize=10;
 		
 		String pageNum=request.getParameter("pageNum");
@@ -60,17 +70,32 @@ public class CustomerController {
 		model.addAttribute("customerList", customerList);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		
+//		List<Map<String, Object>> customerListMap = customerService.getCustomerListMap(searchPageDTO);
+//		model.addAttribute("customerListMap",customerListMap);
+//		model.addAttribute("search_option",search_option);
+//		model.addAttribute("keyword",keyword);
 		
 		return "business/customer/customerList";
 	}
 	
-	@RequestMapping(value="/business/customer/delete", method=RequestMethod.POST)
-	public String delete(HttpServletRequest request) {
-		int num=Integer.parseInt(request.getParameter("cust_num"));
+	@RequestMapping(value = "/business/customer/customerDetail", method = RequestMethod.GET)
+	public String customerDetail(HttpServletRequest request, Model model) {
 		
-	return "redirect:business/customer/customerList";
-	}
+		int num=Integer.parseInt(request.getParameter("cust_num"));
+	
+		CustomerDTO customerDTO=customerService.getCustomer(num);
+		
+		model.addAttribute("customerDTO", customerDTO);
+		
+	return "business/customer/customerDetail";
+}
+	
+//	@RequestMapping(value="/business/customer/delete", method=RequestMethod.POST)
+//	public String delete(HttpServletRequest request) {
+//		int num=Integer.parseInt(request.getParameter("cust_num"));
+//		
+//	return "redirect:business/customer/customerList";
+//	}
 	
 	@RequestMapping(value = "/business/customer/insertCustomer", method = RequestMethod.GET)
 	public String insertCustomer() {
@@ -89,6 +114,8 @@ public class CustomerController {
 //		주소줄 변경하면서 이동
 		return "redirect:/business/customer/customerList";
 	}
+	
+
 	
 	
 	
