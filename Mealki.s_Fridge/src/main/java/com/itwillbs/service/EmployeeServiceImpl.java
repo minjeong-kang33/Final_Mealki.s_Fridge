@@ -12,6 +12,7 @@ import org.springframework.ui.Model;
 import com.itwillbs.dao.EmployeeDAO;
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SearchDTO;
 
 @Service
 public class EmployeeServiceImpl implements EmployeeService{
@@ -26,9 +27,9 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getEmployeeListMap(Model model, HttpServletRequest request) {
+	public List<Map<String, Object>> getEmployeeListMap(SearchDTO searchDTO) {
 		System.out.println("EmployeeServiceImpl getEmployeeList");
-		return employeeDAO.getEmployeeListMap(model, request);
+		return employeeDAO.getEmployeeListMap(searchDTO);
 	}
 
 	
