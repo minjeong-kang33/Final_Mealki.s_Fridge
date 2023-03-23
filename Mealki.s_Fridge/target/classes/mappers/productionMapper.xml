@@ -11,8 +11,8 @@
     <!-- 	https://mybatis.org/mybatis-3/ -->
     <resultMap type="map" id="productionMap">
 <!--    column="디비열이름" property="멤버변수이름" -->
-    	<id column="manu_num" property="manu_num"/>
-    	<result column="wo_num" property="wo_num"/>
+<!--     	<id column="manu_num" property="manu_num"/> -->
+    	<result property="wo_num" column="wo_num"/>
     	<result column="manu_name" property="manu_name"/>
     	<result column="manu_code" property="manu_code"/>
     	<result column="item_name" property="item_name"/>
@@ -26,5 +26,9 @@
     
     <select id="getProductionListMap" resultMap="productionMap">
     	select * from productstatus
+    	<where>
+    	<if test="wo_num != null">wo_num = '#{wo_num}' </if>
+    	</where>
     </select>
+
 </mapper>
