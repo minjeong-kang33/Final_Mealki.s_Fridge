@@ -97,9 +97,9 @@
 			</div>
 				
 			<div id="button2">
-				<input type="submit" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
+				<input type="submit" class="btn btn-primary" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
 				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer">
-				<input type="button" id="new_customer" value="신규등록"></a>
+				<input type="button" class="btn btn-primary" id="new_customer" value="신규등록"></a>
 			</div>
 			
  
