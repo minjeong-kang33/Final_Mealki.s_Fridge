@@ -117,12 +117,16 @@
 <!--  발주 현황 시작 -->				      
 				      <div id="top_table" >
             	<div id="table_search">
+            	<form name="search" method="get" action="${pageContext.request.contextPath}" id="selectBox" name="selectBox2" onsubmit="search()">
             	<span id="select_search">
-			        <span>발주번호<input type="text" id="order_num_search2"></span>
-			        <span>발주일<input type="date" id="order_date_search2"></span>
-			   		<span>납기일<input type="date" id="due_date_search2"></span>
-			        <span>품명<input type="text" id="pd_num_search2"></span>
-	            </span>
+			        <span>발주번호<input type="text"></span>
+			        <span>발주일<input type="date"></span>
+			   		<span>납기일<input type="date"></span>
+			        <span>품명<input type="text"></span>
+			      <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
+			       </span>
+			      </form>
+	           
 
  				<br>
             

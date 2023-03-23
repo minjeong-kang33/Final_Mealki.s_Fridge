@@ -22,12 +22,12 @@ public class EmployeeController {
 	@Inject
 	private EmployeeService employeeService;
 	
-	@RequestMapping(value = "/employee/login", method = RequestMethod.GET)
+	@RequestMapping(value = "/main/login", method = RequestMethod.GET)
 	public String login() {
-		return "employee/loginForm";
+		return "main/login";
 	}
 	
-	@RequestMapping(value = "/employee/loginPro", method = RequestMethod.POST)
+	@RequestMapping(value = "/main/loginPro", method = RequestMethod.POST)
 	public String loginPro(EmployeeDTO employeeDTO, HttpSession session) {
 		System.out.println("EmployeeController loginPro()");
 		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
