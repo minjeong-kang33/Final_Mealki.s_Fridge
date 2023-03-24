@@ -1,5 +1,7 @@
 package com.itwillbs.domain;
 
+import java.sql.Date;
+
 public class PageDTO {
 	private int pageSize;
 	private String pageNum;
@@ -14,6 +16,11 @@ public class PageDTO {
 	
 	private String search_option;
 	private String keyword;
+	
+	private String order_num;
+	private String item_name;
+	private Date order_date;
+	private Date due_date;
 	
 	@Override
 	public String toString() {
@@ -133,6 +140,46 @@ public class PageDTO {
 	}
 	public void setKeyword(String keyword) {
 		this.keyword = keyword;
+	}
+
+
+	public String getOrder_num() {
+		return order_num;
+	}
+
+
+	public void setOrder_num(String order_num) {
+		this.order_num = order_num;
+	}
+
+
+	public String getItem_name() {
+		return item_name;
+	}
+
+
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
+
+
+	public Date getOrder_date() {
+		return order_date;
+	}
+
+
+	public void setOrder_date(Date order_date) {
+		this.order_date = order_date;
+	}
+
+
+	public Date getDue_date() {
+		return due_date;
+	}
+
+
+	public void setDue_date(Date due_date) {
+		this.due_date = due_date;
 	}
 	
 }

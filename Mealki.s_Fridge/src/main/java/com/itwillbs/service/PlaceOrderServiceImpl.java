@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ItemDAO;
 import com.itwillbs.dao.PlaceOrderDAO;
+import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
@@ -59,6 +60,28 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 		return placeOrderDAO.getOrderList(placeOrderDTO);
 	}
 
+	@Override
+	public List<PlaceOrderDTO> getOrderList2(PageDTO pageDTO) {
+		System.out.println("PlaceOrderServiceImpl getOrderList2");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return placeOrderDAO.getOrderList2(pageDTO);
+	}
+
+	@Override
+	public int getOrderListCount2(PageDTO pageDTO) {
+		System.out.println("PlaceOrderServiceImpl getOrderListCount2");
+		
+		return placeOrderDAO.getOrderListCount2(pageDTO);
+	}
+	
+	
+	
 //	@Override
 //	public int getBoardCount() {
 //		System.out.println("PlaceOrderServiceImpl getBoardCount()");
