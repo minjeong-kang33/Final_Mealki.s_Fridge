@@ -77,13 +77,13 @@
 			<div class="contentbody">       
 			<div id="top_table" >
             	<div id="table_search">
-            	<form name="search" method="get" action="${pageContext.request.contextPath}/wms/placeorder/ordersearch">
+            	<form name="search" method="get" action="${pageContext.request.contextPath}/wms/ordersearch">
             	<span id="select_search">
-			        <span>발주번호<input type="text" name="order_num" style="margin-left: 5px;"></span>
-			        <span style="margin-left: 10px;">발주일<input type="date" name="order_date" style="margin-left: 5px;"></span>
-			   		<span style="margin-left: 10px;">납기일<input type="date" name="due_date" style="margin-left: 5px;"></span>
-			        <span style="margin-left: 10px;">품명<input type="text" name="item_name" style="margin-left: 5px;"></span>
-			      <button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
+			        <span>발주번호<input type="text" name="order_num"></span>
+			        <span>발주일<input type="date" name="order_date"></span>
+			   		<span>납기일<input type="date" name="due_date"></span>
+			        <span>품명<input type="text" name="item_name"></span>
+			      <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
 			       </span>
 			      </form>
 	          </div> 
@@ -91,35 +91,35 @@
  				<br>
             
             	<h4> | 발주 내역 목록 </h4>
-				<table border="1" id="orderlist_table">
+				<table border="1">
 					 <tr><th>발주번호</th><th>품번</th><th>품명</th><th>발주수량</th><th>발주일</th><th>납기일</th><th>입고창고</th><th>단가총계</th><th>부가세</th><th>담당자</th></tr>
 					 <c:forEach var="PlaceOrderDTO" items="${orderList }">
 						<tr>
-							<td style="width: 250px;">${PlaceOrderDTO.order_num }</td>
-							<td style="width: 100px;">${PlaceOrderDTO.item_num }</td>
+							<td>${PlaceOrderDTO.order_num }</td>
+							<td>${PlaceOrderDTO.item_num }</td>
 							<td>${PlaceOrderDTO.item_name }</td>
-							<td style="width: 100px;">${PlaceOrderDTO.order_qty }</td>
-							<td style="width: 150px;">${PlaceOrderDTO.order_date }</td>
-							<td style="width: 150px;">${PlaceOrderDTO.due_date }</td>
+							<td>${PlaceOrderDTO.order_qty }</td>
+							<td>${PlaceOrderDTO.order_date }</td>
+							<td>${PlaceOrderDTO.due_date }</td>
 							<td>${PlaceOrderDTO.whs_num }</td>
 							<td>${PlaceOrderDTO.order_sum }</td>
 							<td>${PlaceOrderDTO.order_vat }</td>
-							<td style="width: 150px;">${PlaceOrderDTO.emp_num }</td>
+							<td>${PlaceOrderDTO.emp_num }</td>
 							</tr>
 				 	</c:forEach>
 				</table>
-				<!-- &order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name} -->
-				 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+				
+				<%-- <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+					<a href="${pageContext.request.contextPath}/wms/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
 				</c:if>
 
 				<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${i}">${i}</a> 
+					<a href="${pageContext.request.contextPath}/wms/ordersearch?pageNum=${i}">${i}</a> 
 				</c:forEach>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
-				</c:if> 
+					<a href="${pageContext.request.contextPath}/wms/ordersearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+				</c:if> --%>
 				
 				<hr>
 	   		
@@ -159,8 +159,7 @@
 					 	 <td><input type="number" name="order_qty" id="order_qty"></td>
 					 	 <td><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
 					 	 <td><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
-					 </tr>
+					 	 <td><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();"></tr>
 				</table>
 				<input type="hidden" name="order_num" id="order_num">
 				<button type="button" onclick="check_input()">저장</button>
@@ -252,7 +251,7 @@
     var seconds = date.getSeconds();
     seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
     
-    order_num.value='OR'+year+month+day+hour+minutes+seconds;
+    order_num.value='WO'+year+month+day+hour+minutes+seconds;
 	});
 
 </script>

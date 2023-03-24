@@ -53,11 +53,19 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	}
 
 	@Override
-	public List<PlaceOrderDTO> getOrderList() {
+	public List<PlaceOrderDTO> getOrderList(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderServiceImpl getOrderList");
 
-		return placeOrderDAO.getOrderList();
+		return placeOrderDAO.getOrderList(placeOrderDTO);
 	}
+
+//	@Override
+//	public int getBoardCount() {
+//		System.out.println("PlaceOrderServiceImpl getBoardCount()");
+//		
+//		return placeOrderDAO.getBoardCount();
+//	}
+	
 	
 	
 
