@@ -52,35 +52,21 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO {
 	}
 
 	@Override
-	public List<PlaceOrderDTO> getOrderList(PlaceOrderDTO placeOrderDTO) {
+	public List<PlaceOrderDTO> getOrderList(PageDTO pageDTO) {
 		System.out.println("PlaceOrderDAOImpl getOrderList()");
-
-		return sqlSession.selectList(namespace + ".getOrderList",placeOrderDTO);
-	}
-
-	@Override
-	public List<PlaceOrderDTO> getOrderList2(PageDTO pageDTO) {
-		System.out.println("PlaceOrderDAOImpl getOrderList2()");
 		
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectList(namespace+".getOrderList2", pageDTO);
+		return sqlSession.selectList(namespace+".getOrderList", pageDTO);
 	}
 
 	@Override
-	public int getOrderListCount2(PageDTO pageDTO) {
-		System.out.println("PlaceOrderDAOImpl getOrderListCount2()");
+	public int getOrderListCount(PageDTO pageDTO) {
+		System.out.println("PlaceOrderDAOImpl getOrderListCount()");
 		
-		return sqlSession.selectOne(namespace+".getOrderListCount2", pageDTO);
+		return sqlSession.selectOne(namespace+".getOrderListCount", pageDTO);
 	}
 	
-	
-//	@Override
-//	public int getBoardCount() {
-//		System.out.println("PlaceOrderDAOImpl getBoardCount()");
-//		
-//		return sqlSession.selectOne(namespace+".getBoardCount");
-//	}
 	
 	
 }
