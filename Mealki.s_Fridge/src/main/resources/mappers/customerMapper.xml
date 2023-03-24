@@ -3,31 +3,68 @@
 
 <mapper namespace="com.itwillbs.mappers.customerMapper">
     
-<!--     <select id="getCustomerCount" resultType="java.lang.Integer"> -->
-<!--         select count(*) from customer -->
-<!--     </select> -->
+    <select id="getCustomerCount" resultType="java.lang.Integer">
+        select count(*) from customer
+        <if test="search_option != null">
+        <if test="keyword != null">
+	        <if test="search_option == 'cust_num'.toString()">
+				where cust_num like CONCAT('%', #{keyword}, '%')
+			</if>
+				
+			<if test="search_option == 'cust_name'.toString()">
+				where cust_name like CONCAT('%', #{keyword}, '%')
+			</if>
+				
+			<if test="search_option == 'cust_uptae'.toString()">
+				where cust_uptae like CONCAT('%', #{keyword}, '%')
+			</if>
+        </if>
+        </if>
+        
+    </select>
     
     <select id="getCustomer" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
         where cust_num = #{cust_num}   	
     </select>
     
-    <select id="getCustomerListMap" resultType="map">
-    	select * from customer 
+<!--     <select id="getCustomerListMap" resultType="map"> -->
+<!--     	select * from customer  -->
     	
-		<if test="search_option == 'cust_num'.toString()">
-			where cust_num like CONCAT('%', #{keyword}, '%')
-		</if>
+<!-- 		<if test="search_option == 'cust_num'.toString()"> -->
+<!-- 			where cust_num like CONCAT('%', #{keyword}, '%') -->
+<!-- 		</if> -->
 			
-		<if test="search_option == 'cust_name'.toString()">
-			where cust_name like CONCAT('%', #{keyword}, '%')
-		</if>
+<!-- 		<if test="search_option == 'cust_name'.toString()"> -->
+<!-- 			where cust_name like CONCAT('%', #{keyword}, '%') -->
+<!-- 		</if> -->
 			
-		<if test="search_option == 'cust_uptae'.toString()">
-			where cust_uptae like CONCAT('%', #{keyword}, '%')
-		</if>
+<!-- 		<if test="search_option == 'cust_uptae'.toString()"> -->
+<!-- 			where cust_uptae like CONCAT('%', #{keyword}, '%') -->
+<!-- 		</if> -->
 			
-		order by cust_num desc
+<!-- 		order by cust_num desc -->
+<!--     </select> -->
+    
+    <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
+        select * from customer
+        <if test="search_option != null">
+        <if test="keyword != null">
+	        <if test="search_option == 'cust_num'.toString()">
+				where cust_num like CONCAT('%', #{keyword}, '%')
+			</if>
+				
+			<if test="search_option == 'cust_name'.toString()">
+				where cust_name like CONCAT('%', #{keyword}, '%')
+			</if>
+				
+			<if test="search_option == 'cust_uptae'.toString()">
+				where cust_uptae like CONCAT('%', #{keyword}, '%')
+			</if>
+        </if>
+        </if>
+        order by cust_num desc 
+        limit #{startRow} , #{pageSize}    	
     </select>
     
     <insert id="insertCustomer">

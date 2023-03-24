@@ -13,7 +13,7 @@ public interface CustomerDAO {
 	
 	public List<CustomerDTO> getCustomerList(PageDTO pageDTO);
 	
-	public int getCustomerCount();
+	public int getCustomerCount(PageDTO pageDTO);
 	
 	public CustomerDTO getCustomer(int num);
 	

@@ -33,10 +33,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public int getCustomerCount() {
+	public int getCustomerCount(PageDTO pageDTO) {
 		System.out.println("CustomerServiceImpl getCustomerCount()");
 		
-		return customerDAO.getCustomerCount();
+		return customerDAO.getCustomerCount(pageDTO);
 	}
 
 	@Override

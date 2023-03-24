@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
+import com.itwillbs.domain.SearchPageDTO;
 import com.itwillbs.service.CustomerService;
 
 @Controller
@@ -32,50 +33,54 @@ public class CustomerController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		SearchDTO searchDTO = new SearchDTO();
-		searchDTO.setKeyword(keyword);
-		searchDTO.setSearch_option(search_option);
+//		SearchDTO searchDTO = new SearchDTO();
+//		searchDTO.setKeyword(keyword);
+//		searchDTO.setSearch_option(search_option);
+//		
+//		List<Map<String, Object>> customerListMap = customerService.getCustomerListMap(searchDTO);
+//		model.addAttribute("customerListMap",customerListMap);
+//		model.addAttribute("search_option",search_option);
 		
-		List<Map<String, Object>> customerListMap = customerService.getCustomerListMap(searchDTO);
-		model.addAttribute("customerListMap",customerListMap);
-		model.addAttribute("search_option",search_option);
+		int pageSize=10;
+		
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null){
+			pageNum="1";
+		}
+		int currentPage=Integer.parseInt(pageNum);
+			
+		PageDTO pageDTO=new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setSearch_option(search_option);
+		pageDTO.setKeyword(keyword);
 		
 		
-	
-//		int pageSize=10;
-//		
-//		String pageNum=request.getParameter("pageNum");
-//		if(pageNum==null){
-//			pageNum="1";
-//		}
-//		int currentPage=Integer.parseInt(pageNum);
-//			
-//		PageDTO pageDTO=new PageDTO();
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		
-//		List<CustomerDTO> customerList=customerService.getCustomerList(pageDTO);
-//		
-//		// 페이징
-//		int count = customerService.getCustomerCount();
-//		int pageBlock=10;
-//		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-//		int endPage=startPage+pageBlock-1;
-//		int pageCount=count/pageSize+(count%pageSize==0?0:1);
-//		if(endPage > pageCount){
-//			endPage = pageCount;
-//		}
-//		
-//		pageDTO.setCount(count);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//		
-//		model.addAttribute("customerList", customerList);
-//		model.addAttribute("pageDTO", pageDTO);
+		List<CustomerDTO> customerList=customerService.getCustomerList(pageDTO);
+		
+		// 페이징
+		int count = customerService.getCustomerCount(pageDTO);
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		pageDTO.setSearch_option(search_option);
+		pageDTO.setKeyword(keyword);
+		
+		System.out.println(count);
+		System.out.println(customerList.get(0).getBoss_name());
+		model.addAttribute("customerList", customerList);
+		model.addAttribute("pageDTO", pageDTO);
 		
 		return "business/customer/customerList";
 	}
