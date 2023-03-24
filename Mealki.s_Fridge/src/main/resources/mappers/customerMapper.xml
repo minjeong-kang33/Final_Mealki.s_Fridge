@@ -2,39 +2,33 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwillbs.mappers.customerMapper">
-
-    <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
-        select * from customer
-        order by cust_num desc 
-        limit #{startRow} , #{pageSize}    	
-    </select>
     
-    <select id="getCustomerCount" resultType="java.lang.Integer">
-        select count(*) from customer
-    </select>
+<!--     <select id="getCustomerCount" resultType="java.lang.Integer"> -->
+<!--         select count(*) from customer -->
+<!--     </select> -->
     
     <select id="getCustomer" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
         where cust_num = #{cust_num}   	
     </select>
     
-<!--     <select id="getCustomerListMap" resultType="map"> -->
-<!--     	select * from customer  -->
-<!-- 		where  -->
-<!-- 			<if test="search_option == 'cust_num'.toString()"> -->
-<!-- 				cust_num like CONCAT('%', #{keyword}, '%') -->
-<!-- 			</if> -->
+    <select id="getCustomerListMap" resultType="map">
+    	select * from customer 
+    	
+		<if test="search_option == 'cust_num'.toString()">
+			where cust_num like CONCAT('%', #{keyword}, '%')
+		</if>
 			
-<!-- 			<if test="search_option == 'cust_name'.toString()"> -->
-<!-- 				cust_name like CONCAT('%', #{keyword}, '%') -->
-<!-- 			</if> -->
+		<if test="search_option == 'cust_name'.toString()">
+			where cust_name like CONCAT('%', #{keyword}, '%')
+		</if>
 			
-<!-- 			<if test="search_option == 'cust_uptae'.toString()"> -->
-<!-- 				cust_uptae like CONCAT('%', #{keyword}, '%')  -->
-				
-<!-- 			</if> -->
-<!-- 			order by cust_num desc -->
-<!--     </select> -->
+		<if test="search_option == 'cust_uptae'.toString()">
+			where cust_uptae like CONCAT('%', #{keyword}, '%')
+		</if>
+			
+		order by cust_num desc
+    </select>
     
     <insert id="insertCustomer">
     	insert into customer(cust_gubun2,cust_gubun1,business_num,cust_num,cust_name,boss_name,cust_tel,cust_uptae,cust_jongmok,man_name,man_tel,man_email,fax,cust_post_num,cust_address,cust_address2,url_path,remarks) 

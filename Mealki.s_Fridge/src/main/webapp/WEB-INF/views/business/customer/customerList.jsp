@@ -79,8 +79,7 @@
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-            <div id="table_search">
-            
+            <div id="table_search"> 
             	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get" onsubmit="return fun1()">
 	            	<select name="search_option" class="search_option">
 	            		<option value=""> 선택하세요 </option>
@@ -93,14 +92,14 @@
             	</form>
             </div>
             
-			<div id="table_content">
+			<div id="table_content" class="scrollBar">
 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">          
 				<table border="1">
-					<tr><th><input type="checkbox" name="allCustomers" value="${CustomerDTO.cust_num}" id="checkAll"></th>
+					<tr><th>선택</th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
-				<c:forEach var="CustomerDTO" items="${customerList }">
+				<c:forEach var="CustomerDTO" items="${customerListMap }">
 				
 					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.cust_num}"></td>
 					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
@@ -129,17 +128,6 @@
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
-</c:if>
-
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}">${i}</a> 
-</c:forEach>
-
-<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
-</c:if>
 
 <!-- 페이징 끝 -->
             </div>

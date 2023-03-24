@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SearchDTO;
 
 
 @Repository
@@ -50,13 +51,13 @@ public class CustomerDAOImpl implements CustomerDAO{
 		sqlSession.insert(namespace+".insertCustomer", customerDTO);
 	}
 
-//	@Override
-//	public List<Map<String, Object>> getCustomerListMap(SearchPageDTO searchPageDTO) {
-//		System.out.println("CustomerDAOImpl getCustomerListMap");
-//		
-//		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
-//		return sqlSession.selectList(namespace+".getCustomerListMap",searchPageDTO);
-//	}
+	@Override
+	public List<Map<String, Object>> getCustomerListMap(SearchDTO searchDTO) {
+		System.out.println("CustomerDAOImpl getCustomerListMap");
+		
+		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
+		return sqlSession.selectList(namespace+".getCustomerListMap",searchDTO);
+	}
 	
 
 }
