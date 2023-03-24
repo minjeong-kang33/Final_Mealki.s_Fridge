@@ -64,6 +64,14 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		
 		return sqlSession.selectList(namespace+".WoInsert", num);
 	}
+
+	@Override
+	public void insertWorkorder(WorkorderDTO workorderDTO) {
+		System.out.println("WorkorderDAOImpl insertWorkorder()");
+		
+		sqlSession.insert(namespace+".insertWorkorder", workorderDTO);
+		sqlSession.insert(namespace+".insertWorkorder_item", workorderDTO);
+	}
 	
 	
 	

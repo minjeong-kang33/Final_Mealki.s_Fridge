@@ -4,8 +4,9 @@ public class WorkorderDTO {
 	private String keyword;
 	//	workorder 관련
 	private String wo_num;
-	private String business_num;
-	private String wo_emp;
+	private int business_num;
+	private int wo_emp;
+	private String wo_empname;
 	private String wo_date;
 	private int wo_qty;
 	private String manu_name;
@@ -16,16 +17,16 @@ public class WorkorderDTO {
 	private String business_date;
 	private String out_date;
 	private String item_num;
-	private int contract_qty;
+	private String contract_qty;
 	// recipe 관련
 	private String r_name;
 	
 	
 	
-	public int getContract_qty() {
+	public String getContract_qty() {
 		return contract_qty;
 	}
-	public void setContract_qty(int contract_qty) {
+	public void setContract_qty(String contract_qty) {
 		this.contract_qty = contract_qty;
 	}
 	public String getItem_name() {
@@ -70,16 +71,16 @@ public class WorkorderDTO {
 	public void setWo_num(String wo_num) {
 		this.wo_num = wo_num;
 	}
-	public String getBusiness_num() {
+	public int getBusiness_num() {
 		return business_num;
 	}
-	public void setBusiness_num(String business_num) {
+	public void setBusiness_num(int business_num) {
 		this.business_num = business_num;
 	}
-	public String getWo_emp() {
+	public int getWo_emp() {
 		return wo_emp;
 	}
-	public void setWo_emp(String wo_emp) {
+	public void setWo_emp(int wo_emp) {
 		this.wo_emp = wo_emp;
 	}
 	public String getWo_date() {
@@ -111,6 +112,12 @@ public class WorkorderDTO {
 	}
 	public void setR_name(String r_name) {
 		this.r_name = r_name;
+	}
+	public String getWo_empname() {
+		return wo_empname;
+	}
+	public void setWo_empname(String wo_empname) {
+		this.wo_empname = wo_empname;
 	}
 	
 		

@@ -62,10 +62,13 @@
 }
 
 
-
+body{
+	text-align: center;
+}
 
 
 table {
+	width:100%;
 	border: 1px solid;
 	text-align: center;
 	margin: auto;

@@ -19,7 +19,7 @@ public interface WorkorderService {
 
 	public List<WorkorderDTO> WoInsert(String num);
 
-
+	public void insertWorkorder(WorkorderDTO workorderDTO);
 
 }
 

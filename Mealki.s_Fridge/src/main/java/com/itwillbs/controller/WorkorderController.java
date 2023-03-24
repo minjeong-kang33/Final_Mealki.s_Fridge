@@ -73,19 +73,11 @@ public class WorkorderController {
 	public String ContractList(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController ContractList()");
 		
-		// 검색
-		
-		
-		
-		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=5;
-		// 현페이지 번호 가져오기
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
-			//pageNum 없으면 1페이지 설정
 			pageNum="1";
 		}
-		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);
 		
 		PageDTO pageDTO=new PageDTO();
@@ -126,9 +118,6 @@ public class WorkorderController {
 
 		String keyword=request.getParameter("keyword");
 		
-//		List<WorkorderDTO> workorderDTO = workorderService.getContractSearch(keyword);
-//		model.addAttribute("WorkorderDTO", workorderDTO);
-		
 		WorkorderDTO workorderDTO=workorderService.ContractSearch(keyword);
 		
 		model.addAttribute("workorderDTO", workorderDTO);
@@ -145,8 +134,37 @@ public class WorkorderController {
 		List<WorkorderDTO> WoInsert=workorderService.WoInsert(num);
 		
 		model.addAttribute("WoInsert", WoInsert);
-		// 주소변경 없이 이동
-		// /WEB-INF/views/board/writeForm.jsp
+		
+		return "mps/workorder/WoInsert";
+	}
+	
+	@RequestMapping(value = "/mps/workorder/WoInsertPro", method = RequestMethod.POST)
+	public String WoInsertPro(HttpServletRequest request,HttpSession session) {
+		System.out.println("WorkorderController WoInsertPro()");
+		System.out.println(session.getAttribute("emp_num"));
+		System.out.println(request.getParameter("contract_qty"));
+		System.out.println(request.getParameter("business_num"));
+		System.out.println(request.getParameter("item_name"));
+		System.out.println(request.getParameter("manu_name"));
+		
+		int wo_emp=(int) session.getAttribute("emp_num");
+		String contract_qty=request.getParameter("contract_qty");
+		String b=request.getParameter("business_num");
+		String item_name=request.getParameter("item_name");
+		String manu_name=request.getParameter("manu_name");
+		
+		int business_num=Integer.parseInt(b);
+		
+		WorkorderDTO workorderDTO=new WorkorderDTO();
+		workorderDTO.setWo_emp(wo_emp);
+		workorderDTO.setContract_qty(contract_qty);
+		workorderDTO.setBusiness_num(business_num);
+		workorderDTO.setItem_name(item_name);
+		workorderDTO.setManu_name(manu_name);
+		
+//		WorkorderDTO workorderDTO
+		workorderService.insertWorkorder(workorderDTO);
+		
 		return "mps/workorder/WoInsert";
 	}
 	
