@@ -17,7 +17,11 @@
 
 #findEmp_num{margin-left: 10px;}
 
+.textBox { width: 80px; text-align: center;}
 
+td{
+	font-size: 12px;
+}
 
 /* 탭 */
 ul,li {list-style:none;}
