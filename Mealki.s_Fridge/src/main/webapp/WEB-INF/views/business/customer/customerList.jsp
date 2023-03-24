@@ -52,6 +52,10 @@
 			document.search.submit();
 	}
   </script>
+  
+  
+
+  </script>
 
 </head>
 <body>
@@ -92,14 +96,14 @@
             	</form>
             </div>
             
-			<div id="table_content" class="scrollBar">
-			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">          
+			<div id="table_content">
+<%-- 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">           --%>
 				<table border="1">
-					<tr><th>선택</th>
+					<tr><th>선택<input type="checkbox" name="allcheck" id="allCheck" ></th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
-				<c:forEach var="CustomerDTO" items="${customerListMap }">
+				<c:forEach var="CustomerDTO" items="${customerList }">
 				
 					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.cust_num}"></td>
 					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
@@ -128,7 +132,17 @@
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+</c:if>
 
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+</c:if>
 <!-- 페이징 끝 -->
             </div>
             

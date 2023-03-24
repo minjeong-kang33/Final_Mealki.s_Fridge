@@ -31,10 +31,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public int getCustomerCount() {
-		System.out.println("CustomerDAOImpl getCustomerList()");
+	public int getCustomerCount(PageDTO pageDTO) {
+		System.out.println("CustomerDAOImpl getCustomerCount()");
 		
-		return sqlSession.selectOne(namespace+".getCustomerCount");
+		return sqlSession.selectOne(namespace+".getCustomerCount", pageDTO);
 	}
 
 	@Override
