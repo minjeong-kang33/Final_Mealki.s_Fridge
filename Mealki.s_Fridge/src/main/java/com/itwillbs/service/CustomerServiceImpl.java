@@ -1,6 +1,5 @@
 package com.itwillbs.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +10,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.CustomerDAO;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.SearchDTO;
 
 
 @Service
@@ -53,12 +53,12 @@ public class CustomerServiceImpl implements CustomerService{
 		customerDAO.insertCustomer(customerDTO);	
 	}
 
-//	@Override
-//	public List<Map<String, Object>> getCustomerListMap(SearchPageDTO searchPageDTO) {
-//		System.out.println("CustomerServiceImpl getCustomerList");
-//		
-//		return customerDAO.getCustomerListMap(searchPageDTO);
-//	}
+	@Override
+	public List<Map<String, Object>> getCustomerListMap(SearchDTO searchDTO) {
+		System.out.println("CustomerServiceImpl getCustomerList");
+		
+		return customerDAO.getCustomerListMap(searchDTO);
+	}
 	
 	
 
