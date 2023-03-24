@@ -30,7 +30,10 @@
  
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empManageTab.js"></script>
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-	<script type="text/javascript">
+
+<script type="text/javascript">  
+//탭 관련 
+	
 	  $(function(){
 	  $('.tabcontent > div').hide();
 	  $('.tabnav a').click(function () {
@@ -40,7 +43,97 @@
 	    return false;
 	  }).filter(':eq(0)').click();
 	  });
-	  </script>
+	  
+	  
+//자동 콤마 넣기
+	  function inputNumberAutoComma(obj) {
+		  
+	        // 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
+	        var deleteComma = obj.value.replace(/\,/g, "");
+
+	        // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
+	        if(isFinite(deleteComma) == false) {
+	            alert("문자는 입력하실 수 없습니다.");
+	            obj.value = "";
+	            return false;
+	        }
+	        
+	        // 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
+	        obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
+	    }
+	   
+	    // 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
+	    function inputNumberWithComma(str) {
+
+	        str = String(str);
+	        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
+	    }
+
+	    // 콤마( , )가 들어간 값에 콤마를 제거하는 함수
+	    function inputNumberRemoveComma(str) {
+
+	        str = String(str);
+	        return str.replace(/[^\d]+/g, "");
+	    }
+</script>
+
+<script type="text/javascript">  
+//입력된 값 히든값으로 넘기기 
+	function print_qnt()  {
+	  const name = document.getElementById('insertStore_qnt').value;
+	  const number = name.replace(",", "");
+	  document.getElementById("sto_qty").innerText = number;
+	}
+
+//버튼 클릭 시 입력된 값 tr정보 넘기기
+
+	$(function(){
+	$(".store_submit_button").click(function(){ 
+		
+		alert('dd');
+		
+			var str = ""
+			var tdArr = new Array();	// 배열 선언
+			var store_submit_button = $(this);
+			
+			var tr = store_submit_button.parent().parent();
+			var td = tr.children();
+			
+			var ck = td.eq(0).text();
+			var sto_num = td.eq(1).text();
+			var order_num = td.eq(2).text();
+			var dtailbutton = td.eq(3).text();
+			var item_name = td.eq(4).text();
+			var order_qty = td.eq(5).text();
+			var insertStore_qnt = td.eq(6).text();
+			var sto_qty = td.eq(7).text();
+			var stk_qnt = td.eq(8).text();
+			var sto_progress = td.eq(9).text();
+			var sto_empNum = td.eq(10).text();
+			var submit_button = td.eq(11).text();
+			
+			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
+			td.each(function(i){	
+				tdArr.push(td.eq(i).text());
+			});
+			
+			System.out.print(sto_qty);
+	});	
+	});
+</script>
+
+<script> //검색어
+function fun1() {
+	
+	if(document.store_form.sto_qty.value=="") {
+		alert("입고 수량을 입력하세요")
+		document.store_form.insertStore_qnt.focus();
+		return false;
+	}
+}
+</script>
+
+
 
 
 </head>
@@ -72,7 +165,7 @@
 					<div id="search_div" >
 		               <div id="table_search" >
 		               <div id="search_select_div">
-		                     <form name="search" method="post" action="${pageContext.request.contextPath}/employee/Store" id="selectBox" name="selectBox2" onsubmit="return fun1()">
+		                     <form name="search" method="post">
 		                       <span id="store_date"> 입고일자 <input type="date" id="startDate" name="startDate">  ~ <input type="date" id="endDate" name="endDate"></span>
 		                       <span id="emp_num_search">담당자<input class="input-search" type="text" name="emp_num" id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
 		                       <span id="products_search"> 품명 <input type="text" name="item_name" id="item_name" onclick="findProduct()" ></span>
@@ -97,26 +190,34 @@
 	        <div class="tabcontent" >
 		        <div id="tab01" style="background-color: pink; width: 100%;"> <!-- tab 1내용 -->
 		        
-		        	<form>
+		        	
 				        <div class="store_total_div" style="width: 100%;">
+				        <form name="store_form" method="get" action="#" >
 					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th>CKBOX</th><th>입고관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th><th>재고수량</th><th>진행현황</th><th>입고처리</th></tr>
+								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+								<th>입고수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
        <!--나중에지우기  -->        <tr><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
-										<td> <input type="checkbox"> </td>
-										<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+										<td style="width: 10px;"> <input type="checkbox"> </td>
+										<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+										<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
 										<td>${StoreDTO.item_name }</td> <!-- 품명 -->
-										<td>${StoreDTO.order_qty }</td> <!-- 발주수량 -->
-										<td><input type="text"></td> <!-- 입고수량 -->
+										<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
+										<td style="width: 100px;">
+											<input type="text" class="textBox" onKeyup="inputNumberAutoComma(this);" name="insertStore_qnt" id="insertStore_qnt" onchange='print_qnt()'> <!-- 입고수량 -->
+										</td>	
+										<td style="display: none;"><input type="hidden" id="sto_qty" name="sto_qty">
+										</td>
 										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
-										<td><input type="button"></td> <!-- 입고처리 -->
+										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
+										<td><input type="button" class="store_submit_button" value="입고처리"></td> <!-- 입고처리 -->
 									</tr>
 						 		</c:forEach>
 					        </table>
-					        
+					      </form>  
 	<!-- 페이징 -->
 	
 	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -132,7 +233,6 @@
 	</c:if>
 					        
 			       		 </div>
-			        </form>
 		        </div>
 		       	<div id="tab02">tab2 content</div>
 	       </div>
@@ -196,6 +296,7 @@
 	var today = new Date();
 	var Oneweek = new Date(today.setDate(today.getDate() + 6));
 	document.getElementById('endDate').valueAsDate = Oneweek;
+
 
   </script>
 

@@ -10,8 +10,15 @@ public class StoreDTO {
 	private int sto_qty;
 	private String sto_shelf;
 	private String sto_shelfImg;
+	private int sto_empNum;
 	
 	
+	public int getSto_empNum() {
+		return sto_empNum;
+	}
+	public void setSto_empNum(int sto_empNum) {
+		this.sto_empNum = sto_empNum;
+	}
 	public String getSto_num() {
 		return sto_num;
 	}
