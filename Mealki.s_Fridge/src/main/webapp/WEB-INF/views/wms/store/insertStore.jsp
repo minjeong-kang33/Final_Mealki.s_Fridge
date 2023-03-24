@@ -104,29 +104,35 @@
 			var td = tr.children();
 			
 			var ck = td.eq(0).text();
-			var sto_num = td.eq(1).text();
-			var order_num = td.eq(2).text();
+			var sto_num = td.eq(1).text();//입고관리번호
+			var order_num = td.eq(2).text();//발주관리번호
 			var dtailbutton = td.eq(3).text();
-			var item_name = td.eq(4).text();
-			var order_qty = td.eq(5).text();
-			var insertStore_qnt = td.eq(6).text();
-			var sto_qty = td.eq(7).text();
-			var stk_qnt = td.eq(8).text();
-			var sto_progress = td.eq(9).text();
-			var sto_empNum = td.eq(10).text();
-			var submit_button = td.eq(11).text();
+			var item_name = td.eq(4).text();//품명
+			var order_qty = td.eq(5).text();//발주수량
+			var insertStore_qnt = td.eq(6).text();//입력한 입고수량
+			var sto_qty = td.eq(7).text();//(히든)입고수량
+			var sto_remaining = td.eq(8).text();//잔여발주수량
+			var stk_qnt = td.eq(9).text(); //창고재고수량
+			var sto_progress = td.eq(10).text();
+			var sto_empNum = td.eq(11).text();
+			var submit_button = td.eq(12).text();
 			
+			//수량 초과되었는지 검사
 			var name = document.getElementById('insertStore_qnt').value;
 			var number = name.replace(",", "");
-		  		
-			 var name1 = document.getElementById('order_qty').innerText;
-		
+			var name1 = document.getElementById('order_qty').innerText;
+
 			 if(Number(name1)<Number(number)== true){
-				 alert('발주 개수를 초과하여 입고 할 수 없습니다.');
+				 alert('발주 개수를 초과하여 처리 할 수 없습니다.');
 				 return false;
-			 }else {
+			 }
+			 if (Number(name)< 1 == true){
+				 alert('입고 개수를 입력 해 주세요.');
+				 return false;
+			 }else{
 				alert('성공쓰');
 			 }
+			 
 			// 반복문을 이용해서 배열에 값을 담아 사용
 			//td.each(function(i){	
 			//	tdArr.push(td.eq(i).text());
@@ -195,8 +201,8 @@
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>입고수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
+								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th>
+								<th>잔여발주수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
        <!--나중에지우기  -->        <tr><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
@@ -211,6 +217,7 @@
 										</td>	
 										<td style="display: none;"><input type="hidden" id="sto_qty" name="sto_qty">
 										</td>
+										<td>${StoreDTO.sto_remaining }</td> 
 										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
