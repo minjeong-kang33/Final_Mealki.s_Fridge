@@ -20,16 +20,19 @@
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
 			<tr>
 				<th colspan="2">수주번호</th>
-				<th colspan="2">${WorkorderDTO.business_num}</th>
+				<th colspan="2">
+				${WorkorderDTO.business_num}
+				<input type="hidden" name="business_num" value="${WorkorderDTO.business_num}">
+				</th>
 			</tr>
 			<tr>
 				<td colspan="2"><b>생산라인</b></td>
 				<td colspan="2">
 					<select id="manu_name" name="manu_name">
 						<option value="" disabled selected hidden>--생산라인선택--</option>
-						<option value="1">가공1</option>
-						<option value="2">가공2</option>
-						<option value="3">가공3</option>
+						<option value="가공1">가공1</option>
+						<option value="가공2">가공2</option>
+						<option value="가공3">가공3</option>
 					</select>
 				</td>
 			</tr>
@@ -41,8 +44,15 @@
 			</tr>
 			<tr>
 				<td>${WorkorderDTO.item_num}</td>
-				<td>${WorkorderDTO.item_name}</td>
-				<td>${WorkorderDTO.contract_qty}</td>
+				<td>
+				${WorkorderDTO.item_name}
+				<input type="hidden" name="item_name" value="${WorkorderDTO.item_name}">
+				</td>
+				<td>
+					${WorkorderDTO.contract_qty}
+					<input type="hidden" name="contract_qty" value="${WorkorderDTO.contract_qty}">
+				</td>
+				
 				<td></td>
 			</tr>
 		</c:forEach>
@@ -62,10 +72,8 @@
 		</c:forEach>
 	</table>
 
-		<input type="hidden" name="wo_emp" value="${sessionScope.emp_num}">
-		<input type="hidden" name="contract_qty" value="${WorkorderDTO.contract_qty}">
-		<input type="hidden" name="business_num" value="${WorkorderDTO.business_num}">
-		<input type="hidden" name="item_name" value="${WorkorderDTO.item_name}">
+		
+		
 	<div class="button">
 		<input type="submit" value="등록" > 
 		<input type="button" value="취소" onclick="window.close()">

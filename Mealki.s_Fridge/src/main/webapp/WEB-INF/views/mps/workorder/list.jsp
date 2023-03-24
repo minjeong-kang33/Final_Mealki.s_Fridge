@@ -86,7 +86,7 @@
 							<td>${WorkorderDTO.business_num}</td>
 							<td>${WorkorderDTO.item_name}</td>
 							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.manu_name}</td>
 							<td>${WorkorderDTO.wo_state}</td>
 						</tr>

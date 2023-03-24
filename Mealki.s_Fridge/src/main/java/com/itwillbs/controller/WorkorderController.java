@@ -139,12 +139,31 @@ public class WorkorderController {
 	}
 	
 	@RequestMapping(value = "/mps/workorder/WoInsertPro", method = RequestMethod.POST)
-	public String WoInsertPro(HttpServletRequest request) {
+	public String WoInsertPro(HttpServletRequest request,HttpSession session) {
 		System.out.println("WorkorderController WoInsertPro()");
-		System.out.println(request.getParameter("wo_emp"));
+		System.out.println(session.getAttribute("emp_num"));
+		System.out.println(request.getParameter("contract_qty"));
+		System.out.println(request.getParameter("business_num"));
+		System.out.println(request.getParameter("item_name"));
+		System.out.println(request.getParameter("manu_name"));
+		
+		int wo_emp=(int) session.getAttribute("emp_num");
+		String contract_qty=request.getParameter("contract_qty");
+		String b=request.getParameter("business_num");
+		String item_name=request.getParameter("item_name");
+		String manu_name=request.getParameter("manu_name");
+		
+		int business_num=Integer.parseInt(b);
+		
+		WorkorderDTO workorderDTO=new WorkorderDTO();
+		workorderDTO.setWo_emp(wo_emp);
+		workorderDTO.setContract_qty(contract_qty);
+		workorderDTO.setBusiness_num(business_num);
+		workorderDTO.setItem_name(item_name);
+		workorderDTO.setManu_name(manu_name);
 		
 //		WorkorderDTO workorderDTO
-//		workorderService.insertWorkorder(workorderDTO);
+		workorderService.insertWorkorder(workorderDTO);
 		
 		return "mps/workorder/WoInsert";
 	}

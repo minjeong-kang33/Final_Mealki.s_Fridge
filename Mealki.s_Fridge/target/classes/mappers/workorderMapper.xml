@@ -8,7 +8,7 @@
     </select>
     
     <select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, w.business_num, w.wo_date, w.wo_state, w.wo_qty, manu_name, w.item_name, e.emp_Kname as wo_emp
+		select w.wo_num, w.business_num, w.wo_date, w.wo_state, w.wo_qty, manu_name, w.item_name, e.emp_Kname as wo_empname
 		from workorder w, employee e
 		where w.wo_emp=e.emp_num
 		order by wo_date desc
@@ -42,7 +42,7 @@
 	
 	<insert id="insertWorkorder">
 		insert into workorder(wo_num, business_num, wo_date, wo_state, wo_qty, manu_name, item_name, wo_emp)
-		values("1", #{business_num}, now(), default, #{contract_qty}, #{line}, #{item_name}, #{emp_num})
+		values("1", #{business_num}, now(), default, #{contract_qty}, #{manu_name}, #{item_name}, #{wo_emp})
 	
 	</insert>
 	
