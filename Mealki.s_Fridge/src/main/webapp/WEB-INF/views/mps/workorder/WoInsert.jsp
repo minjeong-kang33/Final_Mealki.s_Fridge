@@ -13,8 +13,7 @@
 
 	<h1>작업지시서 등록</h1>
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoInsertPro" method="post">
-	<b>작성일 : </b>
-	<div id="current_date"></div>
+	<b>작성일 : <a id="current_date"></a></b>
 <%-- 	<b>작성자 : ${sessionScope.emp_num}</b> --%>
 	<table>
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">

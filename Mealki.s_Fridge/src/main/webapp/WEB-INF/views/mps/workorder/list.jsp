@@ -75,6 +75,7 @@
 							<th>수주번호</th>
 							<th>품목명</th>
 							<th>작업지시일자</th>
+							<th>납품예정일</th>
 							<th>작업지시자</th>
 							<th>라인명</th>
 							<th>작업상태</th>
@@ -86,6 +87,7 @@
 							<td>${WorkorderDTO.business_num}</td>
 							<td>${WorkorderDTO.item_name}</td>
 							<td>${WorkorderDTO.wo_date}</td>
+							<td>${WorkorderDTO.out_date}</td>
 							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.manu_name}</td>
 							<td>${WorkorderDTO.wo_state}</td>

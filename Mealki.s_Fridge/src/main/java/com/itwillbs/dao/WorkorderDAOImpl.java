@@ -70,6 +70,7 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		System.out.println("WorkorderDAOImpl insertWorkorder()");
 		
 		sqlSession.insert(namespace+".insertWorkorder", workorderDTO);
+		sqlSession.insert(namespace+".insertWorkorder_item", workorderDTO);
 	}
 	
 	
