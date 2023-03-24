@@ -80,18 +80,22 @@
 <script type="text/javascript">  
 //입력된 값 히든값으로 넘기기 
 	function print_qnt()  {
-	  const name = document.getElementById('insertStore_qnt').value;
-	  const number = name.replace(",", "");
-	  document.getElementById("sto_qty").innerText = number;
+		var name = document.getElementById('insertStore_qnt').value;
+		var number = name.replace(",", "");
+	  		
+		 var name1 = document.getElementById('order_qty').innerText;
+	
+		 if(Number(name1)<Number(number)== true){
+			 alert('발주 개수를 초과하여 입고 할 수 없습니다.');
+		 }else {
+			 document.getElementById("sto_qty").innerText = number;
+		 }
 	}
 
 //버튼 클릭 시 입력된 값 tr정보 넘기기
-
 	$(function(){
 	$(".store_submit_button").click(function(){ 
-		
-		alert('dd');
-		
+			
 			var str = ""
 			var tdArr = new Array();	// 배열 선언
 			var store_submit_button = $(this);
@@ -112,29 +116,26 @@
 			var sto_empNum = td.eq(10).text();
 			var submit_button = td.eq(11).text();
 			
-			// 반복문을 이용해서 배열에 값을 담아 사용할 수 도 있다.
-			td.each(function(i){	
-				tdArr.push(td.eq(i).text());
-			});
+			var name = document.getElementById('insertStore_qnt').value;
+			var number = name.replace(",", "");
+		  		
+			 var name1 = document.getElementById('order_qty').innerText;
+		
+			 if(Number(name1)<Number(number)== true){
+				 alert('발주 개수를 초과하여 입고 할 수 없습니다.');
+				 return false;
+			 }else {
+				alert('성공쓰');
+			 }
+			// 반복문을 이용해서 배열에 값을 담아 사용
+			//td.each(function(i){	
+			//	tdArr.push(td.eq(i).text());
+			//});
 			
-			System.out.print(sto_qty);
+			
 	});	
-	});
+	});	
 </script>
-
-<script> //검색어
-function fun1() {
-	
-	if(document.store_form.sto_qty.value=="") {
-		alert("입고 수량을 입력하세요")
-		document.store_form.insertStore_qnt.focus();
-		return false;
-	}
-}
-</script>
-
-
-
 
 </head>
 <body>
@@ -192,7 +193,7 @@ function fun1() {
 		        
 		        	
 				        <div class="store_total_div" style="width: 100%;">
-				        <form name="store_form" method="get" action="#" >
+				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>입고수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
@@ -206,7 +207,7 @@ function fun1() {
 										<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 										<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 										<td style="width: 100px;">
-											<input type="text" class="textBox" onKeyup="inputNumberAutoComma(this);" name="insertStore_qnt" id="insertStore_qnt" onchange='print_qnt()'> <!-- 입고수량 -->
+											<input type="text" class="textBox" onKeyup="inputNumberAutoComma(this);" name="insertStore_qnt" id="insertStore_qnt" onchange='print_qnt()'>
 										</td>	
 										<td style="display: none;"><input type="hidden" id="sto_qty" name="sto_qty">
 										</td>
