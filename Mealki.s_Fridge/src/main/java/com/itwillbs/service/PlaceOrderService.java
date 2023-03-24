@@ -20,12 +20,9 @@ public interface PlaceOrderService {
 	
 	public void insertOrder(PlaceOrderDTO placeOrderDTO);
 	
-	public List<PlaceOrderDTO> getOrderList(PlaceOrderDTO placeOrderDTO);
+	public List<PlaceOrderDTO> getOrderList(PageDTO pageDTO);
 	
-	public List<PlaceOrderDTO> getOrderList2(PageDTO pageDTO);
+	public int getOrderListCount(PageDTO pageDTO);
 	
-	public int getOrderListCount2(PageDTO pageDTO);
-	
-//	public int getBoardCount();
 	
 }

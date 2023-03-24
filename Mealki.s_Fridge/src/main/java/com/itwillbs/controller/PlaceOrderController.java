@@ -76,12 +76,10 @@ public class PlaceOrderController {
 			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
 			pageDTO.setDue_date(due_date1);
 		}
-//		pageDTO.setOrder_date(null);
-//		pageDTO.setDue_date(null);
 		
-		List<PlaceOrderDTO> orderList2 = placeOrderService.getOrderList2(pageDTO);
+		List<PlaceOrderDTO> orderList = placeOrderService.getOrderList(pageDTO);
 		
-		int count = placeOrderService.getOrderListCount2(pageDTO);
+		int count = placeOrderService.getOrderListCount(pageDTO);
 		int pageBlock=10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
@@ -95,78 +93,9 @@ public class PlaceOrderController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-		pageDTO.setOrder_num(order_num);
-		//pageDTO.setOrder_date(null);
-		//pageDTO.setDue_date(null);
-		pageDTO.setItem_name(item_name);
 		
-		model.addAttribute("orderList", orderList2);
+		model.addAttribute("orderList", orderList);
 		model.addAttribute("pageDTO", pageDTO);
-		
-		//여기부터 페이징
-//		int pageSize=10;
-//		
-//		String pageNum=request.getParameter("pageNum");
-//		if(pageNum==null) {
-//			pageNum="1";
-//		}
-//		int currentPage=Integer.parseInt(pageNum);
-//		
-//		PageDTO pageDTO=new PageDTO();
-//		pageDTO.setPageSize(pageSize);
-//		pageDTO.setPageNum(pageNum);
-//		pageDTO.setCurrentPage(currentPage);
-//		
-//		PlaceOrderDTO placeOrderDTO = new PlaceOrderDTO();
-//		List<PlaceOrderDTO> orderList = placeOrderService.getOrderList(placeOrderDTO, pageDTO);
-//		
-//		int count = placeOrderService.getBoardCount();
-//		int pageBlock=10;
-//		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-//		int endPage=startPage+pageBlock-1;
-//		int pageCount=count/pageSize+(count%pageSize==0?0:1);
-//		if(endPage > pageCount){
-//			endPage = pageCount;
-//		}
-//				
-//		pageDTO.setCount(count);
-//		pageDTO.setPageBlock(pageBlock);
-//		pageDTO.setStartPage(startPage);
-//		pageDTO.setEndPage(endPage);
-//		pageDTO.setPageCount(pageCount);
-//
-//		model.addAttribute("pageDTO", pageDTO);
-		// 여기까지 페이징
-		
-		// 여기부터 검색
-//		String order_num = request.getParameter("order_num");
-//		String order_date = request.getParameter("order_date");
-//		String due_date = request.getParameter("due_date");
-//		String item_name = request.getParameter("item_name");
-//		
-//		PlaceOrderDTO placeOrderDTO = new PlaceOrderDTO();
-//		placeOrderDTO.setOrder_num(order_num);
-//		placeOrderDTO.setItem_name(item_name);
-//		
-//		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-//		if(!order_date.equals("")) {
-//			java.util.Date date = sdf.parse(order_date);
-//			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
-//			placeOrderDTO.setOrder_date(order_date1);
-//		}
-//		if(!due_date.equals("")) {
-//			java.util.Date date2 = sdf.parse(due_date);
-//			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
-//			placeOrderDTO.setDue_date(due_date1);
-//		}
-//
-//		List<PlaceOrderDTO> orderList = placeOrderService.getOrderList(placeOrderDTO);
-//		model.addAttribute("orderList", orderList);
-//		model.addAttribute("order_num", order_num);
-//		model.addAttribute("order_date", order_date);
-//		model.addAttribute("due_date", due_date);
-//		model.addAttribute("item_name", item_name);
-		//여기까지 검색
 		
 		return "wms/placeorder/orderForm";
 	}

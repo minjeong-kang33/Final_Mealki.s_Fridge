@@ -108,7 +108,6 @@
 							</tr>
 				 	</c:forEach>
 				</table>
-				<!-- &order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name} -->
 				 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 이전]</a>
 				</c:if>

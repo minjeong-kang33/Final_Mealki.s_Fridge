@@ -54,15 +54,8 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	}
 
 	@Override
-	public List<PlaceOrderDTO> getOrderList(PlaceOrderDTO placeOrderDTO) {
+	public List<PlaceOrderDTO> getOrderList(PageDTO pageDTO) {
 		System.out.println("PlaceOrderServiceImpl getOrderList");
-
-		return placeOrderDAO.getOrderList(placeOrderDTO);
-	}
-
-	@Override
-	public List<PlaceOrderDTO> getOrderList2(PageDTO pageDTO) {
-		System.out.println("PlaceOrderServiceImpl getOrderList2");
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 		int endRow = startRow+pageDTO.getPageSize()-1;
@@ -70,25 +63,15 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 		pageDTO.setStartRow(startRow);
 		pageDTO.setEndRow(endRow);
 		
-		return placeOrderDAO.getOrderList2(pageDTO);
+		return placeOrderDAO.getOrderList(pageDTO);
 	}
 
 	@Override
-	public int getOrderListCount2(PageDTO pageDTO) {
-		System.out.println("PlaceOrderServiceImpl getOrderListCount2");
+	public int getOrderListCount(PageDTO pageDTO) {
+		System.out.println("PlaceOrderServiceImpl getOrderListCount");
 		
-		return placeOrderDAO.getOrderListCount2(pageDTO);
+		return placeOrderDAO.getOrderListCount(pageDTO);
 	}
-	
-	
-	
-//	@Override
-//	public int getBoardCount() {
-//		System.out.println("PlaceOrderServiceImpl getBoardCount()");
-//		
-//		return placeOrderDAO.getBoardCount();
-//	}
-	
 	
 	
 
