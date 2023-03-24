@@ -14,7 +14,7 @@
 
 	<select id="getPlaceOrderListStore" resultType="map">
 		select sto_num, ifnull(store.sto_progress,'미입고') as sto_progress, 
-		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, stock.stk_qnt
+		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, ifnull(sto_remaining,placeorder.order_qty) as sto_remaining,stock.stk_qnt
 		from store 
 		right Outer join placeorder on placeorder.order_num = store.order_num
 		left outer join products on placeorder.item_num = products.item_num
