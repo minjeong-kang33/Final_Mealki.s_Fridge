@@ -74,5 +74,44 @@
 		</if> -->
 		order by order_num desc
 	</select>
+	
+	<select id="getOrderList2"
+		resultType="com.itwillbs.domain.PlaceOrderDTO">
+		select * from placeorder
+		where 1=1
+		<if test="order_num != null">
+			and order_num like CONCAT('%', #{order_num}, '%')
+		</if>
+		<if test="order_date != null">
+			and order_date = #{order_date}
+		</if>
+		<if test="due_date != null">
+			and due_date = #{due_date}
+		</if>
+		<if test="item_name != null">
+			and item_name like CONCAT('%', #{item_name}, '%')
+		</if>
+		order by order_num desc
+		limit #{startRow}, #{pageSize} 
+	</select>
+	
+	<select id="getOrderListCount2" resultType="java.lang.Integer">
+        select count(*) from placeorder
+        where 1=1
+		<if test="order_num != null">
+			and order_num like CONCAT('%', #{order_num}, '%')
+		</if>
+		<if test="order_date != null">
+			and order_date = #{order_date}
+		</if>
+		<if test="due_date != null">
+			and due_date = #{due_date}
+		</if>
+		<if test="item_name != null">
+			and item_name like CONCAT('%', #{item_name}, '%')
+		</if> 
+		order by order_num desc
+        
+    </select>
 
 </mapper>

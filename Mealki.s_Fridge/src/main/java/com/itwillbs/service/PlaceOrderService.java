@@ -3,6 +3,7 @@ package com.itwillbs.service;
 import java.util.List;
 import java.util.Map;
 
+import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
@@ -20,6 +21,10 @@ public interface PlaceOrderService {
 	public void insertOrder(PlaceOrderDTO placeOrderDTO);
 	
 	public List<PlaceOrderDTO> getOrderList(PlaceOrderDTO placeOrderDTO);
+	
+	public List<PlaceOrderDTO> getOrderList2(PageDTO pageDTO);
+	
+	public int getOrderListCount2(PageDTO pageDTO);
 	
 //	public int getBoardCount();
 	
