@@ -9,10 +9,16 @@ public class StoreDTO {
 	private int sto_progress;
 	private int sto_qty;
 	private String sto_shelf;
-	private String sto_shelfImg;
+	private int sto_shelfDetail;
 	private int sto_empNum;
 	
 	
+	public int getSto_shelfDetail() {
+		return sto_shelfDetail;
+	}
+	public void setSto_shelfDetail(int sto_shelfDetail) {
+		this.sto_shelfDetail = sto_shelfDetail;
+	}
 	public int getSto_empNum() {
 		return sto_empNum;
 	}
@@ -55,11 +61,5 @@ public class StoreDTO {
 	public void setSto_shelf(String sto_shelf) {
 		this.sto_shelf = sto_shelf;
 	}
-	public String getSto_shelfImg() {
-		return sto_shelfImg;
-	}
-	public void setSto_shelfImg(String sto_shelfImg) {
-		this.sto_shelfImg = sto_shelfImg;
-	}
-	
+
 }
