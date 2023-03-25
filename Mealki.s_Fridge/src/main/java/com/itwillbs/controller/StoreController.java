@@ -53,6 +53,12 @@ public class StoreController {
 			System.out.println(tdArr[i]);
 		}
 		
+		StoreDTO.setOrder_num(tdArr[0]); //발주 관리번호 
+		StoreDTO.setSto_qty(Integer.parseInt(tdArr[3])); //입고수량
+		StoreDTO.setSto_empNum(Integer.parseInt(tdArr[7]));//처리 작업자 사번
+		StoreDTO.setSto_shelf(tdArr[8]);
+		StoreDTO.setSto_shelfDetail(Integer.parseInt(tdArr[9]));
+		
 		return "/wms/store/insertStore";
 	}
 
