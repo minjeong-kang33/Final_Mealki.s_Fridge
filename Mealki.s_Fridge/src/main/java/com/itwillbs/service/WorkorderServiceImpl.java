@@ -80,6 +80,23 @@ public class WorkorderServiceImpl implements WorkorderService{
 		
 		workorderDAO.insertWorkorder(workorderDTO);
 	}
+
+	@Override
+	public List<WorkorderDTO> WoUpdateForm(String num) {
+		System.out.println("WorkorderServiceImpl WoUpdateForm()");
+		
+		return workorderDAO.WoUpdateForm(num);
+	}
+
+	@Override
+	public void updateWorkorder(WorkorderDTO workorderDTO) {
+		System.out.println("WorkorderServiceImpl WoUpdateForm()");
+		
+		workorderDAO.updateWorkorder(workorderDTO);
+	}
+
+
+	
 	
 
 }

@@ -21,6 +21,10 @@ public interface WorkorderService {
 
 	public void insertWorkorder(WorkorderDTO workorderDTO);
 
+	public List<WorkorderDTO> WoUpdateForm(String num);
+
+	public void updateWorkorder(WorkorderDTO workorderDTO);
+
 }
 
 

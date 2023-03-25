@@ -46,12 +46,7 @@
 	
 	<script type="text/javascript">
 	function WoInsert() {
-		var _width = '630';
-		var _height = '350';
-		var _left = Math.ceil((window.screen.width - _width) / 2);
-		var _top = Math.ceil((window.screen.height - _height) / 2);
-		let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-		window.resizeTo(800,800);
+		window.resizeTo(800,650);
 		window.moveTo(500,150);
 	};
 	</script>

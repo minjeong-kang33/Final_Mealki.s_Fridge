@@ -82,7 +82,18 @@
 						</tr>
 
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						<tr>
+						<tr onClick="WoUpdate();">
+							<script type="text/javascript">
+							function WoUpdate() {
+							var _width = '800';
+							var _height = '650';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.open(
+							"${pageContext.request.contextPath}/workorder/WoUpdate?business_num=${WorkorderDTO.business_num}",
+							"밀키의 냉장고",popOption);}
+							</script>
 							<td>${WorkorderDTO.wo_num}</td>
 							<td>${WorkorderDTO.business_num}</td>
 							<td>${WorkorderDTO.item_name}</td>
@@ -241,10 +252,9 @@
           
         </div>
         
-<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. 그렇다면 여기를 스크립트자리로 쓰겠습니다 -->
-					 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
+        			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
-       				 <script text="text/javascript">
+       				 <script type="text/javascript">
 						function ContractList() {
 							var _width = '630';
 							var _height = '350';
@@ -267,6 +277,10 @@
   						}).filter(':eq(0)').click();
   						});
   					</script>
+  					
+	
+<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. 그렇다면 여기를 스크립트자리로 쓰겠습니다 -->
+					
         
 <!-- 푸터시작 -->
      <jsp:include page="../../main/footer.jsp" /> 

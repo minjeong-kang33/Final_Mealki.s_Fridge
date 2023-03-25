@@ -168,5 +168,33 @@ public class WorkorderController {
 		return "mps/workorder/WoInsert";
 	}
 	
+	@RequestMapping(value = "/workorder/WoUpdate", method = RequestMethod.GET)
+	public String WoUpdate(HttpServletRequest request, Model model) {
+		System.out.println("WorkorderController WoInsert()");
+		
+		String num=request.getParameter("business_num");
+		
+		List<WorkorderDTO> WoInsert=workorderService.WoUpdateForm(num);
+		
+		model.addAttribute("WoInsert", WoInsert);
+		
+		return "mps/workorder/WoUpdate";
+	}
 	
+	@RequestMapping(value = "/mps/workorder/WoUpdatePro", method = RequestMethod.POST)
+	public String WoUpdatePro(HttpServletRequest request) {
+		System.out.println("WorkorderController WoUpdatePro()");
+		System.out.println(request.getParameter("manu_name"));
+		
+		String b=request.getParameter("business_num");
+		int business_num=Integer.parseInt(b);
+		
+		WorkorderDTO workorderDTO=new WorkorderDTO();
+		workorderDTO.setBusiness_num(business_num);
+		workorderDTO.setManu_name(request.getParameter("manu_name"));
+
+		workorderService.updateWorkorder(workorderDTO);
+		
+		return "mps/workorder/WoUpdate";
+	}
 }

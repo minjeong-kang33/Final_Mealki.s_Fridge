@@ -25,10 +25,13 @@
 				</th>
 			</tr>
 			<tr>
+<%-- 				<c:if test="${! empty WorkorderDTO.manu_num }"> --%>
+<!-- 					이게맞나 -->
+<%-- 				</c:if> --%>
 				<td colspan="2"><b>생산라인</b></td>
 				<td colspan="2">
 					<select id="manu_name" name="manu_name">
-						<option value="" disabled selected hidden>--생산라인선택--</option>
+						<option value="${WorkorderDTO.manu_num}" disabled selected hidden>--생산라인선택--</option>
 						<option value="가공1">가공1</option>
 						<option value="가공2">가공2</option>
 						<option value="가공3">가공3</option>

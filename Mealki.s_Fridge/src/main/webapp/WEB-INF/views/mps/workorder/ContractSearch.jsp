@@ -23,7 +23,7 @@
 	</form>
 
 	<br>
-	<table border="1" id='testTable'>
+	<table border="1">
 		<tr>
 			<th>수주번호</th>
 			<th>품목명</th>
