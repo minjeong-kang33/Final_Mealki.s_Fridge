@@ -25,8 +25,7 @@
 	
 	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
-			    sto_shelf,sto_shelfDetail,sto_empNum,sto_remaining,order_qty
-				  )
+			    sto_shelf,sto_shelfDetail,sto_empNum,sto_remaining,order_qty)
 				  values (
 				    concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
 				    #{order_num}, #{sto_date}, #{sto_progress}, #{sto_qty}, 
