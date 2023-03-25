@@ -1,0 +1,26 @@
+@charset "UTF-8";
+
+.insertImployeeBody{
+	widows: 100%;
+	height: 500px;
+	margin: 0px 0px;
+}
+
+
+.imployeeImg{
+	background-color: skyblue;
+	border-radius: 3px;
+	width: 200px;
+	height: 250px;
+	margin: 30px 30px;
+	margin-left : 100px;
+	float: left;
+}
+
+.employeeInfo{
+	background-color: purple;
+	width: 50%;
+	height: 250px;
+	float: left;
+	margin: 30px 30px;
+	}

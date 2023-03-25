@@ -141,7 +141,7 @@ function fun1() {
                             <i class="ti-user"><a>직원등록</a></i>
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
-                            <a class="dropdown-item" href="#">개별등록</a>
+                            <a class="dropdown-item" href="${pageContext.request.contextPath}/employee/insertEmployee">개별등록</a>
                             <div class="dropdown-divider"></div>
                             <a class="dropdown-item" href="#">일괄등록</a>
                           </div>

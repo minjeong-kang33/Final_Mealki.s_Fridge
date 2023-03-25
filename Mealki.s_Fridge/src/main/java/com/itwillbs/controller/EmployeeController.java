@@ -85,9 +85,14 @@ public class EmployeeController {
 		model.addAttribute("search_option",search_option);
 		model.addAttribute("keyword",keyword);
 		
-		
-		
 		return "/employee/empManage";
+	}
+	
+	@RequestMapping(value = "/employee/insertEmployee", method = RequestMethod.GET)
+	public String insertEmployee() {
+		System.out.println("MemberController insertEmployee");
+		
+		return "employee/insertEmployee";
 	}
 	
 }
