@@ -103,25 +103,11 @@
 			var tr = store_submit_button.parent().parent();
 			var td = tr.children();
 			
-			var ck = td.eq(0).text();
-			var sto_num = td.eq(1).text();//입고관리번호
-			var order_num = td.eq(2).text();//발주관리번호
-			var dtailbutton = td.eq(3).text();
-			var item_name = td.eq(4).text();//품명
-			var order_qty = td.eq(5).text();//발주수량
-			var insertStore_qnt = td.eq(6).text();//입력한 입고수량
-			var sto_qty = td.eq(7).text();//(히든)입고수량
-			var sto_remaining = td.eq(8).text();//잔여발주수량
-			var stk_qnt = td.eq(9).text(); //창고재고수량
-			var sto_progress = td.eq(10).text();
-			var sto_empNum = td.eq(11).text();
-			var emp_num =td.eq(12).text();
-			var submit_button = td.eq(13).text();
-			
 			td.each(function(i) {
 				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
 				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-				    tdArr.push(text);
+					  var selectValue = $(this).find('select').val();
+					  tdArr.push(selectValue || text);
 				  }
 				});
 			
@@ -228,7 +214,7 @@
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th>
-								<th>잔여발주수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
+								<th>잔여발주수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
 										<td style="width: 10px;"> <input type="checkbox"> </td>
@@ -247,6 +233,22 @@
 										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
 										<td style="display: none;">${StoreDTO.emp_num }</td>
+										<td>
+											<select name="sto_shelf_option" class="search_option">
+					                           <option value="A"> A열 </option>
+					                           <option value="B"> B열 </option>
+					                           <option value="C"> C열 </option>
+					                           <option value="D"> D열 </option>
+					                        </select>
+										</td>
+										<td>
+											<select name="sto_shelf_option_detail" class="search_option">
+					                           <option value="1"> 1단 </option>
+					                           <option value="2">2단 </option>
+					                           <option value="3">3단 </option>
+					                           <option value="4">4단 </option>
+					                        </select>
+										</td>
 										<td><input type="button" class="store_submit_button" value="입고처리"></td> <!-- 입고처리 -->
 									</tr>
 						 		</c:forEach>

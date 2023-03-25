@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.service.StoreService;
 
 
@@ -44,10 +45,13 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/wms/store/addStore", method = RequestMethod.POST)
-	public String addStore(HttpServletRequest request, Model model) {
+	public String addStore(HttpServletRequest request, Model model,StoreDTO StoreDTO) {
 		System.out.println("storeController addStore()");
 		
-		
+		String[] tdArr = request.getParameterValues("tdArr");
+		for(int i=0; i<tdArr.length;i++) {
+			System.out.println(tdArr[i]);
+		}
 		
 		return "/wms/store/insertStore";
 	}
