@@ -12,7 +12,7 @@
 <body>
 
 	<h1>작업지시서 등록</h1>
-	<form action="${pageContext.request.contextPath}/mps/workorder/WoInsertPro" method="post">
+	<form action="${pageContext.request.contextPath}/mps/workorder/WoInsertPro" method="post" name="woinsertform" onsubmit="return checkForm()">
 	<b>작성일 : <a id="current_date"></a></b>
 <%-- 	<b>작성자 : ${sessionScope.emp_num}</b> --%>
 	<table>
@@ -92,5 +92,16 @@
 		day = date.getDate();
    		document.getElementById("current_date").innerHTML = year + "년 " + month
 				+ "월 " + day + "일";
+	</script>
+	
+	<script>
+		function checkForm() {
+		let f = document.woinsertform
+		if(f.manu_name[0].selected){ 
+			alert('생산라인을 선택하세요')
+			return false
+		}
+		return true
+	}
 	</script>
 </html>

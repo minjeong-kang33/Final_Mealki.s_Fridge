@@ -13,12 +13,12 @@
 
 
 	<br>
-	<form
-		action="${pageContext.request.contextPath}/workorder/ContractSearch"
-		method="GET">
-		수주번호검색 <input name="keyword" type="text"
+	<form action="${pageContext.request.contextPath}/workorder/ContractSearch"
+		method="GET" name="contractsearchform" onsubmit="return checkForm()">
+		수주번호검색 
+		<input name="keyword" type="text"
 			onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-			placeholder="검색어를 입력해주세요">
+			placeholder="수주번호를 입력해주세요">
 		<button>검색</button>
 	</form>
 
@@ -49,6 +49,17 @@
 
 
 	<input type="button" value="닫기" onclick="window.close()">
+	
+	<script>
+	function checkForm() {
+		let f = document.contractsearchform
+		if(f.keyword.value == ""){ 
+			alert('검색어가 없습니다.')
+			return false
+		}
+		return true
+	}
+	</script>
 	
 </body>
 </html>
