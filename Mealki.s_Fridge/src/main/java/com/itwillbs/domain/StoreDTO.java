@@ -1,18 +1,45 @@
 package com.itwillbs.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class StoreDTO {
 	private String sto_num;
 	private String order_num;
-	private Date sto_date;
-	private int sto_progress;
+	private Timestamp sto_date;
+	private String sto_progress;
 	private int sto_qty;
 	private String sto_shelf;
 	private int sto_shelfDetail;
 	private int sto_empNum;
+	private int order_qty;
+	private int sto_remaining;
 	
 	
+	
+	public int getSto_remaining() {
+		return sto_remaining;
+	}
+	public void setSto_remaining(int sto_remaining) {
+		this.sto_remaining = sto_remaining;
+	}
+	public String getSto_progress() {
+		return sto_progress;
+	}
+	public void setSto_progress(String sto_progress) {
+		this.sto_progress = sto_progress;
+	}
+	public int getOrder_qty() {
+		return order_qty;
+	}
+	public void setOrder_qty(int order_qty) {
+		this.order_qty = order_qty;
+	}
+	public Timestamp getSto_date() {
+		return sto_date;
+	}
+	public void setSto_date(Timestamp sto_date) {
+		this.sto_date = sto_date;
+	}
 	public int getSto_shelfDetail() {
 		return sto_shelfDetail;
 	}
@@ -37,18 +64,7 @@ public class StoreDTO {
 	public void setOrder_num(String order_num) {
 		this.order_num = order_num;
 	}
-	public Date getSto_date() {
-		return sto_date;
-	}
-	public void setSto_date(Date sto_date) {
-		this.sto_date = sto_date;
-	}
-	public int getSto_progress() {
-		return sto_progress;
-	}
-	public void setSto_progress(int sto_progress) {
-		this.sto_progress = sto_progress;
-	}
+
 	public int getSto_qty() {
 		return sto_qty;
 	}

@@ -22,7 +22,19 @@
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
 	</select>
-
+	
+	<insert id="insertStore">
+		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
+			    sto_shelf,sto_shelfDetail,sto_empNum,sto_remaining,order_qty
+				  )
+				  values (
+				    concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
+				    #{order_num}, #{sto_date}, #{sto_progress}, #{sto_qty}, 
+				    #{sto_shelf},#{sto_shelfDetail},#{sto_empNum},#{sto_remaining},
+				    #{sto_order_qty}
+				  )
+	</insert>
+	
 
 <!-- 
 select s.sto_num, s.sto_progress, st.stk_qnt

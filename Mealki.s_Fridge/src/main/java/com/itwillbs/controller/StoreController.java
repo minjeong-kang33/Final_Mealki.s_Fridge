@@ -45,7 +45,7 @@ public class StoreController {
 	}
 	
 	@RequestMapping(value = "/wms/store/addStore", method = RequestMethod.POST)
-	public String addStore(HttpServletRequest request, Model model,StoreDTO StoreDTO) {
+	public String addStore(HttpServletRequest request, Model model,StoreDTO storeDTO) {
 		System.out.println("storeController addStore()");
 		
 		String[] tdArr = request.getParameterValues("tdArr");
@@ -53,13 +53,35 @@ public class StoreController {
 			System.out.println(tdArr[i]);
 		}
 		
-		StoreDTO.setOrder_num(tdArr[0]); //발주 관리번호 
-		StoreDTO.setSto_qty(Integer.parseInt(tdArr[3])); //입고수량
-		StoreDTO.setSto_empNum(Integer.parseInt(tdArr[7]));//처리 작업자 사번
-		StoreDTO.setSto_shelf(tdArr[8]);
-		StoreDTO.setSto_shelfDetail(Integer.parseInt(tdArr[9]));
+		storeDTO.setOrder_num(tdArr[0]); //발주 관리번호 
+		storeDTO.setOrder_qty(Integer.parseInt(tdArr[2])); //발주 개수 
+		storeDTO.setSto_qty(Integer.parseInt(tdArr[3])); //입고수량
+		storeDTO.setSto_remaining(Integer.parseInt(tdArr[4])-storeDTO.getSto_qty());//잔여발주량 
 		
-		return "/wms/store/insertStore";
+		if(storeDTO.getSto_remaining()+storeDTO.getSto_qty()==storeDTO.getOrder_qty()) {
+			storeDTO.setSto_progress("입고완료");
+		} else {
+			storeDTO.setSto_progress("입고진행");
+		}
+		//발주개수보다 잔여발주량이 작으면 입고진행중
+		//발주 개수랑 잔여수량이 같으면 입고완료
+		
+		storeDTO.setSto_empNum(Integer.parseInt(tdArr[7]));//처리 작업자 사번
+		storeDTO.setSto_shelf(tdArr[8]);//선반위치
+		storeDTO.setSto_shelfDetail(Integer.parseInt(tdArr[9]));//선반 층
+		
+		/*
+		 * System.out.println("발주관리번호"+storeDTO.getOrder_num());
+		 * System.out.println("발주 개수"+storeDTO.getOrder_qty());
+		 * System.out.println("입고수량"+storeDTO.getSto_qty());
+		 * System.out.println("잔여발주량"+storeDTO.getSto_remaining());
+		 * System.out.println("진행상황"+storeDTO.getSto_progress());
+		 * System.out.println("작업자사번호"+storeDTO.getSto_empNum());
+		 */
+		
+		storeService.insertStore(storeDTO);
+		
+		return "redirect:/wms/store/insertStore";
 	}
 
 }
