@@ -115,7 +115,17 @@
 			var stk_qnt = td.eq(9).text(); //창고재고수량
 			var sto_progress = td.eq(10).text();
 			var sto_empNum = td.eq(11).text();
-			var submit_button = td.eq(12).text();
+			var emp_num =td.eq(12).text();
+			var submit_button = td.eq(13).text();
+			
+			td.each(function(i) {
+				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+				    tdArr.push(text);
+				  }
+				});
+			
+			console.log("배열에 담긴 값 : "+tdArr);
 			
 			//수량 초과되었는지 검사
 			var name = document.getElementById('insertStore_qnt').value;
@@ -131,6 +141,22 @@
 				 return false;
 			 }else{
 				alert('성공쓰');
+				
+				$.ajax({
+	 				url:'addStore',
+	 				type : 'POST',
+	 				traditional : true,
+	 				data:{tdArr:tdArr},
+	 				success:function(result){
+	 					//result.trim() 결과값 앞뒤 공백 제거
+	 					if(result=1){
+	 						alert('성공쓰2');
+	 					} else {
+	 						alert('실패');
+	 					}
+	 				}
+	 			});
+				
 			 }
 			 
 			// 반복문을 이용해서 배열에 값을 담아 사용
@@ -203,7 +229,6 @@
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th><th>입고수량</th>
 								<th>잔여발주수량</th><th>재고수량</th><th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
-       <!--나중에지우기  -->        <tr><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th><th> </th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
 										<td style="width: 10px;"> <input type="checkbox"> </td>
@@ -221,6 +246,7 @@
 										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
+										<td style="display: none;">${StoreDTO.emp_num }</td>
 										<td><input type="button" class="store_submit_button" value="입고처리"></td> <!-- 입고처리 -->
 									</tr>
 						 		</c:forEach>
