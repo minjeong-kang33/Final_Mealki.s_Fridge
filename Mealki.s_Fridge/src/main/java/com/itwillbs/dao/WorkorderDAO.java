@@ -7,13 +7,13 @@ import com.itwillbs.domain.WorkorderDTO;
 
 public interface WorkorderDAO {
 
-	public int getWorkorderCount();
+	public int getWorkorderCount(PageDTO pageDTO);
 
 	public List<WorkorderDTO> getWorkorderList(PageDTO pageDTO);
 
 	public List<WorkorderDTO> getcontractList(PageDTO pageDTO);
 
-	public int getContractCount();
+	public int getContractCount(PageDTO pageDTO);
 
 	public WorkorderDTO ContractSearch(String keyword);
 

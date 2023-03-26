@@ -48,17 +48,28 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">작업지시관리</h3>
-                  <h6 class="font-weight-normal mb-0">생산관리<span class="text-primary">-작업지시등록 및 현황</span></h6>
+                  <h6 class="font-weight-normal mb-0"><span class="text-primary"></span></h6>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
+          <div class="contentbody" style="background:;"> 
           
 <!--  본문 내용 시작 -->
 
 		<!-- 작업지시등록버튼 -->
 		<a href=# onclick="return ContractList();" class="btn">등록</a> 
 		
+		<!-- 검색 -->
+		<div id="table_search">
+<%-- 		<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get"> --%>
+<!-- 		작업지시번호  <input type="text" name="wo_num" class="input_box"> -->
+<!-- 		수주번호  <input type="text" name="business_num" class="input_box"> -->
+<!-- 		작업지시일<input type="date" name="order_date"> -->
+<!-- 		납품예정일<input type="date" name="out_date"> -->
+<!-- 		<button type="submit" value="조회" class="btn">조회</button> -->
+<!-- 		</form> -->
+		</div>
 		
+		<!-- 리스트 -->
 				<div class="tab">
 				    <ul class="tabnav">
 				      <li><a href="#tab01">전체</a></li>
@@ -73,11 +84,13 @@
 						<tr>
 							<th>작업지시번호</th>
 							<th>수주번호</th>
-							<th>품목명</th>
+							<th>작업지시자</th>
 							<th>작업지시일자</th>
 							<th>납품예정일</th>
-							<th>작업지시자</th>
 							<th>라인명</th>
+							<th>품목명</th>
+							<th>지시수량</th>
+							<th>작업수량</th>
 							<th>작업상태</th>
 						</tr>
 
@@ -96,11 +109,13 @@
 							</script>
 							<td>${WorkorderDTO.wo_num}</td>
 							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.item_name}</td>
+							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
 							<td>${WorkorderDTO.out_date}</td>
-							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.manu_name}</td>
+							<td>${WorkorderDTO.item_name}</td>
+							<td>${WorkorderDTO.wo_qty}</td>
+							<td>작업수량</td>
 							<td>${WorkorderDTO.wo_state}</td>
 						</tr>
 						</c:forEach>

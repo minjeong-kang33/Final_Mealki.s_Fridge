@@ -5,6 +5,19 @@
 
 	<select id="getWorkorderCount" resultType="java.lang.Integer">
       	select count(*) from workorder
+      	where 1=1
+      	<if test="wo_num != null">
+		 and w.wo_num like CONCAT('%', #{wo_num}, '%')
+		</if>
+		<if test="business_num != null">
+		 and business_num = #{business_num}
+		</if>
+		<if test="order_date != null">
+		 and w.wo_date = #{order_date}
+		</if>
+		<if test="out_date != null">
+		 and c.out_date = #{out_date}
+		</if>
     </select>
     
     <select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
@@ -12,8 +25,21 @@
 		from workorder w, employee e, contract c
 		where w.wo_emp=e.emp_num
 		and c.business_num=w.business_num
+		<if test="wo_num != null">
+		 and w.wo_num like CONCAT('%', #{wo_num}, '%')
+		</if>
+		<if test="business_num != null">
+		 and business_num = #{business_num}
+		</if>
+		<if test="order_date != null">
+		 and w.wo_date = #{order_date}
+		</if>
+		<if test="out_date != null">
+		 and c.out_date = #{out_date}
+		</if>
 		order by wo_date desc
 		limit #{startRow}, #{pageSize}
+		
 	</select>
 	
 	<select id="getContractCount" resultType="java.lang.Integer">

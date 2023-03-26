@@ -1,5 +1,7 @@
 package com.itwillbs.domain;
 
+import java.sql.Date;
+
 public class WorkorderDTO {
 	private String keyword;
 	//	workorder 관련
@@ -20,7 +22,6 @@ public class WorkorderDTO {
 	private String contract_qty;
 	// recipe 관련
 	private String r_name;
-	
 	
 	
 	public String getContract_qty() {
@@ -119,6 +120,7 @@ public class WorkorderDTO {
 	public void setWo_empname(String wo_empname) {
 		this.wo_empname = wo_empname;
 	}
+
 	
 		
 		

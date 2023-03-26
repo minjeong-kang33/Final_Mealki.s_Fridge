@@ -19,7 +19,7 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	private static final String namespace="com.itwillbs.mappers.workorderMapper";
 
 	@Override
-	public int getWorkorderCount() {
+	public int getWorkorderCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getWorkorderCount()");
 		
 		return sqlSession.selectOne(namespace+".getWorkorderCount");
@@ -34,7 +34,7 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	}
 	
 	@Override
-	public int getContractCount() {
+	public int getContractCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getConstractCount()");
 		
 		return sqlSession.selectOne(namespace+".getContractCount");

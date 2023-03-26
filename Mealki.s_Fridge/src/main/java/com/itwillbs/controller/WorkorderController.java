@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -24,49 +25,83 @@ public class WorkorderController {
 	private WorkorderService workorderService;
 	
 	@RequestMapping(value = "mps/workorder/list", method = RequestMethod.GET)
-	public String workorderlist(HttpServletRequest request, Model model) {
+	public String workorderlist(HttpServletRequest request, Model model) throws Exception  {
 		System.out.println("WorkorderController workorderlist()");
-				// 한 화면에 보여줄 글 개수 설정
-				int pageSize=10;
-				// 현페이지 번호 가져오기
-				String pageNum=request.getParameter("pageNum");
-				if(pageNum==null) {
-					//pageNum 없으면 1페이지 설정
-					pageNum="1";
-				}
-				// 페이지번호를 => 정수형 변경
-				int currentPage=Integer.parseInt(pageNum);
+		
+		System.out.println(request.getParameter("wo_num"));
+		System.out.println(request.getParameter("business_num"));
+		System.out.println(request.getParameter("order_date"));
+		System.out.println(request.getParameter("out_date"));
+				// 검색어 가져오기
+		String wo_num=request.getParameter("wo_num");
+		String b=request.getParameter("business_num");
+		String order_date=request.getParameter("order_date");
+		String out_date=request.getParameter("out_date");
+		System.out.println("1");		
+		
 				
-				PageDTO pageDTO=new PageDTO();
-				pageDTO.setPageSize(pageSize);
-				pageDTO.setPageNum(pageNum);
-				pageDTO.setCurrentPage(currentPage);
+		System.out.println(wo_num);
+		System.out.println(b);
+		System.out.println(order_date);
+		System.out.println(out_date);
+		System.out.println("2");	
+		// 한 화면에 보여줄 글 개수 설정
+		int pageSize=10;
+		// 현페이지 번호 가져오기
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {
+			//pageNum 없으면 1페이지 설정
+			pageNum="1";
+		}
+		System.out.println("3");
+		// 페이지번호를 => 정수형 변경
+		int currentPage=Integer.parseInt(pageNum);
+		System.out.println("4");		
+		PageDTO pageDTO=new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		System.out.println("5");
+//		int business_num=Integer.parseInt(b);
+//		pageDTO.setWo_num(wo_num);
+//		pageDTO.setBusiness_num(business_num);
+		
+		System.out.println("6");	
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		if(!order_date.equals("")) {
+			java.util.Date date = sdf.parse(order_date);
+			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
+			pageDTO.setOrder_date(order_date1);
+		}
+		if(!out_date.equals("")) {
+			java.util.Date date2 = sdf.parse(out_date);
+			java.sql.Date out_date1 = new java.sql.Date(date2.getTime());  
+			pageDTO.setOut_date(out_date1);
+		}
 				
-				List<WorkorderDTO> workorderList=workorderService.getworkorderList(pageDTO);
+		List<WorkorderDTO> workorderList=workorderService.getworkorderList(pageDTO);
 				
-				// 페이징 처리
-				int count = workorderService.getWorkorderCount();
-				int pageBlock =10;
-				int startPage=(currentPage-1)/pageBlock*pageBlock+1;
-				int endPage=startPage+pageBlock-1;
-				int pageCount=count/pageSize+(count%pageSize==0?0:1);
-				if(endPage > pageCount){
-				 	endPage = pageCount;
-				 }
+		// 페이징 처리
+		int count = workorderService.getWorkorderCount(pageDTO);
+		int pageBlock =10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+			}
 				
-				pageDTO.setCount(count);
-				pageDTO.setPageBlock(pageBlock);
-				pageDTO.setStartPage(startPage);
-				pageDTO.setEndPage(endPage);
-				pageDTO.setPageCount(pageCount);
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);				
 				
+		model.addAttribute("workorderList", workorderList);
+		model.addAttribute("pageDTO", pageDTO);
 				
-				
-				
-				model.addAttribute("workorderList", workorderList);
-				model.addAttribute("pageDTO", pageDTO);
-				
-				return "mps/workorder/list";
+		return "mps/workorder/list";
 	}
 	
 	@RequestMapping(value = "/workorder/ContractList", method = RequestMethod.GET)
@@ -88,7 +123,7 @@ public class WorkorderController {
 		List<WorkorderDTO> contractList=workorderService.getcontractList(pageDTO);
 		
 		// 페이징 처리
-		int count = workorderService.getContractCount();
+		int count = workorderService.getContractCount(pageDTO);
 		int pageBlock =10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
