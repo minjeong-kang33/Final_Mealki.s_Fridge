@@ -99,7 +99,7 @@
 			<div id="table_content">
 <%-- 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">           --%>
 				<table border="1">
-					<tr><th>선택<input type="checkbox" name="allcheck" id="allCheck" ></th>
+					<tr><th>선택</th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				

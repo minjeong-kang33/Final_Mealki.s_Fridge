@@ -1,7 +1,6 @@
 package com.itwillbs.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -14,7 +13,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
-import com.itwillbs.domain.SearchPageDTO;
 import com.itwillbs.service.CustomerService;
 
 @Controller
