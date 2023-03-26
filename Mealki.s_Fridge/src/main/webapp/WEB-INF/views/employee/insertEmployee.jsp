@@ -59,7 +59,7 @@
           
 <!--  본문 내용 시작 -->
             <div class="insertImployeeBody" style="background: gray;">
-            	<form action="${pageContext.request.contextPath}/employee/inertEmployeePro" method="post"> 
+            	<form action="${pageContext.request.contextPath}/employee/inertEmployeePro" method="post" enctype="multipart/form-data"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
             		<div class="img"><input type="image">이미지</div>
@@ -90,8 +90,8 @@
 							<li><label for="emp_classification">직원분류
 									<select name="emp_classification_option">
 										<option value=""> 직원분류 선택 </option>
-										<option value="현장직"> 현장직 </option>
-										<option value="사무직"> 사무직 </option>
+										<option value="3"> 현장직 </option>
+										<option value="2"> 사무직 </option>
 									</select>
 							
 								</label>
@@ -138,8 +138,8 @@
 					<input type="submit" value="직원등록" id="insertEmployeeBtn" /> 
 					<input type="reset" value="초기화" id="insertEmployeeReset" />
 				</fieldset>
+				</div>
 				</form>
-            	</div>
             
             </div>
             
