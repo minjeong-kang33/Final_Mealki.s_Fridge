@@ -42,6 +42,16 @@
   });
 </script>
 
+<script type="text/javascript">
+/* 탭1에서 검색후 탭2 클릭시 검색결과가 url 창에 그대로 남아있으므로 페이지 갱신없이 url만 변경 */
+function fun2() {
+	history.pushState(null, null, 'insertOrder');
+	/* if (typeof (history.pushState) != "undefined") { 
+		history.pushState(null, null, 'insertOrder'); 
+	} else { 
+	} */
+}
+</script>
 </head>
 <body>
   <div class="container-scroller">
@@ -67,7 +77,7 @@
                 <div class="tab">
 				    <ul class="tabnav">
 				      <li><a href="#tab01">발주 현황</a></li>
-				      <li><a href="#tab02">발주 등록</a></li>
+				      <li><a href="#tab02" onclick="fun2()">발주 등록</a></li>
 				    </ul>
 				    
 				    <div class="tabcontent">
@@ -111,10 +121,12 @@
 				 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 이전]</a>
 				</c:if>
-
-				<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${i}&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">${i}</a> 
-				</c:forEach>
+				
+				<c:if test="${pageDTO.currentPage > 0}">
+					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+						<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${i}&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">${i}</a> 
+					</c:forEach>
+				</c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 다음]</a>
@@ -131,38 +143,38 @@
 				      
 <!--  발주 현황 끝 -->  	
 				      <div id="tab02">
-				      <h4> | 필수 입력 사항 </h4>
+				      <!-- <h4> | 필수 입력 사항 </h4> -->
 <!--  발주 등록 시작 -->
 
             <div id="top_table" >
-            	<div id="table_search">
             	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
+            	<div id="table_search2">
             	<span id="select_search">
-			        <span id="order_date_search">발주일<input type="date" id="order_date" class="input-search" name="order_date" readonly></span>
-			        <span id="due_date_search">납기일<input type="date" id="due_date" class="input-search" name="due_date" onchange="date_check()"></span>
-			   		<span id="emp_num_search">담당자<input class="input-search" type="text" name=emp_num id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
-			        <span id="whs_num_search">입고창고<input class="input-search" id="findWarehouse" type="text" name="whs_num"></span>
+			        <span id="order_date_search">발주일<input type="date" id="order_date" class="input-search" name="order_date" readonly style="margin-left: 5px;"></span>
+			        <span id="due_date_search" style="margin-left: 10px; font-weight: 300;">납기일<input type="date" id="due_date" class="input-search" name="due_date" onchange="date_check()" style="margin-left: 5px;"></span>
+			   		<span id="emp_num_search" style="margin-left: 10px;">담당자<input class="input-search" type="text" name=emp_num id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()" style="margin-left: 5px;"></span>
+			        <span id="whs_num_search" style="margin-left: 10px;">입고창고<input class="input-search" id="findWarehouse" type="text" name="whs_num" style="margin-left: 5px;"></span>
 	            </span>
+				</div>
 
  				<br>
             
-            	<h4> | 발주 항목 등록 </h4>
-				<table border="1" id="dynamicTable">
+            	<h4 style="margin-left: 15px;"> | 발주 항목 등록 </h4>
+				<table border="1" id="dynamicTable" style="margin-left: 15px;">
 					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
 					 <tr>
-					 	 <td><input type="text" name="item_num" id="item_num" onclick="findProducts()" ></td>
-					 	 <td><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
-					 	 <td><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="number" name="order_qty" id="order_qty"></td>
-					 	 <td><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
-					 	 <td><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
+					 	 <td style="width: 100px;"><input type="text" name="item_num" id="item_num" onclick="findProducts()" ></td>
+					 	 <td style="width: 150px;"><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
+					 	 <td style="width: 150px;"><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px;"><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px;"><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px;"><input type="number" name="order_qty" id="order_qty"></td>
+					 	 <td style="width: 100px;"><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px;"><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px;"><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
 					 </tr>
 				</table>
-				<input type="hidden" name="order_num" id="order_num">
-				<button type="button" onclick="check_input()">저장</button>
+				<button class="btn btn-primary" type="button" onclick="check_input()" id="IconButton6" style="margin-left: 50%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">전송</button>
 				<hr>
 	   		
 	   			</form>
@@ -181,9 +193,9 @@
 <!-- 페이징 끝 -->
             </div>
             
-          </div>
+          <!--  </div>
           
-        </div>
+        </div> -->
         
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
         
@@ -207,7 +219,7 @@
  {
   window.name = "parentForm";
   openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findEmp_num",
-           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
  }
 
 /* 입고창고 찾기 (팝업 방법2)*/
@@ -227,7 +239,7 @@
  {
   window.name = "parentForm";
   openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
-           "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
+           "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");    
  }
 
 /* 금액 계산하기 */
@@ -237,21 +249,6 @@
 	order_sum.value = order_qty*supply_price;
 	order_vat.value = (order_qty*supply_price)*0.1;
 	
-	/* 발주번호 생성 */
-	var date = new Date();
-	var year = date.getFullYear().toString();
-	var month = date.getMonth() + 1;
-    month = month < 10 ? '0' + month.toString() : month.toString();
-    var day = date.getDate();
-    day = day < 10 ? '0' + day.toString() : day.toString();
-    var hour = date.getHours();
-    hour = hour < 10 ? '0' + hour.toString() : hour.toString();
-    var minutes = date.getMinutes();
-    minutes = minutes < 10 ? '0' + minutes.toString() : minutes.toString();
-    var seconds = date.getSeconds();
-    seconds = seconds < 10 ? '0' + seconds.toString() : seconds.toString();
-    
-    order_num.value='OR'+year+month+day+hour+minutes+seconds;
 	});
 
 </script>
@@ -288,6 +285,7 @@ function check_input() {
         document.OFsearch.order_qty.focus();
         return;
     }
+    alert('발주에 성공하였습니다.');
     document.OFsearch.submit();
  }
 </script>

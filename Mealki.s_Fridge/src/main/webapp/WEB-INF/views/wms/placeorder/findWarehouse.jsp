@@ -11,11 +11,11 @@
 </head>
 <body>
 
-	<h4>| 창고 목록</h4>
+	<h3>| 창고 목록</h3>
 	<table id="example-table-1">
 		<tr>
-			<th>창고 번호</th>
-			<th>창고 이름</th>
+			<th style="background-color: #4B49AC; color: #fff;">창고 번호</th>
+			<th style="background-color: #4B49AC; color: #fff;">창고 이름</th>
 
 			<c:forEach var="WarehouseDTO" items="${warehouseList }">
 				<tr class="row_a">
