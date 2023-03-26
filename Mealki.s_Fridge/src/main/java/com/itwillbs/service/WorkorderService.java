@@ -25,6 +25,8 @@ public interface WorkorderService {
 
 	public void updateWorkorder(WorkorderDTO workorderDTO);
 
+	public void deleteWorkorder(String wo_num);
+
 }
 
 

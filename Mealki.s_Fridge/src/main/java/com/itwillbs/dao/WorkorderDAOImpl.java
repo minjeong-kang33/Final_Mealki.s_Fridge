@@ -87,6 +87,13 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		sqlSession.update(namespace+".updateWorkorder", workorderDTO);		
 	}
 
+	@Override
+	public void deleteWorkorder(String wo_num) {
+		System.out.println("WorkorderDAOImpl deleteWorkorder()");
+		
+		sqlSession.delete(namespace+".deleteWorkorder", wo_num);
+	}
+
 	
 	
 	

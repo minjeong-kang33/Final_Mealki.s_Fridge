@@ -14,19 +14,18 @@
 	<h1>작업지시서</h1>
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro" method="post">
 	<b>작성일 : <a id="current_date"></a></b>
-<%-- 	<b>작성자 : ${sessionScope.emp_num}</b> --%>
 	<table>
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
 			<tr>
-				<th colspan="2">수주번호</th>
-				<th colspan="2">
-				${WorkorderDTO.business_num}
-				
-				<input type="hidden" name="business_num" value="${WorkorderDTO.business_num}">
-				</th>
+				<th colspan="2">작업지시번호</th>
+				<th colspan="2">${WorkorderDTO.wo_num}<input type="hidden" name="wo_num" value="${WorkorderDTO.wo_num}"></th>
 			</tr>
 			<tr>
-				<td colspan="2"><b>생산라인</b></td>
+				<td colspan="2">수주번호</td>
+				<td colspan="2">${WorkorderDTO.business_num}<input type="hidden" name="business_num" value="${WorkorderDTO.business_num}"></td>
+			</tr>
+			<tr>
+				<td colspan="2">생산라인</td>
 				<td colspan="2">
 					<select id="manu_name" name="manu_name">
 						<option value="" disabled selected hidden>${WorkorderDTO.manu_name}</option>
@@ -74,13 +73,15 @@
 
 		
 		
-	<div class="button">
-		<input type="submit" value="수정" > 
-		<input type="button" value="취소" onclick="window.close()">
+	<div class="button">	
+		<input type="submit" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
+		<input type="submit" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
+		<input type="button" value="닫기" onclick="window.close()">
 	</div>
 	
+	
 </form>
-		
+	
 </body>
 		
 	<script>

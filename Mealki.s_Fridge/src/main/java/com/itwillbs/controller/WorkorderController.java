@@ -165,7 +165,7 @@ public class WorkorderController {
 //		WorkorderDTO workorderDTO
 		workorderService.insertWorkorder(workorderDTO);
 		
-		return "mps/workorder/WoInsert";
+		return "mps/workorder/imsg";
 	}
 	
 	@RequestMapping(value = "/workorder/WoUpdate", method = RequestMethod.GET)
@@ -185,16 +185,28 @@ public class WorkorderController {
 	public String WoUpdatePro(HttpServletRequest request) {
 		System.out.println("WorkorderController WoUpdatePro()");
 		System.out.println(request.getParameter("manu_name"));
+		System.out.println(request.getParameter("wo_num"));
 		
-		String b=request.getParameter("business_num");
-		int business_num=Integer.parseInt(b);
+		String wo_num=request.getParameter("wo_num");
 		
 		WorkorderDTO workorderDTO=new WorkorderDTO();
-		workorderDTO.setBusiness_num(business_num);
+		workorderDTO.setWo_num(wo_num);
 		workorderDTO.setManu_name(request.getParameter("manu_name"));
 
 		workorderService.updateWorkorder(workorderDTO);
 		
-		return "mps/workorder/WoUpdate";
+		return "mps/workorder/umsg";
+	}
+	
+	@RequestMapping(value = "/mps/workorder/WoDelete", method = RequestMethod.POST)
+	public String WoDelete(HttpServletRequest request) {
+		System.out.println("WorkorderController WoDelete()");
+		System.out.println(request.getParameter("wo_num"));
+		
+		String wo_num=request.getParameter("wo_num");
+
+		workorderService.deleteWorkorder(wo_num);
+		
+		return "mps/workorder/dmsg";
 	}
 }

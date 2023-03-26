@@ -95,6 +95,14 @@ public class WorkorderServiceImpl implements WorkorderService{
 		workorderDAO.updateWorkorder(workorderDTO);
 	}
 
+	@Override
+	public void deleteWorkorder(String wo_num) {
+		System.out.println("WorkorderServiceImpl deleteWorkorder()");
+		
+		
+		workorderDAO.deleteWorkorder(wo_num);
+	}
+
 
 	
 	
