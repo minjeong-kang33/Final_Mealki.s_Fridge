@@ -60,13 +60,13 @@
 		
 		<!-- 검색 -->
 		<div id="table_search">
-<%-- 		<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get"> --%>
-<!-- 		작업지시번호  <input type="text" name="wo_num" class="input_box"> -->
-<!-- 		수주번호  <input type="text" name="business_num" class="input_box"> -->
-<!-- 		작업지시일<input type="date" name="order_date"> -->
-<!-- 		납품예정일<input type="date" name="out_date"> -->
-<!-- 		<button type="submit" value="조회" class="btn">조회</button> -->
-<!-- 		</form> -->
+		<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get">
+		작업지시번호  <input type="text" name="wo_num" class="input_box">
+		수주번호  <input type="text" name="business_num" class="input_box">
+		작업지시일<input type="date" name="order_date">
+		납품예정일<input type="date" name="out_date">
+		<button type="submit" value="조회" class="btn">조회</button>
+		</form>
 		</div>
 		
 		<!-- 리스트 -->
