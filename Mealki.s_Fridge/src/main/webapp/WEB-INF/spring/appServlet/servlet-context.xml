@@ -35,10 +35,14 @@
 		<!-- 파일 업로드 경로 설정-->
 		
 		<!-- id는 employeeUpload 이런식으로 지어서 변수명 겹치지 않도록 해주세요. -->
-	
-	
+		<beans:bean id="employeeUpload" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+			<beans:property name="maxUploadSize" value="10485760"></beans:property>
+		</beans:bean>
+		
 		<!-- 파일 업로드 경로 설정끝 이 사이에 넣으세요 -->
-	
+		<beans:bean id="employeeUploadPath" class="java.lang.String">
+			<beans:constructor-arg value="C:\\Users\\seungmin\\git\\Final_Mealki.s_Fridge\\Mealki.s_Fridge\\src\\main\\webapp\\resources\\employee\\upload"></beans:constructor-arg>
+		</beans:bean>	
 	
 	
 </beans:beans>

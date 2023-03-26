@@ -6,21 +6,63 @@
 	margin: 0px 0px;
 }
 
+/* 이미지 부분  */
 
 .imployeeImg{
-	background-color: skyblue;
-	border-radius: 3px;
 	width: 200px;
-	height: 250px;
+	height: 300px;
 	margin: 30px 30px;
-	margin-left : 100px;
+	margin-left : 265px;
 	float: left;
 }
 
+.img{
+	background-color: red;	
+	border-radius: 3px;
+	width: 200px;
+	height: 230px;	
+}
+
+.imgbtn{
+	margin: 0px 0px;
+	width: 200px;
+	height: 60px;
+	margin-top: 10px;
+	}
+
+.btn-upload {
+  width: 200px;
+  height: 60px;
+  background: #fff;
+  border-radius: 3px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background: rgb(77,77,77);
+    color: #fff;
+  }
+}
+
+#file {
+  display: none;
+}
+
+
+	
+/* 사원 정보 부분  */
+
 .employeeInfo{
-	background-color: purple;
+	background-color: skyblue;
 	width: 50%;
-	height: 250px;
+	height: 300px;
 	float: left;
 	margin: 30px 30px;
 	}
+	
+ul{
+   list-style:none;
+   }	
+	

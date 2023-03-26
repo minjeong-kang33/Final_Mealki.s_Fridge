@@ -95,4 +95,12 @@ public class EmployeeController {
 		return "employee/insertEmployee";
 	}
 	
+	@RequestMapping(value = "/employee/inertEmployeePro", method = RequestMethod.POST)
+	public String inertEmployeePro() {
+		System.out.println("MemberController inertEmployeePro");
+		
+		
+		return "/employee/empManage";
+	}
+	
 }
