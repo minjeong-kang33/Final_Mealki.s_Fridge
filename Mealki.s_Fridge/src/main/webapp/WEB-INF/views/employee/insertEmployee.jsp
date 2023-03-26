@@ -59,9 +59,87 @@
           
 <!--  본문 내용 시작 -->
             <div class="insertImployeeBody" style="background: gray;">
-            	<div class="imployeeImg"> 사asdfasdfasfas진</div>
-            	<div class="employeeInfo"> </div>
-            
+            	<form action="${pageContext.request.contextPath}/employee/inertEmployeePro" method="post"> 
+            	<!-- 사진부분 -->
+            	<div class="imployeeImg"> 
+            		<div class="img"><input type="image">이미지</div>
+            		<div class="imgbtn">
+					<label for="file">
+					  <span class="btn-upload">파일 업로드하기</span>
+					</label>
+            		<input type="file" name="file" id="file"></div>
+            	</div>
+            	
+            	
+            	<!-- 사원 정보부분 -->
+            	<div class="employeeInfo"> 
+            	
+            	<fieldset>
+						<ul>
+							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required></li>
+							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required></li>
+							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required></li>
+							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남"> 남 
+																	<input type="radio" name="emp_gender" id="여"> 여</li>
+							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required></li>
+							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required></li>
+							
+							<li><label for="emp_email">이메일</label><input type="email" id="emp_email" name="emp_email" size="30"></li>
+							<li><label for="emp_addr">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
+							<li><label for="emp_addr2">상세주소</label> <input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
+							<li><label for="emp_classification">직원분류
+									<select name="emp_classification_option">
+										<option value=""> 직원분류 선택 </option>
+										<option value="현장직"> 현장직 </option>
+										<option value="사무직"> 사무직 </option>
+									</select>
+							
+								</label>
+							</li>
+							<li><label for="dept_position">직책</label> 	
+									<select name="dept_position_option">
+										<option value=""> 직책 선택 </option>
+										<option value="팀원"> 팀원 </option>
+										<option value="파트장"> 파트장 </option>
+										<option value="팀장"> 팀장 </option>
+										<option value="본부장"> 본부장 </option>
+									</select>
+														
+							</li>
+							<li><label for="dept_duty">직위</label> 
+									<select name="dept_duty_option" class="dept_duty_option">
+										<option value=""> 직위 선택 </option>
+										<option value="사원"> 사원 </option>
+										<option value="주임"> 주임 </option>
+										<option value="대리"> 대리 </option>
+										<option value="과장"> 과장 </option>
+										<option value="차장"> 차장 </option>
+										<option value="부장"> 부장 </option>
+									</select>							
+							</li>
+							<li><label for="dept_num">부서</label> 
+									<select name="dept_num_option" class="dept_num_option">
+										<option value=""> 부서 선택 </option>
+										<option value="경리부"> 경리부 </option>
+										<option value="영업부"> 영업부 </option>
+										<option value="생산부"> 생산부 </option>
+										<option value="자재부"> 자재부 </option>
+										<option value="인사부"> 인사부 </option>
+										<option value="전산부"> 전산부 </option>
+									</select>							
+							
+							</li>
+					</ul>
+				</fieldset>
+				<!-- 기타 개인정보 입력 끝 -->
+					
+				<!-- 전송 버튼 -->
+				<fieldset>
+					<input type="submit" value="직원등록" id="insertEmployeeBtn" /> 
+					<input type="reset" value="초기화" id="insertEmployeeReset" />
+				</fieldset>
+				</form>
+            	</div>
             
             </div>
             
@@ -115,4 +193,18 @@
   <!-- End custom js for this page-->
 
 </body>
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload = function(){
+    document.getElementById("emp_addr").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("emp_addr").value = data.address; // 주소 넣기
+                document.querySelector("input[name=emp_addr2]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
+</script>
 </html>

@@ -201,7 +201,7 @@ function fun1() {
                   <div id="tab01" style="background-color: pink; width: 100%;">
                    <div class="emp_infoDetails" style="width: 100%;">
                         <table border="1" class="emp_details_table" style="width: 100%; table-layout: fixed;">
-                        <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직급</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
+                        <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직책</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
                         <tr class="tr"><th class="th">재직구분</th><td>재직</td><th class="th">입사일자</th><td>2023.03.14</td><th class="th">퇴사일자</th><td> </td><th class="th">휴직일자</th><td>과장</td></tr>
                         </table>
                      </div>
