@@ -33,7 +33,7 @@
 		on w.business_num=c.business_num
 		left outer join productstatus p
 		on p.wo_num=w.wo_num
-		where 1=1
+		where wo_available=1
 		<if test="wo_num != null">
 		 and w.wo_num like CONCAT('%', #{wo_num}, '%')
 		</if>
@@ -85,8 +85,8 @@
 	</select>
 	
 	<insert id="insertWorkorder">
-		insert into workorder(wo_num, business_num, wo_date, wo_state, wo_qty, manu_name, item_name, wo_emp)
-		values("1", #{business_num}, now(), default, #{contract_qty}, #{manu_name}, #{item_name}, #{wo_emp})
+		insert into workorder(wo_num, business_num, wo_date, wo_qty, manu_name, item_name, wo_emp, wo_available)
+		values(concat("WO",date_format(now(), "%y%m%d%H%i")), #{business_num}, now(), #{contract_qty}, #{manu_name}, #{item_name}, #{wo_emp}, 1)
 	
 	</insert>
 	
@@ -100,10 +100,10 @@
 		and w.business_num=#{business_num}
 	</insert>
 	
-	<delete id="deleteWorkorder"> 
-   		delete from workorder
+	<update id="deleteWorkorder"> 
+   		 update workorder set wo_available=0
     	where wo_num = #{wo_num} 
-	</delete>
+	</update>
 	
 	<update id="updateWorkorder">
 		update workorder set manu_name= #{manu_name}

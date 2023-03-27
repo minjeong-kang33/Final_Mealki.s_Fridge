@@ -33,14 +33,37 @@ public class WorkorderController {
 		String order_date=request.getParameter("order_date");
 		String out_date=request.getParameter("out_date");	
 		
-		if(b==null) {
-			b="0";
+//		if(b==null) {
+//			b="0";
+//		}
+//		int business_num=Integer.parseInt(b);
+		if(wo_num == "") {
+			System.out.println("wo_num 공백");
+		}else {
+			System.out.println("wo_num --");
 		}
-		int business_num=Integer.parseInt(b);
+		
+		if(b == "") {
+			System.out.println("b 공백");
+		}else {
+			System.out.println("b null");
+		}
+		
+		if(order_date == "") {
+			System.out.println("order_date 공백");
+		}else {
+			System.out.println("order_date --");
+		}
+		
+		if(order_date == "") {
+			System.out.println("out_date 공백");
+		}else {
+			System.out.println("out_date --");
+		}
 		
 		System.out.println("wo_num : " + wo_num);
 		System.out.println("business_num : " + b);
-		System.out.println("order_date : "+order_date);
+		System.out.println("order_date : "+ order_date);
 		System.out.println("out_date : " + out_date);
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=10;
@@ -57,7 +80,7 @@ public class WorkorderController {
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
 		pageDTO.setWo_num(wo_num);
-		pageDTO.setBusiness_num(business_num);
+//		pageDTO.setBusiness_num(business_num);
 		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		if(order_date!=null) {
