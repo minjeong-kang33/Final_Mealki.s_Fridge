@@ -54,13 +54,13 @@
 <!--  본문 내용 시작 -->
 
 			<div id="writebody">
-				<form action="${pageContext.request.contextPath}mps/production/writePro" id="join" method="GET">
+				<form action="${pageContext.request.contextPath}mps/production/writePro" id="insertProduct" method="GET">
 				<label>라인명 : </label>
 				<select name="lineselect">
-            		<option value=" ">라인을 선택하세요</option>
-            		<option value="man"> 가공1 </option>
-            		<option value="girl"> 가공2 </option>
-            		<option value="none"> 가공3 </option>
+            		<option value="">라인을 선택하세요</option>
+            		<option value="가공1" onclick="" name="가공1">가공1</option>
+            		<option value="가공2" onclick="" name="가공2">가공2</option>
+            		<option value="가공3" onclick="" name="가공3">가공3</option>
           		</select>
           		
 				<label>작업지시번호 : </label>
@@ -68,9 +68,18 @@
 				
 				<label>품명 : </label>
 				<input type="text" name="item_name">
-								
+				
+				
+		<c:choose>  
+			<c:when test="${productionDTO.emp_Kname eq null or productionDTO.emp_Kname eq ''}"> 
 				<label>작업자 : </label>
-				<input type="text" name="emp_Kname">
+				<input type="text" name="emp_Kname" value="${sessionScope.emp_num}" readonly="readonly">
+			</c:when> 
+			<c:otherwise> 
+				<label>작업자 : </label>
+				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
+			</c:otherwise> 
+		</c:choose> 
 				
 				<label>생산량 : </label>
 				<input type="text" name="manu_tocount">
@@ -78,7 +87,8 @@
 				<label>불량 : </label>
 				<input type="text" name="manu_fail">
 				
-				
+			
+<!-- 			시작 했을때 시작시간 등록 -->
 			<c:if test="${ ! empty manu_sdate }">
 				<c:if test="${sessionScope.id eq 'admin'}">
 					<button class="btn btn-primary" type="submit" id="IconButton6">
@@ -86,15 +96,12 @@
 					</button>
 				</c:if>
 			</c:if>
-				<button class="btn btn-primary" type="submit" id="IconButton6">
-				<a>시작</a>
-				</button>
-				
+<!-- 				완료 했을때 완료시간 등록 -->
 				<button class="btn btn-primary" type="submit" id="IconButton6">
 				<a>완료</a>
 				</button>
-				
-				<button class="btn btn-primary" type="submit" id="IconButton6">
+<!-- 				reset -->
+				<button class="btn btn-primary" type="reset" id="IconButton6">
 				<a>취소</a>
 				</button>
 				
