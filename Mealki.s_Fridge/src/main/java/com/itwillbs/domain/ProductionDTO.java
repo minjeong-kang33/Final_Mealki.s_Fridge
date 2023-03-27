@@ -12,6 +12,7 @@ public class ProductionDTO {
 	private String emp_Kname;
 	private String manu_sdate;
 	private String manu_date;
+	private int emp_num; 
 	
 	public int getManu_num() {
 		return manu_num;
@@ -78,6 +79,12 @@ public class ProductionDTO {
 	}
 	public void setManu_date(String manu_date) {
 		this.manu_date = manu_date;
+	}
+	public int getEmp_num() {
+		return emp_num;
+	}
+	public void setEmp_num(int emp_num) {
+		this.emp_num = emp_num;
 	}
 
 	
