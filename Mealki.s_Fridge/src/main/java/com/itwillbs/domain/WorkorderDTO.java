@@ -23,6 +23,7 @@ public class WorkorderDTO {
 	// recipe 관련
 	private String r_name;
 	
+	private int pr_sum;
 	
 	public String getContract_qty() {
 		return contract_qty;
@@ -119,6 +120,12 @@ public class WorkorderDTO {
 	}
 	public void setWo_empname(String wo_empname) {
 		this.wo_empname = wo_empname;
+	}
+	public int getPr_sum() {
+		return pr_sum;
+	}
+	public void setPr_sum(int pr_sum) {
+		this.pr_sum = pr_sum;
 	}
 
 	

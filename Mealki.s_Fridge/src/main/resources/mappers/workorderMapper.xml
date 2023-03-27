@@ -21,10 +21,19 @@
     </select>
     
     <select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, w.business_num, w.wo_date, c.out_date, w.wo_state, w.wo_qty, manu_name, w.item_name, e.emp_Kname as wo_empname
-		from workorder w, employee e, contract c
-		where w.wo_emp=e.emp_num
-		and c.business_num=w.business_num
+		select w.wo_num, w.business_num, w.wo_date, c.out_date, w.wo_qty, 
+			   w.manu_name, w.item_name, e.emp_Kname as wo_empname, IFNULL(sum(p.manu_tocount),0) as pr_sum, 
+				(case 
+ 					when IFNULL(sum(p.manu_tocount),0) <![CDATA[<]]> w.wo_qty then "진행중"
+					when IFNULL(sum(p.manu_tocount),0) = w.wo_qty then "완료" else "대기"
+      			end) as wo_state
+		from employee e join workorder w
+		on w.wo_emp=e.emp_num
+		join contract c
+		on w.business_num=c.business_num
+		left outer join productstatus p
+		on p.wo_num=w.wo_num
+		where 1=1
 		<if test="wo_num != null">
 		 and w.wo_num like CONCAT('%', #{wo_num}, '%')
 		</if>
@@ -39,7 +48,6 @@
 		</if>
 		order by wo_date desc
 		limit #{startRow}, #{pageSize}
-		
 	</select>
 	
 	<select id="getContractCount" resultType="java.lang.Integer">

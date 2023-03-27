@@ -90,7 +90,7 @@
 							<th>라인명</th>
 							<th>품목명</th>
 							<th>지시수량</th>
-							<th>작업수량</th>
+							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
 
@@ -115,7 +115,7 @@
 							<td>${WorkorderDTO.manu_name}</td>
 							<td>${WorkorderDTO.item_name}</td>
 							<td>${WorkorderDTO.wo_qty}</td>
-							<td>작업수량</td>
+							<td>${WorkorderDTO.pr_sum}</td>
 							<td>${WorkorderDTO.wo_state}</td>
 						</tr>
 						</c:forEach>
