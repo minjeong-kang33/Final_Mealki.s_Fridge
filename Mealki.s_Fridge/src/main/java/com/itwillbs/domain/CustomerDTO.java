@@ -1,7 +1,7 @@
 package com.itwillbs.domain;
 
 public class CustomerDTO {
-	private int cust_num;
+	private String cust_num;
 	private String cust_name;
 	private String cust_gubun1;
 	private String cust_gubun2;
@@ -20,10 +20,10 @@ public class CustomerDTO {
 	private String url_path;
 	private String remarks;
 	
-	public int getCust_num() {
+	public String getCust_num() {
 		return cust_num;
 	}
-	public void setCust_num(int cust_num) {
+	public void setCust_num(String cust_num) {
 		this.cust_num = cust_num;
 	}
 	public String getCust_name() {

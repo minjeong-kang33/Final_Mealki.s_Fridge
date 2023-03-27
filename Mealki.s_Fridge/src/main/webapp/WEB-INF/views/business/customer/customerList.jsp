@@ -9,7 +9,7 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
+  <title>밀키의 냉장고</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
@@ -30,10 +30,20 @@
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
   <script type="text/javascript">
-	  function openDetail(cust_num) {
-		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?cust_num="+cust_num, "popup", "width=1000, height=1000, scrollbars=yes");
+	  function openDetail(business_num) {
+		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1000, height=1000, scrollbars=yes");
 		}
   </script>
+  
+  <script type="text/javascript">	  
+	  function insertCust()
+	  {
+	   window.name = "insertCust";
+	   openWin = window.open("${pageContext.request.contextPath}/business/customer/insertCustomer",
+	            "childForm", "width=600, height=1000,top=300, left=300, resizable = no, scrollbars = no");    
+	  }
+  </script>
+
   
   <script> //검색어
 	function fun1() {
@@ -54,8 +64,6 @@
   </script>
   
   
-
-  </script>
 
 </head>
 <body>
@@ -105,9 +113,9 @@
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
 				
-					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.cust_num}"></td>
-					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
-					    <td onclick="openDetail('${CustomerDTO.cust_num}')" style="font-weight: bold;">${CustomerDTO.cust_name}</td>
+					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.business_num}"></td>
+					    <td onclick="openDetail('${CustomerDTO.business_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
+					    <td onclick="openDetail('${CustomerDTO.business_num}')" style="font-weight: bold;">${CustomerDTO.cust_name}</td>
 					    <td>${CustomerDTO.boss_name}</td>
 					    <td>${CustomerDTO.cust_tel}</td>
 					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
@@ -123,8 +131,9 @@
 				
 			<div id="button2">
 				<input type="submit" class="btn btn-primary" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
-				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer">
-				<input type="button" class="btn btn-primary" id="new_customer" value="신규등록"></a>
+<%-- 				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer"> --%>
+				<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
+<!-- 				</a> -->
 			</div>
 			
  
