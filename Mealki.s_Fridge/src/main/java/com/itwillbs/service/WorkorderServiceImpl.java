@@ -16,11 +16,11 @@ public class WorkorderServiceImpl implements WorkorderService{
 	private WorkorderDAO workorderDAO;
 
 	@Override
-	public int getWorkorderCount() {
+	public int getWorkorderCount(PageDTO pageDTO) {
 		System.out.println("WorkorderServiceImpl getWorkorderCount()");
 		
 		
-		return workorderDAO.getWorkorderCount();
+		return workorderDAO.getWorkorderCount(pageDTO);
 	}
 
 	@Override
@@ -36,11 +36,11 @@ public class WorkorderServiceImpl implements WorkorderService{
 	}
 	
 	@Override
-	public int getContractCount() {
+	public int getContractCount(PageDTO pageDTO) {
 		System.out.println("WorkorderServiceImpl getcontractCount()");
 		
 		
-		return workorderDAO.getContractCount();
+		return workorderDAO.getContractCount(pageDTO);
 	}
 
 	
@@ -80,6 +80,31 @@ public class WorkorderServiceImpl implements WorkorderService{
 		
 		workorderDAO.insertWorkorder(workorderDTO);
 	}
+
+	@Override
+	public List<WorkorderDTO> WoUpdateForm(String num) {
+		System.out.println("WorkorderServiceImpl WoUpdateForm()");
+		
+		return workorderDAO.WoUpdateForm(num);
+	}
+
+	@Override
+	public void updateWorkorder(WorkorderDTO workorderDTO) {
+		System.out.println("WorkorderServiceImpl WoUpdateForm()");
+		
+		workorderDAO.updateWorkorder(workorderDTO);
+	}
+
+	@Override
+	public void deleteWorkorder(String wo_num) {
+		System.out.println("WorkorderServiceImpl deleteWorkorder()");
+		
+		
+		workorderDAO.deleteWorkorder(wo_num);
+	}
+
+
+	
 	
 
 }
