@@ -26,6 +26,8 @@ public class PageDTO {
 	private int business_num;
 	private Date out_date;
 	
+	private String Search;
+	
 	@Override
 	public String toString() {
 		return "PageDTO [pageSize=" + pageSize + ", pageNum=" + pageNum + ", currentPage=" + currentPage + ", startRow="
@@ -214,6 +216,16 @@ public class PageDTO {
 
 	public void setOut_date(Date out_date) {
 		this.out_date = out_date;
+	}
+
+
+	public String getSearch() {
+		return Search;
+	}
+
+
+	public void setSearch(String search) {
+		Search = search;
 	}
 	
 }

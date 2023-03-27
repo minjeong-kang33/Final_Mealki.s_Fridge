@@ -1,5 +1,6 @@
 package com.itwillbs.domain;
 
+import java.util.Date;
 
 public class ContractDTO {
 
@@ -8,19 +9,11 @@ public class ContractDTO {
 	private String item_num;
 	private String item_name;
 	private String business_name;
-	private String business_date;
-	private String out_date;
+	private Date business_date;
+	private Date out_date;
 	private String incharge_code;
 	private String incharge_name;
 	private int contract_qty;
-	
-	public int getContract_qty() {
-		return contract_qty;
-	}
-	public void setContract_qty(int contract_qty) {
-		this.contract_qty = contract_qty;
-	}
-	
 	
 	public String getBusiness_num() {
 		return business_num;
@@ -52,16 +45,16 @@ public class ContractDTO {
 	public void setBusiness_name(String business_name) {
 		this.business_name = business_name;
 	}
-	public String getBusiness_date() {
+	public Date getBusiness_date() {
 		return business_date;
 	}
-	public void setBusiness_date(String business_date) {
+	public void setBusiness_date(Date business_date) {
 		this.business_date = business_date;
 	}
-	public String getOut_date() {
+	public Date getOut_date() {
 		return out_date;
 	}
-	public void setOut_date(String out_date) {
+	public void setOut_date(Date out_date) {
 		this.out_date = out_date;
 	}
 	public String getIncharge_code() {
@@ -76,9 +69,12 @@ public class ContractDTO {
 	public void setIncharge_name(String incharge_name) {
 		this.incharge_name = incharge_name;
 	}
-	
-	
-	
+	public int getContract_qty() {
+		return contract_qty;
+	}
+	public void setContract_qty(int contract_qty) {
+		this.contract_qty = contract_qty;
+	}
 	
 	
 	

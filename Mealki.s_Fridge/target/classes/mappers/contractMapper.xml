@@ -28,23 +28,43 @@
     </insert>
 	
 	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
-        SELECT business_num, cust_num, item_num, item_name, business_name,
-        		business_date,out_date,incharge_code,incharge_name
-        from contract
-		order by business_num desc
+        SELECT * from contract
+        
+        <if test="search_option == 'item_name'.toString()">
+        where item_name  like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'business_name'.toString()">
+        where business_name  like CONCAT('%',#{search},'%')
+        </if>
+        order by business_num desc
 		limit #{startRow}, #{pageSize}
     </select>
     
-    <select id="selectContractTotal" resultType="java.lang.Integer">
+<!-- 검색어 -->
+	 <select id="getContractCount" resultType="java.lang.Integer">
+        select count(*) from contract 
+       
+        <if test="search_option == 'item_name'.toString()">
+        where item_name  like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'business_name'.toString()">
+        where business_name  like CONCAT('%',#{search},'%')
+        </if>
+        
+      
+    </select>
+
+	 <select id="selectContractTotal" resultType="java.lang.Integer">
     	SELECT COUNT(*) total FROM contract
     </select>
 
-	 <select id="getContractCount" resultType="java.lang.Integer">
-        select count(*) from contract 
-    </select>
 
-
-
+	<select id="getContractListMap" resultType="map">
+		SELECT *
+		FROM contract, customer
+		WHERE contract.cust_num = customer.cust_num
+		
+	</select>
 
 
 
