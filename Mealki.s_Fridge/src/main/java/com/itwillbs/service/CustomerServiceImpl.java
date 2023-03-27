@@ -1,7 +1,6 @@
 package com.itwillbs.service;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -10,7 +9,6 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.CustomerDAO;
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.SearchDTO;
 
 
 @Service
@@ -40,10 +38,10 @@ public class CustomerServiceImpl implements CustomerService{
 	}
 
 	@Override
-	public CustomerDTO getCustomer(int num) {
+	public CustomerDTO getCustomer(String business_num) {
 		System.out.println("CustomerServiceImpl getCustomer()");
 		
-		return customerDAO.getCustomer(num);
+		return customerDAO.getCustomer(business_num);
 	}
 
 	@Override
@@ -51,13 +49,6 @@ public class CustomerServiceImpl implements CustomerService{
 		System.out.println("CustomerServiceImpl insertCustomer()");
 
 		customerDAO.insertCustomer(customerDTO);	
-	}
-
-	@Override
-	public List<Map<String, Object>> getCustomerListMap(SearchDTO searchDTO) {
-		System.out.println("CustomerServiceImpl getCustomerList");
-		
-		return customerDAO.getCustomerListMap(searchDTO);
 	}
 	
 	

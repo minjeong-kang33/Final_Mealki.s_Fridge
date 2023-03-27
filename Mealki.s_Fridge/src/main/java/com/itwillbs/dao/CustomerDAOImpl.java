@@ -38,10 +38,10 @@ public class CustomerDAOImpl implements CustomerDAO{
 	}
 
 	@Override
-	public CustomerDTO getCustomer(int num) {
+	public CustomerDTO getCustomer(String business_num) {
 		System.out.println("CustomerDAOImpl getCustomer()");
 		
-		return sqlSession.selectOne(namespace+".getCustomer", num);
+		return sqlSession.selectOne(namespace+".getCustomer", business_num);
 	}
 
 	@Override
@@ -50,14 +50,5 @@ public class CustomerDAOImpl implements CustomerDAO{
 		//메서드 호출
 		sqlSession.insert(namespace+".insertCustomer", customerDTO);
 	}
-
-	@Override
-	public List<Map<String, Object>> getCustomerListMap(SearchDTO searchDTO) {
-		System.out.println("CustomerDAOImpl getCustomerListMap");
-		
-		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
-		return sqlSession.selectList(namespace+".getCustomerListMap",searchDTO);
-	}
-	
 
 }

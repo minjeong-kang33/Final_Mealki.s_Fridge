@@ -25,26 +25,9 @@
     
     <select id="getCustomer" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
-        where cust_num = #{cust_num}   	
+        where business_num = #{business_num}   	
     </select>
     
-<!--     <select id="getCustomerListMap" resultType="map"> -->
-<!--     	select * from customer  -->
-    	
-<!-- 		<if test="search_option == 'cust_num'.toString()"> -->
-<!-- 			where cust_num like CONCAT('%', #{keyword}, '%') -->
-<!-- 		</if> -->
-			
-<!-- 		<if test="search_option == 'cust_name'.toString()"> -->
-<!-- 			where cust_name like CONCAT('%', #{keyword}, '%') -->
-<!-- 		</if> -->
-			
-<!-- 		<if test="search_option == 'cust_uptae'.toString()"> -->
-<!-- 			where cust_uptae like CONCAT('%', #{keyword}, '%') -->
-<!-- 		</if> -->
-			
-<!-- 		order by cust_num desc -->
-<!--     </select> -->
     
     <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
@@ -68,8 +51,8 @@
     </select>
     
     <insert id="insertCustomer">
-    	insert into customer(cust_gubun2,cust_gubun1,business_num,cust_num,cust_name,boss_name,cust_tel,cust_uptae,cust_jongmok,man_name,man_tel,man_email,fax,cust_post_num,cust_address,cust_address2,url_path,remarks) 
-    	values(#{cust_gubun2},#{cust_gubun1},#{business_num},#{cust_num},#{cust_name},#{boss_name},#{cust_tel},#{cust_uptae},#{cust_jongmok},#{man_name},#{man_tel},#{man_email},#{fax},#{cust_post_num},#{cust_address},#{cust_address2},#{url_path},#{remarks})
+    	insert into customer(cust_num,cust_gubun2,cust_gubun1,business_num,cust_name,boss_name,cust_tel,cust_uptae,cust_jongmok,man_name,man_tel,man_email,fax,cust_post_num,cust_address,cust_address2,url_path,remarks) 
+    	values(concat('CS',DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 9 HOUR), '%Y%m%d%H%i%s')), #{cust_gubun2},#{cust_gubun1},#{business_num},#{cust_name},#{boss_name},#{cust_tel},#{cust_uptae},#{cust_jongmok},#{man_name},#{man_tel},#{man_email},#{fax},#{cust_post_num},#{cust_address},#{cust_address2},#{url_path},#{remarks})
     </insert>	
 
 </mapper>
