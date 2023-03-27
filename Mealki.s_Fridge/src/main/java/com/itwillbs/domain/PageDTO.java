@@ -22,6 +22,12 @@ public class PageDTO {
 	private Date order_date;
 	private Date due_date;
 	
+	private String wo_num;
+	private int business_num;
+	private Date out_date;
+	
+	private String Search;
+	
 	@Override
 	public String toString() {
 		return "PageDTO [pageSize=" + pageSize + ", pageNum=" + pageNum + ", currentPage=" + currentPage + ", startRow="
@@ -180,6 +186,46 @@ public class PageDTO {
 
 	public void setDue_date(Date due_date) {
 		this.due_date = due_date;
+	}
+
+
+	public int getBusiness_num() {
+		return business_num;
+	}
+
+
+	public void setBusiness_num(int business_num) {
+		this.business_num = business_num;
+	}
+
+
+	public String getWo_num() {
+		return wo_num;
+	}
+
+
+	public void setWo_num(String wo_num) {
+		this.wo_num = wo_num;
+	}
+
+
+	public Date getOut_date() {
+		return out_date;
+	}
+
+
+	public void setOut_date(Date out_date) {
+		this.out_date = out_date;
+	}
+
+
+	public String getSearch() {
+		return Search;
+	}
+
+
+	public void setSearch(String search) {
+		Search = search;
 	}
 	
 }

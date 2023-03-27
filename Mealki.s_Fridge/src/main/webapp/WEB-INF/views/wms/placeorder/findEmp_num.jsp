@@ -11,11 +11,11 @@
 </head>
 <body>
 
-	<h4>| 자재부 사원 목록</h4>
+	<h3>| 자재부 사원 목록</h3>
 	<table id="example-table-1">
 		<tr>
-			<th>사원 번호</th>
-			<th>사원 이름</th>
+			<th style="background-color: #4B49AC; color: #fff;">사원 번호</th>
+			<th style="background-color: #4B49AC; color: #fff;">사원 이름</th>
 
 			<c:forEach var="EmployeeDTO" items="${employeeList }">
 				<tr class="row_a">

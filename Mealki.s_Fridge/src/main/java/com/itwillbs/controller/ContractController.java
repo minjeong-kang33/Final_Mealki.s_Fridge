@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -51,15 +52,16 @@ import com.itwillbs.service.ContractService;
 		@RequestMapping(value = "business/contract/contractList", method=RequestMethod.GET)
 		public String contractList(HttpServletRequest request, Model model, ContractDTO dto) {
 			System.out.println("contractController contractList()");
-			
+			//검색어 가져오기
+			String search = request.getParameter("search");
+			String search_option =request.getParameter("search_option");
 			//총 데이터 개수
 			int total = contractService.selectContractTotal(dto);
 			
 			// (double)12/10 ->  ceil(1.2) -> Integer(2.0) -> 2
 			int totalPage = (int) Math.ceil((double)total/10);
 			
-			model.addAttribute("total", total);
-			model.addAttribute("totalPage", totalPage);
+			
 			
 			// 한 화면에 보여줄 글 개수 설정
 			int pageSize=10;
@@ -77,10 +79,18 @@ import com.itwillbs.service.ContractService;
 			pageDTO.setPageNum(pageNum);
 			pageDTO.setCurrentPage(currentPage);
 			
+			//검색어
+			pageDTO.setSearch(search);
+			pageDTO.setSearch_option(search_option);
+			
+			
+			System.out.println(pageDTO.getSearch());
+			System.out.println(pageDTO.getSearch_option());
 			List<ContractDTO> list = contractService.getBoardList(pageDTO);
 			
 			//페이징 처리
-			int count = contractService.getContractCount();
+			//검색어
+			int count = contractService.getContractCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;
@@ -97,9 +107,19 @@ import com.itwillbs.service.ContractService;
 			
 			model.addAttribute("resultList", list);
 			model.addAttribute("pageDTO", pageDTO);
+			model.addAttribute("total", total);
+			model.addAttribute("totalPage", totalPage);
 			
 			return "business/contract/contractList";
 		}
-			
+			@RequestMapping(value = "/business/contract/findContract", method = RequestMethod.GET)
+			public String findContract(HttpServletRequest request, Model model) {
+				System.out.println("PlaceOrderController findProducts()");
+	
+				List<Map<String, Object>> contractListMap = contractService.getContractListMap();
+				model.addAttribute("contractListMap", contractListMap);
+	
+				return "business/contract/findContract";
+		}
 	}
 

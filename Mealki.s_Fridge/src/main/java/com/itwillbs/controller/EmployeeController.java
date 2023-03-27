@@ -1,8 +1,11 @@
 package com.itwillbs.controller;
 
+import java.io.File;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
+import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
@@ -10,8 +13,10 @@ import javax.swing.plaf.IconUIResource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.SearchDTO;
@@ -23,6 +28,10 @@ import com.itwillbs.service.EmployeeService;
 public class EmployeeController {
 	@Inject
 	private EmployeeService employeeService;
+	
+	/*
+	 * @Resource(name="employeeUpload") private String employeeUploadPath;
+	 */
 	
 	@RequestMapping(value = "/main/login", method = RequestMethod.GET)
 	public String login() {
@@ -85,6 +94,41 @@ public class EmployeeController {
 		model.addAttribute("search_option",search_option);
 		model.addAttribute("keyword",keyword);
 		
+		return "/employee/empManage";
+	}
+	
+	@RequestMapping(value = "/employee/insertEmployee", method = RequestMethod.GET)
+	public String insertEmployee() {
+		System.out.println("MemberController insertEmployee");
+		
+		return "employee/insertEmployee";
+	}
+	
+	@RequestMapping(value = "/employee/inertEmployeePro", method = RequestMethod.POST)
+	public String inertEmployeePro(HttpServletRequest request, MultipartFile file)throws Exception {
+		System.out.println("MemberController inertEmployeePro");
+		
+		/*
+		 * EmployeeDTO employeeDTO = new EmployeeDTO();
+		 * employeeDTO.setDept_num(request.getParameter("dept_num"));
+		 * employeeDTO.setEmp_Kname(request.getParameter("emp_Kname"));
+		 * employeeDTO.setEmp_Ename(request.getParameter("emp_Ename"));
+		 * employeeDTO.setEmp_birth(request.getParameter("emp_birth"));
+		 * employeeDTO.setEmp_gender(request.getParameter("emp_gender"));
+		 * employeeDTO.setEmp_tel(Integer.parseInt(request.getParameter("emp_tel")));
+		 * employeeDTO.setEmp_phone(Integer.parseInt(request.getParameter("emp_phone")))
+		 * ; employeeDTO.setEmp_email(request.getParameter("emp_email"));
+		 * employeeDTO.setEmp_addr(request.getParameter("emp_addr"));
+		 * employeeDTO.setEmp_addr2(request.getParameter("emp_addr2"));
+		 * employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter(
+		 * "emp_classification")));
+		 * employeeDTO.setDept_position(request.getParameter("dept_position"));
+		 * employeeDTO.setDept_duty(request.getParameter("dept_duty"));
+		 * 
+		 * UUID uuid=UUID.randomUUID(); String filename =
+		 * uuid.toString()+"_"+file.getOriginalFilename();
+		 * FileCopyUtils.copy(file.getBytes(), new File(employeeUploadPath,filename));
+		 */
 		
 		
 		return "/employee/empManage";

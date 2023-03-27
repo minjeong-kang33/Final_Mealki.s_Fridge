@@ -1,18 +1,36 @@
 package com.itwillbs.domain;
 
-import java.sql.Date;
+import java.sql.Timestamp;
 
 public class StoreDTO {
 	private String sto_num;
 	private String order_num;
-	private Date sto_date;
-	private int sto_progress;
+	private Timestamp sto_date;
+	private String sto_progress;
 	private int sto_qty;
 	private String sto_shelf;
-	private String sto_shelfImg;
+	private int sto_shelfDetail;
 	private int sto_empNum;
 	
-	
+
+	public String getSto_progress() {
+		return sto_progress;
+	}
+	public void setSto_progress(String sto_progress) {
+		this.sto_progress = sto_progress;
+
+	public Timestamp getSto_date() {
+		return sto_date;
+	}
+	public void setSto_date(Timestamp sto_date) {
+		this.sto_date = sto_date;
+	}
+	public int getSto_shelfDetail() {
+		return sto_shelfDetail;
+	}
+	public void setSto_shelfDetail(int sto_shelfDetail) {
+		this.sto_shelfDetail = sto_shelfDetail;
+	}
 	public int getSto_empNum() {
 		return sto_empNum;
 	}
@@ -31,18 +49,7 @@ public class StoreDTO {
 	public void setOrder_num(String order_num) {
 		this.order_num = order_num;
 	}
-	public Date getSto_date() {
-		return sto_date;
-	}
-	public void setSto_date(Date sto_date) {
-		this.sto_date = sto_date;
-	}
-	public int getSto_progress() {
-		return sto_progress;
-	}
-	public void setSto_progress(int sto_progress) {
-		this.sto_progress = sto_progress;
-	}
+
 	public int getSto_qty() {
 		return sto_qty;
 	}
@@ -55,11 +62,5 @@ public class StoreDTO {
 	public void setSto_shelf(String sto_shelf) {
 		this.sto_shelf = sto_shelf;
 	}
-	public String getSto_shelfImg() {
-		return sto_shelfImg;
-	}
-	public void setSto_shelfImg(String sto_shelfImg) {
-		this.sto_shelfImg = sto_shelfImg;
-	}
-	
+
 }

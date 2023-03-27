@@ -1,8 +1,8 @@
 package com.itwillbs.service;
 
 import java.util.List;
+import java.util.Map;
 
-import javax.annotation.Resource;
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -37,18 +37,25 @@ public class ContractServiceImpl implements ContractService {
 		
 			return contractDAO.getBoardList(pageDTO);
 	}
+	
+		@Override
+		public int selectContractTotal(ContractDTO dto) {
+			
+			return contractDAO.selectContractTotal(dto);
+		}
+	
+		@Override
+		public int getContractCount(PageDTO pageDTO) {
+			System.out.println("ContractServiceImpl getContractCount()");
+			
+			return contractDAO.getContractCount(pageDTO);
+		}
 
-	@Override
-	public int selectContractTotal(ContractDTO dto) {
-		
-		return contractDAO.selectContractTotal(dto);
-	}
-
-	@Override
-	public int getContractCount() {
-		
-		return contractDAO.getContractCount();
-	}
+		@Override
+		public List<Map<String, Object>> getContractListMap() {
+			
+			return contractDAO.getContractListMap();
+		}
 	
 	
 

@@ -1,7 +1,6 @@
 package com.itwillbs.controller;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
@@ -13,8 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.SearchDTO;
-import com.itwillbs.domain.SearchPageDTO;
 import com.itwillbs.service.CustomerService;
 
 @Controller
@@ -32,14 +29,6 @@ public class CustomerController {
 		
 		System.out.println(search_option);
 		System.out.println(keyword);
-		
-//		SearchDTO searchDTO = new SearchDTO();
-//		searchDTO.setKeyword(keyword);
-//		searchDTO.setSearch_option(search_option);
-//		
-//		List<Map<String, Object>> customerListMap = customerService.getCustomerListMap(searchDTO);
-//		model.addAttribute("customerListMap",customerListMap);
-//		model.addAttribute("search_option",search_option);
 		
 		int pageSize=10;
 		
@@ -87,11 +76,10 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/business/customer/customerDetail", method = RequestMethod.GET)
 	public String customerDetail(HttpServletRequest request, Model model) {
-		
-		int num=Integer.parseInt(request.getParameter("cust_num"));
+		String business_num = request.getParameter("business_num");
 	
-		CustomerDTO customerDTO=customerService.getCustomer(num);
-		
+		CustomerDTO customerDTO=customerService.getCustomer(business_num);
+		System.out.println(customerDTO.getBoss_name());
 		model.addAttribute("customerDTO", customerDTO);
 		
 	return "business/customer/customerDetail";

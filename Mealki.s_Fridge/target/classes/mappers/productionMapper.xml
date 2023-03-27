@@ -28,8 +28,19 @@
 			<if test="item_name != null and !item_name.equals('')">OR item_name like CONCAT('%',#{item_name},'%')</if>
 			<if test="emp_Kname != null and !emp_Kname.equals('')">OR emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
 <!-- 			작업 보류 -->
-<!-- 			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_sdate} and #{manu_date}</if> -->
+			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_date} and #{manu_date}</if>
     	</where>
     </select>
+    
+    <select id="getemp_Knamesession" resultType="com.itwillbs.domain.ProductionDTO">
+    	select distinct e.emp_num, e.emp_Kname
+    	from employee e join productstatus p
+		on e.emp_kname = p.emp_kname
+		where emp_num = #{emp_num}
+    </select>
+        
+<!--     <insert id="getemp_Knamesession"> -->
+<!--     	insert into team1_milki(manu_sdate) value(now()) -->
+<!--     </insert> -->
 
 </mapper>

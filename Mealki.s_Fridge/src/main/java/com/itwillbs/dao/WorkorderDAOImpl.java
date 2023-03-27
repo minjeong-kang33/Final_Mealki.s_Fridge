@@ -19,7 +19,7 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	private static final String namespace="com.itwillbs.mappers.workorderMapper";
 
 	@Override
-	public int getWorkorderCount() {
+	public int getWorkorderCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getWorkorderCount()");
 		
 		return sqlSession.selectOne(namespace+".getWorkorderCount");
@@ -34,7 +34,7 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	}
 	
 	@Override
-	public int getContractCount() {
+	public int getContractCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getConstractCount()");
 		
 		return sqlSession.selectOne(namespace+".getContractCount");
@@ -72,6 +72,28 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		sqlSession.insert(namespace+".insertWorkorder", workorderDTO);
 		sqlSession.insert(namespace+".insertWorkorder_item", workorderDTO);
 	}
+
+	@Override
+	public List<WorkorderDTO> WoUpdateForm(String num) {
+		System.out.println("WorkorderDAOImpl WoUpdateForm()");
+		
+		return sqlSession.selectList(namespace+".WoUpdateForm", num);
+	}
+
+	@Override
+	public void updateWorkorder(WorkorderDTO workorderDTO) {
+		System.out.println("WorkorderDAOImpl updateWorkorder()");
+		
+		sqlSession.update(namespace+".updateWorkorder", workorderDTO);		
+	}
+
+	@Override
+	public void deleteWorkorder(String wo_num) {
+		System.out.println("WorkorderDAOImpl deleteWorkorder()");
+		
+		sqlSession.delete(namespace+".deleteWorkorder", wo_num);
+	}
+
 	
 	
 	

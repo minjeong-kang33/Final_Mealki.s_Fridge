@@ -10,15 +10,15 @@
 	href="${pageContext.request.contextPath}/resources/wms/findWarehouse.css">
 </head>
 <body>
-	<h4>| 식자재 목록</h4>
+	<h3>| 식자재 목록</h3>
 	<table id="example-table-1">
 		<tr>
-			<th>품번</th>
-			<th>품명</th>
-			<th>단위</th>
-			<th>현재고</th>
-			<th>거래처</th>
-			<th>납입단가</th>
+			<th style="background-color: #4B49AC; color: #fff;">품번</th>
+			<th style="background-color: #4B49AC; color: #fff;">품명</th>
+			<th style="background-color: #4B49AC; color: #fff;">단위</th>
+			<th style="background-color: #4B49AC; color: #fff;">현재고</th>
+			<th style="background-color: #4B49AC; color: #fff;">거래처</th>
+			<th style="background-color: #4B49AC; color: #fff;">납입단가</th>
 			
 			
 			<c:forEach var="dto" items="${itemListMap }">

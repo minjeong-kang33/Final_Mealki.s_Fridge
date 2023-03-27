@@ -2,6 +2,7 @@ package com.itwillbs.controller;
 
 
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -12,7 +13,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.service.StoreService;
 
 
@@ -40,6 +43,27 @@ public class StoreController {
 		model.addAttribute("itemListMapStore", itemListMapStore);
 		
 		return "wms/store/findProduct";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/wms/store/addStore", method = RequestMethod.POST)
+	public String addStore(HttpServletRequest request, Model model) {
+		System.out.println("storeController addStore()");
+		
+		 
+		 StoreDTO storeDTO = new StoreDTO();
+		 storeDTO.setOrder_num(request.getParameter("order_num"));
+		 //var item_name = tdArr[1]; //품명
+		 storeDTO.setSto_qty(Integer.parseInt(request.getParameter("order_qty")));
+		 //var stk_qnt = tdArr[3]; //창고재고수량
+		 storeDTO.setSto_progress(request.getParameter("sto_progress"));
+		 storeDTO.setSto_empNum(Integer.parseInt(request.getParameter("sto_empNum")));
+		 storeDTO.setSto_shelf(request.getParameter("sto_shelf"));
+		 storeDTO.setSto_shelfDetail(Integer.parseInt(request.getParameter("sto_shelfDetail")));
+		 
+//		storeService.insertStore(storeDTO);
+		
+		return "1";
 	}
 
 }
