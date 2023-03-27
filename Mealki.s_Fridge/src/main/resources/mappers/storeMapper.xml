@@ -13,17 +13,17 @@
 	</select>
 
 	<select id="getPlaceOrderListStore" resultType="map">
-		select sto_num, ifnull(store.sto_progress,'미입고') as sto_progress, 
+		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
 		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
-		ifnull(sto_remaining,placeorder.order_qty) as sto_remaining,stock.stk_qnt,
-		placeorder.emp_num
+		stock.stk_qnt,placeorder.emp_num
 		from store 
 		right Outer join placeorder on placeorder.order_num = store.order_num
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
+        where COALESCE(store.sto_progress, '미입고')='미입고'
 	</select>
 	
-	<insert id="insertStore">
+<!-- 	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
 			    sto_shelf,sto_shelfDetail,sto_empNum,sto_remaining,order_qty)
 				  values (
@@ -32,7 +32,7 @@
 				    #{sto_shelf},#{sto_shelfDetail},#{sto_empNum},#{sto_remaining},
 				    #{sto_order_qty}
 				  )
-	</insert>
+	</insert> -->
 	
 
 <!-- 

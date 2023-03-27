@@ -11,29 +11,14 @@ public class StoreDTO {
 	private String sto_shelf;
 	private int sto_shelfDetail;
 	private int sto_empNum;
-	private int order_qty;
-	private int sto_remaining;
 	
-	
-	
-	public int getSto_remaining() {
-		return sto_remaining;
-	}
-	public void setSto_remaining(int sto_remaining) {
-		this.sto_remaining = sto_remaining;
-	}
+
 	public String getSto_progress() {
 		return sto_progress;
 	}
 	public void setSto_progress(String sto_progress) {
 		this.sto_progress = sto_progress;
-	}
-	public int getOrder_qty() {
-		return order_qty;
-	}
-	public void setOrder_qty(int order_qty) {
-		this.order_qty = order_qty;
-	}
+
 	public Timestamp getSto_date() {
 		return sto_date;
 	}
