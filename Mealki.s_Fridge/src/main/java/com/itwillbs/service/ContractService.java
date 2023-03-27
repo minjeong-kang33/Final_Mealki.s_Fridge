@@ -2,6 +2,7 @@ package com.itwillbs.service;
 
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
@@ -15,7 +16,9 @@ public interface ContractService {
 	 // Total 개수 얻기 
 	 public int selectContractTotal(ContractDTO dto);
 	 
-	 public int getContractCount();
+	 public int getContractCount(PageDTO pageDTO);
+	 
+	 public List<Map<String, Object>> getContractListMap();
 
 	
 }
