@@ -28,6 +28,9 @@ public class PageDTO {
 	private String wo_num;
 	private int business_num;
 	private Date out_date;
+	private Date dorder_date;
+	private Date dout_date;
+
 	
 	private String Search;
 	
@@ -259,6 +262,26 @@ public class PageDTO {
 
 	public void setWhs_num(String whs_num) {
 		this.whs_num = whs_num;
+	}
+
+
+	public Date getDorder_date() {
+		return dorder_date;
+	}
+
+
+	public void setDorder_date(Date dorder_date) {
+		this.dorder_date = dorder_date;
+	}
+
+
+	public Date getDout_date() {
+		return dout_date;
+	}
+
+
+	public void setDout_date(Date dout_date) {
+		this.dout_date = dout_date;
 	}
 	
 }
