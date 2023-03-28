@@ -60,14 +60,14 @@
 		</c:forEach>
 		<tr>
 			<td>ㄴ</td>
-			<td><b>원재료코드</b></td>
-			<td><b>원재료명</b></td>
+			<td><b>원재료 품목코드</b></td>
+			<td><b>원재료 품목명</b></td>
 			<td><b>수량</b></td>
 		</tr>
 		<c:forEach var="WorkorderDTO" items="${WoInsert}">
 			<tr>
 				<td></td>
-				<td>원재료번호값</td>
+				<td>${WorkorderDTO.ritem_num}</td>
 				<td>${WorkorderDTO.r_name}</td>
 				<td>${WorkorderDTO.wo_qty}EA</td>
 			</tr>

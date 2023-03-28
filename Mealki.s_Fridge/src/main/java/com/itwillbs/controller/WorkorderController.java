@@ -32,15 +32,17 @@ public class WorkorderController {
 		String b=request.getParameter("business_num");
 		String order_date=request.getParameter("order_date");
 		String out_date=request.getParameter("out_date");	
+		String dorder_date=request.getParameter("dorder_date");
+		String dout_date=request.getParameter("dout_date");
 		
-		if(b==null) {
-			b="0";
-		}
+		if(b == "") {b= "0";}
+		if(b == null) {b= "0";}
+		
 		int business_num=Integer.parseInt(b);
 		
 		System.out.println("wo_num : " + wo_num);
 		System.out.println("business_num : " + b);
-		System.out.println("order_date : "+order_date);
+		System.out.println("order_date : "+ order_date);
 		System.out.println("out_date : " + out_date);
 		// 한 화면에 보여줄 글 개수 설정
 		int pageSize=10;
@@ -50,6 +52,20 @@ public class WorkorderController {
 			//pageNum 없으면 1페이지 설정
 			pageNum="1";
 		}
+		
+		if(order_date == "") {
+			order_date=null;
+		}
+		if(out_date == "") {
+			out_date=null;
+		}
+		if(dorder_date == "") {
+			dorder_date=null;
+		}
+		if(dout_date == "") {
+			dout_date=null;
+		}
+				
 		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);	
 		PageDTO pageDTO=new PageDTO();
@@ -59,17 +75,30 @@ public class WorkorderController {
 		pageDTO.setWo_num(wo_num);
 		pageDTO.setBusiness_num(business_num);
 		
+		System.out.println("5");
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		if(order_date!=null) {
+		if(order_date!= null) {
 			java.util.Date date = sdf.parse(order_date);
 			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
 			pageDTO.setOrder_date(order_date1);
 		}
-		if(out_date!=null) {
+		if(out_date != null) {
 			java.util.Date date2 = sdf.parse(out_date);
 			java.sql.Date out_date1 = new java.sql.Date(date2.getTime());  
 			pageDTO.setOut_date(out_date1);
 		}
+		if(dorder_date!= null) {
+			java.util.Date date3 = sdf.parse(dorder_date);
+			java.sql.Date dorder_date1 = new java.sql.Date(date3.getTime());
+			pageDTO.setDorder_date(dorder_date1);
+		}
+		if(dout_date != null) {
+			java.util.Date date4 = sdf.parse(dout_date);
+			java.sql.Date dout_date1 = new java.sql.Date(date4.getTime());  
+			pageDTO.setDout_date(dout_date1);
+		}
+		
+		
 		
 		System.out.println("6");
 		

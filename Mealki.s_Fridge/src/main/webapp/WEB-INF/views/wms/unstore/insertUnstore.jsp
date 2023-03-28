@@ -44,37 +44,7 @@
 	  }).filter(':eq(0)').click();
 	  });
 	  
-	  
-//자동 콤마 넣기
-	  function inputNumberAutoComma(obj) {
-		  
-	        // 콤마( , )의 경우도 문자로 인식되기때문에 콤마를 따로 제거한다.
-	        var deleteComma = obj.value.replace(/\,/g, "");
 
-	        // 콤마( , )를 제외하고 문자가 입력되었는지를 확인한다.
-	        if(isFinite(deleteComma) == false) {
-	            alert("문자는 입력하실 수 없습니다.");
-	            obj.value = "";
-	            return false;
-	        }
-	        
-	        // 기존에 들어가있던 콤마( , )를 제거한 이 후의 입력값에 다시 콤마( , )를 삽입한다.
-	        obj.value = inputNumberWithComma(inputNumberRemoveComma(obj.value));
-	    }
-	   
-	    // 천단위 이상의 숫자에 콤마( , )를 삽입하는 함수
-	    function inputNumberWithComma(str) {
-
-	        str = String(str);
-	        return str.replace(/(\d)(?=(?:\d{3})+(?!\d))/g, "$1,");
-	    }
-
-	    // 콤마( , )가 들어간 값에 콤마를 제거하는 함수
-	    function inputNumberRemoveComma(str) {
-
-	        str = String(str);
-	        return str.replace(/[^\d]+/g, "");
-	    }
 </script>
 
 </head>
@@ -135,8 +105,27 @@
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th></th><th>출고관리번호</th><th>수주번호</th><th>상세</th><th>납품처명</th><th>품명</th><th>주문수량</th><th>재고수량</th>
-								<th>진행현황</th><th>담당자</th><th>입고처리</th></tr>
+								</th><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
+									 <th>납품처명</th><th>품명</th><th>주문수량</th>
+									 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
+									 <th>진행현황</th><th>담당자</th><th>출고처리</th></tr>
+								<c:forEach var="unstoreDTO" items="${unstoreListUnreleased }">
+								<tr>	 
+									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
+									<td>${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
+									<td><input type="button"></td> <!-- 상세 -->
+									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
+									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
+									<td>ㅇㅇ</td><!-- 재고확인 -->
+									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
+									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
+									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
+									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
+									<td><input type="button"></td><!--출고처리 -->
+								</tr>
+								</c:forEach>
+									 
 					        </table>
 					      </form>  
 	<!-- 페이징 -->
@@ -155,7 +144,14 @@
 					        
 			       		 </div>
 		        </div>
-		       	<div id="tab02">tab2 content</div>
+		       	<div id="tab02">
+		       	
+		       	
+		       	tab2 content
+		       	
+		       	
+		       	
+		       	</div>
 	       </div>
             </div>
             

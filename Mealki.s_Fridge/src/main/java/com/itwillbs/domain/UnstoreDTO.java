@@ -4,24 +4,26 @@ import java.sql.Timestamp;
 
 public class UnstoreDTO {
 	private String unsto_num;
-	private String sto_num2;
 	private String wo_num;
 	private String business_num;
 	private Timestamp unsto_date;
 	private String unsto_progress;
 	private String unsto_qty;
+	private int emp_mum;
+	
+	public int getEmp_mum() {
+		return emp_mum;
+	}
+	public void setEmp_mum(int emp_mum) {
+		this.emp_mum = emp_mum;
+	}
 	public String getUnsto_num() {
 		return unsto_num;
 	}
 	public void setUnsto_num(String unsto_num) {
 		this.unsto_num = unsto_num;
 	}
-	public String getSto_num2() {
-		return sto_num2;
-	}
-	public void setSto_num2(String sto_num2) {
-		this.sto_num2 = sto_num2;
-	}
+
 	public String getWo_num() {
 		return wo_num;
 	}
