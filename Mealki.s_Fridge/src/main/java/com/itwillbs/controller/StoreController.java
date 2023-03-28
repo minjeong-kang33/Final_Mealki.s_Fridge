@@ -29,8 +29,15 @@ public class StoreController {
 	public String insertStore(HttpServletRequest request, Model model) {
 		System.out.println("storeController insertStore");
 		
+		//미입고 리스트
 		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore();
 		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
+		
+		//입고리스트
+		List<Map<String, Object>> placeOrderListStorecomplete = storeService.getPlaceOrderListStorecomplete();
+		model.addAttribute("PlaceOrderListStorecomplete", placeOrderListStorecomplete);
+		
+		
 		
 		return "wms/store/insertStore";
 	}

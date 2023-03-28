@@ -145,8 +145,9 @@
 
            <div class="tab">
 	       	<ul class="tabnav">
-	         <li><a href="#tab01">전체</a></li>
+	         <li><a href="#tab01">미입고</a></li>
 	         <li><a href="#tab02">입고완료</a></li>
+	         <li><a href="#tab03">전체</a></li>
 	        </ul>
 	        <div class="tabcontent" >
 		        <div id="tab01" width: 100%;"> <!-- tab 1내용 -->
@@ -169,10 +170,10 @@
 										<td style="display: none;">${StoreDTO.emp_num }</td>
 										<td>
 											<select name="sto_shelf_option" class="search_option">
-					                           <option value="A"> A열 </option>
-					                           <option value="B"> B열 </option>
-					                           <option value="C"> C열 </option>
-					                           <option value="D"> D열 </option>
+					                           <option value="A열"> A열 </option>
+					                           <option value="B열"> B열 </option>
+					                           <option value="C열"> C열 </option>
+					                           <option value="D열"> D열 </option>
 					                        </select>
 										</td>
 										<td>
@@ -204,7 +205,28 @@
 					        
 			       		 </div>
 		        </div>
-		       	<div id="tab02">tab2 content</div>
+		       	<div id="tab02">
+		       		<table border="1" class="store_total_table" style="width: 100%;">
+					<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+					<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th></tr>
+					<c:forEach var="StoreDTO" items="${PlaceOrderListStorecomplete }">
+						<tr>
+						<td style="width: 10px;"> <input type="checkbox"> </td>
+						<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+						<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
+										<td>${StoreDTO.item_name }</td> <!-- 품명 -->
+										<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
+										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
+										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
+										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
+										<td>${StoreDTO.sto_shelf }</td>
+										<td>${StoreDTO.sto_shelfDetail }</td>
+									</tr>
+						 		</c:forEach>
+					        </table>
+		       	</div>
+		       	<div id="tab03"></div>
 	       </div>
             </div>
             

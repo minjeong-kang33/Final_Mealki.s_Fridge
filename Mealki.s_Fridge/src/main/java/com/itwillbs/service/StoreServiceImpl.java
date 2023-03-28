@@ -29,6 +29,13 @@ public class StoreServiceImpl implements StoreService{
 		
 		return storeDAO.getPlaceOrderListStore();
 	}
+	
+	@Override
+	public List<Map<String, Object>> getPlaceOrderListStorecomplete() {
+		System.out.println("StoreServiceImpl getPlaceOrderListStorecomplete");
+		
+		return storeDAO.getPlaceOrderListStorecomplete();
+	}
 
 	@Override
 	public void insertStore(StoreDTO storeDTO) {
@@ -36,6 +43,7 @@ public class StoreServiceImpl implements StoreService{
 		storeDTO.setSto_date(new Timestamp(System.currentTimeMillis()));
 		storeDAO.insertStore(storeDTO);
 	}
+
 
 	
 	
