@@ -37,6 +37,12 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println("StoreDAOImpl getPlaceOrderListStorecomplete");
 		return sqlSession.selectList(namespace + ".getPlaceOrderListStorecomplete");
 	}
+	
+	@Override
+	public List<Map<String, Object>> getPlaceOrderListStoreAll() {
+		System.out.println("StoreDAOImpl getPlaceOrderListStoreAll");
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStoreAll");
+	}
 
 	@Override
 	public void insertStore(StoreDTO storeDTO) {

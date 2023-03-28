@@ -37,7 +37,9 @@ public class StoreController {
 		List<Map<String, Object>> placeOrderListStorecomplete = storeService.getPlaceOrderListStorecomplete();
 		model.addAttribute("PlaceOrderListStorecomplete", placeOrderListStorecomplete);
 		
-		
+		//전체 리스트
+		List<Map<String, Object>> placeOrderListStoreAll = storeService.getPlaceOrderListStoreAll();
+		model.addAttribute("PlaceOrderListStoreAll", placeOrderListStoreAll);		
 		
 		return "wms/store/insertStore";
 	}

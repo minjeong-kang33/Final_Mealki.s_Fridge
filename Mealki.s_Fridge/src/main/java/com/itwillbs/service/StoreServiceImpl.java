@@ -36,6 +36,13 @@ public class StoreServiceImpl implements StoreService{
 		
 		return storeDAO.getPlaceOrderListStorecomplete();
 	}
+	
+	@Override
+	public List<Map<String, Object>> getPlaceOrderListStoreAll() {
+		System.out.println("StoreServiceImpl getPlaceOrderListStoreAll");
+		
+		return storeDAO.getPlaceOrderListStoreAll();
+	}
 
 	@Override
 	public void insertStore(StoreDTO storeDTO) {

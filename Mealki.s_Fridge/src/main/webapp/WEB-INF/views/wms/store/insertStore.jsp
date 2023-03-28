@@ -226,7 +226,61 @@
 						 		</c:forEach>
 					        </table>
 		       	</div>
-		       	<div id="tab03"></div>
+		       	<div id="tab03">
+		       	
+ 				<div id="tab01" width: 100%;"> <!-- tab 1내용 -->
+				        <div class="store_total_div" style="width: 100%;">
+				        <form name="store_form" method="get">
+					        <table border="1" class="store_total_table" style="width: 100%;">
+								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
+						        <c:forEach var="StoreDTO" items="${PlaceOrderListStoreAll }">
+									<tr>
+										<td style="width: 10px;"> <input type="checkbox"> </td>
+										<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+										<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
+										<td>${StoreDTO.item_name }</td> <!-- 품명 -->
+										<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
+										<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
+										<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
+										<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
+										<td style="display: none;">${StoreDTO.emp_num }</td>
+										<td>
+											<c:if test="${StoreDTO.sto_progress eq '미입고' }">
+												<select name="sto_shelf_option" class="search_option">
+						                           <option value="A열"> A열 </option>
+						                           <option value="B열"> B열 </option>
+						                           <option value="C열"> C열 </option>
+						                           <option value="D열"> D열 </option>
+						                        </select>
+					                        </c:if>
+					                        <c:if test="${StoreDTO.sto_progress eq '입고완료' }">
+					                        	${StoreDTO.sto_progress }
+					                        </c:if>
+										</td>
+										<td>
+											<c:if test="${StoreDTO.sto_progress eq '미입고' }">
+											<select name="sto_shelf_option_detail" class="search_option">
+					                           <option value="1"> 1단 </option>
+					                           <option value="2">2단 </option>
+					                           <option value="3">3단 </option>
+					                           <option value="4">4단 </option>
+					                        </select>
+					                        </c:if>
+					                        <c:if test="${StoreDTO.sto_progress eq '입고완료' }">
+					                        	${StoreDTO.sto_shelf }
+					                        </c:if>
+										</td>
+										<td><input type="button" class="store_submit_button" value="입고처리"></td> <!-- 입고처리 -->
+									</tr>
+						 		</c:forEach>
+					        </table>
+					      </form>  
+		       	
+		       	
+		       	
+		       	</div>
 	       </div>
             </div>
             
