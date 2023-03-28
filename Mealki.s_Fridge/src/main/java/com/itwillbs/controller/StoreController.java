@@ -46,24 +46,29 @@ public class StoreController {
 	}
 	
 	@ResponseBody
-	@RequestMapping(value = "/wms/store/addStore", method = RequestMethod.POST)
+	@RequestMapping(value = "/wms/store/addStore", method = RequestMethod.GET)
 	public String addStore(HttpServletRequest request, Model model) {
 		System.out.println("storeController addStore()");
-		
 		 
-		 StoreDTO storeDTO = new StoreDTO();
-		 storeDTO.setOrder_num(request.getParameter("order_num"));
-		 //var item_name = tdArr[1]; //품명
-		 storeDTO.setSto_qty(Integer.parseInt(request.getParameter("order_qty")));
-		 //var stk_qnt = tdArr[3]; //창고재고수량
-		 storeDTO.setSto_progress(request.getParameter("sto_progress"));
-		 storeDTO.setSto_empNum(Integer.parseInt(request.getParameter("sto_empNum")));
-		 storeDTO.setSto_shelf(request.getParameter("sto_shelf"));
-		 storeDTO.setSto_shelfDetail(Integer.parseInt(request.getParameter("sto_shelfDetail")));
+		 System.out.println(request.getParameter("order_qty"));
 		 
-//		storeService.insertStore(storeDTO);
+
+		StoreDTO storeDTO = new StoreDTO();
+			
+		storeDTO.setOrder_num(request.getParameter("order_num"));
+		  //var item_name =tdArr[1]; //품명
+		  storeDTO.setSto_qty(Integer.parseInt(request.getParameter("order_qty")));
+		  //var stk_qnt = tdArr[3]; //창고재고수량
+		  storeDTO.setSto_progress("입고완료");
+		  storeDTO.setSto_empNum(Integer.parseInt(request.getParameter("sto_empNum")));
+		  storeDTO.setSto_shelf(request.getParameter("sto_shelf"));
+		  storeDTO.setSto_shelfDetail(Integer.parseInt(request.getParameter("sto_shelfDetail")));
+
+		  storeService.insertStore(storeDTO);
+			 
+		 return "redirect:/wms/store/insertStore";		
+
 		
-		return "1";
 	}
 
 }
