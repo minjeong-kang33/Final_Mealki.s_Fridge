@@ -1,0 +1,37 @@
+@charset "UTF-8";
+
+table{
+   width: 60%;
+   text-align: center;
+   border-color: #6C7383;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+}
+
+#table_content{
+   table-layout: fixed;
+}
+
+#table_content tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+#table_content th{
+   background-color: #cccbe9;
+   color: black;
+}
+
+  
+  #notice input[type="text"],
+  #notice textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    margin-bottom: 5px;
+  }
+  #button-group {
+    text-align: center;
+  }

@@ -74,7 +74,7 @@
 
 			<div id="wrap">
 			<h3> |거래처 등록 </h3>
-				<form action="${pageContext.request.contextPath}/business/customer/insertCustomerPro" id="insertCust" method="post">
+				<form action="${pageContext.request.contextPath}/business/customer/insertCustomerPro" id="insertCust" method="post" onsubmit="showAlert()">
 				<input type="hidden" name="no" value="{sessionScope.emp_num }">
 					<fieldset>
 						<div class="radio-wrap">
@@ -95,7 +95,7 @@
   								<input type="hidden" name="businessNumcheck" value="" id="businessNumcheck">
   								<div class="divresult"> </div><br>
 							<label>거래처명<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
-								<input type="text" name="cust_name" class="cust_name"><br>
+								<input type="text" name="cust_name" class="cust_name" placeholder="개인일 경우 이름을 입력"><br>
 							<label>대표자명<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<input type="text" name="boss_name" class="boss_name"><br>
 							<label>대표전화<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
@@ -286,6 +286,14 @@
 	
  	});//준비
  </script>
+ 
+ <script type="text/javascript">
+	function showAlert() {
+	  alert("거래처 등록이 완료되었습니다");
+	  return true; // 서버로 데이터 전송
+	}
+ </script>
+ 
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->

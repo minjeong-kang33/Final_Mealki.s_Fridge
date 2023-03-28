@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -51,23 +52,65 @@
           <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-            1.<br>
-            이 안에서 본문을 작성하시되 자유롭게 div를 이용하여 구역을 나누어주세요. <br>
-            본문이 짧으시면 따로 css파일 생성하여 해당 클래스(contentbody)의 height를 1000px이상으로 주시면 됩니다. <br>
-            단 [css/blank.css]에서는 절대 높이조절 하지 말아주세요 다른분들도 다 수정됩니다...대참사 <br>
-            contentbody 는 차후 원활한 css 수정을 위해 본문길이(height) 외에는 건들이지말아주세요. <br> 
-            
-            <br>
-            
-            2.<br>
-            폭감을 짐작하실 수 있도록 background: pink; 스타일을 넣어뒀습니다.<br>
-            어느정도의 폭감인지 확인 후 스타일은 지우고 사용 해 주세요.<Br>
+
+<h2>공지사항</h2>
+<table id="notice">
+<tr><th class="bo_num">번호</th>
+    <th class="bo_title">제목</th>
+    <th class="bo_write">작성자</th>
+    <th class="bo_date">작성일자</th>
+    <th class="bo_count">조회수</th></tr>
+    
+ <c:forEach var="BoardDTO" items="${noticeList}">
+  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/content?num=${BoardDTO.bo_num}'">
+ 	<td>${BoardDTO.bo_num}</td>
+    <td class="left">
+
+    ${BoardDTO.bo_title}</td>
+    <td>${BoardDTO.bo_write}</td>
+    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
+    <td>${BoardDTO.bo_count}</td></tr>  
+ </c:forEach>   
+    
+</table>	
+
+<div id="table_write">
+
+<c:if test="${ ! empty sessionScope.id }">
+
+	<input type="button" value="글쓰기" class="btn btn-primary" 
+	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">
+
+</c:if>
+</div>
+
+	<div id="table_search"> 
+       <form action="${pageContext.request.contextPath}/business/customer/noticeList" id="selectBox" name="search" method="get">
+	            <select name="search_option" class="search_option">
+	            	<option value=""> 선택하세요 </option>
+	            	<option value="bo_name"> 작성자 </option>
+	            	<option value="bo_title"> 제목 </option>
+	            </select>
+	           <input type="text" name="keyword" class="input-search" >
+	           <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
+        </form>
+     </div>
             
  <!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+</c:if>
 <!-- 페이징 끝 -->
             </div>
             

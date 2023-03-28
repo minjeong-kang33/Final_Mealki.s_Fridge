@@ -65,9 +65,7 @@ public class CustomerController {
 		pageDTO.setPageCount(pageCount);
 		pageDTO.setSearch_option(search_option);
 		pageDTO.setKeyword(keyword);
-		
-		System.out.println(count);
-		System.out.println(customerList.get(0).getBoss_name());
+	
 		model.addAttribute("customerList", customerList);
 		model.addAttribute("pageDTO", pageDTO);
 		
@@ -79,7 +77,7 @@ public class CustomerController {
 		String business_num = request.getParameter("business_num");
 	
 		CustomerDTO customerDTO=customerService.getCustomer(business_num);
-		System.out.println(customerDTO.getBoss_name());
+
 		model.addAttribute("customerDTO", customerDTO);
 		
 	return "business/customer/customerDetail";
@@ -107,7 +105,7 @@ public class CustomerController {
 		customerService.insertCustomer(customerDTO);
 		
 //		주소줄 변경하면서 이동
-		return "redirect:/business/customer/customerList";
+		return "business/customer/insertCustomer";
 	}
 	
 
