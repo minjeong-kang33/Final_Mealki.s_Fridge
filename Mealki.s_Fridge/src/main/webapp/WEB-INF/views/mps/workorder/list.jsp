@@ -61,10 +61,10 @@
 		<!-- 검색 -->
 		<div id="table_search">
 		<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get">
-		작업지시번호  <input type="text" name="wo_num" class="input_box">
-		수주번호  <input type="text" name="business_num" class="input_box">
-		작업지시일<input type="date" name="order_date">
-		납품예정일<input type="date" name="out_date">
+		작업지시번호  <input type="text" value="${param.wo_num}" name="wo_num" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력">
+		작업지시일<input type="date" value="${param.order_date}" name="order_date"> ~ <input type="date" value="${param.dout_date}" name="dorder_date"><br>
+		수주번호  <input type="text" value="${param.business_num}" name="business_num" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력">
+		납품예정일<input type="date" value="${param.out_date}" name="out_date"> ~ <input type="date" value="${param.dout_date}" name="dout_date">
 		<button type="submit" value="조회" class="btn">조회</button>
 		</form>
 		</div>
@@ -93,8 +93,10 @@
 							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
-
+						
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
+						
+						
 						<tr onClick="WoUpdate();">
 							<script type="text/javascript">
 							function WoUpdate() {
@@ -116,7 +118,17 @@
 							<td>${WorkorderDTO.item_name}</td>
 							<td>${WorkorderDTO.wo_qty}</td>
 							<td>${WorkorderDTO.pr_sum}</td>
-							<td>${WorkorderDTO.wo_state}</td>
+							<td>
+							<c:choose>
+							<c:when test="${WorkorderDTO.pr_sum == '0'}">
+							대기
+							</c:when>
+							<c:otherwise>
+							${WorkorderDTO.wo_state}
+							</c:otherwise>
+							</c:choose>
+							
+							</td>
 						</tr>
 						</c:forEach>
 						
@@ -125,11 +137,12 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
-
-							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
-							</c:forEach>
-
+							
+							
+								<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+								<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
+								</c:forEach>
+							
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
