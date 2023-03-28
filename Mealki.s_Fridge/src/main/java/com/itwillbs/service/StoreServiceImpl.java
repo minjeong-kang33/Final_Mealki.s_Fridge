@@ -30,12 +30,12 @@ public class StoreServiceImpl implements StoreService{
 		return storeDAO.getPlaceOrderListStore();
 	}
 
-//	@Override
-//	public void insertStore(StoreDTO storeDTO) {
-//		System.out.println("StoreServiceImpl insertStore");
-//		storeDTO.setSto_date(new Timestamp(System.currentTimeMillis()));
-//		storeDAO.insertStore(storeDTO);
-//	}
+	@Override
+	public void insertStore(StoreDTO storeDTO) {
+		System.out.println("StoreServiceImpl insertStore");
+		storeDTO.setSto_date(new Timestamp(System.currentTimeMillis()));
+		storeDAO.insertStore(storeDTO);
+	}
 
 	
 	

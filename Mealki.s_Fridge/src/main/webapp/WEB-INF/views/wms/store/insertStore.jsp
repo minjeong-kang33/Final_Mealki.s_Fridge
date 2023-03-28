@@ -94,7 +94,9 @@
  					//result.trim() 결과값 앞뒤 공백 제거
  					if(result.trim()=="1"){
  						alert('성공2');
+ 						
  					} else {
+ 						
  						alert('실패');
  					}
  				},
