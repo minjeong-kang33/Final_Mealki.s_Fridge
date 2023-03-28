@@ -25,8 +25,6 @@ public class PageDTO {
 	private String wo_num;
 	private int business_num;
 	private Date out_date;
-
-	
 	
 	@Override
 	public String toString() {
@@ -217,6 +215,5 @@ public class PageDTO {
 	public void setOut_date(Date out_date) {
 		this.out_date = out_date;
 	}
-
 	
 }
