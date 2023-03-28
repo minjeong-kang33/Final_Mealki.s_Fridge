@@ -15,7 +15,8 @@
     						business_date,
     						out_date,
     						incharge_code,
-    						incharge_name) 
+    						incharge_name,
+    						contract_qty) 
     	VALUES(#{business_num},
     			#{cust_num},
     			#{item_num},
@@ -24,7 +25,8 @@
     			#{business_date},
     			#{out_date},
     			#{incharge_code},
-    			#{incharge_name})
+    			#{incharge_name},
+    			#{contract_qty})
     </insert>
 	
 	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
@@ -64,6 +66,11 @@
 		FROM contract, customer
 		WHERE contract.cust_num = customer.cust_num
 		
+	</select>
+	
+	<select id="getBoard" resultType="com.itwillbs.domain.ContractDTO">
+		select * from contract
+		where business_num = #{business_num}
 	</select>
 
 

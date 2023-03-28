@@ -30,28 +30,21 @@ import com.itwillbs.service.ContractService;
 			return "business/contract/contractWrite";
 		}
 		
-		@RequestMapping(value="contract/WriteSave")
-		@ResponseBody
-		public String contractInsert(ContractDTO dto) throws Exception {
+		@RequestMapping(value="/contract/WriteSave" , method = RequestMethod.POST)
+		public String contractInsert(ContractDTO dto) {
 			System.out.println("contractWriteSave()");
 			contractService.insertBoard(dto);
-			return "redirect:business/contract/contractList";
+			return "redirect:/business/contract/contractList";
 			
 			
-//			public String result = contractService.insertBoard(dto);
-//			String message = "";
-//			if(result == null) {
-//				message = "ok";  //null성공
-//			}else {
-//				message = "fail";
-//			}
-//			return message;
+			
 		}
 		
 		
 		@RequestMapping(value = "business/contract/contractList", method=RequestMethod.GET)
 		public String contractList(HttpServletRequest request, Model model, ContractDTO dto) {
 			System.out.println("contractController contractList()");
+			
 			//검색어 가져오기
 			String search = request.getParameter("search");
 			String search_option =request.getParameter("search_option");
@@ -121,5 +114,17 @@ import com.itwillbs.service.ContractService;
 	
 				return "business/contract/findContract";
 		}
+			
+			@RequestMapping(value="/business/contract/content" , method = RequestMethod.GET)
+				public String content(HttpServletRequest request, Model model) {
+				System.out.println("contractController content()");
+				int business_num=Integer.parseInt(request.getParameter("business_num"));
+				
+				ContractDTO contractDTO=contractService.getBoard(business_num);
+				
+				model.addAttribute("contractDTO", contractDTO);
+				return "/business/contract/content";
+					
 	}
+}
 

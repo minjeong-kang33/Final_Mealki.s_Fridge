@@ -19,6 +19,8 @@ public interface ContractService {
 	 public int getContractCount(PageDTO pageDTO);
 	 
 	 public List<Map<String, Object>> getContractListMap();
+	
+	 public ContractDTO getBoard(int business_num);
 
 	
 }
