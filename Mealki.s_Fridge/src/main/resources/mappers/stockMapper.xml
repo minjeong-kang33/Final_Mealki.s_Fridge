@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.stockMapper">
+	<select id="getWarehouseList"
+		resultType="com.itwillbs.domain.WarehouseDTO">
+		select * from warehouse
+	</select>
+
+	<select id="getItem_typeList"
+		resultType="com.itwillbs.domain.ItemDTO">
+		select distinct item_type from products
+	</select>
+	
+	<!-- 검색 조건문 -->
+	<select id="getStockList"
+		resultType="com.itwillbs.domain.StockDTO">
+		select * from stock
+		where 1=1
+		<if test="item_type != null">
+			and item_type = #{item_type}
+		</if>
+		<if test="item_num != null">
+			and item_num like CONCAT('%', #{item_num}, '%')
+		</if>
+		<if test="item_name != null">
+			and item_name like CONCAT('%', #{item_name}, '%')
+		</if>
+		<if test="whs_num != null">
+			and whs_num = #{whs_num}
+		</if>
+		limit #{startRow}, #{pageSize} 
+	</select>
+	
+	<select id="getStockListCount"
+		resultType="com.itwillbs.domain.StockDTO">
+		select * from stock
+		where 1=1
+		<if test="item_type != null">
+			and item_type = #{item_type}
+		</if>
+		<if test="item_num != null">
+			and item_num like CONCAT('%', #{item_num}, '%')
+		</if>
+		<if test="item_name != null">
+			and item_name like CONCAT('%', #{item_name}, '%')
+		</if>
+		<if test="whs_num != null">
+			and whs_num = #{whs_num}
+		</if>
+	</select>
+	
+</mapper>
