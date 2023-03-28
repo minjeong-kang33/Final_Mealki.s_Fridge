@@ -1,15 +1,12 @@
 package com.itwillbs.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
 import com.itwillbs.dao.ProductionDAO;
 import com.itwillbs.domain.ProductionDTO;
@@ -28,17 +25,26 @@ public class ProductionServiceImpl implements ProductionService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getProductionWriteMap(ProductionDTO productDTO) {
-		System.out.println("ProductionServiceImpl ListMap()");
-		// TODO Auto-generated method stub
-		return productionDAO.getProductionWriteMap(productDTO);
-	}
-
-	@Override
 	public ProductionDTO getemp_Knamesession(int emp_num) {
 		System.out.println("ProductionServiceImpl getemp_Knamesession()");
 		
 		return productionDAO.getemp_Knamesession(emp_num);
+	}
+
+	@Override
+	public List<Map<String, Object>> getselectList(ProductionDTO productionList) {
+		System.out.println("ProductionServiceImpl getselectList()");
+		productionList.setManu_sdate(new Timestamp(System.currentTimeMillis()));
+		productionList.setManu_date(new Timestamp(System.currentTimeMillis()));
+		return productionDAO.getselectList(productionList);
+	}
+
+	@Override
+	public void insertProduct(ProductionDTO productDTO) {
+		System.out.println("ProductionServiceImpl insertProduct()");
+		productDTO.setManu_sdate(new Timestamp(System.currentTimeMillis()));
+		productDTO.setManu_date(new Timestamp(System.currentTimeMillis()));
+		productionDAO.insertProduct(productDTO);
 	}
 
 }

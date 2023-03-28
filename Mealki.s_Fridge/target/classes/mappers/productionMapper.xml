@@ -8,7 +8,7 @@
     </select>
     
     
-    <!-- 	https://mybatis.org/mybatis-3/ -->
+<!--     	https://mybatis.org/mybatis-3/ -->
     <resultMap type="map" id="productionMap">
 <!--    column="디비열이름" property="멤버변수이름" -->
     	<id column="manu_num" property="manu_num"/>
@@ -28,7 +28,7 @@
 			<if test="item_name != null and !item_name.equals('')">OR item_name like CONCAT('%',#{item_name},'%')</if>
 			<if test="emp_Kname != null and !emp_Kname.equals('')">OR emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
 <!-- 			작업 보류 -->
-			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_date} and #{manu_date}</if>
+<!-- 			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_sdate} and #{manu_date}</if> -->
     	</where>
     </select>
     
@@ -38,9 +38,14 @@
 		on e.emp_kname = p.emp_kname
 		where emp_num = #{emp_num}
     </select>
-        
-<!--     <insert id="getemp_Knamesession"> -->
-<!--     	insert into team1_milki(manu_sdate) value(now()) -->
-<!--     </insert> -->
+    
+    <select id="getselectList" resultMap="productionMap">
+    	select distinct manu_name, wo_num, item_name, manu_code, item_num from productstatus;
+    </select>
+    
+    <insert id="insertProduct">
+    	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, manu_tocount, manu_fail, emp_Kname, manu_date, manu_sdate) 
+    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num},#{manu_tocount},#{manu_fail},#{emp_Kname},DATE_FORMAT(#{manu_date}, '%Y%m%d%H%i%s'),DATE_FORMAT(#{manu_sdate}, '%Y%m%d%H%i%s'))
+    </insert>
 
 </mapper>
