@@ -18,7 +18,7 @@ public class StoreDTO {
 	}
 	public void setSto_progress(String sto_progress) {
 		this.sto_progress = sto_progress;
-
+	}
 	public Timestamp getSto_date() {
 		return sto_date;
 	}

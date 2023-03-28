@@ -53,8 +53,7 @@
 	$(function(){
 	$(".store_submit_button").click(function(){ 
 			
-			alert("dd");
-			var str = ""
+			var str = "";
 			var tdArr = new Array();	// 배열 선언
 			var store_submit_button = $(this);
 			
@@ -80,16 +79,21 @@
 			
 			console.log("배열에 담긴 값 : "+tdArr);
 			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
-		
+			alert(tdArr);
+			
 			$.ajax({
  				url:'addStore',
- 				type :'POST',
- 				data:{dd:dd},
+ 				type :'GET',
+ 				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
+ 					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
+ 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
  				success:function(result){
+ 					
+ 					 console.log(result);  // 결과값 확인
+ 					
  					//result.trim() 결과값 앞뒤 공백 제거
- 					alert(tdArr);
  					if(result.trim()=="1"){
- 						alert('성공2');;
+ 						alert('성공2');
  					} else {
  						alert('실패');
  					}
@@ -100,17 +104,6 @@
 
  				}
  			});
-			
-/* 			$.ajax({
- 				url:'addStore',
- 				type : 'POST',
- 				data:{tdArr:tdArr},
- 				success:function(result){
- 					//result.trim() 결과값 앞뒤 공백 제거
- 					if(result=1){alert('성공2');} 
- 					else {alert('실패');}
- 				}
- 			}); */
 	});	
 	});	
 </script>
