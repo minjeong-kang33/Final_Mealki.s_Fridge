@@ -11,6 +11,10 @@ public interface StoreDAO {
 	
 	public List<Map<String, Object>> getPlaceOrderListStore();
 	
+	public List<Map<String, Object>> getPlaceOrderListStorecomplete();
+	
+	public List<Map<String, Object>> getPlaceOrderListStoreAll();
+	
 	public void insertStore(StoreDTO storeDTO);
 	
 }

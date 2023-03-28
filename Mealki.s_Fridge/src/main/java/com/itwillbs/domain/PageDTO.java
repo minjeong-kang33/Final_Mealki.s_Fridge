@@ -21,6 +21,9 @@ public class PageDTO {
 	private String item_name;
 	private Date order_date;
 	private Date due_date;
+	private String item_type;
+	private String item_num;
+	private String whs_num;
 	
 	private String wo_num;
 	private int business_num;
@@ -226,6 +229,36 @@ public class PageDTO {
 
 	public void setSearch(String search) {
 		Search = search;
+	}
+
+
+	public String getItem_type() {
+		return item_type;
+	}
+
+
+	public void setItem_type(String item_type) {
+		this.item_type = item_type;
+	}
+
+
+	public String getItem_num() {
+		return item_num;
+	}
+
+
+	public void setItem_num(String item_num) {
+		this.item_num = item_num;
+	}
+
+
+	public String getWhs_num() {
+		return whs_num;
+	}
+
+
+	public void setWhs_num(String whs_num) {
+		this.whs_num = whs_num;
 	}
 	
 }

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.management.NotificationEmitter;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.taglibs.standard.extra.spath.SPathFilter;
@@ -30,6 +31,18 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println("StoreDAOImpl getPlaceOrderListStore");
 		return sqlSession.selectList(namespace + ".getPlaceOrderListStore");
 	}
+	
+	@Override
+	public List<Map<String, Object>> getPlaceOrderListStorecomplete() {
+		System.out.println("StoreDAOImpl getPlaceOrderListStorecomplete");
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStorecomplete");
+	}
+	
+	@Override
+	public List<Map<String, Object>> getPlaceOrderListStoreAll() {
+		System.out.println("StoreDAOImpl getPlaceOrderListStoreAll");
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStoreAll");
+	}
 
 	@Override
 	public void insertStore(StoreDTO storeDTO) {
@@ -44,6 +57,7 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println(storeDTO.getSto_empNum());
 		  
 		sqlSession.insert(namespace + ".insertStore", storeDTO);
+		sqlSession.update(namespace + ".updateStock", storeDTO);
 
 	}
 

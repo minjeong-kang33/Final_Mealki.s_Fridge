@@ -56,17 +56,12 @@
             <div id="top_table" >
                <div id="table_search">
                <div id="select_search">
-                     <form name="search" method="get" action="${pageContext.request.contextPath}/employee/employeeList" id="selectBox" name="selectBox2" onsubmit="return fun1()">
-                        <select name="search_option" class="search_option">
-                           <option value=""> 선택하세요 </option>
-                           <option value="emp_Kname"> 이름 </option>
-                           <option value="emp_num"> 사번 </option>
-                           <option value="emp_tel"> 내선번호 </option>
-                           <option value="emp_phone"> 휴대폰번호 </option>
-                           <option value="dept_num"> 부서 </option>
-                        </select>
-                        <span id="text_search"><input class="input-search" type="text" name="keyword"></span>
-	                  	<button class="btn btn-primary" type="button" id="IconButton6" style="margin-left: 50%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">검색</button>
+                     <form name="search" method="get" action="${pageContext.request.contextPath}/wms/stock/stocksearch">
+                       <span>상품유형 <input type="text" name="item_type" id="finditem_type" style="margin-left: 5px;"></span>
+			       	   <span style="margin-left: 10px;">품번<input type="text" name="item_num" style="margin-left: 5px;"></span>
+			   		   <span style="margin-left: 10px;">품명<input type="text" name="item_name" style="margin-left: 5px;"></span>
+			      	   <span style="margin-left: 10px;">보관창고<input type="text" name="whs_num" id="findWarehouse" style="margin-left: 5px;"></span>
+			      <button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
                      </form>
                </div>
 
@@ -78,17 +73,31 @@
                <h4> | 재고 정보 </h4>
                <div class="scrollBar">
             <table border="1" id="stock_search_table">
-            	<tr><th>품번</th><th>품명</th><th>현재고</th><th>보관창고</th><th>실사량</th></tr>
+            	<tr><th>상품유형</th><th>품번</th><th>품명</th><th>현재고</th><th>보관창고</th><th>실사량</th></tr>
 
-					<c:forEach var="dto" items="${employeeListMap }">
+					<c:forEach var="StockDTO" items="${stockList }">
 	    		
-		    		<tr class="emp_search_table_tr"><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_position}</td>
-		    		<td>${dto.dept_position}</td><td>${dto.dept_duty}</td><td>${dto.emp_joinDate}</td>
-		    		<td>${dto.emp_tel}</td><td>${dto.emp_email}</td></tr>
+		    		<tr class="emp_search_table_tr">
+		    		 <td>${StockDTO.item_type}</td> <td>${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
+		    		<td>${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
+		    		<td><input type="text" name="new_stk_qnt"></td></tr>
 		    		
 					</c:forEach>
  
             </table>
+            <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
+				</c:if>
+				
+				<c:if test="${pageDTO.currentPage > 0}">
+					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
+					</c:forEach>
+				</c:if>
+
+				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>
+				</c:if> 
             </div>
            
            
@@ -109,8 +118,7 @@
         </div> -->
         
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
-        
-        
+
 <!-- 푸터시작 -->
      <jsp:include page="../../main/footer.jsp" /> 
 <!--  푸터 끝 -->
@@ -123,128 +131,27 @@
   </div>
   <!-- container-scroller -->
 <script type="text/javascript">
-/* 담당자 찾기 (팝업 방법1)*/
- var openWin;
-
- function findEmployee()
- {
-  window.name = "parentForm";
-  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findEmp_num",
-           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
- }
-
-/* 입고창고 찾기 (팝업 방법2)*/
- $('#findWarehouse').on("click",function(e){
+/* 상품유형 찾기 (팝업)*/
+$('#finditem_type').on("click",function(e){
 	
-	let popUrl = "${pageContext.request.contextPath}/wms/placeorder/findWarehouse";
+	let popUrl = "${pageContext.request.contextPath}/wms/stock/finditem_type";
 	let popOption = "width = 300px, height=300px, top=300px, left=300px, scrollbars=no, resizable = no";
 	
-	window.open(popUrl,"입고 창고",popOption);
+	window.open(popUrl,"상품 유형",popOption);
 	
 }); 
 
- /* 상품찾기 */    
- var openWin;
-
- function findProducts()
- {
-  window.name = "parentForm";
-  openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
-           "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");    
- }
-
-/* 금액 계산하기 */
- $("#order_qty").change(function(){
-	var order_qty = document.getElementById('order_qty').value;
-	var supply_price = document.getElementById('supply_price').value;
-	order_sum.value = order_qty*supply_price;
-	order_vat.value = (order_qty*supply_price)*0.1;
+/* 입고창고 찾기 (팝업)*/
+ $('#findWarehouse').on("click",function(e){
 	
-	});
-
-</script>
-<script type="text/javascript">
-/* null값 체크 */
-function check_input() {
-    if (document.OFsearch.order_date.value.trim()==""){
-        alert("발주일을 선택하세요");
-        document.OFsearch.order_date.focus();
-        return;
-    }
-    if (document.OFsearch.due_date.value.trim()==""){
-        alert("납기 희망일을 선택하세요");
-        document.OFsearch.due_date.focus();
-        return;
-    }
-    if (document.OFsearch.emp_num.value.trim()==""){
-        alert("담당자를 선택하세요");
-        document.OFsearch.emp_num.focus();
-        return;
-    }
-    if (document.OFsearch.whs_num.value.trim()==""){
-        alert("상품이 입고될 창고를 선택하세요");
-        document.OFsearch.whs_num.focus();
-        return;
-    }
-    if (document.OFsearch.item_name.value.trim()==""){
-        alert("발주할 상품을 선택하세요");
-        document.OFsearch.item_name.focus();
-        return;
-    }
-    if (document.OFsearch.order_qty.value.trim()==""){
-        alert("물품의 수량을 선택하세요");
-        document.OFsearch.order_qty.focus();
-        return;
-    }
-    alert('발주에 성공하였습니다.');
-    document.OFsearch.submit();
- }
-</script>
-<script> 
-//검색 체크
-function fun1() {
+	let popUrl = "${pageContext.request.contextPath}/wms/stock/findWarehouse";
+	let popOption = "width = 300px, height=300px, top=300px, left=300px, scrollbars=no, resizable = no";
 	
-	if(document.search.order_num_keyword.value=="") {
-		alert("order_num_keyword 선택하세요")
-		document.search.search_option.focus();
-		return false;
-	}else if(document.search.order_date_keyword.value=="") {
-		alert("order_date_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}else if(document.search.due_date_keyword.value=="") {
-		alert("due_date_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}else if(document.search.item_name_keyword.value=="") {
-		alert("item_name_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}
+	window.open(popUrl,"창고 목록",popOption);
 	
-	document.search.submit();
-}
+}); 
 </script>
-<script>
-/* 오늘 날짜 구하기 (발주일 고정값) */
-document.getElementById('order_date').valueAsDate = new Date();
 
-/* 내일 날짜 구하기 (납기일 기본값)*/
-var today = new Date();
-var tomorrow = new Date(today.setDate(today.getDate() + 1));
-document.getElementById('due_date').valueAsDate = tomorrow;
-
-/* 납기일 체크 */
-function date_check() {
-	 if (document.OFsearch.due_date.value.trim() <= document.OFsearch.order_date.value.trim()){
-        alert("납기일은 내일 이후로 지정 가능합니다.");
-        
-        document.OFsearch.due_date.focus();
-        document.getElementById('due_date').valueAsDate = tomorrow;
-        return;
-    } 
-}
-</script>
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->

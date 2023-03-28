@@ -95,6 +95,10 @@ public class PlaceOrderController {
 		pageDTO.setPageCount(pageCount);
 		
 		model.addAttribute("orderList", orderList);
+		model.addAttribute("order_num",order_num);
+		model.addAttribute("item_name",item_name);
+		model.addAttribute("order_date",order_date);
+		model.addAttribute("due_date",due_date);
 		model.addAttribute("pageDTO", pageDTO);
 		
 		return "wms/placeorder/orderForm";

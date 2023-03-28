@@ -23,6 +23,27 @@
         where COALESCE(store.sto_progress, '미입고')='미입고'
 	</select>
 	
+	<select id="getPlaceOrderListStorecomplete" resultType="map">
+		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
+		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
+		stock.stk_qnt,placeorder.emp_num, sto_shelfDetail, sto_shelf
+		from store 
+		right Outer join placeorder on placeorder.order_num = store.order_num
+		left outer join products on placeorder.item_num = products.item_num
+		left join stock on products.item_num = stock.item_num
+        where COALESCE(store.sto_progress, '미입고')='입고완료'
+	</select>
+	
+		<select id="getPlaceOrderListStoreAll" resultType="map">
+		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
+		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
+		stock.stk_qnt,placeorder.emp_num, sto_shelfDetail, sto_shelf
+		from store 
+		right Outer join placeorder on placeorder.order_num = store.order_num
+		left outer join products on placeorder.item_num = products.item_num
+		left join stock on products.item_num = stock.item_num
+	</select>
+	
 	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
 			    sto_shelf,sto_shelfDetail,sto_empNum)
@@ -38,6 +59,16 @@
 				  )
 	</insert>
 	
+	<update id="updateStock">
+	UPDATE stock
+	SET stock.stk_qnt = stock.stk_qnt + (SELECT sto_qty
+						 FROM store
+						 WHERE order_num = #{order_num})
+	WHERE item_num = (SELECT item_num
+					  FROM placeorder
+					  WHERE order_num = #{order_num})
+	
+	</update>
 
 <!-- 
 select s.sto_num, s.sto_progress, st.stk_qnt
