@@ -21,11 +21,11 @@
     </select>
     
     <select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, w.business_num, w.wo_date, c.out_date, w.wo_qty, 
-			   w.manu_name, w.item_name, e.emp_Kname as wo_empname, IFNULL(sum(p.manu_tocount),0) as pr_sum, 
+		select w.wo_num, w.business_num, w.wo_date, date_format(c.out_date, '%Y-%m-%d') as out_date, w.wo_qty, 
+			   w.manu_name, w.item_name, e.emp_Kname as wo_empname, sum(p.manu_tocount) as pr_sum, 
 				(case 
  					when IFNULL(sum(p.manu_tocount),0) <![CDATA[<]]> w.wo_qty then "진행중"
-					when IFNULL(sum(p.manu_tocount),0) = w.wo_qty then "완료" else "대기"
+					when IFNULL(sum(p.manu_tocount),0) = w.wo_qty then "완료"
       			end) as wo_state
 		from employee e join workorder w
 		on w.wo_emp=e.emp_num
@@ -34,17 +34,23 @@
 		left outer join productstatus p
 		on p.wo_num=w.wo_num
 		where wo_available=1
-		<if test="wo_num != null">
-		 and w.wo_num like CONCAT('%', #{wo_num}, '%')
+		<if test="wo_num != &quot;&quot; &amp;&amp; wo_num != null">
+		 and RIGHT(w.wo_num,10) = #{wo_num}
 		</if>
 		<if test="business_num != 0">
 		 and w.business_num = #{business_num}
 		</if>
 		<if test="order_date != null">
-		 and w.wo_date = #{order_date}
+		 and date_format(w.wo_date, '%Y-%m-%d') <![CDATA[>=]]> #{order_date}
+		</if>
+		<if test="dorder_date != null">
+		 and date_format(w.wo_date, '%Y-%m-%d') <![CDATA[<=]]> #{dorder_date}
 		</if>
 		<if test="out_date != null">
-		 and c.out_date = #{out_date}
+		 and date_format(c.out_date, '%Y-%m-%d') <![CDATA[>=]]> #{out_date}
+		</if>
+		<if test="dout_date != null">
+		 and date_format(c.out_date, '%Y-%m-%d') <![CDATA[<=]]> #{out_date}
 		</if>
 		order by wo_date desc
 		limit #{startRow}, #{pageSize}
@@ -68,7 +74,7 @@
 	</select>
 	
 	<select id="WoInsert" resultType="com.itwillbs.domain.WorkorderDTO">
-		select c.business_num, c.item_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		select c.business_num, r.item_num as ritem_num, c.item_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
 		from recipe r, contract c, products p
 		where r.item_name=c.item_name
 		and r.item_name=p.item_name

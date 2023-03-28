@@ -22,6 +22,7 @@ public class WorkorderDTO {
 	private String contract_qty;
 	// recipe 관련
 	private String r_name;
+	private String ritem_num;
 	
 	private int pr_sum;
 	
@@ -126,6 +127,12 @@ public class WorkorderDTO {
 	}
 	public void setPr_sum(int pr_sum) {
 		this.pr_sum = pr_sum;
+	}
+	public String getRitem_num() {
+		return ritem_num;
+	}
+	public void setRitem_num(String ritem_num) {
+		this.ritem_num = ritem_num;
 	}
 
 	
