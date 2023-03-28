@@ -66,7 +66,7 @@ public class StoreController {
 
 		  storeService.insertStore(storeDTO);
 			 
-		 return "redirect:/wms/store/insertStore";		
+		 return "wms/store/insertStore";		
 
 		
 	}
