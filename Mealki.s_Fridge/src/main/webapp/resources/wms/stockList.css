@@ -18,8 +18,9 @@
 }
 
 #select_search{
-   width: 60%;
+   width: 100%;
    float: left;
+   padding-top: 10px;
    margin-left: 10px;
 }
 
@@ -34,9 +35,13 @@
 }
 
 table{
-   width: 80%;
+   width: 100%;
    text-align: center;
    border-color: #6C7383;
+}
+
+form{
+	width: 80%;
 }
 
 h4{
