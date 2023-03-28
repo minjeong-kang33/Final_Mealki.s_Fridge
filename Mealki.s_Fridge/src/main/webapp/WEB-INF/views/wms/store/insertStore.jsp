@@ -162,9 +162,7 @@
 	         <li><a href="#tab02">입고완료</a></li>
 	        </ul>
 	        <div class="tabcontent" >
-		        <div id="tab01" style="background-color: pink; width: 100%;"> <!-- tab 1내용 -->
-		        
-		        	
+		        <div id="tab01" width: 100%;"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
