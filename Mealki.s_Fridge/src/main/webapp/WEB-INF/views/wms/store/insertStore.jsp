@@ -90,13 +90,8 @@
  				success:function(result){
  				
  				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
- 				
+ 				location.reload();
  				},
- 				error:function(request, status, error){
-
- 					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
- 				}
  			});
 	});	
 	});	
