@@ -23,16 +23,20 @@
         where COALESCE(store.sto_progress, '미입고')='미입고'
 	</select>
 	
-<!-- 	<insert id="insertStore">
+	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
-			    sto_shelf,sto_shelfDetail,sto_empNum,sto_remaining,order_qty)
+			    sto_shelf,sto_shelfDetail,sto_empNum)
 				  values (
 				    concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
-				    #{order_num}, #{sto_date}, #{sto_progress}, #{sto_qty}, 
-				    #{sto_shelf},#{sto_shelfDetail},#{sto_empNum},#{sto_remaining},
-				    #{sto_order_qty}
+				    #{order_num}, 
+				    #{sto_date}, 
+				    #{sto_progress}, 
+				    #{sto_qty}, 
+				    #{sto_shelf},
+				    #{sto_shelfDetail},
+				    #{sto_empNum}
 				  )
-	</insert> -->
+	</insert>
 	
 
 <!-- 
