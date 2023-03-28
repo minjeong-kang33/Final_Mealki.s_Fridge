@@ -1,5 +1,7 @@
 package com.itwillbs.domain;
 
+import java.sql.Timestamp;
+
 public class ProductionDTO {
 	private int manu_num;
 	private String wo_num;
@@ -10,8 +12,8 @@ public class ProductionDTO {
 	private int manu_tocount;
 	private int manu_fail;
 	private String emp_Kname;
-	private String manu_sdate;
-	private String manu_date;
+	private Timestamp manu_sdate;
+	private Timestamp manu_date;
 	private int emp_num; 
 	
 	public int getManu_num() {
@@ -68,16 +70,16 @@ public class ProductionDTO {
 	public void setEmp_Kname(String emp_Kname) {
 		this.emp_Kname = emp_Kname;
 	}
-	public String getManu_sdate() {
+	public Timestamp getManu_sdate() {
 		return manu_sdate;
 	}
-	public void setManu_sdate(String manu_sdate) {
+	public void setManu_sdate(Timestamp manu_sdate) {
 		this.manu_sdate = manu_sdate;
 	}
-	public String getManu_date() {
+	public Timestamp getManu_date() {
 		return manu_date;
 	}
-	public void setManu_date(String manu_date) {
+	public void setManu_date(Timestamp manu_date) {
 		this.manu_date = manu_date;
 	}
 	public int getEmp_num() {

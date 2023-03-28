@@ -24,7 +24,26 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<!--   Jquery -->
 
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script>
+	$(document).ready(function(){
+			$("#lineselect").on("change", function () {
+			var value = $(this).val();	//과일명
+			var wonum = $(this).find("option:selected").data("wonum"); //가격
+			var item = $(this).find("option:selected").data("itemname");
+			var manucode = $(this).find("option:selected").data("manucode");
+			var itemnum = $(this).find("option:selected").data("itemnum");
+			$('input[name=manu_name]').attr('value',value);
+			$('input[name=wo_num]').attr('value',wonum);
+			$('input[name=item_name]').attr('value',item);
+			$('input[name=manu_code]').attr('value',manucode);
+			$('input[name=item_num]').attr('value',itemnum);
+			
+				});
+			});
+</script>
 </head>
 <body>
 
@@ -53,21 +72,30 @@
           
 <!--  본문 내용 시작 -->
 
+
 			<div id="writebody">
-				<form action="${pageContext.request.contextPath}mps/production/writePro" id="insertProduct" method="GET">
+				<form action="${pageContext.request.contextPath}/mps/production/writePro" id="insertProduct" method="POST">
 				<label>라인명 : </label>
-				<select name="lineselect">
-            		<option value="">라인을 선택하세요</option>
-            		<option value="가공1" onclick="" name="가공1">가공1</option>
-            		<option value="가공2" onclick="" name="가공2">가공2</option>
-            		<option value="가공3" onclick="" name="가공3">가공3</option>
+				<select name="lineselect" id="lineselect" >
+            		<option value="" selected="selected">라인을 선택하세요</option>
+            			<c:forEach var="sel" items="${selectList}">
+            				<option value="${sel.manu_name}" data-wonum="${sel.wo_num}" data-itemname="${sel.item_name}" 
+            						data-manucode="${sel.manu_code}" data-itemnum="${sel.item_num}">${sel.manu_name}</option>
+            			</c:forEach>
           		</select>
+<!--           		selectbox 선택시 값넘기기 위해 만든 박스 -->
+          		<input type="hidden" name="manu_name" value="">
+          		
+          		생산코드 :
+          		<input type="text" name="manu_code" value="" readonly="readonly">
+          		아이템코드 :
+          		<input type="text" name="item_num" value="" readonly="readonly">
           		
 				<label>작업지시번호 : </label>
-				<input type="text" name="wo_num">
+				<input type="text" name="wo_num" value="" readonly="readonly">
 				
 				<label>품명 : </label>
-				<input type="text" name="item_name">
+				<input type="text" name="item_name" value="" readonly="readonly">
 				
 				
 		<c:choose>  
@@ -108,7 +136,8 @@
 				</form>
 			</div>
  <!--  본문내용 끝 -->    
-        
+
+
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
      페이징
