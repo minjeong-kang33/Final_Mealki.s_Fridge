@@ -1,7 +1,7 @@
 package com.itwillbs.dao;
 
-import java.sql.Timestamp;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -36,15 +36,21 @@ public class ContractDAOImpl implements ContractDAO{
 	}
 
 	@Override
-	public int getContractCount() {
-	
-		return sqlSession.selectOne(namespace+".getContractCount");
+	public int getContractCount(PageDTO pageDTO) {
+		System.out.println(pageDTO.getSearch());
+		return sqlSession.selectOne(namespace+".getContractCount", pageDTO);
 	}
 
 	@Override
 	public int selectContractTotal(ContractDTO dto) {
 		
 		return sqlSession.selectOne(namespace+".selectContractTotal",dto);
+	}
+
+	@Override
+	public List<Map<String, Object>> getContractListMap() {
+		
+		return sqlSession.selectList(namespace+".getContractListMap");
 	}
 
 	
