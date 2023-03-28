@@ -30,38 +30,16 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+	
+	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+	
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
 	
-	<script>
-	var openWin;
 	
-	function findContract()
-	{
-		window.name="parentForm";
-		openWin=window.open("${pageContext.request.contextPath}/business/contract/findContract",
-			"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
-		}
-	</script>
 </head>
 
-<style>
-body{
-	font-size:3pt;
-}
-button{
-	font-size:9pt;
-}
-table{
-	width:500px;
-	border-collapse: collapse;
-}
-th,td{
-	border:1px solid #cccccc;
-	padding:3px; 
-}
 
-</style>
 
 
 <body>
@@ -90,7 +68,6 @@ th,td{
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-<form  action="${pageContext.request.contextPath}/contract/WriteSave" method="post">        
 <table>
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
@@ -106,22 +83,23 @@ th,td{
 			<th>수주수량</th>
          </tr>
          <tr>
-         	<td onclick="findContract()"><input type="text" name="business_num" id="business_num"></td>
-         	<td><input type="text" name="cust_num" id="cust_num"></td>
-         	<td><input type="text" name="item_num" id="item_num"></td>
-         	<td><input type="text" name="item_name" id="item_name"></td>
-         	<td><input type="text" name="business_name" id="business_name"></td>
-         	<td><input type="date"  id="business_date" name="business_date"></td>
-         	<td><input type="date"  id="out_date" name="out_date"></td>
-         	<td><input type="text" name="incharge_code" id="incharge_code"></td>
-         	<td><input type="text" name="incharge_name" id="incharge_name"></td>
-         	<td><input type="text" name="contract_qty" id="contract_qty"></td>
+         	<td>${contractDTO.business_num }</td>
+         	<td>${contractDTO.cust_num }</td>
+         	<td>${contractDTO.item_num }</td>
+         	<td>${contractDTO.item_name }</td>
+         	<td>${contractDTO.business_name }</td>
+         	<td>${contractDTO.business_date}</td>
+         	<td>${contractDTO.out_date}</td>
+         	<td>${contractDTO.incharge_code }</td>
+         	<td>${contractDTO.incharge_name }</td>
+         	<td>${contractDTO.contract_qty }</td>
+         	
          </tr>	
          <tr align="center">
 			<th colspan="10">					<!-- Ajax -->
 			<button type="submit">저장</button> <!-- onclick="fn_submit();return false;" -->
-<!-- 			<button type="reset">취소</button> -->
-<!-- 			<button type="submit">삭제</button> -->
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
+			<button type="submit">삭제</button>
 			</th>
 		</tr> 
 

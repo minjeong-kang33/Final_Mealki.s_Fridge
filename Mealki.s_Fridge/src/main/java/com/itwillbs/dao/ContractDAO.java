@@ -17,6 +17,8 @@ public interface ContractDAO {
 	public int selectContractTotal(ContractDTO dto);
 
 	public List<Map<String, Object>> getContractListMap();
+
+	public ContractDTO getBoard(int business_num);
 	
 	
 }

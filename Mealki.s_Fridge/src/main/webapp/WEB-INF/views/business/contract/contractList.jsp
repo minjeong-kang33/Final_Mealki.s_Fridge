@@ -54,68 +54,12 @@ function fun1() {
 
 </script>
 
-<script>
-var openWin;
-
-function findContract()
-{
-	window.name="parentForm";
-	openWin=window.open("${pageContext.request.contextPath}/business/contract/findContract",
-		"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
-	}
-</script>
-
-<script>
 
 
-document.getElementById("addContractButton").addEventListener("click", function() {
-	let contractTable = document.getElementById("contractTable");	
-	let newRow = contractTable.insertRow(-1);
-	
-	newRow.innerHTML = '
-		<td><input type="text" name="business_num" placeholder="수주번호"></td>
-		<td><input type="text" name="cust_num"></td>
-		<td><input type="text" name="item_num"></td>
-		<td><input type="text" name="item_name"></td>
-		<td><input type="text" name="business_name" ></td>
-		<td><input type="text" name="business_date"></td>
-		<td><input type="text" name="out_date"></td>
-		<td><input type="text" name="incharge_code"></td>
-		<td><input type="text" name="incharge_name"></td>
-		<td><input type="text" name="contract_qty"></td>';
 
-});
-
-</script>
 
 </head>
-<style>
-body{
-	font-size:10pt;
-}
-button{
-	font-size:9pt;
-}
-table{
-	width:1100px;
-	border-collapse: collapse;
-}
- th,td{ 
- 	border:1px solid #cccccc; 
- 	padding:3px; 
- } 
-.div1{
-	width:600px;
-	text-align:center;
-	font-size:15pt;
-}
-.div2{
-	width:600px;
-	text-align:Left;
-	font-size:12pt;
-}
 
-</style>
 <body>
 
   <div class="container-scroller">
@@ -142,7 +86,7 @@ table{
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-        <div class="div1">수주관리현황</div>
+<!--         <div class="div1">수주관리현황</div> -->
         <div class="div2">Total: ${total }</div>
         <div id="table_search">
         	<form name="search" action="${pageContext.request.contextPath}/business/contract/contractList" method="get" onsubmit="fun1()">
@@ -166,7 +110,6 @@ table{
 			
 			
 			<th>수주번호</th> <!-- th width="15%" -->
-			
 			<th>품목명</th>
 			<th>수주업체</th>
 			<th>수주일자</th>
@@ -180,15 +123,16 @@ table{
          
          <c:forEach var="ContractDTO" items="${resultList}">
          
-         <tr align="center">
+         <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num }'">
          
          	
-         	<td name="business_num" id="business_num" onclick="findContract()">${ContractDTO.business_num }</td>
-         	
+         	<td>${ContractDTO.business_num }</td>
          	<td>${ContractDTO.item_name }</td>
          	<td>${ContractDTO.business_name }</td>
-         	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.business_date}"/></td>
-         	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.out_date}"/></td>
+<%--          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.business_date}"/></td> --%>
+<%--          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.out_date}"/></td> --%>
+			<td>${ContractDTO.business_date}</td>
+			<td>${ContractDTO.out_date}</td>
          	<td>${ContractDTO.incharge_code }</td>
          	<td>${ContractDTO.incharge_name }</td>
          	
@@ -199,21 +143,25 @@ table{
          </c:forEach>
          
       	 <tr align="center">
-			<th colspan="10"> <!-- return false? -->
-			<button type="submit" >저장</button><!-- onclick="fn_submit();return false;" -->
+			<th colspan="7">
+			<button type="submit" >저장</button>
 			<button type="reset">취소</button>
-			<button type="button" id="addContractButton">신규</button>
+			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'"  >신규</button>
 			<button type="submit">삭제</button>
 			</th>
 		</tr> 
-
+	
 		
 </table>
-
-
+<!-- 			<div class="div3" > -->
+<!-- 				<button type="submit" >저장</button>onclick="fn_submit();return false;" -->
+<!-- 				<button type="reset">취소</button> -->
+<%-- 				<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >신규</button> --%>
+<!-- 				<button type="submit">삭제</button> -->
+<!-- 			</div> -->
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="page_control">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -231,7 +179,7 @@ table{
 </c:if>
 </div>
 <!-- 페이징 끝 -->
-
+			</div>
             
           </div>
           

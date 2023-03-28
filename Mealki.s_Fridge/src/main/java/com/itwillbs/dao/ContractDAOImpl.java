@@ -53,6 +53,12 @@ public class ContractDAOImpl implements ContractDAO{
 		return sqlSession.selectList(namespace+".getContractListMap");
 	}
 
+	@Override
+	public ContractDTO getBoard(int business_num) {
+		
+		return sqlSession.selectOne(namespace+".getBoard",business_num);
+	}
+
 	
 
 }

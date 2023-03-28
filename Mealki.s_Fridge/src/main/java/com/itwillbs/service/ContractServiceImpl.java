@@ -56,6 +56,12 @@ public class ContractServiceImpl implements ContractService {
 			
 			return contractDAO.getContractListMap();
 		}
+
+		@Override
+		public ContractDTO getBoard(int business_num) {
+			
+			return contractDAO.getBoard(business_num);
+		}
 	
 	
 
