@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
+import javax.management.NotificationEmitter;
 
 import org.apache.ibatis.session.SqlSession;
 import org.apache.taglibs.standard.extra.spath.SPathFilter;
@@ -44,6 +45,7 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println(storeDTO.getSto_empNum());
 		  
 		sqlSession.insert(namespace + ".insertStore", storeDTO);
+		sqlSession.update(namespace + ".updateStock",storeDTO);
 
 	}
 
