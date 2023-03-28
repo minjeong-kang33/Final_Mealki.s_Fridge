@@ -14,7 +14,7 @@
                   <div class="cust_infoDetails">
                      <table border="1" class="cust_details_table">
                      <tr class="tr"><th class="th">거래처구분</th><td>${customerDTO.cust_gubun1}</td><th class="th">거래처구분</th><td>${customerDTO.cust_gubun2}</td></tr>
-                     <tr class="tr"><th class="th">거래처명</th><td>${customerDTO.cust_name}</td><th class="th">사업자번호</th><td>${customerDTO.business_num}</td></tr>
+                     <tr class="tr"><th class="th">거래처명</th><td>${customerDTO.cust_name}</td><th class="th">사업자번호/생년월일</th><td>${customerDTO.business_num}</td></tr>
                      <tr class="tr"><th class="th">대표자명</th><td>${customerDTO.boss_name}</td><th class="th">대표전화</th><td>${customerDTO.cust_tel}</td></tr>
                      <tr class="tr"><th class="th">업태</th><td>${customerDTO.cust_uptae}</td><th class="th">종목</th><td>${customerDTO.cust_jongmok}</td></tr>
                      <tr class="tr"><th class="th">담당자 이름</th><td>${customerDTO.man_name}</td><th class="th">담당자 전화번호</th><td>${customerDTO.man_tel}</td></tr>

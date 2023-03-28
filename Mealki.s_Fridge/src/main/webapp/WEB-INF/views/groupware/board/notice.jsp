@@ -52,52 +52,65 @@
           <div class="contentbody" style="background: pink;"> 
           
 <!--  본문 내용 시작 -->
-            <article>
-<h1>Notice</h1>
+
+<h2>공지사항</h2>
 <table id="notice">
-<tr><th class="tno">No.</th>
-    <th class="ttitle">Title</th>
-    <th class="twrite">Writer</th>
-    <th class="tdate">Date</th>
-    <th class="tread">Read</th></tr>
+<tr><th class="bo_num">번호</th>
+    <th class="bo_title">제목</th>
+    <th class="bo_write">작성자</th>
+    <th class="bo_date">작성일자</th>
+    <th class="bo_count">조회수</th></tr>
     
- <c:forEach var="dto" items="${boardList}">
-  	<tr onclick="location.href='${pageContext.request.contextPath}/board/content?num=${dto.num}'">
- 	<td>${dto.num}</td>
+ <c:forEach var="BoardDTO" items="${noticeList}">
+  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/content?num=${BoardDTO.bo_num}'">
+ 	<td>${BoardDTO.bo_num}</td>
     <td class="left">
 
-    ${dto.subject}</td>
-    <td>${dto.name}</td>
-    <td><fmt:formatDate value="${dto.date}" pattern="yyyy.MM.dd"/></td>
-    <td>${dto.readcount}</td></tr>  
+    ${BoardDTO.bo_title}</td>
+    <td>${BoardDTO.bo_write}</td>
+    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
+    <td>${BoardDTO.bo_count}</td></tr>  
  </c:forEach>   
     
-</table>
+</table>	
 
-<div id="table_search">
+<div id="table_write">
 
 <c:if test="${ ! empty sessionScope.id }">
 
-	<input type="button" value="글쓰기" class="btn" 
-onclick="location.href='${pageContext.request.contextPath}/board/write'">
+	<input type="button" value="글쓰기" class="btn btn-primary" 
+	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">
 
 </c:if>
-
-
 </div>
 
-<div id="table_search">
-<form action="${pageContext.request.contextPath}/board/list" method="get">
-<input type="text" name="search" class="input_box">
-<input type="submit" value="search" class="btn">
-</form>
-</div>
+	<div id="table_search"> 
+       <form action="${pageContext.request.contextPath}/business/customer/noticeList" id="selectBox" name="search" method="get">
+	            <select name="search_option" class="search_option">
+	            	<option value=""> 선택하세요 </option>
+	            	<option value="bo_name"> 작성자 </option>
+	            	<option value="bo_title"> 제목 </option>
+	            </select>
+	           <input type="text" name="keyword" class="input-search" >
+	           <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
+        </form>
+     </div>
             
  <!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+</c:if>
+
+<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+</c:forEach>
+
+<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+</c:if>
 <!-- 페이징 끝 -->
             </div>
             

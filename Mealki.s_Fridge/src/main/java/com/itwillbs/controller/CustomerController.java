@@ -105,7 +105,7 @@ public class CustomerController {
 		customerService.insertCustomer(customerDTO);
 		
 //		주소줄 변경하면서 이동
-		return "redirect:/business/customer/customerList";
+		return "business/customer/insertCustomer";
 	}
 	
 
