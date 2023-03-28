@@ -38,6 +38,16 @@
 				  )
 	</insert>
 	
+	<update id="updateStock">
+	UPDATE stock
+	SET stock.stk_qnt = stock.stk_qnt + (SELECT sto_qty
+						 FROM store
+						 WHERE order_num = #{order_num})
+	WHERE item_num = (SELECT item_num
+					  FROM placeorder
+					  WHERE order_num = #{order_num})
+	
+	</update>
 
 <!-- 
 select s.sto_num, s.sto_progress, st.stk_qnt

@@ -88,17 +88,9 @@
  					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
  					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
  				success:function(result){
- 					
- 					 console.log(result);  // 결과값 확인
- 					
- 					//result.trim() 결과값 앞뒤 공백 제거
- 					if(result.trim()=="1"){
- 						alert('성공2');
- 						
- 					} else {
- 						
- 						alert('실패');
- 					}
+ 				
+ 				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
+ 				
  				},
  				error:function(request, status, error){
 
