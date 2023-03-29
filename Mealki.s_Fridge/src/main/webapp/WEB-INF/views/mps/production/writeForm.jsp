@@ -87,16 +87,16 @@
           		<input type="hidden" name="manu_name" value="">
           		
           		생산코드 :
-          		<input type="text" name="manu_code" value="" readonly="readonly">
+          		<input type="text" name="manu_code" value="" readonly="readonly"><p>
+          		
+          		<label>품명 : </label>
+				<input type="text" name="item_name" value="" readonly="readonly">
+				
           		아이템코드 :
-          		<input type="text" name="item_num" value="" readonly="readonly">
+          		<input type="text" name="item_num" value="" readonly="readonly"><p>
           		
 				<label>작업지시번호 : </label>
 				<input type="text" name="wo_num" value="" readonly="readonly">
-				
-				<label>품명 : </label>
-				<input type="text" name="item_name" value="" readonly="readonly">
-				
 				
 		<c:choose>  
 			<c:when test="${productionDTO.emp_Kname eq null or productionDTO.emp_Kname eq ''}"> 
@@ -107,7 +107,7 @@
 				<label>작업자 : </label>
 				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
 			</c:otherwise> 
-		</c:choose> 
+		</c:choose> <p>
 				
 				<label>생산량 : </label>
 				<input type="text" name="manu_tocount">
