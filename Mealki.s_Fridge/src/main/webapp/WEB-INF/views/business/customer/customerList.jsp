@@ -126,7 +126,7 @@
 				</c:forEach>
 				
 				</table>
-				</form>
+<!-- 				</form> -->
 			</div>
 				
 			<div id="button2">
