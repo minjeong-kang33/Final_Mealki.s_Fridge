@@ -45,6 +45,28 @@
 	  });
 	  
 
+
+//재고확인
+$(document).ready(function() {
+  $.ajax({
+    url: "/stockCheck",
+    data:{'wo_num':$('.wo_num')},
+    method: "GET",
+    success: function(result) {
+      
+    if(result){
+    	result="재고부족";
+		$('.divresult').html(result).css("color","red");
+    }else {
+    	result="출고가능";
+		$('.divresult').html(result).css("color","blue");
+    }
+
+    }
+ 
+  });
+});
+
 </script>
 
 </head>
@@ -112,12 +134,12 @@
 								<c:forEach var="unstoreDTO" items="${unstoreListUnreleased }">
 								<tr>	 
 									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
-									<td>${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
+									<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 									<td><input type="button"></td> <!-- 상세 -->
 									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
-									<td>ㅇㅇ</td><!-- 재고확인 -->
+									<td class="divresult">재고확인</td> <!-- 재고확인결과 -->
 									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
