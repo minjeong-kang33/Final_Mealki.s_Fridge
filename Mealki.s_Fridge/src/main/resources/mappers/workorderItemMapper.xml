@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.unstoreItemMapper">
+
+<select id="getWorkorderItemList" resultType="com.itwillbs.domain.WorkorderItemDTO">
+	select item_name, wo_qty
+	from workorder_item
+	where wo_num = #{wo_num}
+</select>
+
+</mapper>
