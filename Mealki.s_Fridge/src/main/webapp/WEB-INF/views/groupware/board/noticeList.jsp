@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -57,39 +58,20 @@
           <div class="contentbody" > 
           
 <!--  본문 내용 시작 -->
-	<div id="table_search"> 
-       <form action="${pageContext.request.contextPath}/business/customer/noticeList" id="selectBox" name="search" method="get">
-	            <select name="search_option" class="search_option">
-	            	<option value=""> 선택하세요 </option>
-	            	<option value="bo_name"> 작성자 </option>
-	            	<option value="bo_title"> 제목 </option>
-	            </select>
-	           <input type="text" name="keyword" class="input-search" >
-	           <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
-        </form>
-     </div>
-
-     <div id="table_content">
-		<table id="notice" border="1">
-		<tr><th class="bo_num">번호</th>
-		    <th class="bo_title">제목</th>
-		    <th class="bo_write">작성자</th>
-		    <th class="bo_date">작성일자</th>
-		    <th class="bo_count">조회수</th></tr>
-		    
-		 <c:forEach var="BoardDTO" items="${noticeList}">
-		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/content?bo_num=${boardDTO.bo_num}'">
-		 	<td>${boardDTO.bo_num}</td>
-		    <td>${boardDTO.bo_title}</td>
-		    <td>${boardDTO.bo_write}</td>
-		    <td><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
-		    <td>${boardDTO.bo_count}</td></tr>  
-		 </c:forEach>   
-		    
-		</table>
-	 </div>	
-		
-		<div id="table_write">
+	<div id="table_search">
+		<div id="select_search">
+	       <form action="${pageContext.request.contextPath}/groupware/board/noticeList" id="selectBox" name="search" method="get">
+		            <select name="search_option" class="search_option">
+		            	<option value=""> 선택하세요 </option>
+		            	<option value="bo_name"> 작성자 </option>
+		            	<option value="bo_title"> 제목 </option>
+		            </select>
+		           <input type="text" name="keyword" class="input-search" >
+		           <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
+	        </form>
+        </div>
+        
+        <div id="table_write">
 		
 		<%-- <c:if test="${ ! empty sessionScope.id }"> --%>
 		
@@ -98,6 +80,29 @@
 		
 		<%-- </c:if> --%>
 		</div>
+     </div>
+
+     <div id="table_content">
+		<table id="notice" border="1">
+		<tr><th class="bo_num">번호</th>
+		    <th class="bo_title">제목</th>
+		    <th class="bo_name">작성자</th>
+		    <th class="bo_date">작성일자</th>
+		    <th class="bo_count">조회수</th></tr>
+		    
+		 <c:forEach var="BoardDTO" items="${noticeList }">
+		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/content?bo_num=${BoardDTO.bo_num}'">
+		 	<td>${BoardDTO.bo_num}</td>
+		    <td>${BoardDTO.bo_title}</td>
+		    <td>${BoardDTO.bo_name}</td>
+		    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
+		    <td>${BoardDTO.bo_count}</td></tr>  
+		 </c:forEach>   
+		    
+		</table>
+	 </div>	
+		
+		
             
  <!--  본문내용 끝 -->    
         
