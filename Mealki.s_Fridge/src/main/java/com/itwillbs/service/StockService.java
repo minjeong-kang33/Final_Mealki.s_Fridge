@@ -17,4 +17,6 @@ public interface StockService {
 
 	public int getStockListCount(PageDTO pageDTO);
 	
+	public int getItemList_unstore(String item_name);
+	 
 }
