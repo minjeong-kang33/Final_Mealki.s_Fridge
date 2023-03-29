@@ -21,9 +21,9 @@
     </resultMap>
     
     <select id="getProductionListMap" resultMap="productionMap">
-    	select wo_num, manu_name, manu_code, item_name, item_num, manu_tocount, manu_fail, emp_Kname, 
-date_format(manu_date, '%Y-%m-%d %h:%i:%s') manu_date, date_format(manu_sdate, '%Y-%m-%d %Y-%m-%d 
-%h:%i:%s') manu_sdate from productstatus
+    	select wo_num, manu_name, manu_code, item_name, item_num, manu_tocount, manu_fail, emp_Kname,
+date_format(manu_date, '%Y-%m-%d %h:%i:%s') manu_date, date_format(manu_sdate, '%Y-%m-%d %h:%i:%s') 
+as manu_sdate from productstatus
     	<where>
     		<if test="wo_num != null and !wo_num.equals('')">wo_num like CONCAT('%',#{wo_num},'%') </if>
 			<if test="manu_name != null and !manu_name.equals('')">OR manu_name like CONCAT('%',#{manu_name},'%')</if>
@@ -34,14 +34,16 @@ date_format(manu_date, '%Y-%m-%d %h:%i:%s') manu_date, date_format(manu_sdate, '
     </select>
     
     <select id="getemp_Knamesession" resultType="com.itwillbs.domain.ProductionDTO">
-    	select distinct e.emp_num, e.emp_Kname
-    	from employee e join productstatus p
-		on e.emp_kname = p.emp_kname
-		where emp_num = #{emp_num}
+			select distinct e.emp_num, e.emp_Kname
+			from employee e where emp_num = #{emp_num}
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select distinct manu_name, wo_num, item_name, manu_code, item_num from productstatus;
+    	select distinct w.manu_name, l.manu_code,w.wo_num, p.item_name, p.item_num 
+from workorder w join products p
+on w.item_name = p.item_name
+join linecode l
+on w.manu_name = l.manu_name;
     </select>
     
     <insert id="insertProduct">
