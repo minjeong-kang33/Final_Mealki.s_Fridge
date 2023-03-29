@@ -24,8 +24,8 @@
 		select w.wo_num, w.business_num, w.wo_date, date_format(c.out_date, '%Y-%m-%d') as out_date, w.wo_qty, 
 			   w.manu_name, w.item_name, e.emp_Kname as wo_empname, sum(p.manu_tocount) as pr_sum, 
 				(case 
- 					when IFNULL(sum(p.manu_tocount),0) <![CDATA[<]]> w.wo_qty then "진행중"
-					when IFNULL(sum(p.manu_tocount),0) = w.wo_qty then "완료"
+ 					when sum(p.manu_tocount) <![CDATA[<]]> w.wo_qty then "진행중"
+					when sum(p.manu_tocount) = w.wo_qty then "완료"
       			end) as wo_state
 		from employee e join workorder w
 		on w.wo_emp=e.emp_num
@@ -52,6 +52,7 @@
 		<if test="dout_date != null">
 		 and date_format(c.out_date, '%Y-%m-%d') <![CDATA[<=]]> #{out_date}
 		</if>
+		group by wo_num
 		order by wo_date desc
 		limit #{startRow}, #{pageSize}
 	</select>
@@ -74,20 +75,21 @@
 	</select>
 	
 	<select id="WoInsert" resultType="com.itwillbs.domain.WorkorderDTO">
-		select c.business_num, r.item_num as ritem_num, c.item_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		select c.business_num, r.item_num as ritem_num, c.item_num, r.item_name as r_name, c.contract_qty, r.r_name as item_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
 		from recipe r, contract c, products p
-		where r.item_name=c.item_name
-		and r.item_name=p.item_name
-		and r.item_name=(select item_name from contract where business_num=#{num});
+		where r.r_name=c.item_name
+		and r.r_name=p.item_name
+		and r.r_name=(select item_name from contract where business_num=#{num})
+		and business_num=#{num}
 	</select>
 	
 	<select id="WoUpdateForm" resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, c.business_num, c.item_num, r.item_name, c.contract_qty, r.r_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty, w.manu_name
+		select w.wo_num, c.business_num, r.item_num as ritem_num, c.item_num, r.item_name as r_name, c.contract_qty, r.r_name as item_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty, w.manu_name
 		from recipe r, contract c, products p, workorder w
-		where r.item_name=c.item_name
-		and r.item_name=p.item_name
+		where r.r_name=c.item_name
+		and r.r_name=p.item_name
 		and c.business_num=w.business_num
-		and r.item_name=(select item_name from contract where business_num=#{num});	
+		and r.r_name=(select item_name from contract where business_num=(select business_num from workorder where wo_num=#{num}))	
 	</select>
 	
 	<insert id="insertWorkorder">
@@ -98,11 +100,11 @@
 	
 	<insert id="insertWorkorder_item">
 		insert into workorder_item
-		select w.wo_num, r.r_name as item_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		select w.wo_num, r.item_name as item_name, round(r.r_qty/p.weight*c.contract_qty) as wo_qty
 		from recipe r, contract c, products p, workorder w
-		where r.item_name=c.item_name
-		and w.business_num=c.business_num
-		and r.item_name=p.item_name
+		where r.r_name = c.item_name
+		and w.business_num = c.business_num
+		and c.item_name = p.item_name
 		and w.business_num=#{business_num}
 	</insert>
 	

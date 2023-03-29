@@ -106,7 +106,7 @@
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
 							window.open(
-							"${pageContext.request.contextPath}/workorder/WoUpdate?business_num=${WorkorderDTO.business_num}",
+							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num=${WorkorderDTO.wo_num}",
 							"밀키의 냉장고",popOption);}
 							</script>
 							<td>${WorkorderDTO.wo_num}</td>
