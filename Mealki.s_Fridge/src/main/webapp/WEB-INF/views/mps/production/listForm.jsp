@@ -68,7 +68,7 @@
 										<div id="select_search">
 											<form action="${pageContext.request.contextPath}/mps/production/list" method="GET">
 												<label>작업지시번호 : </label>
-												<input type="search" name="wo_num"/>
+												<input type="text" name="wo_num">
 												<label>라인명 : </label>
 												<input type="text" name="manu_name">
 												<label>품명 : </label>
@@ -135,7 +135,7 @@
 				<!-- 푸터시작 -->
 				<jsp:include page="../../main/footer.jsp" />
 				<!--  푸터 끝 -->
-int weight = a*b
+
 				<!-- partial -->
 			</div>
 			<!-- main-panel ends -->

@@ -11,8 +11,8 @@
 <!--     	https://mybatis.org/mybatis-3/ -->
     <resultMap type="map" id="productionMap">
 <!--    column="디비열이름" property="멤버변수이름" -->
-    	<id column="manu_num" property="manu_num"/>
-    	<result property="wo_num" column="wo_num"/>
+<!--     	<id column="manu_num" property="manu_num"/> -->
+    	<result column="wo_num" property="wo_num"/>
     	<result column="manu_name" property="manu_name"/>
     	<result column="item_name" property="item_name"/>
     	<result column="emp_Kname" property="emp_Kname"/>
@@ -21,14 +21,15 @@
     </resultMap>
     
     <select id="getProductionListMap" resultMap="productionMap">
-    	select * from productstatus
+    	select wo_num, manu_name, manu_code, item_name, item_num, manu_tocount, manu_fail, emp_Kname, 
+date_format(manu_date, '%Y-%m-%d %h:%i:%s') manu_date, date_format(manu_sdate, '%Y-%m-%d %Y-%m-%d 
+%h:%i:%s') manu_sdate from productstatus
     	<where>
     		<if test="wo_num != null and !wo_num.equals('')">wo_num like CONCAT('%',#{wo_num},'%') </if>
 			<if test="manu_name != null and !manu_name.equals('')">OR manu_name like CONCAT('%',#{manu_name},'%')</if>
 			<if test="item_name != null and !item_name.equals('')">OR item_name like CONCAT('%',#{item_name},'%')</if>
 			<if test="emp_Kname != null and !emp_Kname.equals('')">OR emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
-<!-- 			작업 보류 -->
-<!-- 			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between #{manu_sdate} and #{manu_date}</if> -->
+			<if test="manu_date != null and !manu_date.equals('') and manu_sdate != null and !manu_sdate.equals('')">OR manu_date between date(#{manu_sdate}) and date(#{manu_date})+1</if>
     	</where>
     </select>
     
@@ -45,7 +46,7 @@
     
     <insert id="insertProduct">
     	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, manu_tocount, manu_fail, emp_Kname, manu_date, manu_sdate) 
-    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num},#{manu_tocount},#{manu_fail},#{emp_Kname},DATE_FORMAT(#{manu_date}, '%Y%m%d%H%i%s'),DATE_FORMAT(#{manu_sdate}, '%Y%m%d%H%i%s'))
+    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num},#{manu_tocount},#{manu_fail},#{emp_Kname},DATE_FORMAT(now(), '%Y%m%d%H%i%s'),DATE_FORMAT(now(), '%Y%m%d%H%i%s'))
     </insert>
 
 </mapper>
