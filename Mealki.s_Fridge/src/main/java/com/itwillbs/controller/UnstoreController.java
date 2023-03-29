@@ -38,12 +38,19 @@ public class UnstoreController {
 		model.addAttribute("unstoreListUnreleased", unstoreListUnreleased);
 		
 		for(int i=0; i<unstoreListUnreleased.size();i++) {
-			String wo_num = unstoreListUnreleased.get(i).get("wo_num").toString();
-			System.out.println(wo_num);
+			String wo_num = unstoreListUnreleased.get(i).get("wo_num").toString(); //추출된표에서 wo_num을 추출 
 			
 			WorkorderItemDTO workorderItemDTO = new WorkorderItemDTO();
 			workorderItemDTO.setWo_num(wo_num);
-			workorderItemService.getItemList(wo_num);
+			workorderItemService.getItemList(wo_num); //작업지시번호로 생산을 위해 필요한 품목과 총수량을 가져옴
+			
+			List<WorkorderItemDTO> itemList = workorderItemService.getItemList(wo_num);
+			
+			for (WorkorderItemDTO item : itemList) {
+			    System.out.print(item.getItem_name()+" ");
+			} // 품목이 잘 가져와지는지 확인
+			
+			
 		}
 		return "wms/unstore/insertUnstore";
 	}

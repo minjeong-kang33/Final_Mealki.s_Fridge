@@ -5,7 +5,7 @@
 <mapper namespace="com.itwillbs.mappers.workorderItemMapper">
 
 <select id="getItemList" resultType="com.itwillbs.domain.WorkorderItemDTO">
-	select wo_num, item_num, wo_qty
+	select wo_num, item_name, wo_qty
 	from workorder_item
 	where wo_num = #{wo_num}
 </select>
