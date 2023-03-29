@@ -9,6 +9,7 @@ public class BoardDTO {
 	private String bo_content;
 	private int bo_count;
 	private Timestamp bo_date;
+	private String file;
 	
 	public int getBo_num() {
 		return bo_num;
@@ -45,6 +46,12 @@ public class BoardDTO {
 	}
 	public void setBo_date(Timestamp bo_date) {
 		this.bo_date = bo_date;
+	}
+	public String getFile() {
+		return file;
+	}
+	public void setFile(String file) {
+		this.file = file;
 	}
 	
 }
