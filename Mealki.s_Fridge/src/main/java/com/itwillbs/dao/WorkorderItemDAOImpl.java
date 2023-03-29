@@ -21,8 +21,6 @@ public class WorkorderItemDAOImpl implements WorkorderItemDAO{
 	public List<WorkorderItemDTO> getItemList(String wo_num) {
 		System.out.println("WorkorderItemDAOImpl getItemList");
 		
-		System.out.println(wo_num);
-		
 		return sqlSession.selectList(namespace+".getItemList",wo_num);
 	}
 
