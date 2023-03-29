@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WorkorderItemDTO;
 import com.itwillbs.service.StockService;
 import com.itwillbs.service.UnstoreService;
@@ -46,9 +48,20 @@ public class UnstoreController {
 			
 			List<WorkorderItemDTO> itemList = workorderItemService.getItemList(wo_num);
 			
-			for (WorkorderItemDTO item : itemList) {
-			    System.out.print(item.getItem_name()+" ");
-			} // 품목이 잘 가져와지는지 확인
+		for (WorkorderItemDTO item : itemList) {
+				String item_name = item.getItem_name(); //오더에 따른 소요량 테이블
+				
+				/*
+				 * StockDTO stockDTO = new StockDTO(); stockDTO.setItem_name(item_name);
+				 * stockService.getItemList_unstore(item_name);
+				 * 
+				 * 
+				 * int sqt = stockService.getItemList_unstore(item_name);
+				 * System.out.println(sqt);
+				 */
+					
+				  
+			} // 품목이 잘 가져와지는지 확인 
 			
 			
 		}

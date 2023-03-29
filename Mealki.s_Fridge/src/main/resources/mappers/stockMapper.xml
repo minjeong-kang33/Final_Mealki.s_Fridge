@@ -51,5 +51,10 @@
 		</if>
 	</select>
 	
+	<select id="getItemList_unstore" resultType="com.itwillbs.domain.StockDTO">
+		select stk_qnt
+		from stock
+		where item_name = #{item_name}
+	</select>
     
 </mapper>

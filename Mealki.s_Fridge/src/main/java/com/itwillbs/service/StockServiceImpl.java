@@ -55,6 +55,12 @@ public class StockServiceImpl implements StockService {
 		return stockDAO.getStockListCount(pageDTO);
 	}
 
+	@Override
+	public int getItemList_unstore(String item_name) {
+		System.out.println("StockServiceImpl getItemList_unstore");
+		return stockDAO.getItemList_unstore(item_name);
+	}
+
 
 
 }

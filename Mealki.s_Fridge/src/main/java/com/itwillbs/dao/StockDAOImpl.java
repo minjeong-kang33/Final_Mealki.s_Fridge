@@ -5,6 +5,7 @@ import java.util.List;
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
+import org.apache.taglibs.standard.extra.spath.SPathFilter;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ItemDTO;
@@ -45,6 +46,13 @@ public class StockDAOImpl implements StockDAO {
 		System.out.println("StockDAOImpl getStockListCount()");
 		
 		return sqlSession.selectOne(namespace+".getStockListCount", pageDTO);
+	}
+
+	@Override
+	public int getItemList_unstore(String item_name) {
+		System.out.println("StockDAOImpl getItemList_unstore");
+		System.out.println(item_name);
+		return sqlSession.selectOne(namespace+".getItemList_unstore", item_name);
 	}
 
 
