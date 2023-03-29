@@ -100,7 +100,7 @@ public class BoardController {
 		pageDTO.setPageCount(pageCount);
 		pageDTO.setSearch_option(search_option);
 		pageDTO.setKeyword(keyword);
-	
+		
 		model.addAttribute("noticeList", noticeList);
 		model.addAttribute("pageDTO", pageDTO);
 		
