@@ -59,11 +59,6 @@ public class StockController {
 		String item_name = request.getParameter("item_name");
 		String whs_num = request.getParameter("whs_num");
 		
-		System.out.println("받은 item_type: "+item_type);
-		System.out.println("받은 item_num: "+item_num);
-		System.out.println("받은 item_name: "+item_name);
-		System.out.println("받은 whs_num: "+whs_num);
-		
 		int pageSize=10;
 		
 		String pageNum=request.getParameter("pageNum");
@@ -104,6 +99,8 @@ public class StockController {
 		model.addAttribute("item_name",item_name);
 		model.addAttribute("whs_num",whs_num);
 		model.addAttribute("pageDTO", pageDTO);
+		
+		System.out.println("0체크: "+stockList.get(0).getWhs_num());
 		
 		return "wms/stock/stockList";
 	}
