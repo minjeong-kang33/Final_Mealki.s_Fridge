@@ -46,6 +46,8 @@ public class StockDAOImpl implements StockDAO {
 		
 		return sqlSession.selectOne(namespace+".getStockListCount", pageDTO);
 	}
+
+
 	
 	
 	
