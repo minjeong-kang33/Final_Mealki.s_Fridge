@@ -130,7 +130,7 @@ public class WorkorderController {
 	public String ContractList(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController ContractList()");
 		
-		int pageSize=5;
+		int pageSize=10;
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
 			pageNum="1";

@@ -97,19 +97,14 @@
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
 						
 						
-						<tr onClick="WoUpdate();">
-							<script type="text/javascript">
-							function WoUpdate() {
-							var _width = '800';
-							var _height = '650';
-							var _left = Math.ceil((window.screen.width - _width) / 2);
-							var _top = Math.ceil((window.screen.height - _height) / 2);
-							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-							window.open(
-							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num=${WorkorderDTO.wo_num}",
-							"밀키의 냉장고",popOption);}
-							</script>
+						
+						
+						
+							
+							
+							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
 							<td>${WorkorderDTO.wo_num}</td>
+<%-- 							<input type="hidden" id="wo_num" value="${WorkorderDTO.wo_num}"> --%>
 							<td>${WorkorderDTO.business_num}</td>
 							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
@@ -280,6 +275,19 @@
           
         </div>
         
+        
+        			<script type="text/javascript">
+						function WoUpdate(wo_num) {
+							var _width = '800';
+							var _height = '650';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.open(
+							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num="+wo_num,
+							"밀키의 냉장고",popOption);}
+					</script>
+
         			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
        				 <script type="text/javascript">
