@@ -29,8 +29,7 @@
   
   
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-<script type="text/javascript">
-</script>
+
 </head>
 <body>
 
@@ -62,12 +61,12 @@
             	<form action="${pageContext.request.contextPath}/employee/inertEmployeePro" method="post" enctype="multipart/form-data"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
-            		<div class="img"><input type="image">이미지</div>
+            		<div class="img"><img id="preview" width="200" height="230" style="border-radius: 3px;"/></div>
             		<div class="imgbtn">
 					<label for="file">
 					  <span class="btn-upload">파일 업로드하기</span>
 					</label>
-            		<input type="file" name="file" id="file"></div>
+            		<input type="file" name="file" id="file" accept="image/*" onchange="setThumbnail(event);"></div>
             	</div>
             	
             	
@@ -191,6 +190,26 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
+
+<script type="text/javascript">
+
+function setThumbnail(event) {
+  // 선택된 파일 정보 가져오기
+  var input = event.target;
+  var file = input.files[0];
+  
+  // FileReader 객체 사용하여 파일 읽기
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    // 읽은 파일을 이미지로 변환하여 미리보기
+    var img = document.getElementById("preview");
+    img.src = e.target.result;
+  }
+  reader.readAsDataURL(file);
+}
+
+</script>
 
 </body>
 <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
