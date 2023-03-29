@@ -36,7 +36,7 @@ public class StockDAOImpl implements StockDAO {
 		System.out.println("StockDAOImpl getStockList()");
 		
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		
+
 		return sqlSession.selectList(namespace+".getStockList", pageDTO);
 	}
 

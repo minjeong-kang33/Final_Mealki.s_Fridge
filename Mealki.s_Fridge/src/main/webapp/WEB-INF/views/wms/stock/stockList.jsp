@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>      
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -74,26 +74,24 @@
                <div class="scrollBar">
             <table border="1" id="stock_search_table">
             	<tr><th>상품유형</th><th>품번</th><th>품명</th><th>현재고</th><th>보관창고</th><th>실사량</th></tr>
-
-					<c:forEach var="StockDTO" items="${stockList }">
-	    		
+				<c:forEach var="StockDTO" items="${stockList }">
 		    		<tr class="emp_search_table_tr">
-		    		 <td>${StockDTO.item_type}</td> <td>${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
-		    		<td>${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
-		    		<td><input type="text" name="new_stk_qnt"></td></tr>
-		    		
-					</c:forEach>
- 
+		    			 <td>${StockDTO.item_type}</td><td>${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
+		    			<td>${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
+		    			<td style="width: 100px;"><input type="text" name="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+		    		</tr>
+				</c:forEach>
             </table>
-            <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+            
+        	    <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
 				</c:if>
 				
-				<c:if test="${pageDTO.currentPage > 0}">
+				 <c:if test="${pageDTO.currentPage > 0}"> 
 					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
 						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
 					</c:forEach>
-				</c:if>
+				 </c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>

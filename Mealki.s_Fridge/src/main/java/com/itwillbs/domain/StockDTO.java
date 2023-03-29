@@ -7,6 +7,7 @@ public class StockDTO {
 	private String item_type;
 	private int stk_qnt;
 	private String whs_num;
+	
 	public String getItem_num() {
 		return item_num;
 	}

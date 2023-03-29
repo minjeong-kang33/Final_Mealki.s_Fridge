@@ -168,7 +168,7 @@ function fun2() {
 					 	 <td style="width: 150px;"><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 100px;"><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 100px;"><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px;"><input type="number" name="order_qty" id="order_qty"></td>
+					 	 <td style="width: 100px;"><input type="text" name="order_qty" id="order_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 					 	 <td style="width: 100px;"><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 130px;"><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 130px;"><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
@@ -288,31 +288,6 @@ function check_input() {
     alert('발주에 성공하였습니다.');
     document.OFsearch.submit();
  }
-</script>
-<script> 
-//검색 체크
-function fun1() {
-	
-	if(document.search.order_num_keyword.value=="") {
-		alert("order_num_keyword 선택하세요")
-		document.search.search_option.focus();
-		return false;
-	}else if(document.search.order_date_keyword.value=="") {
-		alert("order_date_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}else if(document.search.due_date_keyword.value=="") {
-		alert("due_date_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}else if(document.search.item_name_keyword.value=="") {
-		alert("item_name_keyword 입력하세요");
-		document.search.keyword.focus();
-		return false;
-	}
-	
-	document.search.submit();
-}
 </script>
 <script>
 /* 오늘 날짜 구하기 (발주일 고정값) */
