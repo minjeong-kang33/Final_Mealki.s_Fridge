@@ -27,12 +27,17 @@
 			<tr>
 				<td colspan="2">생산라인</td>
 				<td colspan="2">
+				<c:if test="${empty WorkorderDTO.wo_state || WorkorderDTO.wo_state eq '진행중'}">
 					<select id="manu_name" name="manu_name">
 						<option value="" disabled selected hidden>${WorkorderDTO.manu_name}</option>
 						<option value="가공1">가공1</option>
 						<option value="가공2">가공2</option>
 						<option value="가공3">가공3</option>
 					</select>
+				</c:if>
+				<c:if test="${WorkorderDTO.wo_state eq '완료'}">
+					${WorkorderDTO.manu_name}
+				</c:if>
 				</td>
 			</tr>
 			<tr>
@@ -48,7 +53,7 @@
 				<input type="hidden" name="item_name" value="${WorkorderDTO.item_name}">
 				</td>
 				<td>
-					${WorkorderDTO.contract_qty}
+					${WorkorderDTO.contract_qty} EA
 					<input type="hidden" name="contract_qty" value="${WorkorderDTO.contract_qty}">
 				</td>
 				
@@ -61,12 +66,13 @@
 			<td><b>원재료 품목명</b></td>
 			<td><b>수량</b></td>
 		</tr>
+		
 		<c:forEach var="WorkorderDTO" items="${WoInsert}">
 			<tr>
 				<td></td>
 				<td>${WorkorderDTO.ritem_num}</td>
 				<td>${WorkorderDTO.r_name}</td>
-				<td>${WorkorderDTO.wo_qty}EA</td>
+				<td>${WorkorderDTO.wo_qty} EA</td>
 			</tr>
 		</c:forEach>
 	</table>
