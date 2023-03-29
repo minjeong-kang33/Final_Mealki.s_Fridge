@@ -1,6 +1,5 @@
 package com.itwillbs.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -13,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.WarehouseDTO;
 import com.itwillbs.service.StockService;
@@ -100,10 +98,8 @@ public class StockController {
 		model.addAttribute("whs_num",whs_num);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		System.out.println("0체크: "+stockList.get(0).getWhs_num());
-		
 		return "wms/stock/stockList";
 	}
-	
+
 	
 }

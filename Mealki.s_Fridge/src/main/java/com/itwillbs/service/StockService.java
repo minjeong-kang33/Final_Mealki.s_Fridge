@@ -16,4 +16,5 @@ public interface StockService {
 	public List<StockDTO> getStockList(PageDTO pageDTO);
 
 	public int getStockListCount(PageDTO pageDTO);
+	
 }

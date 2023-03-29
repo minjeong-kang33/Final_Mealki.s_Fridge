@@ -78,23 +78,24 @@
 		    		<tr class="emp_search_table_tr">
 		    			 <td>${StockDTO.item_type}</td><td>${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
 		    			<td>${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
-		    			<td style="width: 100px;"><input type="text" name="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+		    			<td style="width: 100px;"><input type="text" name="new_stk_qnt_${StockDTO.item_num}" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
 		    		</tr>
 				</c:forEach>
             </table>
+            <button class="btn btn-primary" type="button" id="IconButton6" onclick="update_stk_qnt()" style="margin-left: 38%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">재고량 수정</button>
             
         	    <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
+					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num }">[10페이지 이전]</a>
 				</c:if>
 				
 				 <c:if test="${pageDTO.currentPage > 0}"> 
 					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
+						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num }">${i}</a> 
 					</c:forEach>
 				 </c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>
+					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num }">[10페이지 다음]</a>
 				</c:if> 
             </div>
            
@@ -149,6 +150,39 @@ $('#finditem_type').on("click",function(e){
 	
 }); 
 </script>
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
+<script type="text/javascript">
+/* 재고량만 수정. 검색은 수행안되게 함 */
+function update_stk_qnt() {
+	alert('버튼 눌림1');
+	var new_qnts = [];
+
+	var rows = document.querySelectorAll('#stock_search_table tr.emp_search_table_tr');
+
+	  rows.forEach(function(row) {
+	    var input = row.querySelector('input[name^="new_stk_qnt_"]');
+	    if (input) {
+	    	  var item_num = input.name.replace(/^new_stk_qnt_/, '');
+	    	  var stk_qnt = input.value;
+	    	  new_qnts.push({
+	    	    item_num: item_num,
+	    	    stk_qnt: stk_qnt
+	    	  });
+
+	    	}
+	  });
+
+	  // 수정할 데이터가 없다면 알림을 띄우고 함수를 종료합니다.
+	  if (new_qnts.length === 0) {
+	    alert('수정할 데이터가 없습니다.');
+	    return;
+	  }
+	
+	event.preventDefault();
+	location.href = "${pageContext.request.contextPath}/wms/stock/stockupdate";
+	}
+</script>
+
 
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
