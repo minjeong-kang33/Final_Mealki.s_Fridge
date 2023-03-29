@@ -2,10 +2,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.itwillbs.mappers.unstoreItemMapper">
+<mapper namespace="com.itwillbs.mappers.workorderItemMapper">
 
-<select id="getWorkorderItemList" resultType="com.itwillbs.domain.WorkorderItemDTO">
-	select item_name, wo_qty
+<select id="getItemList" resultType="com.itwillbs.domain.WorkorderItemDTO">
+	select wo_num, item_num, wo_qty
 	from workorder_item
 	where wo_num = #{wo_num}
 </select>

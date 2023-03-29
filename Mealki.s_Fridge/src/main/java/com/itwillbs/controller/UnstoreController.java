@@ -1,21 +1,17 @@
 package com.itwillbs.controller;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.itwillbs.dao.StockDAO;
-import com.itwillbs.dao.StoreDAO;
-import com.itwillbs.dao.WorkorderItemDAO;
+import com.itwillbs.domain.WorkorderItemDTO;
 import com.itwillbs.service.StockService;
 import com.itwillbs.service.UnstoreService;
 import com.itwillbs.service.WorkorderItemService;
@@ -41,9 +37,14 @@ public class UnstoreController {
 		List<Map<String, Object>> unstoreListUnreleased = unstoreService.getUnstoreListUnreleased();
 		model.addAttribute("unstoreListUnreleased", unstoreListUnreleased);
 		
-		
+		for(int i=0; i<unstoreListUnreleased.size();i++) {
+			String wo_num = unstoreListUnreleased.get(i).get("wo_num").toString();
+			System.out.println(wo_num);
+			
+			WorkorderItemDTO workorderItemDTO = new WorkorderItemDTO();
+			workorderItemDTO.setWo_num(wo_num);
+			workorderItemService.getItemList(wo_num);
+		}
 		return "wms/unstore/insertUnstore";
 	}
-	
-
 }
