@@ -228,8 +228,8 @@ public class WorkorderController {
 	@RequestMapping(value = "/workorder/WoUpdate", method = RequestMethod.GET)
 	public String WoUpdate(HttpServletRequest request, Model model) {
 		System.out.println("WorkorderController WoInsert()");
-		
-		String num=request.getParameter("business_num");
+		System.out.println("wo_num = " + request.getParameter("wo_num"));
+		String num=request.getParameter("wo_num");
 		
 		List<WorkorderDTO> WoInsert=workorderService.WoUpdateForm(num);
 		
