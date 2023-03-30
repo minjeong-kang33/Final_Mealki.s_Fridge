@@ -24,4 +24,10 @@ public class QualityDAOImpl implements QualityDAO{
 		
 		return sqlSession.selectList(namespace+".getQualityListMap", qualityDTO);
 	}
+
+	@Override
+	public QualityDTO getQualityWrite(String wo_num) {
+		
+		return sqlSession.selectOne(namespace+".getQualityWrite", wo_num);
+	}
 }

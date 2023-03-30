@@ -22,5 +22,12 @@ public class QualityServiceImpl implements QualityService{
 		
 		return qualityDAO.getQualityListMap(qualityDTO);
 	}
+	
+	@Override
+	public QualityDTO getQualityWrite(String wo_num) {
+		System.out.println("QualityServiceImpl ListMap()");
+		
+		return qualityDAO.getQualityWrite(wo_num);
+	}
 
 }

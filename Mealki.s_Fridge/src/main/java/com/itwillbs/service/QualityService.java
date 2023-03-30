@@ -8,4 +8,6 @@ import com.itwillbs.domain.QualityDTO;
 
 public interface QualityService {
 	public List<Map<String, Object>> getQualityListMap(QualityDTO qualityDTO);
+	
+	public QualityDTO getQualityWrite(String wo_num);
 }

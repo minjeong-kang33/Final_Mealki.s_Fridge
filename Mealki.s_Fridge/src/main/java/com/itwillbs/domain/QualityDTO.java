@@ -8,7 +8,7 @@ public class QualityDTO {
 		private String item_name;
 		private String item_num;
 		private String qc_code;
-		private String emp_Kname;
+		private String emp_kname;
 		private String qc_status;
 		private int manu_tocount;
 		private int qc_qty;
@@ -58,10 +58,10 @@ public class QualityDTO {
 			this.qc_code = qc_code;
 		}
 		public String getEmp_Kname() {
-			return emp_Kname;
+			return emp_kname;
 		}
-		public void setEmp_Kname(String emp_Kname) {
-			this.emp_Kname = emp_Kname;
+		public void setEmp_Kname(String emp_kname) {
+			this.emp_kname = emp_kname;
 		}
 		public String getQc_status() {
 			return qc_status;
