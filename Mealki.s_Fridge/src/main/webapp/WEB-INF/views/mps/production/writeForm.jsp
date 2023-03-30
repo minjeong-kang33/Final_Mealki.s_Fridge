@@ -98,16 +98,8 @@
 				<label>작업지시번호 : </label>
 				<input type="text" name="wo_num" value="" readonly="readonly">
 				
-		<c:choose>  
-			<c:when test="${productionDTO.emp_Kname eq null or productionDTO.emp_Kname eq ''}"> 
 				<label>작업자 : </label>
-				<input type="text" name="emp_Kname" value="${sessionScope.emp_num}" readonly="readonly">
-			</c:when> 
-			<c:otherwise> 
-				<label>작업자 : </label>
-				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
-			</c:otherwise> 
-		</c:choose> <p>
+				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly"><P>
 				
 				<label>생산량 : </label>
 				<input type="text" name="manu_tocount">

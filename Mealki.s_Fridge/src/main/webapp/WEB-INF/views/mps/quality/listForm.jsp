@@ -98,40 +98,26 @@
 												<th>라인코드</th>
 												<th>품명</th>
 												<th>품번</th>
-<!-- 												<th>수주량</th> -->
 												<th>검수번호</th>
 												<th>검수자 </th>
-												<th>검수상태 </th>
+<!-- 												<th>수주량</th> -->
 												<th>생산량 </th>
 												<th>검수량 </th>
 												<th>불량  </th>
 												<th>검수완료일자  </th>
+												<th>검수상태 </th>
 									         </tr>
 <!-- 									         test -->
-											 <tr align="center">
-												<th>WO2303290819</th> 
-												<th>가공1</th>
-												<th>L0000001</th>
-												<th>야끼소바</th>
-												<th>P0001</th>
-<!-- 												<th>수주량</th> -->
-												<th>qc000001</th>
-												<th>김철수</th>
-												<th>양호</th>
-												<th>100</th>
-												<th>100</th>
-												<th>0</th>
-												<th>2023-03-29 20:00</th>
-									         </tr>
-<%-- 									       		<c:forEach var="dto" items="${productionListMap}"> --%>
-<!-- 													<tr> -->
-<%-- 														<td>${dto.wo_num}</td><td>${dto.manu_name}</td> --%>
-<%-- 														<td>${dto.manu_code}</td><td>${dto.item_name}</td> --%>
-<%-- 														<td>${dto.item_num}</td><td>${dto.manu_tocount}</td> --%>
-<%-- 														<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td> --%>
-<%-- 														<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td> --%>
-<!-- 													</tr> -->
-<%-- 												</c:forEach> --%>
+									       		<c:forEach var="dto" items="${qualityListMap}">
+													<tr>
+														<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
+														<td>${dto.manu_code}</td><td>${dto.item_name}</td>
+														<td>${dto.item_num}</td><td>${dto.qc_code}</td>
+														<td>${dto.emp_Kname}</td><td>${dto.manu_tocount}</td>
+														<td>${dto.qc_qty}</td><td>${dto.manu_fail}</td>
+														<td>${dto.qc_date}</td><td>${dto.qc_status}</td>
+													</tr>
+												</c:forEach>
 									    </table>
 									</div>
 								</div>
