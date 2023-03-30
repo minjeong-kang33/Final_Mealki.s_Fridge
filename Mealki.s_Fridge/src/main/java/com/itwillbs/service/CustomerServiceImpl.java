@@ -50,6 +50,13 @@ public class CustomerServiceImpl implements CustomerService{
 
 		customerDAO.insertCustomer(customerDTO);	
 	}
+
+	@Override
+	public void deleteCustomer(String business_num) {
+		System.out.println("CustomerServiceImpl deleteCustomer()");
+		
+		customerDAO.deleteCustomer(business_num);
+	}
 	
 	
 

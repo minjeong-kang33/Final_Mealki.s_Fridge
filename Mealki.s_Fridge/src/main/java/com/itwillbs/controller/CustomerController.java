@@ -74,26 +74,38 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/business/customer/customerDetail", method = RequestMethod.GET)
 	public String customerDetail(HttpServletRequest request, Model model) {
+		System.out.println("CustomerController customerDetail()");
 		String business_num = request.getParameter("business_num");
 	
 		CustomerDTO customerDTO=customerService.getCustomer(business_num);
 
 		model.addAttribute("customerDTO", customerDTO);
 		
-	return "business/customer/customerDetail";
-}
+		return "business/customer/customerDetail";
+	}
 	
-//	@RequestMapping(value="/business/customer/delete", method=RequestMethod.POST)
-//	public String delete(HttpServletRequest request) {
-//		int num=Integer.parseInt(request.getParameter("cust_num"));
-//		
-//	return "redirect:business/customer/customerList";
-//	}
+	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.POST)
+	public String deleteCustomer(HttpServletRequest request) {
+		 System.out.println("CustomerController deleteCustomer()");
+		 String business_num = request.getParameter("business_num");
+//		 String selectedCustomers[]=request.getParameterValues("selectedCustomers");
+//         String business_num = null;
+//         if(selectedCustomers!=null){
+//              for(int i=0;i<selectedCustomers.length;i++){
+//            
+//            	  business_num=selectedCustomers[i];
+//            	  customerService.deleteCustomer(business_num);
+//              }
+//             } 
+		 customerService.deleteCustomer(business_num);
+         return "redirect:business/customer/customerList";
+	}
 	
 	@RequestMapping(value = "/business/customer/insertCustomer", method = RequestMethod.GET)
 	public String insertCustomer() {
+		System.out.println("CustomerController insertCustomer()");
 	
-	return "business/customer/insertCustomer";
+		return "business/customer/insertCustomer";
 	}
 	@RequestMapping(value = "/business/customer/insertCustomerPro", method = RequestMethod.POST)
 	public String insertCustomerPro(CustomerDTO customerDTO) {

@@ -16,5 +16,7 @@ public interface CustomerDAO {
 	public CustomerDTO getCustomer(String business_num);
 	
 	public void insertCustomer(CustomerDTO customerDTO);
+	
+	public void deleteCustomer(String business_num);
 
 }

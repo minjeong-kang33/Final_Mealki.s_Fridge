@@ -43,25 +43,37 @@
 	            "childForm", "width=600, height=1000,top=300, left=300, resizable = no, scrollbars = no");    
 	  }
   </script>
-
   
-<!-- <!--   <script> //검색어 --> 
-<!-- // 	function fun1() { -->
-		
-<!-- // 		if(document.search.search_option.value=="") { -->
-<!-- // 			alert("검색 조건을 선택하세요") -->
-<!-- // 			document.search.search_option.focus(); -->
-<!-- // 			return false; -->
-<!-- // 		} -->
-<!-- // 		if(document.search.keyword.value==0) { -->
-<!-- // 			alert("검색어를 입력하세요"); -->
-<!-- // 			document.search.keyword.focus(); -->
-<!-- // 			return false; -->
-<!-- // 			} -->
-		
-<!-- // 			document.search.submit(); -->
-<!-- // 	} -->
-<!-- <!--   </script> --> 
+  <script>
+    document.getElementById("deleteCust").addEventListener("click", function () {
+        var checkboxes = document.getElementsByName("selectedCustomers");
+        var checked = [];
+        for (var i = 0; i < checkboxes.length; i++) {
+            if (checkboxes[i].checked) {
+                checked.push(checkboxes[i].value);
+            }
+        }
+        if (checked.length > 0) {
+            if (confirm("거래처를 삭제하시겠습니까?")) {
+                var form = document.createElement("form");
+                form.setAttribute("method", "post");
+                form.setAttribute("action", "${pageContext.request.contextPath}/business/customer/deleteCustomer");
+                for (var i = 0; i < checked.length; i++) {
+                    var input = document.createElement("input");
+                    input.setAttribute("type", "hidden");
+                    input.setAttribute("name", "selectedCustomers");
+                    input.setAttribute("value", checked[i]);
+                    form.appendChild(input);
+                }
+                document.body.appendChild(form);
+                form.submit();
+            }
+        } else {
+            alert("삭제할 거래처를 선택해주세요.");
+        }
+    });
+</script>
+
   
   
 
@@ -91,51 +103,50 @@
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-            <div id="table_search"> 
-            	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get" onsubmit="return fun1()">
-	            	<select name="search_option" class="search_option">
-	            		<option value=""> 선택하세요 </option>
-	            		<option value="cust_num"> 거래처코드 </option>
-	            		<option value="cust_name"> 거래처명 </option>
-	            		<option value="cust_uptae"> 업태 </option>
-	            	</select>
-	            <input type="text" name="keyword" class="input-search" >
-	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
-            	</form>
+            <div id="table_search">
+            	<div id="select_search"> 
+	            	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get">
+		            	<select name="search_option" class="search_option">
+		            		<option value=""> 선택하세요 </option>
+		            		<option value="cust_num"> 거래처코드 </option>
+		            		<option value="cust_name"> 거래처명 </option>
+		            		<option value="cust_uptae"> 업태 </option>
+		            	</select>
+		            <input type="text" name="keyword" class="input-search" >
+		            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
+	            	</form>
+            	</div>
+            	
+            	<div id="table_write">
+					<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
+				</div>
             </div>
             
 			<div id="table_content">
-<%-- 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">           --%>
 				<table border="1">
-					<tr><th>선택</th>
+					<tr>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
-				
-					<tr onclick="openDetail('${CustomerDTO.business_num}')">
-						<td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.business_num}"></td>
-					    <td>${CustomerDTO.cust_num}</td>
-					    <td>${CustomerDTO.cust_name}</td>
-					    <td>${CustomerDTO.boss_name}</td>
-					    <td>${CustomerDTO.cust_tel}</td>
-					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
-					    <td>${CustomerDTO.cust_uptae}</td>
-					    <td>${CustomerDTO.cust_jongmok}</td>
-					    <td>${CustomerDTO.man_email}</td></tr>
-				    
+					<c:if test="${CustomerDTO.cust_status == 1}">
+						<tr>
+							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
+						</tr>
+				   </c:if> 
 				</c:forEach>
 				
 				</table>
-<!-- 				</form> -->
 			</div>
 				
-			<div id="button2">
-				<input type="submit" class="btn btn-primary" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
-<%-- 				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer"> --%>
-				<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
-<!-- 				</a> -->
-			</div>
+			
 			
  
  <!--  본문내용 끝 -->    

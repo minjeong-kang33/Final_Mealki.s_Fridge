@@ -73,12 +73,10 @@
         
         <div id="table_write">
 		
-		<%-- <c:if test="${ ! empty sessionScope.id }"> --%>
-		
+		<c:if test="${ ! empty sessionScope.emp_num }">		
 			<input type="button" value="✏️글쓰기 " class="btn btn-primary" style="font-size:14px; font-weight: bold;"
-			onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">
-		
-		<%-- </c:if> --%>
+			onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">		
+		</c:if>
 		</div>
      </div>
 
