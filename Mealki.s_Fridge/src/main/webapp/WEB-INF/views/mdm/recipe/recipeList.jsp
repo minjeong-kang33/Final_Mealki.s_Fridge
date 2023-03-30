@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,7 +27,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/itemList.css">	
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/recipeList.css">	
 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
@@ -51,20 +52,20 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">품목리스트</h3>
+                  <h3 class="font-weight-bold">소요량리스트</h3>
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
 
-<!-- 		품목검색버튼, 항목선택 -->
+<!-- 		레시피검색버튼, 항목선택 -->
             <div id="table_search">
 
-            	<form name="search" action="${pageContext.request.contextPath}/mdm/item/itemlist" method="get" onsubmit="return fun1()" >
+            	<form name="search" action="${pageContext.request.contextPath}/mdm/recipe/recipeList" method="get" onsubmit="return fun1()" >
 	            	<select name="search_option">
-	            		<option value="item_name"> 품목명 </option>
-	            		<option value="item_num"> 품목코드 </option>
+	            		<option value="r_name"> 레시피이름 </option>
+	            		<option value="r_code"> 레시피코드 </option>
 	            	</select>
 	            <input type="text" name="search" class="input-search" >
 	            <input type="image"  class="itemsearch-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="27">
@@ -72,39 +73,39 @@
             	</form>
             </div>
             
-<!-- 		상품추가 및 상품저장 버튼 -->
+<!-- 		레시피추가 및 레시피저장 버튼 -->
 			<div id="item_buttons">
-  				<button class="btn btn-primary" type="button" id="addItemButton">＋품목추가</button>
-                <button class="btn btn-primary" type="button" id="updateItemButton">✎품목수정</button>
-  				<button class="btn btn-primary" type="button" id="saveItemButton">✓품목저장</button>
-                <button class="btn btn-primary" type="button" id="deleteItemButton">✂품목삭제</button>
+  				<button class="btn btn-primary" type="button" id="addRecipeButton">추가</button>
+                <button class="btn btn-primary" type="button" id="updateRecipeButton">수정</button>
+  				<button class="btn btn-primary" type="button" id="saveRecipeButton">레시피저장</button>
+                <button class="btn btn-primary" type="button" id="deleteRecipeButton">삭제</button>
 			</div>
             
-<!--        품목리스트 -->
+<!--        레시피리스트 -->
 			<div id="table_content">
-			 <form id="tableForm" action="${pageContext.request.contextPath}/mdm/item/save" method="post" enctype="multipart/form-data">
+			 <form id="tableForm" action="${pageContext.request.contextPath}/mdm/recipe/save" method="post" enctype="multipart/form-data">
 				<table border="1" id="itemTable" style="width: 93%;" >
 					<tr><th><input type="checkbox" name="itemCheckAll" value="${ItemDTO.item_num}" id="checkAll"></th>
-				 	<th>품목 코드</th>
-            	 	<th>품목 유형</th>
-           		 	<th>품목명</th>
- 		    	 	<th>중량(g)</th>
-           	 	 	<th>납입처</th>
-           		 	<th>납입 단가(원)</th>
-           		 	<th>출고 단가(원)</th>
-           		 	<th>이미지</th></tr>
+				 	<th>레시피번호</th>
+            	 	<th>레시피코드</th>
+           		 	<th>품목코드</th>
+ 		    	 	<th>레시피이름</th>
+           	 	 	<th>식자재이름</th>
+           		 	<th>소요량</th>
+           		 	<th>등록일</th>
+           		 	<th>비고</th></tr>
 				
-				<c:forEach var="ItemDTO" items="${itemlist }">
+				<c:forEach var="RecipeDTO" items="${recipeList }">
 				
 					<tr><td><input type="checkbox" name="selectItem" value="${ItemDTO.item_num}"></td>
-					    <td>${ItemDTO.item_num}</td>
-					    <td>${ItemDTO.item_type}</td>
-					    <td>${ItemDTO.item_name}</td>
-					    <td>${ItemDTO.weight}</td>
-					    <td>${ItemDTO.supplier}</td>
-					    <td>${ItemDTO.supply_price}</td>
-					    <td>${ItemDTO.sales_price}</td>
-					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${ItemDTO.item_image}" ></td></tr>
+					    <td>${RecipeDTO.r_num}</td>
+					    <td>${RecipeDTO.r_code}</td>
+					    <td>${RecipeDTO.item_num}</td>
+					    <td>${RecipeDTO.r_name}</td>
+					    <td>${RecipeDTO.item_name}</td>
+					    <td>${RecipeDTO.r_qty}</td>
+					    <td><fmt:formatDate value="${RecipeDTO.r_date}" pattern="yyyy.MM.dd"/></td>
+					    <td>${RecipeDTO.r_etc}</td></tr>
 				    
 				</c:forEach>
 				
@@ -121,15 +122,15 @@
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="paging">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${i}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
 </c:if>
 </div>
 
@@ -201,113 +202,76 @@ function fun1() {
       });
     });
 
-    // 상품추가 버튼 이벤트
-    document.getElementById("addItemButton").addEventListener("click", function() {
+    // 레시피추가 버튼 이벤트
+    document.getElementById("addRecipeButton").addEventListener("click", function() {
       let itemTable = document.getElementById("itemTable");
       let newRow = itemTable.insertRow(-1);
 
       newRow.innerHTML = `
 			    <td><input type="checkbox" name="selectItem"></td>
-			    <td>
-		        <select name="item_prefix">
-		          <option value="P">P</option>
-		          <option value="I">I</option>
-		        </select>
-			    <input type="text" name="item_num" placeholder="품목 코드"></td>
-			    </td>
-			    <td>
-			      <select name="item_type">
-			      	<option value="상온완제품">상온완제품</option>
-			        <option value="냉장완제품">냉장완제품</option>
-			        <option value="냉동완제품">냉동완제품</option>
-			        <option value="상온식자재">상온식자재</option>
-			        <option value="냉장식자재">냉장식자재</option>
-			        <option value="냉동식자재">냉동식자재</option>
-
-			      </select>
-			    </td>
-			    <td><input type="text" name="item_name" placeholder="품목명"></td>
-			    <td><input type="text" name="weight" placeholder="중량(g)"></td>
-			    <td><input type="text" name="supplier" placeholder="납입처"></td>
-			    <td><input type="text" name="supply_price" placeholder="납입 단가(원)"></td>
-			    <td><input type="text" name="sales_price" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
+			    <td><input type="text" name="r_num" placeholder="레시피번호"></td>
+			    <td><input type="text" name="r_code" placeholder="레시피코드"></td>
+			    <td><input type="text" name="item_num" placeholder="품목코드"></td>
+			    <td><input type="text" name="r_name" placeholder="레시피이름"></td>
+			    <td><input type="text" name="item_name" placeholder="식자재이름"></td>
+			    <td><input type="text" name="r_qty" placeholder="소요량"></td>
+			    <td><input type="text" name="r_date" placeholder="등록일"></td>
+			    <td><input type="text" name="r_etc" placeholder="비고"></td>`;
 
       let selectItemPrefix = newRow.querySelector("select[name='item_prefix']");
-      let inputItemNum = newRow.querySelector("input[name='item_num']");
+      let inputItemNum = newRow.querySelector("input[name='r_num']");
 
       selectItemPrefix.addEventListener("change", function() {
         let prefix = selectItemPrefix.value;
         let itemNum = "";
 
-        if (prefix === "P") {
-          itemNum = "P001";
-        } else if (prefix === "I") {
-          itemNum = "I001";
-        }
+
 
       });
     });
 
-    // 품목수정 버튼 이벤트
-    document.getElementById("updateItemButton").addEventListener("click", function() {
+    // 레시피수정 버튼 이벤트
+    document.getElementById("updateRecipeButton").addEventListener("click", function() {
       // let itemTable = document.getElementById("itemTable");
       let element = document.getElementById("itemTable").querySelector('tr td input[name="selectItem"]:checked').parentNode.parentNode;
 
 
-      let itemNum = element.querySelector('td:nth-child(2)').textContent;
-      let itemType = element.querySelector('td:nth-child(3)').textContent;
-      let item_name = element.querySelector('td:nth-child(4)').textContent;
-      let weight = element.querySelector('td:nth-child(5)').textContent;
-      let supplier = element.querySelector('td:nth-child(6)').textContent;
-      let supply_price = element.querySelector('td:nth-child(7)').textContent;
-      let sales_price = element.querySelector('td:nth-child(8)').textContent;
-      let item_image = element.querySelector('td:nth-child(9)').textContent;
+      let recipeNum = element.querySelector('td:nth-child(2)').textContent;
+      let r_code = element.querySelector('td:nth-child(3)').textContent;
+      let item_num = element.querySelector('td:nth-child(4)').textContent;
+      let r_name = element.querySelector('td:nth-child(5)').textContent;
+      let item_name = element.querySelector('td:nth-child(6)').textContent;
+      let r_qty = element.querySelector('td:nth-child(7)').textContent;
+      let r_date = element.querySelector('td:nth-child(8)').textContent;
+      let r_etc = element.querySelector('td:nth-child(9)').textContent;
 
 
       element.innerHTML = `
-			    <td><input type="checkbox" name="selectItem"></td>
-			    <td>
-		        <select name="item_prefix">
-		          <option value="P">P</option>
-		          <option value="I">I</option>
-		        </select>
-			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum}></td>
-			    </td>
-			    <td>
-			      <select name="item_type" value=\${itemType}>
-			        <option value="냉동완제품">냉동완제품</option>
-			        <option value="냉장완제품">냉장완제품</option>
-			        <option value="냉동식자재">냉동식자재</option>
-			        <option value="냉장식자재">냉장식자재</option>
-			      </select>
-			    </td>
-			    <td><input type="text" name="item_name" value="\${item_name}" placeholder="품목명"></td>
-			    <td><input type="text" name="weight" value="\${weight}" placeholder="중량(g)"></td>
-			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
-			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
-			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
+    	  <td><input type="checkbox" name="selectItem"></td>
+    	  	<td><input type="text" name="r_num" value="\${recipeNum}" placeholder="레시피번호"></td>
+		    <td><input type="text" name="r_code" value="\${r_code}" placeholder="레시피코드"></td>
+		    <td><input type="text" name="item_num" value="\${item_num}" placeholder="품목코드"></td>
+		    <td><input type="text" name="r_name" value="\${r_name}" placeholder="레시피이름"></td>
+		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
+		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량"></td>
+		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일"></td>
+		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`;
 
       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
-      let inputItemNum = element.querySelector("input[name='item_num']");
+      let inputRecipeNum = element.querySelector("input[name='r_num']");
 
       selectItemPrefix.addEventListener("change", function() {
         let prefix = selectItemPrefix.value;
-        let itemNum = "";
+        let recipeNum = "";
 
-        if (prefix === "P") {
-          itemNum = "P001";
-        } else if (prefix === "I") {
-          itemNum = "I001";
-        }
+       
 
-        inputItemNum.value = itemNum;
+        inputRecipeNum.value = recipeNum;
       });
     });
 
     // 삭제 버튼 추가
-    document.getElementById("deleteItemButton").addEventListener("click", function() {
+    document.getElementById("deleteRecipeButton").addEventListener("click", function() {
       if(confirm("삭제하시겠습니까?")){
         let elements = document.getElementById("tableForm").querySelectorAll('input[name="selectItem"]:checked');
         let formData = new FormData();
@@ -316,7 +280,7 @@ function fun1() {
         }
 
         let request = new XMLHttpRequest();
-        request.open("POST","${pageContext.request.contextPath}/mdm/item/delete");
+        request.open("POST","${pageContext.request.contextPath}/mdm/recipe/delete");
         request.send(formData);
 
         request.onreadystatechange = function() {
@@ -329,31 +293,12 @@ function fun1() {
 
 
     // 품목저장 버튼 이벤트
-    document.getElementById("saveItemButton").addEventListener("click", function() {
+    document.getElementById("saveRecipeButton").addEventListener("click", function() {
       let form = document.getElementById("tableForm");
       form.submit();
     });
 
-    // 이미지 미리보기 기능
-    function previewImage(input) {
-      if (input.files && input.files[0]) {
-        let reader = new FileReader();
-
-        reader.onload = function (e) {
-          let imgPreview = document.createElement("img");
-          imgPreview.src = e.target.result;
-          imgPreview.width = 100; // 이미지 미리보기 크기 조절
-          imgPreview.height = 100;
-
-          let td = input.parentNode;
-          td.innerHTML = "";
-          td.appendChild(imgPreview);
-          td.appendChild(input);
-        };
-
-        reader.readAsDataURL(input.files[0]);
-      }
-    }
+    
     </script>
   <!--  본문내용 끝 -->
   

@@ -1,0 +1,111 @@
+@charset "UTF-8";
+
+#itemTable tr:last-child td {
+	height: 35px; 
+}
+
+tr:hover td{
+	background-color: #e6e6f4;
+}
+
+#table_search{
+	text-align:left;
+	padding-left: 35px;
+	border-radius: 80px;
+}
+
+#item_buttons{
+	text-align: right;
+	padding-right: 42px;
+	padding-bottom: 20px;
+}
+
+/* 가로 스크롤바 */
+#table_content {
+    overflow-x: auto; 
+}
+
+#table_content th{
+	background-color: #e6e6f4;
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	
+}
+
+#tableForm{
+    text-align: center;
+/*      margin-top: 25px;  */
+}
+
+#itemTable {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+/* 버튼 */
+button#addItemButton{
+	padding: 10px;
+	background-color: #D0CDE5;
+	color: black;
+	font-weight:bolder;
+	border: 1.5px solid #666470;
+/* 	border-style: none; */
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+}
+
+button#updateItemButton{
+	padding: 10px;
+	background-color: #D0CDE5;
+	color: black;
+	font-weight:bolder;
+	border: 1.5px solid #666470;
+/* 	border-style: none; */
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+}
+
+button#saveItemButton{
+	padding: 10px;
+	background-color: #D0CDE5;
+	color: black;
+	font-weight:bolder;
+	border: 1.5px solid #666470;
+/* 	border-style: none; */
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+}
+
+button#deleteItemButton{
+	padding: 10px;
+	background-color: #D0CDE5;
+	color: black;
+	font-weight:bolder;
+	border: 1.5px solid #666470;
+/* 	border-style: none; */
+	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+}
+
+#table_search {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #e6e6f4;
+  border: 1px solid #666470;
+  padding: 12px;
+  margin-left:45px;
+  border-radius: 20px;
+  width: 35%;
+  text-align: left;
+  box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+}
+
+.input-search {
+  padding: 5px;
+  margin: 0 10px;
+  border: none;
+  border-radius: 3px;
+  font-size: 16px;
+  
+}
+
+.itemsearch-icon {
+	padding-top:5px;
+}
+

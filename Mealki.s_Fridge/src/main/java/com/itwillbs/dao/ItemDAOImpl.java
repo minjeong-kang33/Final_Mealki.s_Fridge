@@ -1,9 +1,9 @@
 package com.itwillbs.dao;
 
-//import java.util.HashMap;
+import java.util.HashMap;
+
 
 import java.util.List;
-//import java.util.Map;
 import java.util.Map;
 
 import javax.inject.Inject;
@@ -49,29 +49,29 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectOne("itemMapper.getItemImage", itemNum);
 
 	}
-	 
-//
-//	    @Override
-//	    public void insertItem(ItemDTO item) {
-//	        sqlSession.insert(namespace+".insertItem", item);
-//	    }
-//
-//	    @Override
-//	    public void updateItem(ItemDTO item) {
-//	        sqlSession.update(namespace+".updateItem", item);
-//	    }
-//
-//	    @Override
-//	    public void deleteItem(String itemNum) {
-//	        sqlSession.delete(namespace+".deleteItem", itemNum);
-//	    }
-//
-//	    @Override
-//	    public List<ItemDTO> searchItem(String itemName, String itemType) {
-//	        Map<String, String> map = new HashMap<String, String>();
-//	        map.put("itemName", itemName);
-//	        map.put("itemType", itemType);
-//	        return sqlSession.selectList(namespace+".searchItem", map);
-//	    }
-
+	@Override
+	public void insertItem(ItemDTO item) {
+			sqlSession.insert(namespace+".insertItem", item);
 	}
+
+	@Override
+	public void updateItem(ItemDTO item) {
+			sqlSession.update(namespace+".updateItem", item);
+	}
+
+	@Override
+	public void deleteItem(String itemNum) {
+			sqlSession.delete(namespace+".deleteItem", itemNum);
+	}
+
+	@Override
+	public ItemDTO selectItem(String itemNum) {
+		Map<String, String> map = new HashMap<>();
+		map.put("itemNum", itemNum);
+		return sqlSession.selectOne(namespace+".selectItem", map);
+	}
+
+	
+	
+
+}
