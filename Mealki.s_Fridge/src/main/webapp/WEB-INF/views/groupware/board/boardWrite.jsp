@@ -58,18 +58,17 @@
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
 
-<%-- 			<c:if test="${empty sessionScope.id }"> --%>
-<%-- 				<c:redirect url="/main/login"></c:redirect> --%>
-<%-- 			</c:if> --%>
+			<c:if test="${empty sessionScope.emp_num }">
+				<c:redirect url="/main/login"></c:redirect>
+			</c:if>
 
-			<article id="table_content"
-			>
+			<article id="table_content">
 					<form action="${pageContext.request.contextPath}/groupware/board/boardWritePro" method="post" enctype="multipart/form-data">
 					<table id="notice" border="1">
 					<tr><th>제목</th>
 					       <td><input type="text" name="bo_title" ></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.id }" readonly></td></tr>
+					       <td><input type="text" name="bo_name" value="${sessionScope.emp_num }" readonly></td></tr>
 					<tr><th>내용</th>
 							<td><textarea name="bo_content" rows="10" cols="20"></textarea></td></tr>
 					<tr><th>첨부파일</th>

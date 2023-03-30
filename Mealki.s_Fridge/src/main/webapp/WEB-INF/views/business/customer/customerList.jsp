@@ -113,9 +113,10 @@
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
 				
-					<tr><td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.business_num}"></td>
-					    <td onclick="openDetail('${CustomerDTO.business_num}')" style="font-weight: bold;">${CustomerDTO.cust_num}</td>
-					    <td onclick="openDetail('${CustomerDTO.business_num}')" style="font-weight: bold;">${CustomerDTO.cust_name}</td>
+					<tr onclick="openDetail('${CustomerDTO.business_num}')">
+						<td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.business_num}"></td>
+					    <td>${CustomerDTO.cust_num}</td>
+					    <td>${CustomerDTO.cust_name}</td>
 					    <td>${CustomerDTO.boss_name}</td>
 					    <td>${CustomerDTO.cust_tel}</td>
 					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>

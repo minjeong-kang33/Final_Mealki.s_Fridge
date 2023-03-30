@@ -23,12 +23,12 @@ public class BoardServiceImpl implements BoardService{
 		// 폼에서 가져온 값 name subject content
 		// bo_num,bo_count,date,file => 설정
 		// bo_num => 구하기 max(bo_num)+1
-		if(boardDAO.getMaxBO_num() == null) {
+		if(boardDAO.getMaxBo_num() == null) {
 		//게시판 글 없음 => 1 설정
 		boardDTO.setBo_num(1);
 		}else {
 		//게시판 글 있음 => max(bo_num)+1
-		boardDTO.setBo_num(boardDAO.getMaxBO_num()+1);
+		boardDTO.setBo_num(boardDAO.getMaxBo_num()+1);
 		}
 				
 		boardDTO.setBo_count(0);

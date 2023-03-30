@@ -9,7 +9,7 @@ public interface BoardDAO {
 	
 	public void insertBoard(BoardDTO boardDTO);
 	
-	public Integer getMaxBO_num();
+	public Integer getMaxBo_num();
 	
 	public List<BoardDTO> getNoticeList(PageDTO pageDTO);
 	
