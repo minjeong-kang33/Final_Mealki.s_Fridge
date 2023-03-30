@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -9,10 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.WarehouseDTO;
 import com.itwillbs.service.StockService;
 
@@ -98,8 +102,30 @@ public class StockController {
 		model.addAttribute("whs_num",whs_num);
 		model.addAttribute("pageDTO", pageDTO);
 		
+		System.out.println("0체크: "+stockList.get(0).getWhs_num());
+		
 		return "wms/stock/stockList";
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/wms/stock/updateQnt", method = RequestMethod.GET)
+	public String addStore(HttpServletRequest request, Model model) {
+		System.out.println("storeController updateQnt()");
+		 
+		System.out.println("item_num: "+request.getParameter("item_num"));
+		System.out.println("new_qnt: "+request.getParameter("new_qnt"));
+		
+		StockDTO stockDTO = new StockDTO();
+			
+		stockDTO.setItem_num(request.getParameter("item_num"));
+		stockDTO.setStk_qnt(Integer.parseInt(request.getParameter("new_qnt")));
 
+		stockService.updateStock(stockDTO);
+			 
+		return "redirect:/wms/store/stockList";		
+
+		
+	}
+	
 	
 }
