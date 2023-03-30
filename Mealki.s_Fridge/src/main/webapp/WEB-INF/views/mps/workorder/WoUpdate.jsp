@@ -5,16 +5,38 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/woinsert.css">
+<!-- plugins:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 </head>
 <body>
+<div style="padding:10px;">
 
+	<div style="text-align: center; padding:30px 10px 10px 30px;"> 
 	<h1>작업지시서</h1>
+	</div>
+	
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro" method="post">
+	<div style="text-align: right;">
 	<b>작성일 : <a id="current_date"></a></b>
-	<table>
+	</div>
+	
+	<table border="1" id="orderlist_table">
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
 			<tr>
 				<th colspan="2">작업지시번호</th>
@@ -28,12 +50,13 @@
 				<td colspan="2">생산라인</td>
 				<td colspan="2">
 				<c:if test="${empty WorkorderDTO.wo_state || WorkorderDTO.wo_state eq '진행중'}">
-					<select id="manu_name" name="manu_name">
+					<select id="manu_name" name="manu_name" >
 						<option value="" disabled selected hidden>${WorkorderDTO.manu_name}</option>
 						<option value="가공1">가공1</option>
 						<option value="가공2">가공2</option>
 						<option value="가공3">가공3</option>
 					</select>
+					
 				</c:if>
 				<c:if test="${WorkorderDTO.wo_state eq '완료'}">
 					${WorkorderDTO.manu_name}
@@ -41,10 +64,10 @@
 				</td>
 			</tr>
 			<tr>
-				<td><b>품목코드</b></td>
-				<td><b>품목명</b></td>
-				<td><b>수량</b></td>
-				<td></td>
+				<th><b>품목코드</b></th>
+				<th><b>품목명</b></th>
+				<th><b>수량</b></th>
+				<th></th>
 			</tr>
 			<tr>
 				<td>${WorkorderDTO.item_num}</td>
@@ -61,10 +84,10 @@
 			</tr>
 		</c:forEach>
 		<tr>
-			<td>ㄴ</td>
-			<td><b>원재료 품목코드</b></td>
-			<td><b>원재료 품목명</b></td>
-			<td><b>수량</b></td>
+			<th>ㄴ</th>
+			<th><b>원재료 품목코드</b></th>
+			<th><b>원재료 품목명</b></th>
+			<th><b>수량</b></th>
 		</tr>
 		
 		<c:forEach var="WorkorderDTO" items="${WoInsert}">
@@ -76,18 +99,18 @@
 			</tr>
 		</c:forEach>
 	</table>
-
-		
-		
-	<div class="button">	
-		<input type="submit" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
-		<input type="submit" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
-		<input type="button" value="닫기" onclick="window.close()">
+	<div style="margin-top:10px; text-align: right;">
+	<!-- 생산이 진행중이거나 완료시 작업지시서 수정삭제 불가 -->
+	<c:if test="${empty WorkorderDTO.wo_state}">
+		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
+		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
+	</c:if>
+		<input type="button" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="닫기" onclick="window.close()">
 	</div>
 	
 	
 </form>
-	
+	</div>
 </body>
 		
 	<script>

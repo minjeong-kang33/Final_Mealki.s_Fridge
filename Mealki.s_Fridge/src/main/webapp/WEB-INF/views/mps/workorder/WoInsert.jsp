@@ -5,7 +5,22 @@
 <!DOCTYPE html>
 <html>
 <head>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/woinsert.css">
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+ <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 </head>
@@ -14,7 +29,6 @@
 	<h1>작업지시서 등록</h1>
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoInsertPro" method="post" name="woinsertform" onsubmit="return checkForm()">
 	<b>작성일 : <a id="current_date"></a></b>
-<%-- 	<b>작성자 : ${sessionScope.emp_num}</b> --%>
 	<table>
 		<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
 			<tr>
@@ -25,9 +39,6 @@
 				</th>
 			</tr>
 			<tr>
-<%-- 				<c:if test="${! empty WorkorderDTO.manu_num }"> --%>
-<!-- 					이게맞나 -->
-<%-- 				</c:if> --%>
 				<td colspan="2"><b>생산라인</b></td>
 				<td colspan="2">
 					<select id="manu_name" name="manu_name">
