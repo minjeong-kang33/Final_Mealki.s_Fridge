@@ -73,16 +73,17 @@
                <h4> | 재고 정보 </h4>
                <div class="scrollBar">
             <table border="1" id="stock_search_table">
-            	<tr><th>상품유형</th><th>품번</th><th>품명</th><th>현재고</th><th>보관창고</th><th>실사량</th></tr>
+            	<tr><th>상품유형</th><th>품번</th><th>품명</th><th>현재고</th><th>보관창고</th><th>실사량</th><th></th><!-- <th></th> --></tr>
 				<c:forEach var="StockDTO" items="${stockList }">
 		    		<tr class="emp_search_table_tr">
-		    			 <td>${StockDTO.item_type}</td><td>${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
-		    			<td>${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
-		    			<td style="width: 100px;"><input type="text" name="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+		    			<td>${StockDTO.item_type}</td><td id="item_num">${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
+		    			<td id="stk_qnt">${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
+		    			<td style="width: 50px;"><input type="text" name="new_stk_qnt" id="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="width: 70px; border-color: dark-grey; margin-left: 7px; margin-right: 7px;" value=""></td>
+		    			<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt">수정</button></td>
 		    		</tr>
 				</c:forEach>
             </table>
-            
+        	  
         	    <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
 				</c:if>
@@ -111,9 +112,9 @@
 <!-- 페이징 끝 -->
             </div>
             
-          <!--  </div>
+          <!--  </div> -->
           
-        </div> -->
+        </div> 
         
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
@@ -149,7 +150,43 @@ $('#finditem_type').on("click",function(e){
 	
 }); 
 </script>
+<script type="text/javascript">
+ /* 실사량 수정 update_qnt */
+$(function(){
+	$(".update_qnt").click(function(){
+		var str = "";
+		var update_qnt = $(this);
+		
+		var tr = update_qnt.parent().parent();
+		var td = tr.children();
+		
+		var item_num = td.eq(1).text();
+		var item_name = td.eq(2).text();
+		var new_qnt = td.eq(5).find('input[type="text"]').val(); 
+		
+		 $.ajax({
+				url:'updateQnt',
+				type :'GET',
+				data:{item_num:item_num, new_qnt:new_qnt},
+				success:function(result){
+				
+				alert(item_name +"의 재고가 "+ new_qnt+"개로 수정되었습니다.");
+				document.location.reload();
+				},
+				
+				error:function(request, status, error){
+					if (new_qnt === null || new_qnt === '') {
+						alert("실사량을 입력해주세요.");
+					}
+				}
+			}); 
+		
+	});
+	
+});
 
+
+</script>
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->

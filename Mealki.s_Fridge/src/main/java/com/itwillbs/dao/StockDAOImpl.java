@@ -46,6 +46,14 @@ public class StockDAOImpl implements StockDAO {
 		
 		return sqlSession.selectOne(namespace+".getStockListCount", pageDTO);
 	}
+
+	@Override
+	public void updateStock(StockDTO stockDTO) {
+		System.out.println("StockDAOImpl updateStock()");
+		
+		sqlSession.update(namespace+".updateStock", stockDTO);
+	}
+	
 	
 	
 	

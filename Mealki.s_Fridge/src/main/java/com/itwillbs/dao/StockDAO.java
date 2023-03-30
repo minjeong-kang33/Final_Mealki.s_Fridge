@@ -16,4 +16,6 @@ public interface StockDAO {
 	public List<StockDTO> getStockList(PageDTO pageDTO);
 
 	public int getStockListCount(PageDTO pageDTO);
+	
+	public void updateStock(StockDTO stockDTO);
 }

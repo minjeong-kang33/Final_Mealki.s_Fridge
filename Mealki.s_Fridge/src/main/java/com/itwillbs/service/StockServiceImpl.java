@@ -55,6 +55,13 @@ public class StockServiceImpl implements StockService {
 		return stockDAO.getStockListCount(pageDTO);
 	}
 
+	@Override
+	public void updateStock(StockDTO stockDTO) {
+		System.out.println("StockServiceImpl updateStock");
+		
+		stockDAO.updateStock(stockDTO);
+	}
+
 	
 	
 	
