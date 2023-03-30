@@ -6,6 +6,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<title>밀키의 냉장고</title>
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -51,74 +52,49 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">공지사항</h3>
+                  <h3 class="font-weight-bold">공지 사항</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
           <div class="contentbody" > 
-          
 <!--  본문 내용 시작 -->
-	<div id="table_search">
-		<div id="select_search">
-	       <form action="${pageContext.request.contextPath}/groupware/board/noticeList" id="selectBox" name="search" method="get">
-		            <select name="search_option" class="search_option">
-		            	<option value=""> 선택하세요 </option>
-		            	<option value="bo_name"> 작성자 </option>
-		            	<option value="bo_title"> 제목 </option>
-		            </select>
-		           <input type="text" name="keyword" class="input-search" >
-		           <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
-	        </form>
-        </div>
-        
-        <div id="table_write">
+<article>
+	<table border="1" id="notice">
+		<tr><th colspan="4" style="height: 50px;">${boardDTO.bo_title}</th></tr>
+		<tr><th style="width: 16%; height: 50px;">번호 : ${boardDTO.bo_num}</th>
+			<th style="width: 28%;"><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></th>
+			<th style="width: 28%;">조회수 : ${boardDTO.bo_count}</th>
+			<th style="width: 28%;">작성자 : ${boardDTO.bo_name}</th></tr>
+		<tr><th style="height: 200px;">내용</th><td colspan="3">${boardDTO.bo_content}</td></tr>		
+		<tr><th style="height: 50px;">첨부파일</th>
+		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>${boardDTO.file}</a></td></tr>
+		 
+	</table>
+	<div id="table_button">
+	<c:if test="${! empty sessionScope.emp_num }">
+	
+		<c:if test="${sessionScope.emp_num eq boardDTO.bo_name }">
 		
-		<%-- <c:if test="${ ! empty sessionScope.id }"> --%>
+			<input type="button" value="글수정" class="btn btn-primary"
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardUpdate?num=${boardDTO.bo_num}'">
+			<input type="button" value="글삭제" class="btn btn-primary"
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardDelete?num=${boardDTO.bo_num}'"> 		
 		
-			<input type="button" value="✏️글쓰기 " class="btn btn-primary" style="font-size:14px; font-weight: bold;"
-			onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">
-		
-		<%-- </c:if> --%>
-		</div>
-     </div>
+		</c:if>
+	
+	</c:if>
 
-     <div id="table_content">
-		<table id="notice" border="1">
-		<tr><th class="bo_num" style="width: 6%;">번호</th>
-		    <th class="bo_title" style="width: 60%;">제목</th>
-		    <th class="bo_name" style="width: 14%;">작성자</th>
-		    <th class="bo_date" style="width: 14%;">작성일자</th>
-		    <th class="bo_count" style="width: 6%;">조회수</th></tr>
-		    
-		 <c:forEach var="BoardDTO" items="${noticeList }">
-		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardContent?bo_num=${BoardDTO.bo_num}'">
-		 	<td>${BoardDTO.bo_num}</td>
-		    <td style="font-weight: bold;">${BoardDTO.bo_title}</td>
-		    <td>${BoardDTO.bo_name}</td>
-		    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
-		    <td>${BoardDTO.bo_count}</td></tr>  
-		 </c:forEach>   
-		    
-		</table>
-	 </div>	
-		
-		
-            
- <!--  본문내용 끝 -->    
+			<input type="button" value="글목록" class="btn btn-primary"
+	 		onclick="location.href='${pageContext.request.contextPath}/groupware/board/noticeList'">
+	</div>
+
+</article>
+			
+<!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
-</c:if>
 
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
-</c:forEach>
-
-<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
-</c:if>
 <!-- 페이징 끝 -->
             </div>
             
