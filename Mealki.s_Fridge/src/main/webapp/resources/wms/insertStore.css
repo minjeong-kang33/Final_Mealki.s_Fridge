@@ -23,6 +23,23 @@ td{
 	font-size: 12px;
 }
 
+/* 표 */
+.store_total_table{
+   table-layout: fixed;
+}
+
+.store_total_table tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+.store_total_table th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
+
+
 /* 탭 */
 ul,li {list-style:none;}
 

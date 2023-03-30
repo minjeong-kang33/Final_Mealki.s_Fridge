@@ -42,7 +42,16 @@ public class UnstoreController {
 		List<Map<String, Object>> unstoreListUnreleased = unstoreService.getUnstoreListUnreleased();
 		model.addAttribute("unstoreListUnreleased", unstoreListUnreleased);
 		
-		for(int i=0; i<unstoreListUnreleased.size();i++) {
+		//출고완료 리스트
+		List<Map<String, Object>> unstoreListSuccess = unstoreService.getUnstoreListSuccess();
+		model.addAttribute("unstoreListSuccess", unstoreListSuccess);		
+		
+		//전체출고 리스트
+		List<Map<String, Object>> unstoreList = unstoreService.getUnstoreList();
+		model.addAttribute("unstoreList", unstoreList);
+		
+		
+	/*	for(int i=0; i<unstoreListUnreleased.size();i++) {
 			String wo_num = unstoreListUnreleased.get(i).get("wo_num").toString(); //추출된표에서 wo_num을 추출 
 			
 			WorkorderItemDTO workorderItemDTO = new WorkorderItemDTO();
@@ -54,20 +63,20 @@ public class UnstoreController {
 		for (WorkorderItemDTO item : itemList) {
 				String item_name = item.getItem_name(); //오더에 따른 소요량 테이블
 				
-				/*
-				 * StockDTO stockDTO = new StockDTO(); stockDTO.setItem_name(item_name);
-				 * stockService.getItemList_unstore(item_name);
-				 * 
-				 * 
-				 * int sqt = stockService.getItemList_unstore(item_name);
-				 * System.out.println(sqt);
-				 */
+				
+				  StockDTO stockDTO = new StockDTO(); stockDTO.setItem_name(item_name);
+				  stockService.getItemList_unstore(item_name);
+				  
+				  
+				  int sqt = stockService.getItemList_unstore(item_name);
+				  System.out.println(sqt);
+				 
 					
 				  
-			} // 품목이 잘 가져와지는지 확인 
+			} // 품목이 잘 가져와지는지 확인  
 			
 			
-		}
+		}*/
 		return "wms/unstore/insertUnstore";
 	}
 	

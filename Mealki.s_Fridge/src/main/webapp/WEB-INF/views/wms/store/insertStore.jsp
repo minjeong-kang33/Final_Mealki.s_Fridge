@@ -26,10 +26,9 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertUnStore.css">
  
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empManageTab.js"></script>
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 <script type="text/javascript">  
 //탭 관련 
@@ -154,11 +153,10 @@
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore }">
 									<tr>
-										<td style="width: 10px;"> <input type="checkbox"> </td>
 										<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 										<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
@@ -207,11 +205,10 @@
 		        </div>
 		       	<div id="tab02">
 		       		<table border="1" class="store_total_table" style="width: 100%;">
-					<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+					<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 					<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th></tr>
 					<c:forEach var="StoreDTO" items="${PlaceOrderListStorecomplete }">
 						<tr>
-						<td style="width: 10px;"> <input type="checkbox"> </td>
 						<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 						<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
@@ -232,11 +229,10 @@
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th></th><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStoreAll }">
 									<tr>
-										<td style="width: 10px;"> <input type="checkbox"> </td>
 										<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 										<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 										<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
