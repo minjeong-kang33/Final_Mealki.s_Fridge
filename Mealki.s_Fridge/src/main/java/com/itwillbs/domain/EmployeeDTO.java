@@ -1,6 +1,7 @@
 package com.itwillbs.domain;
 
 import java.sql.Date;
+import java.sql.Timestamp;
 
 public class EmployeeDTO {
 	private int emp_num;
@@ -17,12 +18,28 @@ public class EmployeeDTO {
 	private String emp_addr2;
 	private String emp_status;
 	private int emp_classification;
-	private Date emp_joinDate;
-	private Date emp_leaveDate;
-	private Date emp_absenceDate;
+	private Timestamp emp_joinDate;
+	private Timestamp emp_leaveDate;
+	private Timestamp emp_absenceDate;
 	private String dept_position;
 	private String dept_duty;
+	private String emp_img;
+	private int emp_numbering;
 	
+	
+	
+	public String getEmp_img() {
+		return emp_img;
+	}
+	public void setEmp_img(String emp_img) {
+		this.emp_img = emp_img;
+	}
+	public int getEmp_numbering() {
+		return emp_numbering;
+	}
+	public void setEmp_numbering(int emp_numbering) {
+		this.emp_numbering = emp_numbering;
+	}
 	public String getDept_position() {
 		return dept_position;
 	}
@@ -119,24 +136,24 @@ public class EmployeeDTO {
 	public void setEmp_classification(int emp_classification) {
 		this.emp_classification = emp_classification;
 	}
-	public Date getEmp_joinDate() {
+	public Timestamp getEmp_joinDate() {
 		return emp_joinDate;
 	}
-	public void setEmp_joinDate(Date emp_joinDate) {
+	public void setEmp_joinDate(Timestamp emp_joinDate) {
 		this.emp_joinDate = emp_joinDate;
 	}
-	public Date getEmp_leaveDate() {
+	public Timestamp getEmp_leaveDate() {
 		return emp_leaveDate;
 	}
-	public void setEmp_leaveDate(Date emp_leaveDate) {
+	public void setEmp_leaveDate(Timestamp emp_leaveDate) {
 		this.emp_leaveDate = emp_leaveDate;
 	}
-	public Date getEmp_absenceDate() {
+	public Timestamp getEmp_absenceDate() {
 		return emp_absenceDate;
 	}
-	public void setEmp_absenceDate(Date emp_absenceDate) {
+	public void setEmp_absenceDate(Timestamp emp_absenceDate) {
 		this.emp_absenceDate = emp_absenceDate;
 	}
-	
+
 	
 }

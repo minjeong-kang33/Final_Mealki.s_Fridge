@@ -29,9 +29,10 @@ public class EmployeeController {
 	@Inject
 	private EmployeeService employeeService;
 	
-	/*
-	 * @Resource(name="employeeUpload") private String employeeUploadPath;
-	 */
+
+	 @Resource(name="employeeUploadPath") 
+	 private String employeeUploadPath;
+	 
 	
 	@RequestMapping(value = "/main/login", method = RequestMethod.GET)
 	public String login() {
@@ -104,32 +105,35 @@ public class EmployeeController {
 		return "employee/insertEmployee";
 	}
 	
-	@RequestMapping(value = "/employee/inertEmployeePro", method = RequestMethod.POST)
+	@RequestMapping(value = "/employee/insertEmployeePro", method = RequestMethod.POST)
 	public String inertEmployeePro(HttpServletRequest request, MultipartFile file)throws Exception {
-		System.out.println("MemberController inertEmployeePro");
+		System.out.println("MemberController isnertEmployeePro");
 		
-		/*
-		 * EmployeeDTO employeeDTO = new EmployeeDTO();
-		 * employeeDTO.setDept_num(request.getParameter("dept_num"));
-		 * employeeDTO.setEmp_Kname(request.getParameter("emp_Kname"));
-		 * employeeDTO.setEmp_Ename(request.getParameter("emp_Ename"));
-		 * employeeDTO.setEmp_birth(request.getParameter("emp_birth"));
-		 * employeeDTO.setEmp_gender(request.getParameter("emp_gender"));
-		 * employeeDTO.setEmp_tel(Integer.parseInt(request.getParameter("emp_tel")));
-		 * employeeDTO.setEmp_phone(Integer.parseInt(request.getParameter("emp_phone")))
-		 * ; employeeDTO.setEmp_email(request.getParameter("emp_email"));
-		 * employeeDTO.setEmp_addr(request.getParameter("emp_addr"));
-		 * employeeDTO.setEmp_addr2(request.getParameter("emp_addr2"));
-		 * employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter(
-		 * "emp_classification")));
-		 * employeeDTO.setDept_position(request.getParameter("dept_position"));
-		 * employeeDTO.setDept_duty(request.getParameter("dept_duty"));
-		 * 
-		 * UUID uuid=UUID.randomUUID(); String filename =
-		 * uuid.toString()+"_"+file.getOriginalFilename();
-		 * FileCopyUtils.copy(file.getBytes(), new File(employeeUploadPath,filename));
-		 */
+		System.out.println(request.getParameter("dept_num"));
 		
+		  EmployeeDTO employeeDTO = new EmployeeDTO();
+		  employeeDTO.setDept_num(request.getParameter("dept_num"));
+		  employeeDTO.setEmp_Kname(request.getParameter("emp_Kname"));
+		  employeeDTO.setEmp_Ename(request.getParameter("emp_Ename"));
+		  employeeDTO.setEmp_birth(request.getParameter("emp_birth"));
+		  employeeDTO.setEmp_gender(request.getParameter("emp_gender"));
+		  employeeDTO.setEmp_tel(Integer.parseInt(request.getParameter("emp_tel")));
+		  employeeDTO.setEmp_phone(Integer.parseInt(request.getParameter("emp_phone")));
+		  employeeDTO.setEmp_email(request.getParameter("emp_email"));
+		  employeeDTO.setEmp_addr(request.getParameter("emp_addr"));
+		  employeeDTO.setEmp_addr2(request.getParameter("emp_addr2"));
+		  employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter("emp_classification")));
+		  employeeDTO.setDept_position(request.getParameter("dept_position"));
+		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
+		  employeeDTO.setEmp_status("재직중");
+		  
+		  UUID uuid=UUID.randomUUID(); 
+		  String filename =uuid.toString()+"_"+file.getOriginalFilename();
+		  FileCopyUtils.copy(file.getBytes(), new File(employeeUploadPath,filename));
+		 
+		  employeeDTO.setEmp_img(filename);
+		  
+		  employeeService.insertEmployee(employeeDTO);
 		
 		return "/employee/empManage";
 	}

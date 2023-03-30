@@ -58,7 +58,7 @@
           
 <!--  본문 내용 시작 -->
             <div class="insertImployeeBody" style="background: gray;">
-            	<form action="${pageContext.request.contextPath}/employee/inertEmployeePro" method="post" enctype="multipart/form-data"> 
+            	<form action="${pageContext.request.contextPath}/employee/insertEmployeePro" method="post" enctype="multipart/form-data"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
             		<div class="img"><img id="preview" width="200" height="230" style="border-radius: 3px;"/></div>
@@ -87,7 +87,7 @@
 							<li><label for="emp_addr">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
 							<li><label for="emp_addr2">상세주소</label> <input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
 							<li><label for="emp_classification">직원분류
-									<select name="emp_classification_option">
+									<select name="emp_classification">
 										<option value=""> 직원분류 선택 </option>
 										<option value="3"> 현장직 </option>
 										<option value="2"> 사무직 </option>
@@ -96,7 +96,7 @@
 								</label>
 							</li>
 							<li><label for="dept_position">직책</label> 	
-									<select name="dept_position_option">
+									<select name="dept_position">
 										<option value=""> 직책 선택 </option>
 										<option value="팀원"> 팀원 </option>
 										<option value="파트장"> 파트장 </option>
@@ -106,7 +106,7 @@
 														
 							</li>
 							<li><label for="dept_duty">직위</label> 
-									<select name="dept_duty_option" class="dept_duty_option">
+									<select name="dept_duty" class="dept_duty_option">
 										<option value=""> 직위 선택 </option>
 										<option value="사원"> 사원 </option>
 										<option value="주임"> 주임 </option>
@@ -117,17 +117,17 @@
 									</select>							
 							</li>
 							<li><label for="dept_num">부서</label> 
-									<select name="dept_num_option" class="dept_num_option">
+									<select name="dept_num" class="dept_num_option">
 										<option value=""> 부서 선택 </option>
-										<option value="경리부"> 경리부 </option>
-										<option value="영업부"> 영업부 </option>
-										<option value="생산부"> 생산부 </option>
-										<option value="자재부"> 자재부 </option>
-										<option value="인사부"> 인사부 </option>
-										<option value="전산부"> 전산부 </option>
+										<option value="100"> 경리부 </option>
+										<option value="200"> 영업부 </option>
+										<option value="300"> 생산부 </option>
+										<option value="400"> 자재부 </option>
+										<option value="500"> 인사부 </option>
+										<option value="600"> 전산부 </option>
 									</select>							
-							
 							</li>
+							
 					</ul>
 				</fieldset>
 				<!-- 기타 개인정보 입력 끝 -->
