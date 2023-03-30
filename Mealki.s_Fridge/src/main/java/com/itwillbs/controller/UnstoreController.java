@@ -83,7 +83,7 @@ public class UnstoreController {
 		 unstoreDTO.setWo_num(request.getParameter("wo_num"));//작업지시번호
 		 unstoreDTO.setItem_name(request.getParameter("item_name"));//납품처명
 		 unstoreDTO.setUnsto_qty(Integer.parseInt(request.getParameter("wo_qty")));//입고수량
-		 unstoreDTO.setUnsto_progress("입고완료");
+		 unstoreDTO.setUnsto_progress("출고완료");
 		 unstoreDTO.setEmp_num(Integer.parseInt(request.getParameter("emp_num")));//처리사원
 		 unstoreDTO.setItem_num(request.getParameter("item_num"));
 		 
