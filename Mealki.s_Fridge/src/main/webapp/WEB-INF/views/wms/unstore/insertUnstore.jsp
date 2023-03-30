@@ -103,7 +103,6 @@ $(document).ready(function() {
 	
 		console.log("배열에 담긴 값2 : "+tdArr);
 		//배열에 담긴 값2 : WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501,P001
-		alert(tdArr);
 
 		$.ajax({
 				url:'addUntore',
@@ -112,10 +111,9 @@ $(document).ready(function() {
 				success:function(result){
 				
 				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
-				location.reload();
 				},
 			}); 
-		
+		location.reload();
 		
 	});	
 	});	
@@ -246,7 +244,10 @@ $(document).ready(function() {
 									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
 									<td style="display: none;">${unstoreDTO.item_num }</td> 
 									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
-									<td><input type="button" value="출고처리" class="unstore_submit_button"></td><!--출고처리 -->
+									<td><c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+											<input type="button" value="출고처리" class="unstore_submit_button">
+										</c:if>
+									</td><!--출고처리 -->
 								</tr>
 								</c:forEach>
 									 
