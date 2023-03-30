@@ -5,7 +5,7 @@
 <mapper namespace="com.itwillbs.mappers.stockMapper">
 	<select id="getWarehouseList"
 		resultType="com.itwillbs.domain.WarehouseDTO">
-		select * from warehouse where whs_name like '%식자재'
+		select * from warehouse where whs_name like '%식자재'	
 	</select>
 
 	<select id="getItem_typeList"

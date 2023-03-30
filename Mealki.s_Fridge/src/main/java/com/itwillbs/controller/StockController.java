@@ -122,7 +122,7 @@ public class StockController {
 
 		stockService.updateStock(stockDTO);
 			 
-		return "redirect:/wms/store/stockList";		
+		return "redirect:/wms/stock/stockList";		
 
 		
 	}
