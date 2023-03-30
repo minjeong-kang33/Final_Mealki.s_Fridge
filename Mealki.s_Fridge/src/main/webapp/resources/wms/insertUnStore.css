@@ -24,16 +24,16 @@ td{
 }
 
 /* 표 */
-.store_total_table{
+.unstore_total_table{
    table-layout: fixed;
 }
 
-.store_total_table tr{
+.unstore_total_table tr{
    height: 32px;
    table-layout: fixed;
 }
 
-.store_total_table th{
+.unstore_total_table th{
    background-color: #4B49AC;
    color: #fff;
 }

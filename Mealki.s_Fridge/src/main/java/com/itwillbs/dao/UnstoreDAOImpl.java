@@ -32,6 +32,18 @@ public class UnstoreDAOImpl implements UnstoreDAO {
 	//	sqlSession.update(namespace+".updateStock_unstore",unstoreDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getUnstoreListSuccess() {
+		System.out.println("UnstoreDAOImpl getUnstoreListSuccess");
+		return sqlSession.selectList(namespace+".getUnstoreListSuccess");
+	}
+
+	@Override
+	public List<Map<String, Object>> getUnstoreList() {
+		System.out.println("UnstoreDAOImpl getUnstoreList");
+		return sqlSession.selectList(namespace+".getUnstoreList");
+	}
+
 
 
 }

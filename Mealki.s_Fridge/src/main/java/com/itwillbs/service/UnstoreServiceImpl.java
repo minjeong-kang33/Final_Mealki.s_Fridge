@@ -32,6 +32,18 @@ public class UnstoreServiceImpl implements UnstoreService{
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getUnstoreListSuccess() {
+		System.out.println("UnstoreServiceImpl getUnstoreListSuccess");
+		return unstoreDAO.getUnstoreListSuccess();
+	}
+
+	@Override
+	public List<Map<String, Object>> getUnstoreList() {
+		System.out.println("UnstoreServiceImpl getUnstoreList");
+		return unstoreDAO.getUnstoreList();
+	}
+
 
 	
 }
