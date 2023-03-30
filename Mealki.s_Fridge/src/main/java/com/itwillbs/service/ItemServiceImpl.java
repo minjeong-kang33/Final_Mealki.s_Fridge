@@ -2,6 +2,8 @@ package com.itwillbs.service;
 
 import java.util.List;
 
+import java.util.Map;
+
 import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
@@ -48,30 +50,26 @@ public class ItemServiceImpl implements ItemService {
 		 return itemDAO.getItemImage(itemNum);
 	}
 
-//	@Override
-//	public void insertItem(ItemDTO item) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void updateItem(ItemDTO item) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public void deleteItem(String itemNum) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//	@Override
-//	public List<ItemDTO> searchItem(String itemName, String itemType) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
+	@Override
+	public void save(ItemDTO item) {
+		System.out.println("ItemServiceImpl save");
+		if(itemDAO.selectItem(item.getItem_num()) == null){
+			itemDAO.insertItem(item);
+		}else{
+			itemDAO.updateItem(item);
+		}
+
+	}
+
+	@Override
+	public void deleteItem(String itemNum) {
+		itemDAO.deleteItem(itemNum);
+	}
+
+
+	
+	
 	 
-	    }
+}
 
 

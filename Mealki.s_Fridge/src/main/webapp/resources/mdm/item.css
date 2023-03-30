@@ -1,7 +1,0 @@
-@charset "UTF-8";
-
-#itemTable tr:last-child td {
-  height: 35px; 
-}
-
-tr:hover td{ background-color: #e6e6f4; }
