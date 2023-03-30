@@ -56,7 +56,7 @@
 						<option value="가공2">가공2</option>
 						<option value="가공3">가공3</option>
 					</select>
-				
+					
 				</c:if>
 				<c:if test="${WorkorderDTO.wo_state eq '완료'}">
 					${WorkorderDTO.manu_name}
