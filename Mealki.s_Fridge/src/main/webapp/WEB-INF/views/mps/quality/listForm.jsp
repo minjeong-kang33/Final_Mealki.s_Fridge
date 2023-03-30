@@ -66,7 +66,7 @@
 								<div id="search_bar">
 									<div id="table_search">
 										<div id="select_search">
-											<form action="${pageContext.request.contextPath}/mps/production/list" method="GET">
+											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
 												<label>작업지시번호 : </label>
 												<input type="text" name="wo_num">
 												<label>라인명 : </label>
@@ -99,21 +99,39 @@
 												<th>품명</th>
 												<th>품번</th>
 <!-- 												<th>수주량</th> -->
-												<th>하루생산량</th>
-												<th>불량</th>
-												<th>작업자</th>
-												<th>작업시작일</th>
-												<th>작업마감일</th>
+												<th>검수번호</th>
+												<th>검수자 </th>
+												<th>검수상태 </th>
+												<th>생산량 </th>
+												<th>검수량 </th>
+												<th>불량  </th>
+												<th>검수완료일자  </th>
 									         </tr>
-									       		<c:forEach var="dto" items="${productionListMap}">
-													<tr>
-														<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
-														<td>${dto.manu_code}</td><td>${dto.item_name}</td>
-														<td>${dto.item_num}</td><td>${dto.manu_tocount}</td>
-														<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td>
-														<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td>
-													</tr>
-												</c:forEach>
+<!-- 									         test -->
+											 <tr align="center">
+												<th>WO2303290819</th> 
+												<th>가공1</th>
+												<th>L0000001</th>
+												<th>야끼소바</th>
+												<th>P0001</th>
+<!-- 												<th>수주량</th> -->
+												<th>qc000001</th>
+												<th>김철수</th>
+												<th>양호</th>
+												<th>100</th>
+												<th>100</th>
+												<th>0</th>
+												<th>2023-03-29 20:00</th>
+									         </tr>
+<%-- 									       		<c:forEach var="dto" items="${productionListMap}"> --%>
+<!-- 													<tr> -->
+<%-- 														<td>${dto.wo_num}</td><td>${dto.manu_name}</td> --%>
+<%-- 														<td>${dto.manu_code}</td><td>${dto.item_name}</td> --%>
+<%-- 														<td>${dto.item_num}</td><td>${dto.manu_tocount}</td> --%>
+<%-- 														<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td> --%>
+<%-- 														<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td> --%>
+<!-- 													</tr> -->
+<%-- 												</c:forEach> --%>
 									    </table>
 									</div>
 								</div>
