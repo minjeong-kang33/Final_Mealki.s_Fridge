@@ -27,23 +27,23 @@
 <!--   Jquery -->
 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-  <script>
-	$(document).ready(function(){
-			$("#lineselect").on("change", function () {
-			var value = $(this).val();	//과일명
-			var wonum = $(this).find("option:selected").data("wonum"); //가격
-			var item = $(this).find("option:selected").data("itemname");
-			var manucode = $(this).find("option:selected").data("manucode");
-			var itemnum = $(this).find("option:selected").data("itemnum");
-			$('input[name=manu_name]').attr('value',value);
-			$('input[name=wo_num]').attr('value',wonum);
-			$('input[name=item_name]').attr('value',item);
-			$('input[name=manu_code]').attr('value',manucode);
-			$('input[name=item_num]').attr('value',itemnum);
+<!--   <script> -->
+<!-- 	$(document).ready(function(){ -->
+<!-- 			$("#lineselect").on("change", function () { -->
+<!-- 			var value = $(this).val();	//과일명 -->
+<!-- 			var wonum = $(this).find("option:selected").data("wonum"); //가격 -->
+<!-- 			var item = $(this).find("option:selected").data("itemname"); -->
+<!-- 			var manucode = $(this).find("option:selected").data("manucode"); -->
+<!-- 			var itemnum = $(this).find("option:selected").data("itemnum"); -->
+<!-- 			$('input[name=manu_name]').attr('value',value); -->
+<!-- 			$('input[name=wo_num]').attr('value',wonum); -->
+<!-- 			$('input[name=item_name]').attr('value',item); -->
+<!-- 			$('input[name=manu_code]').attr('value',manucode); -->
+<!-- 			$('input[name=item_num]').attr('value',itemnum); -->
 			
-				});
-			});
-</script>
+<!-- 				}); -->
+<!-- 			}); -->
+<!-- </script> -->
 </head>
 <body>
 
@@ -120,6 +120,7 @@
 				<button class="btn btn-primary" type="submit" id="IconButton6">
 				<a>완료</a>
 				</button>
+				
 <!-- 				reset -->
 				<button class="btn btn-primary" type="reset" id="IconButton6">
 				<a>취소</a>
