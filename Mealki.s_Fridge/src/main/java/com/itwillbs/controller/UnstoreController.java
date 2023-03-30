@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.StoreDTO;
+import com.itwillbs.domain.UnstoreDTO;
 import com.itwillbs.domain.WorkorderItemDTO;
 import com.itwillbs.service.StockService;
 import com.itwillbs.service.UnstoreService;
@@ -76,10 +77,18 @@ public class UnstoreController {
 	public String addStore(HttpServletRequest request, Model model) {
 		System.out.println("UnstoreController addUntore()");
 		 
-		 System.out.println(request.getParameter("item_name"));
-			 
-		 return "/wms/unstore/insertUnstore";		
-
+		 System.out.println(request.getParameter("item_num")); //데이터 잘 들고오는지 확인
 		
+		 UnstoreDTO unstoreDTO = new UnstoreDTO();
+		 unstoreDTO.setWo_num(request.getParameter("wo_num"));//작업지시번호
+		 unstoreDTO.setItem_name(request.getParameter("item_name"));//납품처명
+		 unstoreDTO.setUnsto_qty(Integer.parseInt(request.getParameter("wo_qty")));//입고수량
+		 unstoreDTO.setUnsto_progress("입고완료");
+		 unstoreDTO.setEmp_num(Integer.parseInt(request.getParameter("emp_num")));//처리사원
+		 unstoreDTO.setItem_num(request.getParameter("item_num"));
+		 
+		 unstoreService.insertUnstore(unstoreDTO);
+		
+		 return "/wms/unstore/insertUnstore";		
 	}
 }

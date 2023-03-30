@@ -100,15 +100,16 @@ $(document).ready(function() {
 		var out_date = tdArr[6]; //납기일자
 	//	var unsto_progress = tdArr[7]; //진행현황
 		var emp_num =tdArr[8]; //출고담당자번호
+		var item_num =tdArr[9]; //품목번호
 	
 		console.log("배열에 담긴 값2 : "+tdArr);
-		//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
+		//배열에 담긴 값2 : WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501,P001
 		alert(tdArr);
 
 		$.ajax({
 				url:'addUntore',
 				type :'GET',
-				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num},
+				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
 				success:function(result){
 				
 				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
@@ -183,7 +184,7 @@ $(document).ready(function() {
 								</th><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
 									 <th>납품처명</th><th>품명</th><th>주문수량</th>
 									 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
-									 <th>진행현황</th><th>담당자</th><th>출고처리</th></tr>
+									 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
 								<c:forEach var="unstoreDTO" items="${unstoreListUnreleased }">
 								<tr>	 
 									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
@@ -197,7 +198,9 @@ $(document).ready(function() {
 									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
 									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${sessionScope.emp_num }</td> <!-- 출고담당자 -->
+									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
+									<td style="display: none;">${unstoreDTO.item_num }</td> 
+									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 									<td><input type="button" value="출고처리" class="unstore_submit_button"></td><!--출고처리 -->
 								</tr>
 								</c:forEach>
