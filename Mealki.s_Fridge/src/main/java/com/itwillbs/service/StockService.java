@@ -6,6 +6,7 @@ import java.util.Map;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.WarehouseDTO;
 
 public interface StockService {
@@ -17,6 +18,5 @@ public interface StockService {
 
 	public int getStockListCount(PageDTO pageDTO);
 	
-	public int getItemList_unstore(String item_name);
-	 
+	public void updateStock(StockDTO stockDTO);
 }

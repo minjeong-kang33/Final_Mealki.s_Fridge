@@ -5,19 +5,19 @@
 <mapper namespace="com.itwillbs.mappers.stockMapper">
 	<select id="getWarehouseList"
 		resultType="com.itwillbs.domain.WarehouseDTO">
-		select * from warehouse
+		select * from warehouse where whs_name like '%식자재'
 	</select>
 
 	<select id="getItem_typeList"
 		resultType="com.itwillbs.domain.ItemDTO">
-		select distinct item_type from products
+		select distinct item_type from products where item_type like '%식자재'
 	</select>
 	
 	<!-- 검색 조건문 -->
 	<select id="getStockList"
 		resultType="com.itwillbs.domain.StockDTO">
 		select * from stock
-		where 1=1
+		where 1=1 and item_type like '%식자재'
 		 <if test="item_type!=null and !item_type.equals('')">
 			and item_type = #{item_type}
 		</if> 
@@ -51,10 +51,9 @@
 		</if>
 	</select>
 	
-	<select id="getItemList_unstore" resultType="com.itwillbs.domain.StockDTO">
-		select stk_qnt
-		from stock
-		where item_name = #{item_name}
-	</select>
-    
+	<update id="updateStock">
+		update stock set stk_qnt = #{stk_qnt}
+    	where item_num = #{item_num}
+	</update>
+	
 </mapper>
