@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +31,16 @@ public class EmployeeServiceImpl implements EmployeeService{
 	public List<Map<String, Object>> getEmployeeListMap(SearchDTO searchDTO) {
 		System.out.println("EmployeeServiceImpl getEmployeeList");
 		return employeeDAO.getEmployeeListMap(searchDTO);
+	}
+
+	@Override
+	public void insertEmployee(EmployeeDTO employeeDTO) {
+		System.out.println("EmployeeServiceImpl insertEmployee");
+		
+		employeeDTO.setEmp_joinDate(new Timestamp(System.currentTimeMillis()));
+		
+		employeeDAO.insertEmployee(employeeDTO);
+		
 	}
 
 	

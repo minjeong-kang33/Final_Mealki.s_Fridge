@@ -35,5 +35,13 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		//searchDTO.setKeyword("%"+searchDTO.getKeyword()+"%");
 		return sqlSession.selectList(namespace+".getEmployeeListMap",searchDTO);
 	}
+
+	@Override
+	public void insertEmployee(EmployeeDTO employeeDTO) {
+		System.out.println("EmployeeDAOImpl insertEmployee");
+		
+		sqlSession.insert(namespace+".insertEmployee",employeeDTO);
+		
+	}
 	
 }
