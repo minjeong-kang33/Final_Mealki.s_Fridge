@@ -11,7 +11,8 @@
 <!--     	https://mybatis.org/mybatis-3/ -->
     <resultMap type="map" id="qualityListMap">
 <!--    column="디비열이름" property="멤버변수이름" -->
-    	<id column="wo_num" property="wo_num"/>
+    	<id column="qc_num" property="qc_num"/>
+    	<result column="wo_num" property="wo_num"/>
     	<result column="manu_name" property="manu_name"/>
     	<result column="manu_code" property="manu_code"/>
     	<result column="item_name" property="item_name"/>
@@ -25,8 +26,12 @@
     </resultMap>
     
     <select id="getQualityListMap" resultMap="qualityListMap">
-    	
-    	select * from qc_status
+    	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
+		p.item_num, q.qc_code, p.emp_Kname, q.qc_status, 
+		q.qc_qty, p.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
+		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
+		left join qc_status q on q.wo_num = p.wo_num group by p.wo_num
+		having manu_tocount = wo_qty
     	<!-- test 
     	select p.wo_num, sum(p.manu_tocount) manu_tocount, w.wo_qty
 from productstatus p join workorder w
@@ -43,6 +48,15 @@ having manu_tocount = wo_qty; -->
 <!--     	order by manu_date desc; -->
     </select>
     
+        <select id="getQualityWrite" resultType="com.itwillbs.domain.QualityDTO">
+    	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
+		p.item_num, q.qc_code, p.emp_Kname, q.qc_status, 
+		q.qc_qty, p.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
+		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
+		left join qc_status q on q.wo_num = p.wo_num where p.wo_num = #{wo_num} group by p.wo_num
+		having manu_tocount = wo_qty
+		</select>
+		
 <!--     <select id="getemp_Knamesession" resultType="com.itwillbs.domain.ProductionDTO"> -->
 <!-- 			select distinct e.emp_num, e.emp_Kname -->
 <!-- 			from employee e where emp_num = #{emp_num} -->

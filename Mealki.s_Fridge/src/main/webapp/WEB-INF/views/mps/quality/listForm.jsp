@@ -33,7 +33,7 @@
 <!-- endinject -->
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-
+	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </head>
 <body>
 
@@ -93,14 +93,14 @@
 									<hr>
 										<table border='1' align="center">
 											<tr align="center">
+												<th>검수번호</th>
 												<th>작업지시번호</th> 
 												<th>라인명</th>
 												<th>라인코드</th>
 												<th>품명</th>
 												<th>품번</th>
-												<th>검수번호</th>
 												<th>검수자 </th>
-<!-- 												<th>수주량</th> -->
+												<th>수주량</th>
 												<th>생산량 </th>
 												<th>검수량 </th>
 												<th>불량  </th>
@@ -109,11 +109,11 @@
 									         </tr>
 <!-- 									         test -->
 									       		<c:forEach var="dto" items="${qualityListMap}">
-													<tr>
-														<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
-														<td>${dto.manu_code}</td><td>${dto.item_name}</td>
-														<td>${dto.item_num}</td><td>${dto.qc_code}</td>
-														<td>${dto.emp_Kname}</td><td>${dto.manu_tocount}</td>
+													<tr onClick="writeForm('${dto.wo_num}');">
+														<td>${dto.qc_code}</td><td>${dto.wo_num}</td>
+														<td>${dto.manu_name}</td><td>${dto.manu_code}</td><td>${dto.item_name}</td>
+														<td>${dto.item_num}</td><td>${dto.emp_Kname}</td>
+														<td>${dto.wo_qty}</td><td>${dto.manu_tocount}</td>
 														<td>${dto.qc_qty}</td><td>${dto.manu_fail}</td>
 														<td>${dto.qc_date}</td><td>${dto.qc_status}</td>
 													</tr>
@@ -132,7 +132,17 @@
 					</div>
 
 				</div>
-
+					<script type="text/javascript">
+						function writeForm(wo_num) {
+							var _width = '800';
+							var _height = '650';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.open(
+							"${pageContext.request.contextPath}/quality/writeForm?wo_num="+wo_num,
+							"밀키의 냉장고",popOption);}
+					</script>
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
 
