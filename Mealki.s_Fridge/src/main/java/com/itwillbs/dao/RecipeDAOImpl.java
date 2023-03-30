@@ -1,11 +1,20 @@
 package com.itwillbs.dao;
 
+
+import java.util.HashMap;
+
 import java.util.List;
+
+import java.util.Map;
 
 import javax.inject.Inject;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
+
+
+import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.RecipeDTO;
 
 @Repository
 public class RecipeDAOImpl implements RecipeDAO {
@@ -20,6 +29,53 @@ public class RecipeDAOImpl implements RecipeDAO {
 		System.out.println("RecipeDAOImpl getRecipLists");
 		return sqlSession.selectList(namespace+".getRecipLists");
 	}
+
+	@Override
+	public List<RecipeDTO> getRecipeList(PageDTO pageDTO) {
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		 
+        return sqlSession.selectList(namespace+".getRecipeList", pageDTO);
+	}
+
+	@Override
+	public int getRecipeCount() {
+		System.out.println("RecipeDAOImpl getRecipeCount()");
+		
+		 return sqlSession.selectOne(namespace+".getRecipeCount");
+	}
+
+	@Override
+	public void insertRecipe(RecipeDTO recipe) {
+		System.out.println("RecipeDAOImpl insertRecipe()");
+		
+		sqlSession.insert(namespace+".insertRecipe", recipe);
+	}
+
+	@Override
+	public void updateRecipe(RecipeDTO recipe) {
+		System.out.println("RecipeDAOImpl updateRecipe()");
+		
+		sqlSession.update(namespace+".updateRecipe", recipe);
+	}
+
+	@Override
+	public void deleteRecipe(String recipeNum) {
+		System.out.println("RecipeDAOImpl deleteRecipe()");
+		
+		sqlSession.delete(namespace+".deleteRecipe", recipeNum);
+	}
+
+	@Override
+	public RecipeDTO selectRecipe(String recipeNum) {
+		System.out.println("RecipeDAOImpl selectRecipe()");
+		
+		Map<String, String> map = new HashMap<>();
+		map.put("recipeNum", recipeNum);
+		return sqlSession.selectOne(namespace+".selectRecipe", map);
+	}
+
+
 
 	
 }
