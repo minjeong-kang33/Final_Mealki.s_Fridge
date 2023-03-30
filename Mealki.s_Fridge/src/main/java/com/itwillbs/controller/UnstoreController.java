@@ -11,8 +11,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.StockDTO;
+import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.WorkorderItemDTO;
 import com.itwillbs.service.StockService;
 import com.itwillbs.service.UnstoreService;
@@ -66,5 +68,18 @@ public class UnstoreController {
 			
 		}
 		return "wms/unstore/insertUnstore";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/wms/unstore/addUntore", method = RequestMethod.GET)
+	public String addStore(HttpServletRequest request, Model model) {
+		System.out.println("UnstoreController addUntore()");
+		 
+		 System.out.println(request.getParameter("item_name"));
+			 
+		 return "/wms/unstore/insertUnstore";		
+
+		
 	}
 }

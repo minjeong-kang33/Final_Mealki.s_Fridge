@@ -67,6 +67,59 @@ $(document).ready(function() {
   });
 });
 
+
+//submit
+	$(function(){
+	$(".unstore_submit_button").click(function(){ 
+	
+		var str = "";
+		var tdArr = new Array();	// 배열 선언
+		var unstore_submit_button = $(this);
+		
+		var tr = unstore_submit_button.parent().parent();
+		var td = tr.children();
+		
+		td.each(function(i) {
+			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+				  var selectValue = $(this).find('select').val();
+				  tdArr.push(selectValue || text);
+			  }
+			});
+		
+		console.log("배열에 담긴 값1 : "+tdArr);
+		//WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501
+		
+	
+		var wo_num = tdArr[0]; //작업지시번호
+		var business_name = tdArr[1]; //납품처명
+		var item_name = tdArr[2]; // 품명
+		var wo_qty = tdArr[3]; //주문수량
+	//	var sto_progress = tdArr[4]; //재고확인상태
+		var wo_date = tdArr[5]; //작업지시일자
+		var out_date = tdArr[6]; //납기일자
+	//	var unsto_progress = tdArr[7]; //진행현황
+		var emp_num =tdArr[8]; //출고담당자번호
+	
+		console.log("배열에 담긴 값2 : "+tdArr);
+		//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
+		alert(tdArr);
+
+		$.ajax({
+				url:'addUntore',
+				type :'GET',
+				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num},
+				success:function(result){
+				
+				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
+				location.reload();
+				},
+			}); 
+		
+		
+	});	
+	});	
+
 </script>
 
 </head>
@@ -121,7 +174,7 @@ $(document).ready(function() {
 	         <li><a href="#tab02">입고완료</a></li>
 	        </ul>
 	        <div class="tabcontent" >
-		        <div id="tab01" style="background-color: pink; width: 100%;"> <!-- tab 1내용 -->
+		        <div id="tab01" width: 100%;"> <!-- tab 1내용 -->
 		        
 		        	
 				        <div class="store_total_div" style="width: 100%;">
@@ -144,7 +197,8 @@ $(document).ready(function() {
 									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
 									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
-									<td><input type="button"></td><!--출고처리 -->
+									<td style="display: none;">${sessionScope.emp_num }</td> <!-- 출고담당자 -->
+									<td><input type="button" value="출고처리" class="unstore_submit_button"></td><!--출고처리 -->
 								</tr>
 								</c:forEach>
 									 
