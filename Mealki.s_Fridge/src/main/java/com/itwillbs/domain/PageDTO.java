@@ -32,8 +32,59 @@ public class PageDTO {
 	private Date dout_date;
 
 	
+	//승민
+	private String sto_num;
+	private Date startDate;
+	private Date endDate;
+	private int emp_num;
+	
+	
 	private String Search;
 	
+	
+	
+	
+	
+	public String getSto_num() {
+		return sto_num;
+	}
+
+
+	public void setSto_num(String sto_num) {
+		this.sto_num = sto_num;
+	}
+
+
+	public Date getStartDate() {
+		return startDate;
+	}
+
+
+	public void setStartDate(Date startDate) {
+		this.startDate = startDate;
+	}
+
+
+	public Date getEndDate() {
+		return endDate;
+	}
+
+
+	public void setEndDate(Date endDate) {
+		this.endDate = endDate;
+	}
+
+
+	public int getEmp_num() {
+		return emp_num;
+	}
+
+
+	public void setEmp_num(int emp_num) {
+		this.emp_num = emp_num;
+	}
+
+
 	@Override
 	public String toString() {
 		return "PageDTO [pageSize=" + pageSize + ", pageNum=" + pageNum + ", currentPage=" + currentPage + ", startRow="

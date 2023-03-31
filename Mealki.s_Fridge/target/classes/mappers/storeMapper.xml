@@ -15,33 +15,62 @@
 	<select id="getPlaceOrderListStore" resultType="map">
 		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
 		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
+		stock.stk_qnt,placeorder.emp_num, sto_shelf, sto_shelfDetail
+		from store 
+		right Outer join placeorder on placeorder.order_num = store.order_num
+		left outer join products on placeorder.item_num = products.item_num
+		left join stock on products.item_num = stock.item_num
+        where 1=1
+         <if test="sto_num != null">
+        	and sto_num like concat ('%',#{sto_num}, '%')
+        </if>
+        
+        <if test="emp_num != null">
+        	and emp_num like concat ('%',#{emp_num}, '%')
+        </if>
+        
+        <if test="item_name != null">
+        	and item_name like concat ('%',#{item_name}, '%')
+        </if>
+        
+        <if test="startDate != null">
+        	and startDate like concat ('%',#{startDate}, '%')
+        </if>
+        
+         <if test="endDate != null">
+        	and endDate like concat ('%',#{endDate}, '%')
+        </if>
+       	order by placeorder.order_num desc
+       	limit #{startRow}, #{pageSize}
+	</select>
+	
+
+	
+	
+	
+	<select id="getStoreSearchListCount" resultType="java.lang.Integer">
+		select count(*)
+		from (select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
+		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
 		stock.stk_qnt,placeorder.emp_num
 		from store 
 		right Outer join placeorder on placeorder.order_num = store.order_num
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
         where COALESCE(store.sto_progress, '미입고')='미입고'
-	</select>
-	
-	<select id="getPlaceOrderListStorecomplete" resultType="map">
-		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
-		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
-		stock.stk_qnt,placeorder.emp_num, sto_shelfDetail, sto_shelf
-		from store 
-		right Outer join placeorder on placeorder.order_num = store.order_num
-		left outer join products on placeorder.item_num = products.item_num
-		left join stock on products.item_num = stock.item_num
-        where COALESCE(store.sto_progress, '미입고')='입고완료'
-	</select>
-	
-		<select id="getPlaceOrderListStoreAll" resultType="map">
-		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
-		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
-		stock.stk_qnt,placeorder.emp_num, sto_shelfDetail, sto_shelf
-		from store 
-		right Outer join placeorder on placeorder.order_num = store.order_num
-		left outer join products on placeorder.item_num = products.item_num
-		left join stock on products.item_num = stock.item_num
+        <if test="item_name != null">
+        	and item_name like concat ('%',#{item_name}, '%')
+        </if>
+        
+        <if test="startDate != null">
+        	and startDate like concat ('%',#{startDate}, '%')
+        </if>
+        
+         <if test="endDate != null">
+        	and endDate like concat ('%',#{endDate}, '%')
+        </if>
+       	order by placeorder.order_num desc )as subquery
+        
 	</select>
 	
 	<insert id="insertStore">

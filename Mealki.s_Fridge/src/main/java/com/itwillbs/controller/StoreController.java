@@ -3,6 +3,7 @@ package com.itwillbs.controller;
 
 
 
+import java.text.SimpleDateFormat;
 import java.util.List;
 import java.util.Map;
 
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.service.StoreService;
 
@@ -26,20 +28,79 @@ public class StoreController {
 	private StoreService storeService;
 	
 	@RequestMapping(value = "/wms/store/insertStore", method = RequestMethod.GET)
-	public String insertStore(HttpServletRequest request, Model model) {
+	public String insertStore(HttpServletRequest request, Model model) throws Exception {
 		System.out.println("storeController insertStore");
 		
+		String sto_num = request.getParameter("sto_num");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		String e_num = request.getParameter("emp_num");
+		String item_name = request.getParameter("item_name");
+		
+		if(e_num==""||e_num==null) {e_num="0";}
+		
+		int emp_num = Integer.parseInt(e_num);
+		
+		System.out.println(sto_num +", "+startDate+", "+endDate+", "+emp_num +", "+item_name);
+		
+		int pageSize=10;
+		
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {
+			pageNum="1";
+		}
+		
+		System.out.println("나와라"+sto_num +", "+startDate+", "+endDate+", "+emp_num +", "+item_name);	
+		
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setEmp_num(emp_num);
+		pageDTO.setSto_num(sto_num);
+		pageDTO.setItem_name(item_name);
+		
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		
+		if(startDate != null && !startDate.equals("")) {
+			java.util.Date date = sdf.parse(startDate);
+			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
+			pageDTO.setOrder_date(order_date1);
+		}
+		if(endDate != null && !endDate.equals("")) {
+			java.util.Date date2 = sdf.parse(endDate);
+			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
+			pageDTO.setDue_date(due_date1);
+		}	
+		
 		//미입고 리스트
-		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore();
+		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore(pageDTO);
 		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
 		
-		//입고리스트
-		List<Map<String, Object>> placeOrderListStorecomplete = storeService.getPlaceOrderListStorecomplete();
-		model.addAttribute("PlaceOrderListStorecomplete", placeOrderListStorecomplete);
+		int count = storeService.getStoreSearchListCount(pageDTO);
 		
-		//전체 리스트
-		List<Map<String, Object>> placeOrderListStoreAll = storeService.getPlaceOrderListStoreAll();
-		model.addAttribute("PlaceOrderListStoreAll", placeOrderListStoreAll);		
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("sto_num",sto_num);
+		model.addAttribute("item_name",item_name);
+		model.addAttribute("emp_num",emp_num);
+		model.addAttribute("startDate",startDate);
+		model.addAttribute("endDate",endDate);
+		model.addAttribute("pageDTO",pageDTO);
 		
 		return "wms/store/insertStore";
 	}
@@ -76,8 +137,7 @@ public class StoreController {
 		  storeService.insertStore(storeDTO);
 			 
 		 return "wms/store/insertStore";		
-
-		
 	}
+	
 
 }

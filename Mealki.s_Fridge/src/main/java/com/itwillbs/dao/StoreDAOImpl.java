@@ -10,6 +10,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.taglibs.standard.extra.spath.SPathFilter;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.StoreDTO;
 
 @Repository
@@ -27,21 +28,24 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getPlaceOrderListStore() {
+	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO) {
 		System.out.println("StoreDAOImpl getPlaceOrderListStore");
-		return sqlSession.selectList(namespace + ".getPlaceOrderListStore");
+		pageDTO.setStartRow(pageDTO.getStartRow());
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStore",pageDTO);
 	}
 	
 	@Override
-	public List<Map<String, Object>> getPlaceOrderListStorecomplete() {
+	public List<Map<String, Object>> getPlaceOrderListStorecomplete(PageDTO pageDTO) {
 		System.out.println("StoreDAOImpl getPlaceOrderListStorecomplete");
-		return sqlSession.selectList(namespace + ".getPlaceOrderListStorecomplete");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStorecomplete",pageDTO);
 	}
 	
 	@Override
-	public List<Map<String, Object>> getPlaceOrderListStoreAll() {
+	public List<Map<String, Object>> getPlaceOrderListStoreAll(PageDTO pageDTO) {
 		System.out.println("StoreDAOImpl getPlaceOrderListStoreAll");
-		return sqlSession.selectList(namespace + ".getPlaceOrderListStoreAll");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		return sqlSession.selectList(namespace + ".getPlaceOrderListStoreAll",pageDTO);
 	}
 
 	@Override
@@ -59,6 +63,13 @@ public class StoreDAOImpl implements StoreDAO {
 		sqlSession.insert(namespace + ".insertStore", storeDTO);
 		sqlSession.update(namespace + ".updateStock", storeDTO);
 
+	}
+
+
+	@Override
+	public int getStoreSearchListCount(PageDTO pageDTO) {
+		System.out.println("StoreDAOImpl getStoreSearchListCount");
+		return sqlSession.selectOne(namespace+".getStoreSearchListCount", pageDTO);
 	}
 
 }
