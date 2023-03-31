@@ -102,8 +102,6 @@ public class StockController {
 		model.addAttribute("whs_num",whs_num);
 		model.addAttribute("pageDTO", pageDTO);
 		
-		System.out.println("0체크: "+stockList.get(0).getWhs_num());
-		
 		return "wms/stock/stockList";
 	}
 	
