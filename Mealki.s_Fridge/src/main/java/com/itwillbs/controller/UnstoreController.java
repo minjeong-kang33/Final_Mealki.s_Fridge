@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.StockDTO;
 import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.UnstoreDTO;
@@ -37,14 +38,33 @@ public class UnstoreController {
 	@RequestMapping(value = "/wms/unstore/insertUnstore", method = RequestMethod.GET)
 	public String insertUnstore(HttpServletRequest request, Model model) {
 		System.out.println("UnstoreController insertUnstore");
+
+		String unsto_num = request.getParameter("unsto_num");
+		String startDate = request.getParameter("startDate");
+		String endDate = request.getParameter("endDate");
+		String e_num = request.getParameter("emp_num");
+		String item_name = request.getParameter("item_name");
 		
-		//미출고 리스트
-		List<Map<String, Object>> unstoreListUnreleased = unstoreService.getUnstoreListUnreleased();
-		model.addAttribute("unstoreListUnreleased", unstoreListUnreleased);
+		if(e_num==""||e_num==null) {e_num="0";}
 		
-		//출고완료 리스트
-		List<Map<String, Object>> unstoreListSuccess = unstoreService.getUnstoreListSuccess();
-		model.addAttribute("unstoreListSuccess", unstoreListSuccess);		
+		int emp_num = Integer.parseInt(e_num);
+		
+		int pageSize=15;		
+
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {pageNum="1";}
+		
+		System.out.println("pageNum"+pageNum);
+		
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		pageDTO.setEmp_num(emp_num);
+		pageDTO.setSto_num(unsto_num);
+		pageDTO.setItem_name(item_name);		
 		
 		//전체출고 리스트
 		List<Map<String, Object>> unstoreList = unstoreService.getUnstoreList();
