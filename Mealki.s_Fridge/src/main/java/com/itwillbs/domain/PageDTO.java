@@ -37,14 +37,20 @@ public class PageDTO {
 	private Date startDate;
 	private Date endDate;
 	private int emp_num;
-	
+	private String unsto_num;	
 	
 	private String Search;
 	
-	
-	
-	
-	
+	public String getUnsto_num() {
+		return unsto_num;
+	}
+
+
+	public void setUnsto_num(String unsto_num) {
+		this.unsto_num = unsto_num;
+	}
+
+
 	public String getSto_num() {
 		return sto_num;
 	}

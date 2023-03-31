@@ -26,7 +26,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertUnStore.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
  
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
@@ -139,13 +139,88 @@
 
            <div class="tab">
 	       	<ul class="tabnav">
-	         <li><a href="#tab01">미입고</a></li>
-	         <li><a href="#tab02">입고완료</a></li>
-	         <li><a href="#tab03">전체</a></li>
+	         <li><a href="#tab01">전체</a></li>
+	         <li><a href="#tab02">미입고</a></li>
+	         <li><a href="#tab03">입고완료</a></li>
 	        </ul>
 	        
 	        <div class="tabcontent" >
-		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
+	        
+		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
+				        <div class="store_total_div" style="width: 100%;">
+				        <form name="store_form" method="get">
+					        <table border="1" class="store_total_table" style="width: 100%;">
+								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
+						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
+										<tr>
+											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
+											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
+											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
+											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
+											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
+											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
+											<td style="display: none;">${StoreDTO.emp_num }</td>
+											<td>
+												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
+													${StoreDTO.sto_shelf }
+							                    </c:if>
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+													<select name="sto_shelf_option" class="search_option">
+							                           <option value="A열"> A열 </option>
+							                           <option value="B열"> B열 </option>
+							                           <option value="C열"> C열 </option>
+							                           <option value="D열"> D열 </option>
+							                        </select>							                    	
+							                    </c:if>   
+											</td>
+											<td>
+											
+												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
+													${StoreDTO.sto_shelfDetail }
+							                    </c:if>
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+													<select name="sto_shelf_option_detail" class="search_option">
+							                           <option value="1"> 1단 </option>
+							                           <option value="2">2단 </option>
+							                           <option value="3">3단 </option>
+							                           <option value="4">4단 </option>
+							                        </select>
+						                        </c:if>
+											</td>
+											<td>
+												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
+												<input type="button" class="store_submit_button" value="입고처리">
+												</c:if>
+											</td> <!-- 입고처리 -->
+										</tr>
+						 		</c:forEach>
+					        </table>
+					      </form>  
+						<!-- 페이징 -->
+						
+						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 이전</a>
+						</c:if>
+						
+						<c:if test="${pageDTO.currentPage > 0}">
+							<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+								<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
+							</c:forEach>
+						</c:if>
+
+						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
+						</c:if>
+					        
+			       		 </div>
+		        </div> <!--  탭 내용끝 -->	        
+	        
+	        
+	        
+		        <div id="tab02" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
@@ -200,26 +275,10 @@
 						 		</c:forEach>
 					        </table>
 					      </form>  
-						<!-- 탭1 페이징 -->
-						
-						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 이전]</a>
-						</c:if>
-						
-						<c:if test="${pageDTO.currentPage > 0}">
-							<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-								<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
-							</c:forEach>
-						</c:if>
-						
-						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 다음]</a>
-						</c:if>
-					        
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
 		        
-		        <div id="tab02" style="width: 100%"> <!-- tab 2내용 -->
+		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
@@ -274,108 +333,18 @@
 						 		</c:forEach>
 					        </table>
 					      </form>  
-						<!-- 탭2 페이징 -->
-						
-						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 이전]</a>
-						</c:if>
-						
-						<c:if test="${pageDTO.currentPage > 0}">
-							<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-								<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
-							</c:forEach>
-						</c:if>
-						
-						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 다음]</a>
-						</c:if>
-					        
+
 			       		 </div>
 		        </div> <!--  탭2 내용끝 -->
 		        
-		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
-				        <div class="store_total_div" style="width: 100%;">
-				        <form name="store_form" method="get">
-					        <table border="1" class="store_total_table" style="width: 100%;">
-								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
-						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
-										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
-											<td><input type="button"> </td> <!-- 상세페이지 버튼 -->
-											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
-											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
-											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
-											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
-											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
-											<td style="display: none;">${StoreDTO.emp_num }</td>
-											<td>
-												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
-													${StoreDTO.sto_shelf }
-							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
-													<select name="sto_shelf_option" class="search_option">
-							                           <option value="A열"> A열 </option>
-							                           <option value="B열"> B열 </option>
-							                           <option value="C열"> C열 </option>
-							                           <option value="D열"> D열 </option>
-							                        </select>							                    	
-							                    </c:if>   
-											</td>
-											<td>
-											
-												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
-													${StoreDTO.sto_shelfDetail }
-							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
-													<select name="sto_shelf_option_detail" class="search_option">
-							                           <option value="1"> 1단 </option>
-							                           <option value="2">2단 </option>
-							                           <option value="3">3단 </option>
-							                           <option value="4">4단 </option>
-							                        </select>
-						                        </c:if>
-											</td>
-											<td>
-												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
-												<input type="button" class="store_submit_button" value="입고처리">
-												</c:if>
-											</td> <!-- 입고처리 -->
-										</tr>
-						 		</c:forEach>
-					        </table>
-					      </form>  
-						<!-- 탭2 페이징 -->
-						
-						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">1페이지 이전</a>
-						</c:if>
-						
-						<c:if test="${pageDTO.currentPage > 0}">
-							<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-								<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
-							</c:forEach>
-						</c:if>
 
-						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">1페이지 다음</a>
-						</c:if>
-					        
-			       		 </div>
-		        </div> <!--  탭2 내용끝 -->
 		        
 		        
 		       	</div>
 	       </div>
             </div>
-            
  <!--  본문내용 끝 -->    
-        
           </div> <!-- 탭내용끝 -->
-<!-- 페이징하실거면 여기서 시작 -->
-     페이징
-<!-- 페이징 끝 -->
             </div>
             
           </div>

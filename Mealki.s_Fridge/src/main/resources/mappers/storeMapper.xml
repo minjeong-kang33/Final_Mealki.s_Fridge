@@ -41,7 +41,7 @@
          <if test="endDate != null and !endDate.equals('')">
         	and sto_date like concat ('%',#{endDate}, '%')
         </if>
-       	order by placeorder.order_num desc
+       	order by sto_num, placeorder.order_num desc
        	limit #{startRow}, #{pageSize}
 	</select>
 	
@@ -54,7 +54,7 @@
 		right Outer join placeorder on placeorder.order_num = store.order_num
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
-        where COALESCE(store.sto_progress, '미입고')='미입고'
+		where 1=1
         <if test="sto_num != null and !sto_num.equals('')">
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
