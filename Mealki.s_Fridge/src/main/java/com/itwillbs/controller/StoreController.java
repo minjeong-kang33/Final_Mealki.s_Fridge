@@ -75,10 +75,6 @@ public class StoreController {
 		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore(pageDTO);
 		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
 		
-		for(int i=0; i<placeOrderListStore.size();i++) {
-			System.out.println(placeOrderListStore.get(i).get("item_name"));
-		}
-		
 		int count = storeService.getStoreSearchListCount(pageDTO);
 		
 		int pageBlock=10;

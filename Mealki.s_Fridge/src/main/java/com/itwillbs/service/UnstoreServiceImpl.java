@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.UnstoreDAO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.UnstoreDTO;
 
 @Service
@@ -18,11 +19,6 @@ public class UnstoreServiceImpl implements UnstoreService{
 	@Inject
 	public UnstoreDAO unstoreDAO;
 
-	@Override
-	public List<Map<String, Object>> getUnstoreListUnreleased() {
-		System.out.println("UnstoreServiceImpl getUnstoreListUnreleased");
-		return unstoreDAO.getUnstoreListUnreleased();
-	}
 
 	@Override
 	public void insertUnstore(UnstoreDTO unstoreDTO) {
@@ -33,15 +29,22 @@ public class UnstoreServiceImpl implements UnstoreService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getUnstoreListSuccess() {
-		System.out.println("UnstoreServiceImpl getUnstoreListSuccess");
-		return unstoreDAO.getUnstoreListSuccess();
+	public List<Map<String, Object>> getUnstoreList(PageDTO pageDTO) {
+		System.out.println("UnstoreServiceImpl getUnstoreList");
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return unstoreDAO.getUnstoreList(pageDTO);
 	}
 
 	@Override
-	public List<Map<String, Object>> getUnstoreList() {
-		System.out.println("UnstoreServiceImpl getUnstoreList");
-		return unstoreDAO.getUnstoreList();
+	public int getUnstoreListCount(PageDTO pageDTO) {
+		System.out.println("UnstoreServiceImpl getUnstoreListCount");
+		return unstoreDAO.getUnstoreListCount(pageDTO);
 	}
 
 
