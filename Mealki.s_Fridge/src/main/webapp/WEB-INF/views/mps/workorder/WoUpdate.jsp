@@ -97,14 +97,17 @@
 				<td>${WorkorderDTO.r_name}</td>
 				<td>${WorkorderDTO.wo_qty} EA</td>
 			</tr>
+			<c:set var="woState" value="${WorkorderDTO.wo_state}" />
 		</c:forEach>
 	</table>
 	<div style="margin-top:10px; text-align: right;">
 	<!-- 생산이 진행중이거나 완료시 작업지시서 수정삭제 불가 -->
-	<c:if test="${empty WorkorderDTO.wo_state}">
+
+	<c:if test="${empty woState}">
 		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
 		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
 	</c:if>
+	
 		<input type="button" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="닫기" onclick="window.close()">
 	</div>
 	

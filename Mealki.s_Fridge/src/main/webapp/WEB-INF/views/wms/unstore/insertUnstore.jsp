@@ -151,16 +151,11 @@ $(document).ready(function() {
 		               <div id="table_search" >
 		               <div id="search_select_div">
 		                     <form name="search" method="post">
+		                       <span id="storeNum_search"> 출고관리번호 <input type="text" name="unsto_num" id="unsto_num"></span>
 		                       <span id="store_date"> 출고일자 <input type="date" id="startDate" name="startDate">  ~ <input type="date" id="endDate" name="endDate"></span>
 		                       <span id="emp_num_search">담당자<input class="input-search" type="text" name="emp_num" id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
 		                       <span id="products_search"> 품명 <input type="text" name="item_name" id="item_name" onclick="findProduct()" ></span>
-		                    <!-- <select name="search_option" class="search_option">
-		                           <option value=""> 선택하세요 </option>
-		                           <option value="emp_Kname"> 이름 </option>
-		                       </select>
-		                        <span id="text_search"><input class="input-search" type="text" name="keyword"></span>
-			                    <s pan id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
-			                  	 <span id="checkbox_search"><input type="checkbox" name="check" name="search_check"> 퇴사자 포함</span>--> 
+		                       <button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
 		                     </form>
 		               </div>
 		              
@@ -169,157 +164,171 @@ $(document).ready(function() {
 
            <div class="tab">
 	       	<ul class="tabnav">
-	         <li><a href="#tab01">미출고</a></li>
-	         <li><a href="#tab02">출고완료</a></li>
-	         <li><a href="#tab03">전체</a></li>
+	         <li><a href="#tab01">전체</a></li>
+	         <li><a href="#tab02">미출고</a></li>
+	         <li><a href="#tab03">출고완료</a></li>
 	        </ul>
 	        <div class="tabcontent" >
-		        <div id="tab01" width: 100%;"> <!-- tab 1내용 -->
-		        
+	        
+		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
-				        <form name="store_form" method="get">
-					        <table border="1" class="unstore_total_table" style="width: 100%;">
-								</th><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
-									 <th>납품처명</th><th>품명</th><th>주문수량</th>
-									 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
-									 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
-								<c:forEach var="unstoreDTO" items="${unstoreListUnreleased }">
-								<tr>	 
-									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
-									<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-									<td><input type="button"></td> <!-- 상세 -->
-									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
-									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
-									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
-									<td class="divresult">재고확인</td> <!-- 재고확인결과 -->
-									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
-									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
-									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
-									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${unstoreDTO.item_num }</td> 
-									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
-									<td><input type="button" value="출고처리" class="unstore_submit_button"></td><!--출고처리 -->
-								</tr>
-								</c:forEach>
+		       				<form name="store_form" method="get">
+					  <table border="1" class="unstore_total_table" style="width: 100%;">
+						<tr><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
+							 <th>납품처명</th><th>품명</th><th>주문수량</th>
+							 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
+							 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
+						<c:forEach var="unstoreDTO" items="${unstoreList }">
+							<tr>	 
+								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
+								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
+								<td><input type="button"></td> <!-- 상세 -->
+								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
+								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
+								<td class="divresult">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										재고확인
+									</c:if></td> <!-- 재고확인결과 -->
+								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
+								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
+								<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
+								<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${unstoreDTO.item_num }</td> 
+								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
+								<td>
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										<input type="button" value="출고처리" class="unstore_submit_button">
+									</c:if>	
+								</td><!--출고처리 -->
+										
+							</tr>
+						</c:forEach>
 									 
-					        </table>
-					      </form>  
-	<!-- 페이징 -->
+					   </table>
+					 </form>  
+						<!-- 페이징 -->
+						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+							<a href="${pageContext.request.contextPath}/wms/store/insertUnstore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 이전</a>
+						</c:if>
+						
+						<c:if test="${pageDTO.currentPage > 0}">
+							<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+								<a href="${pageContext.request.contextPath}/wms/store/insertUnstore?pageNum=${i}&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
+							</c:forEach>
+						</c:if>
+
+						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+							<a href="${pageContext.request.contextPath}/wms/store/insertUnstore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
+						</c:if>							
 	
-	<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
-	</c:if>
-	
-	<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}">${i}</a> 
-	</c:forEach>
-	
-	<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-	<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
-	</c:if>
 					        
 			       		 </div>
-		        </div>
-		       	<div id="tab02">
-		       	
-		       	
-		       	 <table border="1" class="unstore_total_table" style="width: 100%;">
-								</th><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
-									 <th>납품처명</th><th>품명</th><th>주문수량</th>
-									 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
-									 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
-								<c:forEach var="unstoreDTO" items="${unstoreListSuccess }">
-								<tr>	 
-									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
-									<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-									<td><input type="button"></td> <!-- 상세 -->
-									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
-									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
-									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
-									<td class="divresult">
-										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-											재고확인
-										</c:if>	
-									</td> <!-- 재고확인결과 -->
-									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
-									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
-									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
-									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${unstoreDTO.item_num }</td> 
-									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
-									<td>
-										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-											<input type="button" value="출고처리" class="unstore_submit_button">
-										</c:if></td><!--출고처리 -->
-								</tr>
-								</c:forEach>
+		        </div> <!--  탭 내용끝 -->	        	        
+	        
+			        <div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
+				        <div class="store_total_div" style="width: 100%;">
+		       				<form name="store_form" method="get">
+					  <table border="1" class="unstore_total_table" style="width: 100%;">
+						<tr><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
+							 <th>납품처명</th><th>품명</th><th>주문수량</th>
+							 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
+							 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
+						<c:forEach var="unstoreDTO" items="${unstoreList }">
+							<c:if test="${unstoreDTO.unsto_progress eq '미출고'}">
+							<tr>	 
+								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
+								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
+								<td><input type="button"></td> <!-- 상세 -->
+								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
+								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
+								<td class="divresult">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										재고확인
+									</c:if></td> <!-- 재고확인결과 -->
+								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
+								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
+								<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
+								<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${unstoreDTO.item_num }</td> 
+								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
+								<td>
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										<input type="button" value="출고처리" class="unstore_submit_button">
+									</c:if>	
+								</td><!--출고처리 -->
+										
+							</tr>
+							</c:if>
+						</c:forEach>
 									 
-					        </table>
-		       	
-		       	
-		       	
-		       	</div>
-		       	
-		       	<div id="tab03">
-		       		<form name="store_form" method="get">
-					        <table border="1" class="unstore_total_table" style="width: 100%;">
-								</th><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
-									 <th>납품처명</th><th>품명</th><th>주문수량</th>
-									 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
-									 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
-								<c:forEach var="unstoreDTO" items="${unstoreList }">
-								<tr>	 
-									<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
-									<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-									<td><input type="button"></td> <!-- 상세 -->
-									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
-									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
-									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
-									<td class="divresult">
-										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-											재고확인
-										</c:if>	
-									</td> <!-- 재고확인결과 -->
-									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
-									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
-									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
-									<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
-									<td style="display: none;">${unstoreDTO.item_num }</td> 
-									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
-									<td>
-										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-											<input type="button" value="출고처리" class="unstore_submit_button">
-										</c:if>	
-									</td><!--출고처리 -->
-									
-								</tr>
-								</c:forEach>
+					   </table>
+					 </form>  
+			       		 </div>
+		        </div> <!--  탭 내용끝 -->	   
+		        
+		             	        
+		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
+				        <div class="store_total_div" style="width: 100%;">
+		       				<form name="store_form" method="get">
+					  <table border="1" class="unstore_total_table" style="width: 100%;">				  
+						<tr><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
+							 <th>납품처명</th><th>품명</th><th>주문수량</th>
+							 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
+							 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
+						<c:forEach var="unstoreDTO" items="${unstoreList }">
+							<c:if test="${unstoreDTO.unsto_progress eq '출고완료'}">							
+							<tr>	 
+								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
+								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
+								<td><input type="button"></td> <!-- 상세 -->
+								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
+								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
+								<td class="divresult">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										재고확인
+									</c:if></td> <!-- 재고확인결과 -->
+								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
+								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
+								<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
+								<td>${unstoreDTO.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
+								<td style="display: none;">${unstoreDTO.item_num }</td> 
+								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
+								<td>
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+										<input type="button" value="출고처리" class="unstore_submit_button">
+									</c:if>	
+								</td><!--출고처리 -->
+										
+							</tr>
+							</c:if>
+						</c:forEach>
 									 
-					        </table>
-					      </form>  
-		       	
-		       	
-		       	
-		       	</div>
+					   </table>
+					 </form>  
+	
+					        
+			       		 </div>
+		        </div> <!--  탭 내용끝 -->	        	        
 	       </div>
             </div>
             
  <!--  본문내용 끝 -->    
         
           </div>
-<!-- 페이징하실거면 여기서 시작 -->
-     페이징
-<!-- 페이징 끝 -->
             </div>
             
           </div>
           
         </div>
         
-<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
+<!-- 이 밑으로 무언가 쓰지 마세요 
+도 이 위에서 처리되야함. -->
         
         
 <!-- 푸터시작 -->

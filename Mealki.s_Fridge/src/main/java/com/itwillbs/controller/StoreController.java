@@ -41,16 +41,12 @@ public class StoreController {
 		
 		int emp_num = Integer.parseInt(e_num);
 		
-		System.out.println(sto_num +", "+startDate+", "+endDate+", "+emp_num +", "+item_name);
-		
-		int pageSize=10;
+		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
-		if(pageNum==null) {
-			pageNum="1";
-		}
+		if(pageNum==null) {pageNum="1";}
 		
-		System.out.println("나와라"+sto_num +", "+startDate+", "+endDate+", "+emp_num +", "+item_name);	
+		System.out.println("pageNum"+pageNum);
 		
 		int currentPage=Integer.parseInt(pageNum);
 		
@@ -75,7 +71,7 @@ public class StoreController {
 			pageDTO.setDue_date(due_date1);
 		}	
 		
-		//미입고 리스트
+		
 		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore(pageDTO);
 		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
 		

@@ -30,24 +30,12 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO) {
 		System.out.println("StoreDAOImpl getPlaceOrderListStore");
-		pageDTO.setStartRow(pageDTO.getStartRow());
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
 		return sqlSession.selectList(namespace + ".getPlaceOrderListStore",pageDTO);
 	}
 	
-	@Override
-	public List<Map<String, Object>> getPlaceOrderListStorecomplete(PageDTO pageDTO) {
-		System.out.println("StoreDAOImpl getPlaceOrderListStorecomplete");
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		return sqlSession.selectList(namespace + ".getPlaceOrderListStorecomplete",pageDTO);
-	}
-	
-	@Override
-	public List<Map<String, Object>> getPlaceOrderListStoreAll(PageDTO pageDTO) {
-		System.out.println("StoreDAOImpl getPlaceOrderListStoreAll");
-		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		return sqlSession.selectList(namespace + ".getPlaceOrderListStoreAll",pageDTO);
-	}
-
 	@Override
 	public void insertStore(StoreDTO storeDTO) {
 		System.out.println("StoreDAOImpl insertStore");

@@ -21,32 +21,29 @@
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
         where 1=1
-        <if test="sto_num != null">
+        
+        <if test="sto_num != null and !sto_num.equals('')">
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
         
-        <if test="emp_num != null">
+        <if test="emp_num != null and !emp_num.equals('')">
         	and emp_num like concat ('%',#{emp_num}, '%')
         </if>
         
-        <if test="item_name != null">
+        <if test="item_name != null and !item_name.equals('')">
         	and products.item_name like concat ('%',#{item_name}, '%')
         </if>
         
-        <if test="startDate != null">
-        	and startDate like concat ('%',#{startDate}, '%')
+        <if test="startDate != null and !startDate.equals('')">
+        	and sto_date like concat ('%',#{startDate}, '%')
         </if>
         
-         <if test="endDate != null">
-        	and endDate like concat ('%',#{endDate}, '%')
+         <if test="endDate != null and !endDate.equals('')">
+        	and sto_date like concat ('%',#{endDate}, '%')
         </if>
-       	order by placeorder.order_num desc
+       	order by sto_num, placeorder.order_num desc
        	limit #{startRow}, #{pageSize}
 	</select>
-	
-
-	
-	
 	
 	<select id="getStoreSearchListCount" resultType="java.lang.Integer">
 		select count(*)
@@ -57,25 +54,25 @@
 		right Outer join placeorder on placeorder.order_num = store.order_num
 		left outer join products on placeorder.item_num = products.item_num
 		left join stock on products.item_num = stock.item_num
-        where COALESCE(store.sto_progress, '미입고')='미입고'
-        <if test="sto_num != null">
+		where 1=1
+        <if test="sto_num != null and !sto_num.equals('')">
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
         
-        <if test="emp_num != null">
+        <if test="emp_num != null and !emp_num.equals('')">
         	and emp_num like concat ('%',#{emp_num}, '%')
         </if>
         
-        <if test="item_name != null">
+        <if test="item_name != null and !item_name.equals('')">
         	and products.item_name like concat ('%',#{item_name}, '%')
         </if>
         
-        <if test="startDate != null">
-        	and startDate like concat ('%',#{startDate}, '%')
+        <if test="startDate != null and !startDate.equals('')">
+        	and sto_date like concat ('%',#{startDate}, '%')
         </if>
         
-         <if test="endDate != null">
-        	and endDate like concat ('%',#{endDate}, '%')
+         <if test="endDate != null and !endDate.equals('')">
+        	and sto_date like concat ('%',#{endDate}, '%')
         </if>
        	order by placeorder.order_num desc )as subquery
         
