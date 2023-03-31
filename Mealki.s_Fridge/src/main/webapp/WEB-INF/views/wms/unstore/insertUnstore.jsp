@@ -111,9 +111,10 @@ $(document).ready(function() {
 				success:function(result){
 				
 				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
+				location.reload();
 				},
 			}); 
-		location.reload();
+		
 		
 	});	
 	});	
@@ -236,7 +237,11 @@ $(document).ready(function() {
 									<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 									<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 									<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
-									<td class="divresult">재고확인</td> <!-- 재고확인결과 -->
+									<td class="divresult">
+										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+											재고확인
+										</c:if>	
+									</td> <!-- 재고확인결과 -->
 									<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 									<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 									<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
@@ -244,10 +249,10 @@ $(document).ready(function() {
 									<td style="display: none;">${sessionScope.emp_num }</td><!-- 담당자 -->
 									<td style="display: none;">${unstoreDTO.item_num }</td> 
 									<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
-									<td><c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+									<td>
+										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
 											<input type="button" value="출고처리" class="unstore_submit_button">
-										</c:if>
-									</td><!--출고처리 -->
+										</c:if></td><!--출고처리 -->
 								</tr>
 								</c:forEach>
 									 
