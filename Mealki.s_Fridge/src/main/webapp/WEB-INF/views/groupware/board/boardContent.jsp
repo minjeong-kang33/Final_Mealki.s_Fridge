@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>    
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,6 +26,12 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/groupware/board.css">
+  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+
+
 </head>
 <body>
 
@@ -31,8 +39,8 @@
   
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/top.jsp" /> 
-    <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/sidebar.jsp" /> 
+    <jsp:include page="../../main/top.jsp" /> 
+    <jsp:include page="../../main/sidebar.jsp" /> 
 <!-- 헤더, 사이드바,개인설정 끝 -->
  
       
@@ -44,30 +52,49 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
+                  <h3 class="font-weight-bold">공지 사항</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
-          <div class="contentbody" style="background: pink;"> 
-          
+          <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-            1.<br>
-            이 안에서 본문을 작성하시되 자유롭게 div를 이용하여 구역을 나누어주세요. <br>
-            본문이 짧으시면 따로 css파일 생성하여 해당 클래스(contentbody)의 height를 1000px이상으로 주시면 됩니다. <br>
-            단 [css/blank.css]에서는 절대 높이조절 하지 말아주세요 다른분들도 다 수정됩니다...대참사 <br>
-            contentbody 는 차후 원활한 css 수정을 위해 본문길이(height) 외에는 건들이지말아주세요. <br> 
-            
-            <br>
-            
-            2.<br>
-            폭감을 짐작하실 수 있도록 background: pink; 스타일을 넣어뒀습니다.<br>
-            어느정도의 폭감인지 확인 후 스타일은 지우고 사용 해 주세요.<Br>
-            
- <!--  본문내용 끝 -->    
+<article>
+	<table border="1" id="notice">
+		<tr><th colspan="4" style="height: 50px;">${boardDTO.bo_title}</th></tr>
+		<tr><th style="width: 16%; height: 50px;">번호 : ${boardDTO.bo_num}</th>
+			<th style="width: 28%;"><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></th>
+			<th style="width: 28%;">조회수 : ${boardDTO.bo_count}</th>
+			<th style="width: 28%;">작성자 : ${boardDTO.bo_name}</th></tr>
+		<tr><th style="height: 200px;">내용</th><td colspan="3">${boardDTO.bo_content}</td></tr>		
+		<tr><th style="height: 50px;">첨부파일</th>
+		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>${boardDTO.file}</a></td></tr>
+		 
+	</table>
+	<div id="table_button">
+	<c:if test="${! empty sessionScope.emp_num }">
+	
+		<c:if test="${sessionScope.emp_num eq boardDTO.bo_name }">
+		
+			<input type="button" value="글수정" class="btn btn-primary"
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardUpdate?num=${boardDTO.bo_num}'">
+			<input type="button" value="글삭제" class="btn btn-primary"
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardDelete?num=${boardDTO.bo_num}'"> 		
+		
+		</c:if>
+	
+	</c:if>
+
+			<input type="button" value="글목록" class="btn btn-primary"
+	 		onclick="location.href='${pageContext.request.contextPath}/groupware/board/noticeList'">
+	</div>
+
+</article>
+			
+<!--  본문내용 끝 -->    
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+
 <!-- 페이징 끝 -->
             </div>
             
@@ -79,7 +106,7 @@
         
         
 <!-- 푸터시작 -->
-     <jsp:include page="${pageContext.request.contextPath}/WEB-INF/views/main/footer.jsp" /> 
+     <jsp:include page="../../main/footer.jsp" /> 
 <!--  푸터 끝 -->
 
 <!-- partial -->

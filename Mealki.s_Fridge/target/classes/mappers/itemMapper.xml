@@ -2,53 +2,71 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.itwillbs.mappers.itemMapper">
+
     <select id="getItemList" resultType="com.itwillbs.domain.ItemDTO">
         select * from products
+        
+        <if test="search_option == 'item_name'.toString()">
+        where item_name  like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'item_num'.toString()">
+        where item_num  like CONCAT('%',#{search},'%')
+        </if>
+        
         order by item_num desc
         limit #{startRow}, #{pageSize}
     </select>
     
     <select id="getItemCount" resultType="java.lang.Integer">
     select count(*) from products
+    
+      <if test="search_option == 'item_name'.toString()">
+        where item_name  like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'item_num'.toString()">
+        where item_num  like CONCAT('%',#{search},'%')
+        </if>
+        
     </select>
     
     <insert id="saveItemImage" parameterType="java.util.Map">
-    INSERT INTO item_images (item_num, image_name)
-    VALUES (#{itemNum}, #{imageName})
+    insert into item_images (item_num, image_name)
+    values (#{item_num}, #{image_name})
   </insert>
 
   <select id="getItemImage" resultType="java.lang.String" parameterType="java.lang.String">
-    SELECT image_name
-    FROM item_images
-    WHERE item_num = #{itemNum}
+    select image_name
+    from item_images
+    where item_num = #{item_num}
   </select>
 
-<!--     <insert id="insertItem"> -->
-<!--         insert into item -->
-<!--         values (#{itemNum}, #{itemType}, #{itemName}, #{weight}, #{supplier}, #{supplyPrice}, #{salesPrice}, #{itemImage}) -->
-<!--     </insert> -->
+  <insert id="insertItem">
+     insert into products
+     (item_num, item_type, item_name, weight, supplier, supply_Price, sales_Price, item_image)
+     values (#{item_num}, #{item_type}, #{item_name}, #{weight}, #{supplier},
+             #{supply_price}, #{sales_price}, #{item_image})
+  </insert>
 
-<!--     <update id="updateItem"> -->
-<!--         update item -->
-<!--         set itemType = #{itemType}, -->
-<!--             itemName = #{itemName}, -->
-<!--             weight = #{weight}, -->
-<!--             supplier = #{supplier}, -->
-<!--             supplyPrice = #{supplyPrice}, -->
-<!--             salesPrice = #{salesPrice}, -->
-<!--             itemImage = #{itemImage} -->
-<!--         where itemNum -->
-<!--          </update> -->
+  <update id="updateItem">
+     update products
+     set item_type = #{item_type},
+         item_name = #{item_name},
+         weight = #{weight},
+         supplier = #{supplier},
+         supply_price = #{supply_price},
+         sales_price = #{sales_price}
+     where item_num = #{item_num}
+   </update>
 
-<!-- <delete id="deleteItem"> -->
-<!--     delete from item -->
-<!--     where itemNum = #{itemNum} -->
-<!-- </delete> -->
+   <delete id="deleteItem">
+       delete from products
+       where item_num = #{item_num}
+   </delete>
 
-<!-- <select id="searchItem" parameterType="java.util.Map" resultType="com.itwillbs.domain.ItemDTO"> -->
-<!--     select * -->
-<!--     from item -->
-<!--     where itemName like '%' || #{itemName} || '%' -->
-<!--     and itemType like '%' || #{itemType} || '%' -->
-<!-- </select> -->
+  <select id="selectItem" parameterType="java.util.Map" resultType="com.itwillbs.domain.ItemDTO">
+    select *
+    from products
+    where item_num = #{itemNum}
+  </select>
+
 </mapper>

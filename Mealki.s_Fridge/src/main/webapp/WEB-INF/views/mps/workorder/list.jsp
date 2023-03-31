@@ -55,20 +55,36 @@
           
 <!--  본문 내용 시작 -->
 
-		<!-- 작업지시등록버튼 -->
-		<a href=# onclick="return ContractList();" class="btn">등록</a> 
+		
 		
 		<!-- 검색 -->
+		<h4> | 작업지시서 검색 </h4><br>
 		<div id="table_search">
-		<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get">
-		작업지시번호  <input type="text" value="${param.wo_num}" name="wo_num" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력">
-		작업지시일<input type="date" value="${param.order_date}" name="order_date"> ~ <input type="date" value="${param.dout_date}" name="dorder_date"><br>
-		수주번호  <input type="text" value="${param.business_num}" name="business_num" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력">
-		납품예정일<input type="date" value="${param.out_date}" name="out_date"> ~ <input type="date" value="${param.dout_date}" name="dout_date">
-		<button type="submit" value="조회" class="btn">조회</button>
-		</form>
+			<table>
+				<form action="${pageContext.request.contextPath}/mps/workorder/list" method="get">
+  					<tr>
+    					<td>
+    					<span>작업지시번호<input type="text" value="${param.wo_num}" name="wo_num"  style="margin-left: 25px; width:200px;" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력"></span>
+						<span style="margin-left: 10px;">작업지시일<input type="date" value="${param.order_date}" name="order_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dout_date}" name="dorder_date"></span>
+						</td>
+   						<td rowspan="2"> 
+   						<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
+   						</td>
+  					</tr>
+  					<tr>
+    					<td>
+    					<span style="margin-left: 10px;">수주번호<input type="text" value="${param.business_num}" name="business_num" style="margin-left: 47px; width:200px; " class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력"></span>
+						<span style="margin-left: 10px;">납품예정일<input type="date" value="${param.out_date}" name="out_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dout_date}" name="dout_date"></span>
+						</td>
+  					</tr>
+  				</form>
+			</table>
 		</div>
-		
+		<h4> | 작업지시현황 </h4>
+				<!-- 작업지시등록버튼 -->
+				<a href=# onclick="return ContractList();" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+				작업지시서 등록
+				</a> 
 		<!-- 리스트 -->
 				<div class="tab">
 				    <ul class="tabnav">
@@ -76,11 +92,15 @@
 				      <li><a href="#tab02">대기</a></li>
 				      <li><a href="#tab03">진행중</a></li>
 				      <li><a href="#tab04">완료</a></li>
+				      
+				      
 				    </ul>
+				    
 				    <div class="tabcontent">
 				    
 				      <div id="tab01">
-				      	<table border="1">
+				      
+				      	<table border="1" id="orderlist_table">
 						<tr>
 							<th>작업지시번호</th>
 							<th>수주번호</th>
@@ -94,17 +114,9 @@
 							<th>작업상태</th>
 						</tr>
 						
-						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						
-						
-						
-						
-						
-							
-							
+						<c:forEach var="WorkorderDTO" items="${workorderList}">				
 							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
 							<td>${WorkorderDTO.wo_num}</td>
-<%-- 							<input type="hidden" id="wo_num" value="${WorkorderDTO.wo_num}"> --%>
 							<td>${WorkorderDTO.business_num}</td>
 							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
@@ -114,14 +126,16 @@
 							<td>${WorkorderDTO.wo_qty}</td>
 							<td>${WorkorderDTO.pr_sum}</td>
 							<td>
-							<c:choose>
-							<c:when test="${WorkorderDTO.pr_sum == '0'}">
-							대기
-							</c:when>
-							<c:otherwise>
-							${WorkorderDTO.wo_state}
-							</c:otherwise>
-							</c:choose>
+							<c:if test="${WorkorderDTO.pr_sum == '0'}">
+							  <div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
+							</c:if>
+							<c:if test="${WorkorderDTO.wo_state == '진행중'}">
+							  <div class="btn btn-danger btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">진행중</div>
+							</c:if>
+							<c:if test="${WorkorderDTO.wo_state == '완료'}">
+							  <div class="btn btn-success btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">완료</div>
+							</c:if>
+
 							
 							</td>
 						</tr>
@@ -144,27 +158,40 @@
 				      </div>
 				      
 				      <div id="tab02">
-				      	<table border="1">
+				      	<table border="1" id="orderlist_table">
 						<tr>
 							<th>작업지시번호</th>
 							<th>수주번호</th>
-							<th>지시자</th>
+							<th>작업지시자</th>
 							<th>작업지시일자</th>
+							<th>납품예정일</th>
+							<th>라인명</th>
+							<th>품목명</th>
+							<th>지시수량</th>
+							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
 						
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						<tr>
-							<c:if test="${WorkorderDTO.wo_state == '대기'}">
+						<c:if test="${WorkorderDTO.pr_sum == '0'}">
+							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
 							<td>${WorkorderDTO.wo_num}</td>
 							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.wo_state}</td>
-							</c:if>
+							<td>${WorkorderDTO.out_date}</td>
+							<td>${WorkorderDTO.manu_name}</td>
+							<td>${WorkorderDTO.item_name}</td>
+							<td>${WorkorderDTO.wo_qty}</td>
+							<td>${WorkorderDTO.pr_sum}</td>
+							<td>
+							  <div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
+							</td>
+							
 						</tr>
+						</c:if>
 						</c:forEach>
-
+						
 						</table>
 							<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
@@ -181,27 +208,39 @@
 				      </div>
 				      
 				      <div id="tab03">
-				      	<table border="1">
+				      	<table border="1" id="orderlist_table">
 						<tr>
 							<th>작업지시번호</th>
 							<th>수주번호</th>
-							<th>지시자</th>
+							<th>작업지시자</th>
 							<th>작업지시일자</th>
+							<th>납품예정일</th>
+							<th>라인명</th>
+							<th>품목명</th>
+							<th>지시수량</th>
+							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
-					
-						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						<tr>
-							<c:if test="${WorkorderDTO.wo_state == '진행중'}">
+						
+						<c:forEach var="WorkorderDTO" items="${workorderList}">	
+						<c:if test="${WorkorderDTO.wo_state == '진행중'}">			
+							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
 							<td>${WorkorderDTO.wo_num}</td>
 							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.wo_state}</td>
-							</c:if>
+							<td>${WorkorderDTO.out_date}</td>
+							<td>${WorkorderDTO.manu_name}</td>
+							<td>${WorkorderDTO.item_name}</td>
+							<td>${WorkorderDTO.wo_qty}</td>
+							<td>${WorkorderDTO.pr_sum}</td>
+							<td>		
+							  <div class="btn btn-danger btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">진행중</div>
+							</td>
 						</tr>
+						</c:if>
 						</c:forEach>
-												
+						
 						</table>
 						<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
@@ -218,27 +257,38 @@
 				      </div>
 				      
 				      <div id="tab04">
-				      	<table border="1">
+				      	<table border="1" id="orderlist_table">
 						<tr>
 							<th>작업지시번호</th>
 							<th>수주번호</th>
-							<th>지시자</th>
+							<th>작업지시자</th>
 							<th>작업지시일자</th>
+							<th>납품예정일</th>
+							<th>라인명</th>
+							<th>품목명</th>
+							<th>지시수량</th>
+							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
 						
-						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						<tr>
-							<c:if test="${WorkorderDTO.wo_state == '완료'}">
+						<c:forEach var="WorkorderDTO" items="${workorderList}">	
+						<c:if test="${WorkorderDTO.wo_state == '완료'}">			
+							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
 							<td>${WorkorderDTO.wo_num}</td>
 							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_emp}</td>
+							<td>${WorkorderDTO.wo_empname}</td>
 							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.wo_state}</td>
-							</c:if>
+							<td>${WorkorderDTO.out_date}</td>
+							<td>${WorkorderDTO.manu_name}</td>
+							<td>${WorkorderDTO.item_name}</td>
+							<td>${WorkorderDTO.wo_qty}</td>
+							<td>${WorkorderDTO.pr_sum}</td>
+							<td>		
+							  <div class="btn btn-success btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">완료</div>						</td>
 						</tr>
+						</c:if>
 						</c:forEach>
-					
+						
 						</table>
 						<!-- 탭 페이징처리 -->
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">

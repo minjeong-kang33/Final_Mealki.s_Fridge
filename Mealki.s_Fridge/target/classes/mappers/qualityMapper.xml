@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.qualityMapper">
+<!-- 	<select id="ProductionList" resultType="com.itwillbs.domain.ProductionDTO"> -->
+<!--         select * from employee -->
+<!--         where emp_num = #{emp_num} and emp_pass = #{emp_pass} -->
+<!--     </select> -->
+    
+    
+<!--     	https://mybatis.org/mybatis-3/ -->
+    <resultMap type="map" id="qualityListMap">
+<!--    column="디비열이름" property="멤버변수이름" -->
+    	<id column="qc_num" property="qc_num"/>
+    	<result column="wo_num" property="wo_num"/>
+    	<result column="manu_name" property="manu_name"/>
+    	<result column="manu_code" property="manu_code"/>
+    	<result column="item_name" property="item_name"/>
+    	<result column="item_num" property="item_num"/>
+    	<result column="qc_code" property="qc_code"/>
+    	<result column="qc_status" property="qc_status"/>
+    	<result column="manu_tocount" property="manu_tocount"/>
+    	<result column="qc_qty" property="qc_qty"/>
+    	<result column="manu_fail" property="manu_fail"/>
+    	<result column="qc_date" property="qc_date"/>
+    </resultMap>
+    
+    <select id="getQualityListMap" resultMap="qualityListMap">
+    	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
+		p.item_num, q.qc_code, p.emp_Kname, q.qc_status, 
+		q.qc_qty, p.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
+		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
+		left join qc_status q on q.wo_num = p.wo_num group by p.wo_num
+		having manu_tocount = wo_qty
+    	<!-- test 
+    	select p.wo_num, sum(p.manu_tocount) manu_tocount, w.wo_qty
+from productstatus p join workorder w
+on p.wo_num = w.wo_num
+group by p.wo_num
+having manu_tocount = wo_qty; -->
+<!--     	<where> -->
+<!--     		<if test="wo_num != null and !wo_num.equals('')">wo_num like CONCAT('%',#{wo_num},'%') </if> -->
+<!-- 			<if test="manu_name != null and !manu_name.equals('')">OR manu_name like CONCAT('%',#{manu_name},'%')</if> -->
+<!-- 			<if test="item_name != null and !item_name.equals('')">OR item_name like CONCAT('%',#{item_name},'%')</if> -->
+<!-- 			<if test="emp_Kname != null and !emp_Kname.equals('')">OR emp_Kname like CONCAT('%',#{emp_Kname},'%')</if> -->
+<!-- 			<if test="manu_date != null and !manu_date.equals('') and manu_sdate != null and !manu_sdate.equals('')">OR manu_date between date(#{manu_sdate}) and date(#{manu_date})+1</if> -->
+<!--     	</where> -->
+<!--     	order by manu_date desc; -->
+    </select>
+    
+        <select id="getQualityWrite" resultType="com.itwillbs.domain.QualityDTO">
+    	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
+		p.item_num, q.qc_code, p.emp_Kname, q.qc_status, 
+		q.qc_qty, p.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
+		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
+		left join qc_status q on q.wo_num = p.wo_num where p.wo_num = #{wo_num} group by p.wo_num
+		having manu_tocount = wo_qty
+		</select>
+		
+<!--     <select id="getemp_Knamesession" resultType="com.itwillbs.domain.ProductionDTO"> -->
+<!-- 			select distinct e.emp_num, e.emp_Kname -->
+<!-- 			from employee e where emp_num = #{emp_num} -->
+<!--     </select> -->
+    
+<!--     <select id="getselectList" resultMap="productionMap"> -->
+<!--     	select distinct w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress -->
+<!-- 		from unstore u join workorder w -->
+<!-- 		on u.wo_num = w.wo_num -->
+<!-- 		join linecode l -->
+<!-- 		on w.manu_name = l.manu_name -->
+<!-- 		where u.unsto_progress = '출고완료' -->
+<!--     </select> -->
+    
+<!--     <insert id="insertProduct"> -->
+<!--     	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, manu_tocount, manu_fail, emp_Kname, manu_date, manu_sdate)  -->
+<!--     	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num},#{manu_tocount},#{manu_fail},#{emp_Kname},DATE_FORMAT(now(), '%Y%m%d%H%i%s'),DATE_FORMAT(now(), '%Y%m%d%H%i%s')) -->
+<!--     </insert> -->
+
+</mapper>

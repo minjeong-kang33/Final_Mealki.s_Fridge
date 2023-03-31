@@ -10,4 +10,61 @@
 		where r_num=#{r_num}
 	</select>
 
+	 <select id="getRecipeList" resultType="com.itwillbs.domain.RecipeDTO">
+        select * from recipe
+        
+        <if test="search_option == 'r_code'.toString()">
+        where r_code like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'r_name'.toString()">
+        where r_name  like CONCAT('%',#{search},'%')
+        </if>
+        
+        order by r_num desc
+        limit #{startRow}, #{pageSize}
+    </select>
+    
+    <select id="getRecipeCount" resultType="java.lang.Integer">
+    select count(*) from recipe
+    
+      <if test="search_option == 'r_code'.toString()">
+        where r_code  like CONCAT('%',#{search},'%')
+        </if>
+        <if test="search_option == 'r_name'.toString()">
+        where r_name  like CONCAT('%',#{search},'%')
+        </if>
+        
+    </select>    
+    
+    <insert id="insertRecipe">
+     insert into recipe
+     (r_num, r_code, item_num, r_name, item_name, r_qty, r_date, r_etc)
+     values (#{r_num}, #{r_code}, #{item_num}, #{r_name}, #{item_name},
+             #{r_qty}, #{r_date}, #{r_etc})
+  </insert>
+
+  <update id="updateRecipe">
+     update recipe
+     set r_code = #{r_code},
+         item_num = #{item_num},
+         r_name = #{r_name},
+         item_name = #{item_name},
+         r_qty = #{r_qty},
+         r_date = #{r_date},
+         r_etc = #{r_etc}         
+     where r_num = #{r_num}
+   </update>
+
+   <delete id="deleteRecipe">
+       delete from recipe
+       where r_num = #{r_num}
+   </delete>
+
+  <select id="selectRecipe" parameterType="java.util.Map" resultType="com.itwillbs.domain.RecipeDTO">
+    select *
+    from recipe
+    where r_num = #{recipeNum}
+  </select>
+    
+    
 </mapper>

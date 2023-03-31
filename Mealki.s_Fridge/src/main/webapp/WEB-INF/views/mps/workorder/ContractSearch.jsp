@@ -6,24 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Skydash Admin</title>
+  <!-- plugins:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/css/vendor.bundle.base.css">
+  <!-- endinject -->
+  <!-- Plugin css for this page -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 <title>밀키의 냉장고</title>
 </head>
 <body>
 
 
-	<br>
-	<form action="${pageContext.request.contextPath}/workorder/ContractSearch"
-		method="GET" name="contractsearchform" onsubmit="return checkForm()">
-		수주번호검색 
-		<input name="keyword" type="text"
-			onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"
-			placeholder="수주번호를 입력해주세요">
-		<button>검색</button>
-	</form>
-
-	<br>
-	<table border="1">
+	<div id="contract_search">
+		<form action="${pageContext.request.contextPath}/workorder/ContractSearch" method="GET" name="contractsearchform" onsubmit="return checkForm()">
+			수주번호 <input name="keyword" type="text" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"placeholder="숫자만 입력" value="${param.keyword}">
+			<button class="btn btn-primary" type="submit" id="IconButton6"  style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+				검색
+			</button>
+		</form>
+	</div>
+	
+	<div id="contract_list" style="padding-left: 10px; padding-right: 10px;">
+	<table border="1" id="orderlist_table">
 		<tr>
 			<th>수주번호</th>
 			<th>품목명</th>
@@ -45,11 +63,7 @@
 
 
 	</table>
-
-
-
-	<input type="button" value="닫기" onclick="window.close()">
-	
+	</div>
 	<script>
 	function checkForm() {
 		let f = document.contractsearchform

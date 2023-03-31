@@ -26,7 +26,7 @@ public class BoardDAOImpl implements BoardDAO{
 	}
 	
 	@Override
-	public Integer getMaxBO_num() {
+	public Integer getMaxBo_num() {
 		System.out.println("BoardDAOImpl getMaxBo_num()");
 		
 		return sqlSession.selectOne(namespace+".getMaxBo_num");

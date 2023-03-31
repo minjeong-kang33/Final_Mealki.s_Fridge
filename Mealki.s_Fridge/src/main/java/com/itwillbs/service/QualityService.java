@@ -1,5 +1,13 @@
 package com.itwillbs.service;
 
-public interface QualityService {
+import java.util.List;
+import java.util.Map;
 
+import com.itwillbs.domain.QualityDTO;
+
+
+public interface QualityService {
+	public List<Map<String, Object>> getQualityListMap(QualityDTO qualityDTO);
+	
+	public QualityDTO getQualityWrite(String wo_num);
 }

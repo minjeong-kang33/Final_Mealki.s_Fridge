@@ -75,7 +75,7 @@
 		
 		<%-- <c:if test="${ ! empty sessionScope.id }"> --%>
 		
-			<input type="button" value="글쓰기" class="btn btn-primary" 
+			<input type="button" value="✏️글쓰기 " class="btn btn-primary" style="font-size:14px; font-weight: bold;"
 			onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardWrite'">
 		
 		<%-- </c:if> --%>
@@ -84,16 +84,16 @@
 
      <div id="table_content">
 		<table id="notice" border="1">
-		<tr><th class="bo_num">번호</th>
-		    <th class="bo_title">제목</th>
-		    <th class="bo_name">작성자</th>
-		    <th class="bo_date">작성일자</th>
-		    <th class="bo_count">조회수</th></tr>
+		<tr><th class="bo_num" style="width: 6%;">번호</th>
+		    <th class="bo_title" style="width: 60%;">제목</th>
+		    <th class="bo_name" style="width: 14%;">작성자</th>
+		    <th class="bo_date" style="width: 14%;">작성일자</th>
+		    <th class="bo_count" style="width: 6%;">조회수</th></tr>
 		    
 		 <c:forEach var="BoardDTO" items="${noticeList }">
-		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/content?bo_num=${BoardDTO.bo_num}'">
+		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardContent?bo_num=${BoardDTO.bo_num}'">
 		 	<td>${BoardDTO.bo_num}</td>
-		    <td>${BoardDTO.bo_title}</td>
+		    <td style="font-weight: bold;">${BoardDTO.bo_title}</td>
 		    <td>${BoardDTO.bo_name}</td>
 		    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
 		    <td>${BoardDTO.bo_count}</td></tr>  

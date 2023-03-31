@@ -1,17 +1,19 @@
 package com.itwillbs.dao;
 
 import java.util.List;
+import java.util.Map;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 
 public interface ItemDAO {
-	public List<ItemDTO> getItemList(PageDTO pageDTO);
-	public int getItemCount();
-	public void saveItemImage(String itemNum, String imageName);
+	List<ItemDTO> getItemList(PageDTO pageDTO);
+	int getItemCount();
+	void saveItemImage(String itemNum, String imageName);
 	String getItemImage(String itemNum);
-//    public void insertItem(ItemDTO item);
-//    public void updateItem(ItemDTO item);
-//    public void deleteItem(String itemNum);
-//    public List<ItemDTO> searchItem(String itemName, String itemType);
+	void insertItem(ItemDTO item);
+	void updateItem(ItemDTO item);
+	void deleteItem(String itemNum);
+	ItemDTO selectItem(String itemNum);
+
 }

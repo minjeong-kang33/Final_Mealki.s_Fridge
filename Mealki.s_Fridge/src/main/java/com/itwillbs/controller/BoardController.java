@@ -106,5 +106,17 @@ public class BoardController {
 		
 		return "groupware/board/noticeList";
 	}
+	
+	@RequestMapping(value = "/groupware/board/boardContent", method = RequestMethod.GET)
+	public String boardContent(HttpServletRequest request, Model model) {
+		System.out.println("BoardController boardContent()");
+		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
+		
+		BoardDTO boardDTO=boardService.getBoard(bo_num);
+		
+		model.addAttribute("boardDTO", boardDTO);
+		
+		return "groupware/board/boardContent";
+	}
 
 }

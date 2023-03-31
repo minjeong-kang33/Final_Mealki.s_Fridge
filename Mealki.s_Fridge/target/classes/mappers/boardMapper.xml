@@ -8,7 +8,7 @@
     	values(#{bo_num},#{bo_name},#{bo_title},#{bo_content},#{bo_count},#{bo_date},#{file})
     </insert>
     
-    <select id="getMaxBO_num" resultType="java.lang.Integer">
+    <select id="getMaxBo_num" resultType="java.lang.Integer">
         select max(bo_num) from board 
     </select>
 	
