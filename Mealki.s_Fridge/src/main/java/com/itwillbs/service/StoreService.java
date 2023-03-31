@@ -12,10 +12,6 @@ public interface StoreService {
 	
 	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO);
 	
-	public List<Map<String, Object>> getPlaceOrderListStorecomplete(PageDTO pageDTO);
-	
-	public List<Map<String, Object>> getPlaceOrderListStoreAll(PageDTO pageDTO);
-	
 	public void insertStore(StoreDTO storeDTO);
 	
 	public int getStoreSearchListCount (PageDTO pageDTO);

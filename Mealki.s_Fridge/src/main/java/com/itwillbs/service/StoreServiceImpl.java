@@ -28,21 +28,14 @@ public class StoreServiceImpl implements StoreService{
 	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO) {
 		System.out.println("StoreServiceImpl getPlaceOrderListStore");
 		
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
 		return storeDAO.getPlaceOrderListStore(pageDTO);
-	}
-	
-	@Override
-	public List<Map<String, Object>> getPlaceOrderListStorecomplete(PageDTO pageDTO) {
-		System.out.println("StoreServiceImpl getPlaceOrderListStorecomplete");
-		
-		return storeDAO.getPlaceOrderListStorecomplete(pageDTO);
-	}
-	
-	@Override
-	public List<Map<String, Object>> getPlaceOrderListStoreAll(PageDTO pageDTO) {
-		System.out.println("StoreServiceImpl getPlaceOrderListStoreAll");
-		
-		return storeDAO.getPlaceOrderListStoreAll(pageDTO);
 	}
 
 	@Override

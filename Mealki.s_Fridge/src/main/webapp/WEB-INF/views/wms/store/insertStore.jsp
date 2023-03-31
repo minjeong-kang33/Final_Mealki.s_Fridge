@@ -145,7 +145,7 @@
 	        </ul>
 	        
 	        <div class="tabcontent" >
-		        <div id="tab01" width: 100%;"> <!-- tab 1내용 -->
+		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
@@ -219,7 +219,7 @@
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
 		        
-		        <div id="tab02" width: 100%;"> <!-- tab 2내용 -->
+		        <div id="tab02" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
@@ -293,7 +293,7 @@
 			       		 </div>
 		        </div> <!--  탭2 내용끝 -->
 		        
-		        <div id="tab03" width: 100%;"> <!-- tab 3내용 -->
+		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
@@ -349,7 +349,7 @@
 						<!-- 탭2 페이징 -->
 						
 						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 이전]</a>
+							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">1페이지 이전</a>
 						</c:if>
 						
 						<c:if test="${pageDTO.currentPage > 0}">
@@ -357,9 +357,9 @@
 								<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${i}&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">${i}</a> 
 							</c:forEach>
 						</c:if>
-						
+
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">[10페이지 다음]</a>
+							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">1페이지 다음</a>
 						</c:if>
 					        
 			       		 </div>
