@@ -14,7 +14,7 @@ public class ProductionDTO {
 	private String emp_Kname;
 	private String manu_sdate;
 	private String manu_date;
-	private int emp_num; 
+	private int emp_num;
 	
 	public int getManu_num() {
 		return manu_num;
