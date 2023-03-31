@@ -25,11 +25,21 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  
+  <!-- jQuery -->  
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <!-- 날씨 -->
+  <script src="${pageContext.request.contextPath}/resources/main/weather.js"></script>
+
+  <!-- 달력 -->
+  <script src="${pageContext.request.contextPath}/resources/main/calendar.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.js"></script>
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.css">
 
 </head>
-
 <body>
 <!-- 민정: 아이디값 없으면 로그인 화면으로. 시작 -->
 <c:if test="${empty sessionScope.emp_num }">
@@ -49,12 +59,6 @@
  <!-- 본문시작 -->
       <div class="main-panel">
         <div class="content-wrapper">
-          <div class="row">
-            <div class="col-md-12 grid-margin">
-               <div class="row">
-              </div> 
-            </div>
-          </div>
           <div class="row">
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card tale-bg">
@@ -115,6 +119,13 @@
                   </div>
                 </div>
               </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12 grid-margin">
+               <div class="row">
+               <div id="calendar" style="width: 780px; background-color: white; padding:20px; border-radius: 25px; margin-left: 15px;"></div>
+              </div> 
             </div>
           </div>
           <div class="row">
