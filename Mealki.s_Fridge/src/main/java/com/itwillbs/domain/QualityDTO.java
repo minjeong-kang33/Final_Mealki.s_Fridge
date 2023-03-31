@@ -14,6 +14,7 @@ public class QualityDTO {
 		private int qc_qty;
 		private int manu_fail;
 		private String qc_date;
+		private int wo_qty;
 		
 		public int getQc_num() {
 			return qc_num;
@@ -92,5 +93,11 @@ public class QualityDTO {
 		}
 		public void setQc_date(String qc_date) {
 			this.qc_date = qc_date;
+		}
+		public int getWo_qty() {
+			return wo_qty;
+		}
+		public void setWo_qty(int wo_qty) {
+			this.wo_qty = wo_qty;
 		}
 }

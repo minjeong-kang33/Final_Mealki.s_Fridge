@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.ProductionDTO;
 import com.itwillbs.domain.QualityDTO;
 
 @Repository
@@ -29,5 +30,17 @@ public class QualityDAOImpl implements QualityDAO{
 	public QualityDTO getQualityWrite(String wo_num) {
 		
 		return sqlSession.selectOne(namespace+".getQualityWrite", wo_num);
+	}
+	
+	@Override
+	public QualityDTO getemp_Knamesession(int emp_num) {
+		System.out.println("ProductionDAOImpl getemp_Knamesession()");
+		return sqlSession.selectOne(namespace+".getemp_Knamesession", emp_num);
+	}
+
+	@Override
+	public QualityDTO getQualityCode(String wo_num) {
+		
+		return sqlSession.selectOne(namespace+".getQualityCode", wo_num);
 	}
 }

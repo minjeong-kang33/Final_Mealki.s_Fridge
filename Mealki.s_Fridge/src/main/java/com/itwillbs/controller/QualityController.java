@@ -15,8 +15,6 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import com.itwillbs.domain.QualityDTO;
 import com.itwillbs.service.QualityService;
 
-//import com.itwillbs.service.QualityService;
-
 @Controller
 public class QualityController {
 	
@@ -51,46 +49,39 @@ public class QualityController {
 	}
 	
 	@RequestMapping(value = "/quality/writeForm", method = RequestMethod.GET)
-	public String qualityWrite(HttpServletRequest request, Model model) {
+	public String qualityWrite(HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("QualityController writeForm()");
+		
+		int emp_num=(int)session.getAttribute("emp_num");
+		System.out.println("세션 id : " + emp_num);
 		
 		String wo_num=request.getParameter("wo_num");
 		
+		QualityDTO qualitySession=qualityService.getemp_Knamesession(emp_num);
 		QualityDTO qualityDTO=qualityService.getQualityWrite(wo_num);
+		QualityDTO qualityCode=qualityService.getQualityCode(wo_num);
 		
 		model.addAttribute("qualityDTO", qualityDTO);
+		model.addAttribute("qualitySession", qualitySession);
+		model.addAttribute("qualityCode", qualityCode);
 		
 		System.out.println(qualityDTO);
 		return "mps/quality/writeForm";
 	}
 	
-//	@RequestMapping(value = "/mps/workorder/WoInsertPro", method = RequestMethod.POST)
-//	public String WoInsertPro(HttpServletRequest request,HttpSession session) {
-//		System.out.println("WorkorderController WoInsertPro()");
-//		System.out.println(session.getAttribute("emp_num"));
-//		System.out.println(request.getParameter("contract_qty"));
-//		System.out.println(request.getParameter("business_num"));
-//		System.out.println(request.getParameter("item_name"));
-//		System.out.println(request.getParameter("manu_name"));
+//	@RequestMapping(value = "/quality/writeForm", method = RequestMethod.GET)
+//	public String qualityNum(HttpServletRequest request, HttpSession session, Model model) {
+//		System.out.println("QualityController writeForm()");
 //		
-//		int wo_emp=(int) session.getAttribute("emp_num");
-//		String contract_qty=request.getParameter("contract_qty");
-//		String b=request.getParameter("business_num");
-//		String item_name=request.getParameter("item_name");
-//		String manu_name=request.getParameter("manu_name");
 //		
-//		int business_num=Integer.parseInt(b);
+//		QualityDTO qualitySession=qualityService.getemp_Knamesession(emp_num2);
+//		QualityDTO qualityDTO=qualityService.getQualityWrite(wo_num2);
 //		
-//		WorkorderDTO workorderDTO=new WorkorderDTO();
-//		workorderDTO.setWo_emp(wo_emp);
-//		workorderDTO.setContract_qty(contract_qty);
-//		workorderDTO.setBusiness_num(business_num);
-//		workorderDTO.setItem_name(item_name);
-//		workorderDTO.setManu_name(manu_name);
+//		model.addAttribute("qualityDTO", qualityDTO);
+//		model.addAttribute("qualitySession", qualitySession);
 //		
-////		WorkorderDTO workorderDTO
-//		workorderService.insertWorkorder(workorderDTO);
-//		
-//		return "mps/workorder/imsg";
+//		System.out.println(qualityDTO);
+//		return "mps/quality/writeForm";
 //	}
+	
 }

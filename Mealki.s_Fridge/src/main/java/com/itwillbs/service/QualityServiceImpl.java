@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.QualityDAO;
+import com.itwillbs.domain.ProductionDTO;
 import com.itwillbs.domain.QualityDTO;
 
 @Service
@@ -28,6 +29,19 @@ public class QualityServiceImpl implements QualityService{
 		System.out.println("QualityServiceImpl ListMap()");
 		
 		return qualityDAO.getQualityWrite(wo_num);
+	}
+	
+	@Override
+	public QualityDTO getemp_Knamesession(int emp_num) {
+		System.out.println("QualityServiceImpl getemp_Knamesession()");
+		
+		return qualityDAO.getemp_Knamesession(emp_num);
+	}
+
+	@Override
+	public QualityDTO getQualityCode(String wo_num) {
+		
+		return qualityDAO.getQualityCode(wo_num);
 	}
 
 }
