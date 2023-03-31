@@ -8,6 +8,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.UnstoreDTO;
 
 @Repository
@@ -18,11 +19,6 @@ public class UnstoreDAOImpl implements UnstoreDAO {
 	
 	private static final String namespace = "com.itwillbs.mappers.unstoreMapper";
 
-	@Override
-	public List<Map<String, Object>> getUnstoreListUnreleased() {
-		System.out.println("UnstoreDAOImpl getUnstoreListUnreleased");
-		return sqlSession.selectList(namespace+".getUnstoreListUnreleased");
-	}
 
 	@Override
 	public void insertUnstore(UnstoreDTO unstoreDTO) {
@@ -33,15 +29,18 @@ public class UnstoreDAOImpl implements UnstoreDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getUnstoreListSuccess() {
-		System.out.println("UnstoreDAOImpl getUnstoreListSuccess");
-		return sqlSession.selectList(namespace+".getUnstoreListSuccess");
+	public List<Map<String, Object>> getUnstoreList(PageDTO pageDTO) {
+		System.out.println("UnstoreDAOImpl getUnstoreList");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getUnstoreList",pageDTO);
 	}
 
 	@Override
-	public List<Map<String, Object>> getUnstoreList() {
-		System.out.println("UnstoreDAOImpl getUnstoreList");
-		return sqlSession.selectList(namespace+".getUnstoreList");
+	public int getUnstoreListCount(PageDTO pageDTO) {
+		System.out.println("UnstoreDAOImpl getUnstoreListCount");
+		return sqlSession.selectOne(namespace+".getUnstoreListCount", pageDTO);
 	}
 
 
