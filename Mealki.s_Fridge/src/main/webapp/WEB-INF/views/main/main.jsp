@@ -25,11 +25,48 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript">
+function loadJSON(callback){
+	var url = "https://api.openweathermap.org/data/2.5/weather?lat=35.1028&lon=129.0403&appid=d16297588a3864a1c944d0fb394e2423"
+	var request = new XMLHttpRequest();
+	request.overrideMimeType("application/json");
+    request.open('GET', url, true);
+    
+    request.onreadystatechange = function() {
+        if (request.readyState === 4 && request.status === 200) {
+        	var jsonData = JSON.parse(request.responseText);
+            callback(jsonData);
+        }
+    };
+    request.send(null);
+}
 
+function parseWeather(jsonData){
+	 var weatherMain = jsonData["weather"][0]["main"];
+	 var weatherTemp = (jsonData["main"]["temp"] - 273.15).toFixed(1);
+	 document.getElementById("todaysTemp").innerHTML = weatherTemp + "℃";
+	 
+	 var iconClass = "icon-cloud mr-3"; // 기본값 흐림
+	 if (weatherMain === "Clear") {
+	     iconClass = "icon-sun mr-3"; // 맑음
+	 }else if (weatherMain === "Rain"){
+		 iconClass = "icon-umbrella mr-3"; // 비
+	 }else if (weatherMain === "snow"){
+		 iconClass = "icon-drop mr-3"; // 눈
+	 }
+	 
+	 document.getElementById("todaysWeather").className = iconClass;
+}
 
+window.onload = function(){
+    loadJSON(parseWeather);
+};
+</script>
 </head>
-<body>
 
+<body>
 <!-- 민정: 아이디값 없으면 로그인 화면으로. 시작 -->
 <c:if test="${empty sessionScope.emp_num }">
 	<c:redirect url="/main/login"></c:redirect>
@@ -50,12 +87,8 @@
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">
-              <div class="row">
-                <div class="col-12 col-xl-8 mb-4 mb-xl-0">
-                  <h3 class="font-weight-bold">Welcome Aamir</h3>
-                  <h6 class="font-weight-normal mb-0">All systems are running smoothly! You have <span class="text-primary">3 unread alerts!</span></h6>
-                </div>
-              </div>
+               <div class="row">
+              </div> 
             </div>
           </div>
           <div class="row">
@@ -66,11 +99,11 @@
                   <div class="weather-info">
                     <div class="d-flex">
                       <div>
-                        <h2 class="mb-0 font-weight-normal"><i class="icon-sun mr-2"></i>31<sup>C</sup></h2>
+                        <h2 class="mb-0 font-weight-normal"><span class="weather-icon mr-3" id="todaysWeather"></span><span id="todaysTemp" style="margin-right: 5px;"></span></h2>
                       </div>
                       <div class="ml-2">
-                        <h4 class="location font-weight-normal">Bangalore</h4>
-                        <h6 class="font-weight-normal">India</h6>
+                        <h4 style="margin-bottom: 5px !important; font-weight: 550 !important;">부산시</h4>
+                        <h6>부산진구</h6>
                       </div>
                     </div>
                   </div>
@@ -695,7 +728,7 @@
   <!-- container-scroller -->
 
   <!-- plugins:js -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
+   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
   <!-- Plugin js for this page -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
