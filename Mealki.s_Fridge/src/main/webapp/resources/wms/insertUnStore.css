@@ -11,7 +11,12 @@
 
 #search_div{height: 130px;}
 
-#table_search{height: 100%;}
+#table_search{height: 60%;}
+
+#search_select_div{
+	margin-top: 18px;
+	margin-left: 10px;
+}
 
 #store_date{margin-left: 10px;}
 
@@ -22,6 +27,12 @@
 #emp_num_search{margin-left: 10px;}
 
 #findEmp_num{margin-left: 10px;}
+
+#products_search{margin-left: 10px;}
+
+#item_name{margin-left: 10px;}
+
+.textBox { width: 80px; text-align: center;}
 
 .textBox { width: 80px; text-align: center;}
 
