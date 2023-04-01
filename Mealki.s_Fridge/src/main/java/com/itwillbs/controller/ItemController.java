@@ -171,15 +171,16 @@ public class ItemController {
 		        dto.setSales_price(0);
 		    }    
 		    
-		    String item_image = request.getParameter("item_image");
-		    if (item_image != null && !item_image.isEmpty()) {
+//		    String item_image = request.getParameter("item_image");
+//		    if (item_image != null && !item_image.isEmpty()) {
 		    UUID uuid=UUID.randomUUID();
 		    String filename=uuid.toString()+"_"+file.getOriginalFilename();
 		    
 		    FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
 		    
 		    dto.setItem_image(filename);
-		    }
+//		    dto.setItem_image("item_image");
+//		    }
 //		dto.setsupplier(request.getParameter("supplier"));
 //		dto.setSupply_price(Integer.parseInt(request.getParameter("supply_price")));
 //		dto.setSales_price(Integer.parseInt(request.getParameter("sales_price")));
@@ -188,6 +189,7 @@ public class ItemController {
 
 		return "redirect:/mdm/item/itemlist";
 	}
+	
 	
 	
 

@@ -104,7 +104,7 @@
 					    <td>${ItemDTO.supplier}</td>
 					    <td>${ItemDTO.supply_price}</td>
 					    <td>${ItemDTO.sales_price}</td>
-					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${ItemDTO.item_image}" ></td></tr>
+					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${ItemDTO.item_image}" width="70" height="70" ></td></tr>
 				    
 				</c:forEach>
 				
@@ -132,8 +132,9 @@
 <a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
 </c:if>
 </div>
-
+                <br>* 품목코드의 P는 완제품, I는 식자재입니다.
 <!-- 페이징 끝 -->
+
             </div>
             
           </div>
@@ -287,7 +288,7 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
+			    <td><input type="file" name="filename" multiple="multiple" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
 
       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
       let inputItemNum = element.querySelector("input[name='item_num']");
