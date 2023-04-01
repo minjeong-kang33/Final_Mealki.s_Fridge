@@ -96,10 +96,10 @@
          	
          </tr>	
          <tr align="center">
-			<th colspan="10">					<!-- Ajax -->
-			<button type="submit">저장</button> <!-- onclick="fn_submit();return false;" -->
+			<th colspan="10">					
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button> 
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
-			<button type="submit">삭제</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>
 			</th>
 		</tr> 
 
@@ -108,7 +108,6 @@
 
 
 </table>
-</form>          
           
           
           

@@ -1,5 +1,6 @@
 package com.itwillbs.service;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -62,6 +63,19 @@ public class ContractServiceImpl implements ContractService {
 			
 			return contractDAO.getBoard(business_num);
 		}
+
+		@Override
+		public void updateBoard(ContractDTO dto) {
+			
+			contractDAO.updateBoard(dto);
+		}
+
+		@Override
+		public void deleteBoard(int business_num) {
+			contractDAO.deleteBoard(business_num);
+		}
+
+		
 	
 	
 

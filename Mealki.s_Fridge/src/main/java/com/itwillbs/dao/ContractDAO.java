@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -19,6 +20,12 @@ public interface ContractDAO {
 	public List<Map<String, Object>> getContractListMap();
 
 	public ContractDTO getBoard(int business_num);
+
+	public void updateBoard(ContractDTO dto);
+
+	public void deleteBoard(int business_num);
+
+	
 	
 	
 }

@@ -19,8 +19,8 @@
 				
 				<th style="background-color: #4B49AC; color: #fff;">품목코드</th>
 				<th style="background-color: #4B49AC; color: #fff;">품목명</th>
-				<th style="background-color: #4B49AC; color: #fff;">수주업체</th>
-				<th style="background-color: #4B49AC; color: #fff;">수주수량</th>
+<!-- 				<th style="background-color: #4B49AC; color: #fff;">수주업체</th> -->
+<!-- 				<th style="background-color: #4B49AC; color: #fff;">수주수량</th> -->
 				
 				 <c:forEach var="ContractDTO" items="${contractListMap}">
 				 <tr class="row_a">	
@@ -29,8 +29,8 @@
 				 	
 				 	<td id="item_num">${ContractDTO.item_num }</td>
 				 	<td id="item_name">${ContractDTO.item_name }</td>
-				 	<td id="business_name">${ContractDTO.business_name }</td>
-				 	<td id="contract_qty">${ContractDTO.contract_qty }</td>
+<%-- 				 	<td id="business_name">${ContractDTO.business_name }</td> --%>
+<%-- 				 	<td id="contract_qty">${ContractDTO.contract_qty }</td> --%>
 				</tr> 	
 			    </c:forEach>
 		</table>
@@ -42,18 +42,18 @@
 			var checkList = $(this);
 			var td = checkList.children();
 			var cust_num = td.eq(1).text();
-			var business_num = td.eq(0).text();
+// 			var business_num = td.eq(0).text();
 			var item_num = td.eq(2).text();
 			var item_name = td.eq(3).text();
-			var business_name = td.eq(4).text();
+// 			var business_name = td.eq(4).text();
 			var contract_qty = td.eq(5).text();
 
 			
 			opener.document.getElementById("cust_num").value = cust_num;
-			opener.document.getElementById("business_num").value = business_num;
+// 			opener.document.getElementById("business_num").value = business_num;
 			opener.document.getElementById("item_num").value = item_num;
 			opener.document.getElementById("item_name").value = item_name;
-			opener.document.getElementById("business_name").value = business_name;
+// 			opener.document.getElementById("business_name").value = business_name;
 			opener.document.getElementById("contract_qty").value = contract_qty;
 			
 			window.close();

@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -57,6 +58,18 @@ public class ContractDAOImpl implements ContractDAO{
 	public ContractDTO getBoard(int business_num) {
 		
 		return sqlSession.selectOne(namespace+".getBoard",business_num);
+	}
+
+	@Override
+	public void updateBoard(ContractDTO dto) {
+
+		sqlSession.update(namespace+".updateBoard", dto);
+	}
+
+	@Override
+	public void deleteBoard(int business_num) {
+		sqlSession.delete(namespace+".deleteBoard", business_num);
+		
 	}
 
 	
