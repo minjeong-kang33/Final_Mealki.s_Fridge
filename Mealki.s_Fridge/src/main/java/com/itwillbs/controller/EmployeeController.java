@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.EmployeeDTO;
@@ -135,6 +136,15 @@ public class EmployeeController {
 		  
 		  employeeService.insertEmployee(employeeDTO);
 		
+		return "/employee/empManage";
+	}
+
+	@ResponseBody
+	@RequestMapping(value = "/employee/employeeDetail", method = RequestMethod.GET)
+	public String employeeDetail(Model model) {
+		System.out.println("MemberController employeeDetail");
+		
+			
 		return "/employee/empManage";
 	}
 	
