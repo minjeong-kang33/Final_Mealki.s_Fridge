@@ -91,30 +91,6 @@ public class ItemController {
 
 		return "mdm/item/itemlist";
 	}
-	
-//	@RequestMapping(value="mdm/item/fupload", method= RequestMethod.GET)
-//	public String fupload(HttpServletRequest request, MultipartFile file) throws Exception {
-//		
-//		ItemDTO itemDTO=new ItemDTO();
-//		
-//		itemDTO.setItem_num(request.getParameter("item_num"));
-//		
-//		UUID uuid=UUID.randomUUID();
-//		String filename=uuid.toString()+"_"+file.getOriginalFilename();
-//		
-//		FileCopyUtils.copy(file.getBytes(), new File(uploadPath,filename));
-//		
-//		itemDTO.
-//		return null;
-		
-		
-//	}
-	
-//	@PostMapping("/uploadImage")
-//	public String uploadImage(@RequestParam("item_image") MultipartFile file, Model model) {
-//		return "redirect:/mdm/item/itemlist";
-//	}
-	
 
 	@RequestMapping(value = "mdm/item/update", method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file ) throws Exception {
@@ -183,28 +159,20 @@ public class ItemController {
 		        dto.setSales_price(0);
 		    }    
 		    
-//		    String item_image = request.getParameter("item_image");
-//		    if (item_image != null && !item_image.isEmpty()) {
+		    if (!file.isEmpty()) {
 		    UUID uuid=UUID.randomUUID();
 		    String filename=uuid.toString()+"_"+file.getOriginalFilename();
 		    
 		    FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
 		    
 		    dto.setItem_image(filename);
-//		    dto.setItem_image("item_image");
-//		    }
-//		dto.setsupplier(request.getParameter("supplier"));
-//		dto.setSupply_price(Integer.parseInt(request.getParameter("supply_price")));
-//		dto.setSales_price(Integer.parseInt(request.getParameter("sales_price")));
+		    }
 
 		itemService.save(dto);
 
 		return "redirect:/mdm/item/itemlist";
 	}
-	
-	
-	
 
-
+	
 
 }

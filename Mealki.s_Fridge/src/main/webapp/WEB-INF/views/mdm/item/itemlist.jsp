@@ -104,7 +104,9 @@
 					    <td>${ItemDTO.supplier}</td>
 					    <td>${ItemDTO.supply_price}</td>
 					    <td>${ItemDTO.sales_price}</td>
-					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${ItemDTO.item_image}" width="70" height="70" ></td></tr>
+					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}" width="70" height="70"></td>
+
+					    </tr>
 				    
 				</c:forEach>
 				
