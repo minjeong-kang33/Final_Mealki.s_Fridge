@@ -151,7 +151,7 @@
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 										<tr>
 											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
@@ -190,6 +190,7 @@
 							                        </select>
 						                        </c:if>
 											</td>
+											<td>${StoreDTO.sto_date }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
 												<input type="button" class="store_submit_button" value="입고처리">
@@ -225,7 +226,7 @@
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'미입고'}">
 										<tr>
@@ -265,6 +266,7 @@
 							                        </select>
 						                        </c:if>
 											</td>
+											<td>${StoreDTO.sto_date }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
 												<input type="button" class="store_submit_button" value="입고처리">
@@ -283,7 +285,7 @@
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'입고완료'}">
 										<tr>
@@ -323,6 +325,7 @@
 							                        </select>
 						                        </c:if>
 											</td>
+											<td>${StoreDTO.sto_date }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
 												<input type="button" class="store_submit_button" value="입고처리">
@@ -390,14 +393,14 @@
 
 
   <script>
-  <!--  입고날짜 시작일 기본값 오늘 날짜로  -->
-	document.getElementById('startDate').valueAsDate = new Date();
-
-  <!--  입고날짜 종료일 기본값 일주일 뒤로  -->
+  <!--  입고날짜 시작일 기본값 일주일전으로  -->
 	var today = new Date();
-	var Oneweek = new Date(today.setDate(today.getDate() + 6));
-	document.getElementById('endDate').valueAsDate = Oneweek;
+	var Oneweek = new Date(today.setDate(today.getDate() - 6));
+	document.getElementById('startDate').valueAsDate = Oneweek; 
 
+
+  <!--  입고날짜 종료일 기본값 오늘날짜로  -->
+	document.getElementById('endDate').valueAsDate = new Date();
 
   </script>
 

@@ -367,14 +367,14 @@ $(document).ready(function() {
 
 
   <script>
-  <!--  입고날짜 시작일 기본값 오늘 날짜로  -->
-	document.getElementById('startDate').valueAsDate = new Date();
-
-  <!--  입고날짜 종료일 기본값 일주일 뒤로  -->
+  <!--  입고날짜 시작일 기본값 일주일전으로  -->
 	var today = new Date();
-	var Oneweek = new Date(today.setDate(today.getDate() + 6));
-	document.getElementById('endDate').valueAsDate = Oneweek;
+	var Oneweek = new Date(today.setDate(today.getDate() - 6));
+	document.getElementById('startDate').valueAsDate = Oneweek; 
 
+
+  <!--  입고날짜 종료일 기본값 오늘날짜로 -->
+	document.getElementById('endDate').valueAsDate = new Date();
 
   </script>
 
