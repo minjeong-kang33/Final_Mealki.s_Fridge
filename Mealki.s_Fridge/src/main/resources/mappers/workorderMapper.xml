@@ -104,7 +104,8 @@
 
 	<select id="WoUpdateForm"
 		resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, c.business_num, r.item_num as ritem_num,
+		select w.wo_num, c.business_num, date_format(w.wo_date,
+		'%Y년 %m월 %d일') as wo_date, r.item_num as ritem_num,
 		c.item_num, r.item_name as r_name, c.contract_qty, r.r_name as item_name, 
 		round(r.r_qty/p.weight*c.contract_qty) as wo_qty, w.manu_name,
 		(case
