@@ -288,7 +288,9 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="filename" multiple="multiple" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
+			    <td><input type="file" name="item_image" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"
+			    <input type="hidden" name="oldfile" value"\${item_image}">
+			    </td>`;
 
       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
       let inputItemNum = element.querySelector("input[name='item_num']");

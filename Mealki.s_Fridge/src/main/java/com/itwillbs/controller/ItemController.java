@@ -5,7 +5,7 @@ package com.itwillbs.controller;
 
 
 import java.io.File;
-
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -117,20 +117,32 @@ public class ItemController {
 	
 
 	@RequestMapping(value = "mdm/item/update", method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String update(HttpServletRequest request, Model model ) {
+	public String update(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file ) throws Exception {
 
 		ItemDTO dto = new ItemDTO();
 		dto.setItem_num(request.getParameter("item_num"));
 		dto.setItem_type(request.getParameter("item_type"));
 		dto.setItem_name(request.getParameter("item_name"));
-		dto.setsupplier(request.getParameter("supplier"));
 		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
+		dto.setsupplier(request.getParameter("supplier"));
 		dto.setSupply_price(Integer.parseInt(request.getParameter("supply_price")));
 		dto.setSales_price(Integer.parseInt(request.getParameter("sales_price")));
+		
+		if(file.isEmpty()) {
+			dto.setItem_image(request.getParameter("oldfile"));
+		}else {
+			UUID uuid=UUID.randomUUID();
+			String filename=uuid.toString()+"_"+file.getOriginalFilename();
+			
+			FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
+			
+			dto.setItem_image(filename);
+		}
 
 		itemService.save(dto);
 		return "redirect:/mdm/item/itemlist";
 	}
+
 
 	@RequestMapping(value = "mdm/item/delete", method = RequestMethod.POST)
 	public String delete(HttpServletRequest request, Model model ) {
