@@ -71,7 +71,7 @@
             	
             	
             	<!-- 사원 정보부분 -->
-            	<div class="employeeInfo"> 
+            	<div class="employeeInfo" > 
             	
             	<fieldset>
 						<div class="left">
@@ -79,7 +79,7 @@
 							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required></li>
 							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required></li>
 							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required></li>
-							<li><label for="emp_email">이메일</label><input type="email" id="emp_email" name="emp_email" size="30"></li>
+							<li><label for="emp_email">이메일</label><input type="email" id="emp_email" name="emp_email" size="20"></li>
 							<li><label for="emp_addr">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
 							<li><label for="emp_classification" class="emp_classification">직원분류
 									<select name="emp_classification" class="emp_classification_Option">
