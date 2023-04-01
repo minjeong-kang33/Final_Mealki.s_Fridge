@@ -150,7 +150,7 @@ $(document).ready(function() {
 					<div id="search_div" >
 		               <div id="table_search" >
 		               <div id="search_select_div">
-		                     <form name="search" method="post">
+		                     <form name="search" method="get" action="${pageContext.request.contextPath}/wms/unstore/insertUnstore">
 		                       <span id="storeNum_search"> 출고관리번호 <input type="text" name="unsto_num" id="unsto_num"></span>
 		                       <span id="store_date"> 출고일자 <input type="date" id="startDate" name="startDate">  ~ <input type="date" id="endDate" name="endDate"></span>
 		                       <span id="emp_num_search">담당자<input class="input-search" type="text" name="emp_num" id="findEmp_num" value="${sessionScope.emp_num }" onclick="findEmployee()"></span>
