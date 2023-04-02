@@ -135,5 +135,13 @@ public class StoreController {
 		 return "wms/store/insertStore";		
 	}
 	
+	@RequestMapping(value = "/wms/store/storeDetail", method = RequestMethod.GET)
+	public String storeDetail(HttpServletRequest request, Model model) {
+		System.out.println("storeController storeDetail()");
+		
+
+		return "wms/store/storeDetail";
+	}
+	
 
 }
