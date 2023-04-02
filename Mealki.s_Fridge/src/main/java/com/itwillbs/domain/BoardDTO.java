@@ -10,7 +10,21 @@ public class BoardDTO {
 	private int bo_count;
 	private Timestamp bo_date;
 	private String file;
+	private int bo_status;
+	private int row_num;
 	
+	public int getRow_num() {
+		return row_num;
+	}
+	public void setRow_num(int row_num) {
+		this.row_num = row_num;
+	}
+	public int getBo_status() {
+		return bo_status;
+	}
+	public void setBo_status(int bo_status) {
+		this.bo_status = bo_status;
+	}
 	public int getBo_num() {
 		return bo_num;
 	}

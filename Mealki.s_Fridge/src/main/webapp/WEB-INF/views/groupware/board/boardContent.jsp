@@ -65,7 +65,7 @@
 			<th style="width: 28%;"><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></th>
 			<th style="width: 28%;">조회수 : ${boardDTO.bo_count}</th>
 			<th style="width: 28%;">작성자 : ${boardDTO.bo_name}</th></tr>
-		<tr><th style="height: 200px;">내용</th><td colspan="3">${boardDTO.bo_content}</td></tr>		
+		<tr><th style="height: 500px;">내용</th><td colspan="3">${boardDTO.bo_content}</td></tr>		
 		<tr><th style="height: 50px;">첨부파일</th>
 		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>${boardDTO.file}</a></td></tr>
 		 
@@ -76,9 +76,9 @@
 		<c:if test="${sessionScope.emp_num eq boardDTO.bo_name }">
 		
 			<input type="button" value="글수정" class="btn btn-primary"
-		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardUpdate?num=${boardDTO.bo_num}'">
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardUpdate?bo_num=${boardDTO.bo_num}'">
 			<input type="button" value="글삭제" class="btn btn-primary"
-		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardDelete?num=${boardDTO.bo_num}'"> 		
+		 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardDelete?bo_num=${boardDTO.bo_num}'"> 		
 		
 		</c:if>
 	

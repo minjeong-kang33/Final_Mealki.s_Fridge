@@ -29,6 +29,58 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+    <script type="text/javascript">
+	  $(function(){
+		 var cjk_listArr = document.getElementsByName("RowCheck");
+		 var rowCnt = cjk_listArr.length;
+		 
+		 $("input[name='allCheck']").click(function(){
+			var cjk_listArr = $("input[name='RowCheck']");
+			for (var i=0; i<chk_listArr.length; i++){
+				chk_lstArr[i].checked = this.checked;
+			}
+		 });
+		 $("input[name='RowCheck']").click(function(){
+			if($("input[name='RowCheck']:checked")).length == rowCnt){
+			 	$("input[name='allCheck']")[0].checked = true;
+			} else {
+			 	$("input[name='allCheck']")[0].checked = false;
+			}
+		 });
+	  });
+	  function deleteValue(){
+		  var url ="${pageContext.request.contextPath}/business/customer/deleteCustomer";
+		  var valueArr = new Array();
+		  var customerList = $("input[name='RowCheck']");
+		  for(var i=0; i<customerList.length; i++){
+			  if(customerList[i].checked){
+				  valueArr.push(customerList[i].value);
+			  }
+		  }
+		  if(valueArr.length==0){
+			  alert("삭제할 거래처를 선택해주세요");
+		  }else{
+			  var chk = confirm("정말 삭제하시겠습니까?");
+			  
+			  $.ajax({
+				  url : "${pageContext.request.contextPath}/business/customer/deleteCustomer",
+				  type : 'POST',
+				  traditional : true,
+				  data : {
+					  valueArr : valueArr
+				  },
+				  success : function(jdata){
+					  if(jdata =1){
+						  alert("삭제하였습니다");
+						  location.replace("${pageContext.request.contextPath}/business/customer/customerList")
+					  }else{alert("삭제 실패");}
+				  }
+			  });
+		  }
+		  
+	  }
+  </script>
+  
   <script type="text/javascript">
 	  function openDetail(business_num) {
 		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1000, height=1000, scrollbars=yes");
@@ -45,36 +97,16 @@
   </script>
   
   <script>
-    document.getElementById("deleteCust").addEventListener("click", function () {
-        var checkboxes = document.getElementsByName("selectedCustomers");
-        var checked = [];
-        for (var i = 0; i < checkboxes.length; i++) {
-            if (checkboxes[i].checked) {
-                checked.push(checkboxes[i].value);
-            }
-        }
-        if (checked.length > 0) {
-            if (confirm("거래처를 삭제하시겠습니까?")) {
-                var form = document.createElement("form");
-                form.setAttribute("method", "post");
-                form.setAttribute("action", "${pageContext.request.contextPath}/business/customer/deleteCustomer");
-                for (var i = 0; i < checked.length; i++) {
-                    var input = document.createElement("input");
-                    input.setAttribute("type", "hidden");
-                    input.setAttribute("name", "selectedCustomers");
-                    input.setAttribute("value", checked[i]);
-                    form.appendChild(input);
-                }
-                document.body.appendChild(form);
-                form.submit();
-            }
-        } else {
-            alert("삭제할 거래처를 선택해주세요.");
-        }
-    });
-</script>
-
+	function allCheck() {
+	    var checkBoxes = document.getElementsByName('RowCheck');
+	    var allCheck = document.getElementsByName('allCheck')[0];
+	    for (var i = 0; i < checkBoxes.length; i++) {
+	        checkBoxes[i].checked = allCheck.checked;
+	    }
+	}
+  </script>
   
+ 
   
 
 </head>
@@ -125,12 +157,14 @@
 			<div id="table_content">
 				<table border="1">
 					<tr>
+					<th><input type="checkbox" id="allCheck" name="allCheck" ></th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
 					<c:if test="${CustomerDTO.cust_status == 1}">
 						<tr>
+							<td><input type="checkbox" id="checkbox" name="RowCheck" value="${CustomerDTO.business_num }"></td>
 							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
@@ -144,7 +178,11 @@
 				</c:forEach>
 				
 				</table>
+				<div id="button2">
+					<input type="button" class="btn btn-primary" value="삭제" onclick="deleteValue();">
+				</div>
 			</div>
+			
 				
 			
 			

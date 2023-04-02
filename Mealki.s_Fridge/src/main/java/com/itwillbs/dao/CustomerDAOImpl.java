@@ -58,4 +58,11 @@ public class CustomerDAOImpl implements CustomerDAO{
 		sqlSession.update(namespace+".deleteCustomer", business_num);	
 	}
 
+	@Override
+	public void updateCustomer(CustomerDTO customerDTO) {
+		System.out.println("CustomerDAOImpl updateCustomer()");
+	
+		sqlSession.update(namespace+".updateCustomer", customerDTO);	
+	}
+
 }

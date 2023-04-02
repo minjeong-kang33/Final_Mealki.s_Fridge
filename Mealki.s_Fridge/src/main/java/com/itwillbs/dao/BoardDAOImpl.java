@@ -55,6 +55,21 @@ public class BoardDAOImpl implements BoardDAO{
 		return sqlSession.selectOne(namespace+".getBoard", bo_num);
 	}
 
+	@Override
+	public void boCount(BoardDTO boardDTO) {
+		System.out.println("BoardDAOImpl boCount()");
+		
+		sqlSession.update(namespace+".boCount", boardDTO);
+		
+	}
+
+	@Override
+	public void deleteBoard(int bo_num) {
+		System.out.println("BoardDAOImpl deleteBoard()");
+		
+		sqlSession.update(namespace+".deleteBoard", bo_num);
+	}
+
 
 
 	

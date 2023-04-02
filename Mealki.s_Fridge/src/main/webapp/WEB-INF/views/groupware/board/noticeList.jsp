@@ -89,12 +89,14 @@
 		    <th class="bo_count" style="width: 6%;">조회수</th></tr>
 		    
 		 <c:forEach var="BoardDTO" items="${noticeList }">
+		 	<c:if test="${BoardDTO.bo_status == 1}">
 		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardContent?bo_num=${BoardDTO.bo_num}'">
-		 	<td>${BoardDTO.bo_num}</td>
+		 	<td>${BoardDTO.row_num}</td>
 		    <td style="font-weight: bold;">${BoardDTO.bo_title}</td>
 		    <td>${BoardDTO.bo_name}</td>
 		    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
-		    <td>${BoardDTO.bo_count}</td></tr>  
+		    <td>${BoardDTO.bo_count}</td></tr>
+		    </c:if>  
 		 </c:forEach>   
 		    
 		</table>

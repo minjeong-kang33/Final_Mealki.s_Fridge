@@ -6,10 +6,29 @@
 <head>
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+<%--   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css"> --%>
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script>
+	function deleteCustomer(url) {
+	  if (confirm("거래처를 삭제하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
+  
+  <script>
+	function updateCustomer(url) {
+	  if (confirm("거래처를 수정하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
 </head>
 <body>
-<div class="customer_details">
+			<div class="customer_details">
                <h4> |거래처 상세 </h4>
                   <div class="cust_infoDetails">
                      <table border="1" class="cust_details_table">
@@ -22,9 +41,14 @@
                      <tr class="tr"><th class="th">주소</th><td colspan="3">(${customerDTO.cust_post_num})${customerDTO.cust_address}, ${customerDTO.cust_address2}</td></tr>
                      <tr class="tr"><th class="th">홈페이지</th><td colspan="3">${customerDTO.url_path}</td></tr>
                      <tr class="tr"><th class="th">적요</th><td colspan="3"><textarea name="remarks" rows="20" cols="120">${customerDTO.remarks}</textarea></td></tr>
-                     
                      </table>
                   </div>
                </div>
+               <div id="buttons" style="text-align:center;">
+						
+				<input type="button" value="수정하기" class="btn btn-primary" onclick="updateCustomer('${pageContext.request.contextPath}/business/customer/updateCustomer?business_num=${customerDTO.business_num}')"> 
+				<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteCustomer('${pageContext.request.contextPath}/business/customer/deleteCustomer?business_num=${customerDTO.business_num}')">
+							
+			   </div>
 </body>
 </html>

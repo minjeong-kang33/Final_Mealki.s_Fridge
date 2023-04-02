@@ -16,5 +16,7 @@ public interface CustomerService {
 	public void insertCustomer(CustomerDTO customerDTO);
 	
 	public void deleteCustomer(String business_num);
+	
+	public void updateCustomer(CustomerDTO customerDTO);
 
 }
