@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.chartMapper">
+
+	<select id="contract" resultType="com.itwillbs.domain.ChartDTO">
+		select incharge_name as name, count(incharge_name) as num
+		from contract
+		group by incharge_name
+		order by num desc
+		limit 5
+	</select>
+	
+</mapper>
