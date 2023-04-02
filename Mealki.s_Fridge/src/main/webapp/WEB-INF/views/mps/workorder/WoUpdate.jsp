@@ -33,7 +33,9 @@
 	
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro" method="post">
 	<div style="text-align: right;">
-	<b>작성일 : <a id="current_date"></a></b>
+	<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
+	<b>작성일 : ${WorkorderDTO.wo_date}</a></b>
+	</c:forEach>
 	</div>
 	
 	<table border="1" id="orderlist_table">
