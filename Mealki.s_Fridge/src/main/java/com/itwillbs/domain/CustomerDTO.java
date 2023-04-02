@@ -19,7 +19,14 @@ public class CustomerDTO {
 	private String cust_address2;
 	private String url_path;
 	private String remarks;
+	private int cust_status;
 	
+	public int getCust_status() {
+		return cust_status;
+	}
+	public void setCust_status(int cust_status) {
+		this.cust_status = cust_status;
+	}
 	public String getCust_num() {
 		return cust_num;
 	}

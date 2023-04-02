@@ -16,5 +16,9 @@ public interface BoardDAO {
 	public int getBoardCount(PageDTO pageDTO);
 	
 	public BoardDTO getBoard(int bo_num);
+	
+	public void boCount(BoardDTO boardDTO);
+	
+	public void deleteBoard(int bo_num);
 
 }

@@ -72,7 +72,7 @@
 					<tr><th>내용</th>
 							<td><textarea name="bo_content" rows="10" cols="20"></textarea></td></tr>
 					<tr><th>첨부파일</th>
-       						<td><input type="file" name="file" ></td></tr>              
+       						<td style="text-align:left;"><input type="file" name="file" ></td></tr>              
 					</table>
 					<div id="table_write">
 					<input type="submit" value="글쓰기" class="btn btn-primary">

@@ -25,16 +25,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-	<script>
-		function updateCustNum() {
-		  // business_num 요소를 가져옴
-		  var businessNum = document.querySelector('.business_num');
-		  // cust_num 요소를 가져옴
-		  var custNum = document.querySelector('.cust_num');
-		  // business_num의 값을 cust_num에 복사
-		  custNum.value = businessNum.value;
-		}	
-	</script>
+
 
    <!-- 주소값 api -->
  <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
@@ -74,12 +65,12 @@
 
 			<div id="wrap">
 			<h3> |거래처 등록 </h3>
-				<form action="${pageContext.request.contextPath}/business/customer/insertCustomerPro" id="insertCust" method="post" onsubmit="showAlert()">
+				<form action="${pageContext.request.contextPath}/business/customer/insertCustomerPro" id="insertCust" method="post" >
 				<input type="hidden" name="no" value="{sessionScope.emp_num }">
 					<fieldset>
 						<div class="radio-wrap">
 							<label>거래처구분</label><img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15">	
-								<input type="radio" name="cust_gubun2" value="사업자(개인)" checked>사업자(개인)
+								<input type="radio" name="cust_gubun2" value="사업자(국내)" checked>사업자(국내)
 								<input type="radio" name="cust_gubun2" value="사업자(해외)" >사업자(해외)	 
 							  	<input type="radio" name="cust_gubun2" value="개인">개인<br>	
 					  	</div>
@@ -287,12 +278,6 @@
  	});//준비
  </script>
  
- <script type="text/javascript">
-	function showAlert() {
-	  alert("거래처 등록이 완료되었습니다");
-	  return true; // 서버로 데이터 전송
-	}
- </script>
  
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
