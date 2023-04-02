@@ -50,5 +50,8 @@
 </c:forEach>	
 </table>
 
+<div>
+<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;" value="인쇄하기" onclick="window.print()">인쇄하기</button>
+</div>
 </body>
 </html>

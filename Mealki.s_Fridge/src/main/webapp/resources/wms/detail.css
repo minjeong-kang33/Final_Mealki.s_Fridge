@@ -27,3 +27,16 @@ h3{
    background-color: #4B49AC;
    color: #fff;
 }
+
+
+#IconButton6{
+	margin-top: 30px;
+	margin-right : 60px;
+	float: right;
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+}
