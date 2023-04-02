@@ -151,7 +151,7 @@
 				        <form name="store_form" method="get">
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반행</th><th>선반열</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 										<tr>
 											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
@@ -183,10 +183,10 @@
 							                    </c:if>
 							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
 													<select name="sto_shelf_option_detail" class="search_option">
-							                           <option value="1"> 1단 </option>
-							                           <option value="2">2단 </option>
-							                           <option value="3">3단 </option>
-							                           <option value="4">4단 </option>
+							                           <option value="1">1열 </option>
+							                           <option value="2">2열 </option>
+							                           <option value="3">3열 </option>
+							                           <option value="4">4열 </option>
 							                        </select>
 						                        </c:if>
 											</td>
@@ -429,7 +429,7 @@
  /* 상세보기 팝업 */
 
 function storeDetail(order_num) {
-	var _width = '800';
+	var _width = '1200';
 	var _height = '650';
 	var _left = Math.ceil((window.screen.width - _width) / 2);
 	var _top = Math.ceil((window.screen.height - _height) / 2);
