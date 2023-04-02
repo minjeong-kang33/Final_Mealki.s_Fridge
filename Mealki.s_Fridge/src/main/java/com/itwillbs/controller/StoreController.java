@@ -139,6 +139,10 @@ public class StoreController {
 	public String storeDetail(HttpServletRequest request, Model model) {
 		System.out.println("storeController storeDetail()");
 		
+		String order_num = request.getParameter("order_num");
+		System.out.println(order_num);
+		List<Map<String, Object>> storeDetailList = storeService.getStoreDetailList(order_num);
+		model.addAttribute("storeDetailList", storeDetailList);
 
 		return "wms/store/storeDetail";
 	}

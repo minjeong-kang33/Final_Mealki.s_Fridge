@@ -428,13 +428,13 @@
  
  /* 상세보기 팝업 */
 
-function storeDetail(wo_num) {
+function storeDetail(order_num) {
 	var _width = '800';
 	var _height = '650';
 	var _left = Math.ceil((window.screen.width - _width) / 2);
 	var _top = Math.ceil((window.screen.height - _height) / 2);
 	let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?wo_num="+wo_num,
+	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?order_num="+order_num,
 							"밀키의 냉장고",popOption);}
  
  

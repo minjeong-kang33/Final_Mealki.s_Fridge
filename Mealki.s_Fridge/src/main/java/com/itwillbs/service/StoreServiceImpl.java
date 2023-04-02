@@ -52,6 +52,12 @@ public class StoreServiceImpl implements StoreService{
 		return storeDAO.getStoreSearchListCount(pageDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getStoreDetailList(String order_num) {
+		System.out.println("StoreServiceImpl getStoreDetailList");
+		return storeDAO.getStoreDetailList(order_num);
+	}
+
 
 	
 	
