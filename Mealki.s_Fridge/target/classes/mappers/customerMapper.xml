@@ -53,6 +53,18 @@
     <insert id="insertCustomer">
     	insert into customer(cust_num,cust_gubun2,cust_gubun1,business_num,cust_name,boss_name,cust_tel,cust_uptae,cust_jongmok,man_name,man_tel,man_email,fax,cust_post_num,cust_address,cust_address2,url_path,remarks) 
     	values(concat('CS',DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 9 HOUR), '%Y%m%d%H%i%s')), #{cust_gubun2},#{cust_gubun1},#{business_num},#{cust_name},#{boss_name},#{cust_tel},#{cust_uptae},#{cust_jongmok},#{man_name},#{man_tel},#{man_email},#{fax},#{cust_post_num},#{cust_address},#{cust_address2},#{url_path},#{remarks})
-    </insert>	
+    </insert>
+    
+    <update id="deleteCustomer">
+		update customer set cust_status = 0
+		where business_num = #{business_num}
+	</update>
+	
+	<update id="updateCustomer">
+		update customer set cust_gubun1 = #{cust_gubun1}, cust_gubun2 = #{cust_gubun2}, business_num = #{business_num},cust_name = #{cust_name},
+							boss_name = #{boss_name}, cust_tel = #{cust_tel}, cust_uptae = #{cust_uptae}, cust_jongmok = #{cust_jongmok}, man_name = #{man_name},
+							man_tel = #{man_tel}, man_email = #{man_email}, fax = #{fax}, cust_post_num = #{cust_post_num}, cust_address = #{cust_address}, cust_address2 = #{cust_address2}, url_path = #{url_path}, remarks = #{remarks}
+		where business_num = #{business_num}
+	</update>	
 
 </mapper>

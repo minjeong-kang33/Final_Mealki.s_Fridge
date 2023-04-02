@@ -29,16 +29,16 @@
         
     </select>
     
-    <insert id="saveItemImage" parameterType="java.util.Map">
-    insert into item_images (item_num, image_name)
-    values (#{item_num}, #{image_name})
-  </insert>
+<!--     <insert id="saveItemImage" parameterType="java.util.Map"> -->
+<!--     insert into item_images (item_num, image_name) -->
+<!--     values (#{item_num}, #{image_name}) -->
+<!--   </insert> -->
 
-  <select id="getItemImage" resultType="java.lang.String" parameterType="java.lang.String">
-    select image_name
-    from item_images
-    where item_num = #{item_num}
-  </select>
+<!--   <select id="getItemImage" resultType="java.lang.String" parameterType="java.lang.String"> -->
+<!--     select image_name -->
+<!--     from item_images -->
+<!--     where item_num = #{item_num} -->
+<!--   </select> -->
 
   <insert id="insertItem">
      insert into products
@@ -54,7 +54,8 @@
          weight = #{weight},
          supplier = #{supplier},
          supply_price = #{supply_price},
-         sales_price = #{sales_price}
+         sales_price = #{sales_price},
+         item_image = #{item_image}
      where item_num = #{item_num}
    </update>
 

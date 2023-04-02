@@ -65,7 +65,7 @@ public class BoardController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		int pageSize=10;
+		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -114,9 +114,22 @@ public class BoardController {
 		
 		BoardDTO boardDTO=boardService.getBoard(bo_num);
 		
+		boardService.boCount(boardDTO);
+		
 		model.addAttribute("boardDTO", boardDTO);
 		
 		return "groupware/board/boardContent";
+	}
+	
+	@RequestMapping(value = "/groupware/board/boardDelete", method = RequestMethod.GET)
+	public String boardDelete(HttpServletRequest request, Model model) {
+		System.out.println("BoardController boardDelete()");
+		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
+		
+		boardService.deleteBoard(bo_num);
+		
+//		주소줄 변경하면서 이동
+		return "redirect:/groupware/board/noticeList";
 	}
 
 }

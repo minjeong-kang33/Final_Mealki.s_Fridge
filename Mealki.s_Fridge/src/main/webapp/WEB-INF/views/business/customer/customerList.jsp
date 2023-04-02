@@ -29,6 +29,58 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+    <script type="text/javascript">
+	  $(function(){
+		 var cjk_listArr = document.getElementsByName("RowCheck");
+		 var rowCnt = cjk_listArr.length;
+		 
+		 $("input[name='allCheck']").click(function(){
+			var cjk_listArr = $("input[name='RowCheck']");
+			for (var i=0; i<chk_listArr.length; i++){
+				chk_lstArr[i].checked = this.checked;
+			}
+		 });
+		 $("input[name='RowCheck']").click(function(){
+			if($("input[name='RowCheck']:checked")).length == rowCnt){
+			 	$("input[name='allCheck']")[0].checked = true;
+			} else {
+			 	$("input[name='allCheck']")[0].checked = false;
+			}
+		 });
+	  });
+	  function deleteValue(){
+		  var url ="${pageContext.request.contextPath}/business/customer/deleteCustomer";
+		  var valueArr = new Array();
+		  var customerList = $("input[name='RowCheck']");
+		  for(var i=0; i<customerList.length; i++){
+			  if(customerList[i].checked){
+				  valueArr.push(customerList[i].value);
+			  }
+		  }
+		  if(valueArr.length==0){
+			  alert("삭제할 거래처를 선택해주세요");
+		  }else{
+			  var chk = confirm("정말 삭제하시겠습니까?");
+			  
+			  $.ajax({
+				  url : "${pageContext.request.contextPath}/business/customer/deleteCustomer",
+				  type : 'POST',
+				  traditional : true,
+				  data : {
+					  valueArr : valueArr
+				  },
+				  success : function(jdata){
+					  if(jdata =1){
+						  alert("삭제하였습니다");
+						  location.replace("${pageContext.request.contextPath}/business/customer/customerList")
+					  }else{alert("삭제 실패");}
+				  }
+			  });
+		  }
+		  
+	  }
+  </script>
+  
   <script type="text/javascript">
 	  function openDetail(business_num) {
 		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1000, height=1000, scrollbars=yes");
@@ -43,26 +95,18 @@
 	            "childForm", "width=600, height=1000,top=300, left=300, resizable = no, scrollbars = no");    
 	  }
   </script>
-
   
-<!-- <!--   <script> //검색어 --> 
-<!-- // 	function fun1() { -->
-		
-<!-- // 		if(document.search.search_option.value=="") { -->
-<!-- // 			alert("검색 조건을 선택하세요") -->
-<!-- // 			document.search.search_option.focus(); -->
-<!-- // 			return false; -->
-<!-- // 		} -->
-<!-- // 		if(document.search.keyword.value==0) { -->
-<!-- // 			alert("검색어를 입력하세요"); -->
-<!-- // 			document.search.keyword.focus(); -->
-<!-- // 			return false; -->
-<!-- // 			} -->
-		
-<!-- // 			document.search.submit(); -->
-<!-- // 	} -->
-<!-- <!--   </script> --> 
+  <script>
+	function allCheck() {
+	    var checkBoxes = document.getElementsByName('RowCheck');
+	    var allCheck = document.getElementsByName('allCheck')[0];
+	    for (var i = 0; i < checkBoxes.length; i++) {
+	        checkBoxes[i].checked = allCheck.checked;
+	    }
+	}
+  </script>
   
+ 
   
 
 </head>
@@ -91,51 +135,56 @@
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-            <div id="table_search"> 
-            	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get" onsubmit="return fun1()">
-	            	<select name="search_option" class="search_option">
-	            		<option value=""> 선택하세요 </option>
-	            		<option value="cust_num"> 거래처코드 </option>
-	            		<option value="cust_name"> 거래처명 </option>
-	            		<option value="cust_uptae"> 업태 </option>
-	            	</select>
-	            <input type="text" name="keyword" class="input-search" >
-	            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
-            	</form>
+            <div id="table_search">
+            	<div id="select_search"> 
+	            	<form action="${pageContext.request.contextPath}/business/customer/customerList" id="selectBox" name="search" method="get">
+		            	<select name="search_option" class="search_option">
+		            		<option value=""> 선택하세요 </option>
+		            		<option value="cust_num"> 거래처코드 </option>
+		            		<option value="cust_name"> 거래처명 </option>
+		            		<option value="cust_uptae"> 업태 </option>
+		            	</select>
+		            <input type="text" name="keyword" class="input-search" >
+		            <input type="image" name="button" class="search_icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25">
+	            	</form>
+            	</div>
+            	
+            	<div id="table_write">
+					<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
+				</div>
             </div>
             
 			<div id="table_content">
-<%-- 			 <form action="${pageContext.request.contextPath}/business/customer/deleteCustomer" method="post">           --%>
 				<table border="1">
-					<tr><th>선택</th>
+					<tr>
+					<th><input type="checkbox" id="allCheck" name="allCheck" ></th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
-				
-					<tr onclick="openDetail('${CustomerDTO.business_num}')">
-						<td><input type="checkbox" name="selectedCustomers" value="${CustomerDTO.business_num}"></td>
-					    <td>${CustomerDTO.cust_num}</td>
-					    <td>${CustomerDTO.cust_name}</td>
-					    <td>${CustomerDTO.boss_name}</td>
-					    <td>${CustomerDTO.cust_tel}</td>
-					    <td>${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
-					    <td>${CustomerDTO.cust_uptae}</td>
-					    <td>${CustomerDTO.cust_jongmok}</td>
-					    <td>${CustomerDTO.man_email}</td></tr>
-				    
+					<c:if test="${CustomerDTO.cust_status == 1}">
+						<tr>
+							<td><input type="checkbox" id="checkbox" name="RowCheck" value="${CustomerDTO.business_num }"></td>
+							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
+						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
+						</tr>
+				   </c:if> 
 				</c:forEach>
 				
 				</table>
-<!-- 				</form> -->
+				<div id="button2">
+					<input type="button" class="btn btn-primary" value="삭제" onclick="deleteValue();">
+				</div>
 			</div>
+			
 				
-			<div id="button2">
-				<input type="submit" class="btn btn-primary" value="삭제" onclick="return confirm('거래처를 삭제하시겠습니까?')">
-<%-- 				<a href="${pageContext.request.contextPath}/business/customer/insertCustomer"> --%>
-				<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
-<!-- 				</a> -->
-			</div>
+			
 			
  
  <!--  본문내용 끝 -->    

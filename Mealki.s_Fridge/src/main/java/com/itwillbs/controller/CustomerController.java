@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.PageDTO;
@@ -30,7 +31,7 @@ public class CustomerController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		int pageSize=10;
+		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -42,9 +43,9 @@ public class CustomerController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
+		// 검색어
 		pageDTO.setSearch_option(search_option);
 		pageDTO.setKeyword(keyword);
-		
 		
 		List<CustomerDTO> customerList=customerService.getCustomerList(pageDTO);
 		
@@ -74,38 +75,92 @@ public class CustomerController {
 	
 	@RequestMapping(value = "/business/customer/customerDetail", method = RequestMethod.GET)
 	public String customerDetail(HttpServletRequest request, Model model) {
+		System.out.println("CustomerController customerDetail()");
 		String business_num = request.getParameter("business_num");
 	
 		CustomerDTO customerDTO=customerService.getCustomer(business_num);
 
 		model.addAttribute("customerDTO", customerDTO);
 		
-	return "business/customer/customerDetail";
-}
+		return "business/customer/customerDetail";
+	}
 	
-//	@RequestMapping(value="/business/customer/delete", method=RequestMethod.POST)
-//	public String delete(HttpServletRequest request) {
-//		int num=Integer.parseInt(request.getParameter("cust_num"));
-//		
-//	return "redirect:business/customer/customerList";
+//	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.POST)
+//	public String deleteCustomer(HttpServletRequest request) {
+//		 System.out.println("CustomerController deleteCustomer()");
+//		 String business_num = request.getParameter("business_num");
+//		 String selectedCustomers[]=request.getParameterValues("selectedCustomers");
+//         String business_num = null;
+//         if(selectedCustomers!=null){
+//              for(int i=0;i<selectedCustomers.length;i++){
+//            
+//            	  business_num=selectedCustomers[i];
+//            	  customerService.deleteCustomer(business_num);
+//              }
+//             } 
+//		 customerService.deleteCustomer(business_num);
+//         return "redirect:business/customer/customerList";
 //	}
+	
+//	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.POST)
+//	public String ajaxTest(HttpServletRequest request) {
+//		 System.out.println("CustomerController deleteCustomer()");
+//		 
+//		 String[] ajaxMsg = request.getParameterValues("valueArr");
+//		 int size = ajaxMsg.length;
+//		 for(int i=0; i<size; i++) {
+//			 customerService.deleteCustomer(ajaxMsg[i]);
+//		 }
+//         return "redirect:business/customer/customerList";
+//	}
+	
+	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.GET)
+	public String deleteCustomer(HttpServletRequest request, Model model) {
+		 System.out.println("CustomerController deleteCustomer()");
+		 String business_num = request.getParameter("business_num");
+		 
+		 customerService.deleteCustomer(business_num);
+		 
+         return "business/customer/dmsg";
+	}
 	
 	@RequestMapping(value = "/business/customer/insertCustomer", method = RequestMethod.GET)
 	public String insertCustomer() {
+		System.out.println("CustomerController insertCustomer()");
 	
-	return "business/customer/insertCustomer";
+		return "business/customer/insertCustomer";
 	}
 	@RequestMapping(value = "/business/customer/insertCustomerPro", method = RequestMethod.POST)
 	public String insertCustomerPro(CustomerDTO customerDTO) {
 		System.out.println("CustomerController insertCustomerPro()");
-		//회원가입 처리 부모인터페이스 MemberService, 
-		//           자식클래스 MemberServiceImpl
-		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
-		// 메서드 호출
+
 		customerService.insertCustomer(customerDTO);
 		
 //		주소줄 변경하면서 이동
-		return "business/customer/insertCustomer";
+		return "business/customer/imsg";
+	}
+	@RequestMapping(value = "/business/customer/updateCustomer", method = RequestMethod.GET)
+	public String updateCustomer(HttpServletRequest request, Model model) {
+		System.out.println("CustomerController updateCustomer()");
+		String business_num = request.getParameter("business_num");
+		
+		CustomerDTO customerDTO=customerService.getCustomer(business_num);
+		
+		model.addAttribute("customerDTO", customerDTO);
+		
+//		주소줄 변경없이 이동
+//		/WEB-INF/views/파일이름.jsp
+//		/WEB-INF/views/center/update.jsp
+		return "business/customer/updateCustomer";
+	}
+	@RequestMapping(value = "/business/customer/updateCustomerPro", method = RequestMethod.POST)
+	public String updateCustomerPro(CustomerDTO customerDTO, RedirectAttributes redirectAttributes) {
+		System.out.println("CustomerController updateCustomerPro()");
+		
+		customerService.updateCustomer(customerDTO);
+		redirectAttributes.addAttribute("business_num", customerDTO.getBusiness_num());
+
+		return "redirect:/business/customer/customerDetail?business_num=${customerDTO.business_num}";
 	}
 	
 
