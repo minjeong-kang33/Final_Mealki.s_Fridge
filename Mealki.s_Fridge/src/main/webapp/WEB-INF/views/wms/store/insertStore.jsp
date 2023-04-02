@@ -43,7 +43,58 @@
 	  }).filter(':eq(0)').click();
 	  });
 	  
-	  
+
+
+
+</script>
+
+<script type="text/javascript">  
+
+//특정 영역 인쇄
+
+function content_print1(){
+   
+                var initBody = document.body.innerHTML;
+                window.onbeforeprint = function(){
+                    document.body.innerHTML =
+
+                                     document.getElementById('store_table_tab01').innerHTML;
+                }
+                window.onafterprint = function(){
+                    document.body.innerHTML = initBody;
+                }
+                window.print();    
+            } 
+
+function content_print2(){
+	   
+    var initBody = document.body.innerHTML;
+    window.onbeforeprint = function(){
+        document.body.innerHTML =
+
+                         document.getElementById('store_table_tab02').innerHTML;
+    }
+    window.onafterprint = function(){
+        document.body.innerHTML = initBody;
+    }
+    window.print();    
+} 
+
+function content_print3(){
+	   
+    var initBody = document.body.innerHTML;
+    window.onbeforeprint = function(){
+        document.body.innerHTML =
+
+                         document.getElementById('store_table_tab02').innerHTML;
+    }
+    window.onafterprint = function(){
+        document.body.innerHTML = initBody;
+    }
+    window.print();    
+}   
+
+
 </script>
 
 <script type="text/javascript">  
@@ -149,6 +200,7 @@
 		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab01"> 
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반행</th><th>선반열</th><th>입고일자</th><th>입고처리</th></tr>
@@ -199,6 +251,7 @@
 										</tr>
 						 		</c:forEach>
 					        </table>
+					        </div>
 					      </form>  
 						<!-- 페이징 -->
 						
@@ -215,7 +268,9 @@
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>
-					        
+							<div>
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print1()">인쇄하기</button>		        
+							</div>
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        
 	        
@@ -224,6 +279,7 @@
 		        <div id="tab02" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab02">				        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
@@ -273,9 +329,13 @@
 												</c:if>
 											</td> <!-- 입고처리 -->
 										</tr>
-									</c:if>	
+									</c:if>
 						 		</c:forEach>
 					        </table>
+					        </div>
+						   <div class="print_btn">
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print2()">인쇄하기</button>		        
+							</div>
 					      </form>  
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
@@ -283,14 +343,15 @@
 		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab03">					        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'입고완료'}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -335,6 +396,10 @@
 									</c:if>	
 						 		</c:forEach>
 					        </table>
+					        </div>
+					        <div class="print_btn">
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print3()">인쇄하기</button>		        
+							</div>
 					      </form>  
 
 			       		 </div>
