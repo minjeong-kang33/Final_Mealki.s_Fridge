@@ -56,6 +56,18 @@ public class ItemServiceImpl implements ItemService {
 		itemDAO.deleteItem(itemNum);
 	}
 
+	@Override
+	public String getMaxItemNum(String prefix) {
+		// TODO Auto-generated method stub
+		return itemDAO.getMaxItemNum(prefix);
+	}
+
+//	@Override
+//	public ItemDTO getItemByNum(String item_num) {
+//		// TODO Auto-generated method stub
+//		return itemDAO.getItemByNum(item_num);
+//	}
+
 
 	
 	

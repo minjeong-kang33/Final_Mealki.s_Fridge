@@ -216,7 +216,7 @@ function fun1() {
 		          <option value="P">P</option>
 		          <option value="I">I</option>
 		        </select>
-			    <input type="text" name="item_num" placeholder="품목 코드"></td>
+			    <input type="text" name="item_num" placeholder="완제품 : P , 식자재 : I 선택" readonly ></td>
 			    </td>
 			    <td>
 			      <select name="item_type">
@@ -243,14 +243,11 @@ function fun1() {
         let prefix = selectItemPrefix.value;
         let itemNum = "";
 
-        if (prefix === "P") {
-          itemNum = "P001";
-        } else if (prefix === "I") {
-          itemNum = "I001";
-        }
 
       });
     });
+    
+    
 
     // 품목수정 버튼 이벤트
     document.getElementById("updateItemButton").addEventListener("click", function() {
@@ -275,7 +272,7 @@ function fun1() {
 		          <option value="P">P</option>
 		          <option value="I">I</option>
 		        </select>
-			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum}></td>
+			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum} readonly></td>
 			    </td>
 			    <td>
 			      <select name="item_type" value=\${itemType}>
@@ -294,21 +291,21 @@ function fun1() {
 			    <input type="hidden" name="oldfile" value"\${item_image}">
 			    </td>`;
 
-      let selectItemPrefix = element.querySelector("select[name='item_prefix']");
-      let inputItemNum = element.querySelector("input[name='item_num']");
+//       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
+//       let inputItemNum = element.querySelector("input[name='item_num']");
 
-      selectItemPrefix.addEventListener("change", function() {
-        let prefix = selectItemPrefix.value;
-        let itemNum = "";
+//       selectItemPrefix.addEventListener("change", function() {
+//         let prefix = selectItemPrefix.value;
+//         let itemNum = "";
 
-        if (prefix === "P") {
-          itemNum = "P001";
-        } else if (prefix === "I") {
-          itemNum = "I001";
-        }
+//         if (prefix === "P") {
+//           itemNum = "P001";
+//         } else if (prefix === "I") {
+//           itemNum = "I001";
+//         }
 
-        inputItemNum.value = itemNum;
-      });
+//         inputItemNum.value = itemNum;
+//       });
     });
 
     // 삭제 버튼 추가

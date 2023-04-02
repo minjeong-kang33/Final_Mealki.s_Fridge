@@ -92,11 +92,19 @@ public class ItemController {
 		return "mdm/item/itemlist";
 	}
 
+	
+	
 	@RequestMapping(value = "mdm/item/update", method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file ) throws Exception {
 
+//		String item_num=request.getParameter("item_num");
+//		ItemDTO existingItem = itemService.getItemByNum(item_num);
+		
 		ItemDTO dto = new ItemDTO();
-		dto.setItem_num(request.getParameter("item_num"));
+		
+		
+//		dto.setItem_num(existingItem.getItem_num());
+//		dto.setItem_num(request.getParameter("item_num"));
 		dto.setItem_type(request.getParameter("item_type"));
 		dto.setItem_name(request.getParameter("item_name"));
 		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
@@ -134,11 +142,27 @@ public class ItemController {
 	public String save(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file) throws Exception {
 		System.out.println("ItemController save()");
 		
-		ItemDTO dto = new ItemDTO();
-		dto.setItem_num(request.getParameter("item_num"));
-		dto.setItem_type(request.getParameter("item_type"));
-		dto.setItem_name(request.getParameter("item_name"));
-		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
+			ItemDTO dto = new ItemDTO();
+		
+			String itemPrefix = request.getParameter("item_prefix");
+		    String prefix = itemPrefix.equals("P") ? "P" : "I";
+		    String maxItemNum = itemService.getMaxItemNum(prefix);
+
+		    int newNum;
+		    if (maxItemNum != null) {
+		        int currentNum = Integer.parseInt(maxItemNum.substring(1));
+		        newNum = currentNum + 1;
+		    } else {
+		        newNum = 1;
+		    }
+
+		    String newItemNum = String.format("%s%03d", prefix, newNum);
+		    dto.setItem_num(newItemNum);
+		
+//			dto.setItem_num(request.getParameter("item_num"));
+		    dto.setItem_type(request.getParameter("item_type"));
+		    dto.setItem_name(request.getParameter("item_name"));
+		    dto.setWeight(Integer.parseInt(request.getParameter("weight")));
 		
 			String supplier = request.getParameter("supplier");
 		    if (supplier != null && !supplier.isEmpty()) {
