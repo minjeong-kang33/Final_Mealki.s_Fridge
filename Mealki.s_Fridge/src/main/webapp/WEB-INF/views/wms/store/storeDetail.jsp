@@ -33,5 +33,15 @@
 </head>
 <body>
 
+<h3>입고관리 상세</h4>
+
+<hr>
+<table border="1" style="width: 90%;">
+<tr><th>발주관리번호</th><td>OR어쩌구저쩌구</td><th>납기일</th><td>2023.04.02</td><th>발주일자</th><td>2023.04.02</td><th>발주담당자</th><td>홍길동</td></tr>
+<tr><th>입고관리번호</th><td>ST어쩌구저쩌구</td><th>입고일자</th><td>2023.04.05</td><th>입고담당자</th><td>홍길동</td><th>입고진행현황</th><td>입고완료</td></tr>
+<tr><th>품명</th><td>순두부</td><th>발주수량</th><td>10개</td><th>재고수량</th><td>300개</td></tr>
+<tr><th>위치</th> <td colspan="6">A열 선반 1단</td> </tr>
+</table>
+
 </body>
 </html>
