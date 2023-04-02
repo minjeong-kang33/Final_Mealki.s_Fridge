@@ -39,16 +39,6 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.getItemCount();
 	}
 
-	@Override
-	public void saveItemImage(String itemNum, String imageName) {
-		itemDAO.saveItemImage(itemNum, imageName);
-		
-	}
-
-	@Override
-	public String getItemImage(String itemNum) {
-		 return itemDAO.getItemImage(itemNum);
-	}
 
 	@Override
 	public void save(ItemDTO item) {

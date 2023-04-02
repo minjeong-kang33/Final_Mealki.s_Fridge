@@ -39,17 +39,6 @@ public class ItemDAOImpl implements ItemDAO {
 	 }
 
 	@Override
-	public void saveItemImage(String itemNum, String imageName) {
-		 sqlSession.insert("itemMapper.saveItemImage", Map.of("itemNum", itemNum, "imageName", imageName));
-		
-	}
-
-	@Override
-	public String getItemImage(String itemNum) {
-		return sqlSession.selectOne("itemMapper.getItemImage", itemNum);
-
-	}
-	@Override
 	public void insertItem(ItemDTO item) {
 			sqlSession.insert(namespace+".insertItem", item);
 	}
