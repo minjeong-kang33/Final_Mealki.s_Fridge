@@ -28,21 +28,28 @@
 	</select>
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
-        select row_number() over(order by bo_num desc) as row_num, bo_num, bo_title, bo_name, bo_content, bo_count, bo_date,file, bo_status from board
-        <if test="search_option != null">
-        <if test="keyword != null">
-	        <if test="search_option == 'bo_name'.toString()">
-				where bo_name like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'bo_title'.toString()">
-				where bo_title like CONCAT('%', #{keyword}, '%')
-			</if>
-        </if>
-        </if>
-        where bo_status = 1
-        limit #{startRow} , #{pageSize}    	
-    </select>
+	    select row_number() over(order by bo_num desc) as row_num, bo_num, bo_title, bo_name, bo_content, bo_count, bo_date,file, bo_status from board
+	    <where>
+	        <if test="search_option != null and keyword != null">
+	            <choose>
+	                <when test="search_option == 'bo_name'">
+	                    and bo_name like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <when test="search_option == 'bo_title'">
+	                    and bo_title like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <otherwise>
+	                    and bo_status = 1
+	                </otherwise>
+	            </choose>
+	        </if>
+	        <if test="search_option == null and keyword == null">
+	            and bo_status = 1
+	        </if>
+	    </where>
+	    order by bo_num desc
+	    limit #{startRow}, #{pageSize}
+	</select>
     
     <select id="getBoard" resultType="com.itwillbs.domain.BoardDTO">
         select * from board
