@@ -47,6 +47,13 @@ public class UnstoreServiceImpl implements UnstoreService{
 		return unstoreDAO.getUnstoreListCount(pageDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getUnstoreDetailList(String wo_num) {
+		System.out.println("UnstoreServiceImpl getUnstoreDetailList");
+		return unstoreDAO.getUnstoreDetailList(wo_num);
+	}
+	
+
 
 	
 }

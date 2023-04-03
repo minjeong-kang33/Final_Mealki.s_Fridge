@@ -27,7 +27,6 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
- 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 <script type="text/javascript">  
@@ -97,55 +96,6 @@ function content_print3(){
 
 </script>
 
-<script type="text/javascript">  
-
-//버튼 클릭 시 입력된 값 tr정보 넘기기
-	$(function(){
-	$(".store_submit_button").click(function(){ 
-			
-			var str = "";
-			var tdArr = new Array();	// 배열 선언
-			var store_submit_button = $(this);
-			
-			var tr = store_submit_button.parent().parent();
-			var td = tr.children();
-			
-			td.each(function(i) {
-				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
-				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-					  var selectValue = $(this).find('select').val();
-					  tdArr.push(selectValue || text);
-				  }
-				});
-			
-			var order_num = tdArr[0]; //발주번호 
-			var item_name = tdArr[1]; //품명
-			var order_qty = tdArr[2]; // 발주수량
-			var stk_qnt = tdArr[3]; //창고재고수량
-			var sto_progress = tdArr[4]; //진행상태
-			var sto_empNum = tdArr[5]; //담당자번호
-			var sto_shelf = tdArr[6]; //선반위치
-			var sto_shelfDetail =tdArr[7]; 
-			
-			console.log("배열에 담긴 값 : "+tdArr);
-			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
-			alert(tdArr);
-			
-			$.ajax({
- 				url:'addStore',
- 				type :'GET',
- 				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
- 					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
- 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
- 				success:function(result){
- 				
- 				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
- 				location.reload();
- 				},
- 			});
-	});	
-	});	
-</script>
 
 </head>
 <body>
@@ -206,8 +156,8 @@ function content_print3(){
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반행</th><th>선반열</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -286,8 +236,8 @@ function content_print3(){
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'미입고'}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td >${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td >${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -504,6 +454,59 @@ function storeDetail(order_num) {
  
  
  </script>
+ 
+ 
+<script type="text/javascript">  
+
+//버튼 클릭 시 입력된 값 tr정보 넘기기
+	$(function(){
+	$(".store_submit_button").click(function(){ 
+			
+			var str = "";
+			var tdArr = new Array();	// 배열 선언
+			var store_submit_button = $(this);
+			
+			var tr = store_submit_button.parent().parent();
+			var td = tr.children();
+			
+			td.each(function(i) {
+				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+					  var selectValue = $(this).find('select').val();
+					  tdArr.push(selectValue || text);
+				  }
+				});
+			
+			var order_num = tdArr[0]; //발주번호 
+			var item_name = tdArr[1]; //품명
+			var order_qty = tdArr[2]; // 발주수량
+			var stk_qnt = tdArr[3]; //창고재고수량
+			var sto_progress = tdArr[4]; //진행상태
+			var sto_empNum = tdArr[5]; //담당자번호
+			var sto_shelf = tdArr[6]; //선반위치
+			var sto_shelfDetail =tdArr[7]; 
+			
+			console.log("배열에 담긴 값 : "+tdArr);
+			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
+			alert(tdArr);
+			
+			$.ajax({
+ 				url:'addStore',
+ 				type :'GET',
+ 				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
+ 					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
+ 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
+ 				success:function(result){
+ 				
+ 				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
+ 				location.reload();
+ 				},
+ 			});
+	});	
+	});	
+</script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </body>
 </html>

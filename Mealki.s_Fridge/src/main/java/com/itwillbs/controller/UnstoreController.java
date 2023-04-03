@@ -51,8 +51,10 @@ public class UnstoreController {
 		
 		
 		if(e_num==""||e_num==null) {e_num="0";}
+
 		
 		int emp_num = Integer.parseInt(e_num);
+		System.out.println("emp_num : " + emp_num);
 		
 		int pageSize=15;		
 
@@ -112,7 +114,7 @@ public class UnstoreController {
 		model.addAttribute("pageDTO",pageDTO);
 		model.addAttribute("unstoreList", unstoreList);		
 		
-		for(int i=0; i<unstoreList.size();i++) {
+		/*	for(int i=0; i<unstoreList.size();i++) {
 			String wo_num = unstoreList.get(i).get("wo_num").toString(); //추출된표에서 wo_num을 추출 
 			System.out.println("작업지시번호"+wo_num);
 			WorkorderItemDTO workorderItemDTO = new WorkorderItemDTO();
@@ -121,21 +123,21 @@ public class UnstoreController {
 			
 			List<WorkorderItemDTO> itemList = workorderItemService.getItemList(wo_num);
 			
-		for (WorkorderItemDTO item : itemList) {
+	for (WorkorderItemDTO item : itemList) {
 				String item_name1 = item.getItem_name(); //오더에 따른 소요량 테이블
 				System.out.println("품목명"+item_name);
 				
-			/*	
+				
 				  StockDTO stockDTO = new StockDTO(); stockDTO.setItem_name(item_name);
 				  stockService.getItemList_unstore(item_name);
 				  
 				  
 				  int sqt = stockService.getItemList_unstore(item_name);
-				  System.out.println(sqt);  */
+				  System.out.println(sqt); 
 					
 				  
 			} // 품목이 잘 가져와지는지 확인  
-		}
+		} */
 		return "wms/unstore/insertUnstore";
 	}
 	
@@ -158,5 +160,17 @@ public class UnstoreController {
 		 unstoreService.insertUnstore(unstoreDTO);
 		
 		 return "/wms/unstore/insertUnstore";		
+	}
+	
+	@RequestMapping(value = "/wms/unstore/unstoreDetail", method = RequestMethod.GET)
+	public String unstoreDetail(HttpServletRequest request, Model model) {
+		System.out.println("UnstoreController unstoreDetail()");
+		
+		String wo_num = request.getParameter("wo_num");
+		System.out.println(wo_num);
+		List<Map<String, Object>> unstoreDetailList = unstoreService.getUnstoreDetailList(wo_num);
+		model.addAttribute("unstoreDetailList", unstoreDetailList);
+
+		return "/wms/unstore/unstoreDetail";
 	}
 }
