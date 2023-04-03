@@ -85,34 +85,16 @@ public class CustomerController {
 		return "business/customer/customerDetail";
 	}
 	
-//	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.POST)
-//	public String deleteCustomer(HttpServletRequest request) {
-//		 System.out.println("CustomerController deleteCustomer()");
-//		 String business_num = request.getParameter("business_num");
-//		 String selectedCustomers[]=request.getParameterValues("selectedCustomers");
-//         String business_num = null;
-//         if(selectedCustomers!=null){
-//              for(int i=0;i<selectedCustomers.length;i++){
-//            
-//            	  business_num=selectedCustomers[i];
-//            	  customerService.deleteCustomer(business_num);
-//              }
-//             } 
-//		 customerService.deleteCustomer(business_num);
-//         return "redirect:business/customer/customerList";
-//	}
-	
-//	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.POST)
-//	public String ajaxTest(HttpServletRequest request) {
-//		 System.out.println("CustomerController deleteCustomer()");
-//		 
-//		 String[] ajaxMsg = request.getParameterValues("valueArr");
-//		 int size = ajaxMsg.length;
-//		 for(int i=0; i<size; i++) {
-//			 customerService.deleteCustomer(ajaxMsg[i]);
-//		 }
-//         return "redirect:business/customer/customerList";
-//	}
+	@RequestMapping(value="/business/customer/deleteCustList", method=RequestMethod.POST)
+	public String deleteCustList(HttpServletRequest request, Model model) {
+		 System.out.println("CustomerController deleteCustList()");
+		 
+		 String[] deleteId = request.getParameterValues("selectId");
+		 for(String id : deleteId){
+				customerService.deleteCustomer(id);
+			}
+         return "redirect:/business/customer/customerList";
+	}
 	
 	@RequestMapping(value="/business/customer/deleteCustomer", method=RequestMethod.GET)
 	public String deleteCustomer(HttpServletRequest request, Model model) {
@@ -136,7 +118,6 @@ public class CustomerController {
 
 		customerService.insertCustomer(customerDTO);
 		
-//		주소줄 변경하면서 이동
 		return "business/customer/imsg";
 	}
 	@RequestMapping(value = "/business/customer/updateCustomer", method = RequestMethod.GET)
@@ -160,7 +141,7 @@ public class CustomerController {
 		customerService.updateCustomer(customerDTO);
 		redirectAttributes.addAttribute("business_num", customerDTO.getBusiness_num());
 
-		return "redirect:/business/customer/customerDetail?business_num=${customerDTO.business_num}";
+		return "redirect:/business/customer/customerDetail";
 	}
 	
 
