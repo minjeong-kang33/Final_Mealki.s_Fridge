@@ -56,10 +56,10 @@ public class StockServiceImpl implements StockService {
 	}
 
 	@Override
-	public void updateStock(StockDTO stockDTO) {
+	public void updateStockqnt(StockDTO stockDTO) {
 		System.out.println("StockServiceImpl updateStock");
 		
-		stockDAO.updateStock(stockDTO);
+		stockDAO.updateStockqnt(stockDTO);
 	}
 
 	@Override
