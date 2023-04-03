@@ -57,8 +57,8 @@
 	</update>
 	
 	<insert id="insertStock">
-		insert into stock (item_type, item_num, item_name, whs_num)
-		values (#{item_type},#{item_num},#{item_name},w.whs_num)
+		insert into stock (i.item_type, i.item_num, i.item_name, w.whs_num)
+		values (#{item_type},#{item_num},#{item_name}, w.whs_num)
 		from warehouse
   		where whs_name=#{item_type}
 	</insert>
