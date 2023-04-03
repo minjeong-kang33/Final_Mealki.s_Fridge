@@ -61,8 +61,13 @@
   // 삭제 버튼
  window.onload = function() {
   document.getElementById("deleteCustButton").addEventListener("click", function() {
-    if(confirm("삭제하시겠습니까?")){
-      let elements = document.getElementById("tableForm").querySelectorAll('input[name="rowCheck"]:checked');
+	  let elements = document.getElementById("tableForm").querySelectorAll('input[name="rowCheck"]:checked');
+	  if(elements.length === 0){
+	      alert("선택된 거래처가 없습니다");
+	      return;
+	  }
+	  
+	  if(confirm("삭제하시겠습니까?")){
       let formData = new FormData();
       for(let i = 0; i< elements.length; i++){
         formData.append("selectId",elements[i].value);

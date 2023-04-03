@@ -65,7 +65,7 @@ public class BoardController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		int pageSize=15;
+		int pageSize=17;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -130,6 +130,18 @@ public class BoardController {
 		
 //		주소줄 변경하면서 이동
 		return "redirect:/groupware/board/noticeList";
+	}
+	
+	@RequestMapping(value = "/groupware/board/boardUpdate", method = RequestMethod.GET)
+	public String boardUpdate(HttpServletRequest request, Model model) {
+		System.out.println("BoardController boardUpdate()");
+		int bo_num=Integer.parseInt(request.getParameter("bo_num"));
+		
+		BoardDTO boardDTO=boardService.getBoard(bo_num);
+		
+		model.addAttribute("boardDTO", boardDTO);
+//		주소줄 변경없이 이동
+		return "groupware/board/boardUpdate";
 	}
 
 }

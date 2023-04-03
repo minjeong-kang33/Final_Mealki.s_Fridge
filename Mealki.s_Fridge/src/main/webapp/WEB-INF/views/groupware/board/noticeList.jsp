@@ -52,7 +52,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">공지사항</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+<!--                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6> -->
                 </div>
                 
           <div class="contentbody" > 
@@ -82,23 +82,34 @@
 
      <div id="table_content">
 		<table id="notice" border="1">
-		<tr><th class="bo_num" style="width: 6%;">번호</th>
-		    <th class="bo_title" style="width: 60%;">제목</th>
-		    <th class="bo_name" style="width: 14%;">작성자</th>
-		    <th class="bo_date" style="width: 14%;">작성일자</th>
-		    <th class="bo_count" style="width: 6%;">조회수</th></tr>
+		<tr><th class="bo_num" style="width: 8%;">번호</th>
+		    <th class="bo_title" style="width: 58%;">제목</th>
+		    <th class="bo_name" style="width: 13%;">작성자</th>
+		    <th class="bo_date" style="width: 13%;">작성일자</th>
+		    <th class="bo_count" style="width: 8%;">조회수</th></tr>
 		    
 		 <c:forEach var="BoardDTO" items="${noticeList }">
 		 	<c:if test="${BoardDTO.bo_status == 1}">
 		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardContent?bo_num=${BoardDTO.bo_num}'">
-		 	<td>${BoardDTO.row_num}</td>
-		    <td style="font-weight: bold;">${BoardDTO.bo_title}</td>
-		    <td>${BoardDTO.bo_name}</td>
-		    <td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
-		    <td>${BoardDTO.bo_count}</td></tr>
+		 	<c:choose>
+			<c:when test="${BoardDTO.top_fixed == 1}">
+			<td style="font-weight: bold; background-color:#e6e6f4;">📢</td>
+			<td style="font-weight: bold; text-align: left; background-color:#e6e6f4;">&nbsp;&nbsp;[중요] ${BoardDTO.bo_title}</td>
+			<td style="font-weight: bold; background-color:#e6e6f4;">${BoardDTO.bo_name}</td>
+			<td style="font-weight: bold; background-color:#e6e6f4;"><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
+		    <td style="font-weight: bold; background-color:#e6e6f4;">${BoardDTO.bo_count}</td>
+			</c:when>
+			<c:otherwise>
+			<td>${BoardDTO.row_num}</td>
+			<td style="text-align: left;">&nbsp;&nbsp;${BoardDTO.bo_title}</td>
+			<td>${BoardDTO.bo_name}</td>
+			<td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
+		    <td>${BoardDTO.bo_count}</td>
+			</c:otherwise>
+			</c:choose>
+		    </tr>
 		    </c:if>  
-		 </c:forEach>   
-		    
+		 </c:forEach>    
 		</table>
 	 </div>	
 		
@@ -109,15 +120,15 @@
           </div>
 <!-- 페이징하실거면 여기서 시작 -->
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+<a href="${pageContext.request.contextPath}/groupware/board/noticeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+<a href="${pageContext.request.contextPath}/groupware/board/noticeList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/groupware/groupware/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+<a href="${pageContext.request.contextPath}/groupware/board/noticeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
 </c:if>
 <!-- 페이징 끝 -->
             </div>

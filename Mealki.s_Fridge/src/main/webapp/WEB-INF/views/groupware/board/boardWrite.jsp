@@ -75,6 +75,7 @@
        						<td style="text-align:left;"><input type="file" name="file" ></td></tr>              
 					</table>
 					<div id="table_write">
+					<input type="checkbox" name="top_fixed" value="1">상단에 고정하기
 					<input type="submit" value="글쓰기" class="btn btn-primary">
 					</div>
 					</form>
