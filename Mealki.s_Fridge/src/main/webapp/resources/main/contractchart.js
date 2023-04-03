@@ -45,10 +45,18 @@ $(document).ready(function(){
 						    },
     			options: {
         			scales: {
-            			y: {
-            			 stepSize: 1,
-            				min: 0
-            			}
+        			 xAxes: [{
+      ticks: {
+        fontSize: 20 // X축 레이블 값의 글자 크기
+      }
+    }],
+            			 yAxes: [{
+                ticks: {
+                    fontSize: 15, // Y축 레이블 값의 글자 크기
+                    stepSize: 1,
+                    min: 0
+                }
+            }]
         			}
     			}
 			});
