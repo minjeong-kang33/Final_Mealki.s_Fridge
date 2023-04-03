@@ -118,7 +118,7 @@ public class StockController {
 		stockDTO.setItem_num(request.getParameter("item_num"));
 		stockDTO.setStk_qnt(Integer.parseInt(request.getParameter("new_qnt")));
 
-		stockService.updateStock(stockDTO);
+		stockService.updateStockqnt(stockDTO);
 			 
 		return "redirect:/wms/stock/stockList";		
 

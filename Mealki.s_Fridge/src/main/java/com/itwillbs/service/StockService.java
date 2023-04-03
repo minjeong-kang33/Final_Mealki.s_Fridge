@@ -18,7 +18,7 @@ public interface StockService {
 
 	public int getStockListCount(PageDTO pageDTO);
 	
-	public void updateStock(StockDTO stockDTO);
+	public void updateStockqnt(StockDTO stockDTO);
 	
 	public void insertStock(StockDTO stockDTO);
 }
