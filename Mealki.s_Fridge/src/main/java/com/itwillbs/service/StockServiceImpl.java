@@ -67,6 +67,7 @@ public class StockServiceImpl implements StockService {
 		System.out.println("StockServiceImpl insertStock");
 		
 		stockDAO.insertStock(stockDTO);
+		
 	}
 
 	

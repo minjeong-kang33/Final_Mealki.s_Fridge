@@ -143,20 +143,6 @@ public class CustomerController {
 
 		return "redirect:/business/customer/customerDetail";
 	}
-	
-	@RequestMapping(value = "/business/customer/getQr", method = RequestMethod.GET)
-	public String getQr(HttpServletRequest request, Model model) {
-		System.out.println("CustomerController getQr()");
-		String business_num = request.getParameter("business_num");
-	
-		CustomerDTO customerDTO=customerService.getCustomer(business_num);
 
-		model.addAttribute("customerDTO", customerDTO);
-		
-		return "business/customer/getQr";
-	}
-	
-	
-	
 
 }

@@ -27,13 +27,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.service.ItemService;
+import com.itwillbs.service.StockService;
 
 @Controller
 public class ItemController {
    
 	@Inject
 	private ItemService itemService;
+	
+	@Inject
+	private StockService stockService;
 
 	//xml 업로드 경로이름("uploadPath")자동으로 불러오기
 	@Resource(name="itemUploadPath")
@@ -143,7 +148,8 @@ public class ItemController {
 		System.out.println("ItemController save()");
 		
 			ItemDTO dto = new ItemDTO();
-		
+			StockDTO stockDTO = new StockDTO();
+			
 			String itemPrefix = request.getParameter("item_prefix");
 		    String prefix = itemPrefix.equals("P") ? "P" : "I";
 		    String maxItemNum = itemService.getMaxItemNum(prefix);
@@ -191,9 +197,15 @@ public class ItemController {
 		    
 		    dto.setItem_image(filename);
 		    }
-
+		    
 		itemService.save(dto);
 
+		stockDTO.setItem_name(request.getParameter("item_name"));
+		stockDTO.setItem_num(newItemNum);
+		stockDTO.setItem_type(request.getParameter("item_type"));
+		
+		stockService.insertStock(stockDTO);
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 
