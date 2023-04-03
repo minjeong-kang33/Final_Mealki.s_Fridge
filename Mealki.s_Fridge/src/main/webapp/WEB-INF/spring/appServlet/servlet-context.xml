@@ -49,7 +49,7 @@
 		
 		<!-- 파일 업로드 경로 설정끝 이 사이에 넣으세요 -->
 		<beans:bean id="employeeUploadPath" class="java.lang.String">
-			<beans:constructor-arg value="D:\\java\\workspace_sts1\\Final_Mealki.s_Fridge\\Mealki.s_Fridge\\src\\main\\webapp\\resources\\employee\\upload"></beans:constructor-arg>
+			<beans:constructor-arg value="C:\\Users\\user\\git\\Final_Mealki.s_Fridge\\Mealki.s_Fridge\\src\\main\\webapp\\resources\\employee\\upload"></beans:constructor-arg>
 		</beans:bean>
 		
 		<beans:bean id="boardUploadPath" class="java.lang.String">

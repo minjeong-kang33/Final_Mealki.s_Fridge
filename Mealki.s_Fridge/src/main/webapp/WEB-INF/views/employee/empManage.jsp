@@ -60,34 +60,6 @@ function fun1() {
 }
 </script>
 
-<script type="text/javascript">
-	// 테이블의 Row 클릭시 값 가져오기
-	$(function () {
-		$(".emp_search_table_tr").click(function(){ 	
-			
-			var str = ""
-			
-			// 현재 클릭된 Row(<tr>)
-			var tr = $(this);
-			var td = tr.children();
-			
-		
-			// td.eq(index)를 통해 값을 가져올 수도 있다.
-			var emp_num = td.eq(0).text(); 
-			alert(emp_num);
-			
-			$.ajax({
-				url:'employeeDetail',
-				type :'GET',
-				data:{emp_num:emp_num},
-				success:function(result){
-				alert("완료");
-				}
-			}); 
-			
-		});
-	});
-</script>
 
 
 
@@ -260,6 +232,37 @@ function fun1() {
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+
+
+<script type="text/javascript">
+	// 테이블의 Row 클릭시 값 가져오기
+	$(function () {
+		$(".emp_search_table_tr").click(function(){ 	
+			
+			var str = ""
+			
+			// 현재 클릭된 Row(<tr>)
+			var tr = $(this);
+			var td = tr.children();
+			
+		
+			// td.eq(index)를 통해 값을 가져올 수도 있다.
+			var emp_num = td.eq(0).text(); 
+			alert(emp_num);
+			
+			$.ajax({
+				url:'employeeDetail',
+				type :'GET',
+				data:{emp_num:emp_num},
+				success:function(result){
+				alert("완료");
+				}
+			}); 
+			
+		});
+	});
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </body>
 </html>

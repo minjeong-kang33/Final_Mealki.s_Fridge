@@ -17,4 +17,6 @@ public interface EmployeeDAO {
 	public List<Map<String, Object>> getEmployeeListMap(SearchDTO searchDTO);
 	
 	public void insertEmployee(EmployeeDTO employeeDTO);
+	
+	public List<Map<String, Object>> getEmployeeDetail(int emp_num);
 }

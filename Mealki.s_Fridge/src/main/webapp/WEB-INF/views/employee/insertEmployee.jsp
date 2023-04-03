@@ -106,8 +106,8 @@
 						<div class="right">
 							<ul>
 							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required></li>
-							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남" > 남 
-																	<input type="radio" name="emp_gender" id="여" > 여</li>
+							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남" value="남"> 남 
+																	<input type="radio" name="emp_gender" id="여" value="여"> 여</li>
 							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required></li>
 							<li><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
 							<li><label for="dept_num" class="dept_num">부서</label> 
