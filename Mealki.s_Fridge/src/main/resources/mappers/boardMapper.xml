@@ -4,8 +4,8 @@
 <mapper namespace="com.itwillbs.mappers.boardMapper">
 	
 	<insert id="insertBoard">
-    	insert into board(bo_num,bo_name,bo_title,bo_content,bo_count,bo_date,file) 
-    	values(#{bo_num},#{bo_name},#{bo_title},#{bo_content},#{bo_count},#{bo_date},#{file})
+    	insert into board(bo_num,bo_name,bo_title,bo_content,bo_count,bo_date,file,top_fixed) 
+    	values(#{bo_num},#{bo_name},#{bo_title},#{bo_content},#{bo_count},#{bo_date},#{file},#{top_fixed})
     </insert>
     
     <select id="getMaxBo_num" resultType="java.lang.Integer">
@@ -15,18 +15,11 @@
 	<select id="getBoardCount" resultType="java.lang.Integer">
         select count(*) from board
 	    <where>
-	        <if test="search_option != null and keyword != null">
-	            <choose>
-	                <when test="search_option == 'bo_name'">
-	                    and bo_name like CONCAT('%', #{keyword}, '%')
-	                </when>
-	                <when test="search_option == 'bo_title'">
-	                    and bo_title like CONCAT('%', #{keyword}, '%')
-	                </when>
-	                <otherwise>
-	                    and bo_status = 1
-	                </otherwise>
-	            </choose>
+	        <if test="search_option == 'bo_name' and keyword != null">
+	            and bo_name like CONCAT('%', #{keyword}, '%')
+	        </if>
+	        <if test="search_option == 'bo_title' and keyword != null">
+	            and bo_title like CONCAT('%', #{keyword}, '%')
 	        </if>
 	        <if test="search_option == null and keyword == null">
 	            and bo_status = 1
@@ -35,8 +28,9 @@
 	</select>
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
-	    select row_number() over(order by bo_num desc) as row_num, bo_num, bo_title, bo_name, bo_content, bo_count, bo_date,file, bo_status from board
-	    <where>
+	    select row_number() over(order by case when top_fixed = 1 then 0 else bo_num end desc) as row_num, 
+	    		bo_num, bo_title, bo_name, bo_content, bo_count, bo_date, file, bo_status, top_fixed from board
+	    where 1=1
 	        <if test="search_option != null and keyword != null">
 	            <choose>
 	                <when test="search_option == 'bo_name'">
@@ -53,8 +47,9 @@
 	        <if test="search_option == null and keyword == null">
 	            and bo_status = 1
 	        </if>
-	    </where>
-	    order by bo_num desc
+	    
+	    order by top_fixed desc, 
+    	case when top_fixed = 1 then 0 else bo_num end desc
 	    limit #{startRow}, #{pageSize}
 	</select>
     

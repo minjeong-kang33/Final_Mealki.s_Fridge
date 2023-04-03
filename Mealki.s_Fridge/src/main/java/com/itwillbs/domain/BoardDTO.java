@@ -12,7 +12,14 @@ public class BoardDTO {
 	private String file;
 	private int bo_status;
 	private int row_num;
+	private int top_fixed;
 	
+	public int getTop_fixed() {
+		return top_fixed;
+	}
+	public void setTop_fixed(int top_fixed) {
+		this.top_fixed = top_fixed;
+	}
 	public int getRow_num() {
 		return row_num;
 	}

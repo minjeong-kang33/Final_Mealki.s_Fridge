@@ -51,9 +51,11 @@ table{
 }
 
 #table_content th{
-   background-color: #cccbe9;
-   color: black;
+   background-color: #4B49AC;
+   color: #fff;
 }
+
+tr:hover td{ background-color: #e6e6f4; }
 
   
   #notice input[type="text"],
