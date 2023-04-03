@@ -14,17 +14,24 @@
 	
 	<select id="getBoardCount" resultType="java.lang.Integer">
         select count(*) from board
-        <if test="search_option != null">
-        <if test="keyword != null">
-	        <if test="search_option == 'bo_name'.toString()">
-				where bo_name like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'bo_title'.toString()">
-				where bo_title like CONCAT('%', #{keyword}, '%')
-			</if>
-        </if>
-        </if>  
+	    <where>
+	        <if test="search_option != null and keyword != null">
+	            <choose>
+	                <when test="search_option == 'bo_name'">
+	                    and bo_name like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <when test="search_option == 'bo_title'">
+	                    and bo_title like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <otherwise>
+	                    and bo_status = 1
+	                </otherwise>
+	            </choose>
+	        </if>
+	        <if test="search_option == null and keyword == null">
+	            and bo_status = 1
+	        </if>
+	    </where>  
 	</select>
 	
 	<select id="getNoticeList" resultType="com.itwillbs.domain.BoardDTO">
