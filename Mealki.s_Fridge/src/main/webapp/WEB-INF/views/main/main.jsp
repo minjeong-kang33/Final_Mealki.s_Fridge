@@ -226,10 +226,10 @@
                   <p class="card-title">이 달의 수주왕</p>
                  </div>
                   <p class="font-weight-500">
-                  
+                  이 달의 수주왕으로 뽑힌 사원에게는 보너스를 드립니다 !
                   </p>
                   <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                  <canvas id="myChart"></canvas>
+                  <canvas id="myChart" height="400px" width="600px"></canvas>
                 </div>
               </div>
             </div>
