@@ -75,6 +75,15 @@ public class RecipeDAOImpl implements RecipeDAO {
 		return sqlSession.selectOne(namespace+".selectRecipe", map);
 	}
 
+	@Override
+	public String getMaxRecipeNum() {
+		System.out.println("RecipeDAOImpl getMaxRecipeNum()");
+		
+		return sqlSession.selectOne(namespace+".getMaxRecipeNum");
+	}
+
+
+
 
 
 	

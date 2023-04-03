@@ -19,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.RecipeDTO;
-
+import com.itwillbs.dao.RecipeDAO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.RecipeService;
 
@@ -29,6 +29,7 @@ public class RecipeController {
 
 	@Inject
 	private RecipeService recipeService;
+	private RecipeDAO recipeDAO;
 	
 	   // 소요량(레시피) 목록 조회
 		@RequestMapping(value = "mdm/recipe/recipeList", method = RequestMethod.GET)
@@ -115,6 +116,18 @@ public class RecipeController {
 			System.out.println("RecipeController save()");
 			
 			RecipeDTO dto = new RecipeDTO();
+			
+			
+			String getMaxRecipeNum=recipeDAO.getMaxRecipeNum();
+			int newNum;
+			
+			if(getMaxRecipeNum==null) {
+				newNum=1;
+			}else {
+				newNum= Integer.parseInt(getMaxRecipeNum.substring(1))+1;
+			}
+			
+			
 			dto.setR_num(request.getParameter("r_num"));
 			dto.setR_code(request.getParameter("r_code"));
 			dto.setItem_num(request.getParameter("item_num"));
