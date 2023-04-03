@@ -6,6 +6,7 @@
 	<select id="contract" resultType="com.itwillbs.domain.ChartDTO">
 		select incharge_name as name, count(incharge_name) as num
 		from contract
+		where date_format(business_date,"%y%m" )=date_format(now(),"%y%m" )
 		group by incharge_name
 		order by num desc
 		limit 5
