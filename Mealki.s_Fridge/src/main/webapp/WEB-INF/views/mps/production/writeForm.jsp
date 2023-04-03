@@ -30,8 +30,8 @@
   <script>
 	$(document).ready(function(){
 			$("#lineselect").on("change", function () {
-			var value = $(this).val();	//과일명
-			var wonum = $(this).find("option:selected").data("wonum"); //가격
+			var value = $(this).val();
+			var wonum = $(this).find("option:selected").data("wonum");
 			var item = $(this).find("option:selected").data("itemname");
 			var manucode = $(this).find("option:selected").data("manucode");
 			var itemnum = $(this).find("option:selected").data("itemnum");
@@ -40,7 +40,6 @@
 			$('input[name=item_name]').attr('value',item);
 			$('input[name=manu_code]').attr('value',manucode);
 			$('input[name=item_num]').attr('value',itemnum);
-			
 				});
 			});
 </script>
@@ -77,7 +76,8 @@
 				<form action="${pageContext.request.contextPath}/mps/production/writePro" id="insertProduct" method="POST">
 				<label>라인명 : </label>
 				<select name="lineselect" id="lineselect" >
-            		<option value="" selected="selected">라인을 선택하세요</option>
+            			<option value="" data-wonum="" data-itemname="" 
+            						data-manucode="" data-itemnum="">라인을 선택하세요</option>
             			<c:forEach var="sel" items="${selectList}">
             				<option value="${sel.manu_name}" data-wonum="${sel.wo_num}" data-itemname="${sel.item_name}" 
             						data-manucode="${sel.manu_code}" data-itemnum="${sel.item_num}">${sel.manu_name}</option>

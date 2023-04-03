@@ -48,6 +48,11 @@ public class QualityDAOImpl implements QualityDAO{
 	public void insertQuality(QualityDTO qualityDTO) {
 		sqlSession.insert(namespace+".insertQuality", qualityDTO);
 	}
+	
+	@Override
+	public void updateQuality(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".updateQuality", qualityDTO);
+	}
 
 	@Override
 	public List<Map<String, Object>> getQualityFailList(QualityDTO qualityDTO) {
@@ -65,6 +70,11 @@ public class QualityDAOImpl implements QualityDAO{
 	public void insertFail(QualityDTO qualityDTO) {
 		sqlSession.insert(namespace+".insertFail", qualityDTO);
 		
+	}
+
+	@Override
+	public void updateFail(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".updateFail", qualityDTO);
 	}
 	
 	
