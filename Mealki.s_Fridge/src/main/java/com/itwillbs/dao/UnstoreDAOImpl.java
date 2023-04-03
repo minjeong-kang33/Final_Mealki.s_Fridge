@@ -43,6 +43,13 @@ public class UnstoreDAOImpl implements UnstoreDAO {
 		return sqlSession.selectOne(namespace+".getUnstoreListCount", pageDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getUnstoreDetailList(String wo_num) {
+		System.out.println("UnstoreDAOImpl getUnstoreDetailList");
+		System.out.println(wo_num);
+		return sqlSession.selectList(namespace+".getUnstoreDetailList",wo_num);
+	}
+
 
 
 }

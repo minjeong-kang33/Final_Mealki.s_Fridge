@@ -63,7 +63,6 @@ public class StoreDAOImpl implements StoreDAO {
 	@Override
 	public List<Map<String, Object>> getStoreDetailList(String order_num) {
 		System.out.println("StoreDAOImpl getStoreDetailList");
-		System.out.println(order_num);
 		return sqlSession.selectList(namespace+".getStoreDetailList",order_num);
 	}
 
