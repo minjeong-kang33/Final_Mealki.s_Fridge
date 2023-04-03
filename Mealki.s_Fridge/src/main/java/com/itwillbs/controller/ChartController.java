@@ -23,21 +23,16 @@ public class ChartController {
 	@Inject
 	private ChartService chartservice;
 	
-	@RequestMapping(value = "/main/blank", method = RequestMethod.GET)
-	public String blank(HttpServletRequest request, Model model) {
-	
-		return "main/blank";
-	}
-	
+
 	@RequestMapping(value = "/chart/contract", method = RequestMethod.GET)
 	public ResponseEntity<List<ChartDTO>> contract(){
-		System.out.println("hey");
-//		ChartDTO chartDTO=new ChartDTO();
+		System.out.println("ChartController contract");
+		
 		List<ChartDTO> contractList=chartservice.contract();
 		
 		ResponseEntity<List<ChartDTO>> contract=
 				new ResponseEntity<List<ChartDTO>>(contractList,HttpStatus.OK);
-		System.out.println("yes");
+		
 		return contract;
 	}
 
