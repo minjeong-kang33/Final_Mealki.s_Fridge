@@ -11,6 +11,6 @@ public interface ItemService {
 	int getItemCount();
 	void save(ItemDTO item);
 	void deleteItem(String itemNum);
-
-	
+	String getMaxItemNum(String prefix);
+//	ItemDTO getItemByNum(String item_num);
 }

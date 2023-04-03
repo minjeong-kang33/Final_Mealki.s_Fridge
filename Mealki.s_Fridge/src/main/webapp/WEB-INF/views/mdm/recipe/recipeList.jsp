@@ -85,7 +85,7 @@
 			<div id="table_content">
 			 <form id="tableForm" action="${pageContext.request.contextPath}/mdm/recipe/save" method="post" enctype="multipart/form-data">
 				<table border="1" id="itemTable" style="width: 93%;" >
-					<tr><th><input type="checkbox" name="itemCheckAll" value="${ItemDTO.item_num}" id="checkAll"></th>
+					<tr><th><input type="checkbox" name="itemCheckAll" value="${RecipeDTO.r_num}" id="checkAll"></th>
 				 	<th>레시피번호</th>
             	 	<th>레시피코드</th>
            		 	<th>품목코드</th>
@@ -97,7 +97,7 @@
 				
 				<c:forEach var="RecipeDTO" items="${recipeList }">
 				
-					<tr><td><input type="checkbox" name="selectItem" value="${ItemDTO.item_num}"></td>
+					<tr><td><input type="checkbox" name="selectItem" value="${RecipeDTO.r_num}"></td>
 					    <td>${RecipeDTO.r_num}</td>
 					    <td>${RecipeDTO.r_code}</td>
 					    <td>${RecipeDTO.item_num}</td>
@@ -215,7 +215,7 @@ function fun1() {
 			    <td><input type="text" name="r_name" placeholder="레시피이름"></td>
 			    <td><input type="text" name="item_name" placeholder="식자재이름"></td>
 			    <td><input type="text" name="r_qty" placeholder="소요량"></td>
-			    <td><input type="text" name="r_date" placeholder="등록일"></td>
+			    <td><input type="text" name="r_date" placeholder="등록일" readonly></td>
 			    <td><input type="text" name="r_etc" placeholder="비고"></td>`;
 
       let selectItemPrefix = newRow.querySelector("select[name='item_prefix']");
@@ -254,7 +254,7 @@ function fun1() {
 		    <td><input type="text" name="r_name" value="\${r_name}" placeholder="레시피이름"></td>
 		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
 		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량"></td>
-		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일"></td>
+		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일" readonly></td>
 		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`;
 
       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
@@ -271,6 +271,7 @@ function fun1() {
     });
 
     // 삭제 버튼 추가
+    
     document.getElementById("deleteRecipeButton").addEventListener("click", function() {
       if(confirm("삭제하시겠습니까?")){
         let elements = document.getElementById("tableForm").querySelectorAll('input[name="selectItem"]:checked');
