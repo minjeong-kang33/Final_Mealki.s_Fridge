@@ -39,43 +39,52 @@
 		order by emp_joinDate desc
     </select>
     
-<insert id="insertEmployee">
+	<insert id="insertEmployee">
+	
+	    insert into employee (
+	        emp_num, dept_num, emp_Kname, emp_Ename,
+	        emp_birth, emp_gender, emp_tel, emp_phone,
+	        emp_email, emp_addr, emp_addr2, emp_status,
+	        emp_classification, emp_joinDate,
+	        dept_position, dept_duty, emp_img, emp_numbering)
+	    select CONCAT(#{emp_classification}, DATE_FORMAT(NOW(), '%y%m%d'), LPAD((IFNULL(MAX(emp_numbering),0))+1,2,'0')),
+	           #{dept_num}, #{emp_Kname}, #{emp_Ename}, #{emp_birth}, #{emp_gender}, #{emp_tel}, #{emp_phone}, 
+	           #{emp_email}, #{emp_addr}, #{emp_addr2}, #{emp_status}, #{emp_classification},
+	           DATE_FORMAT(NOW(), '%y%m%d'), #{dept_position}, #{dept_duty}, #{emp_img}, IFNULL(MAX(emp_numbering) + 1, 1)
+	    from employee
+	    where emp_joinDate = DATE_FORMAT(NOW(), '%y%m%d')
+	    LIMIT 1
+	
+	</insert>
 
-    insert into employee (
-        emp_num, dept_num, emp_Kname, emp_Ename,
-        emp_birth, emp_gender, emp_tel, emp_phone,
-        emp_email, emp_addr, emp_addr2, emp_status,
-        emp_classification, emp_joinDate,
-        dept_position, dept_duty, emp_img, emp_numbering)
-    select CONCAT(#{emp_classification}, DATE_FORMAT(NOW(), '%y%m%d'), LPAD((IFNULL(MAX(emp_numbering),0))+1,2,'0')),
-           #{dept_num}, #{emp_Kname}, #{emp_Ename}, #{emp_birth}, #{emp_gender}, #{emp_tel}, #{emp_phone}, 
-           #{emp_email}, #{emp_addr}, #{emp_addr2}, #{emp_status}, #{emp_classification},
-           DATE_FORMAT(NOW(), '%y%m%d'), #{dept_position}, #{dept_duty}, #{emp_img}, IFNULL(MAX(emp_numbering) + 1, 1)
-    from employee
-    where emp_joinDate = DATE_FORMAT(NOW(), '%y%m%d')
-    LIMIT 1
-
-</insert>
-
-
-<!--  
-
-    insert into employee (
-        emp_num, dept_num, emp_Kname, emp_Ename,
-        emp_birth, emp_gender, emp_tel, emp_phone,
-        emp_email, emp_addr, emp_addr2, emp_status,
-        emp_classification, emp_joinDate,
-        dept_position, dept_duty, emp_img, emp_numbering)
-    select CONCAT(#{emp_classification}, DATE_FORMAT(NOW(), '%y%m%d'), LPAD((IFNULL(MAX(emp_numbering),0))+1,2,'0')),
-           #{dept_num}, #{emp_Kname}, #{emp_Ename}, #{emp_birth}, #{emp_gender}, #{emp_tel}, #{emp_phone}, 
-           #{emp_email}, #{emp_addr}, #{emp_addr2}, #{emp_status}, #{emp_classification},
-           DATE_FORMAT(NOW(), '%y%m%d'), #{dept_position}, #{dept_duty}, #{emp_img}, IFNULL(MAX(emp_numbering) + 1, 1)
-    from employee
-    where emp_joinDate = DATE_FORMAT(NOW(), '%y%m%d') and emp_classification = #{emp_classification}
-    LIMIT 1
-
- -->
-
+	<select id="getEmployeeDetail" resultType="map">
+	select employee.emp_num,
+			employee.dept_num,
+			employee.emp_Kname,
+			employee.emp_Ename,
+			employee.emp_birth,
+			employee.emp_gender,
+			employee.emp_tel,
+			employee.emp_phone,
+			employee.emp_email,
+			employee.emp_addr,
+			employee.emp_addr2,
+			employee.emp_status,
+			employee.emp_classification,
+			DATE_FORMAT(employee.emp_joinDate,'%Y%m%d')as emp_joinDate,
+			COALESCE(employee.emp_leaveDate, '')as emp_leaveDate,
+			COALESCE(employee.emp_absenceDate,'')as emp_absenceDate,
+			employee.dept_position,
+			employee.dept_duty,
+			employee.emp_img,
+			employee.emp_numbering,
+			department.dept_deptName,
+			department.dept_teamNum,
+			department.dept_teamName
+		from employee
+		join department on employee.dept_num = department.dept_deptNum
+		where employee.emp_num = #{emp_num}
+	</select>
 
 
     

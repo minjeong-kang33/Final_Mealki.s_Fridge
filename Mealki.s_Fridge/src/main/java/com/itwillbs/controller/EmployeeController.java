@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -138,18 +139,19 @@ public class EmployeeController {
 		
 		return "/employee/empManage";
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "/employee/employeeDetail", method = RequestMethod.GET)
-	public String employeeDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+	public List<Map<String, Object>> employeeDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
 		System.out.println("MemberController employeeDetail");
 		
-		System.out.println(request.getParameter("emp_num"));
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
 		
-		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(request.getParameter("emp_num"));
-		
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
 			
-		return "/employee/empManage";
+		return employeeDetail;
 	}
 	
 }
