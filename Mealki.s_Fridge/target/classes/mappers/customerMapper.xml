@@ -5,21 +5,27 @@
     
     <select id="getCustomerCount" resultType="java.lang.Integer">
         select count(*) from customer
-        <if test="search_option != null">
-        <if test="keyword != null">
-	        <if test="search_option == 'cust_num'.toString()">
-				where cust_num like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'cust_name'.toString()">
-				where cust_name like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'cust_uptae'.toString()">
-				where cust_uptae like CONCAT('%', #{keyword}, '%')
-			</if>
-        </if>
-        </if>
+	    <where>
+	        <if test="search_option != null and keyword != null">
+	            <choose>
+	                <when test="search_option == 'cust_num'">
+	                    and cust_num like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <when test="search_option == 'cust_name'">
+	                    and cust_name like CONCAT('%', #{keyword}, '%')
+	                </when>
+			    <when test="search_option == 'cust_uptae'">
+	                    and cust_uptae like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <otherwise>
+	                    and cust_status = 1
+	                </otherwise>
+	            </choose>
+	        </if>
+	        <if test="search_option == null and keyword == null">
+	            and cust_status = 1
+	        </if>
+	    </where>
         
     </select>
     
@@ -31,21 +37,27 @@
     
     <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
         select * from customer
-        <if test="search_option != null">
-        <if test="keyword != null">
-	        <if test="search_option == 'cust_num'.toString()">
-				where cust_num like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'cust_name'.toString()">
-				where cust_name like CONCAT('%', #{keyword}, '%')
-			</if>
-				
-			<if test="search_option == 'cust_uptae'.toString()">
-				where cust_uptae like CONCAT('%', #{keyword}, '%')
-			</if>
-        </if>
-        </if>
+	    <where>
+	        <if test="search_option != null and keyword != null">
+	            <choose>
+	                <when test="search_option == 'cust_num'">
+	                    and cust_num like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <when test="search_option == 'cust_name'">
+	                    and cust_name like CONCAT('%', #{keyword}, '%')
+	                </when>
+			    <when test="search_option == 'cust_uptae'">
+	                    and cust_uptae like CONCAT('%', #{keyword}, '%')
+	                </when>
+	                <otherwise>
+	                    and cust_status = 1
+	                </otherwise>
+	            </choose>
+	        </if>
+	        <if test="search_option == null and keyword == null">
+	            and cust_status = 1
+	        </if>
+	    </where>
         order by cust_num desc 
         limit #{startRow} , #{pageSize}    	
     </select>
