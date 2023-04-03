@@ -106,7 +106,7 @@ public class ItemController {
 //		ItemDTO existingItem = itemService.getItemByNum(item_num);
 		
 		ItemDTO dto = new ItemDTO();
-		
+		StockDTO stockDTO = new StockDTO();
 		
 //		dto.setItem_num(existingItem.getItem_num());
 //		dto.setItem_num(request.getParameter("item_num"));
@@ -129,17 +129,24 @@ public class ItemController {
 		}
 
 		itemService.save(dto);
+		//재고테이블에도 반영
+		stockDTO.setItem_name(request.getParameter("item_name"));
+		stockDTO.setItem_type(request.getParameter("item_type"));
+		stockService.updateStock(stockDTO);
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 
 
-	@RequestMapping(value = "mdm/item/delete", method = RequestMethod.POST)
+	@RequestMapping(value = "mdm/item/delete", method = RequestMethod.GET)
 	public String delete(HttpServletRequest request, Model model ) {
 
 		String[] deleteId = request.getParameterValues("selectId");
+		
 		for(String id : deleteId){
 			itemService.deleteItem(id);
 		}
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 
@@ -199,11 +206,10 @@ public class ItemController {
 		    }
 		    
 		itemService.save(dto);
-
+		//재고테이블에도 반영
 		stockDTO.setItem_name(request.getParameter("item_name"));
 		stockDTO.setItem_num(newItemNum);
 		stockDTO.setItem_type(request.getParameter("item_type"));
-		
 		stockService.insertStock(stockDTO);
 		
 		return "redirect:/mdm/item/itemlist";

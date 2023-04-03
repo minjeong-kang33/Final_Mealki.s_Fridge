@@ -70,6 +70,21 @@ public class StockServiceImpl implements StockService {
 		
 	}
 
+	@Override
+	public void updateStock(StockDTO stockDTO) {
+		System.out.println("StockServiceImpl updateStock");
+		
+		stockDAO.updateStock(stockDTO);
+	}
+
+	@Override
+	public void deleteStock(String item_num) {
+		System.out.println("StockServiceImpl deleteStock");
+		
+		stockDAO.deleteStock(item_num);
+	}
+	
+	
 	
 	
 	
