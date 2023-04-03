@@ -134,16 +134,11 @@ function fun1() {
 					<c:forEach var="dto" items="${employeeListMap }">
 	    		
 		    		<tr class="emp_search_table_tr"><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_position}</td>
-		    		<td>${dto.dept_position}</td><td>${dto.dept_duty}</td><td>${dto.emp_joinDate}</td>
+		    		<td>${dto.dept_duty}</td><td>${dto.dept_deptName}</td><td>${dto.emp_joinDate}</td>
 		    		<td>${dto.emp_tel}</td><td>${dto.emp_email}</td></tr>
 		    		
 					</c:forEach>
- 
-        <!--     <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                <tr><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td></tr>  -->   
+
             </table>
             </div>
             <hr>
@@ -152,40 +147,31 @@ function fun1() {
                <h4> | 상세 정보 </h4>
                
                <div class="emp_info">
-                  <div class="emp_img"><input type="image" src="${pageContext.request.contextPath}/resources/employee/emp_default.png" id="employee_default"></div>
-                  <div class="emp_infoDetails">
-                     <table border="1" class="emp_details_table">
-                     <tr class="tr"><th class="th">사번</th><td>12314</td><th class="th">이름</th><td>홍길동</td></tr>
-                     <tr class="tr"><th class="th">영문성명</th><td>hong</td><th class="th">이메일주소</th><td>aa@gmail.com</td></tr>
-                     <tr class="tr"><th class="th">생년월일</th><td>1995.08.11</td><th class="th">성별</th><td>남</td></tr>
-                     <tr class="tr"><th class="th">휴대폰번호</th><td>010-0000-0000</td><th class="th">내선번호</th><td>051-751-9999</td></tr>
-                     <tr class="tr"><th class="th">자택주소</th><td colspan="3">부산시 남구 어쩌구</td></tr>
-                     </table>
-                  </div>
+ 
+	                  <div class="emp_img" id="employee_default"></div>
+	                  <div class="emp_infoDetails">
+	                     <table border="1" class="emp_details_table" >
+			                 
+			                 
+	                     </table>
+	                  </div>
+  
+
+                  
+               </div>
+ 
+             <div class="emp_infoDetails" style="width: 100%;">
+                  <table border="1" class="emp_details_table2" style="width: 100%; table-layout: fixed;">
+	  
+	  
+                  </table>
+              </div>
+     
+               <div class="updateBtn">
+               		<button type="button" class="btn btn-outline-primary btn-fw">수정하기</button>
                </div>
                
-                 <div class="tab">
-                <ul class="tabnav">
-                  <li><a href="#tab01">사원관리</a></li>
-                  <li><a href="#tab02">권한관리</a></li>
-                </ul>
-                <div class="tabcontent" >
-                  <div id="tab01" style="background-color: pink; width: 100%;">
-                   <div class="emp_infoDetails" style="width: 100%;">
-                        <table border="1" class="emp_details_table" style="width: 100%; table-layout: fixed;">
-                        <tr class="tr"><th class="th">부서</th><td>생산부</td><th class="th">팀</th><td>생산1팀</td><th class="th">직책</th><td>팀장</td><th class="th">직위</th><td>과장</td></tr>
-                        <tr class="tr"><th class="th">재직구분</th><td>재직</td><th class="th">입사일자</th><td>2023.03.14</td><th class="th">퇴사일자</th><td> </td><th class="th">휴직일자</th><td>과장</td></tr>
-                        </table>
-                     </div>
-                  </div>
-                  <div id="tab02">tab2 content</div>
-                </div>
-              </div>
-               <div class="updateBtn">
-               <button type="button" class="btn btn-outline-primary btn-fw">수정하기</button>
-               </div>
             </div>
-            
             </div>
             
  <!--  본문내용 끝 -->    
@@ -244,18 +230,41 @@ function fun1() {
 			// 현재 클릭된 Row(<tr>)
 			var tr = $(this);
 			var td = tr.children();
-			
 		
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
 			var emp_num = td.eq(0).text(); 
 			alert(emp_num);
 			
 			$.ajax({
-				url:'employeeDetail',
+				url:'${pageContext.request.contextPath}/employee/employeeDetail',
 				type :'GET',
 				data:{emp_num:emp_num},
+				dataType : 'json',
 				success:function(result){
+					
 				alert("완료");
+				
+				$.each(result, function(index,item) {
+					
+					$('#employee_default').html('<img src="${pageContext.request.contextPath}/resources/employee/upload/'+item.emp_img+'" style="width: 200px; height: 230px; border-radius:10px;">');
+				//	$('#employee_default').attr('src',"${pageContext.request.contextPath}/resources/employee/upload/"+item.emp_img);
+				
+					
+					$('.emp_details_table').html(' <tr class="tr"><th class="th">사번</th><td>'+item.emp_num+'</td><th class="th">이름</th><td>'+item.emp_Kname+'</td></tr><tr class="tr"><th class="th">영문이름</th><td>'+item.emp_Ename+'</td><th class="th">이메일주소</th><td>'+item.emp_email+'</td></tr>'
+		                    +'<tr class="tr"><th class="th">생년월일</th><td>'+item.emp_birth+'</td><th class="th">성별</th><td>'+item.emp_gender+'</td></tr>'
+		                     +'<tr class="tr"><th class="th">휴대폰번호</th><td>'+0+item.emp_phone+'</td><th class="th">내선번호</th><td>'+0+item.emp_tel+'</td></tr>'
+		                     +'<tr class="tr"><th class="th">자택주소</th><td colspan="3">'+item.emp_addr+item.emp_addr2+'</td></tr>'
+					);
+					
+					$('.emp_details_table2').html(' <tr class="tr"><th class="th">부서</th><td>'+item.dept_deptName+'</td><th class="th">팀</th><td>'+item.dept_teamName+'</td><th class="th">직급</th><td>'+item.dept_position+'</td><th class="th">직위</th><td>'+item.dept_duty+'</td></tr>'
+		                    +'<tr class="tr"><th class="th">재직구분</th><td>'+item.emp_status+'</td><th class="th">입사일자</th><td>'+item.emp_joinDate+'</td><th class="th">퇴사일자</th><td>'+item.emp_leaveDate+' </td><th class="th">휴직일자</th><td>'+item.emp_absenceDate+'</td></tr>'
+			                  
+					);
+					
+				});
+				
+				
+				
 				}
 			}); 
 			
