@@ -44,4 +44,29 @@ public class QualityServiceImpl implements QualityService{
 		return qualityDAO.getQualityCode(wo_num);
 	}
 
+	@Override
+	public void insertQuality(QualityDTO qualityDTO) {
+		
+		qualityDAO.insertQuality(qualityDTO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getQualityFailList(QualityDTO qualityDTO) {
+		System.out.println("QualityServiceImpl FailListMap()");
+		
+		return qualityDAO.getQualityFailList(qualityDTO);
+	}
+
+	@Override
+	public QualityDTO getFailWrite(String wo_num) {
+		
+		return qualityDAO.getFailWrite(wo_num);
+	}
+
+	@Override
+	public void insertFail(QualityDTO qualityDTO) {
+		qualityDAO.insertFail(qualityDTO);
+		
+	}
+
 }

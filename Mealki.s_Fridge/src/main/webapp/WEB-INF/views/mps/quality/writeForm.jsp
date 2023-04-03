@@ -10,7 +10,7 @@
 <body>
 	<div id="writebody">
 		<form
-			action="${pageContext.request.contextPath}/mps/production/writePro"
+			action="${pageContext.request.contextPath}/quality/writePro"
 			id="getQualityWrite" method="POST">
 
 			<!--           		selectbox 선택시 값넘기기 위해 만든 박스 -->
@@ -32,13 +32,17 @@
 			<input type="text" name="item_num" value="${qualityDTO.item_num}" readonly="readonly"> 
 			
 			<label>검수번호 : </label> 
-			<input type="text" name="qc_code" value="QC${qualityCode.qc_code}">
+			<input type="text" name="qc_code" value="${qualityCode.qc_code}">
 			<p>
 			<label>검수자 : </label> 
-			<input type="text" name="emp_kname" value="${qualitySession.emp_Kname}">
+			<input type="text" name="emp_Kname" value="${qualitySession.emp_Kname}">
 
 			<label>상태 : </label> 
-			<input type="text" name="qc_status" value="${qualityDTO.qc_status}"> 
+			<select name="qc_status">
+				<option value="">선택하세요</option>
+				<option value="완료">완료</option>
+				<option value="검사중">검사중</option>
+			</select>
 			<p>
 			<label>검수량 : </label> 
 			<input type="text" name="qc_qty" value="${qualityDTO.qc_qty}"> 
@@ -52,8 +56,7 @@
 			<label>수주량 : </label> 
 			<input type="text" name="wo_qty" value="${qualityDTO.wo_qty}">
 			<p>
-<!-- 			<label>날짜 : </label>  -->
-<%-- 			<input type="hidden" name="qc_date" value="${qualityDTO.qc_date}"> --%>
+			<button type="submit" value="저장">저장</button> 
 		</form>
 </body>
 </html>
