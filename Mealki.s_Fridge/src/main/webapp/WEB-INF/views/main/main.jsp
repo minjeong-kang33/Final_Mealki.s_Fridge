@@ -223,12 +223,13 @@
               <div class="card">
                 <div class="card-body">
                  <div class="d-flex justify-content-between">
-                  <p class="card-title">Sales Report</p>
-                  <a href="#" class="text-info">View all</a>
+                  <p class="card-title">이 달의 수주왕</p>
                  </div>
-                  <p class="font-weight-500">The total number of sessions within the date range. It is the period time a user is actively engaged with your website, page or app, etc</p>
+                  <p class="font-weight-500">
+                  이 달의 수주왕으로 뽑힌 사원에게는 보너스를 드립니다 !
+                  </p>
                   <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                  <canvas id="sales-chart"></canvas>
+                  <canvas id="myChart" height="400px" width="600px"></canvas>
                 </div>
               </div>
             </div>
@@ -729,6 +730,9 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
 
+  <script src="${pageContext.request.contextPath}/resources/main/contractchart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 
 </html>
