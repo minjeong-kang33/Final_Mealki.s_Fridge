@@ -15,6 +15,11 @@ public class QualityDTO {
 		private int manu_fail;
 		private String qc_date;
 		private int wo_qty;
+//		불량 관련
+		private int fail_num;
+		private int fail_qty;
+		private String fail_reson;
+		private String fail_date;
 		
 		public int getQc_num() {
 			return qc_num;
@@ -99,5 +104,31 @@ public class QualityDTO {
 		}
 		public void setWo_qty(int wo_qty) {
 			this.wo_qty = wo_qty;
+		}
+		
+//		불량 관련
+		public int getFail_num() {
+			return fail_num;
+		}
+		public void setFail_num(int fail_num) {
+			this.fail_num = fail_num;
+		}
+		public int getFail_qty() {
+			return fail_qty;
+		}
+		public void setFail_qty(int fail_qty) {
+			this.fail_qty = fail_qty;
+		}
+		public String getFail_reson() {
+			return fail_reson;
+		}
+		public void setFail_reson(String fail_reson) {
+			this.fail_reson = fail_reson;
+		}
+		public String getFail_date() {
+			return fail_date;
+		}
+		public void setFail_date(String fail_date) {
+			this.fail_date = fail_date;
 		}
 }
