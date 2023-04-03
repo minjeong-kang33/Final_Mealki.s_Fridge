@@ -59,7 +59,7 @@
         <select id="getQualityWrite" resultType="com.itwillbs.domain.QualityDTO">
     	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
 		p.item_num, q.qc_code, w.wo_qty, q.qc_status,
-		q.qc_qty, p.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
+		q.qc_qty, q.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, q.qc_date
 		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
 		left join qc_status q on q.wo_num = p.wo_num where p.wo_num = #{wo_num} group by p.wo_num
 		having manu_tocount = wo_qty
@@ -79,9 +79,15 @@
    			insert into qc_status (wo_num, manu_name, manu_code, item_name, item_num, qc_code, emp_Kname, qc_status, manu_tocount, qc_qty, manu_fail, qc_date)
 			values (#{wo_num}, #{manu_name}, #{manu_code}, #{item_name}, #{item_num}, #{qc_num}+1, #{emp_Kname}, #{qc_status}, #{manu_tocount}, #{qc_qty}, #{manu_fail}, DATE_FORMAT(now(), '%Y%m%d%H%i%s'));
     	</insert>
+    	
+    	<update id="updateQuality">
+   			update qc_status set qc_qty = #{qc_qty}, qc_status = #{qc_status}, qc_date = DATE_FORMAT(now(), '%Y%m%d%H%i%s'), manu_fail = #{manu_fail}
+    		where qc_num = #{qc_num} 
+    	</update>
+    	
 <!--     불량 쿼리	 -->
     	<select id="getQualityFailList" resultMap="qualityFailList">
-    		select d.fail_num, q.wo_num, q.manu_name, q.manu_code, q.item_name, q.item_num, d.emp_Kname, (q.manu_fail+p.manu_fail) fail_qty, date_format(d.fail_date, '%Y-%m-%d') fail_date
+    		select CONCAT('F',lpad(d.fail_num,6,0)) fail_num, q.wo_num, q.manu_name, q.manu_code, q.item_name, q.item_num, d.emp_Kname, (q.manu_fail+p.manu_fail) fail_qty, date_format(d.fail_date, '%Y-%m-%d') fail_date
         	from productstatus p join qc_status q
         	on p.wo_num = q.wo_num left join defective d on q.wo_num = d.wo_num
         	group by q.emp_Kname, q.manu_fail, q.wo_num;
@@ -91,6 +97,7 @@
     		select d.fail_num, q.wo_num, q.manu_name, q.manu_code, q.item_name, q.item_num, d.emp_Kname, (q.manu_fail+p.manu_fail) fail_qty, d.fail_reson
         	from productstatus p join qc_status q
         	on p.wo_num = q.wo_num left join defective d on q.wo_num = d.wo_num
+        	where q.wo_num = #{wo_num}
         	group by q.emp_Kname, q.manu_fail, q.wo_num;
     	</select>
     	
@@ -101,6 +108,9 @@
  			DATE_FORMAT(now(), '%Y%m%d%H%i%s'))
     	</insert>
     	
-    	
+    	<update id="updateFail">
+   			update defective set fail_reson = #{fail_reson}, fail_date = DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+    		where fail_num = #{fail_num} 
+    	</update>
 
 </mapper>

@@ -152,7 +152,7 @@
 									<hr>
 										<table border='1' align="center">
 											<tr align="center" >
-												<th>검수번호</th>
+												<th>불량번호</th>
 												<th>작업지시번호</th> 
 												<th>라인명</th>
 												<th>라인코드</th>
@@ -162,7 +162,6 @@
 <!-- 												<th>불량코드 </th> -->
 												<th>불량수량  </th>
 												<th>검수완료일자  </th>
-												<th>검수상태 </th>
 									         </tr>
 <!-- 									         <tr align="center"> -->
 <!-- 												<th>QC000022</th> -->
@@ -180,7 +179,7 @@
 <!-- 									         test -->
 
 									       		<c:forEach var="fail" items="${qualityFailList}">
-													<tr onClick="failWrite('${dto.wo_num}');">
+													<tr onClick="failWrite('${fail.wo_num}');">
 														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
 														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
 														<td>${fail.item_name}</td><td>${fail.item_num}</td>
