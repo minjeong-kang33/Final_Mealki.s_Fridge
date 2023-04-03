@@ -15,5 +15,6 @@ public interface RecipeDAO {
 	void updateRecipe(RecipeDTO recipe);
 	void deleteRecipe(String recipeNum);
 	RecipeDTO selectRecipe(String recipeNum);
+	String getMaxRecipeNum();
 
 }

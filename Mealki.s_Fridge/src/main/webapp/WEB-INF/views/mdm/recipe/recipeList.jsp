@@ -134,6 +134,7 @@
 </c:if>
 </div>
 
+*품목코드는 식자재코드입니다. 
 <!-- 페이징 끝 -->
             </div>
             
@@ -179,6 +180,8 @@
   <!-- End custom js for this page-->
   
   <script>
+
+  
 <!-- 	검색어 제어 -->
 function fun1() {
   var searchInput = document.forms["search"]["search"].value;

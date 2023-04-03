@@ -36,6 +36,10 @@
         
     </select>    
     
+    <select id="getMaxRecipeNum" resultType="java.lang.String" >
+    select max(r_num) from recipe;
+    </select>
+    
     <insert id="insertRecipe">
      insert into recipe
      (r_num, r_code, item_num, r_name, item_name, r_qty, r_date, r_etc)
