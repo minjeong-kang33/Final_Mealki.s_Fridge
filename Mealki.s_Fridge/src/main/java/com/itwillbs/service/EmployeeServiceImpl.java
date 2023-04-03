@@ -43,5 +43,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getEmployeeDetail(int emp_num) {
+		System.out.println("EmployeeServiceImpl getEmployeeDetail");
+		return employeeDAO.getEmployeeDetail(emp_num);
+	}
+
 	
 }

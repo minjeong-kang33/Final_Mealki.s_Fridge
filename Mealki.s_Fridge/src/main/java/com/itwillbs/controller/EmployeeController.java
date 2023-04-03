@@ -141,8 +141,12 @@ public class EmployeeController {
 
 	@ResponseBody
 	@RequestMapping(value = "/employee/employeeDetail", method = RequestMethod.GET)
-	public String employeeDetail(Model model) {
+	public String employeeDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
 		System.out.println("MemberController employeeDetail");
+		
+		System.out.println(request.getParameter("emp_num"));
+		
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(request.getParameter("emp_num"));
 		
 			
 		return "/employee/empManage";

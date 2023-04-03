@@ -43,5 +43,11 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		sqlSession.insert(namespace+".insertEmployee",employeeDTO);
 		
 	}
+
+	@Override
+	public List<Map<String, Object>> getEmployeeDetail(int emp_num) {
+		System.out.println("EmployeeDAOImpl getEmployeeDetail");
+		return null;
+	}
 	
 }

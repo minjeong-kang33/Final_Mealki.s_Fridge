@@ -123,7 +123,7 @@ public class UnstoreController {
 			
 			List<WorkorderItemDTO> itemList = workorderItemService.getItemList(wo_num);
 			
-	for (WorkorderItemDTO item : itemList) {
+			for (WorkorderItemDTO item : itemList) {
 				String item_name1 = item.getItem_name(); //오더에 따른 소요량 테이블
 				System.out.println("품목명"+item_name);
 				
@@ -138,6 +138,8 @@ public class UnstoreController {
 				  
 			} // 품목이 잘 가져와지는지 확인  
 		} */
+		
+		
 		return "wms/unstore/insertUnstore";
 	}
 	
