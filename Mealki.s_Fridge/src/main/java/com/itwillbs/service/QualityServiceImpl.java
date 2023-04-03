@@ -50,6 +50,14 @@ public class QualityServiceImpl implements QualityService{
 		qualityDAO.insertQuality(qualityDTO);
 	}
 
+	
+	@Override
+	public void updateQuality(QualityDTO qualityDTO) {
+		
+		qualityDAO.updateQuality(qualityDTO);
+		
+	}
+	
 	@Override
 	public List<Map<String, Object>> getQualityFailList(QualityDTO qualityDTO) {
 		System.out.println("QualityServiceImpl FailListMap()");
@@ -67,6 +75,12 @@ public class QualityServiceImpl implements QualityService{
 	public void insertFail(QualityDTO qualityDTO) {
 		qualityDAO.insertFail(qualityDTO);
 		
+	}
+
+
+	@Override
+	public void updateFail(QualityDTO qualityDTO) {
+		qualityDAO.updateFail(qualityDTO);
 	}
 
 }

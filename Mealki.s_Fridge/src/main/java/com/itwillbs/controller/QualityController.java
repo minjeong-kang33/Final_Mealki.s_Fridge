@@ -62,6 +62,14 @@ public class QualityController {
 		return "redirect:/mps/quality/writeForm";
 	}
 	
+	@RequestMapping(value = "/quality/qcUpdate", method = RequestMethod.POST)
+	public String updateQuality(QualityDTO qualityDTO) {
+		System.out.println("QualityController updatePro()");
+		
+		qualityService.updateQuality(qualityDTO);
+		return "redirect:/mps/quality/writeForm";
+	}
+	
 	@RequestMapping(value = "/quality/failWrite", method = RequestMethod.GET)
 	public String qualityFailWrite(HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("QualityController FailWrite()");
@@ -88,4 +96,13 @@ public class QualityController {
 		qualityService.insertFail(qualityDTO);
 		return "redirect:/mps/quality/failWrite";
 	}
+	
+	@RequestMapping(value = "/quality/failUpdate", method = RequestMethod.POST)
+	public String updateFail(QualityDTO qualityDTO) {
+		System.out.println("QualityController updatePro()");
+		
+		qualityService.updateFail(qualityDTO);
+		return "redirect:/mps/quality/writeForm";
+	}
+	
 }
