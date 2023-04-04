@@ -259,18 +259,20 @@ function fun1() {
 			                  
 					);
 					
-					$('.updateBtn').html(' <button type="button" class="btn btn-outline-primary btn-fw" onClick="updateEmployee('+emp_num+')" >수정하기</button>'
+					$('.updateBtn').html(' <button type="button" class="btn btn-outline-primary btn-fw" onClick="updateEmployee('+item.emp_num+')" >수정하기</button>'
 					);
 
 					
-					$('.updateBtn button').click(function(emp_num) {
-					    var emp_num = emp_num;
+					$('.updateBtn button').click(function(emp_number) {
+						
+					    var emp_num = item.emp_num;
 					    var _width = '1000';
 					    var _height = '510';
+		
 					    var _left = Math.ceil((window.screen.width - _width) / 2);
 					    var _top = Math.ceil((window.screen.height - _height) / 2);
 					    let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-					    window.open('${pageContext.request.contextPath}/employee/updateEmployee?emp_num=${emp_num}', "밀키의 냉장고", popOption);
+					    window.open('${pageContext.request.contextPath}/employee/updateEmployee?emp_num='+emp_num, "밀키의 냉장고", popOption);
 					});
 				});
 

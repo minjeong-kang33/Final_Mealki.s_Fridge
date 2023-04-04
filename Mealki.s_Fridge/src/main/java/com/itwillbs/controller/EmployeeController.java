@@ -162,6 +162,10 @@ public class EmployeeController {
 		
 		System.out.println(emp_num);
 		
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
+			
+		
 		return "employee/updateEmployee";
 	}
 	

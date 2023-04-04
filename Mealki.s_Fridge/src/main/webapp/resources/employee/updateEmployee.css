@@ -71,7 +71,8 @@ li{
 	margin-left: 3px;
 }
 
-.emp_classification {
+.emp_classification_Option {
+		width: 120px;
 }
 
 
@@ -80,8 +81,17 @@ li{
 	width: 120px;
 }
 
+.dept_num_option{
+	width: 120px;
+}
+
+.dept_duty_option{
+	width: 120px;
+}
+
 .dept_num{
 	margin-top: 5px;
+
 }
 
 #emp_email{
