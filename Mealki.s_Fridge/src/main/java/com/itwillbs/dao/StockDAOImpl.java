@@ -48,10 +48,32 @@ public class StockDAOImpl implements StockDAO {
 	}
 
 	@Override
+	public void updateStockqnt(StockDTO stockDTO) {
+		System.out.println("StockDAOImpl updateStock()");
+		
+		sqlSession.update(namespace+".updateStock_qnt", stockDTO);
+	}
+
+	@Override
+	public void insertStock(StockDTO stockDTO) {
+		System.out.println("StockDAOImpl insertStock()");
+		
+		sqlSession.insert(namespace+".insertStock", stockDTO);
+	}
+
+	@Override
 	public void updateStock(StockDTO stockDTO) {
 		System.out.println("StockDAOImpl updateStock()");
 		
 		sqlSession.update(namespace+".updateStock", stockDTO);
+	}
+
+	@Override
+	public void deleteStock(String item_num) {
+		System.out.println("StockDAOImpl deleteStock()");
+		
+		sqlSession.delete(namespace+".deleteStock", item_num);
+		
 	}
 	
 	

@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -138,14 +139,55 @@ public class EmployeeController {
 		
 		return "/employee/empManage";
 	}
-
+	
 	@ResponseBody
 	@RequestMapping(value = "/employee/employeeDetail", method = RequestMethod.GET)
-	public String employeeDetail(Model model) {
+	public List<Map<String, Object>> employeeDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
 		System.out.println("MemberController employeeDetail");
 		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
 			
-		return "/employee/empManage";
+		return employeeDetail;
 	}
+	
+	@RequestMapping(value = "/employee/updateEmployee", method = RequestMethod.GET)
+	public String updateEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController updateEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
+			
+		
+		return "employee/updateEmployee";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/employee/absenceEmployee", method = RequestMethod.GET)
+	public String absenceEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController absenceEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+
+		return "1";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/employee/leaveEmployee", method = RequestMethod.GET)
+	public String leaveEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController leaveEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+
+		return "1";
+	}
+	
 	
 }

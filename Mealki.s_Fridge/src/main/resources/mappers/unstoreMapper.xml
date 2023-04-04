@@ -20,7 +20,7 @@
         	and unsto_num like concat ('%',#{unsto_num}, '%')
         </if>
         
-        <if test="emp_num != null and !emp_num.equals('')">
+        <if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
         	and emp_num like concat ('%',#{emp_num}, '%')
         </if>
         
@@ -89,12 +89,19 @@
 			   )
 	
 	</insert>
-<!-- <update id="updateStock_unstore">
-		update stock
-		set stock.stk_qnt = stock.stk_qnt - (select unsto_qty
-											 from unstore
-											 where wo_num=#{wo_num)
-		where item_num = #{item_num}				
-	</update>  -->
+	
+	
+	<select id="getUnstoreDetailList" resultType="map">
+		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
+				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num, workorder.wo_emp
+		from unstore
+		right outer join workorder
+		on unstore.wo_num=workorder.wo_num
+		right outer join contract
+		on workorder.business_num = contract.business_num
+		where workorder.wo_available=1 and workorder.wo_num =#{wo_num}
+	
+	</select>
 
 </mapper>

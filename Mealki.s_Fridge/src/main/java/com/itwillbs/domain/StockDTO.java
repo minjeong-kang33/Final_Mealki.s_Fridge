@@ -7,6 +7,7 @@ public class StockDTO {
 	private String item_type;
 	private int stk_qnt;
 	private String whs_num;
+	private String whs_name;
 	
 	public String getItem_num() {
 		return item_num;
@@ -37,6 +38,12 @@ public class StockDTO {
 	}
 	public void setWhs_num(String whs_num) {
 		this.whs_num = whs_num;
+	}
+	public String getWhs_name() {
+		return whs_name;
+	}
+	public void setWhs_name(String whs_name) {
+		this.whs_name = whs_name;
 	}
 	
 	

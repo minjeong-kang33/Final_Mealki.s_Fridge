@@ -17,5 +17,11 @@ public interface StockDAO {
 
 	public int getStockListCount(PageDTO pageDTO);
 	
+	public void updateStockqnt(StockDTO stockDTO);
+	
+	public void insertStock(StockDTO stockDTO);
+	
 	public void updateStock(StockDTO stockDTO);
+	
+	public void deleteStock(String item_num);
 }

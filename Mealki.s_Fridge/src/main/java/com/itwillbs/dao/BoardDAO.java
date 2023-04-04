@@ -20,5 +20,6 @@ public interface BoardDAO {
 	public void boCount(BoardDTO boardDTO);
 	
 	public void deleteBoard(int bo_num);
-
+	
+	public void updateBoard(BoardDTO boardDTO);
 }

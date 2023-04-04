@@ -8,6 +8,7 @@
 <title>밀키의 냉장고</title>
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/wms/findWarehouse.css">
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 </head>
 <body>
 	<h3>| 상품 유형</h3>
@@ -21,8 +22,7 @@
 			</c:forEach>
 	</table>
 	
-	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-	<script type="text/javascript">
+<script type="text/javascript">
 	$(function () {
 		$( ".row_a" ).click(function() {
 			var checkList = $(this);
@@ -33,6 +33,7 @@
 			window.close();
 		});
 	});
-	</script>
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 </html>

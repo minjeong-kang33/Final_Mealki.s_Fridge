@@ -13,5 +13,6 @@ public interface ItemDAO {
 	void updateItem(ItemDTO item);
 	void deleteItem(String itemNum);
 	ItemDTO selectItem(String itemNum);
-
+	String getMaxItemNum(String prefix);
+//	ItemDTO getItemByNum(String item_num);
 }

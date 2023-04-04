@@ -29,57 +29,6 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-    <script type="text/javascript">
-	  $(function(){
-		 var cjk_listArr = document.getElementsByName("RowCheck");
-		 var rowCnt = cjk_listArr.length;
-		 
-		 $("input[name='allCheck']").click(function(){
-			var cjk_listArr = $("input[name='RowCheck']");
-			for (var i=0; i<chk_listArr.length; i++){
-				chk_lstArr[i].checked = this.checked;
-			}
-		 });
-		 $("input[name='RowCheck']").click(function(){
-			if($("input[name='RowCheck']:checked")).length == rowCnt){
-			 	$("input[name='allCheck']")[0].checked = true;
-			} else {
-			 	$("input[name='allCheck']")[0].checked = false;
-			}
-		 });
-	  });
-	  function deleteValue(){
-		  var url ="${pageContext.request.contextPath}/business/customer/deleteCustomer";
-		  var valueArr = new Array();
-		  var customerList = $("input[name='RowCheck']");
-		  for(var i=0; i<customerList.length; i++){
-			  if(customerList[i].checked){
-				  valueArr.push(customerList[i].value);
-			  }
-		  }
-		  if(valueArr.length==0){
-			  alert("삭제할 거래처를 선택해주세요");
-		  }else{
-			  var chk = confirm("정말 삭제하시겠습니까?");
-			  
-			  $.ajax({
-				  url : "${pageContext.request.contextPath}/business/customer/deleteCustomer",
-				  type : 'POST',
-				  traditional : true,
-				  data : {
-					  valueArr : valueArr
-				  },
-				  success : function(jdata){
-					  if(jdata =1){
-						  alert("삭제하였습니다");
-						  location.replace("${pageContext.request.contextPath}/business/customer/customerList")
-					  }else{alert("삭제 실패");}
-				  }
-			  });
-		  }
-		  
-	  }
-  </script>
   
   <script type="text/javascript">
 	  function openDetail(business_num) {
@@ -97,13 +46,45 @@
   </script>
   
   <script>
-	function allCheck() {
-	    var checkBoxes = document.getElementsByName('RowCheck');
-	    var allCheck = document.getElementsByName('allCheck')[0];
-	    for (var i = 0; i < checkBoxes.length; i++) {
-	        checkBoxes[i].checked = allCheck.checked;
-	    }
-	}
+  <!-- 			체크박스 all선택 -->
+  document.addEventListener("DOMContentLoaded", function() {
+    let checkAll = document.querySelector("#checkAll");
+    let checkboxes = document.querySelectorAll("input[name='rowCheck']");
+
+    checkAll.addEventListener("change", function() {
+      for (let checkbox of checkboxes) {
+        checkbox.checked = checkAll.checked;
+      }
+    });
+  });
+  
+  // 삭제 버튼
+ window.onload = function() {
+  document.getElementById("deleteCustButton").addEventListener("click", function() {
+	  let elements = document.getElementById("tableForm").querySelectorAll('input[name="rowCheck"]:checked');
+	  if(elements.length === 0){
+	      alert("선택된 거래처가 없습니다");
+	      return;
+	  }
+	  
+	  if(confirm("삭제하시겠습니까?")){
+      let formData = new FormData();
+      for(let i = 0; i< elements.length; i++){
+        formData.append("selectId",elements[i].value);
+      }
+
+      let request = new XMLHttpRequest();
+      request.open("POST","${pageContext.request.contextPath}/business/customer/deleteCustList");
+      request.send(formData);
+
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200) {
+            location.reload();
+          }
+    };
+    }
+  })
+ };
   </script>
   
  
@@ -130,7 +111,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">거래처 관리</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+<!--                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6> -->
                 </div>
                 
           <div class="contentbody" > 
@@ -155,16 +136,17 @@
             </div>
             
 			<div id="table_content">
+				<form id="tableForm" method="post">
 				<table border="1">
 					<tr>
-					<th><input type="checkbox" id="allCheck" name="allCheck" ></th>
+					<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
 					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
 					<c:if test="${CustomerDTO.cust_status == 1}">
 						<tr>
-							<td><input type="checkbox" id="checkbox" name="RowCheck" value="${CustomerDTO.business_num }"></td>
+							<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
 							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
@@ -178,14 +160,15 @@
 				</c:forEach>
 				
 				</table>
-				<div id="button2">
-					<input type="button" class="btn btn-primary" value="삭제" onclick="deleteValue();">
-				</div>
+				</form>
+				
+			</div>
+			<div id="button2">
+				<button class="btn btn-primary" type="button" id="deleteCustButton">선택삭제</button>
 			</div>
 			
 				
-			
-			
+					
  
  <!--  본문내용 끝 -->    
         

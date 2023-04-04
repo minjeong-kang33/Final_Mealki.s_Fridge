@@ -27,7 +27,6 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
- 
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 <script type="text/javascript">  
@@ -43,58 +42,60 @@
 	  }).filter(':eq(0)').click();
 	  });
 	  
-	  
+
+
+
 </script>
 
 <script type="text/javascript">  
 
-//버튼 클릭 시 입력된 값 tr정보 넘기기
-	$(function(){
-	$(".store_submit_button").click(function(){ 
-			
-			var str = "";
-			var tdArr = new Array();	// 배열 선언
-			var store_submit_button = $(this);
-			
-			var tr = store_submit_button.parent().parent();
-			var td = tr.children();
-			
-			td.each(function(i) {
-				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
-				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-					  var selectValue = $(this).find('select').val();
-					  tdArr.push(selectValue || text);
-				  }
-				});
-			
-			var order_num = tdArr[0]; //발주번호 
-			var item_name = tdArr[1]; //품명
-			var order_qty = tdArr[2]; // 발주수량
-			var stk_qnt = tdArr[3]; //창고재고수량
-			var sto_progress = tdArr[4]; //진행상태
-			var sto_empNum = tdArr[5]; //담당자번호
-			var sto_shelf = tdArr[6]; //선반위치
-			var sto_shelfDetail =tdArr[7]; 
-			
-			console.log("배열에 담긴 값 : "+tdArr);
-			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
-			alert(tdArr);
-			
-			$.ajax({
- 				url:'addStore',
- 				type :'GET',
- 				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
- 					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
- 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
- 				success:function(result){
- 				
- 				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
- 				location.reload();
- 				},
- 			});
-	});	
-	});	
+//특정 영역 인쇄
+
+function content_print1(){
+   
+                var initBody = document.body.innerHTML;
+                window.onbeforeprint = function(){
+                    document.body.innerHTML =
+
+                                     document.getElementById('store_table_tab01').innerHTML;
+                }
+                window.onafterprint = function(){
+                    document.body.innerHTML = initBody;
+                }
+                window.print();    
+            } 
+
+function content_print2(){
+	   
+    var initBody = document.body.innerHTML;
+    window.onbeforeprint = function(){
+        document.body.innerHTML =
+
+                         document.getElementById('store_table_tab02').innerHTML;
+    }
+    window.onafterprint = function(){
+        document.body.innerHTML = initBody;
+    }
+    window.print();    
+} 
+
+function content_print3(){
+	   
+    var initBody = document.body.innerHTML;
+    window.onbeforeprint = function(){
+        document.body.innerHTML =
+
+                         document.getElementById('store_table_tab02').innerHTML;
+    }
+    window.onafterprint = function(){
+        document.body.innerHTML = initBody;
+    }
+    window.print();    
+}   
+
+
 </script>
+
 
 </head>
 <body>
@@ -149,13 +150,14 @@
 		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab01"> 
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반행</th><th>선반열</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -183,10 +185,10 @@
 							                    </c:if>
 							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
 													<select name="sto_shelf_option_detail" class="search_option">
-							                           <option value="1"> 1단 </option>
-							                           <option value="2">2단 </option>
-							                           <option value="3">3단 </option>
-							                           <option value="4">4단 </option>
+							                           <option value="1">1열 </option>
+							                           <option value="2">2열 </option>
+							                           <option value="3">3열 </option>
+							                           <option value="4">4열 </option>
 							                        </select>
 						                        </c:if>
 											</td>
@@ -199,6 +201,7 @@
 										</tr>
 						 		</c:forEach>
 					        </table>
+					        </div>
 					      </form>  
 						<!-- 페이징 -->
 						
@@ -215,7 +218,9 @@
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>
-					        
+							<div>
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print1()">인쇄하기</button>		        
+							</div>
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        
 	        
@@ -224,14 +229,15 @@
 		        <div id="tab02" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab02">				        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'미입고'}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td >${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td >${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -273,9 +279,13 @@
 												</c:if>
 											</td> <!-- 입고처리 -->
 										</tr>
-									</c:if>	
+									</c:if>
 						 		</c:forEach>
 					        </table>
+					        </div>
+						   <div class="print_btn">
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print2()">인쇄하기</button>		        
+							</div>
 					      </form>  
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
@@ -283,14 +293,15 @@
 		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
+				        	<div id="store_table_tab03">					        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 						        	<c:if test="${StoreDTO.sto_progress eq'입고완료'}">
 										<tr>
-											<td style="width: 150px;">${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
-											<td style="width: 150px;">${StoreDTO.order_num } </td><!-- 발주관리번호 -->
+											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
+											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
 											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
@@ -335,6 +346,10 @@
 									</c:if>	
 						 		</c:forEach>
 					        </table>
+					        </div>
+					        <div class="print_btn">
+								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print3()">인쇄하기</button>		        
+							</div>
 					      </form>  
 
 			       		 </div>
@@ -428,17 +443,70 @@
  
  /* 상세보기 팝업 */
 
-function storeDetail(wo_num) {
-	var _width = '800';
+function storeDetail(order_num) {
+	var _width = '1200';
 	var _height = '650';
 	var _left = Math.ceil((window.screen.width - _width) / 2);
 	var _top = Math.ceil((window.screen.height - _height) / 2);
 	let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?wo_num="+wo_num,
+	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?order_num="+order_num,
 							"밀키의 냉장고",popOption);}
  
  
  </script>
+ 
+ 
+<script type="text/javascript">  
+
+//버튼 클릭 시 입력된 값 tr정보 넘기기
+	$(function(){
+	$(".store_submit_button").click(function(){ 
+			
+			var str = "";
+			var tdArr = new Array();	// 배열 선언
+			var store_submit_button = $(this);
+			
+			var tr = store_submit_button.parent().parent();
+			var td = tr.children();
+			
+			td.each(function(i) {
+				  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+				  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+					  var selectValue = $(this).find('select').val();
+					  tdArr.push(selectValue || text);
+				  }
+				});
+			
+			var order_num = tdArr[0]; //발주번호 
+			var item_name = tdArr[1]; //품명
+			var order_qty = tdArr[2]; // 발주수량
+			var stk_qnt = tdArr[3]; //창고재고수량
+			var sto_progress = tdArr[4]; //진행상태
+			var sto_empNum = tdArr[5]; //담당자번호
+			var sto_shelf = tdArr[6]; //선반위치
+			var sto_shelfDetail =tdArr[7]; 
+			
+			console.log("배열에 담긴 값 : "+tdArr);
+			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
+			alert(tdArr);
+			
+			$.ajax({
+ 				url:'addStore',
+ 				type :'GET',
+ 				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
+ 					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
+ 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
+ 				success:function(result){
+ 				
+ 				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
+ 				location.reload();
+ 				},
+ 			});
+	});	
+	});	
+</script>
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </body>
 </html>

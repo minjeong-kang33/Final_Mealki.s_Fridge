@@ -27,13 +27,18 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.StockDTO;
 import com.itwillbs.service.ItemService;
+import com.itwillbs.service.StockService;
 
 @Controller
 public class ItemController {
    
 	@Inject
 	private ItemService itemService;
+	
+	@Inject
+	private StockService stockService;
 
 	//xml 업로드 경로이름("uploadPath")자동으로 불러오기
 	@Resource(name="itemUploadPath")
@@ -92,11 +97,19 @@ public class ItemController {
 		return "mdm/item/itemlist";
 	}
 
+	
+	
 	@RequestMapping(value = "mdm/item/update", method = RequestMethod.POST , consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String update(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file ) throws Exception {
 
+//		String item_num=request.getParameter("item_num");
+//		ItemDTO existingItem = itemService.getItemByNum(item_num);
+		
 		ItemDTO dto = new ItemDTO();
-		dto.setItem_num(request.getParameter("item_num"));
+//		StockDTO stockDTO = new StockDTO();
+		
+//		dto.setItem_num(existingItem.getItem_num());
+//		dto.setItem_num(request.getParameter("item_num"));
 		dto.setItem_type(request.getParameter("item_type"));
 		dto.setItem_name(request.getParameter("item_name"));
 		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
@@ -116,6 +129,11 @@ public class ItemController {
 		}
 
 		itemService.save(dto);
+		//재고테이블에도 반영
+//		stockDTO.setItem_name(request.getParameter("item_name"));
+//		stockDTO.setItem_type(request.getParameter("item_type"));
+//		stockService.updateStock(stockDTO);
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 
@@ -124,9 +142,11 @@ public class ItemController {
 	public String delete(HttpServletRequest request, Model model ) {
 
 		String[] deleteId = request.getParameterValues("selectId");
+		
 		for(String id : deleteId){
 			itemService.deleteItem(id);
 		}
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 
@@ -134,11 +154,28 @@ public class ItemController {
 	public String save(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file) throws Exception {
 		System.out.println("ItemController save()");
 		
-		ItemDTO dto = new ItemDTO();
-		dto.setItem_num(request.getParameter("item_num"));
-		dto.setItem_type(request.getParameter("item_type"));
-		dto.setItem_name(request.getParameter("item_name"));
-		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
+			ItemDTO dto = new ItemDTO();
+//			StockDTO stockDTO = new StockDTO();
+			
+			String itemPrefix = request.getParameter("item_prefix");
+		    String prefix = itemPrefix.equals("P") ? "P" : "I";
+		    String maxItemNum = itemService.getMaxItemNum(prefix);
+
+		    int newNum;
+		    if (maxItemNum != null) {
+		        int currentNum = Integer.parseInt(maxItemNum.substring(1));
+		        newNum = currentNum + 1;
+		    } else {
+		        newNum = 1;
+		    }
+
+		    String newItemNum = String.format("%s%03d", prefix, newNum);
+		    dto.setItem_num(newItemNum);
+		
+//			dto.setItem_num(request.getParameter("item_num"));
+		    dto.setItem_type(request.getParameter("item_type"));
+		    dto.setItem_name(request.getParameter("item_name"));
+		    dto.setWeight(Integer.parseInt(request.getParameter("weight")));
 		
 			String supplier = request.getParameter("supplier");
 		    if (supplier != null && !supplier.isEmpty()) {
@@ -167,9 +204,14 @@ public class ItemController {
 		    
 		    dto.setItem_image(filename);
 		    }
-
+		    
 		itemService.save(dto);
-
+		//재고테이블에도 반영
+//		stockDTO.setItem_name(request.getParameter("item_name"));
+//		stockDTO.setItem_num(newItemNum);
+//		stockDTO.setItem_type(request.getParameter("item_type"));
+//		stockService.insertStock(stockDTO);
+		
 		return "redirect:/mdm/item/itemlist";
 	}
 

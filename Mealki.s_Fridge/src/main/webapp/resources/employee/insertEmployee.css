@@ -1,5 +1,6 @@
 @charset "UTF-8";
 
+
 .contentbody{
 	height: 600px;
 }
@@ -79,18 +80,23 @@ li{
 	margin-left: 3px;
 }
 .emp_classification {
-	width: 60%;
-	margin-right: 30px;
 }
 
 .emp_classification_Option {
-	width: 50%;
-	margin-left: 45px;
+		width: 135px;
 }
 
 
 .dept_position_option{
-	width: 120px;
+	width: 135px;
+}
+
+.dept_num_option{
+	width: 135px;
+}
+
+.dept_duty_option{
+	width: 135px;	
 }
 
 .dept_num{
@@ -98,16 +104,15 @@ li{
 }
 
 #emp_email{
-	width: 200px;
+	width: 230px;
 }
 
 #emp_addr{
-	width: 200px;
+	width: 300px;
 }
 
 #emp_addr2{
-	width: 240px;
-	margin-top: 50px;
+	width: 300px;
 }
 
 /* 오른쪽 버튼부분 */

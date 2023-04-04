@@ -23,27 +23,12 @@ public class QualityController {
 	
 	@RequestMapping(value = "/mps/quality/list", method = RequestMethod.GET)
 	public String listmap(QualityDTO qualityDTO, Model model){
-	
-	// 메서드 호출
-//	검색어 받아오는 값
-//	String wo_num = request.getParameter("wo_num");
-//	String manu_name = request.getParameter("manu_name");
-//	String item_name = request.getParameter("item_name");
-//	String manu_sdate = request.getParameter("manu_sdate");
-//	String manu_date = request.getParameter("manu_date");
-//	String emp_Kname = request.getParameter("emp_Kname");
-//	System.out.println(qualityDTO.getWo_num());
+
 	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
+	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
 	
-	// model 담아서 이동
 	model.addAttribute("qualityListMap", qualityListMap);
-	
-//	System.out.println("작업지시번호"+wo_num);
-//	System.out.println("라인명"+manu_name);
-//	System.out.println("품명"+item_name);
-//	System.out.println("시작시간"+manu_sdate);
-//	System.out.println("마감시간"+manu_date);
-//	System.out.println("작업자"+emp_Kname);
+	model.addAttribute("qualityFailList", qualityFailList);
 	
 	return "mps/quality/listForm";
 	}
@@ -69,19 +54,55 @@ public class QualityController {
 		return "mps/quality/writeForm";
 	}
 	
-//	@RequestMapping(value = "/quality/writeForm", method = RequestMethod.GET)
-//	public String qualityNum(HttpServletRequest request, HttpSession session, Model model) {
-//		System.out.println("QualityController writeForm()");
-//		
-//		
-//		QualityDTO qualitySession=qualityService.getemp_Knamesession(emp_num2);
-//		QualityDTO qualityDTO=qualityService.getQualityWrite(wo_num2);
-//		
-//		model.addAttribute("qualityDTO", qualityDTO);
-//		model.addAttribute("qualitySession", qualitySession);
-//		
-//		System.out.println(qualityDTO);
-//		return "mps/quality/writeForm";
-//	}
+	@RequestMapping(value = "/quality/writePro", method = RequestMethod.POST)
+	public String insertQuality(QualityDTO qualityDTO) {
+		System.out.println("QualityController writePro()");
+		
+		qualityService.insertQuality(qualityDTO);
+		return "redirect:/mps/quality/writeForm";
+	}
+	
+	@RequestMapping(value = "/quality/qcUpdate", method = RequestMethod.POST)
+	public String updateQuality(QualityDTO qualityDTO) {
+		System.out.println("QualityController updatePro()");
+		
+		qualityService.updateQuality(qualityDTO);
+		return "redirect:/mps/quality/writeForm";
+	}
+	
+	@RequestMapping(value = "/quality/failWrite", method = RequestMethod.GET)
+	public String qualityFailWrite(HttpServletRequest request, HttpSession session, Model model) {
+		System.out.println("QualityController FailWrite()");
+		
+		int emp_num=(int)session.getAttribute("emp_num");
+		System.out.println("세션 id : " + emp_num);
+		
+		String wo_num=request.getParameter("wo_num");
+		
+		QualityDTO qualitySession=qualityService.getemp_Knamesession(emp_num);
+		QualityDTO qualityDTO=qualityService.getFailWrite(wo_num);
+		
+		model.addAttribute("qualityDTO", qualityDTO);
+		model.addAttribute("qualitySession", qualitySession);
+		
+		System.out.println(qualityDTO);
+		return "mps/quality/failWrite";
+	}
+	
+	@RequestMapping(value = "/quality/failWritePro", method = RequestMethod.POST)
+	public String insertFail(QualityDTO qualityDTO) {
+		System.out.println("QualityController FailWritePro()");
+		
+		qualityService.insertFail(qualityDTO);
+		return "redirect:/mps/quality/failWrite";
+	}
+	
+	@RequestMapping(value = "/quality/failUpdate", method = RequestMethod.POST)
+	public String updateFail(QualityDTO qualityDTO) {
+		System.out.println("QualityController updatePro()");
+		
+		qualityService.updateFail(qualityDTO);
+		return "redirect:/mps/quality/writeForm";
+	}
 	
 }

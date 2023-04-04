@@ -67,7 +67,7 @@
 									<div id="table_search">
 										<div id="select_search">
 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
-												<label>작업지시번호 : </label>
+												<label>검수번호 : </label>
 												<input type="text" name="wo_num">
 												<label>라인명 : </label>
 												<input type="text" name="manu_name">
@@ -75,9 +75,8 @@
 												<input type="text" name="item_name">
 												<label>작업일시 : </label>
 												<input type="date" name="manu_sdate">
-												 - <label>마감일시 : </label>
-												<input type="date" name="manu_date">
-												<label>작업자 : </label>
+												 - <input type="date" name="manu_date">
+												<label>검수자 : </label>
 												<input type="text" name="emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">
 												<a>조회</a>
@@ -89,7 +88,7 @@
 								<br>
 								<div id="todaylistbody">
 									<div id="todaylist">
-									<h4>일일 작업 현황</h4>
+									<h4>품질 작업 현황</h4>
 									<hr>
 										<table border='1' align="center">
 											<tr align="center">
@@ -121,6 +120,76 @@
 									    </table>
 									</div>
 								</div>
+								<br>
+								
+<!-- 								불량 리스트  -->
+								<div id="search_bar">
+									<div id="table_search">
+										<div id="select_search">
+											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
+												<label>검수번호 : </label>
+												<input type="text" name="wo_num">
+												<label>라인명 : </label>
+												<input type="text" name="manu_name">
+												<label>품명 : </label>
+												<input type="text" name="item_name">
+												<label>작업일시 : </label>
+												<input type="date" name="manu_sdate">
+												 - <input type="date" name="manu_date">
+												<label>검수자 : </label>
+												<input type="text" name="emp_Kname">
+												<button class="btn btn-primary" type="submit" id="IconButton6">
+												<a>조회</a>
+												</button>
+											</form>
+										</div>
+									</div>
+								</div>
+								<br>
+								<div id="todaylistbody">
+									<div id="todaylist">
+									<h4>불량 현황</h4>
+									<hr>
+										<table border='1' align="center">
+											<tr align="center" >
+												<th>불량번호</th>
+												<th>작업지시번호</th> 
+												<th>라인명</th>
+												<th>라인코드</th>
+												<th>품명</th>
+												<th>품번</th>
+												<th>검수자 </th>
+<!-- 												<th>불량코드 </th> -->
+												<th>불량수량  </th>
+												<th>검수완료일자  </th>
+									         </tr>
+<!-- 									         <tr align="center"> -->
+<!-- 												<th>QC000022</th> -->
+<!-- 												<th>WO2303301453</th>  -->
+<!-- 												<th>가공1</th> -->
+<!-- 												<th>L0000001</th> -->
+<!-- 												<th>야끼소바</th> -->
+<!-- 												<th>P0001</th> -->
+<!-- 												<th>홍길동 </th> -->
+<!-- 												<th>F00001 </th> -->
+<!-- 												<th>3</th> -->
+<!-- 												<th>2023-04-01  </th> -->
+<!-- 												<th>불량</th> -->
+<!-- 									         </tr> -->
+<!-- 									         test -->
+
+									       		<c:forEach var="fail" items="${qualityFailList}">
+													<tr onClick="failWrite('${fail.wo_num}');">
+														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
+														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
+														<td>${fail.item_name}</td><td>${fail.item_num}</td>
+														<td>${fail.emp_Kname}</td><td>${fail.fail_qty}</td>
+														<td>${fail.fail_date}</td>
+													</tr>
+												</c:forEach>
+									    </table>
+									</div>
+								</div>
 								<!--  본문내용 끝 -->
 
 							</div>
@@ -143,6 +212,18 @@
 							"${pageContext.request.contextPath}/quality/writeForm?wo_num="+wo_num,
 							"밀키의 냉장고",popOption);}
 					</script>
+					<script type="text/javascript">
+						function failWrite(wo_num) {
+							var _width = '800';
+							var _height = '650';
+							var _left = Math.ceil((window.screen.width - _width) / 2);
+							var _top = Math.ceil((window.screen.height - _height) / 2);
+							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+							window.open(
+							"${pageContext.request.contextPath}/quality/failWrite?wo_num="+wo_num,
+							"밀키의 냉장고",popOption);}
+					</script>
+					
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
 

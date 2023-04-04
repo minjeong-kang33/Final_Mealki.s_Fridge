@@ -41,7 +41,6 @@ td{
 
 /* 표 */
 .store_total_table{
-   table-layout: fixed;
 }
 
 .store_total_table tr{
@@ -70,3 +69,17 @@ ul,li {list-style:none;}
 .tabnav li a:hover,
 .tabnav li a.active{background:#fff; color:#4B49AC; }
 .tabcontent{padding: 20px; height:600px; border-top:none; background-color: #fff; margin-right: 50px; width: 100%}
+
+
+/* 인쇄하기 버튼 */
+@media print {
+  @page {size: landscape;}
+  
+	th {font-size: 11px;}
+	td { font-size: 5px; }
+  
+}
+
+.print_btn{
+	margin-top: 10px;
+}

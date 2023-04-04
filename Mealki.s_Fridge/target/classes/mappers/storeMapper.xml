@@ -104,6 +104,18 @@
 	
 	</update>
 
+
+	<select id="getStoreDetailList" resultType="map">
+		select sto_num, placeorder.order_num, DATE_FORMAT(sto_date,'%Y-%m-%d')as sto_date, COALESCE(store.sto_progress, '미입고') as sto_progress, 
+		sto_qty, sto_shelf, sto_shelfDetail, sto_empNum, DATE_FORMAT(placeorder.order_date,'%Y-%m-%d') as order_date,
+		DATE_FORMAT(placeorder.due_date,'%Y-%m-%d')as due_date, placeorder.emp_num, placeorder.order_qty, stock.stk_qnt
+		from store
+		right Outer join placeorder on placeorder.order_num = store.order_num
+		left outer join products on placeorder.item_num = products.item_num
+		left join stock on products.item_num = stock.item_num
+		where placeorder.order_num= #{order_num}
+	</select>
+
 <!-- 
 select s.sto_num, s.sto_progress, st.stk_qnt
 from store s join placeorder p

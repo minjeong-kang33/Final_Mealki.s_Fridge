@@ -1,0 +1,42 @@
+@charset "UTF-8";
+
+
+.title_div{
+	margin-top: 30px;
+}
+
+h3{
+	text-align: center;
+}
+
+/* 표 */
+.storeDetail_table{
+   table-layout: fixed;
+   width: 90%;
+   margin: 0 auto;
+   font-size: 12px;
+}
+
+.storeDetail_table tr{
+   height: 32px;
+   table-layout: fixed;
+   text-align: center;
+}
+
+.storeDetail_table th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
+
+#IconButton6{
+	margin-top: 30px;
+	margin-right : 60px;
+	float: right;
+}
+
+@media print {
+  @page {
+    size: landscape;
+  }
+}

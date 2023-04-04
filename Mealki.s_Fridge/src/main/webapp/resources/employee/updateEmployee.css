@@ -1,0 +1,116 @@
+@charset "UTF-8";
+
+body{
+	height: 500px;
+}
+
+
+/* 이미지 부분  */
+
+.imployeeImg{
+	width: 200px;
+	height: 300px;
+	margin: 30px 30px;
+	margin-left : 100px;
+	float: left;
+}
+
+.img{
+	border-radius: 3px;
+	width: 200px;
+	height: 230px;	
+	background-image: url(insertEmp.png);
+	background-size: cover;
+}
+
+.imgbtn{
+	margin: 0px 0px;
+	width: 200px;
+	height: 60px;
+	margin-top: 10px;
+	}
+
+#file {
+  display: none;
+}
+
+
+	
+/* 사원 정보 부분  */
+
+.employeeInfo{
+	width: 60%;
+	height: 300px;
+	float: left;
+	margin: 30px 30px;
+	}
+	
+ul{
+   list-style:none;
+   }	
+   
+label {
+	display:inline-block; 
+	width: 30%;
+}
+
+li{
+	margin-bottom: 10px;
+}
+
+.left{
+	width: 45%;
+	float: left;
+}
+.right{
+	width: 50%;
+	float: left;
+}
+
+#emp_email{
+	margin-left: 3px;
+}
+
+.emp_classification_Option {
+		width: 120px;
+}
+
+
+
+.dept_position_option{
+	width: 120px;
+}
+
+.dept_num_option{
+	width: 120px;
+}
+
+.dept_duty_option{
+	width: 120px;
+}
+
+.dept_num{
+	margin-top: 5px;
+
+}
+
+#emp_email{
+	width: 250px;
+}
+
+#emp_addr{
+	width: 420px;
+}
+
+#emp_addr2{
+	width: 420px;
+}
+
+
+/* 오른쪽 버튼부분 */
+
+.submit_Btn{
+	float: right;
+	margin-right: 80px;
+}
+

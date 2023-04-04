@@ -69,7 +69,7 @@
 				<input type="hidden" name="item_name" value="${WorkorderDTO.item_name}">
 				</td>
 				<td>
-					${WorkorderDTO.contract_qty}
+					${WorkorderDTO.contract_qty} EA
 					<input type="hidden" name="contract_qty" value="${WorkorderDTO.contract_qty}">
 				</td>
 				

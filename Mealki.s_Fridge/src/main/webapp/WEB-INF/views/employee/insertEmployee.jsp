@@ -57,7 +57,7 @@
           <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-            <div class="insertImployeeBody">
+              <div class="insertImployeeBody" >
             	<form action="${pageContext.request.contextPath}/employee/insertEmployeePro" method="post" enctype="multipart/form-data"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
@@ -77,20 +77,17 @@
 						<div class="left">
 						<ul>
 							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required></li>
-							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required></li>
+							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required placeholder="6자리 (901123)"></li>
 							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required></li>
-							<li><label for="emp_email">이메일</label><input type="email" id="emp_email" name="emp_email" size="20"></li>
-							<li><label for="emp_addr">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
-							<li><label for="emp_classification" class="emp_classification">직원분류
+							<li><label for="emp_classification" class="emp_classification">직원분류</label>
 									<select name="emp_classification" class="emp_classification_Option">
 										<option value=""> 직원분류 선택 </option>
 										<option value="3"> 현장직 </option>
 										<option value="2"> 사무직 </option>
 									</select>
 									
-								</label>
 							</li>
-							<li><label for="dept_position" class="dept_position">직책</label> 	
+							<li><label for="dept_position" class="dept_position" >직책</label> 	
 									<select name="dept_position" class="dept_position_option">
 										<option value=""> 직책 선택 </option>
 										<option value="팀원"> 팀원 </option>
@@ -106,10 +103,10 @@
 						<div class="right">
 							<ul>
 							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required></li>
-							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남" > 남 
-																	<input type="radio" name="emp_gender" id="여" > 여</li>
+							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남" value="남"> 남 
+																	<input type="radio" name="emp_gender" id="여" value="여"> 여</li>
 							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required></li>
-							<li><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
+							
 							<li><label for="dept_num" class="dept_num">부서</label> 
 										<select name="dept_num" class="dept_num_option">
 											<option value=""> 부서 선택 </option>
@@ -133,6 +130,15 @@
 									</select>							
 								</li>
 								</ul>
+						</div>
+						
+						
+						<div class="mid">
+							<ul>
+							<li><label for="emp_email" style="width: 100px;">이메일</label><input type="email" id="emp_email" name="emp_email" size="20"></li>
+							<li><label for="emp_addr"  style="width: 100px;">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
+							<li><label for="emp_addr"  style="width: 104px;"></label><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
+							</ul>
 						</div>
 				</fieldset>
 				<!-- 기타 개인정보 입력 끝 -->

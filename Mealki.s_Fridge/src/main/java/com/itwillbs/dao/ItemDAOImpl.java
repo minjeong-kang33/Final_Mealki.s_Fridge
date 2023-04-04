@@ -60,6 +60,18 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectOne(namespace+".selectItem", map);
 	}
 
+	@Override
+	public String getMaxItemNum(String prefix) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".getMaxItemNum",prefix);
+	}
+
+//	@Override
+//	public ItemDTO getItemByNum(String item_num) {
+//		// TODO Auto-generated method stub
+//		return sqlSession.selectOne(namespace+".getItemByNum", item_num);
+//	}
+
 	
 	
 

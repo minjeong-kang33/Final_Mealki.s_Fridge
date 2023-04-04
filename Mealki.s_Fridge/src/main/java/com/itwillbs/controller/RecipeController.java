@@ -17,9 +17,11 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.itwillbs.domain.RecipeDTO;
-
+import com.itwillbs.dao.RecipeDAO;
+import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.service.RecipeService;
 
@@ -29,6 +31,7 @@ public class RecipeController {
 
 	@Inject
 	private RecipeService recipeService;
+	private RecipeDAO recipeDAO;
 	
 	   // 소요량(레시피) 목록 조회
 		@RequestMapping(value = "mdm/recipe/recipeList", method = RequestMethod.GET)
@@ -115,7 +118,26 @@ public class RecipeController {
 			System.out.println("RecipeController save()");
 			
 			RecipeDTO dto = new RecipeDTO();
-			dto.setR_num(request.getParameter("r_num"));
+			
+			String maxRNum= recipeService.getMaxRecipeNum();
+		    
+		    int newRNumValue;
+		    if (maxRNum != null && !maxRNum.isEmpty()) {
+		        try {
+		            int currentRNum = Integer.parseInt(maxRNum.substring(1));
+		            newRNumValue = currentRNum + 1;
+		        } catch (NumberFormatException e) {
+		            System.err.println("Invalid r_num format: " + maxRNum);
+		            newRNumValue = 1;
+		        }
+		    } else {
+		        newRNumValue = 1;
+		    }
+		    String newRNum = "R" + newRNumValue;
+		    
+		    dto.setR_num(newRNum);
+			
+//			dto.setR_num(request.getParameter("r_num"));
 			dto.setR_code(request.getParameter("r_code"));
 			dto.setItem_num(request.getParameter("item_num"));
 			dto.setR_name(request.getParameter("r_name"));
@@ -134,6 +156,14 @@ public class RecipeController {
 		}
 	
 	
+		@RequestMapping(value = "mdm/recipe/getItemList", method = RequestMethod.GET)
+		public ModelAndView getItemList(ModelAndView mav) {
+		  List<ItemDTO> itemList = recipeService.getItemList();
+		  mav.addObject("itemList", itemList);
+		  mav.setViewName("mdm/recipe/itemListPopup");
+		  return mav;
+		}
+
 	
 	
 }

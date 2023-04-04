@@ -9,8 +9,7 @@
 <body>
 <script type="text/javascript">
 	alert("삭제 완료");
-	window.close();
-	opener.parent.location.reload();
+	location.href = "${pageContext.request.contextPath}/mps/workorder/list";
 </script>
 </body>
 </html>

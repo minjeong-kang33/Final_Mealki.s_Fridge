@@ -13,5 +13,7 @@ public interface UnstoreDAO {
 	public List<Map<String, Object>> getUnstoreList(PageDTO pageDTO);
 	
 	public int getUnstoreListCount (PageDTO pageDTO);
+	
+	public List<Map<String, Object>> getUnstoreDetailList(String wo_num);	
 
 }

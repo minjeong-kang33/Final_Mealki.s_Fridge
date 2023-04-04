@@ -67,58 +67,6 @@ $(document).ready(function() {
 });
 
 
-//submit
-	$(function(){
-	$(".unstore_submit_button").click(function(){ 
-	
-		var str = "";
-		var tdArr = new Array();	// 배열 선언
-		var unstore_submit_button = $(this);
-		
-		var tr = unstore_submit_button.parent().parent();
-		var td = tr.children();
-		
-		td.each(function(i) {
-			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
-			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-				  var selectValue = $(this).find('select').val();
-				  tdArr.push(selectValue || text);
-			  }
-			});
-		
-		console.log("배열에 담긴 값1 : "+tdArr);
-		//WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501
-		
-	
-		var wo_num = tdArr[0]; //작업지시번호
-		var business_name = tdArr[1]; //납품처명
-		var item_name = tdArr[2]; // 품명
-		var wo_qty = tdArr[3]; //주문수량
-	//	var sto_progress = tdArr[4]; //재고확인상태
-		var wo_date = tdArr[5]; //작업지시일자
-		var out_date = tdArr[6]; //납기일자
-	//	var unsto_progress = tdArr[7]; //진행현황
-		var emp_num =tdArr[8]; //출고담당자번호
-		var item_num =tdArr[9]; //품목번호
-	
-		console.log("배열에 담긴 값2 : "+tdArr);
-		//배열에 담긴 값2 : WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501,P001
-
-		$.ajax({
-				url:'addUntore',
-				type :'GET',
-				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
-				success:function(result){
-				
-				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
-				location.reload();
-				},
-			}); 
-		
-		
-	});	
-	});	
-
 </script>
 
 </head>
@@ -182,7 +130,7 @@ $(document).ready(function() {
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-								<td><input type="button"></td> <!-- 상세 -->
+								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
 								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
@@ -240,7 +188,7 @@ $(document).ready(function() {
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-								<td><input type="button"></td> <!-- 상세 -->
+								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${UnstoreDTO.wo_num}');"> <!-- 상세페이지 버튼 -->
 								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
@@ -284,7 +232,7 @@ $(document).ready(function() {
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-								<td><input type="button"></td> <!-- 상세 -->
+								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
 								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
@@ -399,7 +347,76 @@ $(document).ready(function() {
            "childForm", "width=650, height=600,top=300, left=300, resizable = no, scrollbars = no");    
  }
  
+ /* 상세보기 팝업 */
+
+ function unstoreDetail(wo_num) {
+ 	var _width = '1200';
+ 	var _height = '650';
+ 	var _left = Math.ceil((window.screen.width - _width) / 2);
+ 	var _top = Math.ceil((window.screen.height - _height) / 2);
+ 	let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+ 	window.open("${pageContext.request.contextPath}/wms/unstore/unstoreDetail?wo_num="+wo_num,
+ 							"밀키의 냉장고",popOption);}
+  
+ 
+ 
+//submit
+	$(function(){
+	$(".unstore_submit_button").click(function(){ 
+	
+		var str = "";
+		var tdArr = new Array();	// 배열 선언
+		var unstore_submit_button = $(this);
+		
+		var tr = unstore_submit_button.parent().parent();
+		var td = tr.children();
+		
+		td.each(function(i) {
+			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+				  var selectValue = $(this).find('select').val();
+				  tdArr.push(selectValue || text);
+			  }
+			});
+		
+		console.log("배열에 담긴 값1 : "+tdArr);
+		//WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501
+		
+	
+		var wo_num = tdArr[0]; //작업지시번호
+		var business_name = tdArr[1]; //납품처명
+		var item_name = tdArr[2]; // 품명
+		var wo_qty = tdArr[3]; //주문수량
+	//	var sto_progress = tdArr[4]; //재고확인상태
+		var wo_date = tdArr[5]; //작업지시일자
+		var out_date = tdArr[6]; //납기일자
+	//	var unsto_progress = tdArr[7]; //진행현황
+		var emp_num =tdArr[8]; //출고담당자번호
+		var item_num =tdArr[9]; //품목번호
+	
+		console.log("배열에 담긴 값2 : "+tdArr);
+		//배열에 담긴 값2 : WO2303290813,풀무원,야끼소바,200,재고확인,2023-03-29,2023-03-03,미출고,323031501,P001
+
+		$.ajax({
+				url:'addUntore',
+				type :'GET',
+				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
+				success:function(result){
+				
+				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
+				location.reload();
+				},
+			}); 
+		
+		
+	});	
+	});	
+
+</script>
+ 
  </script>
+ 
+   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </body>
 </html>

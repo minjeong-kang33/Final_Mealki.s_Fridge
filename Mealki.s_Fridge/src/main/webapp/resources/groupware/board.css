@@ -18,6 +18,7 @@
 /*    margin-left: 10px; */
 }
 
+
 #table_write{
    float: right;
    margin-right: 5px;
@@ -25,17 +26,30 @@
    width: 7%;
 }
 
+#table_button{
+   float: right;
+   margin-right: 5px;
+   margin-bottom: 30px;
+   width: 24%;
+}
+
 table{
    width: 60%;
-   text-align: center;
    border-color: #6C7383;
    border-collapse: collapse;
    margin-bottom: 20px;
 }
 
 #notice{
-   width: 70%;
+   width: 90%;
    text-align: center;
+   border-color: #6C7383;
+   border-collapse: collapse;
+   margin-bottom: 20px;
+}
+
+#content{
+   width: 90%;
    border-color: #6C7383;
    border-collapse: collapse;
    margin-bottom: 20px;
@@ -46,13 +60,18 @@ table{
 }
 
 #table_content tr{
-   height: 32px;
+   height: 35px;
    table-layout: fixed;
 }
 
 #table_content th{
-   background-color: #cccbe9;
-   color: black;
+   background-color: #4B49AC;
+   text-align: center;
+   color: #fff;
+}
+
+tr:hover td{ 
+	background-color: #e6e6f4; 
 }
 
   

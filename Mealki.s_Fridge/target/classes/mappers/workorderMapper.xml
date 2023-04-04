@@ -59,13 +59,17 @@
 			and date_format(c.out_date, '%Y-%m-%d') <![CDATA[<=]]>
 			#{out_date}
 		</if>
-		group by wo_num
+		group by wo_num, business_num, wo_date, out_date, wo_qty, manu_name, item_name, wo_empname
 		order by wo_date desc
 		limit #{startRow}, #{pageSize}
 	</select>
 
 	<select id="getContractCount" resultType="java.lang.Integer">
-		select count(*) from contract
+		select count(*) 
+		FROM contract 
+		WHERE business_num NOT IN (SELECT
+		DISTINCT business_num
+		FROM workorder)
 	</select>
 
 	<select id="getcontractList"
@@ -73,10 +77,11 @@
 		SELECT business_num, item_name, contract_qty, business_name,
 		date_format(business_date,'%Y-%m-%d') as business_date,
 		date_format(out_date,'%Y-%m-%d') as out_date
-		FROM contract WHERE business_num NOT IN (SELECT
+		FROM contract 
+		WHERE business_num NOT IN (SELECT
 		DISTINCT business_num
 		FROM workorder)
-		order by business_num desc
+		order by business_num
 		limit #{startRow}, #{pageSize}
 	</select>
 
@@ -104,7 +109,8 @@
 
 	<select id="WoUpdateForm"
 		resultType="com.itwillbs.domain.WorkorderDTO">
-		select w.wo_num, c.business_num, r.item_num as ritem_num,
+		select w.wo_num, c.business_num, date_format(w.wo_date,
+		'%Y년 %m월 %d일') as wo_date, r.item_num as ritem_num,
 		c.item_num, r.item_name as r_name, c.contract_qty, r.r_name as item_name, 
 		round(r.r_qty/p.weight*c.contract_qty) as wo_qty, w.manu_name,
 		(case

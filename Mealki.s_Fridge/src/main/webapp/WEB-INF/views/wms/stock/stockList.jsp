@@ -28,7 +28,7 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/stockList.css">
 <%-- <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empMamageTab.js"></script> --%>
 
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+
 </head>
 <body>
   <div class="container-scroller">
@@ -129,6 +129,28 @@
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
+
+  <!-- plugins:js -->
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page -->
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net/jquery.dataTables.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dataTables.select.min.js"></script>
+
+  <!-- End plugin js for this page -->
+  <!-- inject:js -->
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/off-canvas.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/hoverable-collapse.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/template.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/settings.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/todolist.js"></script>
+  <!-- endinject -->
+  <!-- Custom js for this page-->
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
+  <!-- End custom js for this page-->
 <script type="text/javascript">
 /* 상품유형 찾기 (팝업)*/
 $('#finditem_type').on("click",function(e){
@@ -149,7 +171,7 @@ $('#finditem_type').on("click",function(e){
 	window.open(popUrl,"창고 목록",popOption);
 	
 }); 
-</script>
+</script>  
 <script type="text/javascript">
  /* 실사량 수정 update_qnt */
 $(function(){
@@ -185,29 +207,7 @@ $(function(){
 	
 });
 
-
 </script>
-  <!-- plugins:js -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
-  <!-- endinject -->
-  <!-- Plugin js for this page -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/chart.js/Chart.min.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net/jquery.dataTables.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/vendors/datatables.net-bs4/dataTables.bootstrap4.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/dataTables.select.min.js"></script>
-
-  <!-- End plugin js for this page -->
-  <!-- inject:js -->
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/off-canvas.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/hoverable-collapse.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/template.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/settings.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/todolist.js"></script>
-  <!-- endinject -->
-  <!-- Custom js for this page-->
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
-  <!-- End custom js for this page-->
-
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 </html>

@@ -20,5 +20,4 @@ public interface CustomerDAO {
 	public void deleteCustomer(String business_num);
 	
 	public void updateCustomer(CustomerDTO customerDTO);
-
 }

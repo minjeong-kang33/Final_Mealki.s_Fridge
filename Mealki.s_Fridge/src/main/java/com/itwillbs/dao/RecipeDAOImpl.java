@@ -12,7 +12,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
-
+import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RecipeDTO;
 
@@ -74,6 +74,21 @@ public class RecipeDAOImpl implements RecipeDAO {
 		map.put("recipeNum", recipeNum);
 		return sqlSession.selectOne(namespace+".selectRecipe", map);
 	}
+
+	@Override
+	public String getMaxRecipeNum() {
+		System.out.println("RecipeDAOImpl getMaxRecipeNum()");
+		
+		return sqlSession.selectOne(namespace+".getMaxRecipeNum");
+	}
+
+	@Override
+	public List<ItemDTO> getItemList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".getItemList");
+	}
+
+
 
 
 

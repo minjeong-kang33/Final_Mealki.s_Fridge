@@ -43,4 +43,39 @@ public class QualityDAOImpl implements QualityDAO{
 		
 		return sqlSession.selectOne(namespace+".getQualityCode", wo_num);
 	}
+
+	@Override
+	public void insertQuality(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".insertQuality", qualityDTO);
+	}
+	
+	@Override
+	public void updateQuality(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".updateQuality", qualityDTO);
+	}
+
+	@Override
+	public List<Map<String, Object>> getQualityFailList(QualityDTO qualityDTO) {
+		System.out.println("QualityDAOImpl getQualityFailList()");
+		
+		return sqlSession.selectList(namespace+".getQualityFailList", qualityDTO);
+	}
+
+	@Override
+	public QualityDTO getFailWrite(String wo_num) {
+		return sqlSession.selectOne(namespace+".getFailWrite", wo_num);
+	}
+
+	@Override
+	public void insertFail(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".insertFail", qualityDTO);
+		
+	}
+
+	@Override
+	public void updateFail(QualityDTO qualityDTO) {
+		sqlSession.insert(namespace+".updateFail", qualityDTO);
+	}
+	
+	
 }

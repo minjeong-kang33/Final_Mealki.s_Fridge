@@ -60,4 +60,10 @@ public class StoreDAOImpl implements StoreDAO {
 		return sqlSession.selectOne(namespace+".getStoreSearchListCount", pageDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getStoreDetailList(String order_num) {
+		System.out.println("StoreDAOImpl getStoreDetailList");
+		return sqlSession.selectList(namespace+".getStoreDetailList",order_num);
+	}
+
 }
