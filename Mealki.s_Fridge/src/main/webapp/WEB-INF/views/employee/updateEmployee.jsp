@@ -257,7 +257,7 @@
 							<ul>
 							<c:forEach var="dto" items="${employeeDetail }">
 							<li><label for="emp_email" style="width: 75px;">이메일</label><input type="email" id="emp_email" name="emp_email" size="20" value="${dto.emp_email }"></li>
-							<li><label for="emp_addr"  style="width: 75px;">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly value="${dto.emp_addr }"></li>
+							<li><label for="emp_addr"  style="width: 75px;">주소</label> <input type="text" name="emp_addr" id="emp_addr"  value="${dto.emp_addr }"></li>
 							<li><label for="emp_addr"  style="width: 80px;"></label><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요" value="${dto.emp_addr2 }"></li>
 							</c:forEach>
 							</ul>
@@ -286,6 +286,21 @@
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 <script type="text/javascript">
 
+/* 이미지 미리보기 */
+ function setThumbnail(event) {
+	  // 선택된 파일 정보 가져오기
+	  var input = event.target;
+	  var file = input.files[0];
+	  
+	  // FileReader 객체 사용하여 파일 읽기
+	  var reader = new FileReader();
+	  reader.onload = function(e) {
+	    // 읽은 파일을 이미지로 변환하여 미리보기
+	    var img = document.getElementById("preview");
+	    img.src = e.target.result;
+	  }
+	  reader.readAsDataURL(file);
+	}
 
 /* 휴직 버튼*/
 $('#absenceEmployeeBtn').click(function(event) {
@@ -302,7 +317,7 @@ $('#absenceEmployeeBtn').click(function(event) {
         type :'GET',
         data:{emp_num:emp_num},
         dataType : 'json',
-        success:function(result){alert('휴직 처리 완료');}
+        success:function(result){alert('휴직 처리 완료'); window.close();}
     });
 });
 
@@ -322,12 +337,27 @@ $('#leaveEmployeeBtn').click(function(event) {
         type :'GET',
         data:{emp_num:emp_num},
         dataType : 'json',
-        success:function(result){alert('퇴직 처리 완료');}
+        success:function(result){alert('퇴직 처리 완료'); window.close();}
     });
 });
 
 
 
+</script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script>
+window.onload = function(){
+    document.getElementById("emp_addr").addEventListener("click", function(){ //주소입력칸을 클릭하면
+        //카카오 지도 발생
+        new daum.Postcode({
+            oncomplete: function(data) { //선택시 입력값 세팅
+                document.getElementById("emp_addr").value = data.address; // 주소 넣기
+                document.querySelector("input[name=emp_addr2]").focus(); //상세입력 포커싱
+            }
+        }).open();
+    });
+}
 </script>
 
 </body>
