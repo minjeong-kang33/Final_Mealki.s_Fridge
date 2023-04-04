@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -31,15 +32,22 @@
 <body>
 
             <div class="insertImployeeBody" >
-            	<form action="${pageContext.request.contextPath}/employee/insertEmployeePro" method="post" enctype="multipart/form-data"> 
+            	
+            	<form action="${pageContext.request.contextPath}/employee/updateEmployeePro" method="post" enctype="multipart/form-data"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
-            		<div class="img"><img id="preview" width="200" height="230" style="border-radius: 3px")/></div>
+            	 <div class="img"> 
+            		    <c:forEach var="dto" items="${employeeDetail }">
+					            <img id="preview" width="200" height="230" style="border-radius: 3px" src="${pageContext.request.contextPath}/resources/employee/upload/${dto.emp_img}">
+					            <input type="hidden" name="oldfile" value="${dto.emp_img }">
+				    	</c:forEach>
+				    </div>  	
             		<div class="imgbtn">
 					<label for="file">
 					  <span class="btn btn-outline-danger btn-icon-text" style="width: 200px;"><i class="ti-upload btn-icon-prepend"></i>사진 업로드하기</span>
 					</label>
             		<input type="file" name="file" id="file" accept="image/*" onchange="setThumbnail(event);"></div>
+            	
             	</div>
             	
             	
@@ -49,59 +57,197 @@
             	<fieldset>
 						<div class="left">
 						<ul>
-							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required></li>
-							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required placeholder="6자리 (901123)"></li>
-							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required></li>
-							<li><label for="emp_classification" class="emp_classification">직원분류</label>
+						 <c:forEach var="dto" items="${employeeDetail }">
+							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required value="${dto.emp_Kname }"></li>
+							<li><label for="emp_birth">생년월일</label> ${dto.emp_birth}</li>
+							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required value="0${dto.emp_tel }"></li>
+							<li><label for="emp_classification" class="emp_classification" >직원분류</label>
 									<select name="emp_classification" class="emp_classification_Option">
-										<option value=""> 직원분류 선택 </option>
-										<option value="3"> 현장직 </option>
+									
+									<c:if test="${dto.emp_classification eq '3' }">
+										<option value="3" selected> 현장직 </option>
 										<option value="2"> 사무직 </option>
+									</c:if>
+									
+									<c:if test="${dto.emp_classification eq '2' }">
+										<option value="3"> 현장직 </option>
+										<option value="2" selected> 사무직 </option>
+									</c:if>
+
 									</select>
 									
 							</li>
 							<li><label for="dept_position" class="dept_position" >직책</label> 	
 									<select name="dept_position" class="dept_position_option">
-										<option value=""> 직책 선택 </option>
-										<option value="팀원"> 팀원 </option>
+
+									<c:if test="${dto.dept_position eq '팀원' }">
+										<option value="팀원" selected> 팀원 </option>
 										<option value="파트장"> 파트장 </option>
 										<option value="팀장"> 팀장 </option>
 										<option value="본부장"> 본부장 </option>
+									</c:if>		
+									
+									<c:if test="${dto.dept_position eq '파트장' }">
+										<option value="팀원" > 팀원 </option>
+										<option value="파트장" selected> 파트장 </option>
+										<option value="팀장"> 팀장 </option>
+										<option value="본부장"> 본부장 </option>
+									</c:if>				
+									
+									<c:if test="${dto.dept_position eq '팀장' }">
+										<option value="팀원" > 팀원 </option>
+										<option value="파트장"> 파트장 </option>
+										<option value="팀장" selected> 팀장 </option>
+										<option value="본부장"> 본부장 </option>
+									</c:if>		
+									
+									<c:if test="${dto.dept_position eq '본부장' }">
+										<option value="팀원" > 팀원 </option>
+										<option value="파트장"> 파트장 </option>
+										<option value="팀장"> 팀장 </option>
+										<option value="본부장" selected> 본부장 </option>
+									</c:if>							
+
 									</select>
 														
 							</li>
-							</ul>
+						   </c:forEach>
+						</ul>
+							
 						</div>
 						
 						<div class="right">
 							<ul>
-							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required></li>
-							<li><label for="emp_gender">성별</label> <input type="radio" name="emp_gender" id="남" value="남"> 남 
-																	<input type="radio" name="emp_gender" id="여" value="여"> 여</li>
-							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required></li>
+							
+							<c:forEach var="dto" items="${employeeDetail }">
+							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required value="${dto.emp_Ename }"></li>
+							<li><label for="emp_gender">성별</label> ${dto.emp_gender }</li>
+							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required value="0${dto.emp_phone }"></li>
 							
 							<li><label for="dept_num" class="dept_num">부서</label> 
-										<select name="dept_num" class="dept_num_option">
-											<option value=""> 부서 선택 </option>
-											<option value="100"> 경리부 </option>
+								<select name="dept_num" class="dept_num_option">
+										
+									<c:if test="${dto.dept_num eq '100' }">
+											<option value="100" selected> 경리부 </option>
 											<option value="200"> 영업부 </option>
 											<option value="300"> 생산부 </option>
 											<option value="400"> 자재부 </option>
 											<option value="500"> 인사부 </option>
 											<option value="600"> 전산부 </option>
-										</select>							
+									</c:if>
+									
+									<c:if test="${dto.dept_num eq '200' }">
+											<option value="100"> 경리부 </option>
+											<option value="200" selected> 영업부 </option>
+											<option value="300"> 생산부 </option>
+											<option value="400"> 자재부 </option>
+											<option value="500"> 인사부 </option>
+											<option value="600"> 전산부 </option>
+									</c:if>
+									
+									
+									<c:if test="${dto.dept_num eq '300' }">
+											<option value="100"> 경리부 </option>
+											<option value="200"> 영업부 </option>
+											<option value="300" selected> 생산부 </option>
+											<option value="400"> 자재부 </option>
+											<option value="500"> 인사부 </option>
+											<option value="600"> 전산부 </option>
+									</c:if>
+									
+									<c:if test="${dto.dept_num eq '400' }">
+											<option value="100"> 경리부 </option>
+											<option value="200"> 영업부 </option>
+											<option value="300"> 생산부 </option>
+											<option value="400" selected> 자재부 </option>
+											<option value="500"> 인사부 </option>
+											<option value="600"> 전산부 </option>
+									</c:if>
+									
+									
+									<c:if test="${dto.dept_num eq '500' }">
+											<option value="100"> 경리부 </option>
+											<option value="200"> 영업부 </option>
+											<option value="300"> 생산부 </option>
+											<option value="400"> 자재부 </option>
+											<option value="500" selected> 인사부 </option>
+											<option value="600"> 전산부 </option>
+									</c:if>
+									
+									<c:if test="${dto.dept_num eq '600' }">
+											<option value="100"> 경리부 </option>
+											<option value="200"> 영업부 </option>
+											<option value="300"> 생산부 </option>
+											<option value="400"> 자재부 </option>
+											<option value="500"> 인사부 </option>
+											<option value="600" selected> 전산부 </option>
+									</c:if>
+
+								</select>							
 								</li>
 								<li><label for="dept_duty">직위</label> 
 									<select name="dept_duty" class="dept_duty_option">
-										<option value=""> 직위 선택 </option>
-										<option value="사원"> 사원 </option>
+									<c:if test="${dto.dept_duty eq '사원' }">
+										<option value="사원" selected> 사원 </option>
 										<option value="주임"> 주임 </option>
 										<option value="대리"> 대리 </option>
 										<option value="과장"> 과장 </option>
 										<option value="차장"> 차장 </option>
 										<option value="부장"> 부장 </option>
+									</c:if>
+									
+									<c:if test="${dto.dept_duty eq '주임' }">
+										<option value="사원"> 사원 </option>
+										<option value="주임" selected> 주임 </option>
+										<option value="대리"> 대리 </option>
+										<option value="과장"> 과장 </option>
+										<option value="차장"> 차장 </option>
+										<option value="부장"> 부장 </option>
+									</c:if>
+									
+																		
+									<c:if test="${dto.dept_duty eq '대리' }">
+										<option value="사원"> 사원 </option>
+										<option value="주임" > 주임 </option>
+										<option value="대리" selected> 대리 </option>
+										<option value="과장"> 과장 </option>
+										<option value="차장"> 차장 </option>
+										<option value="부장"> 부장 </option>
+									</c:if>
+									
+									<c:if test="${dto.dept_duty eq '과장' }">
+										<option value="사원" > 사원 </option>
+										<option value="주임"> 주임 </option>
+										<option value="대리"> 대리 </option>
+										<option value="과장" selected> 과장 </option>
+										<option value="차장" > 차장 </option>
+										<option value="부장"> 부장 </option>
+									</c:if>
+									
+									<c:if test="${dto.dept_duty eq '차장' }">
+										<option value="사원"> 사원 </option>
+										<option value="주임"> 주임 </option>
+										<option value="대리"> 대리 </option>
+										<option value="과장"> 과장 </option>
+										<option value="차장" selected> 차장 </option>
+										<option value="부장"> 부장 </option>
+									</c:if>
+									
+																		
+									<c:if test="${dto.dept_duty eq '부장' }">
+										<option value="사원"> 사원 </option>
+										<option value="주임" > 주임 </option>
+										<option value="대리"> 대리 </option>
+										<option value="과장"> 과장 </option>
+										<option value="차장"> 차장 </option>
+										<option value="부장" selected> 부장 </option>
+									</c:if>
+									
+									
+									
 									</select>							
 								</li>
+								</c:forEach>
 								</ul>
 						</div>
 						
@@ -109,9 +255,11 @@
 						<div class="mid">
 						
 							<ul>
-							<li><label for="emp_email" style="width: 75px;">이메일</label><input type="email" id="emp_email" name="emp_email" size="20"></li>
-							<li><label for="emp_addr"  style="width: 75px;">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly ></li>
-							<li><label for="emp_addr"  style="width: 80px;"></label><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요"></li>
+							<c:forEach var="dto" items="${employeeDetail }">
+							<li><label for="emp_email" style="width: 75px;">이메일</label><input type="email" id="emp_email" name="emp_email" size="20" value="${dto.emp_email }"></li>
+							<li><label for="emp_addr"  style="width: 75px;">주소</label> <input type="text" name="emp_addr" id="emp_addr" placeholder="클릭하여 주소를 입력하세요" readonly value="${dto.emp_addr }"></li>
+							<li><label for="emp_addr"  style="width: 80px;"></label><input type="text" name="emp_addr2" id="emp_addr2" placeholder="상세주소를 입력하세요" value="${dto.emp_addr2 }"></li>
+							</c:forEach>
 							</ul>
 						
 						</div>
@@ -121,9 +269,10 @@
 				<!-- 전송 버튼 -->
 				<fieldset>
 				<div class="submit_Btn">
-					<input type="submit" value="직원등록" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
-					<input type="reset" value="초기화" class="btn btn-dark btn-icon-text" id="insertEmployeeReset">
-				
+					<input type="submit" value="휴직" class="btn btn-inverse-secondary btn-fw" id="insertEmployeeBtn" /> 
+					<input type="submit" value="퇴직" class="btn btn-inverse-danger btn-fw" id="insertEmployeeBtn" />
+					<input type="submit" value="수정" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
+					<input type="reset" value="초기화" class="btn btn-dark btn-icon-text" id="insertEmployeeReset"> 
 				</div>	
 				</fieldset>
 				</div>
