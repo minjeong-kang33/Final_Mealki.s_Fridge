@@ -88,8 +88,8 @@
 					<tr><th><input type="checkbox" name="itemCheckAll" value="${RecipeDTO.r_num}" id="checkAll"></th>
 				 	<th>레시피번호</th>
             	 	<th>레시피코드</th>
-           		 	<th>품목코드</th>
  		    	 	<th>레시피이름</th>
+           		 	<th>품목코드</th>
            	 	 	<th>식자재이름</th>
            		 	<th>소요량</th>
            		 	<th>등록일</th>
@@ -100,8 +100,8 @@
 					<tr><td><input type="checkbox" name="selectItem" value="${RecipeDTO.r_num}"></td>
 					    <td>${RecipeDTO.r_num}</td>
 					    <td>${RecipeDTO.r_code}</td>
-					    <td>${RecipeDTO.item_num}</td>
 					    <td>${RecipeDTO.r_name}</td>
+					    <td>${RecipeDTO.item_num}</td>
 					    <td>${RecipeDTO.item_name}</td>
 					    <td>${RecipeDTO.r_qty}</td>
 					    <td><fmt:formatDate value="${RecipeDTO.r_date}" pattern="yyyy.MM.dd"/></td>
@@ -204,7 +204,17 @@ function fun1() {
         }
       });
     });
-
+    
+    //팝업창에서 전달받은 정보 -> 입력란 업데이트하는 함수추가
+    function updateItemInfo(itemNum, itemName) {
+    	  let focusedInput = document.activeElement;
+    	  if (focusedInput && focusedInput.name === 'item_num') {
+    	    focusedInput.value = itemNum;
+    	    focusedInput.parentNode.nextElementSibling.querySelector("input[name='item_name']").value = itemName;
+    	  }
+    	}
+    
+    
     // 레시피추가 버튼 이벤트
     document.getElementById("addRecipeButton").addEventListener("click", function() {
       let itemTable = document.getElementById("itemTable");
@@ -212,22 +222,31 @@ function fun1() {
 
       newRow.innerHTML = `
 			    <td><input type="checkbox" name="selectItem"></td>
-			    <td><input type="text" name="r_num" placeholder="레시피번호"></td>
+			    <td><input type="text" name="r_num" placeholder="레시피번호" readonly></td>
 			    <td><input type="text" name="r_code" placeholder="레시피코드"></td>
-			    <td><input type="text" name="item_num" placeholder="품목코드"></td>
 			    <td><input type="text" name="r_name" placeholder="레시피이름"></td>
-			    <td><input type="text" name="item_name" placeholder="식자재이름"></td>
+			    <td><input type="text" name="item_num" placeholder="품목코드" readonly ></td>
+			    <td><input type="text" name="item_name" placeholder="식자재이름" readonly ></td>
 			    <td><input type="text" name="r_qty" placeholder="소요량"></td>
 			    <td><input type="text" name="r_date" placeholder="등록일" readonly></td>
 			    <td><input type="text" name="r_etc" placeholder="비고"></td>`;
 
-      let selectItemPrefix = newRow.querySelector("select[name='item_prefix']");
-      let inputItemNum = newRow.querySelector("input[name='r_num']");
+// 			    newRow.querySelector("input[name='item_num']").addEventListener("click", function() {
+// 			    window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
+// 			  });
 
-      selectItemPrefix.addEventListener("change", function() {
-        let prefix = selectItemPrefix.value;
-        let itemNum = "";
+			newRow.querySelector("input[name='item_num']").addEventListener("click", function() {
+				let focusedInput = this;
+   			window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
+    		this.focus();
+			});
 
+		let inputItemNum = newRow.querySelector("input[name='r_num']");
+
+  		// 아이템 번호 생성
+  		inputItemNum.addEventListener("focus", function() {
+    	let prefix = "A"; 
+    	let itemNum = "";
 
 
       });
@@ -241,8 +260,8 @@ function fun1() {
 
       let recipeNum = element.querySelector('td:nth-child(2)').textContent;
       let r_code = element.querySelector('td:nth-child(3)').textContent;
-      let item_num = element.querySelector('td:nth-child(4)').textContent;
-      let r_name = element.querySelector('td:nth-child(5)').textContent;
+      let r_name = element.querySelector('td:nth-child(4)').textContent;
+      let item_num = element.querySelector('td:nth-child(5)').textContent;
       let item_name = element.querySelector('td:nth-child(6)').textContent;
       let r_qty = element.querySelector('td:nth-child(7)').textContent;
       let r_date = element.querySelector('td:nth-child(8)').textContent;
@@ -251,10 +270,10 @@ function fun1() {
 
       element.innerHTML = `
     	  <td><input type="checkbox" name="selectItem"></td>
-    	  	<td><input type="text" name="r_num" value="\${recipeNum}" placeholder="레시피번호"></td>
+    	  	<td><input type="text" name="r_num" value="\${recipeNum}" placeholder="레시피번호" readonly></td>
 		    <td><input type="text" name="r_code" value="\${r_code}" placeholder="레시피코드"></td>
-		    <td><input type="text" name="item_num" value="\${item_num}" placeholder="품목코드"></td>
 		    <td><input type="text" name="r_name" value="\${r_name}" placeholder="레시피이름"></td>
+		    <td><input type="text" name="item_num" value="\${item_num}" placeholder="품목코드"></td>
 		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
 		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량"></td>
 		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일" readonly></td>
