@@ -43,6 +43,7 @@ public class BoardController {
 		boardDTO.setBo_name(request.getParameter("bo_name"));
 		boardDTO.setBo_title(request.getParameter("bo_title"));
 		boardDTO.setBo_content(request.getParameter("bo_content"));
+		boardDTO.setTop_fixed(Integer.parseInt(request.getParameter("top_fixed")));
 		
 		UUID uuid=UUID.randomUUID();
 		String filename=uuid.toString()+"_"+file.getOriginalFilename();
@@ -65,7 +66,7 @@ public class BoardController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		int pageSize=17;
+		int pageSize=20;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
@@ -142,6 +143,34 @@ public class BoardController {
 		model.addAttribute("boardDTO", boardDTO);
 //		주소줄 변경없이 이동
 		return "groupware/board/boardUpdate";
+	}
+	
+	@RequestMapping(value = "/groupware/board/boardUpdatePro", method = RequestMethod.POST)
+	public String boardUpdatePro(HttpServletRequest request, MultipartFile file) throws Exception{
+		System.out.println("BoardController boardUpdatePro()");
+		
+		BoardDTO boardDTO=new BoardDTO();
+		boardDTO.setBo_num(Integer.parseInt(request.getParameter("bo_num")));
+		boardDTO.setBo_name(request.getParameter("bo_name"));
+		boardDTO.setBo_title(request.getParameter("bo_title"));
+		boardDTO.setBo_content(request.getParameter("bo_content"));
+		boardDTO.setTop_fixed(Integer.parseInt(request.getParameter("top_fixed")));
+		
+		if(file.isEmpty()) {
+			boardDTO.setFile(request.getParameter("oldfile"));
+		}else {
+			
+		UUID uuid=UUID.randomUUID();
+		String filename=uuid.toString()+"_"+file.getOriginalFilename();
+		FileCopyUtils.copy(file.getBytes(), new File(boardUploadPath,filename));
+		
+		boardDTO.setFile(filename);
+		}
+		
+		boardService.updateBoard(boardDTO);
+		
+		
+		return "redirect:/groupware/board/noticeList";
 	}
 
 }

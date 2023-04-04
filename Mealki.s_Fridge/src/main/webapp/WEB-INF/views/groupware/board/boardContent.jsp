@@ -58,14 +58,13 @@
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
-<article>
-	<table border="1" id="notice">
-		<tr><th colspan="4" style="height: 50px;">${boardDTO.bo_title}</th></tr>
-		<tr><th style="width: 16%; height: 50px;">번호 : ${boardDTO.bo_num}</th>
-			<th style="width: 28%;"><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></th>
-			<th style="width: 28%;">조회수 : ${boardDTO.bo_count}</th>
-			<th style="width: 28%;">작성자 : ${boardDTO.bo_name}</th></tr>
-		<tr><th style="height: 500px;">내용</th><td colspan="3">${boardDTO.bo_content}</td></tr>		
+<article id="table_content">
+	<table border="1" id="content">
+		<tr><th>제목</th><td>${boardDTO.bo_title}</td></tr>
+		<tr><th>작성일</th><td><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></td></tr>
+		<tr><th>조회수</th><td>${boardDTO.bo_count}</td></tr>
+		<tr><th>작성자</th><td>${boardDTO.bo_name}</td></tr>
+		<tr><th style="height: 500px;">내용</th><td><textarea>${boardDTO.bo_content}</textarea></td></tr>		
 		<tr><th style="height: 50px;">첨부파일</th>
 		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>${boardDTO.file}</a></td></tr>
 		 
