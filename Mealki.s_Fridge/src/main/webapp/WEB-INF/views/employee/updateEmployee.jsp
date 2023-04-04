@@ -269,16 +269,66 @@
 				<!-- 전송 버튼 -->
 				<fieldset>
 				<div class="submit_Btn">
-					<input type="submit" value="휴직" class="btn btn-inverse-secondary btn-fw" id="insertEmployeeBtn" /> 
-					<input type="submit" value="퇴직" class="btn btn-inverse-danger btn-fw" id="insertEmployeeBtn" />
+				<c:forEach var="dto" items="${employeeDetail }">
+					<button value="${dto.emp_num }" class="btn btn-inverse-secondary btn-fw" id="absenceEmployeeBtn"  onClick="absenceEmployee(${dto.emp_num })">휴직</button>
+					<button value="${dto.emp_num }" class="btn btn-inverse-danger btn-fw" id="leaveEmployeeBtn" onClick="leaveEmployee(${dto.emp_num })">퇴직</button>
 					<input type="submit" value="수정" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
 					<input type="reset" value="초기화" class="btn btn-dark btn-icon-text" id="insertEmployeeReset"> 
+				</c:forEach>
 				</div>	
 				</fieldset>
 				</div>
 				</form>
             
             </div>
+
+
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<script type="text/javascript">
+
+
+/* 휴직 버튼*/
+$('#absenceEmployeeBtn').click(function(event) {
+    event.preventDefault();
+    var emp_num = $(this).val();  // 버튼의 value 값 가져오기
+    alert(emp_num);
+
+    if(!confirm('휴직 처리를 하시겠습니까?')){
+        return false;
+    }
+
+    $.ajax({
+        url:'${pageContext.request.contextPath}/employee/absenceEmployee',
+        type :'GET',
+        data:{emp_num:emp_num},
+        dataType : 'json',
+        success:function(result){alert('휴직 처리 완료');}
+    });
+});
+
+
+/* 퇴직 버튼*/
+$('#leaveEmployeeBtn').click(function(event) {
+    event.preventDefault();
+    var emp_num = $(this).val();  // 버튼의 value 값 가져오기
+    alert(emp_num);
+
+    if(!confirm('퇴직 처리를 하시겠습니까?')){
+        return false;
+    }
+
+    $.ajax({
+        url:'${pageContext.request.contextPath}/employee/leaveEmployee',
+        type :'GET',
+        data:{emp_num:emp_num},
+        dataType : 'json',
+        success:function(result){alert('퇴직 처리 완료');}
+    });
+});
+
+
+
+</script>
 
 </body>
 </html>

@@ -146,7 +146,6 @@ public class EmployeeController {
 		System.out.println("MemberController employeeDetail");
 		
 		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
-		System.out.println(emp_num);
 		
 		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
 		model.addAttribute("employeeDetail",employeeDetail);
@@ -160,13 +159,34 @@ public class EmployeeController {
 		
 		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
 		
-		System.out.println(emp_num);
-		
 		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
 		model.addAttribute("employeeDetail",employeeDetail);
 			
 		
 		return "employee/updateEmployee";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/employee/absenceEmployee", method = RequestMethod.GET)
+	public String absenceEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController absenceEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+
+		return "1";
+	}
+	
+	
+	@ResponseBody
+	@RequestMapping(value = "/employee/leaveEmployee", method = RequestMethod.GET)
+	public String leaveEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController leaveEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+
+		return "1";
 	}
 	
 	
