@@ -186,11 +186,42 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value = "/employee/updateEmployeePro", method = RequestMethod.POST)
-	public String updateEmployeePro(EmployeeDTO employeeDTO, HttpSession session) {
+	public String updateEmployeePro(HttpServletRequest request, MultipartFile file) throws Exception{
 		System.out.println("EmployeeController updateEmployeePro");
-	
 		
-		return "employee/updateEmployee";
+		System.out.println(request.getParameter("emp_num"));
+		System.out.println(request.getParameter("emp_Kname"));
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+		
+		  EmployeeDTO employeeDTO = new EmployeeDTO();
+		  employeeDTO.setDept_num(request.getParameter("dept_num"));
+		  employeeDTO.setEmp_Kname(request.getParameter("emp_Kname"));
+		  employeeDTO.setEmp_Ename(request.getParameter("emp_Ename"));
+		  employeeDTO.setEmp_tel(Integer.parseInt(request.getParameter("emp_tel")));
+		  employeeDTO.setEmp_phone(Integer.parseInt(request.getParameter("emp_phone")));
+		  employeeDTO.setEmp_email(request.getParameter("emp_email"));
+		  employeeDTO.setEmp_addr(request.getParameter("emp_addr"));
+		  employeeDTO.setEmp_addr2(request.getParameter("emp_addr2"));
+		  employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter("emp_classification")));
+		  employeeDTO.setDept_position(request.getParameter("dept_position"));
+		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
+		  employeeDTO.setEmp_num(emp_num);
+		  
+			if(file.isEmpty()) {
+				
+				employeeDTO.setEmp_img(request.getParameter("oldfile"));
+			} else {
+				UUID uuid=UUID.randomUUID();
+				String filename=uuid.toString()+"_"+file.getOriginalFilename();
+				FileCopyUtils.copy(file.getBytes(), new File(employeeUploadPath,filename));
+				employeeDTO.setEmp_img(filename);
+			}
+			
+			employeeService.updateEmployee(employeeDTO);
+			
+		return "employee/empMsg";
 	}
 	
 	

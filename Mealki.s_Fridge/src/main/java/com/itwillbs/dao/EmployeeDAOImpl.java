@@ -6,7 +6,9 @@ import java.util.Map;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 
+import org.apache.ibatis.javassist.scopedpool.ScopedClassPool;
 import org.apache.ibatis.session.SqlSession;
+import org.apache.taglibs.standard.extra.spath.SPathFilter;
 import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
@@ -47,8 +49,15 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	@Override
 	public List<Map<String, Object>> getEmployeeDetail(int emp_num) {
 		System.out.println("EmployeeDAOImpl getEmployeeDetail");
-		System.out.println(emp_num);
 		return sqlSession.selectList(namespace+".getEmployeeDetail",emp_num);
+	}
+
+	@Override
+	public void updateEmployee(EmployeeDTO employeeDTO) {
+		System.out.println("EmployeeDAOImpl updateEmployee");
+		System.out.println(employeeDTO.getEmp_Kname());
+		System.out.println(employeeDTO.getEmp_num());
+		sqlSession.update(namespace+".updateEmployee",employeeDTO);
 	};
 	
 }
