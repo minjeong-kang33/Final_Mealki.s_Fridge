@@ -82,11 +82,6 @@ public class EmployeeController {
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
 		String search_check = request.getParameter("search_check");
-		
-		System.out.println(search_option);
-		System.out.println(keyword);
-		System.out.println(search_check);
-		
 		SearchDTO searchDTO = new SearchDTO();
 		searchDTO.setKeyword(keyword);
 		searchDTO.setSearch_option(search_option);
@@ -187,6 +182,15 @@ public class EmployeeController {
 		System.out.println(emp_num);
 
 		return "1";
+	}
+	
+	
+	@RequestMapping(value = "/employee/updateEmployeePro", method = RequestMethod.POST)
+	public String updateEmployeePro(EmployeeDTO employeeDTO, HttpSession session) {
+		System.out.println("EmployeeController updateEmployeePro");
+	
+		
+		return "employee/updateEmployee";
 	}
 	
 	
