@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.RecipeDAO;
+import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RecipeDTO;
 
@@ -61,6 +62,18 @@ public class RecipeServiceImpl implements RecipeService{
 	public void deleteRecipe(String recipeNum) {
 		// TODO Auto-generated method stub
 		recipeDAO.deleteRecipe(recipeNum);
+	}
+
+	@Override
+	public String getMaxRecipeNum() {
+		// TODO Auto-generated method stub
+		return recipeDAO.getMaxRecipeNum();
+	}
+
+	@Override
+	public List<ItemDTO> getItemList() {
+		// TODO Auto-generated method stub
+		return recipeDAO.getItemList();
 	}
 
 

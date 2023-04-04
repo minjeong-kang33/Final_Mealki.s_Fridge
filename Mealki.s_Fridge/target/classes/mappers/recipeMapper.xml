@@ -36,8 +36,10 @@
         
     </select>    
     
-    <select id="getMaxRecipeNum" resultType="java.lang.String" >
-    select max(r_num) from recipe;
+    <select id="getMaxRecipeNum" resultType="string" >
+      select r_num from recipe 
+      where (LENGTH(r_num) - LENGTH(REPLACE(r_num, 'R', ''))) = 1 ORDER BY CAST(SUBSTRING(r_num, 2) 
+      AS UNSIGNED) DESC LIMIT 1;
     </select>
     
     <insert id="insertRecipe">
@@ -69,6 +71,12 @@
     from recipe
     where r_num = #{recipeNum}
   </select>
+  
+  <select id="getItemList" resultType="com.itwillbs.domain.ItemDTO">
+  select item_num, item_name from products
+  where item_num like "I%";
+  </select>
+  
     
     
 </mapper>

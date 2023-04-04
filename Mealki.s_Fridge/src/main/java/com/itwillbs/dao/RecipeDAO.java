@@ -3,6 +3,7 @@ package com.itwillbs.dao;
 import java.util.List;
 
 
+import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.RecipeDTO;
 
@@ -16,5 +17,6 @@ public interface RecipeDAO {
 	void deleteRecipe(String recipeNum);
 	RecipeDTO selectRecipe(String recipeNum);
 	String getMaxRecipeNum();
+	List<ItemDTO> getItemList();
 
 }
