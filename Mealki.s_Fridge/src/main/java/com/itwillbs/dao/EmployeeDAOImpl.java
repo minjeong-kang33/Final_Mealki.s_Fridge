@@ -55,9 +55,20 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	@Override
 	public void updateEmployee(EmployeeDTO employeeDTO) {
 		System.out.println("EmployeeDAOImpl updateEmployee");
-		System.out.println(employeeDTO.getEmp_Kname());
-		System.out.println(employeeDTO.getEmp_num());
+	
 		sqlSession.update(namespace+".updateEmployee",employeeDTO);
+	}
+
+	@Override
+	public void absenceEmployee(int emp_num) {
+		System.out.println("EmployeeDAOImpl absenceEmployee");
+		sqlSession.update(namespace+".absenceEmployee",emp_num);
+	}
+
+	@Override
+	public void leaveEmployee(int emp_num) {
+		System.out.println("EmployeeDAOImpl leaveEmployee");
+		sqlSession.update(namespace+".leaveEmployee",emp_num);		
 	};
 	
 }

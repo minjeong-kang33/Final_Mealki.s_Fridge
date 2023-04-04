@@ -168,6 +168,8 @@ public class EmployeeController {
 		
 		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
 		System.out.println(emp_num);
+		
+		employeeService.absenceEmployee(emp_num);
 
 		return "1";
 	}
@@ -180,6 +182,8 @@ public class EmployeeController {
 		
 		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
 		System.out.println(emp_num);
+		
+		employeeService.leaveEmployee(emp_num);
 
 		return "1";
 	}

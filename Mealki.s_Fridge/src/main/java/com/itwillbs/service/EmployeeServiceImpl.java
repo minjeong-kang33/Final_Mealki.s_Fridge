@@ -55,5 +55,17 @@ public class EmployeeServiceImpl implements EmployeeService{
 		employeeDAO.updateEmployee(employeeDTO);
 	}
 
+	@Override
+	public void absenceEmployee(int emp_num) {
+		System.out.println("EmployeeServiceImpl absenceEmployee");
+		employeeDAO.absenceEmployee(emp_num);
+	}
+
+	@Override
+	public void leaveEmployee(int emp_num) {
+		System.out.println("EmployeeServiceImpl absenceEmployee");
+		employeeDAO.leaveEmployee(emp_num);		
+	}
+
 	
 }
