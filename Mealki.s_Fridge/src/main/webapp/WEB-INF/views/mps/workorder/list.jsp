@@ -143,6 +143,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						<div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -155,6 +156,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						</div>
 				      </div>
 				      
 				      <div id="tab02">
@@ -194,6 +196,7 @@
 						
 						</table>
 							<!-- 탭 페이징처리 -->
+						  <div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -205,6 +208,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				      <div id="tab03">
@@ -243,6 +247,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						  <div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -254,6 +259,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				      <div id="tab04">
@@ -291,6 +297,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						<div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -302,6 +309,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				    </div>
