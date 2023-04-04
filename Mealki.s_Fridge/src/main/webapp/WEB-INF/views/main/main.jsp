@@ -10,7 +10,6 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
@@ -25,20 +24,8 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-
-  
-  <!-- jQuery -->  
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
-
-  <!-- 날씨 -->
-  <script src="${pageContext.request.contextPath}/resources/main/weather.js"></script>
-
-  <!-- 달력 -->
-  <script src="${pageContext.request.contextPath}/resources/main/calendar.js"></script>
-  <script src="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.js"></script>
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.css">
-
+  <%-- <script src="${pageContext.request.contextPath}/resources/main/todoList.js"></script> --%>
 </head>
 <body>
 <!-- 민정: 아이디값 없으면 로그인 화면으로. 시작 -->
@@ -80,13 +67,30 @@
               </div>
             </div>
 <!-- 날씨 끝 --> 
+<!-- 할 일 목록 시작 -->          
+             <div class="col-md-5 grid-margin stretch-card" style="height: 441px !important;">
+				<div class="card">
+					<div class="card-body">
+						<h4 class="card-title" style="margin-top: 10px;">To Do Lists</h4>
+						 <div class="list-wrapper pt-2"> 
+						<form class="toDoForm">
+      						<div class="add-items d-flex mb-0 mt-2">
+								<input type="text" placeholder="할 일을 입력하세요" class="form-control todo-list-input" style="background-color: #ebf1ff; width: 580px; padding-left: 10px;">
+							</div>
+  					  	</form>
+    					<ul class="toDoList" style="margin-top: 10px; width: 580px;"></ul>
+    					 </div> 
+						</div>
+					</div>
+           		</div> 
+<!-- 할일목록 끝 -->       
 <!-- 버튼? 시작 -->            
-            <div class="col-md-6 grid-margin transparent">
+            <!-- <div class="col-md-6 grid-margin transparent">
               <div class="row">
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-tale">
                     <div class="card-body">
-                      <p class="mb-4">Today’s Bookings</p>
+                      <p class="mb-4">당일 입고예정</p>
                       <p class="fs-30 mb-2">4006</p>
                       <p>10.00% (30 days)</p>
                     </div>
@@ -95,7 +99,7 @@
                 <div class="col-md-6 mb-4 stretch-card transparent">
                   <div class="card card-dark-blue">
                     <div class="card-body">
-                      <p class="mb-4">Total Bookings</p>
+                      <p class="mb-4"></p>
                       <p class="fs-30 mb-2">61344</p>
                       <p>22.00% (30 days)</p>
                     </div>
@@ -115,84 +119,75 @@
                 <div class="col-md-6 stretch-card transparent">
                   <div class="card card-light-danger">
                     <div class="card-body">
-                      <p class="mb-4">Number of Clients</p>
+                      <p class="mb-4">이 달 계약성사</p>
                       <p class="fs-30 mb-2">47033</p>
                       <p>0.22% (30 days)</p>
                     </div>
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
-<!-- 버튼? 끝 -->           
+            </div>-->
+<!-- 버튼? 끝 -->            
+          </div> 
           <div class="row">
 <!-- 달력 시작 -->          
             <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
-               <div id="calendar" style="width: 780px; background-color: white; padding:20px; border-radius: 25px; margin-left: 15px;"></div>
+               <div id="calendar" style="width: 780px; background-color: white; padding:20px; border-radius: 25px; margin-left: 15px; height: 630px !important;"></div>
            	 </div>
             </div>
 <!-- 달력 끝 -->  
-<!-- 할일목록 시작 -->          
-            <div class="col-md-5 grid-margin stretch-card">
-				<div class="card">
-					<div class="card-body">
-						<h4 class="card-title">To Do Lists</h4>
-						<div class="list-wrapper pt-2">
-							<ul class="d-flex flex-column-reverse todo-list todo-list-custom">
-								<li>
-								<div class="form-check form-check-flat">
-									<label class="form-check-label">
-									<input class="checkbox" type="checkbox">Meeting with Urban Team
-									</label>
-								</div>
-								<i class="remove ti-close"></i>
-								</li>
-								<li class="completed">
-								<div class="form-check form-check-flat">
-									<label class="form-check-label">
-									<input class="checkbox" type="checkbox" checked>Duplicate a project for new customer
-									</label>
-								</div>
-								<i class="remove ti-close"></i>
-								</li>
-								<li>
-								<div class="form-check form-check-flat">
-									<label class="form-check-label">
-										<input class="checkbox" type="checkbox">Project meeting with CEO
-									</label>
-								</div>
-								<i class="remove ti-close"></i>
-								</li>
-								<li class="completed">
-								<div class="form-check form-check-flat">
-									<label class="form-check-label">
-										<input class="checkbox" type="checkbox" checked>Follow up of team zilla
-									</label>
-								</div>
-								<i class="remove ti-close"></i>
-								</li>
-								<li>
-								<div class="form-check form-check-flat">
-									<label class="form-check-label">
-										<input class="checkbox" type="checkbox">Level up for Antony
-									</label>
-								</div>
-								<i class="remove ti-close"></i>
-								</li>
-								</ul>
-                  				</div>
-                 				<div class="add-items d-flex mb-0 mt-2">
-									<input type="text" class="form-control todo-list-input"  placeholder="Add new task">
-									<button class="add btn btn-icon text-primary todo-list-add-btn bg-transparent"><i class="icon-circle-plus"></i></button>
-								</div>
-						</div>
-					</div>
-           		</div>
-<!-- 할일목록 끝 -->           		
+<!-- 수주왕 시작-->            
+            <div class="col-md-6 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                 <div class="d-flex justify-content-between">
+                  <p class="card-title" style="margin-top: 10px;">이 달의 수주왕</p>
+                 </div>
+                  <p class="font-weight-500">
+                  이 달의 수주왕으로 뽑힌 사원에게는 보너스를 드립니다 !
+                  </p>
+                  <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
+                  <canvas id="myChart" height="400px" width="600px"></canvas>
+                </div>
+              </div>
+            </div>
+<!-- 수주왕 끝-->         		
           </div>
           <div class="row">
-            <div class="col-md-6 grid-margin stretch-card">
+<!-- 공지사항 시작 -->          
+            <div class="col-md-12 grid-margin stretch-card">
+              <div class="card">
+                <div class="card-body">
+                  <p class="card-title">Advanced Table</p>
+                  <div class="row">
+                    <div class="col-12">
+                      <div class="table-responsive">
+                        <table id="example" class="display expandable-table" style="width:100%">
+                          <thead>
+                            <tr>
+                              <th>Quote#</th>
+                              <th>Product</th>
+                              <th>Business type</th>
+                              <th>Policy holder</th>
+                              <th>Premium</th>
+                              <th>Status</th>
+                              <th>Updated at</th>
+                              <th></th>
+                            </tr>
+                          </thead>
+                      </table>
+                      </div>
+                    </div>
+                  </div>
+                  </div>
+                </div>
+              </div>
+<!-- 공지사항 끝 -->              
+            </div>          
+          <div class="row">
+<!-- 꺾은선 그래프 시작 -->          
+            <%-- <div class="col-md-6 grid-margin stretch-card">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Order Details</p>
@@ -218,24 +213,12 @@
                   <canvas id="order-chart"></canvas>
                 </div>
               </div>
-            </div>
-            <div class="col-md-6 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                 <div class="d-flex justify-content-between">
-                  <p class="card-title">이 달의 수주왕</p>
-                 </div>
-                  <p class="font-weight-500">
-                  이 달의 수주왕으로 뽑힌 사원에게는 보너스를 드립니다 !
-                  </p>
-                  <div id="sales-legend" class="chartjs-legend mt-4 mb-2"></div>
-                  <canvas id="myChart" height="400px" width="600px"></canvas>
-                </div>
-              </div>
-            </div>
+            </div> --%>
+<!-- 꺾은선 그래프 끝 -->             
           </div>
           <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
+<!-- 동그란 그래프 시작 -->          
+            <%-- <div class="col-md-12 grid-margin stretch-card">
               <div class="card position-relative">
                 <div class="card-body">
                   <div id="detailedReports" class="carousel slide detailed-report-carousel position-static pt-2" data-ride="carousel">
@@ -412,76 +395,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div> --%>
+<!-- 동그란 그래프 끝 -->            
           </div>
-          <div class="row">
-            <div class="col-md-7 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title mb-0">Top Products</p>
-                  <div class="table-responsive">
-                    <table class="table table-striped table-borderless">
-                      <thead>
-                        <tr>
-                          <th>Product</th>
-                          <th>Price</th>
-                          <th>Date</th>
-                          <th>Status</th>
-                        </tr>  
-                      </thead>
-                      <tbody>
-                        <tr>
-                          <td>Search Engine Marketing</td>
-                          <td class="font-weight-bold">$362</td>
-                          <td>21 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Search Engine Optimization</td>
-                          <td class="font-weight-bold">$116</td>
-                          <td>13 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                        <tr>
-                          <td>Display Advertising</td>
-                          <td class="font-weight-bold">$551</td>
-                          <td>28 Sep 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Pay Per Click Advertising</td>
-                          <td class="font-weight-bold">$523</td>
-                          <td>30 Jun 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>E-Mail Marketing</td>
-                          <td class="font-weight-bold">$781</td>
-                          <td>01 Nov 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-danger">Cancelled</div></td>
-                        </tr>
-                        <tr>
-                          <td>Referral Marketing</td>
-                          <td class="font-weight-bold">$283</td>
-                          <td>20 Mar 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-warning">Pending</div></td>
-                        </tr>
-                        <tr>
-                          <td>Social media marketing</td>
-                          <td class="font-weight-bold">$897</td>
-                          <td>26 Oct 2018</td>
-                          <td class="font-weight-medium"><div class="badge badge-success">Completed</div></td>
-                        </tr>
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </div>
-            
-            
-          </div>
-          <div class="row">
+          
+          <%-- <div class="row">
             <div class="col-md-4 stretch-card grid-margin">
               <div class="card">
                 <div class="card-body">
@@ -660,38 +578,8 @@
                 </div>
               </div>
             </div>
-          </div>
-          <div class="row">
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Advanced Table</p>
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table id="example" class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Quote#</th>
-                              <th>Product</th>
-                              <th>Business type</th>
-                              <th>Policy holder</th>
-                              <th>Premium</th>
-                              <th>Status</th>
-                              <th>Updated at</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                      </table>
-                      </div>
-                    </div>
-                  </div>
-                  </div>
-                </div>
+          </div> --%>
 
-                
-              </div>
-            </div>
         </div>
         <!-- content-wrapper ends -->
         
@@ -729,10 +617,27 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-
+	
+  <!-- 수주왕 그래프 -->
   <script src="${pageContext.request.contextPath}/resources/main/contractchart.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+
+  <!-- jQuery -->  
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+
+  <!-- 날씨 -->
+  <script src="${pageContext.request.contextPath}/resources/main/weather.js"></script>
+
+  <!-- 달력 -->
+  <script src="${pageContext.request.contextPath}/resources/main/calendar.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.js"></script>
+  
+  <!-- to do List -->
+   <script src="${pageContext.request.contextPath}/resources/main/todoList.js"></script>
+   <script>
+ 	 let empNum = ${sessionScope.emp_num };
+   </script>
 </body>
 
 </html>
