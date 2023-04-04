@@ -77,12 +77,13 @@
 					<div id="table_button">
 					<c:choose>
 					    <c:when test="${boardDTO.top_fixed == 1}">
-					        <input type="checkbox" name="top_fixed" value="0">상단고정 해제하기&nbsp;&nbsp;
+					        <input type="checkbox" name="top_fixed" value="1" checked>상단에 고정하기&nbsp;&nbsp;
 					    </c:when>
 					    <c:otherwise>
 					        <input type="checkbox" name="top_fixed" value="1">상단에 고정하기&nbsp;&nbsp;
 					    </c:otherwise>
 					</c:choose>
+					
 					<input type="submit" value="글수정" class="btn btn-primary">
 					</div>
 					</form>
