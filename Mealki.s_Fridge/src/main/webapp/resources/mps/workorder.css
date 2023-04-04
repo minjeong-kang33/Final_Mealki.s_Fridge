@@ -1,5 +1,32 @@
 @charset "UTF-8";
 
+/* 모달창 스타일 */
+.modal {
+  display: none; /* 모달창은 기본적으로 안 보이도록 설정 */
+  position: fixed; /* 화면을 기준으로 고정된 위치에 배치 */
+  z-index: 1; /* 모달창은 가장 위에 배치 */
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.2); /* 배경은 반투명한 검은색 */
+}
+
+/* 모달창 내용 */
+.modal-content {
+  background-color: #fefefe;
+  margin: 10% auto; /* 모달창이 화면 중앙에 위치하도록 설정 */
+  padding: 20px;
+  border: 1px solid #888;
+  width: 900px; /* 모달창 가로 길이 */
+  max-height: 90%; /* 모달창 세로 길이 */
+  overflow-y: auto; /* 세로 스크롤 생성 */
+  position: relative; /* 모달창 내용을 상대적으로 배치하기 위한 설정 */
+}
+
+
+
+
 .top_table {
 	width: 100%;
 	height: 400px;

@@ -27,6 +27,10 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
+ <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<!--   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css"> -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </head>
 <body>
 
@@ -143,6 +147,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						<div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -155,7 +160,13 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						</div>
 				      </div>
+				      
+			
+				    
+ 		
+ 	      
 				      
 				      <div id="tab02">
 				      	<table border="1" id="orderlist_table">
@@ -194,6 +205,7 @@
 						
 						</table>
 							<!-- 탭 페이징처리 -->
+						  <div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -205,6 +217,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				      <div id="tab03">
@@ -243,6 +256,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						  <div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -254,6 +268,7 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				      <div id="tab04">
@@ -291,6 +306,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
+						<div style="text-align: center;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>
@@ -302,16 +318,12 @@
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
 							</c:if>
+						  </div>
 				      </div>
 				      
 				    </div>
 				  </div>
 
-
-
-
-					
-  
             
  <!--  본문내용 끝 -->    
         
@@ -325,18 +337,56 @@
           
         </div>
         
-        
-        			<script type="text/javascript">
+        			<div id="myModal" class="modal">
+					  <div class="modal-content">
+					    <div class="modal-body">
+					      <p></p>
+					    </div>
+					  </div>
+					</div>
+						
+					<script type="text/javascript">
 						function WoUpdate(wo_num) {
-							var _width = '800';
-							var _height = '650';
-							var _left = Math.ceil((window.screen.width - _width) / 2);
-							var _top = Math.ceil((window.screen.height - _height) / 2);
-							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-							window.open(
-							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num="+wo_num,
-							"밀키의 냉장고",popOption);}
-					</script>
+							 var url = "${pageContext.request.contextPath}/workorder/WoUpdate?wo_num="+wo_num
+							    $.ajax({
+							      type: "GET",
+							      url: url,
+							      success: function(data) {
+							    	  console.log("작업지시서 모달창 Ajax");
+							        // 불러온 JSP 파일의 내용을 모달 창에 삽입
+							        $("#myModal .modal-body").html(data);
+							        $('#myModal').modal('show');
+							        console.log("show");
+							      }
+							    });
+						};
+
+
+						function closeModal() {
+						    var modal = document.getElementById("myModal");
+						    modal.style.display = "none";
+						}
+
+							// 모달창 외부를 클릭하면 모달창이 닫히도록 설정
+							window.onclick = function (event) {
+							  var modal = document.getElementById("myModal");
+							  if (event.target == modal) {
+							    closeModal();
+							  }
+							};
+							
+ 					</script>
+        			<script type="text/javascript">
+// 						function WoUpdate(wo_num) {
+// 							var _width = '800';
+// 							var _height = '650';
+// 							var _left = Math.ceil((window.screen.width - _width) / 2);
+// 							var _top = Math.ceil((window.screen.height - _height) / 2);
+// 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+// 							window.open(
+// 							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num="+wo_num,
+// 							"밀키의 냉장고",popOption);}
+ 					</script> 
 
         			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
@@ -401,6 +451,9 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
 </body>
 </html>

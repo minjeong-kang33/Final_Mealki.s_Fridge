@@ -106,19 +106,23 @@
 	<!-- 생산이 진행중이거나 완료시 작업지시서 수정삭제 불가 -->
 
 	<c:if test="${empty woState}">
-		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
+		<input type="submit" onclick="ualert" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
 		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
 	</c:if>
-	
-		<input type="button" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="닫기" onclick="window.close()">
+
+		<input type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="닫기">
 	</div>
-	
-	
+
 </form>
 	</div>
 </body>
 		
 	<script>
+		function ualert(){
+			alert("수정 완료");
+		}
+	
+	
 		date = new Date();
 		year = date.getFullYear();
 		month = date.getMonth() + 1;
