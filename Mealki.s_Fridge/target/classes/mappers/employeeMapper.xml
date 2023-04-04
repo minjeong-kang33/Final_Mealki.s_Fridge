@@ -71,9 +71,9 @@
 			employee.emp_addr2,
 			employee.emp_status,
 			employee.emp_classification,
-			DATE_FORMAT(employee.emp_joinDate,'%Y%m%d')as emp_joinDate,
-			COALESCE(employee.emp_leaveDate, '')as emp_leaveDate,
-			COALESCE(employee.emp_absenceDate,'')as emp_absenceDate,
+			DATE_FORMAT(employee.emp_joinDate,'%Y-%m-%d')as emp_joinDate,
+			COALESCE(DATE_FORMAT(employee.emp_leaveDate,'%Y-%m-%d'), '')as emp_leaveDate,
+			COALESCE(DATE_FORMAT(employee.emp_absenceDate,'%Y-%m-%d'),'')as emp_absenceDate,
 			employee.dept_position,
 			employee.dept_duty,
 			employee.emp_img,
@@ -94,5 +94,16 @@
 	        dept_position = #{dept_position}, dept_duty =#{dept_duty}
 	    where emp_num = #{emp_num}
 	</update>
+	
+	<update id="absenceEmployee">
+		update employee
+		set emp_absenceDate = now()
+	    where emp_num = #{emp_num}
+	</update>
     
+    	<update id="leaveEmployee">
+		update employee
+		set emp_leaveDate = now()
+	    where emp_num = #{emp_num}
+	</update>
 </mapper>

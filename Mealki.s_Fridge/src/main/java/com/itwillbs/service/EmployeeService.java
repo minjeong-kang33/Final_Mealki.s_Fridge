@@ -17,4 +17,8 @@ public interface EmployeeService {
 	public List<Map<String, Object>> getEmployeeDetail(int emp_num);
 	
 	public void updateEmployee(EmployeeDTO employeeDTO);
+	
+	public void absenceEmployee(int emp_num);
+	
+	public void leaveEmployee(int emp_num);
 }
