@@ -1,18 +1,9 @@
 @charset "UTF-8";
 
-
-.contentbody{
-	height: 600px;
-}
-
-.insertImployeeBody{
-	width: 1300px;
+body{
 	height: 500px;
-	margin: 0px 0px;
-	background-color: white;
-	border-radius: 20px;
-	padding-top: 30px;
 }
+
 
 /* 이미지 부분  */
 
@@ -60,7 +51,7 @@ ul{
    
 label {
 	display:inline-block; 
-	width:100px; 
+	width: 30%;
 }
 
 li{
@@ -79,24 +70,14 @@ li{
 #emp_email{
 	margin-left: 3px;
 }
+
 .emp_classification {
 }
 
-.emp_classification_Option {
-		width: 135px;
-}
 
 
 .dept_position_option{
-	width: 135px;
-}
-
-.dept_num_option{
-	width: 135px;
-}
-
-.dept_duty_option{
-	width: 135px;	
+	width: 120px;
 }
 
 .dept_num{
@@ -104,21 +85,22 @@ li{
 }
 
 #emp_email{
-	width: 230px;
+	width: 250px;
 }
 
 #emp_addr{
-	width: 300px;
+	width: 420px;
 }
 
 #emp_addr2{
-	width: 300px;
+	width: 420px;
 }
+
 
 /* 오른쪽 버튼부분 */
 
 .submit_Btn{
 	float: right;
-	margin-right: 150px;
+	margin-right: 80px;
 }
 

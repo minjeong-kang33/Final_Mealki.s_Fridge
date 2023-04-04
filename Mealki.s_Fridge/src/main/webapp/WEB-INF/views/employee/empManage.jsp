@@ -114,8 +114,6 @@ function fun1() {
                           </button>
                           <div class="dropdown-menu" aria-labelledby="dropdownMenuIconButton6">
                             <a class="dropdown-item" href="${pageContext.request.contextPath}/employee/insertEmployee">개별등록</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">일괄등록</a>
                           </div>
                         </div>
              </div>
@@ -161,14 +159,15 @@ function fun1() {
                </div>
  
              <div class="emp_infoDetails" style="width: 100%;">
-                  <table border="1" class="emp_details_table2" style="width: 100%; table-layout: fixed;">
+                  <table border="1" class="emp_details_table2" >
 	  
 	  
                   </table>
               </div>
      
                <div class="updateBtn">
-               		<button type="button" class="btn btn-outline-primary btn-fw">수정하기</button>
+               		
+               		
                </div>
                
             </div>
@@ -233,7 +232,6 @@ function fun1() {
 		
 			// td.eq(index)를 통해 값을 가져올 수도 있다.
 			var emp_num = td.eq(0).text(); 
-			alert(emp_num);
 			
 			$.ajax({
 				url:'${pageContext.request.contextPath}/employee/employeeDetail',
@@ -242,7 +240,7 @@ function fun1() {
 				dataType : 'json',
 				success:function(result){
 					
-				alert("완료");
+				alert("사원 조회 완료");
 				
 				$.each(result, function(index,item) {
 					
@@ -261,8 +259,21 @@ function fun1() {
 			                  
 					);
 					
+					$('.updateBtn').html(' <button type="button" class="btn btn-outline-primary btn-fw" onClick="updateEmployee('+emp_num+')" >수정하기</button>'
+					);
+
+					
+					$('.updateBtn button').click(function(emp_num) {
+					    var emp_num = emp_num;
+					    var _width = '1000';
+					    var _height = '510';
+					    var _left = Math.ceil((window.screen.width - _width) / 2);
+					    var _top = Math.ceil((window.screen.height - _height) / 2);
+					    let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
+					    window.open('${pageContext.request.contextPath}/employee/updateEmployee?emp_num=${emp_num}', "밀키의 냉장고", popOption);
+					});
 				});
-				
+
 				
 				
 				}
