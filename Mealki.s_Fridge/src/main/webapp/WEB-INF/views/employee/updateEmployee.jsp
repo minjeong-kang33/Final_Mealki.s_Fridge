@@ -26,7 +26,6 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/updateEmployee.css">
-<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </head>
 <body>
@@ -40,6 +39,7 @@
             		    <c:forEach var="dto" items="${employeeDetail }">
 					            <img id="preview" width="200" height="230" style="border-radius: 3px" src="${pageContext.request.contextPath}/resources/employee/upload/${dto.emp_img}">
 					            <input type="hidden" name="oldfile" value="${dto.emp_img }">
+					            <input type="hidden" name="emp_num" value="${dto.emp_num}">
 				    	</c:forEach>
 				    </div>  	
             		<div class="imgbtn">

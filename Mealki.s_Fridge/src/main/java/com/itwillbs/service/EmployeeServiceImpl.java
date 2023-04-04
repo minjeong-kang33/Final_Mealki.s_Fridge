@@ -49,5 +49,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		return employeeDAO.getEmployeeDetail(emp_num);
 	}
 
+	@Override
+	public void updateEmployee(EmployeeDTO employeeDTO) {
+		System.out.println("EmployeeServiceImpl updateEmployee");
+		employeeDAO.updateEmployee(employeeDTO);
+	}
+
 	
 }

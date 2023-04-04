@@ -86,6 +86,13 @@
 		where employee.emp_num = #{emp_num}
 	</select>
 
-
+	<update id="updateEmployee">
+	    update employee
+	    set dept_num = #{dept_num}, emp_Kname = #{emp_Kname}, emp_Ename = #{emp_Ename},
+	        emp_tel = #{emp_tel}, emp_phone = #{emp_phone}, emp_email = #{emp_email},
+	        emp_addr = #{emp_addr}, emp_addr2 = #{emp_addr2}, emp_classification =#{emp_classification}, emp_img =#{emp_img},  
+	        dept_position = #{dept_position}, dept_duty =#{dept_duty}
+	    where emp_num = #{emp_num}
+	</update>
     
 </mapper>
