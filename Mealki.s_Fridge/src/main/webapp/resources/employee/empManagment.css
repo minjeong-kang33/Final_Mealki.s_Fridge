@@ -96,6 +96,9 @@ tr:hover td{ background-color: #e6e6f4; }
 .emp_details_table2{
    pointer-events: none;
    margin-top:10px;
+   width: 93%;
+   table-layout: fixed;
+   margin-left: 55px;
 }
 
 
@@ -177,6 +180,7 @@ ul,li {list-style:none;}
 	width: 140px;
 	float: right;
 	margin-right: 20px;
+	margin-top: 20px;
 }
 
 .scrollBar{
