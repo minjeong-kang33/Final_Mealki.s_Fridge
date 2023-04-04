@@ -1,5 +1,6 @@
 package com.itwillbs.controller;
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -35,9 +36,7 @@ import com.itwillbs.service.ContractService;
 			System.out.println("contractWriteSave()");
 			contractService.insertBoard(dto);
 			return "redirect:/business/contract/contractList";
-			
-			
-			
+				
 		}
 		
 		
@@ -107,7 +106,7 @@ import com.itwillbs.service.ContractService;
 		}
 			@RequestMapping(value = "/business/contract/findContract", method = RequestMethod.GET)
 			public String findContract(HttpServletRequest request, Model model) {
-				System.out.println("PlaceOrderController findProducts()");
+				System.out.println("ContractController findContract()");
 	
 				List<Map<String, Object>> contractListMap = contractService.getContractListMap();
 				model.addAttribute("contractListMap", contractListMap);
@@ -126,5 +125,38 @@ import com.itwillbs.service.ContractService;
 				return "/business/contract/content";
 					
 	}
+			@RequestMapping(value="/business/contract/update" , method = RequestMethod.GET)
+			public String update(HttpServletRequest request, Model model) {
+			System.out.println("contractController update()");
+			
+			int business_num=Integer.parseInt(request.getParameter("business_num"));
+			
+			ContractDTO contractDTO=contractService.getBoard(business_num);
+			
+			model.addAttribute("contractDTO", contractDTO);
+			
+			return "/business/contract/update";
+				
+			}
+			
+			@RequestMapping(value="/contract/updatePro" , method = RequestMethod.POST)
+			public String updatePro(ContractDTO dto) {
+				System.out.println("updatePro()");
+				contractService.updateBoard(dto);
+				return "redirect:/business/contract/contractList";
+					
+			}
+			
+			@RequestMapping(value="/business/contract/delete" , method = RequestMethod.GET)
+			public String delete(HttpServletRequest request, Model model) {
+			System.out.println("contractController delete()");
+			
+			int business_num=Integer.parseInt(request.getParameter("business_num"));
+			
+			contractService.deleteBoard(business_num);
+			
+			return "redirect:/business/contract/contractList";
+				
+			}
 }
 

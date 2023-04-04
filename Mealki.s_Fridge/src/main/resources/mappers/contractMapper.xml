@@ -73,6 +73,17 @@
 		where business_num = #{business_num}
 	</select>
 
+	<update id="updateBoard">
+		update contract 
+		set contract_qty=#{contract_qty}
+		where business_num = #{business_num}
+	</update>
+	
+	<delete id="deleteBoard">
+		delete from contract
+		where business_num = #{business_num}
+	
+	</delete>
 
 
 

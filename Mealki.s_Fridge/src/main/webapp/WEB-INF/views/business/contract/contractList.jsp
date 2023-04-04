@@ -79,7 +79,7 @@ function fun1() {
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">수주관리</h3>
+                  <h3 class="font-weight-bold">출하관리</h3>
                   <h6 class="font-weight-normal mb-0">메뉴설명 <span class="text-primary">강조</span></h6>
                 </div>
                 
@@ -101,7 +101,7 @@ function fun1() {
         
         </div>
         
-       		
+       		  
 <table id="contractTable">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
@@ -116,7 +116,7 @@ function fun1() {
 			<th>납품예정일</th>
 			<th>담당자코드</th>
 			<th>담당자</th>
-			
+			<th>수주수량</th>
          </tr>
          
          <c:set var="cnt" value="1"/>
@@ -135,7 +135,7 @@ function fun1() {
 			<td>${ContractDTO.out_date}</td>
          	<td>${ContractDTO.incharge_code }</td>
          	<td>${ContractDTO.incharge_name }</td>
-         	
+         	<td>${ContractDTO.contract_qty }</td>
          </tr>	
          
          <c:set var="cnt" value="${cnt+1}" />
@@ -143,11 +143,8 @@ function fun1() {
          </c:forEach>
          
       	 <tr align="center">
-			<th colspan="7">
-			<button type="submit" >저장</button>
-			<button type="reset">취소</button>
-			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'"  >신규</button>
-			<button type="submit">삭제</button>
+			<th colspan="8">
+			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >신규</button>
 			</th>
 		</tr> 
 	

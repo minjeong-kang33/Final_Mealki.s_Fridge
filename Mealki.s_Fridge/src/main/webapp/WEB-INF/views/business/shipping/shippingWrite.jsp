@@ -9,7 +9,7 @@
 
 <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
 <script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
-  
+
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -28,23 +28,11 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
 	
-	<script>
-	var openWin;
-	
-	function findContract()
-	{
-		window.name="parentForm";
-		openWin=window.open("${pageContext.request.contextPath}/business/contract/findContract",
-			"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
-		}
-	</script>
 </head>
-
 <style>
 body{
 	font-size:3pt;
@@ -62,15 +50,13 @@ th,td{
 }
 
 </style>
-
-
 <body>
 
   <div class="container-scroller">
   
 <!-- 헤더, 사이드바,개인설정 시작 
 	사이드바와 개인설정은 sidebar에 같이 있음-->
-    <jsp:include page="../../main/top.jsp" /> 
+  <jsp:include page="../../main/top.jsp" /> 
     <jsp:include page="../../main/sidebar.jsp" /> 
 <!-- 헤더, 사이드바,개인설정 끝 -->
  
@@ -90,63 +76,48 @@ th,td{
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-<form  action="${pageContext.request.contextPath}/contract/WriteSave" method="post">        
-<table>
-<!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
-		<tr>
-			<th>수주번호</th>
-			<th>거래처코드</th>
-			<th>품목코드</th>
-			<th>품목명</th>
-			<th>수주업체</th>
-			<th>수주일자</th>
-			<th>납품예정일</th>
-			<th>담당자코드</th>
-			<th>담당자</th>
-			<th>수주수량</th>
-         </tr>
-         <tr>
-         	<td><input type="text" name="business_num" id="business_num"></td>
-         	<td onclick="findContract()"><input type="text" name="cust_num" id="cust_num"></td>
-         	<td><input type="text" name="item_num" id="item_num"></td>
-         	<td><input type="text" name="item_name" id="item_name"></td>
-         	<td><input type="text" name="business_name" id="business_name"></td>
-         	<td><input type="date"  id="business_date" name="business_date"></td>
-         	<td><input type="date"  id="out_date" name="out_date"></td>
-         	<td><input type="text" name="incharge_code" id="incharge_code"></td>
-         	<td><input type="text" name="incharge_name" id="incharge_name"></td>
-         	<td><input type="text" name="contract_qty" id="contract_qty"></td>
-         </tr>	
-         <tr align="center">
-			<th colspan="10">					<!-- Ajax -->
-			<button type="submit">저장</button> <!-- onclick="fn_submit();return false;" -->
-<!-- 			<button type="reset">취소</button> -->
-<!-- 			<button type="submit">삭제</button> -->
-			</th>
+    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post">
+    	<table>
+    	<tr>
+           			<th>출하번호</th>
+           			<th>작업지시번호</th>
+           			<th>품목코드</th>
+           			<th>품명</th>
+           			<th>출하일자</th>
+           			<th>납품예정일</th>
+           			<th>출하량</th>
+           			<th>재고수량</th>
+           			<th>담당자</th>
+           			<th>수주업체</th>
+           			
+           		</tr>
+           		
+           			<tr>
+           			<td><input type="text" name="shipping_num" id="shipping_num"></td>
+           			<td onclick="findShipping()"><input type="text" name="wo_num" id="wo_num"></td>
+           			<td><input type="text" name="item_num" id="item_num"></td>
+           			<td><input type="text" name="product_name" id="product_name"></td>
+           			<td><input type="date" name="delivery_date" id="delivery_date"></td>
+           			<td><input type="date" name="out_date" id="out_date"></td>
+           			<td><input type="text" name="out_qty" id="out_qty"></td>
+           			<td><input type="text" name="stock_qty" id="stock_qty"></td>
+           			<td><input type="text" name="incharge_name" id="incharge_name"></td>
+           			<td><input type="text" name="business_name" id="business_name"></td>
+           			
+           			</tr>
+           			 <tr align="center">
+					<th colspan="10">					
+					<button type="submit">저장</button> 
+					</th>
 		</tr> 
-
-
-
-
-
-</table>
-</form>          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+    	</table>
+    </form>        
             
  <!--  본문내용 끝 -->    
         
 <!--           </div> -->
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+     
 <!-- 페이징 끝 -->
             </div>
             
@@ -158,7 +129,7 @@ th,td{
         
         
 <!-- 푸터시작 -->
-     <jsp:include page="../../main/footer.jsp" /> 
+      <jsp:include page="../../main/footer.jsp" />  
 <!--  푸터 끝 -->
 
 <!-- partial -->

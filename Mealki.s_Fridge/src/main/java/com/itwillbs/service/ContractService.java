@@ -1,6 +1,7 @@
 package com.itwillbs.service;
 
 
+
 import java.util.List;
 import java.util.Map;
 
@@ -21,6 +22,10 @@ public interface ContractService {
 	 public List<Map<String, Object>> getContractListMap();
 	
 	 public ContractDTO getBoard(int business_num);
+	
+	 public void updateBoard(ContractDTO dto);
+	
+	 public void deleteBoard(int business_num);
 
 	
 }

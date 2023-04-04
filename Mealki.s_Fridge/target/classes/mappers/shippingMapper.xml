@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.itwillbs.mappers.shippingMapper">
+
+	<insert id="shippingInsertBoard">
+		INSERT INTO shipping(shipping_num,wo_num,item_num,product_name,delivery_date,out_date,
+		out_qty,stock_qty,incharge_name,business_name)
+		VALUES(#{shipping_num},#{wo_num},#{item_num},#{product_name},
+		#{delivery_date},#{out_date},#{out_qty},#{stock_qty},#{incharge_name},#{business_name})
+	</insert>
+
+	<select id="getBoardList" resultType="com.itwillbs.domain.ShippingDTO">
+	SELECT * FROM shipping
+		<if test="search_option == 'product_name'.toString()">
+			where product_name like CONCAT('%', #{search},'%')
+		</if>
+		<if test="search_option == 'item_num'.toString()">
+			where item_num like CONCAT('%',#{search},'%')
+		</if>
+	
+	</select>
+<!-- 검색어	 -->
+	<select id="getShippingCount" resultType="java.lang.Integer">
+		select count(*) from shipping
+		<if test="search_option == 'product_name'.toString()">
+			where product_name like concat('%', #{search},'%')
+		</if>
+		<if test="search_option == 'item_num'.toString()">
+			where item_num like concat('%',#{search},'%')
+		</if>
+	</select>
+	
+	<select id="selectShippingTotal" resultType="java.lang.Integer">
+		select count(*) total from shipping
+	
+	</select>
+
+	<insert id="insertShipping">
+		insert into shipping(out_progress)
+		value(#{out_progress})
+	 </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</mapper>
