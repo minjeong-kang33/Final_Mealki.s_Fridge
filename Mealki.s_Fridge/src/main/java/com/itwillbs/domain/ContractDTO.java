@@ -5,7 +5,7 @@ import java.util.Date;
 public class ContractDTO {
 
 	private String business_num;
-	private int cust_num;
+	private String cust_num;
 	private String item_num;
 	private String item_name;
 	private String business_name;
@@ -21,10 +21,11 @@ public class ContractDTO {
 	public void setBusiness_num(String business_num) {
 		this.business_num = business_num;
 	}
-	public int getCust_num() {
+	
+	public String getCust_num() {
 		return cust_num;
 	}
-	public void setCust_num(int cust_num) {
+	public void setCust_num(String cust_num) {
 		this.cust_num = cust_num;
 	}
 	public String getItem_num() {

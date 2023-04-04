@@ -34,9 +34,8 @@
 				</tr> 	
 			    </c:forEach>
 		</table>
-		
-		<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
-		<script type="text/javascript">
+<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>		
+<script type="text/javascript">		
 	$(function() {
 		$(".row_a").click(function() {
 			var checkList = $(this);
@@ -61,5 +60,8 @@
 		}); 
 	 });
 	</script>
+
+	
 </body>
+
 </html>

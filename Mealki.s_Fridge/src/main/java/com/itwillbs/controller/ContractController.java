@@ -106,7 +106,7 @@ import com.itwillbs.service.ContractService;
 		}
 			@RequestMapping(value = "/business/contract/findContract", method = RequestMethod.GET)
 			public String findContract(HttpServletRequest request, Model model) {
-				System.out.println("PlaceOrderController findProducts()");
+				System.out.println("ContractController findContract()");
 	
 				List<Map<String, Object>> contractListMap = contractService.getContractListMap();
 				model.addAttribute("contractListMap", contractListMap);

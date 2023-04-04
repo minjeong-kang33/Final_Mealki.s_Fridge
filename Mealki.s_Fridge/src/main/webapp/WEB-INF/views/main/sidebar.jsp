@@ -112,7 +112,7 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/customer/customerList">거래처관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/contract/contractList">수주관리</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">출하관리</a></li>
+                <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/business/shipping/shippingList">출하관리</a></li>
               </ul>
             </div>
           </li>
