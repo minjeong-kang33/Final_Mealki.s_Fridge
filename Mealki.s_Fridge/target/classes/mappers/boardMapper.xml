@@ -68,5 +68,10 @@
     	where bo_num = #{bo_num}
     </update>
     
+    <update id="updateBoard">
+    	update board set bo_title = #{bo_title}, bo_content = #{bo_content}, file = #{file}, top_fixed = #{top_fixed}
+    	where bo_num = #{bo_num}   
+    </update>
+    
 	
 </mapper>	

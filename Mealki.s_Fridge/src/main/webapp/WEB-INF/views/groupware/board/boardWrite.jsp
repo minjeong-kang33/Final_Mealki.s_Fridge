@@ -27,8 +27,11 @@
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/groupware/board.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-lite.css">
+
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  
 
 
 </head>
@@ -64,19 +67,21 @@
 
 			<article id="table_content">
 					<form action="${pageContext.request.contextPath}/groupware/board/boardWritePro" method="post" enctype="multipart/form-data">
-					<table id="notice" border="1">
+					<table id="content" border="1">
 					<tr><th>제목</th>
-					       <td><input type="text" name="bo_title" ></td></tr>
+					       <td><input type="text" name="bo_title" style="width:100%;"></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.emp_num }" readonly></td></tr>
+					       <td><input type="text" name="bo_name" value="${sessionScope.emp_num }" readonly style="width:100%;"></td></tr>
+					       
 					<tr><th>내용</th>
-							<td><textarea name="bo_content" rows="10" cols="20"></textarea></td></tr>
+						<td><textarea id="summernote" name="bo_content" style="text-align:left;"></textarea></td></tr>
+					
 					<tr><th>첨부파일</th>
        						<td style="text-align:left;"><input type="file" name="file" ></td></tr>              
 					</table>
-					<div id="table_write">
-					<input type="checkbox" name="top_fixed" value="1">상단에 고정하기
-					<input type="submit" value="글쓰기" class="btn btn-primary">
+					<div id="table_button">
+					<input type="checkbox" name="top_fixed" value="1" style="float:left;">상단에 고정하기&nbsp;&nbsp;
+					<input type="submit" value="글쓰기" class="btn btn-primary" onclick="return checkForm();">
 					</div>
 					</form>
 			</article>
@@ -128,6 +133,71 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+      <!-- 서머노트를 위해 추가해야할 부분 -->
+  <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-lite.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-ko-KR.js"></script>
+  
+  <script>
+	  function checkForm() {
+	    if (document.getElementsByName("bo_title")[0].value == "") {
+	      alert("제목을 입력하세요.");
+	      return false;
+	    }
+	    if (document.getElementsByName("bo_content")[0].value == "") {
+	      alert("내용을 입력하세요.");
+	      return false;
+	    }
+	    return true;
+	  }
+  </script>
 
+  <!--  -->
+	<script>
+		$(document).ready(function() {
+			var toolbar = [
+			    // 글꼴 설정
+			    ['fontname', ['fontname']],
+			    // 글자 크기 설정
+			    ['fontsize', ['fontsize']],
+			    // 굵기, 기울임꼴, 밑줄,취소 선, 서식지우기
+			    ['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+			    // 글자색
+			    ['color', ['forecolor','color']],
+			    // 표만들기
+// 			    ['table', ['table']],
+			    // 글머리 기호, 번호매기기, 문단정렬
+			    ['para', ['ul', 'ol', 'paragraph']],
+			    // 줄간격
+			    ['height', ['height']],
+// 			    // 그림첨부, 링크만들기, 동영상첨부
+// 			    ['insert',['picture','link','video']],
+			    // 코드보기, 확대해서보기, 도움말
+			    ['view', ['codeview','fullscreen', 'help']]
+			  ];
+
+		var setting = {
+	            height : 500,
+	            minHeight : null,
+	            maxHeight : null,
+	            focus : true,
+	            lang : 'ko-KR',
+	            toolbar : toolbar,
+	            fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New', '맑은 고딕', '궁서', '굴림체', '굴림', '돋움체', '바탕체'],
+	            fontSizes: ['8','9','10','11','12','13','14','15','16','17','18','19','20','24','30','36','48','64','82','150'],
+	            callbacks : { 
+	            	onImageUpload : function(files, editor,
+	                        welEditable) {
+	                        for (var i = files.length - 1; i >= 0; i--) {
+	                        uploadSummernoteImageFile(files[i],
+	                        this);
+	                        		}
+	                        	}
+	                        }
+	                     };
+
+	        $('#summernote').summernote(setting);
+		});
+	</script>
 </body>
 </html>
