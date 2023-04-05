@@ -42,6 +42,33 @@
 			$('input[name=item_num]').attr('value',itemnum);
 				});
 			});
+	
+	
+    $(function(){
+        $('#IconButton1').on("click",function () {
+
+            var form1 = $("#insertProduct").serialize();
+
+            console.log(form1);
+            
+            $.ajax({
+                type: "post",
+                url: "${pageContext.request.contextPath}/mps/production/start",
+                data: form1,
+                dataType: 'json',
+                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+                success: function (data) {
+                    alert("success");
+                    console.log(data);
+                },
+                error: function (request, status, error) {
+                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+
+                }
+            });
+        });
+    });
+	
 </script>
 </head>
 <body>
@@ -71,9 +98,8 @@
           
 <!--  본문 내용 시작 -->
 
-
 			<div id="writebody">
-				<form action="${pageContext.request.contextPath}/mps/production/writePro" id="insertProduct" method="POST">
+				<form id="insertProduct" method="POST">
 				<label>라인명 : </label>
 				<select name="lineselect" id="lineselect" >
             			<option value="" data-wonum="" data-itemname="" 
@@ -102,26 +128,23 @@
 				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly"><P>
 				
 				<label>생산량 : </label>
-				<input type="text" name="manu_tocount">
+				<input type="text" name="manu_tocount" value="0">
 
 				<label>불량 : </label>
-				<input type="text" name="manu_fail">
+				<input type="text" name="manu_fail" value="0">
 				
-			
 <!-- 			시작 했을때 시작시간 등록 -->
-			<c:if test="${ ! empty manu_sdate }">
-				<c:if test="${sessionScope.id eq 'admin'}">
-					<button class="btn btn-primary" type="submit" id="IconButton6">
-					<a>시작</a>
-					</button>
-				</c:if>
-			</c:if>
+				<button class="btn btn-primary" type="button" id="IconButton1">
+				시작
+				</button>
+				
 <!-- 				완료 했을때 완료시간 등록 -->
-				<button class="btn btn-primary" type="submit" id="IconButton6">
+				<button class="btn btn-primary" type="button" id="IconButton2">
 				<a>완료</a>
+				
 				</button>
 <!-- 				reset -->
-				<button class="btn btn-primary" type="reset" id="IconButton6">
+				<button class="btn btn-primary" type="reset" id="IconButton3">
 				<a>취소</a>
 				</button>
 				

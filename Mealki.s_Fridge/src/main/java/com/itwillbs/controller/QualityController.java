@@ -59,7 +59,7 @@ public class QualityController {
 		System.out.println("QualityController writePro()");
 		
 		qualityService.insertQuality(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/qcUpdate", method = RequestMethod.POST)
@@ -94,7 +94,7 @@ public class QualityController {
 		System.out.println("QualityController FailWritePro()");
 		
 		qualityService.insertFail(qualityDTO);
-		return "redirect:/mps/quality/failWrite";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/failUpdate", method = RequestMethod.POST)

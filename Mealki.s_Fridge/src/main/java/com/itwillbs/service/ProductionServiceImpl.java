@@ -34,17 +34,23 @@ public class ProductionServiceImpl implements ProductionService{
 	@Override
 	public List<Map<String, Object>> getselectList(ProductionDTO productionList) {
 		System.out.println("ProductionServiceImpl getselectList()");
-//		productionList.setManu_sdate(new Timestamp(System.currentTimeMillis()));
-//		productionList.setManu_date(new Timestamp(System.currentTimeMillis()));
+		
 		return productionDAO.getselectList(productionList);
 	}
 
 	@Override
 	public void insertProduct(ProductionDTO productDTO) {
 		System.out.println("ProductionServiceImpl insertProduct()");
-//		productDTO.setManu_sdate(new Timestamp(System.currentTimeMillis()));
-//		productDTO.setManu_date(new Timestamp(System.currentTimeMillis()));
+		
 		productionDAO.insertProduct(productDTO);
+	}
+
+	@Override
+	public void startProduct(ProductionDTO productDTO) {
+		System.out.println("ProductionServiceImpl startProduct()");
+		
+		productionDAO.startProduct(productDTO);
+		
 	}
 
 }

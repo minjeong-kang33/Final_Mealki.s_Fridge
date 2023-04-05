@@ -22,19 +22,6 @@ public class ProductionController {
 	@Inject
 	private ProductionService productionService;
 	
-//	@RequestMapping(value = "/mps/production/list", method = RequestMethod.GET)
-//	public String productionList() {
-//		System.out.println("ProductionController list()");
-//		return "mps/production/listForm";
-//	}
-	
-//	@RequestMapping(value = "/mps/production/write", method = RequestMethod.GET)
-//	public String productionWrite(ProductionDTO productionDTO, HttpSession session) {
-//		System.out.println(productionDTO.getEmp_Kname());
-//		session.getAttribute("emp_num");
-//		return "mps/production/writeForm";
-//	}
-	
 	//가상주소 http://localhost:8080/myweb/member/info
 	// 자동으로 가상주소 뽑아옴 /member/info
 	@RequestMapping(value = "/mps/production/write", method = RequestMethod.GET)
@@ -67,18 +54,29 @@ public class ProductionController {
 		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
 		// 메서드 호출
 		productionService.insertProduct(productionDTO);
+//		주소줄 변경하면서 이동
+		return "redirect:/mps/production/write";
+	}
+	
+	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
+	public String startProduct(ProductionDTO productionDTO) {
+		System.out.println("ProductionController start()");
+		//회원가입 처리 부모인터페이스 MemberService, 
+		//           자식클래스 MemberServiceImpl
+		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
+		// 메서드 호출
+		productionService.startProduct(productionDTO);
 		
 //		주소줄 변경하면서 이동
 		return "redirect:/mps/production/write";
 	}
 	
 	
-	
-	@RequestMapping(value = "/mps/production/writePro", method = RequestMethod.GET)
-	public String productionWritePro() {
-		System.out.println("ProductionController writePro()");
-		return "mps/production/writeForm";
-	}
+//	@RequestMapping(value = "/mps/production/writePro", method = RequestMethod.GET)
+//	public String productionWritePro() {
+//		System.out.println("ProductionController writePro()");
+//		return "mps/production/writeForm";
+//	}
 	
 	@RequestMapping(value = "/mps/production/list", method = RequestMethod.GET)
 	public String listmap(ProductionDTO productDTO, HttpServletRequest request, Model model){
