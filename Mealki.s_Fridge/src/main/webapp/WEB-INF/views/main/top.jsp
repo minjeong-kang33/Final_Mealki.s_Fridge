@@ -73,9 +73,8 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-            	
               <img src="${pageContext.request.contextPath}/resources/employee/upload/${sessionScope.userProfileImagePath}" alt="profile"/>
-              
+               <span class="text-primary"> ${sessionScope.emp_Kname}</span> 님 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">

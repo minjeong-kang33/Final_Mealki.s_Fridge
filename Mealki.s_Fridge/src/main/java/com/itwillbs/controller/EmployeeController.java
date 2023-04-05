@@ -51,6 +51,8 @@ public class EmployeeController {
 			
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
 			session.setAttribute("userProfileImagePath", employeeDTO2.getEmp_img());
+			session.setAttribute("emp_Kname", employeeDTO2.getEmp_Kname());
+			System.out.println(employeeDTO2.getEmp_Kname());
 			
 			return "redirect:/main/main";
 		}else {
