@@ -46,10 +46,6 @@
 /* 탭1에서 검색후 탭2 클릭시 검색결과가 url 창에 그대로 남아있으므로 페이지 갱신없이 url만 변경 */
 function fun2() {
 	history.pushState(null, null, 'insertOrder');
-	/* if (typeof (history.pushState) != "undefined") { 
-		history.pushState(null, null, 'insertOrder'); 
-	} else { 
-	} */
 }
 </script>
 </head>
@@ -143,9 +139,7 @@ function fun2() {
 				      
 <!--  발주 현황 끝 -->  	
 				      <div id="tab02">
-				      <!-- <h4> | 필수 입력 사항 </h4> -->
 <!--  발주 등록 시작 -->
-
             <div id="top_table" >
             	<form name="OFsearch" method="post" action="${pageContext.request.contextPath}/wms/placeorder/insertOrderPro">
             	<div id="table_search2">
@@ -165,16 +159,17 @@ function fun2() {
 					 <tr>
 					 	 <td style="width: 100px;"><input type="text" name="item_num" id="item_num" onclick="findProducts()" ></td>
 					 	 <td style="width: 150px;"><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
-					 	 <td style="width: 150px;"><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px;"><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px;"><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 150px; background-color: #dee2e6;"><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 100px;"><input type="text" name="order_qty" id="order_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-					 	 <td style="width: 100px;"><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 130px;"><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 130px;"><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
 					 </tr>
 				</table>
 				<button class="btn btn-primary" type="button" onclick="check_input()" id="IconButton6" style="margin-left: 50%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">전송</button>
+				<button class="btn btn-primary" type="button" onclick="add_column()" id="IconButton6" style="margin-left: 10px; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">항목 추가</button>
 				<hr>
 	   		
 	   			</form>
@@ -243,12 +238,19 @@ function fun2() {
  }
 
 /* 금액 계산하기 */
+/* 주문량이 상품명 선택보다 선행되면 안됨 */
  $("#order_qty").change(function(){
+	var itemNameInput = document.getElementById('item_name').value;
 	var order_qty = document.getElementById('order_qty').value;
-	var supply_price = document.getElementById('supply_price').value;
-	order_sum.value = order_qty*supply_price;
-	order_vat.value = (order_qty*supply_price)*0.1;
 	
+	if (itemNameInput === "") {
+		alert("상품을 먼저 선택하세요");
+		document.getElementById('order_qty').value = "";
+	} else {
+		var supply_price = document.getElementById('supply_price').value;
+		order_sum.value = order_qty*supply_price;
+		order_vat.value = (order_qty*supply_price)*0.1;
+	}
 	});
 
 </script>
@@ -307,6 +309,27 @@ function date_check() {
         document.getElementById('due_date').valueAsDate = tomorrow;
         return;
     } 
+}
+</script>
+<script type="text/javascript">
+function add_column() {
+	alert('추가 눌러짐');
+    var table = document.getElementById("dynamicTable");
+    var row = table.insertRow();
+    var cells = [];
+    for (var i = 0; i < 9; i++) {
+      cells[i] = row.insertCell();
+    }
+    
+    cell1.innerHTML = '<input type="text" name="item_num" onclick="findProducts()">';
+    cell2.innerHTML = '<input type="text" name="item_name" readonly onfocus="this.blur();" onclick="findProducts()">';
+    cell3.innerHTML = '<input type="text" name="supplier" readonly onfocus="this.blur();">';
+    cell4.innerHTML = '<input type="text" name="weight" readonly onfocus="this.blur();">';
+    cell5.innerHTML = '<input type="text" name="stk_qnt" readonly onfocus="this.blur();">';
+    cell6.innerHTML = '<input type="text" name="order_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,\'\');">';
+    cell7.innerHTML = '<input type="text" name="supply_price" readonly onfocus="this.blur();">';
+    cell8.innerHTML = '<input type="text" name="order_sum" readonly onfocus="this.blur();">';
+    cell9.innerHTML = '<input type="text" name="order_vat" readonly onfocus="this.blur();">';
 }
 </script>
   <!-- plugins:js -->
