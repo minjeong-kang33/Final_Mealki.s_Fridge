@@ -1,0 +1,12 @@
+@charset "UTF-8";
+
+#top_table{
+	width: 100%;
+	background-color: pink;
+}
+
+#select_search{
+	width : 50%;
+	background-color: skyblue;
+}
+
