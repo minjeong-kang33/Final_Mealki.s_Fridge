@@ -1,6 +1,7 @@
 package com.itwillbs.controller;
 
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -34,15 +35,10 @@ public class UnstoreController {
 		String e_num = request.getParameter("emp_num");
 		String item_name = request.getParameter("item_name");
 		
-		
-		System.out.println(unsto_num+" "+startDate+" "+endDate+" "+e_num+" "+item_name);
-		
-		
 		if(e_num==""||e_num==null) {e_num="0";}
 
 		
 		int emp_num = Integer.parseInt(e_num);
-		System.out.println("emp_num : " + emp_num);
 		
 		int pageSize=15;		
 
@@ -131,12 +127,25 @@ public class UnstoreController {
 		System.out.println("UnstoreController unstoreDetail()");
 		
 		String wo_num = request.getParameter("wo_num");
-		System.out.println(wo_num);
 		List<Map<String, Object>> unstoreDetailList = unstoreService.getUnstoreDetailList(wo_num);
 		model.addAttribute("unstoreDetailList", unstoreDetailList);
 
+		String status = unstoreDetailList.get(0).get("unsto_progress").toString();
+		System.out.println("현재상태"+status);
+		
+		
+		if(status.equals("미출고")) {
 		List<Map<String, Object>> unstoreStatus = unstoreService.getunstoreStatus(wo_num);
-		model.addAttribute("unstoreStatus",unstoreStatus);
+	    model.addAttribute("unstoreStatus",unstoreStatus);
+		}
+		
+		if(status.equals("출고완료")){
+			List<Map<String, Object>> unstoreStatus = unstoreService.getunstoreStatus(wo_num);
+		    for(Map<String, Object> statusMap : unstoreStatus) {
+		        statusMap.put("unstore_status", "출고완료");
+		    }
+		    model.addAttribute("unstoreStatus",unstoreStatus);
+		}
 		
 		return "/wms/unstore/unstoreDetail";
 	}
