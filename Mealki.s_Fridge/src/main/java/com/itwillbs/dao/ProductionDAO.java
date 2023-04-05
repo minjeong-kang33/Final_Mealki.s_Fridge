@@ -14,5 +14,7 @@ public interface ProductionDAO {
 	public List<Map<String, Object>> getselectList(ProductionDTO productionList);
 	
 	public void insertProduct(ProductionDTO productDTO);
+	
+	public void startProduct(ProductionDTO productDTO);
 
 }

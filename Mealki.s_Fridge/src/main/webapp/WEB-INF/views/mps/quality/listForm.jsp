@@ -178,7 +178,8 @@
 <!-- 									         </tr> -->
 <!-- 									         test -->
 
-									       		<c:forEach var="fail" items="${qualityFailList}">
+									       		<c:forEach var="fail" items="${qualityFailList}" varStatus="status">
+									       		<c:if test="${fail.fail_qty ne '0' }">
 													<tr onClick="failWrite('${fail.wo_num}');">
 														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
 														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
@@ -186,6 +187,7 @@
 														<td>${fail.emp_Kname}</td><td>${fail.fail_qty}</td>
 														<td>${fail.fail_date}</td>
 													</tr>
+												</c:if>
 												</c:forEach>
 									    </table>
 									</div>
@@ -212,6 +214,7 @@
 							"${pageContext.request.contextPath}/quality/writeForm?wo_num="+wo_num,
 							"밀키의 냉장고",popOption);}
 					</script>
+					
 					<script type="text/javascript">
 						function failWrite(wo_num) {
 							var _width = '800';
