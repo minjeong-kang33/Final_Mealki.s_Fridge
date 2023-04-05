@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -82,12 +83,14 @@
           </li>
           <li class="nav-item nav-profile dropdown">
             <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
-              <img src="${pageContext.request.contextPath}/resources/maincss/images/faces/face28.jpg" alt="profile"/>
+            	
+              <img src="${pageContext.request.contextPath}/resources/employee/upload/${sessionScope.userProfileImagePath}" alt="profile"/>
+              
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
               <a class="dropdown-item">
                 <i class="ti-settings text-primary"></i>
-                Settings
+                Settings 
               </a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/main/logout">
                 <i class="ti-power-off text-primary"></i>
@@ -102,6 +105,14 @@
         </button>
       </div>
     </nav>
+
+
+<script type="text/javascript">
+
+
+
+</script>
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 
 </body>
