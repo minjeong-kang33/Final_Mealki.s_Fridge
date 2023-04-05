@@ -104,5 +104,17 @@
 		where workorder.wo_available=1 and workorder.wo_num =#{wo_num}
 	
 	</select>
+	
+	<select id="getunstoreStatus" resultType="map">
+	    select workorder_item.wo_num, workorder_item.item_name, workorder_item.wo_qty, stock.stk_qnt,stock.item_num,                
+	    	   case 
+			   when stock.stk_qnt - workorder_item.wo_qty >= 0 then '출고가능'
+			   else '출고불가능'
+			   end as unstore_status
+        from workorder_item
+        left join stock on workorder_item.item_name = stock.item_name
+        where workorder_item.wo_num=#{wo_num};
+	
+	</select>
 
 </mapper>

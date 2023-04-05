@@ -12,6 +12,16 @@ public class UnstoreDTO {
 	private String item_num;
 	private String item_name;
 	
+	//재고상태 (디비저장안함)
+	private String unstore_status;
+	
+	
+	public String getUnstore_status() {
+		return unstore_status;
+	}
+	public void setUnstore_status(String unstore_status) {
+		this.unstore_status = unstore_status;
+	}
 	public String getItem_name() {
 		return item_name;
 	}
