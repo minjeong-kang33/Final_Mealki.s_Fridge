@@ -1,7 +1,6 @@
 package com.itwillbs.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -73,6 +72,7 @@ public class UnstoreController {
 		
 		//전체출고 리스트
 		List<Map<String, Object>> unstoreList = unstoreService.getUnstoreList(pageDTO);
+
 		
 		int count = unstoreService.getUnstoreListCount(pageDTO);
 		
@@ -96,7 +96,8 @@ public class UnstoreController {
 		model.addAttribute("startDate",startDate);
 		model.addAttribute("endDate",endDate);
 		model.addAttribute("pageDTO",pageDTO);
-		model.addAttribute("unstoreList", unstoreList);		
+		model.addAttribute("unstoreList", unstoreList);	
+		
 		
 		return "wms/unstore/insertUnstore";
 	}
@@ -131,7 +132,6 @@ public class UnstoreController {
 		model.addAttribute("unstoreDetailList", unstoreDetailList);
 
 		String status = unstoreDetailList.get(0).get("unsto_progress").toString();
-		System.out.println("현재상태"+status);
 		
 		
 		if(status.equals("미출고")) {
