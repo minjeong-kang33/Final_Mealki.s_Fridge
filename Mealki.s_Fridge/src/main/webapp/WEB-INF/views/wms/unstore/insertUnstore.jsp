@@ -45,28 +45,6 @@
 	  
 
 
-//재고확인
-$(document).ready(function() {
-  $.ajax({
-    url: "/stockCheck",
-    data:{'wo_num':$('.wo_num')},
-    method: "GET",
-    success: function(result) {
-      
-    if(result){
-    	result="재고부족";
-		$('.divresult').html(result).css("color","red");
-    }else {
-    	result="출고가능";
-		$('.divresult').html(result).css("color","blue");
-    }
-
-    }
- 
-  });
-});
-
-
 </script>
 
 </head>
@@ -365,6 +343,12 @@ $(document).ready(function() {
 	$(function(){
 	$(".unstore_submit_button").click(function(){ 
 	
+		 var unstoreStatus = $(this).closest("tr").find(".divresult").text().trim();
+		    if (unstoreStatus == "출고불가능") {
+		      alert("출고가 불가능합니다. 재고를 확인해주세요.");
+		      return false;
+		    }
+		
 		var str = "";
 		var tdArr = new Array();	// 배열 선언
 		var unstore_submit_button = $(this);
@@ -414,8 +398,6 @@ $(document).ready(function() {
 	});	
 
 </script>
- 
- </script>
  
    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
