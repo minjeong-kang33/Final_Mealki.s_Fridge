@@ -44,10 +44,14 @@ public class EmployeeController {
 	@RequestMapping(value = "/main/loginPro", method = RequestMethod.POST)
 	public String loginPro(EmployeeDTO employeeDTO, HttpSession session) {
 		System.out.println("EmployeeController loginPro()");
+		
 		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
 		
 		if(employeeDTO2 != null) {
+			
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
+			session.setAttribute("userProfileImagePath", employeeDTO2.getEmp_img());
+			
 			return "redirect:/main/main";
 		}else {
 			return "main/loginErrorMsg";
