@@ -6,6 +6,7 @@ public class ContractDTO {
 
 	private String business_num;
 	private String cust_num;
+	private String cust_name;
 	private String item_num;
 	private String item_name;
 	private String business_name;
@@ -27,6 +28,13 @@ public class ContractDTO {
 	}
 	public void setCust_num(String cust_num) {
 		this.cust_num = cust_num;
+	}
+	
+	public String getCust_name() {
+		return cust_name;
+	}
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
 	}
 	public String getItem_num() {
 		return item_num;

@@ -7,6 +7,7 @@ import java.util.Map;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PlaceOrderDTO;
 
 public interface ContractService {
 	 // 일반게시판 저장처리
@@ -26,6 +27,12 @@ public interface ContractService {
 	 public void updateBoard(ContractDTO dto);
 	
 	 public void deleteBoard(int business_num);
+	
+	 public List<PlaceOrderDTO> getProductList();
+
+	 public List<ContractDTO> getNameList();
+	
+	 public List<ContractDTO> getNameList2();
 
 	
 }

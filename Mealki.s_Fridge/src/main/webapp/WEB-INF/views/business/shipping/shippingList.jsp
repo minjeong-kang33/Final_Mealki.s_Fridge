@@ -83,7 +83,7 @@ $(function(){
 		var delivery_date = tdArr[4]; //출하일자
 		var out_date = tdArr[5]; //납품예정일
 		var out_qty = tdArr[6]; //출하량
-		var stock_qty = tdArr[7]; //재고수량
+		var qc_qty = tdArr[7]; //재고수량
 		var incharge_name = tdArr[8]; //담당자
 		var business_name = tdArr[9]; //수주업체
 		
@@ -99,7 +99,7 @@ $(function(){
 // 				delivery_date:delivery_date,
 // 				out_date:out_date,
 // 				out_qty:out_qty,
-// 				stock_qty:stock_qty
+// 				qc_qty:qc_qty
 // 				incharge_name:incharge_name
 // 				business_name:business_name},
 				
@@ -191,11 +191,11 @@ $(function(){
            			<td>${ShippingDTO.shipping_num}</td>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
-           			<td>${ShippingDTO.product_name}</td>
+           			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
            			<td>${ShippingDTO.out_qty}</td>
-           			<td>${ShippingDTO.stock_qty}</td>
+           			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
            			<td class="divresult">
@@ -238,7 +238,7 @@ $(function(){
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
-           			<th>출하번호</th>
+<!--            			<th>출하번호</th> -->
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
@@ -255,14 +255,14 @@ $(function(){
           		<c:forEach var="ShippingDTO" items="${resultList}">	
            			
            			<tr>
-           			<td>${ShippingDTO.shipping_num}</td>
+<%--            			<td>${ShippingDTO.shipping_num}</td> --%>
            			<td class="wo_num">${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
-           			<td>${ShippingDTO.product_name}</td>
+           			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
            			<td>${ShippingDTO.out_qty}</td>
-           			<td>${ShippingDTO.stock_qty}</td>
+           			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
            			<td class="divresult">
@@ -309,11 +309,11 @@ $(function(){
            			<td>${ShippingDTO.shipping_num}</td>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
-           			<td>${ShippingDTO.product_name}</td>
+           			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
            			<td>${ShippingDTO.out_qty}</td>
-           			<td>${ShippingDTO.stock_qty}</td>
+           			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
            			<td class="divresult">

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ShippingDTO;
 
@@ -18,6 +19,12 @@ public interface ShippingService {
 	int selectShippingTotal(ShippingDTO shippingDTO);
 
 	void insertShipping(ShippingDTO shippingDTO);
+
+	List<Map<String, Object>> getShippingListMap();
+
+	List<ContractDTO> getEmployeeList();
+
+	
 
 	
 

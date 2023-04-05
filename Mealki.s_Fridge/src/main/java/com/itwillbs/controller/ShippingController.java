@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.ShippingDTO;
 import com.itwillbs.service.ShippingService;
@@ -113,5 +114,25 @@ public class ShippingController {
 		shippingService.insertShipping(shippingDTO);
 		
 		return "business/shipping/shippingList";
+	}
+	
+	@RequestMapping(value = "/business/shipping/findShipping", method = RequestMethod.GET)
+	public String findProducts(HttpServletRequest request, Model model) {
+		System.out.println("ShippingController findShipping()");
+
+		List<Map<String, Object>> itemListMap = shippingService.getShippingListMap();
+		model.addAttribute("itemListMap", itemListMap);
+
+		return "business/shipping/findShipping";
+	}
+	
+	@RequestMapping(value = "/business/shipping/findEmp_num", method = RequestMethod.GET)
+	public String findEmp_num(HttpServletRequest request, Model model) {
+		System.out.println("ShippingController findEmp_num()");
+
+		List<ContractDTO> employeeList = shippingService.getEmployeeList();
+		model.addAttribute("employeeList", employeeList);
+
+		return "business/shipping/findEmp_num";
 	}
 }

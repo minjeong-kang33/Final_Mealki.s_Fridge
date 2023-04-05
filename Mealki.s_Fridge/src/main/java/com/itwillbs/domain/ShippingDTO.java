@@ -5,11 +5,11 @@ public class ShippingDTO {
 	private String shipping_num;
 	private String wo_num;
 	private String item_num;
-	private String product_name;
+	private String item_name;
 	private String delivery_date;
 	private String out_date;
 	private String out_qty;
-	private String stock_qty;
+	private String qc_qty;
 	private String incharge_name;
 	private String business_name;
 	private String out_progress;
@@ -38,11 +38,11 @@ public class ShippingDTO {
 	public void setItem_num(String item_num) {
 		this.item_num = item_num;
 	}
-	public String getProduct_name() {
-		return product_name;
+	public String getitem_name() {
+		return item_name;
 	}
-	public void setProduct_name(String product_name) {
-		this.product_name = product_name;
+	public void setitem_name(String item_name) {
+		this.item_name = item_name;
 	}
 	public String getDelivery_date() {
 		return delivery_date;
@@ -62,11 +62,11 @@ public class ShippingDTO {
 	public void setOut_qty(String out_qty) {
 		this.out_qty = out_qty;
 	}
-	public String getStock_qty() {
-		return stock_qty;
+	public String getqc_qty() {
+		return qc_qty;
 	}
-	public void setStock_qty(String stock_qty) {
-		this.stock_qty = stock_qty;
+	public void setqc_qty(String qc_qty) {
+		this.qc_qty = qc_qty;
 	}
 	public String getIncharge_name() {
 		return incharge_name;
