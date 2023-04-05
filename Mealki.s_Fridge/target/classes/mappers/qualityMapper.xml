@@ -51,7 +51,15 @@
 		p.item_num, CONCAT('QC',lpad(q.qc_num,6,0)) qc_code, q.qc_status, q.emp_Kname,
 		q.qc_qty, q.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, date_format(q.qc_date, '%Y-%m-%d') qc_date
 		from productstatus p right join workorder w	on p.wo_num = w.wo_num 
-		left join qc_status q on q.wo_num = p.wo_num group by p.wo_num
+		left join qc_status q on q.wo_num = p.wo_num
+<!-- 		<where> -->
+<!--     		<if test="qc_num != null and !qc_num.equals('') and !qc_num.equals(0)"> where qc_num like CONCAT('%',#{qc_num},'%') </if> -->
+<!-- 			<if test="manu_name != null and !manu_name.equals('')">OR p.manu_name like CONCAT('%',#{manu_name},'%')</if> -->
+<!-- 			<if test="item_name != null and !item_name.equals('')">OR p.item_name like CONCAT('%',#{item_name},'%')</if> -->
+<!-- 			<if test="emp_Kname != null and !emp_Kname.equals('')">OR q.emp_Kname like CONCAT('%',#{emp_Kname},'%')</if> -->
+<!-- 			<if test="qc_date != null and !qc_date.equals('') and qc_date != null and !qc_date.equals('')">OR q.qc_date between date(#{qc_date}) and date(#{qc_date})+1</if> -->
+<!--     	</where> -->
+		group by p.wo_num
 		having manu_tocount = wo_qty
     </select>
     
