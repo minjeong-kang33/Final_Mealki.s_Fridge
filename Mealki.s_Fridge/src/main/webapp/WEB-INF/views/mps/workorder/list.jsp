@@ -130,7 +130,7 @@
 							<td>${WorkorderDTO.wo_qty}</td>
 							<td>${WorkorderDTO.pr_sum}</td>
 							<td>
-							<c:if test="${WorkorderDTO.pr_sum == '0'}">
+							<c:if test="${WorkorderDTO.wo_state == null}">
 							  <div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
 							</c:if>
 							<c:if test="${WorkorderDTO.wo_state == '진행중'}">
