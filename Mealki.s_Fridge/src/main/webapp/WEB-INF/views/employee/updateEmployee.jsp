@@ -329,7 +329,7 @@ $('#absenceEmployeeBtn').click(function(event) {
         type :'GET',
         data:{emp_num:emp_num},
         dataType : 'json',
-        success:function(result){alert('휴직 처리 완료'); window.close();}
+        success:function(result){alert('휴직 처리 완료'); window.close(); window.opener.location.reload();}
     });
 });
 
@@ -348,7 +348,7 @@ $('#rehabilitationEmployeeBtn').click(function(event) {
         type :'GET',
         data:{emp_num:emp_num},
         dataType : 'json',
-        success:function(result){alert('복직 처리 완료'); window.close();}
+        success:function(result){alert('복직 처리 완료'); window.close(); window.opener.location.reload();}
     });
 });
 
@@ -367,7 +367,7 @@ $('#leaveEmployeeBtn').click(function(event) {
         type :'GET',
         data:{emp_num:emp_num},
         dataType : 'json',
-        success:function(result){alert('퇴직 처리 완료'); window.close();}
+        success:function(result){alert('퇴직 처리 완료'); window.close(); window.opener.location.reload();}
     });
 });
 
