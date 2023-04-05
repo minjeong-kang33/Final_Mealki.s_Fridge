@@ -174,6 +174,18 @@ public class EmployeeController {
 		return "1";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/employee/rehabilitationEmployee", method = RequestMethod.GET)
+	public String rehabilitationEmployee(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController rehabilitationEmployee");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+		
+		employeeService.rehabilitationEmployee(emp_num);
+
+		return "1";
+	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/employee/leaveEmployee", method = RequestMethod.GET)

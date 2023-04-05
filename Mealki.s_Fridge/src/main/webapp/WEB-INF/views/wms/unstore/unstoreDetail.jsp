@@ -47,6 +47,13 @@
 	<tr><th>품명</th><td colspan="3">${UnstoreDTO.item_name }</td><th>납품처명</th><td colspan="3">${UnstoreDTO.business_name }</td></tr>
 </c:forEach>	
 </table>
+<br>
+<table border="1" class="storeDetail_table">
+	<tr><th>원재료품목코드</th><th>원재료명</th><th>필요수량</th><th>재고수량</th><th>재고상태</th></tr>
+<c:forEach var="UnstoreDTO" items="${unstoreStatus}">
+	<tr><td>${UnstoreDTO.item_num }</td><td>${UnstoreDTO.item_name }</td><td>${UnstoreDTO.wo_qty }</td><td>${UnstoreDTO.stk_qnt }</td><td>${UnstoreDTO.unstore_status }</td></tr>
+</c:forEach>
+</table>
 
 <div>
 <button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;" value="인쇄하기" onclick="window.print()">인쇄하기</button>

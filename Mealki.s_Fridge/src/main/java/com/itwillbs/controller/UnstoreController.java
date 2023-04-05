@@ -1,7 +1,6 @@
 package com.itwillbs.controller;
 
 import java.text.SimpleDateFormat;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -15,13 +14,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.StockDTO;
-import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.UnstoreDTO;
-import com.itwillbs.domain.WorkorderItemDTO;
-import com.itwillbs.service.StockService;
 import com.itwillbs.service.UnstoreService;
-import com.itwillbs.service.WorkorderItemService;
 
 @Controller
 public class UnstoreController {
@@ -29,12 +23,6 @@ public class UnstoreController {
 	
 	@Inject
 	private UnstoreService unstoreService;
-	
-	@Inject
-	private WorkorderItemService workorderItemService;
-	
-	@Inject StockService stockService;
-	
 
 	@RequestMapping(value = "/wms/unstore/insertUnstore", method = RequestMethod.GET)
 	public String insertUnstore(HttpServletRequest request, Model model)throws Exception {
@@ -46,15 +34,10 @@ public class UnstoreController {
 		String e_num = request.getParameter("emp_num");
 		String item_name = request.getParameter("item_name");
 		
-		
-		System.out.println(unsto_num+" "+startDate+" "+endDate+" "+e_num+" "+item_name);
-		
-		
 		if(e_num==""||e_num==null) {e_num="0";}
 
 		
 		int emp_num = Integer.parseInt(e_num);
-		System.out.println("emp_num : " + emp_num);
 		
 		int pageSize=15;		
 
@@ -89,6 +72,7 @@ public class UnstoreController {
 		
 		//전체출고 리스트
 		List<Map<String, Object>> unstoreList = unstoreService.getUnstoreList(pageDTO);
+
 		
 		int count = unstoreService.getUnstoreListCount(pageDTO);
 		
@@ -112,32 +96,7 @@ public class UnstoreController {
 		model.addAttribute("startDate",startDate);
 		model.addAttribute("endDate",endDate);
 		model.addAttribute("pageDTO",pageDTO);
-		model.addAttribute("unstoreList", unstoreList);		
-		
-		/*	for(int i=0; i<unstoreList.size();i++) {
-			String wo_num = unstoreList.get(i).get("wo_num").toString(); //추출된표에서 wo_num을 추출 
-			System.out.println("작업지시번호"+wo_num);
-			WorkorderItemDTO workorderItemDTO = new WorkorderItemDTO();
-			workorderItemDTO.setWo_num(wo_num);
-			workorderItemService.getItemList(wo_num); //작업지시번호로 생산을 위해 필요한 품목과 총수량을 가져옴
-			
-			List<WorkorderItemDTO> itemList = workorderItemService.getItemList(wo_num);
-			
-			for (WorkorderItemDTO item : itemList) {
-				String item_name1 = item.getItem_name(); //오더에 따른 소요량 테이블
-				System.out.println("품목명"+item_name);
-				
-				
-				  StockDTO stockDTO = new StockDTO(); stockDTO.setItem_name(item_name);
-				  stockService.getItemList_unstore(item_name);
-				  
-				  
-				  int sqt = stockService.getItemList_unstore(item_name);
-				  System.out.println(sqt); 
-					
-				  
-			} // 품목이 잘 가져와지는지 확인  
-		} */
+		model.addAttribute("unstoreList", unstoreList);	
 		
 		
 		return "wms/unstore/insertUnstore";
@@ -169,10 +128,25 @@ public class UnstoreController {
 		System.out.println("UnstoreController unstoreDetail()");
 		
 		String wo_num = request.getParameter("wo_num");
-		System.out.println(wo_num);
 		List<Map<String, Object>> unstoreDetailList = unstoreService.getUnstoreDetailList(wo_num);
 		model.addAttribute("unstoreDetailList", unstoreDetailList);
 
+		String status = unstoreDetailList.get(0).get("unsto_progress").toString();
+		
+		
+		if(status.equals("미출고")) {
+		List<Map<String, Object>> unstoreStatus = unstoreService.getunstoreStatus(wo_num);
+	    model.addAttribute("unstoreStatus",unstoreStatus);
+		}
+		
+		if(status.equals("출고완료")){
+			List<Map<String, Object>> unstoreStatus = unstoreService.getunstoreStatus(wo_num);
+		    for(Map<String, Object> statusMap : unstoreStatus) {
+		        statusMap.put("unstore_status", "출고완료");
+		    }
+		    model.addAttribute("unstoreStatus",unstoreStatus);
+		}
+		
 		return "/wms/unstore/unstoreDetail";
 	}
 }
