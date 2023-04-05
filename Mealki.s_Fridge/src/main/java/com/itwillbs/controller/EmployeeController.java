@@ -246,5 +246,9 @@ public class EmployeeController {
 		return "employee/empMsg";
 	}
 	
+	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
+	public String yellowPage() {
+		return "employee/yellowPage";
+	}
 	
 }
