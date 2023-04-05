@@ -67,5 +67,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		employeeDAO.leaveEmployee(emp_num);		
 	}
 
+	@Override
+	public void rehabilitationEmployee(int emp_num) {
+		System.out.println("EmployeeServiceImpl rehabilitationEmployee");
+		employeeDAO.rehabilitationEmployee(emp_num);			
+	}
+
 	
 }
