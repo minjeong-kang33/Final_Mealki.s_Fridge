@@ -135,9 +135,10 @@ $(document).ready(function() {
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
-									</c:if></td> <!-- 재고확인결과 -->
+										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+											${unstoreDTO.unstore_status}
+										</c:if>
+								</td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 								<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
@@ -194,7 +195,7 @@ $(document).ready(function() {
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
 									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
+										${unstoreDTO.unstore_status }
 									</c:if></td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
@@ -238,7 +239,7 @@ $(document).ready(function() {
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
 									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
+										${unstoreDTO.unstore_status }
 									</c:if></td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
