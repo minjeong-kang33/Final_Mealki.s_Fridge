@@ -69,6 +69,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	public void leaveEmployee(int emp_num) {
 		System.out.println("EmployeeDAOImpl leaveEmployee");
 		sqlSession.update(namespace+".leaveEmployee",emp_num);		
+	}
+
+	@Override
+	public void rehabilitationEmployee(int emp_num) {
+		System.out.println("EmployeeDAOImpl rehabilitationEmployee");
+		sqlSession.update(namespace+".rehabilitationEmployee",emp_num);			
 	};
 	
 }

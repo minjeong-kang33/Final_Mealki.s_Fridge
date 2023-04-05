@@ -25,4 +25,6 @@ public interface EmployeeDAO {
 	public void absenceEmployee(int emp_num);
 	
 	public void leaveEmployee(int emp_num);
+	
+	public void rehabilitationEmployee(int emp_num);
 }

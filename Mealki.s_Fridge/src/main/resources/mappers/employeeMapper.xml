@@ -101,9 +101,15 @@
 	    where emp_num = #{emp_num}
 	</update>
     
-    	<update id="leaveEmployee">
+    <update id="leaveEmployee">
 		update employee
 		set emp_leaveDate = now()
+	    where emp_num = #{emp_num}
+	</update>
+	
+	<update id="rehabilitationEmployee">
+		update employee
+		set emp_absenceDate = Null
 	    where emp_num = #{emp_num}
 	</update>
 </mapper>

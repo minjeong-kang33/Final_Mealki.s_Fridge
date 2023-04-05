@@ -270,8 +270,21 @@
 				<fieldset>
 				<div class="submit_Btn">
 				<c:forEach var="dto" items="${employeeDetail }">
-					<button value="${dto.emp_num }" class="btn btn-inverse-secondary btn-fw" id="absenceEmployeeBtn"  onClick="absenceEmployee(${dto.emp_num })">휴직</button>
+				
+
+				
+				<c:if test="${dto.emp_leaveDate eq ''}">	
+					<c:if test="${dto.emp_absenceDate eq ''}">	  <!-- 퇴직하지않았고 휴직도하지않은경우에만 휴직버튼  -->
+						<button value="${dto.emp_num }" class="btn btn-inverse-secondary btn-fw" id="absenceEmployeeBtn"  onClick="absenceEmployee(${dto.emp_num })">휴직</button>
+					</c:if>
+					
+					<c:if test="${not empty dto.emp_absenceDate}">
+						<button value="${dto.emp_num }" class="btn btn-inverse-secondary btn-fw" id="rehabilitationEmployeeBtn"  onClick="rehabilitationEmployee(${dto.emp_num })">복직</button>
+					</c:if>
+					
 					<button value="${dto.emp_num }" class="btn btn-inverse-danger btn-fw" id="leaveEmployeeBtn" onClick="leaveEmployee(${dto.emp_num })">퇴직</button>
+				</c:if>
+				
 					<input type="submit" value="수정" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
 					<input type="reset" value="초기화" class="btn btn-dark btn-icon-text" id="insertEmployeeReset"> 
 				</c:forEach>
@@ -306,7 +319,6 @@
 $('#absenceEmployeeBtn').click(function(event) {
     event.preventDefault();
     var emp_num = $(this).val();  // 버튼의 value 값 가져오기
-    alert(emp_num);
 
     if(!confirm('휴직 처리를 하시겠습니까?')){
         return false;
@@ -322,11 +334,29 @@ $('#absenceEmployeeBtn').click(function(event) {
 });
 
 
+/* 복직 버튼*/
+$('#rehabilitationEmployeeBtn').click(function(event) {
+    event.preventDefault();
+    var emp_num = $(this).val();  // 버튼의 value 값 가져오기
+
+    if(!confirm('복직 처리를 하시겠습니까?')){
+        return false;
+    }
+
+    $.ajax({
+        url:'${pageContext.request.contextPath}/employee/rehabilitationEmployee',
+        type :'GET',
+        data:{emp_num:emp_num},
+        dataType : 'json',
+        success:function(result){alert('복직 처리 완료'); window.close();}
+    });
+});
+
+
 /* 퇴직 버튼*/
 $('#leaveEmployeeBtn').click(function(event) {
     event.preventDefault();
     var emp_num = $(this).val();  // 버튼의 value 값 가져오기
-    alert(emp_num);
 
     if(!confirm('퇴직 처리를 하시겠습니까?')){
         return false;
