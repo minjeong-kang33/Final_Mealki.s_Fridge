@@ -100,6 +100,13 @@
 	
 	</insert>
 	
+	<update id="updateStock_unstore">
+		UPDATE stock
+		left JOIN workorder_item on workorder_item.item_name = stock.item_name
+		SET stock.stk_qnt = stock.stk_qnt - workorder_item.wo_qty
+		WHERE workorder_item.wo_num = #{wo_num};
+	</update>
+	
 	
 	<select id="getUnstoreDetailList" resultType="map">
 		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
