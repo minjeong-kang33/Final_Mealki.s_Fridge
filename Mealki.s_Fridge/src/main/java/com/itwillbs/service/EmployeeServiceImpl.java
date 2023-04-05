@@ -73,5 +73,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 		employeeDAO.rehabilitationEmployee(emp_num);			
 	}
 
+	@Override
+	public List<Map<String, Object>> yellowPage() {
+		System.out.println("EmployeeServiceImpl yellowPage");
+		return employeeDAO.yellowPage();
+	}
+
 	
 }

@@ -27,4 +27,6 @@ public interface EmployeeDAO {
 	public void leaveEmployee(int emp_num);
 	
 	public void rehabilitationEmployee(int emp_num);
+	
+	public List<Map<String, Object>> yellowPage();
 }

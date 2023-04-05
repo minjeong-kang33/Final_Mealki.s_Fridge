@@ -25,4 +25,6 @@ public interface EmployeeService {
 	
 	public void rehabilitationEmployee(int emp_num);
 	
+	public List<Map<String, Object>> yellowPage();
+	
 }
