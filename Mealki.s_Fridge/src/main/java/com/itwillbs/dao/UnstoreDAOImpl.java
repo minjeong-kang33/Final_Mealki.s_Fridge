@@ -25,7 +25,7 @@ public class UnstoreDAOImpl implements UnstoreDAO {
 		System.out.println("UnstoreDAOImpl insertUnstore");
 		System.out.println(unstoreDTO.getEmp_num());
 		sqlSession.insert(namespace+".insertUnstore",unstoreDTO);
-	//	sqlSession.update(namespace+".updateStock_unstore",unstoreDTO);
+		sqlSession.update(namespace+".updateStock_unstore",unstoreDTO);
 	}
 
 	@Override
