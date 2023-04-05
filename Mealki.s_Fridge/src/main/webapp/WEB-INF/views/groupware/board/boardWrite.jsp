@@ -55,7 +55,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">공지 사항</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+<!--                   <h6 class="font-weight-normal mb-0">글쓰기 <span class="text-primary">강조쓰</span></h6> -->
                 </div>
                 
           <div class="contentbody" > 
