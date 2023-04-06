@@ -8,8 +8,8 @@
 <title>밀키의 냉장고</title>
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-<%--   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css"> --%>
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerDetail.css">
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
 </head>
@@ -31,11 +31,11 @@
                      				<th class="th">담당자 전화번호</th><td><input type="text" name="man_tel" value="${customerDTO.man_tel}"></td></tr>
                      <tr class="tr"><th class="th">담당자 이메일</th><td><input type="text" name="man_email" value="${customerDTO.man_email}"></td>
                      				<th class="th">Fax</th><td><input type="text" name="fax" value="${customerDTO.fax}"></td></tr>
-                     <tr class="tr"><th class="th">주소</th><td colspan="3">(<input type="text" name="cust_post_num" value="${customerDTO.cust_post_num}">)
-                     														<input type="text" name="cust_address" value="${customerDTO.cust_address}">, 
-                     														<input type="text" name="cust_address2" value="${customerDTO.cust_address2}"></td></tr>
+                     <tr class="tr"><th class="th">주소</th><td colspan="3">(<input type="text" name="cust_post_num" id="sample4_postcode" style="width:150px;" value="${customerDTO.cust_post_num}" onclick="sample4_execDaumPostcode()">)
+                     														<input type="text" name="cust_address" id="sample4_roadAddress" style="width:400px;"value="${customerDTO.cust_address}" onclick="sample4_execDaumPostcode()">, 
+                     														<input type="text" name="cust_address2" id="sample4_detailAddress" style="width:300px;"value="${customerDTO.cust_address2}"></td></tr>
                      <tr class="tr"><th class="th">홈페이지</th><td colspan="3"><input type="text" name="url_path" value="${customerDTO.url_path}"></td></tr>
-                     <tr class="tr"><th class="th">적요</th><td colspan="3"><textarea name="remarks" rows="20" cols="120">${customerDTO.remarks}</textarea></td></tr>
+                     <tr class="tr"><th class="th">적요</th><td colspan="3"><textarea name="remarks" rows="20" cols="145">${customerDTO.remarks}</textarea></td></tr>
                      </table>
                      
                      <div id="buttons" style="text-align:center;">		
@@ -45,6 +45,36 @@
                     </form>
                   </div>
                </div>
-               
+
+
+ <!-- 주소값 api -->
+ <script src="http://dmaps.daum.net/map_js_init/postcode.v2.js"></script>
+	<script>
+		function sample4_execDaumPostcode() {
+			new daum.Postcode({
+				oncomplete: function(data) {
+					var fullRoadAddr = data.roadAddress; 
+					var extraRoadAddr = ''; 
+
+					if(data.bname !== '' && /[동|로|가]$/g.test(data.bname)){
+						extraRoadAddr += data.bname;
+					}
+
+					if(data.buildingName !== '' && data.apartment === 'Y'){
+					   extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
+					}
+
+					if(extraRoadAddr !== ''){
+						extraRoadAddr = ' (' + extraRoadAddr + ')';
+					}
+
+					document.getElementById('sample4_postcode').value = data.zonecode;
+					document.getElementById('sample4_roadAddress').value = fullRoadAddr;
+					document.getElementById('guide').innerHTML = '';
+					document.getElementById('sample4_detailAddress').focus();
+				}
+			}).open();
+		}
+	</script>               
 </body>
 </html>
