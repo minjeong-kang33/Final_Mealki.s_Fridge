@@ -74,9 +74,15 @@ public class EmployeeServiceImpl implements EmployeeService{
 	}
 
 	@Override
-	public List<Map<String, Object>> yellowPage() {
+	public List<Map<String, Object>> yellowPage(PageDTO pageDTO) {
 		System.out.println("EmployeeServiceImpl yellowPage");
-		return employeeDAO.yellowPage();
+		return employeeDAO.yellowPage(pageDTO);
+	}
+
+	@Override
+	public int yellowPageCount(PageDTO pageDTO) {
+		System.out.println("EmployeeServiceImpl yellowPageCount ");
+		return employeeDAO.yellowPageCount(pageDTO);
 	}
 
 	
