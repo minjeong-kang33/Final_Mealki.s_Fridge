@@ -25,32 +25,13 @@ public class QualityController {
 	public String listmap(QualityDTO qualityDTO, Model model){
 
 	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
-	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
+//	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
 	
 	model.addAttribute("qualityListMap", qualityListMap);
-	model.addAttribute("qualityFailList", qualityFailList);
+//	model.addAttribute("qualityFailList", qualityFailList);
+	
 	
 	return "mps/quality/listForm";
-	}
-	
-	@RequestMapping(value = "/mps/quality/qcsearch", method = RequestMethod.POST)
-	public String qcSearch(QualityDTO qualityDTO, Model model){
-
-	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
-	
-	model.addAttribute("qualityListMap", qualityListMap);
-	
-	return "redirect:/mps/quality/list";
-	}
-	
-	@RequestMapping(value = "/mps/quality/failsearch", method = RequestMethod.GET)
-	public String failSearch(QualityDTO qualityDTO, Model model){
-
-	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
-	
-	model.addAttribute("qualityFailList", qualityFailList);
-	
-	return "redirect:/mps/quality/list";
 	}
 	
 	@RequestMapping(value = "/quality/writeForm", method = RequestMethod.GET)
