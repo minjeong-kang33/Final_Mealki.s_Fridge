@@ -32,9 +32,9 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var business_name = td.eq(1).text();
+			var business_name = td.eq(0).text();
 		
-			opener.document.getElementById("business_name").value = item_num;
+			opener.document.getElementById("business_name").value = business_name;
 			
 			
 			

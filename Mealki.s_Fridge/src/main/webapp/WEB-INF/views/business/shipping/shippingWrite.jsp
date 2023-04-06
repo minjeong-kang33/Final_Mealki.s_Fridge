@@ -51,6 +51,9 @@
 	  openWin = window.open("${pageContext.request.contextPath}/business/shipping/findEmp_num",
 	           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
 	 }
+	 
+	 
+			 
 	</script>
 </head>
 <style>
@@ -96,7 +99,7 @@ th,td{
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post">
+    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
     	<table>
     	<tr>
 <!--            			<th>출하번호</th> -->
@@ -127,7 +130,7 @@ th,td{
            			</tr>
            			 <tr align="center">
 					<th colspan="10">					
-					<button type="submit">저장</button> 
+					<button type="submit" class="shipping_write_button">저장</button> 
 					</th>
 		</tr> 
     	</table>
@@ -181,6 +184,17 @@ th,td{
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+<script type="text/javascript">
 
+
+$(function(){
+		$(".shipping_write_button").click(function(){ 
+		
+				if(Number($(".out_qty").eq(i).val()) > Number($(".qc_qty").eq(i).val())){
+					alert("재고수량을 확인해주세요!");
+					$(".out_qty").eq(i).val(0);
+					
+					return false;
+				}</script>
 </body>
 </html>

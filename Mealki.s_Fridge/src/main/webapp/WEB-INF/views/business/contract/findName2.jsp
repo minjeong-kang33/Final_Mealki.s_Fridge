@@ -32,7 +32,7 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var incharge_name = td.eq(1).text();
+			var incharge_name = td.eq(0).text();
 		
 			opener.document.getElementById("incharge_name").value = incharge_name;
 			

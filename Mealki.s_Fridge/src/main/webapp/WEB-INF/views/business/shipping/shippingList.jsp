@@ -56,15 +56,15 @@ $(function(){
 	  }).filter(':eq(0)').click();
 	  });
 
-//submit
+//버튼 클릭 시 입력된 값 tr정보 넘기기
 $(function(){
-	$(".unstore_submit_button").click(function(){ 
-	
+$(".shipping_submit_button").click(function(){ 
+		
 		var str = "";
 		var tdArr = new Array();	// 배열 선언
-		var unstore_submit_button = $(this);
+		var shipping_submit_button = $(this);
 		
-		var tr = unstore_submit_button.parent().parent();
+		var tr = shipping_submit_button.parent().parent();
 		var td = tr.children();
 		
 		td.each(function(i) {
@@ -74,45 +74,36 @@ $(function(){
 				  tdArr.push(selectValue || text);
 			  }
 			});
-		console.log("배열에 담긴 값1:" +tdArr);
 		
-		var shipping_num = tdArr[0]; //출하번호
-		var wo_num = tdArr[1]; //작업지시번호
-		var item_num = tdArr[2]; //품목코드
-		var product_name = tdArr[3]; //품명
-		var delivery_date = tdArr[4]; //출하일자
-		var out_date = tdArr[5]; //납품예정일
-		var out_qty = tdArr[6]; //출하량
-		var qc_qty = tdArr[7]; //재고수량
-		var incharge_name = tdArr[8]; //담당자
-		var business_name = tdArr[9]; //수주업체
+		var wo_num = tdArr[0]; 
+		var item_num = tdArr[1]; 
+		var item_name = tdArr[2];
+		var delivery_date = tdArr[3]; 
+		var out_date = tdArr[4]; 
+		var out_qty = tdArr[5]; 
+		var qc_qty = tdArr[6]; 
+		var incharge_name =tdArr[7]; 
+		var business_name =tdArr[8]; 
+		var out_progress =tdArr[9]; 
 		
-		console.log("배열에 담긴 값2:"+tdArr);
+		console.log("배열에 담긴 값 : "+tdArr);
+		alert(tdArr);
 		
-// 		$.ajax({
-// 			url:'addShipping',
-// 			type :'GET',
-// 			data:{shipping_num:shipping_num,
-// 				wo_num:wo_num,
-// 				item_num:item_num,
-// 				product_name:product_name,
-// 				delivery_date:delivery_date,
-// 				out_date:out_date,
-// 				out_qty:out_qty,
-// 				qc_qty:qc_qty
-// 				incharge_name:incharge_name
-// 				business_name:business_name},
+		$.ajax({
+				url:'/business/shipping/addShipping',
+				type :'GET',
+				data:{wo_num:wo_num,item_num:item_num,item_name:item_name,
+					delivery_date:delivery_date,out_date:out_date,out_qty:out_qty,
+					qc_qty:qc_qty,incharge_name:incharge_name,business_name:business_name,
+					out_progress:out_progress},
+				success:function(result){
 				
-// 				success:function(result){
-			
-// 			alert("출하번호 "+shipping_num +"번이 출고처리 되었습니다.");
-// 			location.reload();
-// 			},
-// 		}); 
-	
-	
+				alert(out_qty+"개가 출하처리 되었습니다.");
+				location.reload();
+				},
+			});
 });	
-});
+});	
 </script>
 </head>
 <body>
@@ -141,7 +132,7 @@ $(function(){
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-			  <div class="div2">Total: ${total}</div>
+			   <div class="div2">Total: ${total}</div>
 			   <div id="table_search">
 			   <form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
 					<select name="search_option" class="search_option">
@@ -172,7 +163,6 @@ $(function(){
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
-           			<th>출하번호</th>
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
@@ -188,28 +178,24 @@ $(function(){
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
            			<tr>
-           			<td>${ShippingDTO.shipping_num}</td>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
-           			<td>${ShippingDTO.delivery_date}</td>
-           			<td>${ShippingDTO.out_date}</td>
+           			<td><fmt:formatDate value="${ShippingDTO.delivery_date}" pattern="yyyy.MM.dd"/></td>
+           			<td><fmt:formatDate value="${ShippingDTO.out_date}" pattern="yyyy.MM.dd"/></td>
            			<td>${ShippingDTO.out_qty}</td>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td class="divresult">
-           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
-           				대기
-           				</c:if></td>
+           			<td>${ShippingDTO.out_progress}</td>
            			<td>
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           					<input type="button" value="완료처리" class="unstore_submit_button">
+           					<input type="button" value="출하처리" class="shipping_submit_button">
            				</c:if>
            			</td>
            			</tr>
            		</c:forEach>
-           		
+           		<tr align="center">
            		
            		</table>
            			
@@ -238,7 +224,6 @@ $(function(){
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
-<!--            			<th>출하번호</th> -->
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
@@ -255,8 +240,7 @@ $(function(){
           		<c:forEach var="ShippingDTO" items="${resultList}">	
            			
            			<tr>
-<%--            			<td>${ShippingDTO.shipping_num}</td> --%>
-           			<td class="wo_num">${ShippingDTO.wo_num}</td>
+           			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
@@ -265,13 +249,10 @@ $(function(){
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td class="divresult">
-           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
-           				대기
-           				</c:if></td>
+           			<td>${ShippingDTO.out_progress}></td>
            			<td>
-           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
-           				<input type="button" value="완료처리" class="unstore_submit_button">
+           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           					<input type="button" value="출하처리" class="shipping_submit_button">
            				</c:if>
            			</td>
            			</tr>
@@ -289,7 +270,6 @@ $(function(){
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
-           			<th>출하번호</th>
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
@@ -306,7 +286,6 @@ $(function(){
            		<c:forEach var="ShippingDTO" items="${resultList}">	
            			<c:if test="${ShippingDTO.out_progress eq '출하완료' }">
            			<tr>
-           			<td>${ShippingDTO.shipping_num}</td>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
@@ -316,14 +295,10 @@ $(function(){
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td class="divresult">
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           				대기
-           				</c:if>
-           			</td>
+           			<td>${ShippingDTO.out_progress}</td>         				          				          				
            			<td>
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           				<input type="button" value="완료처리" class="unstore_submit_button">
+           				<input type="button" value="출하처리" class="shipping_submit_button">
            				</c:if>
            			</td>
            			

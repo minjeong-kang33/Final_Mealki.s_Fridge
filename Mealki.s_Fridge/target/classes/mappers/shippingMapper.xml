@@ -11,7 +11,18 @@
 	</insert>
 
 	<select id="getBoardList" resultType="com.itwillbs.domain.ShippingDTO">
-	SELECT * FROM shipping
+	SELECT shipping_num, 
+			wo_num, 
+			item_num, 
+			item_name, 
+			delivery_date, 
+			out_date,
+			out_qty,
+			qc_qty,
+			incharge_name,
+			business_name,
+			COALESCE(out_progress,'대기')as out_progress
+			from shipping
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like CONCAT('%', #{search},'%')
 		</if>
@@ -22,7 +33,8 @@
 	</select>
 <!-- 검색어	 -->
 	<select id="getShippingCount" resultType="java.lang.Integer">
-		select count(*) from shipping
+		select count(*) 
+		
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like concat('%', #{search},'%')
 		</if>
@@ -36,12 +48,6 @@
 	
 	</select>
 
-	<insert id="insertShipping">
-		insert into shipping(out_progress)
-		value(#{out_progress})
-	 </insert>
-
-
 	<select id="getShippingListMap" resultType="map">
 		select qc_status.wo_num, 
 		qc_status.item_num, qc_status.item_name, qc_status.qc_qty
@@ -53,6 +59,8 @@
 	<select id="getEmployeeList" resultType="com.itwillbs.domain.ContractDTO">
 	select distinct incharge_name, business_name from contract
 	</select>
+
+
 
 
 
