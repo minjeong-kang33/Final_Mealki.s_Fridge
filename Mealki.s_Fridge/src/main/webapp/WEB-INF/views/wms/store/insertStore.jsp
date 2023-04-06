@@ -158,7 +158,7 @@ function content_print3(){
 										<tr>
 											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
-											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
+											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}', '${StoreDTO.item_name}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
@@ -302,7 +302,7 @@ function content_print3(){
 										<tr>
 											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 											<td>${StoreDTO.order_num } </td><!-- 발주관리번호 -->
-											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
+											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}', '${StoreDTO.item_name}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
@@ -443,13 +443,13 @@ function content_print3(){
  
  /* 상세보기 팝업 */
 
-function storeDetail(order_num) {
+function storeDetail(order_num, item_name) {
 	var _width = '1200';
 	var _height = '650';
 	var _left = Math.ceil((window.screen.width - _width) / 2);
 	var _top = Math.ceil((window.screen.height - _height) / 2);
 	let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?order_num="+order_num,
+	window.open("${pageContext.request.contextPath}/wms/store/storeDetail?order_num="+order_num+ "&item_name=" + item_name,
 							"밀키의 냉장고",popOption);}
  
  
