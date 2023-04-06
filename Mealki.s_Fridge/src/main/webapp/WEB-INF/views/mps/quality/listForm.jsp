@@ -67,17 +67,31 @@
 									<div id="table_search">
 										<div id="select_search">
 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
-												<label>검수번호 : </label>
-												<input type="text" name="qc_num">
+												<h4>검수 현황 조회</h4>
+												<label>작업지시번호 : </label>
+												<input type="text" name="wo_num">
 												<label>라인명 : </label>
 												<input type="text" name="manu_name">
 												<label>품명 : </label>
 												<input type="text" name="item_name">
 												<label>작업일시 : </label>
-												<input type="date" name="qc_date">
-												<input type="date" name="qc_date">
+												<input type="date" name="qc_sdate">
+												<input type="date" name="qc_edate">
 												<label>검수자 : </label>
 												<input type="text" name="emp_Kname">
+<!-- 												<p> -->
+<!-- 												<h4>불량 현황 조회</h4> -->
+<!-- 												<label>검수번호 : </label> -->
+<!-- 												<input type="text" name="fail_num"> -->
+<!-- 												<label>라인명 : </label> -->
+<!-- 												<input type="text" name="manu_name"> -->
+<!-- 												<label>품명 : </label> -->
+<!-- 												<input type="text" name="item_name"> -->
+												<label>작업일시 : </label>
+												<input type="date" name="fail_sdate">
+												 - <input type="date" name="fail_edate">
+<!-- 												<label>검수자 : </label> -->
+<!-- 												<input type="text" name="demp_Kname"> -->
 												<button class="btn btn-primary" type="submit" id="IconButton6">
 												조회
 												</button>
@@ -126,22 +140,22 @@
 								<div id="search_bar">
 									<div id="table_search">
 										<div id="select_search">
-											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
-												<label>검수번호 : </label>
-												<input type="text" name="fail_num">
-												<label>라인명 : </label>
-												<input type="text" name="manu_name">
-												<label>품명 : </label>
-												<input type="text" name="item_name">
-												<label>작업일시 : </label>
-												<input type="date" name="fail_date">
-												 - <input type="date" name="fail_date">
-												<label>검수자 : </label>
-												<input type="text" name="emp_Kname">
-												<button class="btn btn-primary" type="submit" id="IconButton6">
-												<a>조회</a>
-												</button>
-											</form>
+<%-- 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET"> --%>
+<!-- 												<label>검수번호 : </label> -->
+<!-- 												<input type="text" name="fail_num"> -->
+<!-- 												<label>라인명 : </label> -->
+<!-- 												<input type="text" name="manu_name"> -->
+<!-- 												<label>품명 : </label> -->
+<!-- 												<input type="text" name="item_name"> -->
+<!-- 												<label>작업일시 : </label> -->
+<!-- 												<input type="date" name="fail_date"> -->
+<!-- 												 - <input type="date" name="fail_date"> -->
+<!-- 												<label>검수자 : </label> -->
+<!-- 												<input type="text" name="emp_Kname"> -->
+<!-- 												<button class="btn btn-primary" type="submit" id="IconButton6"> -->
+<!-- 												<a>조회</a> -->
+<!-- 												</button> -->
+<!-- 											</form> -->
 										</div>
 									</div>
 								</div>
@@ -163,32 +177,19 @@
 												<th>불량수량  </th>
 												<th>검수완료일자  </th>
 									         </tr>
-<!-- 									         <tr align="center"> -->
-<!-- 												<th>QC000022</th> -->
-<!-- 												<th>WO2303301453</th>  -->
-<!-- 												<th>가공1</th> -->
-<!-- 												<th>L0000001</th> -->
-<!-- 												<th>야끼소바</th> -->
-<!-- 												<th>P0001</th> -->
-<!-- 												<th>홍길동 </th> -->
-<!-- 												<th>F00001 </th> -->
-<!-- 												<th>3</th> -->
-<!-- 												<th>2023-04-01  </th> -->
-<!-- 												<th>불량</th> -->
-<!-- 									         </tr> -->
 <!-- 									         test -->
 
-									       		<c:forEach var="fail" items="${qualityFailList}" varStatus="status">
-									       		<c:if test="${fail.fail_qty ne '0' }">
-													<tr onClick="failWrite('${fail.wo_num}');">
-														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
-														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
-														<td>${fail.item_name}</td><td>${fail.item_num}</td>
-														<td>${fail.emp_Kname}</td><td>${fail.fail_qty}</td>
-														<td>${fail.fail_date}</td>
-													</tr>
-												</c:if>
-												</c:forEach>
+<%-- 									       		<c:forEach var="fail" items="${qualityListMap}"> --%>
+<%-- 									       		<c:if test="${fail.fail_qty ne null }"> --%>
+<%-- 													<tr onClick="failWrite('${fail.wo_num}');"> --%>
+<%-- 														<td>${fail.fail_num}</td><td>${fail.wo_num}</td> --%>
+<%-- 														<td>${fail.manu_name}</td><td>${fail.manu_code}</td> --%>
+<%-- 														<td>${fail.item_name}</td><td>${fail.item_num}</td> --%>
+<%-- 														<td>${fail.demp_Kname}</td><td>${fail.fail_qty}</td> --%>
+<%-- 														<td>${fail.fail_date}</td> --%>
+<!-- 													</tr> -->
+<%-- 												</c:if> --%>
+<%-- 												</c:forEach> --%>
 									    </table>
 									</div>
 								</div>

@@ -15,7 +15,9 @@
 
 			<!--           		selectbox 선택시 값넘기기 위해 만든 박스 -->
 			<input type="hidden" name="qc_num" value="${qualityDTO.qc_num}">
-
+			
+			<input type="text" name="qc_code" value="${qualityDTO.qc_code}">
+			
 			<label>작업지시번호 : </label> 
 			<input type="text" name="wo_num" value="${qualityDTO.wo_num}" readonly="readonly">
 			

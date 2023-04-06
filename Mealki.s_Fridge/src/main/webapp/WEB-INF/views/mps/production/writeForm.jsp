@@ -35,33 +35,20 @@
 			var item = $(this).find("option:selected").data("itemname");
 			var manucode = $(this).find("option:selected").data("manucode");
 			var itemnum = $(this).find("option:selected").data("itemnum");
+			var sdate = $(this).find("option:selected").data("sdate");
 			$('input[name=manu_name]').attr('value',value);
 			$('input[name=wo_num]').attr('value',wonum);
 			$('input[name=item_name]').attr('value',item);
 			$('input[name=manu_code]').attr('value',manucode);
-			$('input[name=item_num]').attr('value',itemnum);
+			$('input[name=item_num]').attr('value',itemnum);			
+	        
+			$("#IconButton3").addEventListener('click', function () {
+			    select.options[0].selected = true;
+			});
+			
 				});
 			});
 </script>
-<script>
-        $(document).ready(function() {
-            $("#insertProduct").submit(function(event) {
-                // 폼 데이터 전송을 막기
-                event.preventDefault();
-                
-                // AJAX 요청 보내기
-                $.ajax({
-                    type: "POST",
-                    url: "${pageContext.request.contextPath}/mps/production/start",
-                    data: $("#insertProduct").serialize(),
-                    success: function() {
-                        // 폼 전송이 성공적으로 완료되면 버튼 숨기기
-                        $("#IconButton1").hide();
-                    }
-                });
-            });
-        });
-    </script>
 </head>
 <body>
 
@@ -91,11 +78,11 @@
 <!--  본문 내용 시작 -->
 
 			<div id="writebody">
-				<form id="insertProduct" method="POST">
+				<form id="insertProduct" method="POST" >
 				<label>라인명 : </label>
-				<select name="lineselect" id="lineselect" >
+				<select name="lineselect" id="lineselect"  >
             			<option value="" data-wonum="" data-itemname="" 
-            						data-manucode="" data-itemnum="">라인을 선택하세요</option>
+            						data-manucode="" data-itemnum="" selected="selected">라인을 선택하세요</option>
             			<c:forEach var="sel" items="${selectList}">
             			<c:if test="${sel.unsto_qty != sel.manu_tocount }">
             				<option value="${sel.manu_name}" data-wonum="${sel.wo_num}" data-itemname="${sel.item_name}" 
@@ -122,27 +109,16 @@
 				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly"><P>
 				
 				<label>생산량 : </label>
-				<input type="text" name="manu_tocount" value="0">
+				<input type="text" name="manu_tocount">
 
 				<label>불량 : </label>
-				<input type="text" name="manu_fail" value="0">
+				<input type="text" name="manu_fail">
 				
-<!-- 			시작 했을때 시작시간 등록 -->
-            		<button class="btn btn-primary" type="submit" id="IconButton1">
-					시작
-					</button>
-            		<button class="btn btn-primary" type="button" id="IconButton2">
+<!-- 				완료 했을때 완료시간 등록 -->
+            		<button class="btn btn-primary" type="submit" id="IconButton2" formaction="${pageContext.request.contextPath}/mps/production/start">
 					완료
 					</button>
 					
-<!-- 				완료 했을때 완료시간 등록 -->
-					<c:if test="${productionList.manu_sdate ne null}">
-					<button class="btn btn-primary" type="button" id="IconButton2">
-					완료
-					</button>
-					</c:if>
-<%-- 				</c:otherwise> --%>
-<%-- 				</c:choose> --%>
 <!-- 				reset -->
 				<button class="btn btn-primary" type="reset" id="IconButton3">
 				<a>취소</a>
