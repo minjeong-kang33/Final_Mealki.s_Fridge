@@ -8,40 +8,8 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/yellowPage.css">
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-<script type="text/javascript">  
+<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
-$(function () {
-	$(".dept_table_tr").click(function(){ 	
-		
-		var str = ""
-			
-			// 현재 클릭된 Row(<tr>)
-		var tr = $(this);
-		var td = tr.children();
-		
-		var emp_num = td.eq(0).text(); 
-		
-		alert(emp_num);
-		
-		$.ajax({
-			url:'${pageContext.request.contextPath}/employee/yellowPageDetail',
-			type :'GET',
-			data:{emp_num:emp_num},
-			dataType : 'json',
-			success:function(result){			
-				alert("사원 조회 완료");		
-				
-				$.each(result, function(index,item) {
-					
-				}
-				});
-		});
-		
-	});
-});
-
-</script>
 </head>
 <body>
 
@@ -99,7 +67,33 @@ $(function () {
 </div>
 
 
+<script type="text/javascript">  
 
+$(function () {
+	$(".dept_table_tr").click(function(){ 	
+		
+	alert("dd");
+	
+	var str = ""
+	var tr = $(this);
+	var td = tr.children();
+	var emp_num = td.eq(0).text(); 
+	
+	alert(emp_num);
+	
+	$.ajax({
+		url:'${pageContext.request.contextPath}/employee/yellowPageDetail',	
+		data:{emp_num:emp_num},
+		dataType : 'json',
+		success:function(result){
+			
+			alert("사원 조회 완료");	
+		}
+		});
+	});
+});
+
+</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 </html>
