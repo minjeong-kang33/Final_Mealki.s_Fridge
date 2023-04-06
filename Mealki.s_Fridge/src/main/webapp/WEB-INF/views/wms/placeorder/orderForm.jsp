@@ -83,9 +83,9 @@ function fun2() {
 			<div class="contentbody">       
 			<div id="top_table" >
             	<div id="table_search">
-            	<form name="search" method="get" action="${pageContext.request.contextPath}/wms/placeorder/ordersearch">
+            	<form name="search" method="get" action="${pageContext.request.contextPath}/wms/placeorder/insertOrder">
             	<span id="select_search">
-			        <span>발주번호<input type="text" name="order_num" style="margin-left: 5px;"></span>
+			        <span>발주번호<input type="text" name="order_num" style="margin-left: 5px; width: 180px;"></span>
 			        <span style="margin-left: 10px;">발주일<input type="date" name="order_date" style="margin-left: 5px;"></span>
 			   		<span style="margin-left: 10px;">납기일<input type="date" name="due_date" style="margin-left: 5px;"></span>
 			        <span style="margin-left: 10px;">품명<input type="text" name="item_name" style="margin-left: 5px;"></span>
@@ -116,17 +116,17 @@ function fun2() {
 				</table>
 				<div style="text-align: center; margin-top: 10px;">
 				 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 이전]</a>
+					<a href="${pageContext.request.contextPath}/wms/placeorder/insertOrder?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 이전]</a>
 				</c:if>
 				
 				<c:if test="${pageDTO.currentPage > 0}">
 					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-						<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${i}&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">${i}</a> 
+						<a href="${pageContext.request.contextPath}/wms/placeorder/insertOrder?pageNum=${i}&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">${i}</a> 
 					</c:forEach>
 				</c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 다음]</a>
+					<a href="${pageContext.request.contextPath}/wms/placeorder/insertOrder?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 다음]</a>
 				</c:if> 
 				</div>
 				<hr>
@@ -412,9 +412,11 @@ function delete_column(button) {
 
 /* 행 추가 */
 var columnCounter = 1; // 카운터 변수 초기화
-
 function add_column() {
-	if (columnCounter <= 9) { // 최대 9개의 행까지만 추가 가능하도록 설정
+	var table = document.getElementById("dynamicTable");
+	var rowCount = table.rows.length; // 현재 행 수 확인
+	
+	 if (rowCount < 11) { // 최대 9개의 행까지만 추가 가능하도록 설정
     	var table = document.getElementById("dynamicTable");
     	var row = table.insertRow();
     	var cells = [];
@@ -448,11 +450,9 @@ function add_column() {
     	btn.style.paddingBottom = "3px";
     	btn.addEventListener('mouseover', function() {
     		this.style.backgroundColor = '#4B49AC';
-    		this.style.color = 'white';
   	   });
     	btn.addEventListener('mouseout', function() {
     		this.style.backgroundColor = '#D3D5EE';
-    		this.style.color = '#4B49AC';
  	   });
 	}else{
 		alert('최대 10개의 상품까지만 발주할 수 있습니다.');
