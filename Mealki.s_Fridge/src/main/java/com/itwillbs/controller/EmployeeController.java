@@ -289,4 +289,17 @@ public class EmployeeController {
 		return "employee/yellowPage";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/employee/yellowPageDetail", method = RequestMethod.GET)
+	public List<Map<String, Object>> yellowPageDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController yellowPageDetail");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
+			
+		return employeeDetail;
+	}
+	
 }
