@@ -47,14 +47,40 @@ select {
 
 /* 오른쪽*/
 .right_table{
-	background-color: gray;
 	float: left;
 	margin-left: 10px;
 	width: 520px;
 	height : 500px;
 }
 
+#employee_default{
+	width: 200px; height: 230px; border-radius:10px;
+	margin-left:10px;
+	float: left;
+}
 
+.emp_infoDetails{
+	float: left;	
+	margin-left:10px;
+}
+
+.emp_details_table{
+	width: 100%;
+	margin-top: 10px;
+}
+.emp_details_table th{
+	width: 100px;
+}
+.emp_details_table td{
+	width: 180px;
+}
+.emp_details_table tr{
+	height: 30px;
+}
+
+.emp_details_table tr:hover, .emp_details_table td:hover .emp_details_table th:hover{
+  background-color: transparent;
+}
 
 
 /* 표 */
