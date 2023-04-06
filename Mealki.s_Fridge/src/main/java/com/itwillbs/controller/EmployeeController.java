@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
 import com.itwillbs.service.EmployeeService;
 
@@ -247,11 +248,43 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
-	public String yellowPage(Model model) {
+	public String yellowPage(HttpServletRequest request, Model model) {
+
+		int pageSize=15;
 		
-		List<Map<String, Object>> yellowPage = employeeService.yellowPage();
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {pageNum="1";}
+		
+		System.out.println("pageNum"+pageNum);
+		
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		
+		List<Map<String, Object>> yellowPage = employeeService.yellowPage(pageDTO);
 		model.addAttribute("yellowPage",yellowPage);
 		
+		int count = employeeService.yellowPageCount(pageDTO);
+		
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("pageDTO",pageDTO);
 		
 		return "employee/yellowPage";
 	}

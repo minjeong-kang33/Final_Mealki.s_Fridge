@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
 
 
@@ -25,6 +26,8 @@ public interface EmployeeService {
 	
 	public void rehabilitationEmployee(int emp_num);
 	
-	public List<Map<String, Object>> yellowPage();
+	public List<Map<String, Object>> yellowPage(PageDTO pageDTO);
+	
+	public int yellowPageCount(PageDTO pageDTO);
 	
 }
