@@ -63,14 +63,7 @@
 		<div class="emp_img" id="employee_default"></div>
 	    <div class="emp_infoDetails">
 	     <table border="1" class="emp_details_table">
-		  <tr><th>이름</th><td>dd</td></tr>   
-		  <tr><th>부서</th><td>dd</td></tr>  
-		  <tr><th>팀</th><td>dd</td></tr>  
-		  <tr><th>직급</th><td>dd</td></tr>  
-		  <tr><th>직위</th><td>dd</td></tr>  
-		  <tr><th>내선번호</th><td>dd</td></tr>  
-		  <tr><th>휴대폰번호</th><td>dd</td></tr> 
-			                 
+		  
 	     </table>
 	    </div>
 	</div>
@@ -98,11 +91,18 @@ $(function () {
 		data:{emp_num:emp_num},
 		dataType : 'json',
 		success:function(result){
-			
 			alert("사원 조회 완료");	
+			
+			$.each(result, function(index,item) {
+				$('#employee_default').html('<img src="${pageContext.request.contextPath}/resources/employee/upload/'+item.emp_img+'" style="width: 200px; height: 230px; border-radius:10px;">');
+				$('.emp_details_table').html('<tr><th>이름</th><td>'+item.emp_Kname+'</td></tr><tr><th>부서</th><td>'+item.dept_deptName+'</td></tr><tr><th>팀</th><td>'+item.dept_teamName+'</td></tr><tr><th>직급</th><td>'+item.dept_position+'</td></tr><tr><th>직위</th><td>'+item.dept_duty+'</td></tr><tr><th>내선번호</th><td>'+0+item.emp_tel+'</td></tr><tr><th>휴대폰번호</th><td>'+0+item.emp_phone+'</td></tr>');
+			
+			
+			});
 		}
-		});
-	});
+	}); 
+	
+});
 });
 
 </script>
