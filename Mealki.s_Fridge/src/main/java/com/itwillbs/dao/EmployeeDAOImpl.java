@@ -13,6 +13,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.ui.Model;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
 
 
@@ -78,9 +79,16 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	}
 
 	@Override
-	public List<Map<String, Object>>  yellowPage() {
+	public List<Map<String, Object>>  yellowPage(PageDTO pageDTO) {
 		System.out.println("EmployeeDAOImpl yellowPage");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		return sqlSession.selectList(namespace+".yellowPage");
+	}
+
+	@Override
+	public int yellowPageCount(PageDTO pageDTO) {
+		System.out.println("EmployeeDAOImpl yellowPageCount");
+		return sqlSession.selectOne(namespace+".yellowPageCount",pageDTO);
 	};
 	
 }

@@ -96,12 +96,14 @@
 								<select name="cust_uptae" class="cust_uptae" style="width:193px">
 									<option value=""> 선택하세요 </option>
 									<option value="도매 및 소매업">도매 및 소매업</option>
+									<option value="도매 및 상품 중개업">도매 및 상품 중개업</option>
 									<option value="숙박 및 음식점업">숙박 및 음식점업</option>
 									<option value="그 외(개인)">그 외(개인)</option>
 								</select><br>
 							<label>종목<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<select name="cust_jongmok" class="cust_jongmok">
 									<option value=""> 선택하세요 </option>
+									<option value="상품 종합 중개업">상품 종합 중개업</option>
 									<option value="과실류 도/소매업">과실류 도/소매업</option>
 									<option value="채소류, 서류 및 향신작물류 도매업">채소류, 서류 및 향신작물류 도매업</option>
 									<option value="신선, 냉동 및 기타 수산물 도/소매업">신선, 냉동 및 기타 수산물 도/소매업</option>

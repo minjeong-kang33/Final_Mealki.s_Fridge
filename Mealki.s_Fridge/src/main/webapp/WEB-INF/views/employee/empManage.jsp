@@ -93,6 +93,7 @@ function fun1() {
                <div id="table_search">
                <div id="select_search">
                      <form name="search" method="get" action="${pageContext.request.contextPath}/employee/employeeList" id="selectBox" name="selectBox2" onsubmit="return fun1()">
+                        <div style="float: left;">
                         <select name="search_option" class="search_option">
                            <option value=""> 선택하세요 </option>
                            <option value="emp_Kname"> 이름 </option>
@@ -101,9 +102,10 @@ function fun1() {
                            <option value="emp_phone"> 휴대폰번호 </option>
                            <option value="dept_num"> 부서 </option>
                         </select>
-                        <span id="text_search"><input class="input-search" type="text" name="keyword"></span>
-	                    <span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span>
-	                  	 <span id="checkbox_search"><input type="checkbox" name="check" name="search_check"> 퇴사자 포함</span>
+                        </div>
+                        <div style="float: left;"><span id="text_search"><input class="input-search" type="text" name="keyword" style="height: 30px;"></span></div>
+	                    <div style="float: left; magin-top: 3px;"><span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25"></span></div>
+	                  	<div style="float: left;"><span id="checkbox_search"><input type="checkbox" name="check" name="search_check" style="margin-top: 7px;"> 퇴사자 포함</span></div>
                      </form>
                </div>
               

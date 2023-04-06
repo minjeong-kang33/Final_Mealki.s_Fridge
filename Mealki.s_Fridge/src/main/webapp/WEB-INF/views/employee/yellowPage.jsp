@@ -40,6 +40,20 @@
 		</c:forEach>
 		
 		</table>
+		
+		<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+			<a href="${pageContext.request.contextPath}/employee/yellowPage?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">10페이지 이전</a>
+		</c:if>
+						
+		<c:if test="${pageDTO.currentPage > 0}">
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+				<a href="${pageContext.request.contextPath}/employee/yellowPage?pageNum=${i}">${i}</a> 
+			</c:forEach>
+		</c:if>
+
+		<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+			<a href="${pageContext.request.contextPath}/employee/yellowPage?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">10페이지 다음</a>
+		</c:if>
 	</div>
 	
 	

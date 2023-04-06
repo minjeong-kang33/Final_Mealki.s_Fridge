@@ -16,5 +16,5 @@ public interface StoreService {
 	
 	public int getStoreSearchListCount (PageDTO pageDTO);
 	
-	public List<Map<String, Object>> getStoreDetailList(String order_num);
+	public List<Map<String, Object>> getStoreDetailList(String order_num, String item_name);
 }

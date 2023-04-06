@@ -66,6 +66,12 @@ public class ShippingDAOImpl implements ShippingDAO{
 		return sqlSession.selectList(namespace+".getEmployeeList");
 	}
 
+	@Override
+	public void updateShipping(ShippingDTO shippingDTO) {
+		
+		sqlSession.update(namespace+".updateShipping",shippingDTO);
+	}
+
 	
 	
 

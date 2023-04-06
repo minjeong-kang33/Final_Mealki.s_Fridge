@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.IconUIResource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -21,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.itwillbs.domain.EmployeeDTO;
+import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.SearchDTO;
 import com.itwillbs.service.EmployeeService;
 
@@ -52,6 +52,7 @@ public class EmployeeController {
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
 			session.setAttribute("userProfileImagePath", employeeDTO2.getEmp_img());
 			session.setAttribute("emp_Kname", employeeDTO2.getEmp_Kname());
+			session.setAttribute("dept_num", employeeDTO2.getDept_num());
 			System.out.println(employeeDTO2.getEmp_Kname());
 			
 			return "redirect:/main/main";
@@ -87,7 +88,7 @@ public class EmployeeController {
 		
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
-		String search_check = request.getParameter("search_check");
+		String search_check = request.getParameter("check");
 		SearchDTO searchDTO = new SearchDTO();
 		searchDTO.setKeyword(keyword);
 		searchDTO.setSearch_option(search_option);
@@ -128,7 +129,7 @@ public class EmployeeController {
 		  employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter("emp_classification")));
 		  employeeDTO.setDept_position(request.getParameter("dept_position"));
 		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
-		  employeeDTO.setEmp_status("재직중");
+		  employeeDTO.setEmp_status("재직");
 		  
 		  UUID uuid=UUID.randomUUID(); 
 		  String filename =uuid.toString()+"_"+file.getOriginalFilename();
@@ -247,11 +248,43 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
-	public String yellowPage(Model model) {
+	public String yellowPage(HttpServletRequest request, Model model) {
+
+		int pageSize=15;
 		
-		List<Map<String, Object>> yellowPage = employeeService.yellowPage();
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {pageNum="1";}
+		
+		System.out.println("pageNum"+pageNum);
+		
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO = new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		
+		List<Map<String, Object>> yellowPage = employeeService.yellowPage(pageDTO);
 		model.addAttribute("yellowPage",yellowPage);
 		
+		int count = employeeService.yellowPageCount(pageDTO);
+		
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
+		model.addAttribute("pageDTO",pageDTO);
 		
 		return "employee/yellowPage";
 	}

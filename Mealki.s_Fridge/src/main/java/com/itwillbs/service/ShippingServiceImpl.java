@@ -69,6 +69,11 @@ public class ShippingServiceImpl implements ShippingService{
 		return shippingDAO.getEmployeeList();
 	}
 
+	@Override
+	public void updateShipping(ShippingDTO shippingDTO) {
+		shippingDAO.updateShipping(shippingDTO);
+	}
+
 	
 
 	

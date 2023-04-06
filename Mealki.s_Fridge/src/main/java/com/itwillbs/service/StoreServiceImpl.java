@@ -53,9 +53,9 @@ public class StoreServiceImpl implements StoreService{
 	}
 
 	@Override
-	public List<Map<String, Object>> getStoreDetailList(String order_num) {
+	public List<Map<String, Object>> getStoreDetailList(String order_num, String item_name) {
 		System.out.println("StoreServiceImpl getStoreDetailList");
-		return storeDAO.getStoreDetailList(order_num);
+		return storeDAO.getStoreDetailList(order_num, item_name);
 	}
 
 

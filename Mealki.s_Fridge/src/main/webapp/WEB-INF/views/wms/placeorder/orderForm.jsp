@@ -114,6 +114,7 @@ function fun2() {
 							</tr>
 				 	</c:forEach>
 				</table>
+				<div style="text-align: center; margin-top: 10px;">
 				 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 이전]</a>
 				</c:if>
@@ -127,7 +128,7 @@ function fun2() {
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 					<a href="${pageContext.request.contextPath}/wms/placeorder/ordersearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&order_num=${order_num }&order_date=${order_date }&due_date=${due_date }&item_name=${item_name}">[10페이지 다음]</a>
 				</c:if> 
-				
+				</div>
 				<hr>
 	   		
             </div>
@@ -155,7 +156,7 @@ function fun2() {
             
             	<h4 style="margin-left: 15px;"> | 발주 항목 등록 </h4>
 				<table border="1" id="dynamicTable" style="margin-left: 15px;">
-					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
+					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th><th></th></tr>
 					 <tr>
 					 	 <td style="width: 100px;"><input type="text" name="item_num" id="item_num_1" onclick="findProducts()" ></td>
 					 	 <td style="width: 150px;"><input type="text" name="item_name" id="item_name_1" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
@@ -166,6 +167,7 @@ function fun2() {
 					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="supply_price" id="supply_price_1" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_sum" id="order_sum_1" readonly onfocus="this.blur();"></td>
 					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_vat" id="order_vat_1" readonly onfocus="this.blur();">
+					 	 <td style="width: 130px;"></td>
 					 </tr>
 				</table>
 				<button class="btn btn-primary" type="button" onclick="check_input()" id="IconButton6" style="margin-left: 50%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">전송</button>
@@ -228,11 +230,10 @@ function fun2() {
  /* 상품찾기 */    
  var openWin;
 
- function findProducts()
- {
+ function findProducts(){
   window.name = "parentForm";
   openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
-           "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");    
+           "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");   
  }
  
 // 상품찾기 창에서 메시지를 받는 이벤트 리스너
@@ -306,7 +307,12 @@ function check_input() {
 	    }
 
 	 for (var i = 1; i <= rowCount; i++) {
-	    if (document.getElementById('item_name_' + i).value.trim() === ""){
+	    if(document.getElementById('item_name_' + i).value.trim() === "" && document.getElementById('order_qty_' + i).value.trim() === ""){
+	    	alert("사용하지 않는 행이 있다면 삭제 후 다시 시도해주세요.");
+	    	document.getElementById('item_name_' + i).focus();
+	        return;
+	    }
+		 if (document.getElementById('item_name_' + i).value.trim() === ""){
 	        alert("발주할 상품을 선택하세요");
 	        document.getElementById('item_name_' + i).focus();
 	        return;
@@ -391,13 +397,20 @@ function date_check() {
 }
 </script>
 <script type="text/javascript">
+/* 행 삭제 */
+function delete_column(button) {
+	var row = button.parentNode.parentNode;
+	row.parentNode.removeChild(row);
+}
+
 var columnCounter = 1; // 카운터 변수 초기화
 
+/* 행 추가 */
 function add_column() {
     var table = document.getElementById("dynamicTable");
     var row = table.insertRow();
     var cells = [];
-    for (var i = 0; i < 9; i++) {
+    for (var i = 0; i < 10; i++) {
       cells[i] = row.insertCell();
     }
     
@@ -411,6 +424,7 @@ function add_column() {
     cells[6].innerHTML = '<input type="text" name="supply_price" id="supply_price' + suffix + '" readonly onfocus="this.blur();">';
     cells[7].innerHTML = '<input type="text" name="order_sum" id="order_sum' + suffix + '" readonly onfocus="this.blur();">';
     cells[8].innerHTML = '<input type="text" name="order_vat" id="order_vat' + suffix + '" readonly onfocus="this.blur();">';
+    cells[9].innerHTML = '<button type="button" name="del_column" id="IconButton6' + suffix + '" onclick="delete_column(this)" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px; background-color: #D3D5EE; border: none; padding: 5px; margin: 2px; width: 70px; border-radius: 13px; color: white;"">행 삭제</button>';
     
     columnCounter++; // 카운터 변수 증가
     
@@ -421,9 +435,13 @@ function add_column() {
     cells[6].style.backgroundColor = "#dee2e6";
     cells[7].style.backgroundColor = "#dee2e6";
     cells[8].style.backgroundColor = "#dee2e6";
-    
+    cells[9].style.marginLeft = "20px";
+    cells[9].style.paddingTop = "3px";
+    cells[9].style.paddingBottom = "3px";
+	
 }
 </script>
+
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->

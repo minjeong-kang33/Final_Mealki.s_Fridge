@@ -29,8 +29,8 @@
 
 	<select id="getItemListMap" resultType="map">
 		select products.item_num,
-		products.item_name, supplier, weight, stk_qnt, supply_price
-		from products left outer join stock
+		products.item_name, products.supplier, products.weight, stock.stk_qnt, products.supply_price
+		from products join stock
 		on products.item_num = stock.item_num
 		where products.item_num like 'I%'
 	</select>

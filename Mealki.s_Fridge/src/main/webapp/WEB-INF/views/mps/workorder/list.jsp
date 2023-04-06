@@ -147,7 +147,7 @@
 						
 						</table>
 						<!-- 탭 페이징처리 -->
-						<div style="text-align: center;">
+						<div style="text-align: center; margin-top: 10px;">
 							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
 							</c:if>

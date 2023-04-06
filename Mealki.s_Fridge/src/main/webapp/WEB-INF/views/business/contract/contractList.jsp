@@ -86,8 +86,8 @@ function fun1() {
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-<!--         <div class="div1">수주관리현황</div> -->
-        <div class="div2">Total: ${total }</div>
+		
+        <div>Total: ${total }</div>
         <div id="table_search">
         	<form name="search" action="${pageContext.request.contextPath}/business/contract/contractList" method="get" onsubmit="fun1()">
 				<select name="search_option" class="search_option">
@@ -98,10 +98,12 @@ function fun1() {
 					<input type="text" name="search" class="input_box">
 					<input type="submit" value="search">
  			</form>
-        
+        <div id="">
+        <input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+        </div>
         </div>
         
-       		  
+<div>       		  
 <table border="1" class="contractTable">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
@@ -125,9 +127,9 @@ function fun1() {
          	
          	<td>${ContractDTO.item_name }</td>
          	<td>${ContractDTO.business_name }</td>
-			<td><fmt:formatDate value="${ContractDTO.business_date}" pattern="yyyy.MM.dd"/></td>
-			<td><fmt:formatDate value="${ContractDTO.out_date}" pattern="yyyy.MM.dd"/></td>
-         	<td>${ContractDTO.incharge_name }</td>
+			<td>${ContractDTO.business_name }</td>
+			<td>${ContractDTO.business_date }</td>
+         	<td>${ContractDTO.out_date }</td>
          	<td>${ContractDTO.contract_qty }</td>
          </tr>	
          
