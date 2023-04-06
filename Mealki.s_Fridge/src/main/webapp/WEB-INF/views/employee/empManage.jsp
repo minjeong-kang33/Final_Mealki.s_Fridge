@@ -30,17 +30,7 @@
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/employee/empManageTab.js"></script>
 
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-<script type="text/javascript">
-  $(function(){
-  $('.tabcontent > div').hide();
-  $('.tabnav a').click(function () {
-    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
-    $('.tabnav a').removeClass('active');
-    $(this).addClass('active');
-    return false;
-  }).filter(':eq(0)').click();
-  });
-  </script>
+
  
 <script> //검색어
 function fun1() {

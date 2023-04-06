@@ -121,16 +121,16 @@
 	    emp_email
 		from employee join department
 		on dept_num = dept_deptNum
+		where emp_status = '재직' or emp_status = '휴직'
 		order by department.dept_deptName, dept_position, dept_duty, emp_joinDate desc
     </select>
     
     	 <select id="yellowPageCount" resultType="java.lang.Integer">
     	select count(*)
-    	from (select emp_num, emp_Kname, dept_position, dept_duty, department.dept_deptName, 
-		DATE_FORMAT(emp_joinDate, '%Y-%m-%d')as emp_joinDate, 
-	    concat(substring(concat('0',emp_tel) from 1 for 3),'-',substring(concat('0',emp_tel) from 4 for 3),'-',substring(concat('0',emp_tel) from 7 for 4)) as emp_tel, 
-	    emp_email
-		from employee join department
-		on dept_num = dept_deptNum)as subquery
+    	from (select emp_num, emp_Kname, dept_position, dept_duty, department.dept_deptName,DATE_FORMAT(emp_joinDate, '%Y-%m-%d')as emp_joinDate, 
+	    	 concat(substring(concat('0',emp_tel) from 1 for 3),'-',substring(concat('0',emp_tel) from 4 for 3),'-',substring(concat('0',emp_tel) from 7 for 4)) as emp_tel, emp_email
+			 from employee join department
+			 on dept_num = dept_deptNum
+			 where emp_status = '재직' or emp_status = '휴직')as subquery
     </select>
 </mapper>

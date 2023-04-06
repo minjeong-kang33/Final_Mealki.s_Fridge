@@ -8,6 +8,40 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/yellowPage.css">
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<script type="text/javascript">  
+
+$(function () {
+	$(".dept_table_tr").click(function(){ 	
+		
+		var str = ""
+			
+			// 현재 클릭된 Row(<tr>)
+		var tr = $(this);
+		var td = tr.children();
+		
+		var emp_num = td.eq(0).text(); 
+		
+		alert(emp_num);
+		
+		$.ajax({
+			url:'${pageContext.request.contextPath}/employee/yellowPageDetail',
+			type :'GET',
+			data:{emp_num:emp_num},
+			dataType : 'json',
+			success:function(result){			
+				alert("사원 조회 완료");		
+				
+				$.each(result, function(index,item) {
+					
+				}
+				});
+		});
+		
+	});
+});
+
+</script>
 </head>
 <body>
 
@@ -36,7 +70,7 @@
 		<table border="1" style="width: 100%" id="dept_table">
 		<tr><th>사번</th><th>이름</th><th>부서</th><th>직급</th><th>내선번호</th></tr>
 		<c:forEach var="dto" items="${yellowPage }">
-			<tr><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_deptName}</td><td>${dto.dept_position}</td><td>${dto.emp_tel}</td></tr>
+			<tr class="dept_table_tr"><td>${dto.emp_num}</td><td>${dto.emp_Kname}</td><td>${dto.dept_deptName}</td><td>${dto.dept_position}</td><td>${dto.emp_tel}</td></tr>
 		</c:forEach>
 		
 		</table>
@@ -65,10 +99,7 @@
 </div>
 
 
-<script type="text/javascript">  
 
-
-</script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 </html>
