@@ -24,6 +24,8 @@ public interface ShippingDAO {
 
 	List<ContractDTO> getEmployeeList();
 
+	void updateShipping(ShippingDTO shippingDTO);
+
 	
 
 	

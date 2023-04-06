@@ -14,7 +14,6 @@
     						business_name,
     						business_date,
     						out_date,
-    						incharge_code,
     						incharge_name,
     						contract_qty) 
     	VALUES(#{business_num},
@@ -24,7 +23,6 @@
     			#{business_name},
     			#{business_date},
     			#{out_date},
-    			#{incharge_code},
     			#{incharge_name},
     			#{contract_qty})
     </insert>
@@ -44,7 +42,7 @@
     
 <!-- 검색어 -->
 	 <select id="getContractCount" resultType="java.lang.Integer">
-        select count(*) from contract 
+        select count(*) from contract
        
         <if test="search_option == 'item_name'.toString()">
         where item_name  like CONCAT('%',#{search},'%')

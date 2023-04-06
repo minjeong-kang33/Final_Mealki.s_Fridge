@@ -73,26 +73,14 @@
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
 			<th>수주번호</th>
-<!-- 			<th>거래처코드</th> -->
-<!-- 			<th>품목코드</th> -->
 			<th>품목명</th>
 			<th>수주업체</th>
-<!-- 			<th>수주일자</th> -->
-<!-- 			<th>납품예정일</th> -->
-<!-- 			<th>담당자코드</th> -->
-<!-- 			<th>담당자</th> -->
 			<th>수주수량</th>
          </tr>
          <tr>
          	<td><input type="text" name="business_num" value="${contractDTO.business_num }" readonly></td>
-<%--          	<td><input type="text" name="cust_num" value="${contractDTO.cust_num }" readonly></td> --%>
-<%--          	<td><input type="text" name="item_num" value="${contractDTO.item_num }" readonly></td> --%>
          	<td><input type="text" name="item_name" value="${contractDTO.item_name }" readonly></td>
          	<td><input type="text" name="business_name" value="${contractDTO.business_name }" readonly></td>
-<%--          	<td><input type="date" name="business_date" value="${contractDTO.business_date}" ></td> --%>
-<%--          	<td><input type="date" name="out_date" value="${contractDTO.out_date}" ></td> --%>
-<%--          	<td><input type="text" name="incharge_code" value="${contractDTO.incharge_code}" readonly></td> --%>
-<%--          	<td><input type="text" name="incharge_name" value="${contractDTO.incharge_name}" readonly></td> --%>
          	<td><input type="text" name="contract_qty" value="${contractDTO.contract_qty }"></td>
          	
          </tr>	

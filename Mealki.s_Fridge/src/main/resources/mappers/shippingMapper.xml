@@ -60,6 +60,11 @@
 	select distinct incharge_name, business_name from contract
 	</select>
 
+	<update id="updateShipping">
+		update shipping
+		set out_progress=#{out_progress}
+		
+	</update>
 
 
 

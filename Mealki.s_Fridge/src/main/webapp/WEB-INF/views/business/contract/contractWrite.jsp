@@ -125,7 +125,6 @@ th,td{
 			<th>품목명</th>
 			<th>수주일자</th>
 			<th>납품예정일</th>
-<!-- 			<th>담당자코드</th> -->
 			<th>수주업체</th>
 			<th>담당자</th>
 			<th>수주수량</th>
@@ -134,12 +133,10 @@ th,td{
 
          	<td onclick="findContract()"><input type="text" name="cust_num" id="cust_num"></td>
          	<td><input type="text" name="cust_name" id="cust_name"></td>
-         	
          	<td onclick="findProduct()"><input type="text" name="item_num" id="item_num"></td>
          	<td><input type="text" name="item_name" id="item_name"></td>
          	<td><input type="date"  id="business_date" name="business_date"></td>
          	<td><input type="date"  id="out_date" name="out_date"></td>
-<!--          	<td><input type="text" name="incharge_code" id="incharge_code"></td> -->
 			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
          	<td onclick="findName2()"><input type="text" name="incharge_name" id="incharge_name"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>

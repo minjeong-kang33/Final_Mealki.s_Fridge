@@ -32,8 +32,8 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var item_num = td.eq(1).text();
-			var item_name = td.eq(0).text();
+			var item_num = td.eq(0).text();
+			var item_name = td.eq(1).text();
 
 
 			
