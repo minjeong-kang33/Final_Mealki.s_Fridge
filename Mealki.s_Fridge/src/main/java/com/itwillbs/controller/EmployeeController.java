@@ -276,6 +276,7 @@ public class EmployeeController {
 		model.addAttribute("yellowPage",yellowPage);
 		model.addAttribute("search_option",search_option);
 		model.addAttribute("keyword",keyword);
+		model.addAttribute("pageDTO",pageDTO);
 		
 		int count = employeeService.yellowPageCount(pageDTO);
 		
@@ -292,8 +293,6 @@ public class EmployeeController {
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
-		
-		model.addAttribute("pageDTO",pageDTO);
 		
 		return "employee/yellowPage";
 	}
