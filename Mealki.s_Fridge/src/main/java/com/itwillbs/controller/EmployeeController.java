@@ -246,5 +246,14 @@ public class EmployeeController {
 		return "employee/empMsg";
 	}
 	
+	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
+	public String yellowPage(Model model) {
+		
+		List<Map<String, Object>> yellowPage = employeeService.yellowPage();
+		model.addAttribute("yellowPage",yellowPage);
+		
+		
+		return "employee/yellowPage";
+	}
 	
 }

@@ -105,15 +105,17 @@
 												<th>작업시작일</th>
 												<th>작업마감일</th>
 									         </tr>
+									         
 									       		<c:forEach var="dto" items="${productionListMap}">
-													<tr>
-														<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
-														<td>${dto.manu_code}</td><td>${dto.item_name}</td>
-														<td>${dto.item_num}</td><td>${dto.manu_tocount}</td>
-														<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td>
-														<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td>
-													</tr>
+														<tr>
+															<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
+															<td>${dto.manu_code}</td><td>${dto.item_name}</td>
+															<td>${dto.item_num}</td><td>${dto.manu_tocount}</td>
+															<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td>
+															<td>${dto.manu_sdate}</td><td>${dto.manu_date}</td>
+														</tr>
 												</c:forEach>
+											
 									    </table>
 									</div>
 								</div>
@@ -130,7 +132,6 @@
 				</div>
 
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
-
 
 				<!-- 푸터시작 -->
 				<jsp:include page="../../main/footer.jsp" />

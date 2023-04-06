@@ -82,10 +82,10 @@
 
      <div id="table_content">
 		<table id="notice" border="1">
-		<tr><th class="bo_num" style="width: 8%;">번호</th>
+		<tr><th class="bo_num" style="width: 8%;">No</th>
 		    <th class="bo_title" style="width: 58%;">제목</th>
 		    <th class="bo_name" style="width: 13%;">작성자</th>
-		    <th class="bo_date" style="width: 13%;">작성일자</th>
+		    <th class="bo_date" style="width: 13%;">작성일</th>
 		    <th class="bo_count" style="width: 8%;">조회수</th></tr>
 		    
 		 <c:forEach var="BoardDTO" items="${noticeList }">

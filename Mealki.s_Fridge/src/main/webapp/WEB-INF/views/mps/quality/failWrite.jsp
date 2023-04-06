@@ -40,8 +40,8 @@
 			<label>사유 : </label> 
 <%-- 			<input type="text" name="manu_fail" value="${qualityDTO.manu_fail}">  --%>
 			<textarea name="fail_reson" cols="30" rows="5">${qualityDTO.fail_reson}</textarea><br>
-			<button type="submit" value="저장">저장</button>
-			<button type='text' value="수정" formaction="${pageContext.request.contextPath}/quality/failUpdate">수정</button> 
+			<button type="submit" value="저장" id="send" >저장</button>
+			<button type='submit' value="수정" id="send" formaction="${pageContext.request.contextPath}/quality/failUpdate">수정</button> 
 			<button type="reset" value="취소">취소</button>
 		</form>
 </body>

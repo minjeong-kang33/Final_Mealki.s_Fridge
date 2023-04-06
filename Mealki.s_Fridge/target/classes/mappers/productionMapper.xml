@@ -40,17 +40,26 @@ as manu_sdate from productstatus
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select distinct w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress
+    	select distinct date_format(manu_sdate, '%Y-%m-%d %h:%i:%s') manu_sdate,u.unsto_qty, p.manu_tocount, p.manu_num, w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress
 		from unstore u join workorder w
 		on u.wo_num = w.wo_num
 		join linecode l
 		on w.manu_name = l.manu_name
-		where u.unsto_progress = '출고완료'
+		left join productstatus p
+        on u.wo_num = p.wo_num
+		where u.unsto_progress = '출고완료';
     </select>
     
-    <insert id="insertProduct">
-    	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, manu_tocount, manu_fail, emp_Kname, manu_date, manu_sdate) 
-    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num},#{manu_tocount},#{manu_fail},#{emp_Kname},DATE_FORMAT(now(), '%Y%m%d%H%i%s'),DATE_FORMAT(now(), '%Y%m%d%H%i%s'))
+    <update id="insertProduct">
+<!--     	update productstatus set manu_tocount=#{manu_tocount}, manu_fail=#{manu_fail}, manu_date=DATE_FORMAT(now(), '%Y%m%d%H%i%s') -->
+<!--     	where manu_num = #{manu_num} -->
+    	update productstatus set manu_tocount=#{manu_tocount}, manu_fail=#{manu_fail}, manu_date=DATE_FORMAT(now(), '%Y%m%d%H%i%s') 
+		where wo_num=#{wo_num} and manu_name=#{manu_name} and item_name=#{item_name} and emp_Kname=#{emp_Kname};
+    </update>
+    
+    <insert id="startProduct">
+    	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, emp_Kname, manu_sdate) 
+    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num}, #{emp_Kname},DATE_FORMAT(now(), '%Y%m%d%H%i%s'))
     </insert>
 
 </mapper>

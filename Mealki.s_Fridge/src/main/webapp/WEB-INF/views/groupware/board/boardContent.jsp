@@ -28,6 +28,7 @@
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/groupware/board.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-lite.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
@@ -53,23 +54,22 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">공지 사항</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+<!--                   <h6 class="font-weight-normal mb-0"><span class="text-primary">강조쓰</span></h6> -->
                 </div>
                 
           <div class="contentbody" > 
 <!--  본문 내용 시작 -->
 <article id="table_content">
 	<table border="1" id="content">
-		<tr><th>제목</th><td>${boardDTO.bo_title}</td></tr>
-		<tr><th>작성일</th><td><fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></td></tr>
-		<tr><th>조회수</th><td>${boardDTO.bo_count}</td></tr>
-		<tr><th>작성자</th><td>${boardDTO.bo_name}</td></tr>
-		<tr><th style="height: 500px;">내용</th><td><textarea>${boardDTO.bo_content}</textarea></td></tr>		
+		<tr><th>제목</th><td>&nbsp;&nbsp;${boardDTO.bo_title}</td></tr>
+		<tr><th>작성일</th><td>&nbsp;&nbsp;<fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></td></tr>
+		<tr><th>조회수</th><td>&nbsp;&nbsp;${boardDTO.bo_count}</td></tr>
+		<tr><th>작성자</th><td>&nbsp;&nbsp;${boardDTO.bo_name}</td></tr>
+		<tr><th style="height: 500px;">내용</th><td>&nbsp;&nbsp;${boardDTO.bo_content}</td></tr>		
 		<tr><th style="height: 50px;">첨부파일</th>
-		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>${boardDTO.file}</a></td></tr>
-		 
+		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>&nbsp;&nbsp;${boardDTO.file}</a></td></tr>		 
 	</table>
-	<div id="table_button">
+	<div id="table_button3">
 	<c:if test="${! empty sessionScope.emp_num }">
 	
 		<c:if test="${sessionScope.emp_num eq boardDTO.bo_name }">
@@ -137,6 +137,9 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+        <!-- 서머노트를 위해 추가해야할 부분 -->
+  <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-lite.js"></script>
+  <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-ko-KR.js"></script>
 
 </body>
 </html>

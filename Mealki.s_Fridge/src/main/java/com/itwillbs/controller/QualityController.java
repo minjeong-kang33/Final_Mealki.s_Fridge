@@ -33,6 +33,26 @@ public class QualityController {
 	return "mps/quality/listForm";
 	}
 	
+	@RequestMapping(value = "/mps/quality/qcsearch", method = RequestMethod.POST)
+	public String qcSearch(QualityDTO qualityDTO, Model model){
+
+	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
+	
+	model.addAttribute("qualityListMap", qualityListMap);
+	
+	return "redirect:/mps/quality/list";
+	}
+	
+	@RequestMapping(value = "/mps/quality/failsearch", method = RequestMethod.GET)
+	public String failSearch(QualityDTO qualityDTO, Model model){
+
+	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
+	
+	model.addAttribute("qualityFailList", qualityFailList);
+	
+	return "redirect:/mps/quality/list";
+	}
+	
 	@RequestMapping(value = "/quality/writeForm", method = RequestMethod.GET)
 	public String qualityWrite(HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("QualityController writeForm()");
@@ -59,7 +79,7 @@ public class QualityController {
 		System.out.println("QualityController writePro()");
 		
 		qualityService.insertQuality(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/qcUpdate", method = RequestMethod.POST)
@@ -94,7 +114,7 @@ public class QualityController {
 		System.out.println("QualityController FailWritePro()");
 		
 		qualityService.insertFail(qualityDTO);
-		return "redirect:/mps/quality/failWrite";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/failUpdate", method = RequestMethod.POST)

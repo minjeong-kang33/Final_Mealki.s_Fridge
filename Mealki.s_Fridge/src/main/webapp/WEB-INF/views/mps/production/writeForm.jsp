@@ -43,6 +43,25 @@
 				});
 			});
 </script>
+<script>
+        $(document).ready(function() {
+            $("#insertProduct").submit(function(event) {
+                // 폼 데이터 전송을 막기
+                event.preventDefault();
+                
+                // AJAX 요청 보내기
+                $.ajax({
+                    type: "POST",
+                    url: "${pageContext.request.contextPath}/mps/production/start",
+                    data: $("#insertProduct").serialize(),
+                    success: function() {
+                        // 폼 전송이 성공적으로 완료되면 버튼 숨기기
+                        $("#IconButton1").hide();
+                    }
+                });
+            });
+        });
+    </script>
 </head>
 <body>
 
@@ -71,16 +90,17 @@
           
 <!--  본문 내용 시작 -->
 
-
 			<div id="writebody">
-				<form action="${pageContext.request.contextPath}/mps/production/writePro" id="insertProduct" method="POST">
+				<form id="insertProduct" method="POST">
 				<label>라인명 : </label>
 				<select name="lineselect" id="lineselect" >
             			<option value="" data-wonum="" data-itemname="" 
             						data-manucode="" data-itemnum="">라인을 선택하세요</option>
             			<c:forEach var="sel" items="${selectList}">
+            			<c:if test="${sel.unsto_qty != sel.manu_tocount }">
             				<option value="${sel.manu_name}" data-wonum="${sel.wo_num}" data-itemname="${sel.item_name}" 
             						data-manucode="${sel.manu_code}" data-itemnum="${sel.item_num}">${sel.manu_name}</option>
+            			</c:if>
             			</c:forEach>
           		</select>
 <!--           		selectbox 선택시 값넘기기 위해 만든 박스 -->
@@ -102,26 +122,29 @@
 				<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly"><P>
 				
 				<label>생산량 : </label>
-				<input type="text" name="manu_tocount">
+				<input type="text" name="manu_tocount" value="0">
 
 				<label>불량 : </label>
-				<input type="text" name="manu_fail">
+				<input type="text" name="manu_fail" value="0">
 				
-			
 <!-- 			시작 했을때 시작시간 등록 -->
-			<c:if test="${ ! empty manu_sdate }">
-				<c:if test="${sessionScope.id eq 'admin'}">
-					<button class="btn btn-primary" type="submit" id="IconButton6">
-					<a>시작</a>
+            		<button class="btn btn-primary" type="submit" id="IconButton1">
+					시작
 					</button>
-				</c:if>
-			</c:if>
+            		<button class="btn btn-primary" type="button" id="IconButton2">
+					완료
+					</button>
+					
 <!-- 				완료 했을때 완료시간 등록 -->
-				<button class="btn btn-primary" type="submit" id="IconButton6">
-				<a>완료</a>
-				</button>
+					<c:if test="${productionList.manu_sdate ne null}">
+					<button class="btn btn-primary" type="button" id="IconButton2">
+					완료
+					</button>
+					</c:if>
+<%-- 				</c:otherwise> --%>
+<%-- 				</c:choose> --%>
 <!-- 				reset -->
-				<button class="btn btn-primary" type="reset" id="IconButton6">
+				<button class="btn btn-primary" type="reset" id="IconButton3">
 				<a>취소</a>
 				</button>
 				

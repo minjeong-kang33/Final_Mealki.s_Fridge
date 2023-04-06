@@ -1,0 +1,86 @@
+
+.table_body{
+	width: 1100px;
+	height: 610px;
+}
+
+#table_search{
+ background-color : #e6e6f4;
+ border-radius:10px;
+ padding-top:7px;
+ padding-bottom:20px;
+ padding-left:10px;
+ padding-right:10px;
+ margin-bottom: 20px;
+ width: 1100px;
+ height: 60px;
+}
+
+#emp_search_table{
+   table-layout: fixed;
+   font-size: 13px;
+}
+
+select {
+	float: left;
+	height: 30px;
+	width: 150px;
+	margin: 20px 10px;
+	margin-left: 20px;
+}
+
+.input-search{
+	margin-left : 10px;
+	margin-right : 10px;
+	height: 25px;
+	width: 200px;
+}
+
+
+.left_table{
+	width: 520px;
+	height : 500px;
+	float: left;
+	margin-left: 30px;
+}
+
+
+/* 오른쪽*/
+.right_table{
+	background-color: gray;
+	float: left;
+	margin-left: 10px;
+	width: 520px;
+	height : 500px;
+}
+
+
+
+
+/* 표 */
+
+table{
+   width: 100%;
+   text-align: center;
+   border : 1px solid #6C7383;
+   border-collapse : collapse;
+}
+
+
+tr:hover td{ background-color: #e6e6f4; }
+
+#emp_search_table{
+   table-layout: fixed;
+   font-size: 13px;
+}
+
+#dept_table tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+#dept_table th{
+   background-color: #4B49AC;
+   color: #fff;
+   font-size: 13px;
+}
