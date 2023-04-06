@@ -25,9 +25,15 @@ public class EmployeeDTO {
 	private String dept_duty;
 	private String emp_img;
 	private int emp_numbering;
+	private String search_check;
 	
 	
-	
+	public String getSearch_check() {
+		return search_check;
+	}
+	public void setSearch_check(String search_check) {
+		this.search_check = search_check;
+	}
 	public String getEmp_img() {
 		return emp_img;
 	}

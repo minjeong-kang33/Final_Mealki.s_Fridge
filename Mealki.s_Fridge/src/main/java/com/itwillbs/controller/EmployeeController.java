@@ -87,16 +87,18 @@ public class EmployeeController {
 		
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
-		String search_check = request.getParameter("search_check");
+		String search_check = request.getParameter("check");
 		SearchDTO searchDTO = new SearchDTO();
 		searchDTO.setKeyword(keyword);
 		searchDTO.setSearch_option(search_option);
 		searchDTO.setSearch_check(search_check);
+		System.out.println(searchDTO.getSearch_check());
 		
 		List<Map<String, Object>> employeeListMap = employeeService.getEmployeeListMap(searchDTO);
 		model.addAttribute("employeeListMap",employeeListMap);
 		model.addAttribute("search_option",search_option);
 		model.addAttribute("keyword",keyword);
+
 		
 		return "/employee/empManage";
 	}
@@ -128,7 +130,7 @@ public class EmployeeController {
 		  employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter("emp_classification")));
 		  employeeDTO.setDept_position(request.getParameter("dept_position"));
 		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
-		  employeeDTO.setEmp_status("재직중");
+		  employeeDTO.setEmp_status("재직");
 		  
 		  UUID uuid=UUID.randomUUID(); 
 		  String filename =uuid.toString()+"_"+file.getOriginalFilename();
