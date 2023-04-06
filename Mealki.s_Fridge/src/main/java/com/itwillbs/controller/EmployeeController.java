@@ -44,10 +44,16 @@ public class EmployeeController {
 	@RequestMapping(value = "/main/loginPro", method = RequestMethod.POST)
 	public String loginPro(EmployeeDTO employeeDTO, HttpSession session) {
 		System.out.println("EmployeeController loginPro()");
+		
 		EmployeeDTO employeeDTO2=employeeService.userCheck(employeeDTO);
 		
 		if(employeeDTO2 != null) {
+			
 			session.setAttribute("emp_num", employeeDTO.getEmp_num());
+			session.setAttribute("userProfileImagePath", employeeDTO2.getEmp_img());
+			session.setAttribute("emp_Kname", employeeDTO2.getEmp_Kname());
+			System.out.println(employeeDTO2.getEmp_Kname());
+			
 			return "redirect:/main/main";
 		}else {
 			return "main/loginErrorMsg";
@@ -240,5 +246,14 @@ public class EmployeeController {
 		return "employee/empMsg";
 	}
 	
+	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
+	public String yellowPage(Model model) {
+		
+		List<Map<String, Object>> yellowPage = employeeService.yellowPage();
+		model.addAttribute("yellowPage",yellowPage);
+		
+		
+		return "employee/yellowPage";
+	}
 	
 }

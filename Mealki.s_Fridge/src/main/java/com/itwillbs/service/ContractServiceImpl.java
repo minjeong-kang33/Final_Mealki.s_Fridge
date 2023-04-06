@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.ContractDAO;
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PlaceOrderDTO;
 //컨트롤러와 연결되는 설정
 @Service
 public class ContractServiceImpl implements ContractService {
@@ -73,6 +74,24 @@ public class ContractServiceImpl implements ContractService {
 		@Override
 		public void deleteBoard(int business_num) {
 			contractDAO.deleteBoard(business_num);
+		}
+
+		@Override
+		public List<PlaceOrderDTO> getProductList() {
+			
+			return contractDAO.getProductList();
+		}
+
+		@Override
+		public List<ContractDTO> getNameList() {
+			
+			return contractDAO.getNameList();
+		}
+
+		@Override
+		public List<ContractDTO> getNameList2() {
+			
+			return contractDAO.getNameList2();
 		}
 
 		

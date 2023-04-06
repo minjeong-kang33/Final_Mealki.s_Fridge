@@ -31,7 +31,30 @@
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
-	
+	<script type="text/javascript">
+	/* 상품찾기 */    
+	 var openWin;
+
+	 function findShipping()
+	 {
+	  window.name = "parentForm";
+	  openWin = window.open("${pageContext.request.contextPath}/business/shipping/findShipping",
+	           "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");    
+	 }
+	 
+	 /* 담당자 찾기*/
+	 var openWin;
+
+	 function findEmployee()
+	 {
+	  window.name = "parentForm";
+	  openWin = window.open("${pageContext.request.contextPath}/business/shipping/findEmp_num",
+	           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
+	 }
+	 
+	 
+			 
+	</script>
 </head>
 <style>
 body{
@@ -76,10 +99,10 @@ th,td{
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post">
+    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
     	<table>
     	<tr>
-           			<th>출하번호</th>
+<!--            			<th>출하번호</th> -->
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
@@ -93,21 +116,21 @@ th,td{
            		</tr>
            		
            			<tr>
-           			<td><input type="text" name="shipping_num" id="shipping_num"></td>
+<!--            			<td><input type="text" name="shipping_num" id="shipping_num"></td> -->
            			<td onclick="findShipping()"><input type="text" name="wo_num" id="wo_num"></td>
            			<td><input type="text" name="item_num" id="item_num"></td>
-           			<td><input type="text" name="product_name" id="product_name"></td>
+           			<td><input type="text" name="item_name" id="item_name"></td>
            			<td><input type="date" name="delivery_date" id="delivery_date"></td>
            			<td><input type="date" name="out_date" id="out_date"></td>
            			<td><input type="text" name="out_qty" id="out_qty"></td>
-           			<td><input type="text" name="stock_qty" id="stock_qty"></td>
-           			<td><input type="text" name="incharge_name" id="incharge_name"></td>
+           			<td><input type="text" name="qc_qty" id="qc_qty"></td>
+           			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="incharge_name"></td>
            			<td><input type="text" name="business_name" id="business_name"></td>
            			
            			</tr>
            			 <tr align="center">
 					<th colspan="10">					
-					<button type="submit">저장</button> 
+					<button type="submit" class="shipping_write_button">저장</button> 
 					</th>
 		</tr> 
     	</table>
@@ -161,6 +184,17 @@ th,td{
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+<script type="text/javascript">
 
+
+$(function(){
+		$(".shipping_write_button").click(function(){ 
+		
+				if(Number($(".out_qty").eq(i).val()) > Number($(".qc_qty").eq(i).val())){
+					alert("재고수량을 확인해주세요!");
+					$(".out_qty").eq(i).val(0);
+					
+					return false;
+				}</script>
 </body>
 </html>

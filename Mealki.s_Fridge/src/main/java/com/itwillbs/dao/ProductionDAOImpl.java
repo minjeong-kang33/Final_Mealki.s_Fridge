@@ -40,7 +40,16 @@ public class ProductionDAOImpl implements ProductionDAO{
 	public void insertProduct(ProductionDTO productDTO) {
 		System.out.println("ProductionDAOImpl insertProduct()");
 		
-		sqlSession.insert(namespace+".insertProduct", productDTO);
+		sqlSession.update(namespace+".insertProduct", productDTO);
 		
 	}
+
+	@Override
+	public void startProduct(ProductionDTO productDTO) {
+		System.out.println("ProductionDAOImpl startProduct()");
+		
+		sqlSession.insert(namespace+".startProduct", productDTO);
+		
+	}
+
 }

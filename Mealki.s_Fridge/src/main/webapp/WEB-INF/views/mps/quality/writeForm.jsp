@@ -51,10 +51,10 @@
 			<input type="text" name="wo_qty" value="${qualityDTO.wo_qty}">
 			<p>
 			<label>검수량 : </label> 
-			<input type="text" name="qc_qty" > 
+			<input type="text" name="qc_qty" value="${qualityDTO.qc_qty}"> 
 			
 			<label>불량 : </label> 
-			<input type="text" name="manu_fail" > 
+			<input type="text" name="manu_fail" value="${qualityDTO.manu_fail}"> 
 			<p>
 			<button type="submit" value="저장">저장</button>
 			<button type='text' value="수정" formaction="${pageContext.request.contextPath}/quality/qcUpdate">수정</button> 

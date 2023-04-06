@@ -1,6 +1,8 @@
 package com.itwillbs.controller;
 
 import java.io.File;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -37,23 +39,33 @@ public class BoardController {
 
 	@RequestMapping(value = "/groupware/board/boardWritePro", method = RequestMethod.POST)
 	public String boardWritePro(HttpServletRequest request, MultipartFile file) throws Exception{
-		System.out.println("BoardController writePro()");
-	
-		BoardDTO boardDTO=new BoardDTO();
-		boardDTO.setBo_name(request.getParameter("bo_name"));
-		boardDTO.setBo_title(request.getParameter("bo_title"));
-		boardDTO.setBo_content(request.getParameter("bo_content"));
-		boardDTO.setTop_fixed(Integer.parseInt(request.getParameter("top_fixed")));
-		
-		UUID uuid=UUID.randomUUID();
-		String filename=uuid.toString()+"_"+file.getOriginalFilename();
-		FileCopyUtils.copy(file.getBytes(), new File(boardUploadPath,filename));
-		
-		boardDTO.setFile(filename);
-		
-		boardService.insertBoard(boardDTO);
-//		주소줄 변경하면서 이동
-		return "redirect:/groupware/board/noticeList";
+	    System.out.println("BoardController writePro()");
+	    
+	    BoardDTO boardDTO=new BoardDTO();
+	    boardDTO.setBo_name(request.getParameter("bo_name"));
+	    boardDTO.setBo_title(request.getParameter("bo_title"));
+	    boardDTO.setBo_content(request.getParameter("bo_content"));
+	    String topFixedParam = request.getParameter("top_fixed");
+	    int topFixed = 0;
+	    if (topFixedParam != null) {
+	        topFixed = Integer.parseInt(topFixedParam);
+	    }
+	    boardDTO.setTop_fixed(topFixed);
+	    
+	    if(file.isEmpty()) {
+	        boardDTO.setFile(null);
+	    } else {
+	        // 현재 시간을 기반으로 한 고유한 파일 이름 생성
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+	        String filename = sdf.format(new Date()) + "_" + file.getOriginalFilename();
+	        FileCopyUtils.copy(file.getBytes(), new File(boardUploadPath, filename));
+	        
+	        boardDTO.setFile(filename);
+	    }
+	    
+	    boardService.insertBoard(boardDTO);
+	    
+	    return "redirect:/groupware/board/noticeList";
 	}
 	
 	@RequestMapping(value = "/groupware/board/noticeList", method = RequestMethod.GET)
@@ -154,15 +166,20 @@ public class BoardController {
 		boardDTO.setBo_name(request.getParameter("bo_name"));
 		boardDTO.setBo_title(request.getParameter("bo_title"));
 		boardDTO.setBo_content(request.getParameter("bo_content"));
-		boardDTO.setTop_fixed(Integer.parseInt(request.getParameter("top_fixed")));
+		String topFixedParam = request.getParameter("top_fixed");
+		int topFixed = 0;
+		if (topFixedParam != null) {
+		    topFixed = Integer.parseInt(topFixedParam);
+		}
+		boardDTO.setTop_fixed(topFixed);
 		
 		if(file.isEmpty()) {
 			boardDTO.setFile(request.getParameter("oldfile"));
 		}else {
-			
-		UUID uuid=UUID.randomUUID();
-		String filename=uuid.toString()+"_"+file.getOriginalFilename();
-		FileCopyUtils.copy(file.getBytes(), new File(boardUploadPath,filename));
+		// 현재 시간을 기반으로 한 고유한 파일 이름 생성
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd_HHmmssSSS");
+	        String filename = sdf.format(new Date()) + "_" + file.getOriginalFilename();
+	        FileCopyUtils.copy(file.getBytes(), new File(boardUploadPath, filename));
 		
 		boardDTO.setFile(filename);
 		}

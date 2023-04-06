@@ -75,6 +75,12 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	public void rehabilitationEmployee(int emp_num) {
 		System.out.println("EmployeeDAOImpl rehabilitationEmployee");
 		sqlSession.update(namespace+".rehabilitationEmployee",emp_num);			
+	}
+
+	@Override
+	public List<Map<String, Object>>  yellowPage() {
+		System.out.println("EmployeeDAOImpl yellowPage");
+		return sqlSession.selectList(namespace+".yellowPage");
 	};
 	
 }

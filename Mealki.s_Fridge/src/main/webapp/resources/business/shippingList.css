@@ -1,11 +1,23 @@
 @charset "UTF-8";
 
-.container-scroller{
-	height: 1200px;
+#table_search{
+ background-color : #e6e6f4;
+ border-radius:10px;
+ padding-top:11px;
+ padding-bottom:20px;
+ padding-left:10px;
+ padding-right:15px;
+ margin-bottom: 20px;
+ width: 100%;
+ height: 60px;
 }
-.content-wrapper{
-	height: 1050px;
+
+#select_search{
+   width: 60%;
+   float: left;
 }
+
+
 
 /* 검색창 부분 */
 
@@ -18,39 +30,20 @@
 	margin-left: 10px;
 }
 
-#store_date{margin-left: 10px;}
-
-#startDate{margin-left: 10px; margin-right: 5px;}
-
-#endDate{margin-left: 5px;}
-
-#emp_num_search{margin-left: 10px;}
-
-#findEmp_num{margin-left: 10px;}
-
-#products_search{margin-left: 10px;}
-
-#item_name{margin-left: 10px;}
-
-.textBox { width: 80px; text-align: center;}
-
-.textBox { width: 80px; text-align: center;}
-
 td{
 	font-size: 12px;
 }
 
 /* 표 */
-.unstore_total_table{
-   table-layout: fixed;
+.shipping_total_table{
 }
 
-.unstore_total_table tr{
+.shipping_total_table tr{
    height: 32px;
    table-layout: fixed;
 }
 
-.unstore_total_table th{
+.shipping_total_table th{
    background-color: #4B49AC;
    color: #fff;
 }

@@ -54,6 +54,18 @@ public class ShippingDAOImpl implements ShippingDAO{
 		sqlSession.insert(namespace+".insertShipping", shippingDTO);
 	}
 
+	@Override
+	public List<Map<String, Object>> getShippingListMap() {
+		
+		return sqlSession.selectList(namespace+".getShippingListMap");
+	}
+
+	@Override
+	public List<ContractDTO> getEmployeeList() {
+		
+		return sqlSession.selectList(namespace+".getEmployeeList");
+	}
+
 	
 	
 

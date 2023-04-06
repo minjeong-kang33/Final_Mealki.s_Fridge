@@ -45,28 +45,6 @@
 	  
 
 
-//재고확인
-$(document).ready(function() {
-  $.ajax({
-    url: "/stockCheck",
-    data:{'wo_num':$('.wo_num')},
-    method: "GET",
-    success: function(result) {
-      
-    if(result){
-    	result="재고부족";
-		$('.divresult').html(result).css("color","red");
-    }else {
-    	result="출고가능";
-		$('.divresult').html(result).css("color","blue");
-    }
-
-    }
- 
-  });
-});
-
-
 </script>
 
 </head>
@@ -135,9 +113,10 @@ $(document).ready(function() {
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
-									</c:if></td> <!-- 재고확인결과 -->
+										<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+											${unstoreDTO.unstore_status}
+										</c:if>
+								</td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
 								<td>${unstoreDTO.unsto_progress }</td><!-- 진행현황 -->
@@ -194,7 +173,7 @@ $(document).ready(function() {
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
 									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
+										${unstoreDTO.unstore_status }
 									</c:if></td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
@@ -238,7 +217,7 @@ $(document).ready(function() {
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
 									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
-										재고확인
+										${unstoreDTO.unstore_status }
 									</c:if></td> <!-- 재고확인결과 -->
 								<td>${unstoreDTO.wo_date } </td><!-- 작업지시일자 -->
 								<td>${unstoreDTO.out_date }</td><!-- 납기일자 -->
@@ -364,6 +343,12 @@ $(document).ready(function() {
 	$(function(){
 	$(".unstore_submit_button").click(function(){ 
 	
+		 var unstoreStatus = $(this).closest("tr").find(".divresult").text().trim();
+		    if (unstoreStatus == "출고불가능") {
+		      alert("출고가 불가능합니다. 재고를 확인해주세요.");
+		      return false;
+		    }
+		
 		var str = "";
 		var tdArr = new Array();	// 배열 선언
 		var unstore_submit_button = $(this);
@@ -413,8 +398,6 @@ $(document).ready(function() {
 	});	
 
 </script>
- 
- </script>
  
    <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 

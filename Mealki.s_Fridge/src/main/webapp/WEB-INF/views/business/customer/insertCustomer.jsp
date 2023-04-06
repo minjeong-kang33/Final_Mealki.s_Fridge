@@ -22,7 +22,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/insertCustomer.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 
@@ -64,24 +64,25 @@
 <!--  본문 내용 시작 -->
 
 			<div id="wrap">
-			<h3> |거래처 등록 </h3>
+			<h3>| 거래처 등록 </h3>
 				<form action="${pageContext.request.contextPath}/business/customer/insertCustomerPro" id="insertCust" method="post" >
 				<input type="hidden" name="no" value="{sessionScope.emp_num }">
 					<fieldset>
-						<div class="radio-wrap">
-							<label>거래처구분</label><img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15">	
+					
+						<div class="insert">
+							<label>거래처구분<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label>	
 								<input type="radio" name="cust_gubun2" value="사업자(국내)" checked>사업자(국내)
 								<input type="radio" name="cust_gubun2" value="사업자(해외)" >사업자(해외)	 
-							  	<input type="radio" name="cust_gubun2" value="개인">개인<br>	
-					  	</div>
-					  	<div class="radio-wrap">
+								<input type="radio" name="cust_gubun2" value="개인">개인<br>
+							
+
 					  		<label>거래처구분<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label>		
 								<input type="radio" name="cust_gubun1" value="납품처" checked>납품처	 
 							  	<input type="radio" name="cust_gubun1" value="납입처">납입처<br>
-					  	</div>
-					  	<div class="form-group">
-							<label>정보 입력(사업자번호/생년월일)<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label><br>
-  								<input type="text" name="business_num" class="business_num" placeholder=" '-' 포함 입력해주세요">
+							
+
+							<label style="width:260px;">정보 입력(사업자번호or생년월일)<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label><br>
+  								<input type="text" name="business_num" class="business_num" size="27" placeholder="ex. 123-45-67890 or 19930825">
   								<input type="button" value="중복확인" class="dup">
   								<input type="hidden" name="businessNumcheck" value="" id="businessNumcheck">
   								<div class="divresult"> </div><br>
@@ -92,7 +93,7 @@
 							<label>대표전화<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<input type="text" name="cust_tel" class="cust_tel" placeholder="ex. 02)111-2222"><br>
 							<label>업태<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
-								<select name="cust_uptae" class="cust_uptae">
+								<select name="cust_uptae" class="cust_uptae" style="width:193px">
 									<option value=""> 선택하세요 </option>
 									<option value="도매 및 소매업">도매 및 소매업</option>
 									<option value="숙박 및 음식점업">숙박 및 음식점업</option>
@@ -121,7 +122,7 @@
 								</select><br>
 							<label>담당자 이름<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<input type="text" name="man_name" class="man_name"><br>
-							<label>담당자 전화번호<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label>
+							<label >담당자 전화번호<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label>
 								<input type="text" name="man_tel" class="man_tel" placeholder="ex. 010)111-2222"><br>
 							<label>담당자 이메일<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<input type="email" name="man_email" class="man_email" placeholder="ex. happy@gmail.com"><br>
@@ -134,11 +135,12 @@
 						</div>
 								<input type="text" id="sample4_roadAddress" class="cust_address" placeholder="도로명주소" name="cust_address" style="width:530px;">				
 								<span id="guide" style="color:#999;display:none"></span><br>
-								<input type="text" id="sample4_detailAddress" class="cust_address2" placeholder="상세주소" name="cust_address2"><br>
-						<label>홈페이지</label> 
-								<input type="text" name="url_path" class="url_path"><br>
-						<label>적요</label>
-								<textarea type="text" name="remarks" class="remarks" style="height: 200px; width:500px;"  rows="3" placeholder="글 내용을 작성하세요"></textarea><br>
+								<input type="text" id="sample4_detailAddress" class="cust_address2" size="60" placeholder="상세주소" name="cust_address2"><br>
+						<label>홈페이지</label><br> 
+								<input type="text" name="url_path" size="60" class="url_path" placeholder="ex. https://www.naver.com/"><br>
+						<label>적요</label><br>
+								<textarea type="text" name="remarks" class="remarks" style="height: 200px; width:525px;"  rows="3" placeholder="글 내용을 작성하세요"></textarea><br>
+						
 						</div>
 					</fieldset>
 						<div class="clear"></div>
@@ -163,7 +165,7 @@
 // 			alert("전송");
           // class="id" 표시  대상.함수()
 			if($('.business_num').val()==""){
-				alert("사업자번호를 입력하세요");
+				alert("사업자번호or생년월일을 입력하세요");
 				$('.business_num').focus();
 				return false;
 			}
@@ -251,7 +253,7 @@
 		$('.dup').click(function(){
 // 			alert("클릭");
 			if($('.business_num').val()==""){
-				alert("사업자번호를 입력하세요");
+				alert("사업자번호or생년월일을 입력하세요");
 				$('.business_num').focus();
 				return false;
 			}

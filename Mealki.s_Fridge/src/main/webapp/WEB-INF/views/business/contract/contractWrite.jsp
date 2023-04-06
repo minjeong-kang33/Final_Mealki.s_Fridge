@@ -42,6 +42,31 @@
 		openWin=window.open("${pageContext.request.contextPath}/business/contract/findContract",
 			"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
 		}
+	
+	var openWin;
+		
+		function findProduct()
+		{
+			window.name="parentForm";
+			openWin=window.open("${pageContext.request.contextPath}/business/contract/findProduct",
+				"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
+			}
+	var openWin;
+		
+		function findName()
+		{
+			window.name="parentForm";
+			openWin=window.open("${pageContext.request.contextPath}/business/contract/findName",
+				"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
+			}
+	var openWin;
+			
+			function findName2()
+			{
+				window.name="parentForm";
+				openWin=window.open("${pageContext.request.contextPath}/business/contract/findName2",
+					"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
+				}
 	</script>
 </head>
 
@@ -94,34 +119,35 @@ th,td{
 <table>
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
-			<th>수주번호</th>
 			<th>거래처코드</th>
+			<th>거래처명</th>
 			<th>품목코드</th>
 			<th>품목명</th>
-			<th>수주업체</th>
 			<th>수주일자</th>
 			<th>납품예정일</th>
-			<th>담당자코드</th>
+<!-- 			<th>담당자코드</th> -->
+			<th>수주업체</th>
 			<th>담당자</th>
 			<th>수주수량</th>
          </tr>
          <tr>
-         	<td><input type="text" name="business_num" id="business_num"></td>
+
          	<td onclick="findContract()"><input type="text" name="cust_num" id="cust_num"></td>
-         	<td><input type="text" name="item_num" id="item_num"></td>
+         	<td><input type="text" name="cust_name" id="cust_name"></td>
+         	
+         	<td onclick="findProduct()"><input type="text" name="item_num" id="item_num"></td>
          	<td><input type="text" name="item_name" id="item_name"></td>
-         	<td><input type="text" name="business_name" id="business_name"></td>
          	<td><input type="date"  id="business_date" name="business_date"></td>
          	<td><input type="date"  id="out_date" name="out_date"></td>
-         	<td><input type="text" name="incharge_code" id="incharge_code"></td>
-         	<td><input type="text" name="incharge_name" id="incharge_name"></td>
+<!--          	<td><input type="text" name="incharge_code" id="incharge_code"></td> -->
+			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
+         	<td onclick="findName2()"><input type="text" name="incharge_name" id="incharge_name"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>
          </tr>	
          <tr align="center">
-			<th colspan="10">					<!-- Ajax -->
-			<button type="submit">저장</button> <!-- onclick="fn_submit();return false;" -->
-<!-- 			<button type="reset">취소</button> -->
-<!-- 			<button type="submit">삭제</button> -->
+			<th colspan="10">					
+			<button type="submit">저장</button>
+
 			</th>
 		</tr> 
 

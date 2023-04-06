@@ -110,8 +110,8 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">거래처 관리</h3>
-<!--                   <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6> -->
+                  <h3 class="font-weight-bold">거래처 목록</h3>
+                  <h6 class="font-weight-normal mb-0">&nbsp;&nbsp;&nbsp;<span class="text-primary">* 거래처를 클릭하시면 상세 정보 조회가 가능합니다</span></h6>
                 </div>
                 
           <div class="contentbody" > 

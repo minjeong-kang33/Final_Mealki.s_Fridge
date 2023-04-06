@@ -49,7 +49,6 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	@Override
 	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderServiceImpl placeOrderDTO()");
-		
 		placeOrderDAO.insertOrder(placeOrderDTO);
 	}
 

@@ -8,6 +8,7 @@ import com.itwillbs.domain.SearchDTO;
 
 
 public interface EmployeeService {
+	
 	public EmployeeDTO userCheck(EmployeeDTO employeeDTO);
 	
 	public List<Map<String, Object>> getEmployeeListMap(SearchDTO searchDTO);
@@ -23,4 +24,7 @@ public interface EmployeeService {
 	public void leaveEmployee(int emp_num);
 	
 	public void rehabilitationEmployee(int emp_num);
+	
+	public List<Map<String, Object>> yellowPage();
+	
 }
