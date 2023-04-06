@@ -10,7 +10,6 @@ import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
-import javax.swing.plaf.IconUIResource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -88,7 +87,7 @@ public class EmployeeController {
 		
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
-		String search_check = request.getParameter("search_check");
+		String search_check = request.getParameter("check");
 		SearchDTO searchDTO = new SearchDTO();
 		searchDTO.setKeyword(keyword);
 		searchDTO.setSearch_option(search_option);
@@ -129,7 +128,7 @@ public class EmployeeController {
 		  employeeDTO.setEmp_classification(Integer.parseInt(request.getParameter("emp_classification")));
 		  employeeDTO.setDept_position(request.getParameter("dept_position"));
 		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
-		  employeeDTO.setEmp_status("재직중");
+		  employeeDTO.setEmp_status("재직");
 		  
 		  UUID uuid=UUID.randomUUID(); 
 		  String filename =uuid.toString()+"_"+file.getOriginalFilename();

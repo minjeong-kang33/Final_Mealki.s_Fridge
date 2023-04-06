@@ -35,8 +35,9 @@
 				department.dept_deptName like CONCAT('%', #{keyword}, '%')
 			</if>
 			
-		
-		order by emp_joinDate desc
+			<if test="search_check == null or search_check.equals('')">
+        		and emp_status ='재직' or emp_status ='휴직'
+        	</if>
     </select>
     
 	<insert id="insertEmployee">
@@ -97,13 +98,13 @@
 	
 	<update id="absenceEmployee">
 		update employee
-		set emp_absenceDate = now()
+		set emp_absenceDate = now(), emp_status ='휴직'
 	    where emp_num = #{emp_num}
 	</update>
     
     <update id="leaveEmployee">
 		update employee
-		set emp_leaveDate = now()
+		set emp_leaveDate = now(), emp_status ='퇴사'
 	    where emp_num = #{emp_num}
 	</update>
 	
