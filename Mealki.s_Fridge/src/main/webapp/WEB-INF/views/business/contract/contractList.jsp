@@ -80,31 +80,32 @@ function fun1() {
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">출하관리</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명 <span class="text-primary">강조</span></h6>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">목록클릭시 수정삭제가능</span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
 		
         <div>Total: ${total }</div>
-        <div id="table_search">
-        	<form name="search" action="${pageContext.request.contextPath}/business/contract/contractList" method="get" onsubmit="fun1()">
-				<select name="search_option" class="search_option">
-					 <option value=""> 선택하세요 </option>
-	         		 <option value="item_name"> 품목명 </option>
-	        		 <option value="business_name"> 수주업체 </option>
-				</select>
-					<input type="text" name="search" class="input_box">
-					<input type="submit" value="search">
- 			</form>
-        <div id="">
-        <input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
-        </div>
-        </div>
+        	<div id="table_search">
+        		
+        			<form name="search" action="${pageContext.request.contextPath}/business/contract/contractList" method="get" onsubmit="fun1()">
+						<select name="search_option" class="search_option">
+							 <option value=""> 선택하세요 </option>
+			         		 <option value="item_name"> 품목명 </option>
+			        		 <option value="business_name"> 수주업체 </option>
+						</select>
+						<input type="text" name="search" class="input_box">
+						<input type="submit" value="search">
+ 					</form>
+ 				
+			        
+        	</div>
         
-<div>       		  
-<table border="1" class="contractTable">
+		<div id=" ">
+			<form name="store_form" method="get">       		  
+			<table border="1">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
       
@@ -127,26 +128,24 @@ function fun1() {
          	
          	<td>${ContractDTO.item_name }</td>
          	<td>${ContractDTO.business_name }</td>
-			<td>${ContractDTO.business_name }</td>
 			<td>${ContractDTO.business_date }</td>
-         	<td>${ContractDTO.out_date }</td>
+			<td>${ContractDTO.out_date }</td>
+         	<td>${ContractDTO.incharge_name }</td>
          	<td>${ContractDTO.contract_qty }</td>
          </tr>	
          
          
          </c:forEach>
          
-      	 <tr align="center">
-			<th colspan="6">
-			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >신규</button>
-			</th>
-		</tr> 
 	
-		
-</table>
-
-        
-          </div>
+	</table>
+		<div id="">
+        <input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+        </div>
+     </form>
+    
+     </div>
+     </div>
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="page_control">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
@@ -184,7 +183,8 @@ function fun1() {
     <!-- page-body-wrapper ends -->
   </div>
   <!-- container-scroller -->
-</div>
+
+
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
