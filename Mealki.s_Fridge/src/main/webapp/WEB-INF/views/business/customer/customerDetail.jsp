@@ -10,22 +10,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerDetail.css">
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-  <script>
-	function deleteCustomer(url) {
-	  if (confirm("거래처를 삭제하시겠습니까?")) {
-	    location.href = url;
-	  }
-	}
-  </script>
-  
-  <script>
-	function updateCustomer(url) {
-	  if (confirm("거래처를 수정하시겠습니까?")) {
-	    location.href = url;
-	  }
-	}
-  </script>
+ 
 </head>
 <body>
 			<div class="customer_details">
@@ -45,16 +30,36 @@
                   </div>
                </div>
                <div id="buttons" style="text-align:center;">
-						
-				<input type="button" value="수정하기" class="btn btn-primary" onclick="updateCustomer('${pageContext.request.contextPath}/business/customer/updateCustomer?business_num=${customerDTO.business_num}')"> 
-				<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteCustomer('${pageContext.request.contextPath}/business/customer/deleteCustomer?business_num=${customerDTO.business_num}')">
-			 
+				<c:if test="${sessionScope.dept_num == 200}">		
+					<input type="button" value="수정하기" class="btn btn-primary" onclick="updateCustomer('${pageContext.request.contextPath}/business/customer/updateCustomer?business_num=${customerDTO.business_num}')"> 
+					<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteCustomer('${pageContext.request.contextPath}/business/customer/deleteCustomer?business_num=${customerDTO.business_num}')">
+			 	</c:if>
 			  <!-- QR코드 시작-->
 			  <input type="button" name="getQr" class="btn btn-primary" value="QR코드 생성"><br>
 			  <img id="qr" src="" alt="QR code" style="visibility: hidden;">
 			  <!-- QR코드 끝-->
 			  
 			  </div>
+			  
+			  
+<!-- 여기서부터 스크립트 -->
+ <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script>
+	function deleteCustomer(url) {
+	  if (confirm("거래처를 삭제하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
+  
+  <script>
+	function updateCustomer(url) {
+	  if (confirm("거래처를 수정하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
+
 			   
  <script type="text/javascript">
  /* QR코드 생성 */
