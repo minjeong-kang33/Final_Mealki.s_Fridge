@@ -68,18 +68,18 @@
 										<div id="select_search">
 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
 												<label>검수번호 : </label>
-												<input type="text" name="wo_num">
+												<input type="text" name="qc_num">
 												<label>라인명 : </label>
 												<input type="text" name="manu_name">
 												<label>품명 : </label>
 												<input type="text" name="item_name">
 												<label>작업일시 : </label>
-												<input type="date" name="manu_sdate">
-												 - <input type="date" name="manu_date">
+												<input type="date" name="qc_date">
+												<input type="date" name="qc_date">
 												<label>검수자 : </label>
 												<input type="text" name="emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">
-												<a>조회</a>
+												조회
 												</button>
 											</form>
 										</div>
@@ -128,14 +128,14 @@
 										<div id="select_search">
 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
 												<label>검수번호 : </label>
-												<input type="text" name="wo_num">
+												<input type="text" name="fail_num">
 												<label>라인명 : </label>
 												<input type="text" name="manu_name">
 												<label>품명 : </label>
 												<input type="text" name="item_name">
 												<label>작업일시 : </label>
-												<input type="date" name="manu_sdate">
-												 - <input type="date" name="manu_date">
+												<input type="date" name="fail_date">
+												 - <input type="date" name="fail_date">
 												<label>검수자 : </label>
 												<input type="text" name="emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">

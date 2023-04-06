@@ -42,34 +42,26 @@
 			$('input[name=item_num]').attr('value',itemnum);
 				});
 			});
-	
-	
-    $(function(){
-        $('#IconButton1').on("click",function () {
-
-            var form1 = $("#insertProduct").serialize();
-
-            console.log(form1);
-            
-            $.ajax({
-                type: "post",
-                url: "${pageContext.request.contextPath}/mps/production/start",
-                data: form1,
-                dataType: 'json',
-                contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-                success: function (data) {
-                    alert("success");
-                    console.log(data);
-                },
-                error: function (request, status, error) {
-                    console.log("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-
-                }
+</script>
+<script>
+        $(document).ready(function() {
+            $("#insertProduct").submit(function(event) {
+                // 폼 데이터 전송을 막기
+                event.preventDefault();
+                
+                // AJAX 요청 보내기
+                $.ajax({
+                    type: "POST",
+                    url: "${pageContext.request.contextPath}/mps/production/start",
+                    data: $("#insertProduct").serialize(),
+                    success: function() {
+                        // 폼 전송이 성공적으로 완료되면 버튼 숨기기
+                        $("#IconButton1").hide();
+                    }
+                });
             });
         });
-    });
-	
-</script>
+    </script>
 </head>
 <body>
 
@@ -105,8 +97,10 @@
             			<option value="" data-wonum="" data-itemname="" 
             						data-manucode="" data-itemnum="">라인을 선택하세요</option>
             			<c:forEach var="sel" items="${selectList}">
+            			<c:if test="${sel.unsto_qty != sel.manu_tocount }">
             				<option value="${sel.manu_name}" data-wonum="${sel.wo_num}" data-itemname="${sel.item_name}" 
             						data-manucode="${sel.manu_code}" data-itemnum="${sel.item_num}">${sel.manu_name}</option>
+            			</c:if>
             			</c:forEach>
           		</select>
 <!--           		selectbox 선택시 값넘기기 위해 만든 박스 -->
@@ -134,15 +128,21 @@
 				<input type="text" name="manu_fail" value="0">
 				
 <!-- 			시작 했을때 시작시간 등록 -->
-				<button class="btn btn-primary" type="button" id="IconButton1">
-				시작
-				</button>
-				
+            		<button class="btn btn-primary" type="submit" id="IconButton1">
+					시작
+					</button>
+            		<button class="btn btn-primary" type="button" id="IconButton2">
+					완료
+					</button>
+					
 <!-- 				완료 했을때 완료시간 등록 -->
-				<button class="btn btn-primary" type="button" id="IconButton2">
-				<a>완료</a>
-				
-				</button>
+					<c:if test="${productionList.manu_sdate ne null}">
+					<button class="btn btn-primary" type="button" id="IconButton2">
+					완료
+					</button>
+					</c:if>
+<%-- 				</c:otherwise> --%>
+<%-- 				</c:choose> --%>
 <!-- 				reset -->
 				<button class="btn btn-primary" type="reset" id="IconButton3">
 				<a>취소</a>
