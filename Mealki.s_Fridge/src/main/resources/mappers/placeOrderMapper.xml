@@ -4,11 +4,15 @@
 
 <mapper namespace="com.itwillbs.mappers.placeOrderMapper">
 	<insert id="insertOrder">
-		insert into placeorder (order_num, item_num, item_name, order_qty, order_sum,
-								order_vat, order_date, due_date, whs_num, emp_num)
-		values (concat('OR',DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 9 HOUR), '%Y%m%d%H%i%s')),
-				#{item_num},#{item_name},#{order_qty},#{order_sum},#{order_vat},
-				#{order_date},#{due_date},#{whs_num},#{emp_num})
+  		insert into placeorder (order_num, order_date, due_date, whs_num, emp_num,
+                          		item_num, item_name, order_qty, order_sum, order_vat)
+ 		 values 
+  			<foreach collection="dto" item="dto" separator=",">
+ 				 (concat('OR',DATE_FORMAT(DATE_ADD(NOW(), INTERVAL 9 HOUR), '%Y%m%d%H%i%s')),
+         		 #{order_date}, #{due_date}, #{whs_num}, #{emp_num},
+           		 #{dto.item_num}, #{dto.item_name}, #{dto.order_qty}, #{dto.order_sum}, #{dto.order_vat} )
+          </foreach>
+         
 	</insert>
 
 	<select id="getWarehouseList"
