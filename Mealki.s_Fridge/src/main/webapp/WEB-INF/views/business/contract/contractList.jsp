@@ -102,61 +102,47 @@ function fun1() {
         </div>
         
        		  
-<table id="contractTable">
+<table border="1" class="contractTable">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
       
 		<tr align="center">
 			
 			
-			<th>수주번호</th> <!-- th width="15%" -->
 			<th>품목명</th>
 			<th>수주업체</th>
 			<th>수주일자</th>
 			<th>납품예정일</th>
-			<th>담당자코드</th>
 			<th>담당자</th>
 			<th>수주수량</th>
          </tr>
          
-         <c:set var="cnt" value="1"/>
          
          <c:forEach var="ContractDTO" items="${resultList}">
          
          <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num }'">
          
          	
-         	<td>${ContractDTO.business_num }</td>
          	<td>${ContractDTO.item_name }</td>
          	<td>${ContractDTO.business_name }</td>
-<%--          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.business_date}"/></td> --%>
-<%--          	<td><fmt:formatDate pattern="yyyy-MM-dd" value="${ContractDTO.out_date}"/></td> --%>
-			<td>${ContractDTO.business_date}</td>
-			<td>${ContractDTO.out_date}</td>
-         	<td>${ContractDTO.incharge_code }</td>
+			<td><fmt:formatDate value="${ContractDTO.business_date}" pattern="yyyy.MM.dd"/></td>
+			<td><fmt:formatDate value="${ContractDTO.out_date}" pattern="yyyy.MM.dd"/></td>
          	<td>${ContractDTO.incharge_name }</td>
          	<td>${ContractDTO.contract_qty }</td>
          </tr>	
          
-         <c:set var="cnt" value="${cnt+1}" />
          
          </c:forEach>
          
       	 <tr align="center">
-			<th colspan="8">
+			<th colspan="6">
 			<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >신규</button>
 			</th>
 		</tr> 
 	
 		
 </table>
-<!-- 			<div class="div3" > -->
-<!-- 				<button type="submit" >저장</button>onclick="fn_submit();return false;" -->
-<!-- 				<button type="reset">취소</button> -->
-<%-- 				<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >신규</button> --%>
-<!-- 				<button type="submit">삭제</button> -->
-<!-- 			</div> -->
- <!--  본문내용 끝 -->    
+
         
           </div>
 <!-- 페이징하실거면 여기서 시작 -->

@@ -1,16 +1,17 @@
 package com.itwillbs.domain;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ContractDTO {
 
 	private String business_num;
 	private String cust_num;
+	private String cust_name;
 	private String item_num;
 	private String item_name;
 	private String business_name;
-	private String business_date;
-	private String out_date;
+	private Timestamp business_date;
+	private Timestamp out_date;
 	private String incharge_code;
 	private String incharge_name;
 	private int contract_qty;
@@ -21,12 +22,17 @@ public class ContractDTO {
 	public void setBusiness_num(String business_num) {
 		this.business_num = business_num;
 	}
-	
 	public String getCust_num() {
 		return cust_num;
 	}
 	public void setCust_num(String cust_num) {
 		this.cust_num = cust_num;
+	}
+	public String getCust_name() {
+		return cust_name;
+	}
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
 	}
 	public String getItem_num() {
 		return item_num;
@@ -46,18 +52,16 @@ public class ContractDTO {
 	public void setBusiness_name(String business_name) {
 		this.business_name = business_name;
 	}
-	
-	
-	public String getBusiness_date() {
+	public Timestamp getBusiness_date() {
 		return business_date;
 	}
-	public void setBusiness_date(String business_date) {
+	public void setBusiness_date(Timestamp business_date) {
 		this.business_date = business_date;
 	}
-	public String getOut_date() {
+	public Timestamp getOut_date() {
 		return out_date;
 	}
-	public void setOut_date(String out_date) {
+	public void setOut_date(Timestamp out_date) {
 		this.out_date = out_date;
 	}
 	public String getIncharge_code() {
@@ -78,6 +82,12 @@ public class ContractDTO {
 	public void setContract_qty(int contract_qty) {
 		this.contract_qty = contract_qty;
 	}
+	
+	
+	
+	
+	
+	
 	
 	
 	

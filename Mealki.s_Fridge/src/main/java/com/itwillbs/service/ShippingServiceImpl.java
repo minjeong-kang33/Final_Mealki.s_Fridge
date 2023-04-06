@@ -57,6 +57,18 @@ public class ShippingServiceImpl implements ShippingService{
 		
 	}
 
+	@Override
+	public List<Map<String, Object>> getShippingListMap() {
+		
+		return shippingDAO.getShippingListMap();
+	}
+
+	@Override
+	public List<ContractDTO> getEmployeeList() {
+		
+		return shippingDAO.getEmployeeList();
+	}
+
 	
 
 	

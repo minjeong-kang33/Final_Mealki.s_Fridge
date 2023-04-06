@@ -62,10 +62,21 @@
 
 
 	<select id="getContractListMap" resultType="map">
-		SELECT *
-		FROM contract, customer
-		WHERE contract.cust_num = customer.cust_num
-		
+		SELECT customer.cust_num, customer.cust_name
+		from customer join contract
+		on customer.cust_num = contract.cust_num	
+	</select>
+	
+	<select id="getProductList" resultType="com.itwillbs.domain.PlaceOrderDTO">
+	select * from products
+	</select>
+	
+	<select id="getNameList" resultType="com.itwillbs.domain.ContractDTO">
+	select distinct business_name from contract
+	</select>
+	
+	<select id="getNameList2" resultType="com.itwillbs.domain.ContractDTO">
+	select distinct incharge_name from contract
 	</select>
 	
 	<select id="getBoard" resultType="com.itwillbs.domain.ContractDTO">

@@ -11,18 +11,18 @@
 	
 </head>
 <body>
-	<h3>|거래처목록 </h3>
+	<h3>|수주업체 </h3>
 		<table id="find-table">
 			<tr>
 
-				<th style="background-color: #4B49AC; color: #fff;">거래처코드</th>
-				<th style="background-color: #4B49AC; color: #fff;">거래처명</th>
+				<th style="background-color: #4B49AC; color: #fff;">수주업체</th>
 				
 				
-				 <c:forEach var="ContractDTO" items="${contractListMap}">
+				
+				 <c:forEach var="ContractDTO" items="${NameList}">
 				 <tr class="row_a">	
-				 	<td id="cust_num">${ContractDTO.cust_num }</td>
-				 	<td id="cust_name">${ContractDTO.cust_name }</td>
+				 	<td id="business_name">${ContractDTO.business_name }</td>
+				 	
 				</tr> 	
 			    </c:forEach>
 		</table>
@@ -32,13 +32,10 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var cust_num = td.eq(1).text();
-			var cust_name = td.eq(0).text();
-
-
+			var business_name = td.eq(0).text();
+		
+			opener.document.getElementById("business_name").value = business_name;
 			
-			opener.document.getElementById("cust_num").value = cust_num;
-			opener.document.getElementById("cust_name").value = cust_name;
 			
 			
 			window.close();

@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.service.ContractService;
 
 @Controller
@@ -112,6 +113,34 @@ import com.itwillbs.service.ContractService;
 				model.addAttribute("contractListMap", contractListMap);
 	
 				return "business/contract/findContract";
+		}
+			
+			@RequestMapping(value = "/business/contract/findProduct", method = RequestMethod.GET)
+			public String findProduct(HttpServletRequest request, Model model) {
+				System.out.println("ContractController findContract()");
+	
+				List<PlaceOrderDTO> productList = contractService.getProductList();
+				model.addAttribute("productList", productList);
+	
+				return "business/contract/findProduct";
+		}
+			@RequestMapping(value = "/business/contract/findName", method = RequestMethod.GET)
+			public String findName(HttpServletRequest request, Model model) {
+				System.out.println("ContractController findName()");
+	
+				List<ContractDTO> NameList = contractService.getNameList();
+				model.addAttribute("NameList", NameList);
+	
+				return "business/contract/findName";
+		}
+			@RequestMapping(value = "/business/contract/findName2", method = RequestMethod.GET)
+			public String findName2(HttpServletRequest request, Model model) {
+				System.out.println("ContractController findName()");
+	
+				List<ContractDTO> NameList2 = contractService.getNameList2();
+				model.addAttribute("NameList2", NameList2);
+	
+				return "business/contract/findName2";
 		}
 			
 			@RequestMapping(value="/business/contract/content" , method = RequestMethod.GET)

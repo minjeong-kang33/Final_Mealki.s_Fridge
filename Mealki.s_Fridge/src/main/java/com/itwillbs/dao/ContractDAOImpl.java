@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.PlaceOrderDTO;
 
 @Repository
 public class ContractDAOImpl implements ContractDAO{
@@ -70,6 +71,23 @@ public class ContractDAOImpl implements ContractDAO{
 	public void deleteBoard(int business_num) {
 		sqlSession.delete(namespace+".deleteBoard", business_num);
 		
+	}
+
+	@Override
+	public List<PlaceOrderDTO> getProductList() {
+		return sqlSession.selectList(namespace + ".getProductList");
+	}
+
+	@Override
+	public List<ContractDTO> getNameList() {
+		
+		return sqlSession.selectList(namespace + ".getNameList");
+	}
+
+	@Override
+	public List<ContractDTO> getNameList2() {
+		
+		return sqlSession.selectList(namespace + ".getNameList2");
 	}
 
 	

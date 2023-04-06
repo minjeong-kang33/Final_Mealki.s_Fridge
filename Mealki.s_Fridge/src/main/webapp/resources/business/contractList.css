@@ -1,27 +1,14 @@
 @charset "UTF-8";
+.container-scroller{
+	height: 1200px;
+}
 
-body{
-	font-size:10pt;
+.content-wrapper{
+	height: 1050px;
 }
-button{
-	font-size:9pt;
-}
-table{
-   width: 100%;
-   text-align: center;
-   border-color: #6C7383;
-   border-collapse: collapse;
-}
- th,td{ 
- 	border:1px solid #cccccc; 
- 	padding:3px; 
- 	
- } 
 
-.div2{
-	width:600px;
-	text-align:right;
-	font-size:12pt;
+td{
+	font-size: 12px;
 }
 
 table#contractTable tr:hover{
@@ -29,14 +16,17 @@ table#contractTable tr:hover{
 	cursor: pointer; cursor: hand;
 }
 
-#table_search{
-	background-color: #e6e6f4;
-    border-radius: 10px;
-    padding-top: 11px;
-    padding-bottom: 22px;
-    padding-left: 10px;
-    padding-right: 10px;
-    margin-bottom: 10px;
-    width: 100%;
-    height: 60px;
+/* 표 */
+.contractTable{
 }
+
+.contractTable tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+.contractTable th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
