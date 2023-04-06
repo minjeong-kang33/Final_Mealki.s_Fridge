@@ -28,67 +28,6 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
   
-  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-  
-  <script type="text/javascript">
-	  function openDetail(business_num) {
-		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1000, height=1000, scrollbars=yes");
-		}
-  </script>
-  
-  <script type="text/javascript">	  
-	  function insertCust()
-	  {
-	   window.name = "insertCust";
-	   openWin = window.open("${pageContext.request.contextPath}/business/customer/insertCustomer",
-	            "childForm", "width=600, height=1000,top=300, left=300, resizable = no, scrollbars = no");    
-	  }
-  </script>
-  
-  <script>
-  <!-- 			체크박스 all선택 -->
-  document.addEventListener("DOMContentLoaded", function() {
-    let checkAll = document.querySelector("#checkAll");
-    let checkboxes = document.querySelectorAll("input[name='rowCheck']");
-
-    checkAll.addEventListener("change", function() {
-      for (let checkbox of checkboxes) {
-        checkbox.checked = checkAll.checked;
-      }
-    });
-  });
-  
-  // 삭제 버튼
- window.onload = function() {
-  document.getElementById("deleteCustButton").addEventListener("click", function() {
-	  let elements = document.getElementById("tableForm").querySelectorAll('input[name="rowCheck"]:checked');
-	  if(elements.length === 0){
-	      alert("선택된 거래처가 없습니다");
-	      return;
-	  }
-	  
-	  if(confirm("삭제하시겠습니까?")){
-      let formData = new FormData();
-      for(let i = 0; i< elements.length; i++){
-        formData.append("selectId",elements[i].value);
-      }
-
-      let request = new XMLHttpRequest();
-      request.open("POST","${pageContext.request.contextPath}/business/customer/deleteCustList");
-      request.send(formData);
-
-      request.onreadystatechange = function() {
-          if (request.readyState == 4 && request.status == 200) {
-            location.reload();
-          }
-    };
-    }
-  })
- };
-  </script>
-  
- 
-  
 
 </head>
 <body>
@@ -131,7 +70,9 @@
             	</div>
             	
             	<div id="table_write">
+            	<c:if test="${sessionScope.dept_num == 200}">
 					<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
+				</c:if>
 				</div>
             </div>
             
@@ -228,6 +169,64 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  
+  <script type="text/javascript">
+	  function openDetail(business_num) {
+		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1500, height=1000,top=300, left=300,scrollbars=yes");
+		}
+  </script>
+ 
+   <script type="text/javascript">	   
+ 	  function insertCust() 
+ 	  { 
+ 	   window.name = "insertCust"; 
+ 	   openWin = window.open("${pageContext.request.contextPath}/business/customer/insertCustomer", 
+ 	            "childForm", "width=600, height=1000,top=300, left=300, resizable = no, scrollbars = no");   
+ 	  }
+   </script>
+  
+  <script>
+  <!-- 			체크박스 all선택 -->
+  document.addEventListener("DOMContentLoaded", function() {
+    let checkAll = document.querySelector("#checkAll");
+    let checkboxes = document.querySelectorAll("input[name='rowCheck']");
+
+    checkAll.addEventListener("change", function() {
+      for (let checkbox of checkboxes) {
+        checkbox.checked = checkAll.checked;
+      }
+    });
+  });
+  
+  // 삭제 버튼
+ window.onload = function() {
+  document.getElementById("deleteCustButton").addEventListener("click", function() {
+	  let elements = document.getElementById("tableForm").querySelectorAll('input[name="rowCheck"]:checked');
+	  if(elements.length === 0){
+	      alert("선택된 거래처가 없습니다");
+	      return;
+	  }
+	  
+	  if(confirm("삭제하시겠습니까?")){
+      let formData = new FormData();
+      for(let i = 0; i< elements.length; i++){
+        formData.append("selectId",elements[i].value);
+      }
+
+      let request = new XMLHttpRequest();
+      request.open("POST","${pageContext.request.contextPath}/business/customer/deleteCustList");
+      request.send(formData);
+
+      request.onreadystatechange = function() {
+          if (request.readyState == 4 && request.status == 200) {
+            location.reload();
+          }
+    };
+    }
+  })
+ };
+  </script>
 
 </body>
 </html>

@@ -64,6 +64,10 @@ tr:hover td{ background-color: #e6e6f4; }
     width: 10px;
 }
 
+.customer_details{
+	margin: auto 0;
+}
+
 .cust_details_table{
 	pointer-events: none;
    	margin-top:10px;
