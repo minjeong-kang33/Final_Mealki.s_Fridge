@@ -7,10 +7,14 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ProductionDTO;
 import com.itwillbs.service.ProductionService;
@@ -40,6 +44,7 @@ public class ProductionController {
 		model.addAttribute("selectList",selectList);
 		
 		System.out.println("selectList"+selectList);
+		System.out.println(selectList.get(8).get("manu_sdate"));
 		// 주소변경 없이 이동
 		// /WEB-INF/views/member/info.jsp
 		return "mps/production/writeForm";
@@ -58,19 +63,30 @@ public class ProductionController {
 		return "redirect:/mps/production/write";
 	}
 	
-	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
-	public String startProduct(ProductionDTO productionDTO) {
-		System.out.println("ProductionController start()");
-		//회원가입 처리 부모인터페이스 MemberService, 
-		//           자식클래스 MemberServiceImpl
-		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
-		// 메서드 호출
-		productionService.startProduct(productionDTO);
-		
-//		주소줄 변경하면서 이동
-		return "redirect:/mps/production/write";
-	}
+//	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
+//	public String startProduct(ProductionDTO productionDTO) {
+//		System.out.println("ProductionController start()");
+//		//회원가입 처리 부모인터페이스 MemberService, 
+//		//           자식클래스 MemberServiceImpl
+//		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
+//		// 메서드 호출
+//		productionService.startProduct(productionDTO);
+//		
+////		주소줄 변경하면서 이동
+//		return "redirect:/mps/production/write";
+//	}
 	
+	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST, produces = "application/json")
+	@ResponseBody
+	public ResponseEntity<String> startProduct(@RequestBody ProductionDTO productionDTO) {
+	    System.out.println("ProductionController start()");
+	    productionService.startProduct(productionDTO);
+	    
+	    // Return a success message in JSON format
+	    String successMsg = "{\"message\": \"Product started successfully\"}";
+	    return new ResponseEntity<>(successMsg, HttpStatus.OK);
+	}
+
 	
 //	@RequestMapping(value = "/mps/production/writePro", method = RequestMethod.GET)
 //	public String productionWritePro() {

@@ -40,14 +40,14 @@ as manu_sdate from productstatus
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select distinct p.manu_num, w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress
+    	select distinct date_format(manu_sdate, '%Y-%m-%d %h:%i:%s') manu_sdate,u.unsto_qty, p.manu_tocount, p.manu_num, w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress
 		from unstore u join workorder w
 		on u.wo_num = w.wo_num
 		join linecode l
 		on w.manu_name = l.manu_name
 		left join productstatus p
         on u.wo_num = p.wo_num
-		where u.unsto_progress = '출고완료'
+		where u.unsto_progress = '출고완료';
     </select>
     
     <update id="insertProduct">
