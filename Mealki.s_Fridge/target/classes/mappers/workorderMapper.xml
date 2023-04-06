@@ -18,6 +18,7 @@
 		<if test="out_date != null">
 			and c.out_date = #{out_date}
 		</if>
+		and wo_available=1
 	</select>
 
 	<select id="getWorkorderList"
@@ -26,8 +27,9 @@
 		'%Y-%m-%d') as out_date, w.wo_qty, w.manu_name, w.item_name, 
 		e.emp_Kname as wo_empname, sum(p.manu_tocount) as pr_sum,
 		(case
-		when sum(p.manu_tocount) <![CDATA[<]]>
-		w.wo_qty then "진행중"
+		when 
+		sum(p.manu_tocount) <![CDATA[<]]> w.wo_qty
+		then "진행중"
 		when sum(p.manu_tocount) = w.wo_qty then "완료"
 		end) as wo_state
 		from employee e join workorder w
