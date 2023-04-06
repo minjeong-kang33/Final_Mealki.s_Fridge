@@ -77,21 +77,18 @@
 $(function () {
 	$(".dept_table_tr").click(function(){ 	
 		
-	alert("dd");
 	
 	var str = ""
 	var tr = $(this);
 	var td = tr.children();
 	var emp_num = td.eq(0).text(); 
 	
-	alert(emp_num);
 	
 	$.ajax({
 		url:'${pageContext.request.contextPath}/employee/yellowPageDetail',	
 		data:{emp_num:emp_num},
 		dataType : 'json',
 		success:function(result){
-			alert("사원 조회 완료");	
 			
 			$.each(result, function(index,item) {
 				$('#employee_default').html('<img src="${pageContext.request.contextPath}/resources/employee/upload/'+item.emp_img+'" style="width: 200px; height: 230px; border-radius:10px;">');

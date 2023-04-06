@@ -66,7 +66,8 @@ select {
 
 .emp_details_table{
 	width: 100%;
-	margin-top: 10px;
+	margin-top: 3px;
+	margin-left: 10px;
 }
 .emp_details_table th{
 	width: 100px;
@@ -78,9 +79,6 @@ select {
 	height: 30px;
 }
 
-.emp_details_table tr:hover, .emp_details_table td:hover .emp_details_table th:hover{
-  background-color: transparent;
-}
 
 
 /* 표 */
@@ -93,9 +91,9 @@ table{
 }
 
 
-tr:hover td{ background-color: #e6e6f4; }
+#dept_table tr:hover td{ background-color: #e6e6f4; }
 
-#emp_search_table{
+#dept_table{
    table-layout: fixed;
    font-size: 13px;
 }
@@ -109,4 +107,23 @@ tr:hover td{ background-color: #e6e6f4; }
    background-color: #4B49AC;
    color: #fff;
    font-size: 13px;
+}
+
+
+.emp_details_table{
+   font-size: 13px;
+}
+
+.emp_details_table tr{
+   height: 32px;
+}
+
+.emp_details_table th{
+   background-color: #4B49AC;
+   color: #fff;
+   font-size: 13px;
+}
+
+.emp_details_table tr:hover, .emp_details_table td:hover .emp_details_table th:hover .emp_details_table:hover{
+   pointer-events: none;
 }
