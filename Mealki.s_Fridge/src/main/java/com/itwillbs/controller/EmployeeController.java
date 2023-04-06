@@ -249,7 +249,13 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
 	public String yellowPage(HttpServletRequest request, Model model) {
+		System.out.println("EmployeeController yellowPage");
 
+		
+		String search_option = request.getParameter("search_option");
+		String keyword = request.getParameter("keyword");
+		
+		System.out.println("컨트롤러"+search_option+keyword);
 		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
@@ -263,10 +269,13 @@ public class EmployeeController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		
+		pageDTO.setKeyword(keyword);
+		pageDTO.setSearch_option(search_option);
 		
 		List<Map<String, Object>> yellowPage = employeeService.yellowPage(pageDTO);
 		model.addAttribute("yellowPage",yellowPage);
+		model.addAttribute("search_option",search_option);
+		model.addAttribute("keyword",keyword);
 		
 		int count = employeeService.yellowPageCount(pageDTO);
 		

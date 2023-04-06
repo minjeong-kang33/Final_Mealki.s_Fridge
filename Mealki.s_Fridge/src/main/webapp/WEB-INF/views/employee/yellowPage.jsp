@@ -17,7 +17,7 @@
 	<div id="top_table" >
 		<div id="table_search">
 			<div id="select_search">
-				<form name="search" method="get" action="${pageContext.request.contextPath}/employee/employeeList" id="selectBox" name="selectBox2" onsubmit="return fun1()">
+				<form name="search" method="get" action="${pageContext.request.contextPath}/employee/yellowPage" id="selectBox" name="selectBox2" onsubmit="return fun1()">
 					<select name="search_option" class="search_option">
 						<option value=""> 선택하세요 </option>
 				        <option value="emp_Kname"> 이름 </option>
@@ -26,9 +26,10 @@
 				        <option value="emp_phone"> 휴대폰번호 </option>
 				        <option value="dept_num"> 부서 </option>
 		   			</select>
-				</form>
+
 				<div style="float: left; margin-top: 20px;"><span id="text_search"><input class="input-search" type="text" name="keyword" class="input-search"></span></div>
 		        <div style="float: left; margin-top: 8px; margin-left: 10px;"><span id="icon_search"><input type="image" name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" style="margin-top: 15px;"></span></div> 
+			   </form>
 			</div>
 		</div>
 	</div>
@@ -137,6 +138,23 @@ $(function () {
 });
 });
 
+</script>
+<script> //검색어
+function fun1() {
+	
+	if(document.search.search_option.value=="") {
+		alert("검색 조건을 선택하세요")
+		document.search.search_option.focus();
+		return false;
+	}
+	if(document.search.keyword.value==0) {
+		alert("검색어를 입력하세요");
+		document.search.keyword.focus();
+		return false;
+		}
+	
+		document.search.submit();
+}
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
