@@ -60,7 +60,19 @@
 	
 	
 	<div class="right_table">
-	fff
+		<div class="emp_img" id="employee_default"></div>
+	    <div class="emp_infoDetails">
+	     <table border="1" class="emp_details_table">
+		  <tr><th>이름</th><td>dd</td></tr>   
+		  <tr><th>부서</th><td>dd</td></tr>  
+		  <tr><th>팀</th><td>dd</td></tr>  
+		  <tr><th>직급</th><td>dd</td></tr>  
+		  <tr><th>직위</th><td>dd</td></tr>  
+		  <tr><th>내선번호</th><td>dd</td></tr>  
+		  <tr><th>휴대폰번호</th><td>dd</td></tr> 
+			                 
+	     </table>
+	    </div>
 	</div>
 
 
