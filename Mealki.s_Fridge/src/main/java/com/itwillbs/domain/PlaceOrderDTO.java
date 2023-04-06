@@ -1,6 +1,7 @@
 package com.itwillbs.domain;
 
 import java.sql.Date;
+import java.util.List;
 
 public class PlaceOrderDTO {
 	private String order_num;
@@ -13,7 +14,14 @@ public class PlaceOrderDTO {
 	private Date due_date;
 	private String whs_num;
 	private int emp_num;
+	private List<PlaceOrderDTO2> dto;
 	
+	public List<PlaceOrderDTO2> getDto() {
+		return dto;
+	}
+	public void setDto(List<PlaceOrderDTO2> dto) {
+		this.dto = dto;
+	}
 	public String getOrder_num() {
 		return order_num;
 	}

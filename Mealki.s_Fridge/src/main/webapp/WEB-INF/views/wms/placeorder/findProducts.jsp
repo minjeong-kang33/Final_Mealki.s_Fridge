@@ -45,19 +45,41 @@
 				var stk_qnt = td.eq(3).text();
 				var supplier = td.eq(4).text();
 				var supply_price = td.eq(5).text();
-
-				opener.document.getElementById("item_num").value = item_num;
-				opener.document.getElementById("item_name").value = item_name;
-				opener.document.getElementById("weight").value = weight;
-				opener.document.getElementById("stk_qnt").value = stk_qnt;
-				opener.document.getElementById("supplier").value = supplier;
-				opener.document.getElementById("supply_price").value = supply_price;
 				
-				window.close();
+				var index = $(this).index() + 1;
+
+				window.opener.postMessage({
+					  item_num: item_num,
+					  item_name: item_name,
+					  weight: weight,
+					  stk_qnt: stk_qnt,
+					  supplier: supplier,
+					  supply_price: supply_price,
+					  index: index
+					}, '*');
+
+					// 팝업 창 닫기
+					window.close();
+				
+				/* var index = $(this).index()+1;
+	            
+	            opener.document.getElementById("item_num_" + index).value = item_num;
+	            opener.document.getElementById("item_name_" + index).value = item_name;
+	            opener.document.getElementById("weight_" + index).value = weight;
+	            opener.document.getElementById("stk_qnt_" + index).value = stk_qnt;
+	            opener.document.getElementById("supplier_" + index).value = supplier;
+	            opener.document.getElementById("supply_price_" + index).value = supply_price; */
 				
 			}); 
 		 });
-
+			/* opener.document.getElementById("item_num").value = item_num;
+			opener.document.getElementById("item_name").value = item_name;
+			opener.document.getElementById("weight").value = weight;
+			opener.document.getElementById("stk_qnt").value = stk_qnt;
+			opener.document.getElementById("supplier").value = supplier;
+			opener.document.getElementById("supply_price").value = supply_price; */
 	</script>
+	
 </body>
+
 </html>

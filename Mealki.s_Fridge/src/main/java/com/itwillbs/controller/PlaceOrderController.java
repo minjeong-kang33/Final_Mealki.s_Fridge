@@ -1,6 +1,10 @@
 package com.itwillbs.controller;
 
 import java.util.Date;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.io.BufferedReader;
+import java.net.URLDecoder;
 import java.text.DateFormat;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -11,13 +15,20 @@ import java.util.Map;
 
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.xml.crypto.Data;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
@@ -35,7 +46,7 @@ public class PlaceOrderController {
 
 		return "wms/placeorder/orderForm";
 	}
-
+	
 	@RequestMapping(value = "/wms/placeorder/ordersearch", method = RequestMethod.GET)
 	public String ordersearch(Model model, HttpServletRequest request) throws Exception {
 		System.out.println("PlaceOrderController ordersearch");
@@ -104,13 +115,16 @@ public class PlaceOrderController {
 		return "wms/placeorder/orderForm";
 	}
 
+	@ResponseBody
 	@RequestMapping(value = "/wms/placeorder/insertOrderPro", method = RequestMethod.POST)
-	public String insertOrderPro(PlaceOrderDTO placeOrderDTO) {
-		System.out.println("PlaceOrderController insertOrderPro");
+	public String insertOrderPro(@RequestBody PlaceOrderDTO placeOrderDTO) throws Exception{
+	    System.out.println("PlaceOrderController insertOrderPro");
+	    
+	   // 주문 추가
+	   placeOrderService.insertOrder(placeOrderDTO);
 
-		placeOrderService.insertOrder(placeOrderDTO);
-		return "redirect:/wms/placeorder/insertOrder";
-	}
+	   return "orderNum";
+	}	
 
 	@RequestMapping(value = "/wms/placeorder/findWarehouse", method = RequestMethod.GET)
 	public String findWarehouse(HttpServletRequest request, Model model) {

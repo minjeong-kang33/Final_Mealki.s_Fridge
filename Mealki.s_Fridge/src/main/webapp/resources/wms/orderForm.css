@@ -49,12 +49,12 @@
 	color: #fff;
 }
 
-#dynamicTable td input[name="supplier"],
-#dynamicTable td input[name="weight"],
-#dynamicTable td input[name="stk_qnt"],
-#dynamicTable td input[name="supply_price"],
-#dynamicTable td input[name="order_sum"],
-#dynamicTable td input[name="order_vat"] {
+#dynamicTable td input[name^="supplier"],
+#dynamicTable td input[name^="weight"],
+#dynamicTable td input[name^="stk_qnt"],
+#dynamicTable td input[name^="supply_price"],
+#dynamicTable td input[name^="order_sum"],
+#dynamicTable td input[name^="order_vat"] {
 	background-color: #dee2e6;
 }
 

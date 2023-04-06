@@ -157,15 +157,15 @@ function fun2() {
 				<table border="1" id="dynamicTable" style="margin-left: 15px;">
 					 <tr><th>품번</th><th>품명</th><th>거래처명</th><th>단위</th><th>창고수량</th><th>발주수량</th><th>납입단가</th><th>단가총계</th><th>부가세</th></tr>
 					 <tr>
-					 	 <td style="width: 100px;"><input type="text" name="item_num" id="item_num" onclick="findProducts()" ></td>
-					 	 <td style="width: 150px;"><input type="text" name="item_name" id="item_name" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
-					 	 <td style="width: 150px; background-color: #dee2e6;"><input type="text" name="supplier" id="supplier" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="weight" id="weight" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="stk_qnt" id="stk_qnt" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 100px;"><input type="text" name="order_qty" id="order_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
-					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="supply_price" id="supply_price" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_sum" id="order_sum" readonly onfocus="this.blur();"></td>
-					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_vat" id="order_vat" readonly onfocus="this.blur();">
+					 	 <td style="width: 100px;"><input type="text" name="item_num" id="item_num_1" onclick="findProducts()" ></td>
+					 	 <td style="width: 150px;"><input type="text" name="item_name" id="item_name_1" readonly onfocus="this.blur();" onclick="findProducts()" ></td>
+					 	 <td style="width: 150px; background-color: #dee2e6;"><input type="text" name="supplier" id="supplier_1" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="weight" id="weight_1" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="stk_qnt" id="stk_qnt_1" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 100px;"><input type="text" name="order_qty" id="order_qty_1" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
+					 	 <td style="width: 100px; background-color: #dee2e6;"><input type="text" name="supply_price" id="supply_price_1" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_sum" id="order_sum_1" readonly onfocus="this.blur();"></td>
+					 	 <td style="width: 130px; background-color: #dee2e6;"><input type="text" name="order_vat" id="order_vat_1" readonly onfocus="this.blur();">
 					 </tr>
 				</table>
 				<button class="btn btn-primary" type="button" onclick="check_input()" id="IconButton6" style="margin-left: 50%; padding-top: 8px; padding-bottom: 8px; margin-top: 20px;">전송</button>
@@ -175,8 +175,6 @@ function fun2() {
 	   			</form>
             </div>
 
-				      
-				      
 				      </div>
 				      </div>
  <!--  발주 등록 끝 -->   			      
@@ -236,60 +234,141 @@ function fun2() {
   openWin = window.open("${pageContext.request.contextPath}/wms/placeorder/findProducts",
            "childForm", "width=500, height=400,top=300, left=300, resizable = no, scrollbars = no");    
  }
+ 
+// 상품찾기 창에서 메시지를 받는 이벤트 리스너
+ window.addEventListener('message', function(event) {
+   // 받은 데이터
+   var data = event.data;
 
+   // 받은 데이터를 부모 창의 테이블에 채우는 로직
+   if (data) {
+     // 부모 창의 테이블의 행(row)을 선택
+     var row = document.querySelector('#dynamicTable tr:last-child');
+     row.querySelector('input[name="item_num"]').value = data.item_num;
+     row.querySelector('input[name="item_name"]').value = data.item_name;
+     row.querySelector('input[name="supplier"]').value = data.supplier;
+     row.querySelector('input[name="weight"]').value = data.weight;
+     row.querySelector('input[name="stk_qnt"]').value = data.stk_qnt;
+     row.querySelector('input[name="supply_price"]').value = data.supply_price;
+     row.querySelector('input[name="order_vat"]').value = data.order_vat;
+     // 메시지 수신이 완료되었음을 자식 창에 알림
+     event.source.postMessage('received', event.origin);
+   }
+ });
+ 
+ 
 /* 금액 계산하기 */
 /* 주문량이 상품명 선택보다 선행되면 안됨 */
- $("#order_qty").change(function(){
-	var itemNameInput = document.getElementById('item_name').value;
-	var order_qty = document.getElementById('order_qty').value;
+$(document).on('change', '[id^="order_qty"]', function(){
+	var row = $(this).closest('tr'); // 현재 input 요소가 속한 tr 요소를 찾음
+	var itemNameInput = row.find('[id^="item_name"]').val(); // 같은 행에 있는 item_name으로 시작하는 id를 갖는 요소의 값을 가져옴
+	var order_qty = this.value;
 	
 	if (itemNameInput === "") {
 		alert("상품을 먼저 선택하세요");
-		document.getElementById('order_qty').value = "";
+		$(this).val("");	
 	} else {
-		var supply_price = document.getElementById('supply_price').value;
-		order_sum.value = order_qty*supply_price;
-		order_vat.value = (order_qty*supply_price)*0.1;
+		var supply_price = row.find('[id^="supply_price"]').val();
+		var order_sum = row.find('[id^="order_sum"]'); // 같은 행에 있는 order_sum으로 시작하는 id를 갖는 요소
+        var order_vat = row.find('[id^="order_vat"]'); // 같은 행에 있는 order_vat으로 시작하는 id를 갖는 요소
+        
+        order_sum.val(order_qty * supply_price); // order_sum의 값을 계산하여 설정
+        order_vat.val((order_qty * supply_price) * 0.1); // order_vat의 값을 계산하여 설정
 	}
-	});
+	}); 
+
 
 </script>
 <script type="text/javascript">
 /* null값 체크 */
 function check_input() {
-    if (document.OFsearch.order_date.value.trim()==""){
-        alert("발주일을 선택하세요");
-        document.OFsearch.order_date.focus();
-        return;
-    }
-    if (document.OFsearch.due_date.value.trim()==""){
-        alert("납기 희망일을 선택하세요");
-        document.OFsearch.due_date.focus();
-        return;
-    }
-    if (document.OFsearch.emp_num.value.trim()==""){
-        alert("담당자를 선택하세요");
-        document.OFsearch.emp_num.focus();
-        return;
-    }
-    if (document.OFsearch.whs_num.value.trim()==""){
-        alert("상품이 입고될 창고를 선택하세요");
-        document.OFsearch.whs_num.focus();
-        return;
-    }
-    if (document.OFsearch.item_name.value.trim()==""){
-        alert("발주할 상품을 선택하세요");
-        document.OFsearch.item_name.focus();
-        return;
-    }
-    if (document.OFsearch.order_qty.value.trim()==""){
-        alert("물품의 수량을 선택하세요");
-        document.OFsearch.order_qty.focus();
-        return;
-    }
-    alert('발주에 성공하였습니다.');
-    document.OFsearch.submit();
- }
+	var table = document.getElementById("dynamicTable"); 
+	var rowCount = table.rows.length-1;
+	 if (document.OFsearch.order_date.value.trim()==""){
+	        alert("발주일을 선택하세요");
+	        document.OFsearch.order_date.focus();
+	        return;
+	    }
+	    if (document.OFsearch.due_date.value.trim()==""){
+	        alert("납기 희망일을 선택하세요");
+	        document.OFsearch.due_date.focus();
+	        return;
+	    }
+	    if (document.OFsearch.emp_num.value.trim()==""){
+	        alert("담당자를 선택하세요");
+	        document.OFsearch.emp_num.focus();
+	        return;
+	    }
+	    if (document.OFsearch.whs_num.value.trim()==""){
+	        alert("상품이 입고될 창고를 선택하세요");
+	        document.OFsearch.whs_num.focus();
+	        return;
+	    }
+
+	 for (var i = 1; i <= rowCount; i++) {
+	    if (document.getElementById('item_name_' + i).value.trim() === ""){
+	        alert("발주할 상품을 선택하세요");
+	        document.getElementById('item_name_' + i).focus();
+	        return;
+	    }
+	    if (document.getElementById('order_qty_' + i).value.trim() === ""){
+	        alert("물품의 수량을 선택하세요");
+	        document.getElementById('order_qty_' + i).focus();
+	        return;
+	    }
+	 }
+	// 테이블에서 데이터 추출하기
+	  var data = [];
+	  var table = document.getElementById("dynamicTable");
+	  var order_date = document.OFsearch.order_date.value.trim();
+	  var due_date = document.OFsearch.due_date.value.trim();
+	  var whs_num = document.OFsearch.whs_num.value.trim();
+	  var emp_num = document.OFsearch.emp_num.value.trim();
+	  
+	  for (var i = 1; i < rowCount+1; i++) {
+		  var row = table.rows[i];
+		  var item_num = row.querySelector('input[name="item_num"]').value;
+		  var item_name = row.querySelector('input[name="item_name"]').value;
+		  var order_qty = row.querySelector('input[name="order_qty"]').value;
+		  var order_sum = row.querySelector('input[name="order_sum"]').value;
+		  var order_vat = row.querySelector('input[name="order_vat"]').value;
+		  
+		  data.push({
+		    "item_num": item_num,
+		    "item_name": item_name,
+		    "order_qty": order_qty,
+		    "order_sum": order_sum,
+		    "order_vat": order_vat
+		  });	    
+	  }
+	  
+	  var orderData = {
+			  "order_date": order_date,
+			  "due_date": due_date,
+			  "whs_num": whs_num,
+			  "emp_num": emp_num,
+			  "dto": data
+			};
+		
+		// AJAX를 이용하여 컨트롤러로 전송하기
+		 $.ajax({
+			  type: "POST",
+			  url: "${pageContext.request.contextPath}/wms/placeorder/insertOrderPro",
+			  contentType: "application/json",
+			  data: JSON.stringify(orderData),
+			  traditional : true,
+			  success: function (data) {
+			      alert("발주에 성공하였습니다");
+			      document.OFsearch.submit();
+			      //window.location.href = "${pageContext.request.contextPath}/wms/placeorder/ordersearch?order_num=" + data + "&order_date=&due_date=&item_name=";
+			      window.location.href = "${pageContext.request.contextPath}/wms/placeorder/insertOrder";
+			      
+			  },
+			  error: function (xhr, status, error) {
+				  alert("실패" + error+".");
+			  },
+			}); 
+}
 </script>
 <script>
 /* 오늘 날짜 구하기 (발주일 고정값) */
@@ -312,8 +391,9 @@ function date_check() {
 }
 </script>
 <script type="text/javascript">
+var columnCounter = 1; // 카운터 변수 초기화
+
 function add_column() {
-	alert('추가 눌러짐');
     var table = document.getElementById("dynamicTable");
     var row = table.insertRow();
     var cells = [];
@@ -321,15 +401,27 @@ function add_column() {
       cells[i] = row.insertCell();
     }
     
-    cell1.innerHTML = '<input type="text" name="item_num" onclick="findProducts()">';
-    cell2.innerHTML = '<input type="text" name="item_name" readonly onfocus="this.blur();" onclick="findProducts()">';
-    cell3.innerHTML = '<input type="text" name="supplier" readonly onfocus="this.blur();">';
-    cell4.innerHTML = '<input type="text" name="weight" readonly onfocus="this.blur();">';
-    cell5.innerHTML = '<input type="text" name="stk_qnt" readonly onfocus="this.blur();">';
-    cell6.innerHTML = '<input type="text" name="order_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,\'\');">';
-    cell7.innerHTML = '<input type="text" name="supply_price" readonly onfocus="this.blur();">';
-    cell8.innerHTML = '<input type="text" name="order_sum" readonly onfocus="this.blur();">';
-    cell9.innerHTML = '<input type="text" name="order_vat" readonly onfocus="this.blur();">';
+    var suffix = "_" + (columnCounter + 1); // 카운터 변수를 이용하여 접미사 생성
+    cells[0].innerHTML = '<input type="text" name="item_num" id="item_num' + suffix + '" onclick="findProducts()">';
+    cells[1].innerHTML = '<input type="text" name="item_name" id="item_name' + suffix + '" readonly onfocus="this.blur();" onclick="findProducts()">';
+    cells[2].innerHTML = '<input type="text" name="supplier" id="supplier' + suffix + '" readonly onfocus="this.blur();">';
+    cells[3].innerHTML = '<input type="text" name="weight" id="weight' + suffix + '" readonly onfocus="this.blur();">';
+    cells[4].innerHTML = '<input type="text" name="stk_qnt" id="stk_qnt' + suffix + '" readonly onfocus="this.blur();">';
+    cells[5].innerHTML = '<input type="text" name="order_qty" id="order_qty' + suffix + '" onKeyup="this.value=this.value.replace(/[^0-9]/g,\'\');">';
+    cells[6].innerHTML = '<input type="text" name="supply_price" id="supply_price' + suffix + '" readonly onfocus="this.blur();">';
+    cells[7].innerHTML = '<input type="text" name="order_sum" id="order_sum' + suffix + '" readonly onfocus="this.blur();">';
+    cells[8].innerHTML = '<input type="text" name="order_vat" id="order_vat' + suffix + '" readonly onfocus="this.blur();">';
+    
+    columnCounter++; // 카운터 변수 증가
+    
+ 	// 생성된 td 안에 있는 input 요소에 스타일 적용
+    cells[2].style.backgroundColor = "#dee2e6";
+    cells[3].style.backgroundColor = "#dee2e6";
+    cells[4].style.backgroundColor = "#dee2e6";
+    cells[6].style.backgroundColor = "#dee2e6";
+    cells[7].style.backgroundColor = "#dee2e6";
+    cells[8].style.backgroundColor = "#dee2e6";
+    
 }
 </script>
   <!-- plugins:js -->
@@ -353,6 +445,6 @@ function add_column() {
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
 </html>
