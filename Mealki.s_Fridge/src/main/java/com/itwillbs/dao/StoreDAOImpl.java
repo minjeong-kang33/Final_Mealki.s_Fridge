@@ -1,5 +1,6 @@
 package com.itwillbs.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -61,9 +62,15 @@ public class StoreDAOImpl implements StoreDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getStoreDetailList(String order_num) {
+	public List<Map<String, Object>> getStoreDetailList(String order_num, String item_name) {
 		System.out.println("StoreDAOImpl getStoreDetailList");
-		return sqlSession.selectList(namespace+".getStoreDetailList",order_num);
+		
+		Map<String, Object> params = new HashMap<String, Object>();
+	    params.put("order_num", order_num);
+	    params.put("item_name", item_name);
+	    return sqlSession.selectList(namespace + ".getStoreDetailList", params);
+		
+		//return sqlSession.selectList(namespace+".getStoreDetailList",order_num);
 	}
 
 }

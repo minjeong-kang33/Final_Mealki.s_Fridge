@@ -44,7 +44,7 @@
 <c:forEach var="StoreDTO" items="${storeDetailList}">
 	<tr><th>발주관리번호</th><td>${StoreDTO.order_num }</td><th>납기일</th><td>${StoreDTO.due_date }</td><th>발주일자</th><td>${StoreDTO.order_date }</td><th>발주담당자 사번</th><td>${StoreDTO.sto_empNum }</td></tr>
 	<tr><th>입고관리번호</th><td>${StoreDTO.sto_num }</td><th>입고진행현황</th><td>${StoreDTO.sto_progress }</td><th>입고일자</th><td>${StoreDTO.sto_date }</td><th>입고담당자 사번</th><td>${StoreDTO.empNum }</td></tr>
-	<tr><th>품명</th><td>순두부</td><th>발주수량</th><td>${StoreDTO.order_qty }</td><th>재고수량</th><td>${StoreDTO.stk_qnt }</td><th>위치</th>
+	<tr><th>품명</th><td>${StoreDTO.item_name }</td><th>발주수량</th><td>${StoreDTO.order_qty }</td><th>재고수량</th><td>${StoreDTO.stk_qnt }</td><th>위치</th>
 		<td><c:if test="${StoreDTO.sto_progress eq '입고완료'}">${StoreDTO.sto_shelf } - ${StoreDTO.sto_shelfDetail }</c:if></td>
 	</tr>
 </c:forEach>	

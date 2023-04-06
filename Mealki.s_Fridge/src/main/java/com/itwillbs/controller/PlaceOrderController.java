@@ -40,14 +40,14 @@ public class PlaceOrderController {
 	@Inject
 	private PlaceOrderService placeOrderService;
 
-	@RequestMapping(value = "/wms/placeorder/insertOrder", method = RequestMethod.GET)
+	@RequestMapping(value = "/wms/placeorder/insertOrder2", method = RequestMethod.GET)
 	public String insertOrder(Model model) {
 		System.out.println("PlaceOrderController insertOrder");
 
 		return "wms/placeorder/orderForm";
 	}
 	
-	@RequestMapping(value = "/wms/placeorder/ordersearch", method = RequestMethod.GET)
+	@RequestMapping(value = "/wms/placeorder/insertOrder", method = RequestMethod.GET)
 	public String ordersearch(Model model, HttpServletRequest request) throws Exception {
 		System.out.println("PlaceOrderController ordersearch");
 		
@@ -76,13 +76,20 @@ public class PlaceOrderController {
 		pageDTO.setOrder_num(order_num);
 		pageDTO.setItem_name(item_name);
 		
+		if(order_date == "") {
+			order_date=null;
+		}
+		if(due_date == "") {
+			due_date=null;
+		}
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		if(!order_date.equals("")) {
+		if(order_date!= null) {
 			java.util.Date date = sdf.parse(order_date);
 			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
 			pageDTO.setOrder_date(order_date1);
 		}
-		if(!due_date.equals("")) {
+		if(due_date!= null) {
 			java.util.Date date2 = sdf.parse(due_date);
 			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
 			pageDTO.setDue_date(due_date1);
