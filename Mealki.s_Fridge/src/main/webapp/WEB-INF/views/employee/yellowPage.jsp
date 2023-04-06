@@ -68,6 +68,16 @@
 	    </div>
 	</div>
 
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div class="modal-content">
+    <span class="close">&times;</span>
+    <p> 갓민정님... 여기에 코드를 넣어주시옵소서,,, </p>
+  </div>
+
+</div>
 
 </div>
 
@@ -91,9 +101,34 @@ $(function () {
 		success:function(result){
 			
 			$.each(result, function(index,item) {
-				$('#employee_default').html('<img src="${pageContext.request.contextPath}/resources/employee/upload/'+item.emp_img+'" style="width: 200px; height: 230px; border-radius:10px;">');
+				$('#employee_default').html('<img src="${pageContext.request.contextPath}/resources/employee/upload/'+item.emp_img+'" style="width: 200px; height: 230px; border-radius:10px;" id="yellowPageImg">');
 				$('.emp_details_table').html('<tr><th>이름</th><td>'+item.emp_Kname+'</td></tr><tr><th>부서</th><td>'+item.dept_deptName+'</td></tr><tr><th>팀</th><td>'+item.dept_teamName+'</td></tr><tr><th>직급</th><td>'+item.dept_position+'</td></tr><tr><th>직위</th><td>'+item.dept_duty+'</td></tr><tr><th>내선번호</th><td>'+0+item.emp_tel+'</td></tr><tr><th>휴대폰번호</th><td>'+0+item.emp_phone+'</td></tr>');
 			
+				
+			 var modal = document.getElementById("myModal");
+
+				// Get the button that opens the modal
+			 var btn = document.getElementById("yellowPageImg");
+
+				// Get the <span> element that closes the modal
+			 var span = document.getElementsByClassName("close")[0];
+
+				// When the user clicks the button, open the modal 
+				btn.onclick = function() {
+				  modal.style.display = "block";
+				}
+
+				// When the user clicks on <span> (x), close the modal
+				span.onclick = function() {
+				  modal.style.display = "none";
+				}
+
+				// When the user clicks anywhere outside of the modal, close it
+				window.onclick = function(event) {
+				  if (event.target == modal) {
+				    modal.style.display = "none";
+				  }
+				}
 			
 			});
 		}
