@@ -93,7 +93,7 @@
 		  	<tr onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardContent?bo_num=${BoardDTO.bo_num}'">
 		 	<c:choose>
 			<c:when test="${BoardDTO.top_fixed == 1}">
-			<td style="font-weight: bold; background-color:#e6e6f4;">📢</td>
+			<td style="font-weight: bold; background-color:#e6e6f4;"><img src="${pageContext.request.contextPath}/resources/groupware/공지.png" width="25" height="25"></td>
 			<td style="font-weight: bold; text-align: left; background-color:#e6e6f4;">&nbsp;&nbsp;[중요] ${BoardDTO.bo_title}</td>
 			<td style="font-weight: bold; background-color:#e6e6f4;">${BoardDTO.bo_name}</td>
 			<td style="font-weight: bold; background-color:#e6e6f4;"><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
