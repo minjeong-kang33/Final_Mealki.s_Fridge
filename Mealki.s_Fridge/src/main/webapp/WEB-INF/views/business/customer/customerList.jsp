@@ -70,9 +70,14 @@
             	</div>
             	
             	<div id="table_write">
-            	<c:if test="${sessionScope.dept_num == 200}">
-					<input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
-				</c:if>
+            	<c:choose>
+				    <c:when test="${sessionScope.dept_num == 200}">
+				        <input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
+				    </c:when>
+				    <c:otherwise>
+				        <input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="alert('권한이 없습니다.')">
+				    </c:otherwise>
+				</c:choose>
 				</div>
             </div>
             
@@ -105,7 +110,14 @@
 				
 			</div>
 			<div id="button2">
-				<button class="btn btn-primary" type="button" id="deleteCustButton">선택삭제</button>
+				<c:choose>
+				    <c:when test="${sessionScope.dept_num == 200}">
+				        <button class="btn btn-primary" type="button" id="deleteCustButton" >선택삭제</button>
+				    </c:when>
+				    <c:otherwise>
+				        <button class="btn btn-primary" type="button" onclick="alert('권한이 없습니다.')">선택삭제</button>
+				    </c:otherwise>
+				</c:choose>
 			</div>
 			
 				
