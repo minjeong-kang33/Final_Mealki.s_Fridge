@@ -68,7 +68,7 @@
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-<table>
+<table border="1" class="contractTable">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
 			<th>수주번호</th>
@@ -78,7 +78,6 @@
 			<th>수주업체</th>
 			<th>수주일자</th>
 			<th>납품예정일</th>
-			<th>담당자코드</th>
 			<th>담당자</th>
 			<th>수주수량</th>
          </tr>
@@ -90,7 +89,6 @@
          	<td>${contractDTO.business_name }</td>
          	<td>${contractDTO.business_date}</td>
          	<td>${contractDTO.out_date}</td>
-         	<td>${contractDTO.incharge_code }</td>
          	<td>${contractDTO.incharge_name }</td>
          	<td>${contractDTO.contract_qty }</td>
          	
@@ -108,17 +106,7 @@
 
 
 </table>
-          
-          
-          
-          
-          
-          
-          
-          
-          
-          
-            
+           
  <!--  본문내용 끝 -->    
         
 <!--           </div> -->

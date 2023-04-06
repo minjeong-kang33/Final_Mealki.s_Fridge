@@ -57,53 +57,50 @@ $(function(){
 	  });
 
 //버튼 클릭 시 입력된 값 tr정보 넘기기
-$(function(){
-$(".shipping_submit_button").click(function(){ 
+// $(function(){
+// $(".shipping_submit_button").click(function(){ 
 		
-		var str = "";
-		var tdArr = new Array();	// 배열 선언
-		var shipping_submit_button = $(this);
+// 		var str = "";
+// 		var tdArr = new Array();	// 배열 선언
+// 		var shipping_submit_button = $(this);
 		
-		var tr = shipping_submit_button.parent().parent();
-		var td = tr.children();
+// 		var tr = shipping_submit_button.parent().parent();
+// 		var td = tr.children();
 		
-		td.each(function(i) {
-			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
-			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-				  var selectValue = $(this).find('select').val();
-				  tdArr.push(selectValue || text);
-			  }
-			});
+// 		td.each(function(i) {
+// 			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
+// 			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
+// 				  var selectValue = $(this).find('select').val();
+// 				  tdArr.push(selectValue || text);
+// 			  }
+// 			});
 		
-		var wo_num = tdArr[0]; 
-		var item_num = tdArr[1]; 
-		var item_name = tdArr[2];
-		var delivery_date = tdArr[3]; 
-		var out_date = tdArr[4]; 
-		var out_qty = tdArr[5]; 
-		var qc_qty = tdArr[6]; 
-		var incharge_name =tdArr[7]; 
-		var business_name =tdArr[8]; 
-		var out_progress =tdArr[9]; 
+// 		var wo_num = tdArr[0]; 
+// 		var item_num = tdArr[1]; 
+// 		var item_name = tdArr[2];
+// 		var delivery_date = tdArr[3]; 
+// 		var out_date = tdArr[4]; 
+// 		var out_qty = tdArr[5]; 
+// 		var qc_qty = tdArr[6]; 
+// 		var incharge_name =tdArr[7]; 
+// 		var business_name =tdArr[8]; 
+// 		var out_progress =tdArr[9]; 
 		
-		console.log("배열에 담긴 값 : "+tdArr);
-		alert(tdArr);
+// 		console.log("배열에 담긴 값 : "+tdArr);
+// 		alert(tdArr);
 		
-		$.ajax({
-				url:'/business/shipping/addShipping',
-				type :'GET',
-				data:{wo_num:wo_num,item_num:item_num,item_name:item_name,
-					delivery_date:delivery_date,out_date:out_date,out_qty:out_qty,
-					qc_qty:qc_qty,incharge_name:incharge_name,business_name:business_name,
-					out_progress:out_progress},
-				success:function(result){
-				
-				alert(out_qty+"개가 출하처리 되었습니다.");
-				location.reload();
-				},
-			});
-});	
-});	
+// 		$.ajax({
+// 				url:'${pageContext.request.contextPath}/business/shipping/addShipping',
+// 				type :'GET',
+// 				data:{"wo_num":wo_num},
+// 				success:function(result){
+// 				alert(result);
+// 				alert(out_qty+"개가 출하처리 되었습니다.");
+// 				location.reload();
+// 				}
+// 			});
+// });	
+// });	
 </script>
 </head>
 <body>
@@ -181,8 +178,8 @@ $(".shipping_submit_button").click(function(){
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
-           			<td><fmt:formatDate value="${ShippingDTO.delivery_date}" pattern="yyyy.MM.dd"/></td>
-           			<td><fmt:formatDate value="${ShippingDTO.out_date}" pattern="yyyy.MM.dd"/></td>
+           			<td>${ShippingDTO.delivery_date}</td>
+           			<td>${ShippingDTO.out_date}</td>
            			<td>${ShippingDTO.out_qty}</td>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
@@ -190,7 +187,7 @@ $(".shipping_submit_button").click(function(){
            			<td>${ShippingDTO.out_progress}</td>
            			<td>
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           					<input type="button" value="출하처리" class="shipping_submit_button">
+           					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
            			</td>
            			</tr>
@@ -284,7 +281,7 @@ $(".shipping_submit_button").click(function(){
            		</tr>
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
-           			<c:if test="${ShippingDTO.out_progress eq '출하완료' }">
+           			<c:if test="${ShippingDTO.out_progress eq '출하완료'}">
            			<tr>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>

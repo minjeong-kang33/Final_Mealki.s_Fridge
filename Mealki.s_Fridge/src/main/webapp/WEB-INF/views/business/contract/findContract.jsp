@@ -32,8 +32,8 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var cust_num = td.eq(1).text();
-			var cust_name = td.eq(0).text();
+			var cust_num = td.eq(0).text();
+			var cust_name = td.eq(1).text();
 
 
 			

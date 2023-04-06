@@ -8,8 +8,8 @@ public class ShippingDTO {
 	private String wo_num;
 	private String item_num;
 	private String item_name;
-	private Timestamp delivery_date;
-	private Timestamp out_date;
+	private String delivery_date;
+	private String out_date;
 	private String out_qty;
 	private String qc_qty;
 	private String incharge_name;
@@ -40,17 +40,17 @@ public class ShippingDTO {
 		this.item_name = item_name;
 	}
 	
-	public Timestamp getDelivery_date() {
+	
+	public String getDelivery_date() {
 		return delivery_date;
 	}
-	public void setDelivery_date(Timestamp delivery_date) {
+	public void setDelivery_date(String delivery_date) {
 		this.delivery_date = delivery_date;
 	}
-	
-	public Timestamp getOut_date() {
+	public String getOut_date() {
 		return out_date;
 	}
-	public void setOut_date(Timestamp out_date) {
+	public void setOut_date(String out_date) {
 		this.out_date = out_date;
 	}
 	public String getOut_qty() {

@@ -102,18 +102,19 @@ public class ShippingController {
 		
 	}
 	
-	@ResponseBody
+	
 	@RequestMapping(value="/business/shipping/addShipping", method=RequestMethod.GET)
-	public String addShipping(HttpServletRequest request, Model model) {
-		System.out.println("addShipping()");
+	public String updateShipping(ShippingDTO shippingDTO, Model model) {
+		System.out.println("updateShipping()");
 		
-		ShippingDTO shippingDTO = new ShippingDTO();
+//		ShippingDTO shippingDTO = new ShippingDTO();
+		System.out.println(shippingDTO.getShipping_num());
 		
 		shippingDTO.setOut_progress("출하완료");
 		
-		shippingService.insertShipping(shippingDTO);
+		shippingService.updateShipping(shippingDTO);
 		
-		return "business/shipping/shippingList";
+		return "redirect:/business/shipping/shippingList";
 	}
 	
 	@RequestMapping(value = "/business/shipping/findShipping", method = RequestMethod.GET)

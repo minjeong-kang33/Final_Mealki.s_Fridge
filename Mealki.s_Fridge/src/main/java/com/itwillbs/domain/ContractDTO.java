@@ -10,8 +10,8 @@ public class ContractDTO {
 	private String item_num;
 	private String item_name;
 	private String business_name;
-	private Timestamp business_date;
-	private Timestamp out_date;
+	private String business_date;
+	private String out_date;
 	private String incharge_code;
 	private String incharge_name;
 	private int contract_qty;
@@ -52,16 +52,19 @@ public class ContractDTO {
 	public void setBusiness_name(String business_name) {
 		this.business_name = business_name;
 	}
-	public Timestamp getBusiness_date() {
+	
+	
+	
+	public String getBusiness_date() {
 		return business_date;
 	}
-	public void setBusiness_date(Timestamp business_date) {
+	public void setBusiness_date(String business_date) {
 		this.business_date = business_date;
 	}
-	public Timestamp getOut_date() {
+	public String getOut_date() {
 		return out_date;
 	}
-	public void setOut_date(Timestamp out_date) {
+	public void setOut_date(String out_date) {
 		this.out_date = out_date;
 	}
 	public String getIncharge_code() {
