@@ -108,8 +108,8 @@ th,td{
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+                  <h3 class="font-weight-bold">신규수주</h3>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
 <!--           <div class="contentbody" style="background: pink;">  -->
@@ -138,7 +138,7 @@ th,td{
          	<td><input type="date"  id="business_date" name="business_date"></td>
          	<td><input type="date"  id="out_date" name="out_date"></td>
 			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
-         	<td onclick="findName2()"><input type="text" name="incharge_name" id="incharge_name"></td>
+         	<td onclick="findName2()"><input type="text" name="emp_Kname" id="emp_Kname"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>
          </tr>	
          <tr align="center">

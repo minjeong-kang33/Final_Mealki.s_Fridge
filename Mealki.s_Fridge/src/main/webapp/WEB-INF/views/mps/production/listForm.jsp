@@ -98,7 +98,7 @@
 												<th>라인코드</th>
 												<th>품명</th>
 												<th>품번</th>
-<!-- 												<th>수주량</th> -->
+												<th>수주량</th>
 												<th>하루생산량</th>
 												<th>불량</th>
 												<th>작업자</th>
@@ -107,13 +107,12 @@
 									         </tr>
 									         
 									       		<c:forEach var="dto" items="${productionListMap}">
-														<tr onClick="updateForm('${dto.wo_num}');">
+														<tr onClick="updateForm('${dto.manu_date}');">
 															<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
 															<td>${dto.manu_code}</td><td>${dto.item_name}</td>
-															<td>${dto.item_num}</td><td>${dto.manu_tocount}</td>
-															<td>${dto.manu_fail}</td><td>${dto.emp_Kname}</td>
-<%-- 															<td>${dto.manu_sdate}</td> --%>
-															<td>${dto.manu_date}</td>
+															<td>${dto.item_num}</td><td>${dto.unsto_qty}</td>
+															<td>${dto.manu_tocount}</td><td>${dto.manu_fail}</td>
+															<td>${dto.emp_Kname}</td><td>${dto.manu_date}</td>
 														</tr>
 												</c:forEach>
 											
@@ -132,14 +131,14 @@
 
 				</div>
 					<script type="text/javascript">
-						function updateForm(wo_num) {
+						function updateForm(manu_date) {
 							var _width = '800';
 							var _height = '650';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
 							window.open(
-							"${pageContext.request.contextPath}/mps/production/update?wo_num="+wo_num,
+							"${pageContext.request.contextPath}/mps/production/update?manu_date="+manu_date,
 							"밀키의 냉장고",popOption);}
 					</script>
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->

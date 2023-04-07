@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+    
 <!DOCTYPE html>
 <html>
 <head>
@@ -62,7 +63,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">수정삭제</h3>
-                  <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">수정시 수주수량 수정가능</span></h6>
                 </div>
                 
 <!--           <div class="contentbody" style="background: pink;">  -->
@@ -92,9 +93,9 @@
          	<td>${contractDTO.incharge_name }</td>
          	<td>${contractDTO.contract_qty }</td>
          	
-         </tr>	
+         </tr>
          <tr align="center">
-			<th colspan="10">					
+			<th colspan="9">					
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button> 
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>
