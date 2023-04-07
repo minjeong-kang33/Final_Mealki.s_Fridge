@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ContractDAO;
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
 //컨트롤러와 연결되는 설정
@@ -89,10 +90,12 @@ public class ContractServiceImpl implements ContractService {
 		}
 
 		@Override
-		public List<ContractDTO> getNameList2() {
+		public List<EmployeeDTO> getNameList2() {
 			
 			return contractDAO.getNameList2();
 		}
+
+		
 
 		
 	

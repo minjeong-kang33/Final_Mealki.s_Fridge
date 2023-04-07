@@ -33,7 +33,7 @@
 	</select>
 <!-- 검색어	 -->
 	<select id="getShippingCount" resultType="java.lang.Integer">
-		select count(*) 
+		select count(*) from shipping
 		
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like concat('%', #{search},'%')

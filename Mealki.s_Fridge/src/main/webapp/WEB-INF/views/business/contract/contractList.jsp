@@ -52,6 +52,10 @@ function fun1() {
 		document.search.submit();
 }
 
+function fun1(){
+	console
+}
+
 </script>
 
 
@@ -105,7 +109,7 @@ function fun1() {
         
 		<div id=" ">
 			<form name="store_form" method="get">       		  
-			<table border="1">
+			<table border="1" class="contractTable">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
       
@@ -123,7 +127,7 @@ function fun1() {
          
          <c:forEach var="ContractDTO" items="${resultList}">
          
-         <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num }'">
+         <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num}'">
          
          	
          	<td>${ContractDTO.item_name }</td>

@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.service.ContractService;
@@ -135,27 +136,29 @@ import com.itwillbs.service.ContractService;
 		}
 			@RequestMapping(value = "/business/contract/findName2", method = RequestMethod.GET)
 			public String findName2(HttpServletRequest request, Model model) {
-				System.out.println("ContractController findName()");
+				System.out.println("ContractController find2Name()");
 	
-				List<ContractDTO> NameList2 = contractService.getNameList2();
+				List<EmployeeDTO> NameList2 = contractService.getNameList2();
 				model.addAttribute("NameList2", NameList2);
 	
 				return "business/contract/findName2";
 		}
 			
 			@RequestMapping(value="/business/contract/content" , method = RequestMethod.GET)
-				public String content(HttpServletRequest request, Model model) {
+				public String content(HttpServletRequest request, Model model) throws Exception {
 				System.out.println("contractController content()");
+				
 				int business_num=Integer.parseInt(request.getParameter("business_num"));
 				
 				ContractDTO contractDTO=contractService.getBoard(business_num);
 				
 				model.addAttribute("contractDTO", contractDTO);
+				System.out.println("===========");
 				return "/business/contract/content";
 					
 	}
 			@RequestMapping(value="/business/contract/update" , method = RequestMethod.GET)
-			public String update(HttpServletRequest request, Model model) {
+			public String update(HttpServletRequest request, Model model) throws Exception {
 			System.out.println("contractController update()");
 			
 			int business_num=Integer.parseInt(request.getParameter("business_num"));
@@ -169,7 +172,7 @@ import com.itwillbs.service.ContractService;
 			}
 			
 			@RequestMapping(value="/contract/updatePro" , method = RequestMethod.POST)
-			public String updatePro(ContractDTO dto) {
+			public String updatePro(ContractDTO dto) throws Exception {
 				System.out.println("updatePro()");
 				contractService.updateBoard(dto);
 				return "redirect:/business/contract/contractList";
@@ -177,7 +180,7 @@ import com.itwillbs.service.ContractService;
 			}
 			
 			@RequestMapping(value="/business/contract/delete" , method = RequestMethod.GET)
-			public String delete(HttpServletRequest request, Model model) {
+			public String delete(HttpServletRequest request, Model model) throws Exception {
 			System.out.println("contractController delete()");
 			
 			int business_num=Integer.parseInt(request.getParameter("business_num"));

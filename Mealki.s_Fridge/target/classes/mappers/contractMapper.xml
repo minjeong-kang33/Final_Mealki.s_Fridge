@@ -29,7 +29,7 @@
 	
 	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
         SELECT item_name,business_name, date_format(business_date,'%Y-%m-%d') as business_date,
-        date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty
+        date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty, business_num
         from contract
         
         <if test="search_option == 'item_name'.toString()">
@@ -75,8 +75,9 @@
 	select distinct business_name from contract
 	</select>
 	
-	<select id="getNameList2" resultType="com.itwillbs.domain.ContractDTO">
-	select distinct incharge_name from contract
+	<select id="getNameList2" resultType="com.itwillbs.domain.EmployeeDTO">
+	select * from employee
+	where dept_num = 200
 	</select>
 	
 	<select id="getBoard" resultType="com.itwillbs.domain.ContractDTO">
