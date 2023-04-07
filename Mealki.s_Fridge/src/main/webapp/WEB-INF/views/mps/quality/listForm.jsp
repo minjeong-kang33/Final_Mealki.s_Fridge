@@ -179,17 +179,17 @@
 									         </tr>
 <!-- 									         test -->
 
-<%-- 									       		<c:forEach var="fail" items="${qualityListMap}"> --%>
-<%-- 									       		<c:if test="${fail.fail_qty ne null }"> --%>
-<%-- 													<tr onClick="failWrite('${fail.wo_num}');"> --%>
-<%-- 														<td>${fail.fail_num}</td><td>${fail.wo_num}</td> --%>
-<%-- 														<td>${fail.manu_name}</td><td>${fail.manu_code}</td> --%>
-<%-- 														<td>${fail.item_name}</td><td>${fail.item_num}</td> --%>
-<%-- 														<td>${fail.demp_Kname}</td><td>${fail.fail_qty}</td> --%>
-<%-- 														<td>${fail.fail_date}</td> --%>
-<!-- 													</tr> -->
-<%-- 												</c:if> --%>
-<%-- 												</c:forEach> --%>
+									       		<c:forEach var="fail" items="${qualityFailList}">
+									       		<c:if test="${fail.fail_qty ne null }">
+													<tr onClick="failWrite('${fail.wo_num}');">
+														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
+														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
+														<td>${fail.item_name}</td><td>${fail.item_num}</td>
+														<td>${fail.emp_Kname}</td><td>${fail.fail_qty}</td>
+														<td>${fail.fail_date}</td>
+													</tr>
+												</c:if>
+												</c:forEach>
 									    </table>
 									</div>
 								</div>

@@ -25,10 +25,10 @@ public class QualityController {
 	public String listmap(QualityDTO qualityDTO, Model model){
 
 	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
-//	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
+	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
 	
 	model.addAttribute("qualityListMap", qualityListMap);
-//	model.addAttribute("qualityFailList", qualityFailList);
+	model.addAttribute("qualityFailList", qualityFailList);
 	
 	
 	return "mps/quality/listForm";

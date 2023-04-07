@@ -40,7 +40,6 @@ public class ProductionController {
 		model.addAttribute("selectList",selectList);
 		
 		System.out.println("selectList"+selectList);
-		System.out.println(selectList.get(8).get("manu_sdate"));
 		// 주소변경 없이 이동
 		// /WEB-INF/views/member/info.jsp
 		return "mps/production/writeForm";
