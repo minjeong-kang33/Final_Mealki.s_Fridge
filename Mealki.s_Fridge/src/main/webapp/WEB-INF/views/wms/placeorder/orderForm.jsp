@@ -253,6 +253,12 @@ var openWin;
      row.querySelector('input[name="supplier"]').value = data.supplier;
      row.querySelector('input[name="weight"]').value = data.weight;
      row.querySelector('input[name="stk_qnt"]').value = data.stk_qnt;
+     /* 받아온 현재고량을 확인 후 10미만일 경우 빨간 글씨로 표시 */
+     var stk_qnt_input = row.querySelector('input[name="stk_qnt"]');
+     stk_qnt_input.value = data.stk_qnt;
+     if (stk_qnt_input.value < 10) {
+       stk_qnt_input.style.color = "red";
+     }
      row.querySelector('input[name="supply_price"]').value = data.supply_price;
      // 메시지 수신이 완료되었음을 자식 창에 알림
      event.source.postMessage('received', event.origin);

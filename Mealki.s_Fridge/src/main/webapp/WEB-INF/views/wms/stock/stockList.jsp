@@ -171,6 +171,17 @@ $('#finditem_type').on("click",function(e){
 	window.open(popUrl,"창고 목록",popOption);
 	
 }); 
+/* 재고 10미만은 빨간글씨 */
+ var rows = document.querySelectorAll('#stock_search_table tr');
+
+ rows.forEach(function(row) {
+   var stk_qnt_td = row.querySelector('#stk_qnt');
+
+   if (stk_qnt_td && stk_qnt_td.textContent.trim() !== '' && parseInt(stk_qnt_td.textContent.trim()) < 10) {
+     stk_qnt_td.style.color = 'red';
+   }
+ });
+
 </script>  
 <script type="text/javascript">
  /* 실사량 수정 update_qnt */

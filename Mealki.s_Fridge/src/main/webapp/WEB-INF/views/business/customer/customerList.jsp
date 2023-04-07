@@ -26,7 +26,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList2.css">
   
 
 </head>
@@ -81,34 +81,94 @@
 				</div>
             </div>
             
-			<div id="table_content">
-				<form id="tableForm" method="post">
-				<table border="1">
-					<tr>
-					<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
-					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
-					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
-				
-				<c:forEach var="CustomerDTO" items="${customerList }">
-					<c:if test="${CustomerDTO.cust_status == 1}">
+            <div class="tab">
+	       	 <ul class="tabnav">
+	          <li><a href="#tab01">납입처</a></li>
+	          <li><a href="#tab02">납품처</a></li>
+	          <li><a href="#tab03">거래중지</a></li>
+	        </ul>
+            
+			<div id="tabcontent">
+			
+				<div id="tab01" style="width: 100%">
+					<div class="in_list_div" style="width: 100%;">
+					<form id="tableForm" method="post">
+					<table border="1" class="cust_total_table" style="width: 100%;">
 						<tr>
-							<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
-							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
-						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
-						</tr>
-				   </c:if> 
-				</c:forEach>
+						<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
+						<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
+						<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
-				</table>
-				</form>
-				
+						<c:forEach var="CustomerDTO" items="${customerList }">
+							<c:if test="${CustomerDTO.cust_status == 1 and CustomerDTO.cust_gubun1 eq '납입처'}">
+								<tr>
+									<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
+									<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
+								</tr>
+						   </c:if> 
+						</c:forEach>
+					</table>
+					</form>
+				</div>
+			<div id="button2">
+				<c:choose>
+				    <c:when test="${sessionScope.dept_num == 200}">
+				        <button class="btn btn-primary" type="button" id="deleteCustButton" >선택삭제</button>
+				    </c:when>
+				    <c:otherwise>
+				        <button class="btn btn-primary" type="button" onclick="alert('권한이 없습니다.')">선택삭제</button>
+				    </c:otherwise>
+				</c:choose>
+			</div><!--  탭1내용끝 -->
+			<!-- 페이징 시작 -->
+			<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+			</c:forEach>
+			
+			<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+			</c:if>
+			<!-- 페이징 끝 -->
 			</div>
+			
+			<div id="tab02" style="width: 100%">
+					<div class="in_list_div" style="width: 100%;">
+					<form id="tableForm" method="post">
+					<table border="1" style="width: 100%;">
+						<tr>
+						<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
+						<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
+						<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
+				
+						<c:forEach var="CustomerDTO" items="${customerList }">
+							<c:if test="${CustomerDTO.cust_status == 1 and CustomerDTO.cust_gubun1 eq '납품처'}">
+								<tr>
+									<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
+									<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
+								</tr>
+						   </c:if> 
+						</c:forEach>
+					</table>
+					</form>
+				</div>
 			<div id="button2">
 				<c:choose>
 				    <c:when test="${sessionScope.dept_num == 200}">
@@ -119,6 +179,74 @@
 				    </c:otherwise>
 				</c:choose>
 			</div>
+			<!-- 페이징 시작 -->
+			<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+			</c:if>
+			
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+			</c:forEach>
+			
+			<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+			</c:if>
+			<!-- 페이징 끝 -->
+			</div> <!--  탭2내용끝 -->
+			
+			<div id="tab03" style="width: 100%">
+					<div class="in_list_div" style="width: 100%;">
+					<form id="tableForm" method="post">
+					<table border="1" style="width: 100%;">
+						<tr>
+						<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
+						<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
+						<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
+				
+						<c:forEach var="CustomerDTO" items="${customerList }">
+							<c:if test="${CustomerDTO.cust_status == 0}">
+								<tr>
+									<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
+									<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_address}, ${CustomerDTO.cust_address2}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_uptae}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_jongmok}</td>
+								    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.man_email}</td>
+								</tr>
+						   </c:if> 
+						</c:forEach>
+					</table>
+					</form>
+				</div>
+			<div id="button2">
+				<c:choose>
+				    <c:when test="${sessionScope.dept_num == 200}">
+				        <button class="btn btn-primary" type="button" id="deleteCustButton" >선택삭제</button>
+				    </c:when>
+				    <c:otherwise>
+				        <button class="btn btn-primary" type="button" onclick="alert('권한이 없습니다.')">선택삭제</button>
+				    </c:otherwise>
+				</c:choose>
+			</div>
+			<!-- 페이징 시작 -->
+<%-- 			<c:if test="${pageDTO.startPage > pageDTO.pageBlock }"> --%>
+<%-- 			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a> --%>
+<%-- 			</c:if> --%>
+			
+<%-- 			<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1"> --%>
+<%-- 			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a>  --%>
+<%-- 			</c:forEach> --%>
+			
+<%-- 			<c:if test="${pageDTO.endPage < pageDTO.pageCount }"> --%>
+<%-- 			<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a> --%>
+<%-- 			</c:if> --%>
+			<!-- 페이징 끝 -->
+			</div> <!--  탭3내용끝 -->
+			
+			
 			
 				
 					
@@ -126,7 +254,7 @@
  <!--  본문내용 끝 -->    
         
           </div>
-<!-- 페이징하실거면 여기서 시작 -->
+<!-- 페이징 시작 -->
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 <a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
 </c:if>
@@ -182,6 +310,20 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  
+  <script type="text/javascript">  
+//탭 관련 
+	
+	  $(function(){
+	  $('.tabcontent > div').hide();
+	  $('.tabnav a').click(function () {
+	    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+	    $('.tabnav a').removeClass('active');
+	    $(this).addClass('active');
+	    return false;
+	  }).filter(':eq(0)').click();
+	  });
+</script>
   
   <script type="text/javascript">
 	  function openDetail(business_num) {

@@ -4,7 +4,7 @@ import java.sql.Timestamp;
 
 public class ContractDTO {
 
-	private String business_num;
+	private int business_num;
 	private String cust_num;
 	private String cust_name;
 	private String item_num;
@@ -16,10 +16,11 @@ public class ContractDTO {
 	private String incharge_name;
 	private int contract_qty;
 	
-	public String getBusiness_num() {
+	
+	public int getBusiness_num() {
 		return business_num;
 	}
-	public void setBusiness_num(String business_num) {
+	public void setBusiness_num(int business_num) {
 		this.business_num = business_num;
 	}
 	public String getCust_num() {

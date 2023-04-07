@@ -1,6 +1,5 @@
 package com.itwillbs.service;
 
-import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -53,4 +52,11 @@ public class ProductionServiceImpl implements ProductionService{
 		
 	}
 
+	@Override
+	public ProductionDTO updateProduct(String manu_date) {
+		System.out.println("ProductionServiceImpl updateProduct()");
+		
+		return productionDAO.updateProduct(manu_date);
+	}
+	
 }

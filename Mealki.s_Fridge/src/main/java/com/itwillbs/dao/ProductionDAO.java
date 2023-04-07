@@ -16,5 +16,7 @@ public interface ProductionDAO {
 	public void insertProduct(ProductionDTO productDTO);
 	
 	public void startProduct(ProductionDTO productDTO);
-
+	
+	public ProductionDTO updateProduct(String manu_date);
+	
 }

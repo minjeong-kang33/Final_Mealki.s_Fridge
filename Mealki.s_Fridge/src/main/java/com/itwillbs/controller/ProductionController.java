@@ -7,14 +7,10 @@ import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ProductionDTO;
 import com.itwillbs.service.ProductionService;
@@ -78,11 +74,20 @@ public class ProductionController {
 	
 
 	
-//	@RequestMapping(value = "/mps/production/writePro", method = RequestMethod.GET)
-//	public String productionWritePro() {
-//		System.out.println("ProductionController writePro()");
-//		return "mps/production/writeForm";
-//	}
+	@RequestMapping(value = "/mps/production/update", method = RequestMethod.GET)
+	public String updateProduct(HttpServletRequest request, Model model) {
+		System.out.println("ProductionController updateProduct()");
+		System.out.println("manu_date = "+request.getParameter("manu_date"));
+		String manu_date=request.getParameter("manu_date");
+		
+		
+		ProductionDTO updateProduct=productionService.updateProduct(manu_date);
+		
+		model.addAttribute("updateProduct", updateProduct);
+		
+		
+		return "mps/production/updateForm";
+	}
 	
 	@RequestMapping(value = "/mps/production/list", method = RequestMethod.GET)
 	public String listmap(ProductionDTO productDTO, HttpServletRequest request, Model model){

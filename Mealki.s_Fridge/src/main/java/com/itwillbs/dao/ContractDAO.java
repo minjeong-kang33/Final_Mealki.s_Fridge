@@ -5,10 +5,12 @@ import java.util.List;
 import java.util.Map;
 
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
 
 public interface ContractDAO {
+
 
 	public void contractInsertBoard(ContractDTO dto);
 
@@ -30,7 +32,8 @@ public interface ContractDAO {
 
 	public List<ContractDTO> getNameList();
 
-	public List<ContractDTO> getNameList2();
+	public List<EmployeeDTO> getNameList2();
+
 
 	
 	

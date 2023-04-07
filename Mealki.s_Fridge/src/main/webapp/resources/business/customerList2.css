@@ -26,28 +26,10 @@
    width: 7%;
 }
 
-table{
-   width: 100%;
-   text-align: center;
-   border-color: #6C7383;
-   border-collapse: collapse;
-}
-
-#table_content{
-   table-layout: fixed;
-}
 
 tr:hover td{ background-color: #e6e6f4; }
 
-#table_content tr{
-   height: 32px;
-   table-layout: fixed;
-}
 
-#table_content th{
-   background-color: #4B49AC;
-   color: #fff;
-}
 
 #new_customer{
 	float: right;	
@@ -64,22 +46,7 @@ tr:hover td{ background-color: #e6e6f4; }
     width: 10px;
 }
 
-.customer_details{
-	margin: auto 0;
-}
-
-.cust_details_table{
-	pointer-events: none;
-   	margin-top:10px;
-}
-
-.cust_details_table .tr{
-   height: 45px;
-}
-
-.cust_details_table .th{
-   background-color: #cccbe9;
-}
+.textBox { width: 80px; text-align: center;}
 
 /* 탭 */
 ul,li {list-style:none;}

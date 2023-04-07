@@ -11,6 +11,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ContractDTO;
+import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
 import com.itwillbs.domain.PlaceOrderDTO;
 
@@ -85,10 +86,11 @@ public class ContractDAOImpl implements ContractDAO{
 	}
 
 	@Override
-	public List<ContractDTO> getNameList2() {
-		
+	public List<EmployeeDTO> getNameList2() {
 		return sqlSession.selectList(namespace + ".getNameList2");
 	}
+
+	
 
 	
 
