@@ -212,11 +212,7 @@ public class EmployeeController {
 	public String updateEmployeePro(HttpServletRequest request, MultipartFile file) throws Exception{
 		System.out.println("EmployeeController updateEmployeePro");
 		
-		System.out.println(request.getParameter("emp_num"));
-		System.out.println(request.getParameter("emp_Kname"));
-		
 		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
-		System.out.println(emp_num);
 		
 		  EmployeeDTO employeeDTO = new EmployeeDTO();
 		  employeeDTO.setDept_num(request.getParameter("dept_num"));
@@ -233,7 +229,6 @@ public class EmployeeController {
 		  employeeDTO.setEmp_num(emp_num);
 		  
 			if(file.isEmpty()) {
-				
 				employeeDTO.setEmp_img(request.getParameter("oldfile"));
 			} else {
 				UUID uuid=UUID.randomUUID();
@@ -255,7 +250,6 @@ public class EmployeeController {
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
 		
-		System.out.println("컨트롤러"+search_option+keyword);
 		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
