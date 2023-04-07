@@ -55,7 +55,7 @@ public class ProductionController {
 		// 메서드 호출
 		productionService.insertProduct(productionDTO);
 //		주소줄 변경하면서 이동
-		return "redirect:/mps/production/write";
+		return "mps/production/writeclose";
 	}
 	
 	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
