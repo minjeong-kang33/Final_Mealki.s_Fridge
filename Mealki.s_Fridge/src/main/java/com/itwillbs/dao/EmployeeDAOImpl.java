@@ -84,7 +84,7 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		System.out.println(pageDTO.getKeyword());
 		System.out.println(pageDTO.getSearch_option());
-		return sqlSession.selectList(namespace+".yellowPage");
+		return sqlSession.selectList(namespace+".yellowPage",pageDTO);
 	}
 
 	@Override
