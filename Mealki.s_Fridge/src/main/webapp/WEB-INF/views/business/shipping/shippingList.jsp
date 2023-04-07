@@ -151,9 +151,10 @@ $(function(){
            		<li><a href="#tab01">대기</a></li>
            		<li><a href="#tab02">완료</a></li>
            	</ul>	
-           	<div align="center">
-					<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
-					</div> 		
+<!--            	<div align="center"> -->
+<!-- 					<button type="submit" class="btn btn-primary"  -->
+<%-- 					onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button> --%>
+<!-- 			</div> 		 -->
            	<div class="tabcontent">
            	
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
@@ -212,9 +213,16 @@ $(function(){
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 				<a href="${pageContext.request.contextPath}/business/shipping/shippingList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 				</c:if>
+				<div align="center">
+					<button type="submit" class="btn btn-primary" 
+					onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
+			    </div>
 				</div>
+           		
            		</div>
+           		
            		</div>
+           		
 <!-- 대기 -->
 				<div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">

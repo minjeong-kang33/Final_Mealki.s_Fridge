@@ -29,7 +29,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractWrite.css">
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
 	
@@ -70,23 +70,7 @@
 	</script>
 </head>
 
-<style>
-body{
-	font-size:3pt;
-}
-button{
-	font-size:9pt;
-}
-table{
-	width:500px;
-	border-collapse: collapse;
-}
-th,td{
-	border:1px solid #cccccc;
-	padding:3px; 
-}
 
-</style>
 
 
 <body>
@@ -112,11 +96,12 @@ th,td{
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-<form  action="${pageContext.request.contextPath}/contract/WriteSave" method="post">        
-<table>
+
+<form action="${pageContext.request.contextPath}/contract/WriteSave" method="post">        
+<table border="1" id="table_content">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
 			<th>거래처코드</th>
@@ -141,21 +126,14 @@ th,td{
          	<td onclick="findName2()"><input type="text" name="emp_Kname" id="emp_Kname"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>
          </tr>	
-         <tr align="center">
-			<th colspan="10">					
-			<button type="submit">저장</button>
-
-			</th>
-		</tr> 
-
-
-
-
-
+         
 </table>
-</form>          
-          
-          
+
+       
+<div align="center">
+<button type="submit" class="btn btn-primary">저장</button>
+</div>         
+</form>             
           
           
           
@@ -167,9 +145,9 @@ th,td{
             
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+
 <!-- 페이징 끝 -->
             </div>
             
