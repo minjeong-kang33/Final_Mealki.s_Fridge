@@ -68,7 +68,7 @@ public class QualityController {
 		System.out.println("QualityController updatePro()");
 		
 		qualityService.updateQuality(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/failWrite", method = RequestMethod.GET)
@@ -103,7 +103,7 @@ public class QualityController {
 		System.out.println("QualityController updatePro()");
 		
 		qualityService.updateFail(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 }
