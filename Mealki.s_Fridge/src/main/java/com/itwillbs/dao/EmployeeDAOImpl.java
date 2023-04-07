@@ -82,7 +82,9 @@ public class EmployeeDAOImpl implements EmployeeDAO{
 	public List<Map<String, Object>>  yellowPage(PageDTO pageDTO) {
 		System.out.println("EmployeeDAOImpl yellowPage");
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		return sqlSession.selectList(namespace+".yellowPage");
+		System.out.println(pageDTO.getKeyword());
+		System.out.println(pageDTO.getSearch_option());
+		return sqlSession.selectList(namespace+".yellowPage",pageDTO);
 	}
 
 	@Override

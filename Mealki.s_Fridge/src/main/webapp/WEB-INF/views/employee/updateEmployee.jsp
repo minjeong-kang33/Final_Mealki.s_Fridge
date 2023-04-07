@@ -58,21 +58,14 @@
 						<div class="left">
 						<ul>
 						 <c:forEach var="dto" items="${employeeDetail }">
-							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required value="${dto.emp_Kname }"></li>
+							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required value="${dto.emp_Kname }" onkeyup="this.value=this.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\\s]/g,'')"></li>
 							<li><label for="emp_birth">생년월일</label> ${dto.emp_birth}</li>
-							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required value="0${dto.emp_tel }"></li>
+							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required value="0${dto.emp_tel }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 							<li><label for="emp_classification" class="emp_classification" >직원분류</label>
 									<select name="emp_classification" class="emp_classification_Option">
 									
-									<c:if test="${dto.emp_classification eq '3' }">
-										<option value="3" selected> 현장직 </option>
-										<option value="2"> 사무직 </option>
-									</c:if>
-									
-									<c:if test="${dto.emp_classification eq '2' }">
-										<option value="3"> 현장직 </option>
-										<option value="2" selected> 사무직 </option>
-									</c:if>
+										<option value="3" <c:if test="${dto.emp_classification eq '3' }"> selected</c:if>> 현장직 </option>
+										<option value="2" <c:if test="${dto.emp_classification eq '2' }"> selected</c:if>> 사무직 </option>
 
 									</select>
 									
@@ -80,34 +73,11 @@
 							<li><label for="dept_position" class="dept_position" >직책</label> 	
 									<select name="dept_position" class="dept_position_option">
 
-									<c:if test="${dto.dept_position eq '팀원' }">
-										<option value="팀원" selected> 팀원 </option>
-										<option value="파트장"> 파트장 </option>
-										<option value="팀장"> 팀장 </option>
-										<option value="본부장"> 본부장 </option>
-									</c:if>		
-									
-									<c:if test="${dto.dept_position eq '파트장' }">
-										<option value="팀원" > 팀원 </option>
-										<option value="파트장" selected> 파트장 </option>
-										<option value="팀장"> 팀장 </option>
-										<option value="본부장"> 본부장 </option>
-									</c:if>				
-									
-									<c:if test="${dto.dept_position eq '팀장' }">
-										<option value="팀원" > 팀원 </option>
-										<option value="파트장"> 파트장 </option>
-										<option value="팀장" selected> 팀장 </option>
-										<option value="본부장"> 본부장 </option>
-									</c:if>		
-									
-									<c:if test="${dto.dept_position eq '본부장' }">
-										<option value="팀원" > 팀원 </option>
-										<option value="파트장"> 파트장 </option>
-										<option value="팀장"> 팀장 </option>
-										<option value="본부장" selected> 본부장 </option>
-									</c:if>							
-
+										<option value="팀원" <c:if test="${dto.dept_position eq '팀원' }"> selected</c:if>> 팀원 </option>
+										<option value="파트장" <c:if test="${dto.dept_position eq '파트장' }"> selected</c:if>> 파트장 </option>
+										<option value="팀장" <c:if test="${dto.dept_position eq '팀장' }"> selected</c:if>> 팀장 </option>
+										<option value="본부장" <c:if test="${dto.dept_position eq '본부장' }"> selected</c:if>> 본부장 </option>
+		
 									</select>
 														
 							</li>
@@ -120,131 +90,30 @@
 							<ul>
 							
 							<c:forEach var="dto" items="${employeeDetail }">
-							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required value="${dto.emp_Ename }"></li>
+							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required value="${dto.emp_Ename }" onKeyup="this.value=this.value.replace(/[^a-zA-Z]/g,'');"></li>
 							<li><label for="emp_gender">성별</label> ${dto.emp_gender }</li>
-							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required value="0${dto.emp_phone }"></li>
+							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required value="0${dto.emp_phone }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 							
 							<li><label for="dept_num" class="dept_num">부서</label> 
 								<select name="dept_num" class="dept_num_option">
 										
-									<c:if test="${dto.dept_num eq '100' }">
-											<option value="100" selected> 경리부 </option>
-											<option value="200"> 영업부 </option>
-											<option value="300"> 생산부 </option>
-											<option value="400"> 자재부 </option>
-											<option value="500"> 인사부 </option>
-											<option value="600"> 전산부 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_num eq '200' }">
-											<option value="100"> 경리부 </option>
-											<option value="200" selected> 영업부 </option>
-											<option value="300"> 생산부 </option>
-											<option value="400"> 자재부 </option>
-											<option value="500"> 인사부 </option>
-											<option value="600"> 전산부 </option>
-									</c:if>
-									
-									
-									<c:if test="${dto.dept_num eq '300' }">
-											<option value="100"> 경리부 </option>
-											<option value="200"> 영업부 </option>
-											<option value="300" selected> 생산부 </option>
-											<option value="400"> 자재부 </option>
-											<option value="500"> 인사부 </option>
-											<option value="600"> 전산부 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_num eq '400' }">
-											<option value="100"> 경리부 </option>
-											<option value="200"> 영업부 </option>
-											<option value="300"> 생산부 </option>
-											<option value="400" selected> 자재부 </option>
-											<option value="500"> 인사부 </option>
-											<option value="600"> 전산부 </option>
-									</c:if>
-									
-									
-									<c:if test="${dto.dept_num eq '500' }">
-											<option value="100"> 경리부 </option>
-											<option value="200"> 영업부 </option>
-											<option value="300"> 생산부 </option>
-											<option value="400"> 자재부 </option>
-											<option value="500" selected> 인사부 </option>
-											<option value="600"> 전산부 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_num eq '600' }">
-											<option value="100"> 경리부 </option>
-											<option value="200"> 영업부 </option>
-											<option value="300"> 생산부 </option>
-											<option value="400"> 자재부 </option>
-											<option value="500"> 인사부 </option>
-											<option value="600" selected> 전산부 </option>
-									</c:if>
+									<option value="100" <c:if test="${dto.dept_num eq '100' }"> selected</c:if>> 경리부 </option>
+									<option value="200" <c:if test="${dto.dept_num eq '200' }"> selected</c:if>> 영업부 </option>
+									<option value="300" <c:if test="${dto.dept_num eq '300' }"> selected</c:if>> 생산부 </option>
+									<option value="400" <c:if test="${dto.dept_num eq '400' }"> selected</c:if>> 자재부 </option>
+									<option value="500" <c:if test="${dto.dept_num eq '500' }"> selected</c:if>> 인사부 </option>
+									<option value="600" <c:if test="${dto.dept_num eq '600' }"> selected</c:if>> 전산부 </option>
 
 								</select>							
 								</li>
 								<li><label for="dept_duty">직위</label> 
 									<select name="dept_duty" class="dept_duty_option">
-									<c:if test="${dto.dept_duty eq '사원' }">
-										<option value="사원" selected> 사원 </option>
-										<option value="주임"> 주임 </option>
-										<option value="대리"> 대리 </option>
-										<option value="과장"> 과장 </option>
-										<option value="차장"> 차장 </option>
-										<option value="부장"> 부장 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_duty eq '주임' }">
-										<option value="사원"> 사원 </option>
-										<option value="주임" selected> 주임 </option>
-										<option value="대리"> 대리 </option>
-										<option value="과장"> 과장 </option>
-										<option value="차장"> 차장 </option>
-										<option value="부장"> 부장 </option>
-									</c:if>
-									
-																		
-									<c:if test="${dto.dept_duty eq '대리' }">
-										<option value="사원"> 사원 </option>
-										<option value="주임" > 주임 </option>
-										<option value="대리" selected> 대리 </option>
-										<option value="과장"> 과장 </option>
-										<option value="차장"> 차장 </option>
-										<option value="부장"> 부장 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_duty eq '과장' }">
-										<option value="사원" > 사원 </option>
-										<option value="주임"> 주임 </option>
-										<option value="대리"> 대리 </option>
-										<option value="과장" selected> 과장 </option>
-										<option value="차장" > 차장 </option>
-										<option value="부장"> 부장 </option>
-									</c:if>
-									
-									<c:if test="${dto.dept_duty eq '차장' }">
-										<option value="사원"> 사원 </option>
-										<option value="주임"> 주임 </option>
-										<option value="대리"> 대리 </option>
-										<option value="과장"> 과장 </option>
-										<option value="차장" selected> 차장 </option>
-										<option value="부장"> 부장 </option>
-									</c:if>
-									
-																		
-									<c:if test="${dto.dept_duty eq '부장' }">
-										<option value="사원"> 사원 </option>
-										<option value="주임" > 주임 </option>
-										<option value="대리"> 대리 </option>
-										<option value="과장"> 과장 </option>
-										<option value="차장"> 차장 </option>
-										<option value="부장" selected> 부장 </option>
-									</c:if>
-									
-									
-									
+										<option value="사원" <c:if test="${dto.dept_duty eq '사원' }"> selected</c:if>> 사원 </option>
+										<option value="주임" <c:if test="${dto.dept_duty eq '주임' }"> selected</c:if>> 주임 </option>
+										<option value="대리" <c:if test="${dto.dept_duty eq '대리' }"> selected</c:if>> 대리 </option>
+										<option value="과장" <c:if test="${dto.dept_duty eq '과장' }"> selected</c:if>> 과장 </option>
+										<option value="차장" <c:if test="${dto.dept_duty eq '차장' }"> selected</c:if>> 차장 </option>
+										<option value="부장" <c:if test="${dto.dept_duty eq '부장' }"> selected</c:if>> 부장 </option>
 									</select>							
 								</li>
 								</c:forEach>
