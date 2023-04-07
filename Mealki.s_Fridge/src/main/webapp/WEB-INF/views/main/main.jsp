@@ -25,6 +25,7 @@
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/main/fullcalendar-5.11.4/lib/main.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/mainBoardList.css">
   <%-- <script src="${pageContext.request.contextPath}/resources/main/todoList.js"></script> --%>
 </head>
 <body>
@@ -156,38 +157,30 @@
           </div>
           <div class="row">
 <!-- 공지사항 시작 -->          
-            <div class="col-md-12 grid-margin stretch-card">
-              <div class="card">
-                <div class="card-body">
-                  <p class="card-title">Advanced Table</p>
-                  <div class="row">
-                    <div class="col-12">
-                      <div class="table-responsive">
-                        <table id="example" class="display expandable-table" style="width:100%">
-                          <thead>
-                            <tr>
-                              <th>Quote#</th>
-                              <th>Product</th>
-                              <th>Business type</th>
-                              <th>Policy holder</th>
-                              <th>Premium</th>
-                              <th>Status</th>
-                              <th>Updated at</th>
-                              <th></th>
-                            </tr>
-                          </thead>
-                      </table>
-                      </div>
+ <div class="col-md-5 grid-margin stretch-card" style="text-align: left;">
+    <div class="card">
+        <div class="card-body">
+            <p class="card-title">　공지사항</p>
+            <div class="row">
+                <div class="col-12">
+                    <div class="table-responsive">
+                        <!-- Add the table_content div here -->
+                        <div id="table_content"></div>
                     </div>
-                  </div>
-                  </div>
                 </div>
-              </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <!-- 공지사항 끝 -->              
-            </div>          
-          <div class="row">
+<!--             </div>           -->
+<!--           <div class="row"> -->
+          
+         
+          
 <!-- 꺾은선 그래프 시작 -->          
-            <%-- <div class="col-md-6 grid-margin stretch-card">
+             <div class="col-md-7 grid-margin stretch-card" style="text-align: right;">
               <div class="card">
                 <div class="card-body">
                   <p class="card-title">Order Details</p>
@@ -213,9 +206,9 @@
                   <canvas id="order-chart"></canvas>
                 </div>
               </div>
-            </div> --%>
+            </div>
 <!-- 꺾은선 그래프 끝 -->             
-          </div>
+<!--           </div> -->
           <div class="row">
 <!-- 동그란 그래프 시작 -->          
             <%-- <div class="col-md-12 grid-margin stretch-card">
@@ -638,6 +631,10 @@
    <script>
  	 let empNum = ${sessionScope.emp_num };
    </script>
+   
+  <!-- 공지사항 -->
+   <script src="${pageContext.request.contextPath}/resources/main/boardList.js"></script>
+   
 </body>
 
 </html>

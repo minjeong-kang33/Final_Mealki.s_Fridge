@@ -73,5 +73,16 @@
     	where bo_num = #{bo_num}   
     </update>
     
+     <select id="getNoticeList2" resultType="com.itwillbs.domain.BoardDTO">
+SELECT *, ROW_NUMBER() OVER (ORDER BY top_fixed DESC, bo_num DESC) AS row_num
+FROM board
+WHERE bo_status = 1
+ORDER BY top_fixed DESC, bo_num DESC
+LIMIT #{pageSize} OFFSET #{offset} 
+    </select>
+	
+	<select id="getBoardByBoNum" parameterType="int" resultType="com.itwillbs.domain.BoardDTO">
+    SELECT * FROM board WHERE bo_num = #{bo_num}
+	</select>
 	
 </mapper>	

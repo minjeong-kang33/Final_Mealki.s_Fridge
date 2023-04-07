@@ -85,4 +85,17 @@ public class BoardServiceImpl implements BoardService{
 		boardDAO.updateBoard(boardDTO);
 	}
 
+	@Override
+	public List<BoardDTO> getNoticeList2(PageDTO pageDTO) {
+		// TODO Auto-generated method stub
+		return boardDAO.getNoticeList2(pageDTO);
+	}
+
+	@Override
+	public BoardDTO getBoardByBoNum(int bo_num) {
+		// TODO Auto-generated method stub
+		return boardDAO.getBoardByBoNum(bo_num);
+
+	}
+
 }

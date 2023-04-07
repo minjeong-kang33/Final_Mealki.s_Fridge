@@ -77,6 +77,19 @@ public class BoardDAOImpl implements BoardDAO{
 		sqlSession.update(namespace+".updateBoard", boardDTO);	
 	}
 
+	@Override
+	public List<BoardDTO> getNoticeList2(PageDTO pageDTO) {
+		// TODO Auto-generated method stub
+		 List<BoardDTO> noticeList = sqlSession.selectList(namespace+".getNoticeList2", pageDTO);
+	        return noticeList;
+	}
+
+	@Override
+	public BoardDTO getBoardByBoNum(int bo_num) {
+		// TODO Auto-generated method stub
+		return sqlSession.selectOne(namespace+".getBoardByBoNum", bo_num);
+	}
+
 
 
 	

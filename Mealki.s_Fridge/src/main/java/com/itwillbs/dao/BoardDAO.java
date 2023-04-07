@@ -22,4 +22,8 @@ public interface BoardDAO {
 	public void deleteBoard(int bo_num);
 	
 	public void updateBoard(BoardDTO boardDTO);
+	
+	public List<BoardDTO> getNoticeList2(PageDTO pageDTO);
+	
+	public BoardDTO getBoardByBoNum(int bo_num);
 }
