@@ -39,14 +39,12 @@
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select distinct date_format(manu_sdate, '%Y-%m-%d %h:%i:%s') manu_sdate,u.unsto_qty, p.manu_tocount, p.manu_num, w.manu_name, l.manu_code, u.wo_num, u.item_name, u.item_num, u.unsto_progress
-		from unstore u join workorder w
-		on u.wo_num = w.wo_num
-		join linecode l
-		on w.manu_name = l.manu_name
-		left join productstatus p
-        on u.wo_num = p.wo_num
-		where u.unsto_progress = '출고완료';
+    	select u.wo_num, l.manu_code, l.manu_name, u.item_name,u.item_num, u.unsto_qty,sum(p.manu_tocount) manu_tocount
+		from productstatus p right join unstore u 
+		on p.wo_num = u.wo_num  right join workorder w on u.wo_num = w.wo_num
+		left join linecode l on l.manu_name = w.manu_name
+		where u.unsto_progress='출고완료' and w.wo_available = '1'
+		group by u.wo_num;
     </select>
     
     <update id="insertProduct">
