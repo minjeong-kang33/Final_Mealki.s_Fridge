@@ -61,8 +61,8 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+                  <h3 class="font-weight-bold">수정삭제</h3>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
 <!--           <div class="contentbody" style="background: pink;">  -->
@@ -111,7 +111,7 @@
         
 <!--           </div> -->
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
+     
 <!-- 페이징 끝 -->
             </div>
             

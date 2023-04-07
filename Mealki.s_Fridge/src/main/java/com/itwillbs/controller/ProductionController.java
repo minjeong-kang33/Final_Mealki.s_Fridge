@@ -63,29 +63,19 @@ public class ProductionController {
 		return "redirect:/mps/production/write";
 	}
 	
-//	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
-//	public String startProduct(ProductionDTO productionDTO) {
-//		System.out.println("ProductionController start()");
-//		//회원가입 처리 부모인터페이스 MemberService, 
-//		//           자식클래스 MemberServiceImpl
-//		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
-//		// 메서드 호출
-//		productionService.startProduct(productionDTO);
-//		
-////		주소줄 변경하면서 이동
-//		return "redirect:/mps/production/write";
-//	}
-	
-	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST, produces = "application/json")
-	@ResponseBody
-	public ResponseEntity<String> startProduct(@RequestBody ProductionDTO productionDTO) {
-	    System.out.println("ProductionController start()");
-	    productionService.startProduct(productionDTO);
-	    
-	    // Return a success message in JSON format
-	    String successMsg = "{\"message\": \"Product started successfully\"}";
-	    return new ResponseEntity<>(successMsg, HttpStatus.OK);
+	@RequestMapping(value = "/mps/production/start", method = RequestMethod.POST)
+	public String startProduct(ProductionDTO productionDTO) {
+		System.out.println("ProductionController start()");
+		//회원가입 처리 부모인터페이스 MemberService, 
+		//           자식클래스 MemberServiceImpl
+		// 리턴할형 없음 insertMember(MemberDTO memberDTO) 메서드 정의
+		// 메서드 호출
+		productionService.startProduct(productionDTO);
+		
+//		주소줄 변경하면서 이동
+		return "redirect:/mps/production/write";
 	}
+	
 
 	
 //	@RequestMapping(value = "/mps/production/writePro", method = RequestMethod.GET)
@@ -98,24 +88,24 @@ public class ProductionController {
 	public String listmap(ProductionDTO productDTO, HttpServletRequest request, Model model){
 	
 	// 메서드 호출
-	String wo_num = request.getParameter("wo_num");
-	String manu_name = request.getParameter("manu_name");
-	String item_name = request.getParameter("item_name");
-	String manu_sdate = request.getParameter("manu_sdate");
-	String manu_date = request.getParameter("manu_date");
-	String emp_Kname = request.getParameter("emp_Kname");
-	System.out.println(productDTO.getWo_num());
+//	String wo_num = request.getParameter("wo_num");
+//	String manu_name = request.getParameter("manu_name");
+//	String item_name = request.getParameter("item_name");
+//	String manu_sdate = request.getParameter("manu_sdate");
+//	String manu_date = request.getParameter("manu_date");
+//	String emp_Kname = request.getParameter("emp_Kname");
+//	System.out.println(productDTO.getWo_num());
 	List<Map<String, Object>> productionListMap=productionService.getProductionListMap(productDTO);
 	
 	// model 담아서 이동
 	model.addAttribute("productionListMap", productionListMap);
 	
-	System.out.println("작업지시번호"+wo_num);
-	System.out.println("라인명"+manu_name);
-	System.out.println("품명"+item_name);
-	System.out.println("시작시간"+manu_sdate);
-	System.out.println("마감시간"+manu_date);
-	System.out.println("작업자"+emp_Kname);
+//	System.out.println("작업지시번호"+wo_num);
+//	System.out.println("라인명"+manu_name);
+//	System.out.println("품명"+item_name);
+//	System.out.println("시작시간"+manu_sdate);
+//	System.out.println("마감시간"+manu_date);
+//	System.out.println("작업자"+emp_Kname);
 	
 	return "mps/production/listForm";
 	}

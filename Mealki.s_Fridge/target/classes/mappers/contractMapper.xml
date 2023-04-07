@@ -28,7 +28,9 @@
     </insert>
 	
 	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
-        SELECT * from contract
+        SELECT item_name,business_name, date_format(business_date,'%Y-%m-%d') as business_date,
+        date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty
+        from contract
         
         <if test="search_option == 'item_name'.toString()">
         where item_name  like CONCAT('%',#{search},'%')

@@ -249,7 +249,13 @@ public class EmployeeController {
 	
 	@RequestMapping(value = "/employee/yellowPage", method = RequestMethod.GET)
 	public String yellowPage(HttpServletRequest request, Model model) {
+		System.out.println("EmployeeController yellowPage");
 
+		
+		String search_option = request.getParameter("search_option");
+		String keyword = request.getParameter("keyword");
+		
+		System.out.println("컨트롤러"+search_option+keyword);
 		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
@@ -263,10 +269,14 @@ public class EmployeeController {
 		pageDTO.setPageSize(pageSize);
 		pageDTO.setPageNum(pageNum);
 		pageDTO.setCurrentPage(currentPage);
-		
+		pageDTO.setKeyword(keyword);
+		pageDTO.setSearch_option(search_option);
 		
 		List<Map<String, Object>> yellowPage = employeeService.yellowPage(pageDTO);
 		model.addAttribute("yellowPage",yellowPage);
+		model.addAttribute("search_option",search_option);
+		model.addAttribute("keyword",keyword);
+		model.addAttribute("pageDTO",pageDTO);
 		
 		int count = employeeService.yellowPageCount(pageDTO);
 		
@@ -284,9 +294,20 @@ public class EmployeeController {
 		pageDTO.setEndPage(endPage);
 		pageDTO.setPageCount(pageCount);
 		
-		model.addAttribute("pageDTO",pageDTO);
-		
 		return "employee/yellowPage";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/employee/yellowPageDetail", method = RequestMethod.GET)
+	public List<Map<String, Object>> yellowPageDetail(HttpServletRequest request,Model model,MultipartFile file)throws Exception {
+		System.out.println("MemberController yellowPageDetail");
+		
+		int emp_num = Integer.parseInt(request.getParameter("emp_num"));
+		System.out.println(emp_num);
+		List<Map<String, Object>> employeeDetail = employeeService.getEmployeeDetail(emp_num);
+		model.addAttribute("employeeDetail",employeeDetail);
+			
+		return employeeDetail;
 	}
 	
 }
