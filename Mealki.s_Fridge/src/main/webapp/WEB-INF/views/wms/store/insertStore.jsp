@@ -218,9 +218,7 @@ function content_print3(){
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>
-							<div>
-								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print1()">인쇄하기</button>		        
-							</div>
+
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        
 	        
@@ -283,9 +281,6 @@ function content_print3(){
 						 		</c:forEach>
 					        </table>
 					        </div>
-						   <div class="print_btn">
-								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print2()">인쇄하기</button>		        
-							</div>
 					      </form>  
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
@@ -347,9 +342,7 @@ function content_print3(){
 						 		</c:forEach>
 					        </table>
 					        </div>
-					        <div class="print_btn">
-								<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;float: right;" onclick="content_print3()">인쇄하기</button>		        
-							</div>
+
 					      </form>  
 
 			       		 </div>
