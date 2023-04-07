@@ -35,6 +35,18 @@
 
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">
+	/* 현재고량이 10미만일 경우 빨간 글씨로 표시 */
+	var rows = document.querySelectorAll('#example-table-1 tr');
+
+	rows.forEach(function(row) {
+	  var stk_qnt_td = row.querySelector('#stk_qnt');
+
+	  if (stk_qnt_td && stk_qnt_td.textContent.trim() !== '' && parseInt(stk_qnt_td.textContent.trim()) < 10) {
+	    stk_qnt_td.style.color = 'red';
+	  }
+	});
+	</script>
+	<script type="text/javascript">
 		 $(function() {
 			$(".row_a").click(function() {
 				var checkList = $(this);
@@ -60,24 +72,8 @@
 
 					// 팝업 창 닫기
 					window.close();
-				
-				/* var index = $(this).index()+1;
-	            
-	            opener.document.getElementById("item_num_" + index).value = item_num;
-	            opener.document.getElementById("item_name_" + index).value = item_name;
-	            opener.document.getElementById("weight_" + index).value = weight;
-	            opener.document.getElementById("stk_qnt_" + index).value = stk_qnt;
-	            opener.document.getElementById("supplier_" + index).value = supplier;
-	            opener.document.getElementById("supply_price_" + index).value = supply_price; */
-				
 			}); 
 		 });
-			/* opener.document.getElementById("item_num").value = item_num;
-			opener.document.getElementById("item_name").value = item_name;
-			opener.document.getElementById("weight").value = weight;
-			opener.document.getElementById("stk_qnt").value = stk_qnt;
-			opener.document.getElementById("supplier").value = supplier;
-			opener.document.getElementById("supply_price").value = supply_price; */
 	</script>
 	
 </body>
