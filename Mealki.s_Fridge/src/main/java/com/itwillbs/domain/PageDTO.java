@@ -41,6 +41,9 @@ public class PageDTO {
 	
 	private String Search;
 	
+	
+	 private int offset;
+	
 	public String getUnsto_num() {
 		return unsto_num;
 	}
@@ -340,5 +343,9 @@ public class PageDTO {
 	public void setDout_date(Date dout_date) {
 		this.dout_date = dout_date;
 	}
+	
+	 public void calculateOffset() {
+	        this.offset = (this.currentPage - 1) * this.pageSize;
+	    }
 	
 }

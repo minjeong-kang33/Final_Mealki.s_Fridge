@@ -1,0 +1,19 @@
+@charset "UTF-8";
+
+.mainBoardList_div{
+	width: 80%;
+	text-align: center;
+}
+
+
+.notice-row:hover td {
+    text-decoration: underline;
+    
+  }
+
+.notice{
+	text-decoration: underline;
+	
+}
+
+

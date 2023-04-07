@@ -17,12 +17,7 @@
    float: left;
 }
 
-#table_write{
-   float: center;
-   margin-right: 5px;
-   margin-bottom: 30px;
-   width: 7%;
-}
+
 
 table{
    width: 100%;
@@ -36,6 +31,7 @@ table{
 
 tr:hover td{ background-color: #e6e6f4; }
 
+
 #table_content tr{
    height: 32px;
    table-layout: fixed;
@@ -45,35 +41,12 @@ tr:hover td{ background-color: #e6e6f4; }
    background-color: #4B49AC;
    color: #fff;
 }
-/* 검색창 부분 */
 
-/* #search_div{height: 130px;} */
-
-/* #table_search{height: 60%;} */
-
-/* #search_select_div{ */
-/* 	margin-top: 18px; */
-/* 	margin-left: 10px; */
-/* } */
-
-/* td{ */
-/* 	font-size: 12px; */
-/* } */
-
-/* 표 */
-/* .contractTable{ */
-/* } */
-
-/* .contractTable tr{ */
-/*    height: 32px; */
-/*    table-layout: fixed; */
-/* } */
-
-/* .contractTable th{ */
-/*    background-color: #4B49AC; */
-/*    color: #fff; */
-/* } */
-
+.contentbody{
+   width: 100%;
+   height: 1000px; 
+   padding: 20px 20px;
+}
 
 
 

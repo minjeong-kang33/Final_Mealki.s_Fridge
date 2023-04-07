@@ -18,6 +18,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -154,56 +155,60 @@ public class ItemController {
 	public String save(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file) throws Exception {
 		System.out.println("ItemController save()");
 		
-			ItemDTO dto = new ItemDTO();
+		ItemDTO dto = new ItemDTO();
 //			StockDTO stockDTO = new StockDTO();
-			
+
+		String itemNum = request.getParameter("item_num");
+		if(StringUtils.isEmpty(itemNum)){
 			String itemPrefix = request.getParameter("item_prefix");
-		    String prefix = itemPrefix.equals("P") ? "P" : "I";
-		    String maxItemNum = itemService.getMaxItemNum(prefix);
+			String prefix = itemPrefix.equals("P") ? "P" : "I";
+			String maxItemNum = itemService.getMaxItemNum(prefix);
 
-		    int newNum;
-		    if (maxItemNum != null) {
-		        int currentNum = Integer.parseInt(maxItemNum.substring(1));
-		        newNum = currentNum + 1;
-		    } else {
-		        newNum = 1;
-		    }
+			int newNum;
+			if (maxItemNum != null) {
+				int currentNum = Integer.parseInt(maxItemNum.substring(1));
+				newNum = currentNum + 1;
+			} else {
+				newNum = 1;
+			}
 
-		    String newItemNum = String.format("%s%03d", prefix, newNum);
-		    dto.setItem_num(newItemNum);
-		
-//			dto.setItem_num(request.getParameter("item_num"));
-		    dto.setItem_type(request.getParameter("item_type"));
-		    dto.setItem_name(request.getParameter("item_name"));
-		    dto.setWeight(Integer.parseInt(request.getParameter("weight")));
-		
-			String supplier = request.getParameter("supplier");
-		    if (supplier != null && !supplier.isEmpty()) {
-		        dto.setsupplier(supplier);
-		    }
-		    
-		    String supply_price = request.getParameter("supply_price");
-		    if (supply_price != null && !supply_price.isEmpty()) {
-		        dto.setSupply_price(Integer.parseInt(supply_price));
-		    } else {
-		        dto.setSupply_price(0);
-		    }
+			String newItemNum = String.format("%s%03d", prefix, newNum);
+			dto.setItem_num(newItemNum);
+		} else {
+			dto.setItem_num(itemNum);
+		}
 
-		    String sales_price = request.getParameter("sales_price");
-		    if (sales_price != null && !sales_price.isEmpty()) {
-		        dto.setSales_price(Integer.parseInt(sales_price));
-		    } else {
-		        dto.setSales_price(0);
-		    }    
-		    
-		    if (!file.isEmpty()) {
-		    UUID uuid=UUID.randomUUID();
-		    String filename=uuid.toString()+"_"+file.getOriginalFilename();
-		    
-		    FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
-		    
-		    dto.setItem_image(filename);
-		    }
+		dto.setItem_type(request.getParameter("item_type"));
+		dto.setItem_name(request.getParameter("item_name"));
+		dto.setWeight(Integer.parseInt(request.getParameter("weight")));
+
+		String supplier = request.getParameter("supplier");
+		if (supplier != null && !supplier.isEmpty()) {
+				dto.setsupplier(supplier);
+		}
+
+		String supply_price = request.getParameter("supply_price");
+		if (supply_price != null && !supply_price.isEmpty()) {
+				dto.setSupply_price(Integer.parseInt(supply_price));
+		} else {
+				dto.setSupply_price(0);
+		}
+
+		String sales_price = request.getParameter("sales_price");
+		if (sales_price != null && !sales_price.isEmpty()) {
+			dto.setSales_price(Integer.parseInt(sales_price));
+		} else {
+			dto.setSales_price(0);
+		}
+
+		if (!file.isEmpty()) {
+			UUID uuid=UUID.randomUUID();
+			String filename=uuid.toString()+"_"+file.getOriginalFilename();
+
+			FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
+
+			dto.setItem_image(filename);
+		}
 		    
 		itemService.save(dto);
 		//재고테이블에도 반영

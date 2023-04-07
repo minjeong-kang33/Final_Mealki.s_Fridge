@@ -25,10 +25,10 @@ public class QualityController {
 	public String listmap(QualityDTO qualityDTO, Model model){
 
 	List<Map<String, Object>> qualityListMap=qualityService.getQualityListMap(qualityDTO);
-//	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
+	List<Map<String, Object>> qualityFailList=qualityService.getQualityFailList(qualityDTO);
 	
 	model.addAttribute("qualityListMap", qualityListMap);
-//	model.addAttribute("qualityFailList", qualityFailList);
+	model.addAttribute("qualityFailList", qualityFailList);
 	
 	
 	return "mps/quality/listForm";
@@ -68,7 +68,7 @@ public class QualityController {
 		System.out.println("QualityController updatePro()");
 		
 		qualityService.updateQuality(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 	@RequestMapping(value = "/quality/failWrite", method = RequestMethod.GET)
@@ -103,7 +103,7 @@ public class QualityController {
 		System.out.println("QualityController updatePro()");
 		
 		qualityService.updateFail(qualityDTO);
-		return "redirect:/mps/quality/writeForm";
+		return "mps/quality/writeclose";
 	}
 	
 }

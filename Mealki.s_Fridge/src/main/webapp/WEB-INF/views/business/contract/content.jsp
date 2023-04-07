@@ -66,10 +66,11 @@
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary">수정시 수주수량 수정가능</span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-<table border="1" class="contractTable">
+<div id="table_content">
+<table border="1">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
 			<th>수주번호</th>
@@ -94,23 +95,28 @@
          	<td>${contractDTO.contract_qty }</td>
          	
          </tr>
-         <tr align="center">
-			<th colspan="9">					
-			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button> 
-			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
-			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>
-			</th>
-		</tr> 
-
+<!--          <tr align="center"> -->
+<!-- 			<th colspan="9">					 -->
+<%-- 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button>  --%>
+<%-- 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button> --%>
+<%-- 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button> --%>
+<!-- 			</th> -->
+<!-- 		</tr>  -->
+			
 
 
 
 
 </table>
-           
+<div align="center">
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>
+			</div>
+</div>           
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
      
 <!-- 페이징 끝 -->

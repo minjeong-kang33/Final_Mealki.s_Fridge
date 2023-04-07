@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractWrite.css">
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
@@ -57,23 +57,7 @@
 			 
 	</script>
 </head>
-<style>
-body{
-	font-size:3pt;
-}
-button{
-	font-size:9pt;
-}
-table{
-	width:500px;
-	border-collapse: collapse;
-}
-th,td{
-	border:1px solid #cccccc;
-	padding:3px; 
-}
 
-</style>
 <body>
 
   <div class="container-scroller">
@@ -97,11 +81,14 @@ th,td{
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary">클릭시 팝업창</span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody" > 
           
 <!--  본문 내용 시작 -->
+  
+
     <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
-    	<table class="contractTable">
+    	 
+    	<table border="1" id="table_content">
     	<tr>
            			<th>작업지시번호</th>
            			<th>품목코드</th>
@@ -127,17 +114,21 @@ th,td{
            			<td><input type="text" name="business_name" id="business_name"></td>
            			
            			</tr>
-           			 <tr align="center">
-					<th colspan="10">					
-					<button type="submit" >저장</button> 
-					</th>
-		</tr> 
+<!--            			 <tr align="center"> -->
+<!-- 					<th colspan="9">					 -->
+<!-- 					<button type="submit" >저장</button>  -->
+<!-- 					</th> -->
+<!-- 					</tr>  -->
     	</table>
-    </form>        
+    	  
             
+ <div align="center">
+<button type="submit" class="btn btn-primary">저장</button>
+</div>
+</form>         
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
      
 <!-- 페이징 끝 -->

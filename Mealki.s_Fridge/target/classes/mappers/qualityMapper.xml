@@ -46,7 +46,7 @@
     </resultMap>
     
 <!--     품질LIST -->
-    <select id="getQualityListMap" resultMap="qualityListMap">
+    <select id="getQualityListMap" resultMap="qualityFailList">
     	select q.qc_num, p.wo_num, p.manu_name, p.manu_code, p.item_name, 
 		p.item_num, CONCAT('QC',lpad(q.qc_num,6,0)) qc_code, q.qc_status, q.emp_Kname emp_Kname,
 		q.qc_qty, q.manu_fail, sum(p.manu_tocount) manu_tocount, w.wo_qty, date_format(q.qc_date, '%Y-%m-%d') qc_date,
@@ -97,7 +97,7 @@
     	</update>
     	
 <!--     불량 쿼리	 -->
-    	<select id="getQualityFailList" resultMap="qualityFailList">
+    	<select id="getQualityFailList" resultMap="qualityListMap">
     		select CONCAT('F',lpad(d.fail_num,6,0)) fail_num, q.wo_num, q.manu_name, q.manu_code, q.item_name, q.item_num, d.emp_Kname, (q.manu_fail+p.manu_fail) fail_qty, date_format(d.fail_date, '%Y-%m-%d') fail_date
         	from productstatus p join qc_status q
         	on p.wo_num = q.wo_num left join defective d on q.wo_num = d.wo_num

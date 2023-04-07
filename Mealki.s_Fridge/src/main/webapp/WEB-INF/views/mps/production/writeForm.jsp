@@ -42,19 +42,19 @@
 			$('input[name=manu_code]').attr('value',manucode);
 			$('input[name=item_num]').attr('value',itemnum);			
 	        
-			$("#IconButton3").addEventListener('click', function () {
-				var value = $(this).val();
-				var wonum = $(this).find("option:selected").data("wonum");
-				var item = $(this).find("option:selected").data("itemname");
-				var manucode = $(this).find("option:selected").data("manucode");
-				var itemnum = $(this).find("option:selected").data("itemnum");
-				var sdate = $(this).find("option:selected").data("sdate");
-				$('input[name=manu_name]').attr('value',value);
-				$('input[name=wo_num]').attr('value',wonum);
-				$('input[name=item_name]').attr('value',item);
-				$('input[name=manu_code]').attr('value',manucode);
-				$('input[name=item_num]').attr('value',itemnum);
-			});
+// 			$("#IconButton3").addEventListener('click', function () {
+// 				var value = $(this).val();
+// 				var wonum = $(this).find("option:selected").data("wonum");
+// 				var item = $(this).find("option:selected").data("itemname");
+// 				var manucode = $(this).find("option:selected").data("manucode");
+// 				var itemnum = $(this).find("option:selected").data("itemnum");
+// 				var sdate = $(this).find("option:selected").data("sdate");
+// 				$('input[name=manu_name]').attr('value',value);
+// 				$('input[name=wo_num]').attr('value',wonum);
+// 				$('input[name=item_name]').attr('value',item);
+// 				$('input[name=manu_code]').attr('value',manucode);
+// 				$('input[name=item_num]').attr('value',itemnum);
+// 			});
 			
 				});
 			});

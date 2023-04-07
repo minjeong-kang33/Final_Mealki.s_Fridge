@@ -13,6 +13,7 @@ import org.springframework.http.MediaType;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -119,6 +120,10 @@ public class RecipeController {
 			
 			RecipeDTO dto = new RecipeDTO();
 			
+			String r_num=request.getParameter("r_num");
+			if(StringUtils.isEmpty(r_num)) {
+				
+			
 			String maxRNum= recipeService.getMaxRecipeNum();
 		    
 		    int newRNumValue;
@@ -133,10 +138,11 @@ public class RecipeController {
 		    } else {
 		        newRNumValue = 1;
 		    }
-		    String newRNum = "R" + newRNumValue;
-		    
-		    dto.setR_num(newRNum);
-			
+		    r_num = "R" + newRNumValue;
+			}else { 
+			}
+			dto.setR_num(r_num);
+//			dto.setR_num(newRNum);
 //			dto.setR_num(request.getParameter("r_num"));
 			dto.setR_code(request.getParameter("r_code"));
 			dto.setItem_num(request.getParameter("item_num"));

@@ -107,9 +107,9 @@ function fun1(){
 			        
         	</div>
         
-		<div id=" ">
+		<div id="table_content">
 			<form name="store_form" method="get">       		  
-			<table border="1" class="contractTable">
+			<table border="1">
 
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
       
@@ -143,12 +143,13 @@ function fun1(){
          
 	
 	</table>
-		<div id="">
+		<div align="center">
         <input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
         </div>
      </form>
     
      </div>
+     
      </div>
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="page_control">
