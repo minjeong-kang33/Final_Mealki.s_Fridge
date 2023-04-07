@@ -6,10 +6,13 @@
 <head>
 <meta charset="UTF-8">
 <title>Item List Popup</title>
+<link rel="stylesheet" type="text/css"
+	href="${pageContext.request.contextPath}/resources/mdm/itemfindPopup.css">
+
 </head>
 <body>
-    <h1>Item List</h1>
-    <table border="1">
+    <h2>| 식자재 </h2>
+    <table >
         <thead>
             <tr>
                 <th>품목코드</th>
