@@ -58,9 +58,9 @@
 						<div class="left">
 						<ul>
 						 <c:forEach var="dto" items="${employeeDetail }">
-							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required value="${dto.emp_Kname }"></li>
+							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required value="${dto.emp_Kname }" onkeyup="this.value=this.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\\s]/g,'')"></li>
 							<li><label for="emp_birth">생년월일</label> ${dto.emp_birth}</li>
-							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required value="0${dto.emp_tel }"></li>
+							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required value="0${dto.emp_tel }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 							<li><label for="emp_classification" class="emp_classification" >직원분류</label>
 									<select name="emp_classification" class="emp_classification_Option">
 									
@@ -120,9 +120,9 @@
 							<ul>
 							
 							<c:forEach var="dto" items="${employeeDetail }">
-							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required value="${dto.emp_Ename }"></li>
+							<li><label for="emp_Ename">영문이름</label> <input type="text" id="emp_Ename" name="emp_Ename" size="15" required value="${dto.emp_Ename }" onKeyup="this.value=this.value.replace(/[^a-zA-Z]/g,'');"></li>
 							<li><label for="emp_gender">성별</label> ${dto.emp_gender }</li>
-							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required value="0${dto.emp_phone }"></li>
+							<li><label for="emp_phone">휴대폰번호</label> <input type="text" id="emp_phone" name="emp_phone" size="15" required value="0${dto.emp_phone }" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 							
 							<li><label for="dept_num" class="dept_num">부서</label> 
 								<select name="dept_num" class="dept_num_option">
