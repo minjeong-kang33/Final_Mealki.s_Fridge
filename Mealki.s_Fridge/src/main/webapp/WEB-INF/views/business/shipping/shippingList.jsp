@@ -123,13 +123,13 @@ $(function(){
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">출하현황 </h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
-			   <div class="div2">Total: ${total}</div>
+<%-- 			   <div>Total: ${total}</div> --%>
 			   <div id="table_search">
 			   <form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
 					<select name="search_option" class="search_option">
@@ -139,7 +139,9 @@ $(function(){
 					</select>
 						<input type="text" name="search" class="input_box">
 						<input type="submit" value="search">
+						
 				</form>
+				
 				</div>		
 
 
@@ -149,9 +151,9 @@ $(function(){
            		<li><a href="#tab01">대기</a></li>
            		<li><a href="#tab02">완료</a></li>
            	</ul>	
-           			<div align="center">
+           	<div align="center">
 					<button type="submit" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
-					</div> 
+					</div> 		
            	<div class="tabcontent">
            	
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
@@ -192,8 +194,7 @@ $(function(){
            			</td>
            			</tr>
            		</c:forEach>
-           		<tr align="center">
-           		
+           	
            		</table>
            			
            		</form>

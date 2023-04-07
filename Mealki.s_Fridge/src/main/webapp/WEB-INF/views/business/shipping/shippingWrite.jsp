@@ -28,6 +28,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
@@ -92,15 +93,15 @@ th,td{
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+                  <h3 class="font-weight-bold">신규출하</h3>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">클릭시 팝업창</span></h6>
                 </div>
                 
 <!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
     <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
-    	<table>
+    	<table class="contractTable">
     	<tr>
            			<th>작업지시번호</th>
            			<th>품목코드</th>
