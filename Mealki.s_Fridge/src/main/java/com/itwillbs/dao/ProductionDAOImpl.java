@@ -52,4 +52,11 @@ public class ProductionDAOImpl implements ProductionDAO{
 		
 	}
 
+	@Override
+	public ProductionDTO updateProduct(String manu_date) {
+		System.out.println("ProductionDAOImpl updateProduct()");
+		
+		return sqlSession.selectOne(namespace+".updateProduct", manu_date);
+	}
+	
 }
