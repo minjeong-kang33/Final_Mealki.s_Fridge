@@ -481,7 +481,6 @@ function storeDetail(order_num, item_name) {
 			
 			console.log("배열에 담긴 값 : "+tdArr);
 			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
-			alert(tdArr);
 			
 			$.ajax({
  				url:'addStore',
