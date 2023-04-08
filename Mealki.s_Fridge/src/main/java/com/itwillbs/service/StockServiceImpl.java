@@ -7,6 +7,7 @@ import javax.inject.Inject;
 
 import org.springframework.stereotype.Service;
 
+import com.itwillbs.dao.ItemDAO;
 import com.itwillbs.dao.StockDAO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
@@ -17,6 +18,9 @@ import com.itwillbs.domain.WarehouseDTO;
 public class StockServiceImpl implements StockService {
 	@Inject
 	private StockDAO stockDAO;
+	
+	@Inject
+	private ItemDAO itemDAO;
 
 	@Override
 	public List<WarehouseDTO> getWarehouseList() {
@@ -65,23 +69,26 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public void insertStock(StockDTO stockDTO) {
 		System.out.println("StockServiceImpl insertStock");
-		
-		stockDAO.insertStock(stockDTO);
-		
+		if(stockDAO.selectItem(stockDTO.getItem_num()) == null){
+			stockDAO.insertStock(stockDTO);
+		}else{
+			stockDAO.updateStock(stockDTO);
+		}	
 	}
+	
+
+	/*
+	 * @Override public void updateStock(StockDTO stockDTO) {
+	 * System.out.println("StockServiceImpl updateStock"); if
+	 * (itemDAO.selectItem(stockDTO.getItem_num()) != null){
+	 * stockDAO.updateStock(stockDTO); } }
+	 */
 
 	@Override
-	public void updateStock(StockDTO stockDTO) {
-		System.out.println("StockServiceImpl updateStock");
-		
-		stockDAO.updateStock(stockDTO);
-	}
-
-	@Override
-	public void deleteStock(String item_num) {
+	public void deleteStock(String itemNum) {
 		System.out.println("StockServiceImpl deleteStock");
 		
-		stockDAO.deleteStock(item_num);
+		stockDAO.deleteStock(itemNum);
 	}
 	
 	
