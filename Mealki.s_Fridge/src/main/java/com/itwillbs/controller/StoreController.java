@@ -37,9 +37,12 @@ public class StoreController {
 		String e_num = request.getParameter("emp_num");
 		String item_name = request.getParameter("item_name");
 		
+		System.out.println("날짜"+startDate+endDate);
 		if(e_num==""||e_num==null) {e_num="0";}
 		
 		int emp_num = Integer.parseInt(e_num);
+		
+		System.out.println("dd "+ emp_num);
 		
 		int pageSize=15;
 		
