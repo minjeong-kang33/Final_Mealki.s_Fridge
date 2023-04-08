@@ -36,7 +36,7 @@
 			</if>
 			
 			<if test="search_check == null or search_check.equals('')">
-        		and emp_status ='재직' or emp_status ='휴직'
+        		and (emp_status ='재직' or emp_status ='휴직')
         	</if>
     </select>
     
