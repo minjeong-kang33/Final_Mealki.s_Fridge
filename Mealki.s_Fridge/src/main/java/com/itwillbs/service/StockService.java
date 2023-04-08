@@ -22,7 +22,7 @@ public interface StockService {
 	
 	public void insertStock(StockDTO stockDTO);
 	
-	public void updateStock(StockDTO stockDTO);
+	//public void updateStock(StockDTO stockDTO);
 	
-	public void deleteStock(String item_num);
+	public void deleteStock(String itemNum);
 }

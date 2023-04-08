@@ -57,17 +57,29 @@
 	</update>
 	
 	<insert id="insertStock">
-		insert into stock (item_type, item_num, item_name, whs_num)
-		values (#{item_type},#{item_num},#{item_name}, whs_num=(select whs_num from warehouse where whs_name=#{item_type}))
+  		<selectKey keyProperty="whs_num" resultType="String" order="BEFORE">
+   		 select whs_num from warehouse where whs_name = #{item_type}
+ 		 </selectKey>
+  		insert into stock (item_type, item_num, item_name, whs_num)
+ 		 values (#{item_type}, #{item_num}, #{item_name}, #{whs_num})
 	</insert>
-	
+
 	<update id="updateStock">
-		update stock set item_type = #{item_type}, item_name = #{item_name}
+    <selectKey keyProperty="whs_num" resultType="String" order="BEFORE">
+        select whs_num from warehouse where whs_name = #{item_type}
+    </selectKey>
+    	update stock set item_type = #{item_type}, item_name = #{item_name}, whs_num = #{whs_num}
     	where item_num = #{item_num}
 	</update>
+	<select id="selectItem" parameterType="java.util.Map" resultType="com.itwillbs.domain.StockDTO">
+   	 	select *
+    	from stock
+    	where item_num = #{itemNum}
+  	</select>
+
 	
 	<delete id="deleteStock">
-		delete * from stock
+		delete from stock
 		where item_num = #{item_num}
 	</delete>
 	
