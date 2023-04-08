@@ -152,7 +152,7 @@ function content_print3(){
 				        	<div id="store_table_tab01"> 
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
-								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반행</th><th>선반열</th><th>입고일자</th><th>입고처리</th></tr>
+								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
 						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
 										<tr>
 											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
@@ -168,13 +168,13 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
 							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option" class="search_option">
 							                           <option value="A열"> A열 </option>
 							                           <option value="B열"> B열 </option>
 							                           <option value="C열"> C열 </option>
 							                           <option value="D열"> D열 </option>
-							                        </select>							                    	
+							                        </select>
 							                    </c:if>   
 											</td>
 											<td>
@@ -182,18 +182,18 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelfDetail }
 							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고'&& sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option_detail" class="search_option">
-							                           <option value="1">1열 </option>
-							                           <option value="2">2열 </option>
-							                           <option value="3">3열 </option>
-							                           <option value="4">4열 </option>
+							                           <option value="1">1단 </option>
+							                           <option value="2">2단 </option>
+							                           <option value="3">3단 </option>
+							                           <option value="4">4단 </option>
 							                        </select>
 						                        </c:if>
 											</td>
 											<td>${StoreDTO.sto_date }</td>
 											<td>
-												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
+												<c:if test="${StoreDTO.sto_progress eq '미입고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 												<input type="button" class="store_submit_button" value="입고처리">
 												</c:if>
 											</td> <!-- 입고처리 -->
@@ -246,7 +246,7 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
 							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option" class="search_option">
 							                           <option value="A열"> A열 </option>
 							                           <option value="B열"> B열 </option>
@@ -260,7 +260,7 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelfDetail }
 							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고'&& sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option_detail" class="search_option">
 							                           <option value="1"> 1단 </option>
 							                           <option value="2">2단 </option>
@@ -271,7 +271,7 @@ function content_print3(){
 											</td>
 											<td>${StoreDTO.sto_date }</td>
 											<td>
-												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
+												<c:if test="${StoreDTO.sto_progress eq '미입고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 												<input type="button" class="store_submit_button" value="입고처리">
 												</c:if>
 											</td> <!-- 입고처리 -->
@@ -307,7 +307,7 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
 							                    </c:if>
-							                    <c:if test="${StoreDTO.sto_progress eq '미입고'}"> 
+							                    <c:if test="${StoreDTO.sto_progress eq '미입고'&& sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option" class="search_option">
 							                           <option value="A열"> A열 </option>
 							                           <option value="B열"> B열 </option>
@@ -321,7 +321,7 @@ function content_print3(){
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelfDetail }
 							                    </c:if>
-							                    <c:if test="${!StoreDTO.sto_progress eq '입고완료'}"> 
+							                    <c:if test="${!StoreDTO.sto_progress eq '입고완료'&& sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}"> 
 													<select name="sto_shelf_option_detail" class="search_option">
 							                           <option value="1"> 1단 </option>
 							                           <option value="2">2단 </option>
@@ -332,7 +332,7 @@ function content_print3(){
 											</td>
 											<td>${StoreDTO.sto_date }</td>
 											<td>
-												<c:if test="${StoreDTO.sto_progress eq '미입고'}">
+												<c:if test="${StoreDTO.sto_progress eq '미입고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 												<input type="button" class="store_submit_button" value="입고처리">
 												</c:if>
 											</td> <!-- 입고처리 -->
