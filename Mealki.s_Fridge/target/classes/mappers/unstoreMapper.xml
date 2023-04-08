@@ -44,7 +44,7 @@
          <if test="endDate != null and !endDate.equals('')">
         	and sto_date like concat ('%',#{endDate}, '%')
         </if>
-        order by unsto_num, workorder.wo_num desc
+        order by unsto_progress, unsto_num desc, workorder.wo_num desc
         limit #{startRow}, #{pageSize}       
         
 	</select>
