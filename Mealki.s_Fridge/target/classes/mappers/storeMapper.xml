@@ -59,7 +59,7 @@
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
         
-        <if test="emp_num != null and !emp_num.equals('')">
+        <if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
         	and emp_num like concat ('%',#{emp_num}, '%')
         </if>
         
