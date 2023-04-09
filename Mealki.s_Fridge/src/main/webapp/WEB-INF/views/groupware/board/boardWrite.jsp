@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/groupware/board.css">
@@ -71,7 +71,8 @@
 					<tr><th>제목</th>
 					       <td><input type="text" name="bo_title" style="width:100%;"></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.emp_num }" readonly style="width:100%;"></td></tr>
+					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? '경리부' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
+					       												sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" readonly style="width:100%;"></td></tr>
 					       
 					<tr><th>내용</th>
 						<td><textarea id="summernote" name="bo_content" style="text-align:left;"></textarea></td></tr>

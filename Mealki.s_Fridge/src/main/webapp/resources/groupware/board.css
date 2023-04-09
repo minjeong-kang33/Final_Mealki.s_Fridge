@@ -34,10 +34,12 @@
 }
 
 #table_button3{
-   float: right;
-   margin-right: 5px;
-   margin-bottom: 30px;
-   width: 35%;
+  position: absolute;
+  top: 0;
+  right: 250px;
+  float: none;
+  margin-left: -300px;
+  margin-top: 65px;
 }
 
 table{
@@ -95,3 +97,9 @@ tr:hover td{
   #button-group {
     text-align: center;
   }
+  
+ .btn btn-primary{
+    color: #fff;
+    background-color: #4B49AC;
+    border-color: #4B49AC;
+}

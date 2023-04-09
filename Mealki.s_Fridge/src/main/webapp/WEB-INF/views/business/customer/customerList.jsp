@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/customerList.css">
@@ -86,7 +86,7 @@
 				<table border="1">
 					<tr>
 					<th><input type="checkbox" id="checkAll" name="checkAll" value="${CustomerDTO.business_num }"></th>
-					<th>거래처코드</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
+					<th>거래처코드</th><th>거래처구분</th><th>거래처명</th><th>대표자명</td><th>대표전화번호</th>
 					<th>주소</th><th>업태</th><th>종목</th><th>담당자이메일</th></tr>
 				
 				<c:forEach var="CustomerDTO" items="${customerList }">
@@ -94,6 +94,19 @@
 						<tr>
 							<td><input type="checkbox" id="rowCheck" name="rowCheck" value="${CustomerDTO.business_num }"></td>
 							<td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_num}</td>
+							<td onclick="openDetail('${CustomerDTO.business_num}')">
+							    <c:choose>
+							        <c:when test="${CustomerDTO.cust_gubun1 eq '납입처'}">
+							            납입처
+							        </c:when>
+							        <c:when test="${CustomerDTO.cust_gubun1 eq '납품처'}">
+							            납품처
+							        </c:when>
+							        <c:otherwise>
+							            기타
+							        </c:otherwise>
+							    </c:choose>
+							</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_name}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.boss_name}</td>
 						    <td onclick="openDetail('${CustomerDTO.business_num}')">${CustomerDTO.cust_tel}</td>
@@ -119,26 +132,31 @@
 				    </c:otherwise>
 				</c:choose>
 			</div>
+			<!-- 페이징 시작 -->
+			<div style="text-align: center;">
+				<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+					<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
+					</c:if>
+					
+					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+					<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
+					</c:forEach>
+					
+					<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+					<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
+				</c:if>
+			</div>
+			<!-- 페이징 끝 -->
 			
 				
 					
  
  <!--  본문내용 끝 -->    
         
-          </div>
-<!-- 페이징하실거면 여기서 시작 -->
-<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[이전]</a>
-</c:if>
+          </div >
+ <!-- 페이징 시작 --> 
 
-<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${i}&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">${i}</a> 
-</c:forEach>
-
-<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/business/customer/customerList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search_option=${pageDTO.search_option}&keyword=${pageDTO.keyword}">[다음]</a>
-</c:if>
-<!-- 페이징 끝 -->
+ <!-- 페이징 끝 --> 
             </div>
             
           </div>
@@ -185,7 +203,7 @@
   
   <script type="text/javascript">
 	  function openDetail(business_num) {
-		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1500, height=1000,top=300, left=300,scrollbars=yes");
+		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1400, height=1000,top=300, left=300,scrollbars=yes");
 		}
   </script>
  
