@@ -13,37 +13,66 @@
 	</select>
 
 	<select id="getPlaceOrderListStore" resultType="map">
-		select sto_num, COALESCE(store.sto_progress, '미입고') AS sto_progress,
-		placeorder.order_num,placeorder.order_qty, products.item_name, sto_empNum, 
-		stock.stk_qnt,placeorder.emp_num, sto_shelf, sto_shelfDetail, DATE_FORMAT(sto_date,'%Y-%m-%d') as sto_date
-		from store 
-		right Outer join placeorder on placeorder.order_num = store.order_num
-		left outer join products on placeorder.item_num = products.item_num
-		left join stock on products.item_num = stock.item_num
-        where 1=1
-        
-        <if test="sto_num != null and !sto_num.equals('')">
-        	and sto_num like concat ('%',#{sto_num}, '%')
-        </if>
-        
-        <if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
-        	and emp_num like concat ('%',#{emp_num}, '%') and sto_progress ='입고완료'
-        </if>
-        
-        <if test="item_name != null and !item_name.equals('')">
-        	and products.item_name like concat ('%',#{item_name}, '%')
-        </if>
-        
-        <if test="startDate != null and !startDate.equals('')">
-        	and sto_date like concat ('%',#{startDate}, '%') and sto_progress ='입고완료'
-        </if>
-        
-         <if test="endDate != null and !endDate.equals('')">
-        	and sto_date like concat ('%',#{endDate}, '%')
-        </if>
-       	order by sto_progress, sto_num desc, placeorder.order_num desc
-       	limit #{startRow}, #{pageSize}
-	</select>
+		SELECT
+		    store.sto_num,
+		    CASE
+		        WHEN SUM(placeorder.order_qty) = SUM(store.sto_qty) THEN '입고완료'
+		        ELSE COALESCE(store.sto_progress, '미입고')
+		    END AS sto_progress,
+		    placeorder.order_num,
+		    placeorder.order_qty,
+		    products.item_name,
+		    store.sto_empNum,
+		    stock.stk_qnt,
+		    placeorder.emp_num,
+		    store.sto_shelf,
+		    store.sto_shelfDetail,
+		    DATE_FORMAT(store.sto_date,'%Y-%m-%d') AS sto_date
+		FROM
+		    placeorder
+		    LEFT JOIN (
+		        SELECT
+		            sto_num,
+		            order_num,
+		            item_name,
+		            sto_date,
+		            sto_progress,
+		            sto_qty,
+		            sto_shelf,
+		            sto_shelfDetail,
+		            sto_empNum
+		        FROM
+		            store
+		        WHERE
+		            sto_progress = '입고완료'
+		    ) AS store ON placeorder.order_num = store.order_num AND placeorder.item_name = store.item_name
+		    LEFT JOIN products ON placeorder.item_num = products.item_num
+		    LEFT JOIN stock ON products.item_num = stock.item_num
+		WHERE 1=1
+		<if test="sto_num != null and !sto_num.equals('')">
+		    AND sto_num LIKE CONCAT('%', #{sto_num}, '%')
+		</if>
+		<if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
+		    AND emp_num LIKE CONCAT('%', #{emp_num}, '%')
+		</if>
+		<if test="item_name != null and !item_name.equals('')">
+		    AND products.item_name LIKE CONCAT('%', #{item_name}, '%')
+		</if>
+		<if test="startDate != null and !startDate.equals('')">
+		    AND sto_date &gt;= #{startDate}
+		</if>
+		<if test="endDate != null and !endDate.equals('')">
+		    AND sto_date &lt;= #{endDate}
+		</if>
+		GROUP BY
+		    placeorder.order_num,
+		    placeorder.item_name
+		ORDER BY
+		    sto_progress,
+		    sto_num DESC,
+		    placeorder.order_num DESC
+		LIMIT #{startRow}, #{pageSize}
+			</select>
 	
 	<select id="getStoreSearchListCount" resultType="java.lang.Integer">
 		select count(*)
