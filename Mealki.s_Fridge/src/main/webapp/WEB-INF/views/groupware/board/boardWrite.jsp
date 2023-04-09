@@ -71,7 +71,7 @@
 					<tr><th>제목</th>
 					       <td><input type="text" name="bo_title" style="width:100%;"></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? '경리부' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
+					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
 					       												sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" readonly style="width:100%;"></td></tr>
 					       
 					<tr><th>내용</th>

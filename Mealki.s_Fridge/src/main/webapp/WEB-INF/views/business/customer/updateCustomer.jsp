@@ -37,7 +37,7 @@
                      														<input type="text" name="cust_address" id="sample4_roadAddress" style="width:400px;"value="${customerDTO.cust_address}" onclick="sample4_execDaumPostcode()">, 
                      														<input type="text" name="cust_address2" id="sample4_detailAddress" style="width:300px;"value="${customerDTO.cust_address2}"></td></tr>
                      <tr class="tr"><th class="th">홈페이지</th><td colspan="3"><input type="text" name="url_path" value="${customerDTO.url_path}"></td></tr>
-                     <tr class="tr"><th class="th">적요</th><td colspan="3"><textarea name="remarks" rows="20" cols="145">${customerDTO.remarks}</textarea></td></tr>
+                     <tr class="tr"><th class="th">적요</th><td colspan="3"><textarea name="remarks" rows="10" cols="145">${customerDTO.remarks}</textarea></td></tr>
                      </table>
                      
                      <div id="buttons" style="text-align:center;">		

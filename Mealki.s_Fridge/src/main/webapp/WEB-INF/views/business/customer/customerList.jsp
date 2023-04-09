@@ -203,7 +203,7 @@
   
   <script type="text/javascript">
 	  function openDetail(business_num) {
-		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1400, height=1000,top=300, left=300,scrollbars=yes");
+		    window.open("${pageContext.request.contextPath}/business/customer/customerDetail?business_num="+business_num, "popup", "width=1500, height=750,top=100, left=200,scrollbars=yes");
 		}
   </script>
  

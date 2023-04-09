@@ -32,6 +32,7 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   
   <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  
 
 
 </head>
@@ -74,13 +75,13 @@
 		<c:if test="${! empty sessionScope.emp_num }">
 				<input type="button" value="글목록" class="btn btn-primary" style="color: #fff; background-color: #4B49AC; border-color: #4B49AC;"
 		 		onclick="location.href='${pageContext.request.contextPath}/groupware/board/noticeList'"><br>	
-		<c:set var="bo_name" value="${sessionScope.dept_num == 100 ? '경리부' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
+		<c:set var="bo_name" value="${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
 						   sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" />	
 		<c:if test="${boardDTO.bo_name eq bo_name}">	
 				<input type="button" value="글수정" class="btn btn-primary" style="color: #fff; background-color: #4B49AC; border-color: #4B49AC; margin-top: 5px;"
-			 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardUpdate?bo_num=${boardDTO.bo_num}'"><br>
+			 	onclick="updateBoard('${pageContext.request.contextPath}/groupware/board/boardUpdate?bo_num=${boardDTO.bo_num}')"><br>
 				<input type="button" value="글삭제" class="btn btn-primary" style="color: #fff; background-color: #4B49AC; border-color: #4B49AC; margin-top: 5px;"
-			 	onclick="location.href='${pageContext.request.contextPath}/groupware/board/boardDelete?bo_num=${boardDTO.bo_num}'"><br> 			
+			 	onclick="deleteBoard('${pageContext.request.contextPath}/groupware/board/boardDelete?bo_num=${boardDTO.bo_num}')"><br> 			
 		</c:if>		
 		</c:if>
 	</div>
@@ -138,6 +139,23 @@
         <!-- 서머노트를 위해 추가해야할 부분 -->
   <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-lite.js"></script>
   <script src="${pageContext.request.contextPath}/resources/groupware/summernote/summernote-ko-KR.js"></script>
+  <!-- 여기서부터 스크립트 -->
+ <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  <script>
+	function deleteBoard(url) {
+	  if (confirm("게시글을 삭제하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
+  
+  <script>
+	function updateBoard(url) {
+	  if (confirm("글 내용을 수정하시겠습니까?")) {
+	    location.href = url;
+	  }
+	}
+  </script>
 
 </body>
 </html>
