@@ -22,8 +22,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
 	
 <script src="//code.jquery.com/jquery-1.11.0.min.js"></script>
  
