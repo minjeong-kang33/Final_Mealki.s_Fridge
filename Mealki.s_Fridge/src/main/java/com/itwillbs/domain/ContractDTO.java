@@ -15,8 +15,14 @@ public class ContractDTO {
 	private String incharge_code;
 	private String incharge_name;
 	private int contract_qty;
+	private String exists_in_workorder;
 	
-	
+	public String getExists_in_workorder() {
+		return exists_in_workorder;
+	}
+	public void setExists_in_workorder(String exists_in_workorder) {
+		this.exists_in_workorder = exists_in_workorder;
+	}
 	public int getBusiness_num() {
 		return business_num;
 	}

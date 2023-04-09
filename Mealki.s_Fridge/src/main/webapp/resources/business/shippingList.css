@@ -13,8 +13,15 @@
 }
 
 #select_search{
-   width: 60%;
+   width: 70%;
    float: left;
+}
+
+#table_write{
+   float: right;
+   margin-right: 5px;
+   margin-bottom: 30px;
+   width: 5%;
 }
 
 .contentbody{
@@ -24,16 +31,7 @@
 }
 
 
-/* 검색창 부분 */
 
-#search_div{height: 130px;}
-
-#table_search{height: 60%;}
-
-#search_select_div{
-	margin-top: 18px;
-	margin-left: 10px;
-}
 
 td{
 	font-size: 12px;

@@ -108,10 +108,14 @@
 
 
 </table>
+ 
+
 <div align="center">
+<c:if test="${contractDTO.exists_in_workorder.equals('0')}">
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button>
-			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>
+</c:if>			
+			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractList'">글목록</button>
 			</div>
 </div>           
  <!--  본문내용 끝 -->    

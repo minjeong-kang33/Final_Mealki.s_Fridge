@@ -63,7 +63,7 @@
 	<update id="updateShipping">
 		update shipping
 		set out_progress=#{out_progress}
-		
+		where shipping_num=#{shipping_num}
 	</update>
 
 
