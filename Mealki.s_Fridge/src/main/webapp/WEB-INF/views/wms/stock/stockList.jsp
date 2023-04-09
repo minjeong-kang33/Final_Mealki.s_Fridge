@@ -90,20 +90,21 @@
 		    		</tr>
 				</c:forEach>
             </table>
-        	  
-        	    <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+            <div style="margin-left: 40%; margin-top: 10px;">
+        	     <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
 				</c:if>
 				
-				 <c:if test="${pageDTO.currentPage > 0}"> 
-					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+				 <c:if test="${pageDTO.currentPage > 0}"> <!-- end="${pageDTO.endPage }" -->
+					<c:forEach var="i" begin="${pageDTO.startPage }" end="4" step="1">
 						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
 					</c:forEach>
 				 </c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>
-				</c:if> 
+				</c:if>  
+				
             </div>
            
            
@@ -119,8 +120,6 @@
 <!-- 페이징 끝 -->
             </div>
             
-          <!--  </div> -->
-          
         </div> 
         
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->

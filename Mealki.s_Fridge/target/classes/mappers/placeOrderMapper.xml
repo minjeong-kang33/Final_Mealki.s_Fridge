@@ -33,8 +33,13 @@
 		from products join stock
 		on products.item_num = stock.item_num
 		where products.item_num like 'I%'
+		limit #{startRow}, #{pageSize} 
 	</select>
-
+	
+	<select id="getItemListCount" resultType="java.lang.Integer">
+        select count(*) from placeorder
+	</select>
+	
 	<select id="getEmployeeList"
 		resultType="com.itwillbs.domain.EmployeeDTO">
 		select * from employee

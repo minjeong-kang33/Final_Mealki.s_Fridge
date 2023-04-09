@@ -88,6 +88,11 @@ public class StockController {
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
+		System.out.println(count);
+		System.out.println(pageBlock);
+		System.out.println(startPage);
+		System.out.println(endPage);
+		System.out.println(pageCount);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);

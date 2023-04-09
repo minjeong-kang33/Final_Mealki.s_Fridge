@@ -149,8 +149,8 @@ public class ItemController {
 		String[] deleteId = request.getParameterValues("selectId");
 		
 		for(String id : deleteId){
-			itemService.deleteItem(id);
 			stockService.deleteStock(id); //재고
+			itemService.deleteItem(id);
 		}
 		
 		return "redirect:/mdm/item/itemlist";

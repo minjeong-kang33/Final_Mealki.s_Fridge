@@ -14,7 +14,9 @@ public interface PlaceOrderDAO {
 
 	public int getStk_qnt();
 
-	public List<Map<String, Object>> getItemListMap();
+	public List<Map<String, Object>> getItemListMap(PageDTO pageDTO);
+	
+	public int getItemListCount(PageDTO pageDTO);
 
 	public List<EmployeeDTO> getEmployeeList();
 	

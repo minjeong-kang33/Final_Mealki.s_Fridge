@@ -34,9 +34,21 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO {
 	}
 
 	@Override
-	public List<Map<String, Object>> getItemListMap() {
+	public List<Map<String, Object>> getItemListMap(PageDTO pageDTO) {
 		System.out.println("PlaceOrderDAOImpl getItemListMap()");
-		return sqlSession.selectList(namespace + ".getItemListMap");
+		
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace + ".getItemListMap", pageDTO);
+	}
+	
+	
+
+	@Override
+	public int getItemListCount(PageDTO pageDTO) {
+		System.out.println("PlaceOrderDAOImpl getItemListCount()");
+		
+		return sqlSession.selectOne(namespace+".getItemListCount", pageDTO);
 	}
 
 	@Override
@@ -48,15 +60,6 @@ public class PlaceOrderDAOImpl implements PlaceOrderDAO {
 	@Override
 	public void insertOrder(PlaceOrderDTO placeOrderDTO) {
 		System.out.println("PlaceOrderDAOImpl insertOrder()");
-		System.out.println(placeOrderDTO.getDto().get(0).getItem_name());
-		System.out.println(placeOrderDTO.getDto().get(0).getItem_num());
-		System.out.println(placeOrderDTO.getDto().get(0).getOrder_qty());
-		System.out.println(placeOrderDTO.getDto().get(0).getOrder_sum());
-		System.out.println(placeOrderDTO.getDto().get(0).getOrder_vat());
-		System.out.println(placeOrderDTO.getEmp_num());
-		System.out.println(placeOrderDTO.getWhs_num());
-		System.out.println(placeOrderDTO.getDue_date());
-		System.out.println(placeOrderDTO.getOrder_date());
 		sqlSession.insert(namespace + ".insertOrder", placeOrderDTO);
 	}
 

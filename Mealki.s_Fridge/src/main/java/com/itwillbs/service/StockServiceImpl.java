@@ -39,10 +39,6 @@ public class StockServiceImpl implements StockService {
 	@Override
 	public List<StockDTO> getStockList(PageDTO pageDTO) {
 		System.out.println("StockServiceImpl getStockList");
-		System.out.println(pageDTO.getItem_type());
-		System.out.println(pageDTO.getItem_num());
-		System.out.println(pageDTO.getItem_name());
-		System.out.println(pageDTO.getWhs_num());
 		
 		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
 		int endRow = startRow+pageDTO.getPageSize()-1;
@@ -75,14 +71,6 @@ public class StockServiceImpl implements StockService {
 			stockDAO.updateStock(stockDTO);
 		}	
 	}
-	
-
-	/*
-	 * @Override public void updateStock(StockDTO stockDTO) {
-	 * System.out.println("StockServiceImpl updateStock"); if
-	 * (itemDAO.selectItem(stockDTO.getItem_num()) != null){
-	 * stockDAO.updateStock(stockDTO); } }
-	 */
 
 	@Override
 	public void deleteStock(String itemNum) {
