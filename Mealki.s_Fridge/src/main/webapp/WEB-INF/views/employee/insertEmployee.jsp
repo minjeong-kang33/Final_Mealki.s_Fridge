@@ -110,7 +110,7 @@
 							<li><label for="dept_num" class="dept_num">부서</label> 
 										<select name="dept_num" class="dept_num_option">
 											<option value=""> 부서 선택 </option>
-											<option value="100"> 경리부 </option>
+											<option value="100"> R&D </option>
 											<option value="200"> 영업부 </option>
 											<option value="300"> 생산부 </option>
 											<option value="400"> 자재부 </option>
