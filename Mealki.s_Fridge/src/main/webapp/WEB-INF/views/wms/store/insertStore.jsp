@@ -163,7 +163,7 @@ function content_print3(){
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
-											<td style="display: none;">${StoreDTO.emp_num }</td>
+											<td style="display: none;">${sessionScope.emp_num }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
@@ -242,7 +242,7 @@ function content_print3(){
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
-											<td style="display: none;">${StoreDTO.emp_num }</td>
+											<td style="display: none;">${sessionScope.emp_num }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
@@ -303,7 +303,7 @@ function content_print3(){
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
 											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
-											<td style="display: none;">${StoreDTO.emp_num }</td>
+											<td style="display: none;">${sessionScope.emp_num }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
