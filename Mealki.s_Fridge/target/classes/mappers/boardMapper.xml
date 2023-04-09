@@ -48,8 +48,7 @@
 	            and bo_status = 1
 	        </if>
 	    
-	    order by top_fixed desc, 
-    	case when top_fixed = 1 then 0 else bo_num end desc
+	    order by top_fixed desc, bo_num desc
 	    limit #{startRow}, #{pageSize}
 	</select>
     

@@ -27,7 +27,7 @@
                      <tr ><th>담당자 이메일</th><td id="org_email">${customerDTO.man_email}</td><th style="width: 200px;">Fax</th><td>${customerDTO.fax}</td></tr>
                      <tr ><th>주소</th><td colspan="3">(${customerDTO.cust_post_num})${customerDTO.cust_address}, ${customerDTO.cust_address2}</td></tr>
                      <tr ><th>홈페이지</th><td colspan="3">${customerDTO.url_path}</td></tr>
-                     <tr ><th>적요</th><td colspan="3"><textarea name="remarks" rows="20" cols="145">${customerDTO.remarks}</textarea></td></tr>
+                     <tr ><th>적요</th><td colspan="3"><textarea name="remarks" rows="10" cols="145">${customerDTO.remarks}</textarea></td></tr>
                      </table>
                   </div>
                </div>

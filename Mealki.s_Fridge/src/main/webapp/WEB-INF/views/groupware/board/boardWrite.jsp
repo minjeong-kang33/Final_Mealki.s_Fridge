@@ -55,7 +55,6 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">공지 사항</h3>
-<!--                   <h6 class="font-weight-normal mb-0">글쓰기 <span class="text-primary">강조쓰</span></h6> -->
                 </div>
                 
           <div class="contentbody" > 
@@ -71,7 +70,7 @@
 					<tr><th>제목</th>
 					       <td><input type="text" name="bo_title" style="width:100%;"></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? '경리부' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
+					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
 					       												sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" readonly style="width:100%;"></td></tr>
 					       
 					<tr><th>내용</th>
