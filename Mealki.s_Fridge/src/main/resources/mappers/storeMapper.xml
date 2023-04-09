@@ -102,7 +102,6 @@
 	WHERE item_num = (SELECT item_num
 					  FROM placeorder
 					  WHERE order_num = #{order_num}  and item_name = #{item_name})
-		
 	
 	</update>
 
