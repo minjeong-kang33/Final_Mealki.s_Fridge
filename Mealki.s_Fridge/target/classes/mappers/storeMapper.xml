@@ -37,10 +37,10 @@
 		    AND products.item_name LIKE CONCAT('%', #{item_name}, '%')
 		</if>
 		<if test="startDate != null and !startDate.equals('')">
-		    AND sto_date &gt;= #{startDate}
+		    and sto_date like concat ('%',#{startDate}, '%')
 		</if>
 		<if test="endDate != null and !endDate.equals('')">
-		    AND sto_date &lt;= #{endDate}
+		    and sto_date like concat ('%',#{endDate}, '%')
 		</if>
 		GROUP BY
 		    placeorder.order_num,
@@ -78,10 +78,10 @@
 		    AND products.item_name LIKE CONCAT('%', #{item_name}, '%')
 		</if>
 		<if test="startDate != null and !startDate.equals('')">
-		    AND sto_date &gt;= #{startDate}
+		    and sto_date like concat ('%',#{startDate}, '%')
 		</if>
 		<if test="endDate != null and !endDate.equals('')">
-		    AND sto_date &lt;= #{endDate}
+		    and sto_date like concat ('%',#{endDate}, '%')
 		</if>
 		GROUP BY
 		    placeorder.order_num,
@@ -118,14 +118,26 @@
 
 
 	<select id="getStoreDetailList" resultType="map">
-		select sto_num, placeorder.order_num, DATE_FORMAT(sto_date,'%Y-%m-%d')as sto_date, COALESCE(store.sto_progress, '미입고') as sto_progress, 
-		sto_qty, sto_shelf, sto_shelfDetail, sto_empNum, DATE_FORMAT(placeorder.order_date,'%Y-%m-%d') as order_date,
-		DATE_FORMAT(placeorder.due_date,'%Y-%m-%d')as due_date, placeorder.emp_num, placeorder.order_qty, stock.stk_qnt, placeorder.item_name
-		from store
-		right Outer join placeorder on placeorder.order_num = store.order_num
-		left outer join products on placeorder.item_num = products.item_num
-		left join stock on products.item_num = stock.item_num
-		where placeorder.order_num= #{order_num} and placeorder.item_name = #{item_name}
+		  SELECT sto_num, placeorder.order_num, DATE_FORMAT(sto_date,'%Y-%m-%d') AS sto_date, 
+		      CASE
+		          WHEN store.sto_qty IS NULL THEN '미입고'
+		          WHEN store.sto_qty <![CDATA[<]]> placeorder.order_qty THEN '발주완료'
+		          WHEN placeorder.order_qty THEN '입고완료' <![CDATA[<=]]> store.sto_qty 
+		      END AS sto_progress, 
+		      
+		      sto_qty, sto_shelf, sto_shelfDetail, sto_empNum, 
+		      DATE_FORMAT(placeorder.order_date,'%Y-%m-%d') AS order_date,
+		      DATE_FORMAT(placeorder.due_date,'%Y-%m-%d') AS due_date, 
+		      placeorder.emp_num, placeorder.order_qty, stock.stk_qnt, placeorder.item_name
+		  FROM 
+		      placeorder
+		      LEFT JOIN store ON placeorder.order_num = store.order_num AND placeorder.item_name = store.item_name
+		      LEFT JOIN products ON placeorder.item_num = products.item_num
+		      LEFT JOIN stock ON products.item_num = stock.item_num
+		  WHERE 
+		      placeorder.order_num = #{order_num} AND placeorder.item_name = #{item_name}
+		  GROUP BY 
+		      placeorder.order_num, placeorder.item_name
 	</select>
 
 <!-- 
