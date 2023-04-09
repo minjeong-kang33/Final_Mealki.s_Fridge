@@ -75,11 +75,18 @@
             
 <!-- 		레시피추가 및 레시피저장 버튼 -->
 			<div id="item_buttons">
-  				<button class="btn btn-primary" type="button" id="addRecipeButton">추가</button>
+    <c:choose>
+        <c:when test="${sessionScope.dept_num == 100}">
+          	    <button class="btn btn-primary" type="button" id="addRecipeButton">추가</button>
                 <button class="btn btn-primary" type="button" id="updateRecipeButton">수정</button>
   				<button class="btn btn-primary" type="button" id="saveRecipeButton">레시피저장</button>
                 <button class="btn btn-primary" type="button" id="deleteRecipeButton">삭제</button>
-			</div>
+        </c:when>
+        <c:otherwise>
+            <!-- 권한이 없는 경우 버튼x -->
+        </c:otherwise>
+    </c:choose>
+</div>
             
 <!--        레시피리스트 -->
 			<div id="table_content">

@@ -73,7 +73,7 @@ button#deleteItemButton{
   justify-content: center;
   align-items: center;
   background-color: #e6e6f4;
-  border: 1px solid #666470;
+/*   border: 1px solid #666470; */
   padding: 12px;
   margin-left:45px;
   border-radius: 20px;
