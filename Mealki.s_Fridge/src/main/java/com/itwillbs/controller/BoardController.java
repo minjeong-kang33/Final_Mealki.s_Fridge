@@ -9,6 +9,7 @@ import java.util.UUID;
 import javax.annotation.Resource;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,7 +70,7 @@ public class BoardController {
 	}
 	
 	@RequestMapping(value = "/groupware/board/noticeList", method = RequestMethod.GET)
-	public String noticeList(HttpServletRequest request, Model model) {
+	public String noticeList(HttpServletRequest request, HttpSession session, Model model) {
 		System.out.println("BoardController noticeList()");
 		
 		String search_option = request.getParameter("search_option");

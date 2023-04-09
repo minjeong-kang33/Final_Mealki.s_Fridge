@@ -19,7 +19,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/insertCustomer.css">
@@ -97,8 +97,9 @@
 									<option value=""> 선택하세요 </option>
 									<option value="도매 및 소매업">도매 및 소매업</option>
 									<option value="도매 및 상품 중개업">도매 및 상품 중개업</option>
-									<option value="숙박 및 음식점업">숙박 및 음식점업</option>
+									<option value="숙박 및 음식점업">숙박 및 음식점업</option>									
 									<option value="그 외(개인)">그 외(개인)</option>
+									<option value="그 외(단체)">그 외(단체)</option>
 								</select><br>
 							<label>종목<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<select name="cust_jongmok" class="cust_jongmok">
@@ -121,6 +122,7 @@
 									<option value="종이 원지, 판지, 종이상자 도매업">종이 원지, 판지, 종이상자 도매업</option>
 									<option value="간이 음식 포장 판매 전문점">간이 음식 포장 판매 전문점</option>
 									<option value="그 외(개인)">그 외(개인)</option>
+									<option value="그 외(단체)">그 외(단체)</option>
 								</select><br>
 							<label>담당자 이름<img src="${pageContext.request.contextPath}/resources/business/star.png" width="15" height="15"></label> 
 								<input type="text" name="man_name" class="man_name"><br>

@@ -31,7 +31,7 @@ public class CustomerController {
 		System.out.println(search_option);
 		System.out.println(keyword);
 		
-		int pageSize=20;
+		int pageSize=15;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null){
