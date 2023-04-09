@@ -238,15 +238,34 @@ function fun1() {
 
       let selectItemPrefix = newRow.querySelector("select[name='item_prefix']");
       let inputItemNum = newRow.querySelector("input[name='item_num']");
+      let selectItemType = newRow.querySelector("select[name='item_type']");
+
+      // 초기 필터링 상태 설정
+      filterItemTypeOptions(selectItemPrefix.value);
 
       selectItemPrefix.addEventListener("change", function() {
         let prefix = selectItemPrefix.value;
         let itemNum = "";
 
-
+        filterItemTypeOptions(prefix);
       });
+
+      function filterItemTypeOptions(prefix) {
+        if (prefix === 'P') {
+          selectItemType.innerHTML = `
+            <option value="상온완제품">상온완제품</option>
+            <option value="냉장완제품">냉장완제품</option>
+            <option value="냉동완제품">냉동완제품</option>
+          `;
+        } else if (prefix === 'I') {
+          selectItemType.innerHTML = `
+            <option value="상온식자재">상온식자재</option>
+            <option value="냉장식자재">냉장식자재</option>
+            <option value="냉동식자재">냉동식자재</option>
+          `;
+        }
+      }
     });
-    
     
 
     // 품목수정 버튼 이벤트
@@ -276,10 +295,12 @@ function fun1() {
 			    </td>
 			    <td>
 			      <select name="item_type" value=\${itemType}>
-			        <option value="냉동완제품">냉동완제품</option>
+			      	<option value="상온완제품">상온완제품</option>
 			        <option value="냉장완제품">냉장완제품</option>
-			        <option value="냉동식자재">냉동식자재</option>
+			        <option value="냉동완제품">냉동완제품</option>
+			        <option value="상온식자재">상온식자재</option>
 			        <option value="냉장식자재">냉장식자재</option>
+			        <option value="냉동식자재">냉동식자재</option>
 			      </select>
 			    </td>
 			    <td><input type="text" name="item_name" value="\${item_name}" placeholder="품목명"></td>
