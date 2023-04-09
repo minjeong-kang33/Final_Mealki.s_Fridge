@@ -61,7 +61,7 @@ public class StockController {
 		String item_name = request.getParameter("item_name");
 		String whs_num = request.getParameter("whs_num");
 		
-		int pageSize=10;
+		int pageSize=2;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {
