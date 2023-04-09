@@ -51,8 +51,7 @@
 			<th>납품일자</th>
 		</tr>
 
-
-		<tr onClick="location.href='${pageContext.request.contextPath}/workorder/WoInsert'">
+		<tr onClick="location.href='${pageContext.request.contextPath}/workorder/WoInsert?business_num=${workorderDTO.business_num}';WoInsert();">
 			<td>${workorderDTO.business_num}</td>
 			<td>${workorderDTO.item_name}</td>
 			<td>${workorderDTO.contract_qty}</td>
@@ -61,10 +60,14 @@
 			<td>${workorderDTO.out_date}</td>
 		</tr>
 
-
 	</table>
 	</div>
 	<script>
+	function WoInsert() {
+		window.resizeTo(800, 650);
+		window.moveTo(500, 150);
+	};
+	
 	function checkForm() {
 		let f = document.contractsearchform
 		if(f.keyword.value == ""){ 
