@@ -257,7 +257,7 @@ function fun1() {
 
   		// 아이템 번호 생성
   		inputItemNum.addEventListener("focus", function() {
-    	let prefix = "A"; 
+    	let prefix = ""; 
     	let itemNum = "";
 
 
@@ -279,7 +279,11 @@ function fun1() {
       let r_date = element.querySelector('td:nth-child(8)').textContent;
       let r_etc = element.querySelector('td:nth-child(9)').textContent;
 
-
+   // 현재 날짜를 가져와서 등록일을 업데이트.
+      let currentDate = new Date();
+      let formattedDate = currentDate.getFullYear() + "." + ("0" + (currentDate.getMonth() + 1)).slice(-2) + "." + ("0" + currentDate.getDate()).slice(-2);
+      r_date = formattedDate;
+      
       element.innerHTML = `
     	  <td><input type="checkbox" name="selectItem"></td>
     	  	<td><input type="text" name="r_num" value="\${recipeNum}" placeholder="레시피번호" readonly></td>
@@ -289,16 +293,23 @@ function fun1() {
 		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
 		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량(g)"></td>
 		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일" readonly></td>
-		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`;
+		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`
 
+    	  let inputItemNum = element.querySelector("input[name='item_num']");
+
+      inputItemNum.addEventListener("click", function() {
+        let focusedInput = this;
+        window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
+        this.focus();
+      });
+ 
+		    
       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
       let inputRecipeNum = element.querySelector("input[name='r_num']");
 
       selectItemPrefix.addEventListener("change", function() {
         let prefix = selectItemPrefix.value;
         let recipeNum = "";
-
-       
 
         inputRecipeNum.value = recipeNum;
       });
