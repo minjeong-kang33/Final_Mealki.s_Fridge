@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
-<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/findWarehouse.css">
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/findProduct.css">
 </head>
 <body>
 	<h4>| 식자재 목록</h4>
@@ -18,7 +18,6 @@
 			<th>단위</th>
 			<th>현재고</th>
 			<th>거래처</th>
-			<th>납입단가</th>
 			
 			
 			<c:forEach var="dto" items="${itemListMapStore }">
@@ -28,7 +27,6 @@
 					<td id="weight">${dto.weight }</td>
 					<td id="stk_qnt">${dto.stk_qnt }</td>
 					<td id="supplier">${dto.supplier }</td>
-					<td id="supply_price">${dto.supply_price }</td>
 			</tr>
 			</c:forEach>
 	</table>
