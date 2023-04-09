@@ -22,7 +22,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/stockList.css">
@@ -79,7 +79,14 @@
 		    			<td>${StockDTO.item_type}</td><td id="item_num">${StockDTO.item_num}</td><td>${StockDTO.item_name}</td>
 		    			<td id="stk_qnt">${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
 		    			<td style="width: 50px;"><input type="text" name="new_stk_qnt" id="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="width: 70px; border-color: dark-grey; margin-left: 7px; margin-right: 7px;" value=""></td>
-		    			<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt">수정</button></td>
+		    			<c:choose>
+				    		<c:when test="${sessionScope.dept_num == 400}">
+				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="update_qnt(this)">수정</button></td>
+				    		</c:when>
+				    		<c:otherwise>
+				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="alert('권한이 없습니다.')">수정</button></td>
+				    		</c:otherwise>
+						</c:choose>
 		    		</tr>
 				</c:forEach>
             </table>
@@ -185,8 +192,30 @@ $('#finditem_type').on("click",function(e){
 </script>  
 <script type="text/javascript">
  /* 실사량 수정 update_qnt */
-$(function(){
-	$(".update_qnt").click(function(){
+function update_qnt(btn) {
+    var tr = $(btn).closest('tr');
+    var td = tr.children();
+
+    var item_num = td.eq(1).text();
+    var item_name = td.eq(2).text();
+    var new_qnt = td.eq(5).find('input[type="text"]').val();
+
+    $.ajax({
+        url: 'updateQnt',
+        type: 'GET',
+        data: { item_num: item_num, new_qnt: new_qnt },
+        success: function(result) {
+            alert(item_name + "의 재고가 " + new_qnt + "개로 수정되었습니다.");
+            document.location.reload();
+        },
+        error: function(request, status, error) {
+            if (new_qnt === null || new_qnt === '') {
+                alert("실사량을 입력해주세요.");
+            }
+        }
+    });
+}
+/* function update_qnt() {
 		var str = "";
 		var update_qnt = $(this);
 		
@@ -213,11 +242,7 @@ $(function(){
 					}
 				}
 			}); 
-		
-	});
-	
-});
-
+	} */
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
