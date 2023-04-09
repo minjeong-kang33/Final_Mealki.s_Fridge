@@ -10,7 +10,6 @@
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
@@ -24,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
@@ -86,10 +85,22 @@
 		</div>
 		<h4> | 작업지시현황 </h4>
 				<!-- 작업지시등록버튼 -->
-				<a href=# onclick="return ContractList();" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
-				작업지시서 등록
-				</a> 
-		
+				
+				
+				
+				<c:choose>
+				    <c:when test="${sessionScope.dept_num == 300}">
+				        <a href=# onclick="return ContractList();" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+						작업지시서 등록
+						</a> 
+				    </c:when>
+				    <c:otherwise>
+				    	<a href=# onclick="alert('권한이 없습니다.')" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
+						작업지시서 등록
+						</a>
+				    </c:otherwise>
+				</c:choose>
+				
 				<div class="tab">
 				    <ul class="tabnav">
 				      <li><a href="#tab01">전체</a></li>

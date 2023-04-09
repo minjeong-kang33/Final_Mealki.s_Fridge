@@ -18,7 +18,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 <meta charset="UTF-8">
@@ -34,7 +34,7 @@
 	<form action="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro" method="post">
 	<div style="text-align: right;">
 	<c:forEach var="WorkorderDTO" items="${WoInsert}" begin="0" end="0">
-	<b>작성일 : ${WorkorderDTO.wo_date}</a></b>
+		<b>작성일 : ${WorkorderDTO.wo_date}</a></b>
 	</c:forEach>
 	</div>
 	
@@ -54,11 +54,10 @@
 				<c:if test="${empty WorkorderDTO.wo_state || WorkorderDTO.wo_state eq '진행중'}">
 					<select id="manu_name" name="manu_name" >
 						<option value="" disabled selected hidden>${WorkorderDTO.manu_name}</option>
-						<option value="가공1">가공1</option>
-						<option value="가공2">가공2</option>
-						<option value="가공3">가공3</option>
+						<option value="가공1" ${WorkorderDTO.manu_name == '가공1' ? 'selected' : ''}>가공1</option>
+						<option value="가공2" ${WorkorderDTO.manu_name == '가공2' ? 'selected' : ''}>가공2</option>
+						<option value="가공3" ${WorkorderDTO.manu_name == '가공3' ? 'selected' : ''}>가공3</option>
 					</select>
-					
 				</c:if>
 				<c:if test="${WorkorderDTO.wo_state eq '완료'}">
 					${WorkorderDTO.manu_name}
@@ -103,13 +102,21 @@
 		</c:forEach>
 	</table>
 	<div style="margin-top:10px; text-align: right;">
+	
+
 	<!-- 생산이 진행중이거나 완료시 작업지시서 수정삭제 불가 -->
-
 	<c:if test="${empty woState}">
-		<input type="submit" onclick="ualert" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
-		<input type="submit" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
+		<c:choose>
+			<c:when test="${sessionScope.dept_num == 300}">
+				<input type="submit" onclick="return confirmUpdate()" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
+				<input type="submit" onclick="return confirmDelete()" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
+			</c:when>
+				 <c:otherwise>
+						<input onclick="alert('권한이 없습니다.')" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" >
+						<input onclick="alert('권한이 없습니다.')" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제">
+				 </c:otherwise>
+		</c:choose>
 	</c:if>
-
 		<input type="button" class="btn btn-primary" data-dismiss="modal" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="닫기">
 	</div>
 
@@ -118,10 +125,21 @@
 </body>
 		
 	<script>
-		function ualert(){
-			alert("수정 완료");
+	function confirmUpdate() {
+		if(confirm("수정하시겠습니까?")) {
+			return true;
+		} else {
+			return false;
 		}
+	}
 	
+	function confirmDelete() {
+		if(confirm("삭제하시겠습니까?")) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 	
 		date = new Date();
 		year = date.getFullYear();
