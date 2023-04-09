@@ -36,8 +36,7 @@
 		
 			opener.document.getElementById("business_name").value = business_name;
 			
-			
-			
+
 			window.close();
 			
 		}); 

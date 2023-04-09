@@ -56,51 +56,7 @@ $(function(){
 	  }).filter(':eq(0)').click();
 	  });
 
-//버튼 클릭 시 입력된 값 tr정보 넘기기
-// $(function(){
-// $(".shipping_submit_button").click(function(){ 
-		
-// 		var str = "";
-// 		var tdArr = new Array();	// 배열 선언
-// 		var shipping_submit_button = $(this);
-		
-// 		var tr = shipping_submit_button.parent().parent();
-// 		var td = tr.children();
-		
-// 		td.each(function(i) {
-// 			  var text = td.eq(i).text().trim(); // i번째 td의 텍스트를 가져와 공백 제거
-// 			  if (text !== "" && text !== null) { // 텍스트가 빈 값이나 null이 아니면 배열에 추가
-// 				  var selectValue = $(this).find('select').val();
-// 				  tdArr.push(selectValue || text);
-// 			  }
-// 			});
-		
-// 		var wo_num = tdArr[0]; 
-// 		var item_num = tdArr[1]; 
-// 		var item_name = tdArr[2];
-// 		var delivery_date = tdArr[3]; 
-// 		var out_date = tdArr[4]; 
-// 		var out_qty = tdArr[5]; 
-// 		var qc_qty = tdArr[6]; 
-// 		var incharge_name =tdArr[7]; 
-// 		var business_name =tdArr[8]; 
-// 		var out_progress =tdArr[9]; 
-		
-// 		console.log("배열에 담긴 값 : "+tdArr);
-// 		alert(tdArr);
-		
-// 		$.ajax({
-// 				url:'${pageContext.request.contextPath}/business/shipping/addShipping',
-// 				type :'GET',
-// 				data:{"wo_num":wo_num},
-// 				success:function(result){
-// 				alert(result);
-// 				alert(out_qty+"개가 출하처리 되었습니다.");
-// 				location.reload();
-// 				}
-// 			});
-// });	
-// });	
+
 </script>
 </head>
 <body>
@@ -131,18 +87,22 @@ $(function(){
 <!--  본문 내용 시작 -->
 <%-- 			   <div>Total: ${total}</div> --%>
 			   <div id="table_search">
-			   <form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
-					<select name="search_option" class="search_option">
-						<option value="">선택하세요</option>
-						<option value="product_name">품명</option>
-						<option value="item_num">품목코드</option>
-					</select>
-						<input type="text" name="search" class="input_box">
-						<input type="submit" value="search">
-						
-				</form>
+	<div id="select_search">
+		<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
+			<select name="search_option" class="search_option">
+				<option value="">선택하세요</option>
+				<option value="product_name">품명</option>
+				<option value="item_num">품목코드</option>
+			</select>
+				<input type="text" name="search" class="input_box">
+				<input type="submit" value="search">		
+		  </form>
+	</div>
 				
-				</div>		
+	<div id="table_write" >
+		<button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
+	</div> 	
+</div>		
 
 
            <div class="tab">
@@ -213,10 +173,7 @@ $(function(){
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 				<a href="${pageContext.request.contextPath}/business/shipping/shippingList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 				</c:if>
-				<div align="center">
-					<button type="submit" class="btn btn-primary" 
-					onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
-			    </div>
+				
 				</div>
            		
            		</div>
@@ -266,6 +223,7 @@ $(function(){
            		</c:forEach>
            		</table>
            		</form>
+           		
            		</div>
            		</div>
            		

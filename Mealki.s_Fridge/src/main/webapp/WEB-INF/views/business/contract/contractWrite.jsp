@@ -67,6 +67,18 @@
 				openWin=window.open("${pageContext.request.contextPath}/business/contract/findName2",
 					"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
 				}
+	
+	
+			
+	</script>
+	<script type="text/javascript">
+	/* 오늘 날짜 구하기 (발주일 고정값) */
+	document.getElementById('business_date').valueAsDate = new Date();	
+	
+	/* 내일 날짜 구하기 (납기일 기본값)*/
+	var today = new Date();
+	var tomorrow = new Date(today.setDate(today.getDate() + 1));
+	document.getElementById('out_date').valueAsDate = tomorrow;
 	</script>
 </head>
 
@@ -123,7 +135,7 @@
          	<td><input type="date"  id="business_date" name="business_date"></td>
          	<td><input type="date"  id="out_date" name="out_date"></td>
 			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
-         	<td onclick="findName2()"><input type="text" name="emp_Kname" id="emp_Kname"></td>
+         	<td onclick="findName2()"><input type="text" name="incharge_name" id="emp_Kname"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>
          </tr>	
          

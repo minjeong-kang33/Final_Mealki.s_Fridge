@@ -19,11 +19,11 @@
 				
 				
 				
-				 <c:forEach var="EmployeeDTO" items="${NameList2}">
+				 <c:forEach var="ContractDTO" items="${NameList2}">
 				 <tr class="row_a">	
-				 	<td id="emp_Kname">${EmployeeDTO.emp_Kname }</td>
+				 	<td id="incharge_name">${ContractDTO.emp_Kname}</td>
 				 	
-				</tr> 	
+				</tr> 	 
 			    </c:forEach>
 		</table>
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>		
@@ -32,10 +32,9 @@
 		$(".row_a").click(function() {
 			var checkList = $(this);
 			var td = checkList.children();
-			var "emp_Kname" = td.eq(0).text();
+			var emp_Kname = td.eq(0).text();
 		
-			opener.document.getElementById(""emp_Kname"").value = "emp_Kname";
-			
+			opener.document.getElementById("emp_Kname").value = emp_Kname;
 			
 			
 			window.close();

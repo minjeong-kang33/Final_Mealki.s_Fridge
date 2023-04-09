@@ -125,7 +125,7 @@
  <div align="center">
 <button type="submit" class="btn btn-primary">저장</button>
 </div>
-</form>         
+         
  <!--  본문내용 끝 -->    
         
           </div>

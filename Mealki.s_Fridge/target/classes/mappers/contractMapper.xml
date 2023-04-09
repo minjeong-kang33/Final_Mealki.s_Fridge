@@ -31,7 +31,7 @@
         SELECT item_name,business_name, date_format(business_date,'%Y-%m-%d') as business_date,
         date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty, business_num
         from contract
-        
+       
         <if test="search_option == 'item_name'.toString()">
         where item_name  like CONCAT('%',#{search},'%')
         </if>
@@ -63,12 +63,13 @@
 
 	<select id="getContractListMap" resultType="map">
 		SELECT customer.cust_num, customer.cust_name
-		from customer join contract
-		on customer.cust_num = contract.cust_num	
+		from customer 
+			
 	</select>
 	
 	<select id="getProductList" resultType="com.itwillbs.domain.PlaceOrderDTO">
 	select * from products
+	where item_num like '%p%'
 	</select>
 	
 	<select id="getNameList" resultType="com.itwillbs.domain.ContractDTO">
@@ -81,8 +82,15 @@
 	</select>
 	
 	<select id="getBoard" resultType="com.itwillbs.domain.ContractDTO">
-		select * from contract
-		where business_num = #{business_num}
+		select business_num, cust_num, item_num,item_name,business_name,business_date,
+		out_date,incharge_name,contract_qty,
+		
+		(CASE WHEN EXISTS (
+        SELECT 1 FROM workorder WHERE business_num = #{business_num}
+		    ) THEN 1 ELSE 0 END )AS exists_in_workorder
+		FROM contract
+		WHERE business_num = #{business_num};
+		
 	</select>
 
 	<update id="updateBoard">
