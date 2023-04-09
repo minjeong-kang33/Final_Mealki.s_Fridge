@@ -97,7 +97,7 @@
 							<li><label for="dept_num" class="dept_num">부서</label> 
 								<select name="dept_num" class="dept_num_option">
 										
-									<option value="100" <c:if test="${dto.dept_num eq '100' }"> selected</c:if>> 경리부 </option>
+									<option value="100" <c:if test="${dto.dept_num eq '100' }"> selected</c:if>> R&D </option>
 									<option value="200" <c:if test="${dto.dept_num eq '200' }"> selected</c:if>> 영업부 </option>
 									<option value="300" <c:if test="${dto.dept_num eq '300' }"> selected</c:if>> 생산부 </option>
 									<option value="400" <c:if test="${dto.dept_num eq '400' }"> selected</c:if>> 자재부 </option>
