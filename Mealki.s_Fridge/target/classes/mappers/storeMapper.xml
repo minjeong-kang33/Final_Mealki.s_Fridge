@@ -35,7 +35,7 @@
         </if>
         
         <if test="startDate != null and !startDate.equals('')">
-        	and sto_date like concat ('%',#{startDate}, '%') and sto_progress ='입고완료'
+        	and sto_date like concat ('%',#{startDate}, '%')
         </if>
         
          <if test="endDate != null and !endDate.equals('')">
@@ -79,29 +79,33 @@
 	</select>
 	
 	<insert id="insertStore">
-		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
-			    sto_shelf,sto_shelfDetail,sto_empNum)
-				  values (
-				    concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
-				    #{order_num}, 
-				    #{sto_date}, 
-				    #{sto_progress}, 
-				    #{sto_qty}, 
-				    #{sto_shelf},
-				    #{sto_shelfDetail},
-				    #{sto_empNum}
-				  )
+	  insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,sto_shelf,sto_shelfDetail,sto_empNum, item_name)
+	  select
+	    (concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
+	    #{order_num},
+	    #{sto_date},
+	    #{sto_progress},
+	    #{sto_qty},
+	    #{sto_shelf},
+	    #{sto_shelfDetail},
+	    #{sto_empNum},
+	    #{item_name}
+	  from store
+	  where order_num = #{order_num} and item_name = #{item_name} 
+	  limit 1)
 	</insert>
 	
 	<update id="updateStock">
 	UPDATE stock
 	SET stock.stk_qnt = stock.stk_qnt + (SELECT sto_qty
 						 FROM store
-						 WHERE order_num = #{order_num})
+						 WHERE order_num = #{order_num} and item_name = #{item_name})
 	WHERE item_num = (SELECT item_num
 					  FROM placeorder
 					  WHERE order_num = #{order_num})
-	
+		 and item_name = (SELECT item_name
+					  FROM placeorder
+					  WHERE item_name = #{item_name})
 	</update>
 
 

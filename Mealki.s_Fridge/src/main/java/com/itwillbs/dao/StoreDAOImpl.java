@@ -49,6 +49,7 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println(storeDTO.getSto_shelf());
 		System.out.println(storeDTO.getSto_shelfDetail());
 		System.out.println(storeDTO.getSto_empNum());
+		System.out.println(storeDTO.getItem_name());
 		  
 		sqlSession.insert(namespace + ".insertStore", storeDTO);
 		sqlSession.update(namespace + ".updateStock", storeDTO);
