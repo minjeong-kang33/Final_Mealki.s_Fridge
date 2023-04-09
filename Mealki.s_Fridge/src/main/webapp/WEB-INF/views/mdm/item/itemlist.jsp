@@ -73,12 +73,19 @@
             </div>
             
 <!-- 		상품추가 및 상품저장 버튼 -->
-			<div id="item_buttons">
-  				<button class="btn btn-primary" type="button" id="addItemButton">＋품목추가</button>
-                <button class="btn btn-primary" type="button" id="updateItemButton">✎품목수정</button>
-  				<button class="btn btn-primary" type="button" id="saveItemButton">✓품목저장</button>
-                <button class="btn btn-primary" type="button" id="deleteItemButton">✂품목삭제</button>
-			</div>
+	<div id="item_buttons">
+    <c:choose>
+        <c:when test="${sessionScope.dept_num == 100}">
+            <button class="btn btn-primary" type="button" id="addItemButton">＋품목추가</button>
+            <button class="btn btn-primary" type="button" id="updateItemButton">✎품목수정</button>
+            <button class="btn btn-primary" type="button" id="saveItemButton">✓품목저장</button>
+            <button class="btn btn-primary" type="button" id="deleteItemButton">✂품목삭제</button>
+        </c:when>
+        <c:otherwise>
+            <!-- 권한이 없는 경우 버튼x -->
+        </c:otherwise>
+    </c:choose>
+</div>
             
 <!--        품목리스트 -->
 			<div id="table_content">
