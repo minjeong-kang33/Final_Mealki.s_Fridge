@@ -11,8 +11,15 @@ public class StoreDTO {
 	private String sto_shelf;
 	private int sto_shelfDetail;
 	private int sto_empNum;
+	private String item_name;
 	
 
+	public String getItem_name() {
+		return item_name;
+	}
+	public void setItem_name(String item_name) {
+		this.item_name = item_name;
+	}
 	public String getSto_progress() {
 		return sto_progress;
 	}
