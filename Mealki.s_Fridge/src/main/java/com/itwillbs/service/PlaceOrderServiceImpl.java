@@ -35,9 +35,23 @@ public class PlaceOrderServiceImpl implements PlaceOrderService {
 	}
 
 	@Override
-	public List<Map<String, Object>> getItemListMap() {
+	public List<Map<String, Object>> getItemListMap(PageDTO pageDTO) {
 		System.out.println("PlaceOrderServiceImpl getItemListMap()");
-		return placeOrderDAO.getItemListMap();
+		
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return placeOrderDAO.getItemListMap(pageDTO);
+	}
+	
+	@Override
+	public int getItemListCount(PageDTO pageDTO) {
+		System.out.println("PlaceOrderServiceImpl getItemListCount()");
+		
+		return placeOrderDAO.getItemListCount(pageDTO);
 	}
 
 	@Override

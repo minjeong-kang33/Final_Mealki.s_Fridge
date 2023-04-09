@@ -30,7 +30,7 @@
 		<if test="whs_num!=null and !whs_num.equals('')">
 			and whs_num = #{whs_num}
 		</if>
-		 limit #{startRow}, #{pageSize}
+		 limit #{startRow}, #{pageSize} 
 	</select>
 	
 	<select id="getStockListCount"

@@ -32,6 +32,21 @@
 			</tr>
 			</c:forEach>
 	</table>
+	<div style="text-align: center; margin-top: 10px;">
+		<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
+			<a href="${pageContext.request.contextPath}/wms/placeorder/findProducts?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[10페이지 이전]</a>
+		</c:if>
+				
+		<c:if test="${pageDTO.currentPage > 0}">
+			<c:forEach var="i" begin="${pageDTO.startPage }" end="4" step="1">
+				<a href="${pageContext.request.contextPath}/wms/placeorder/findProducts?pageNum=${i}">${i}</a> 
+			</c:forEach>
+		</c:if>
+
+		<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
+			<a href="${pageContext.request.contextPath}/wms/placeorder/findProducts?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[10페이지 다음]</a>
+		</c:if> 
+	</div>
 
 	<script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
 	<script type="text/javascript">

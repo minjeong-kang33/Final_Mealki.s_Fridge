@@ -39,13 +39,6 @@ import com.itwillbs.service.PlaceOrderService;
 public class PlaceOrderController {
 	@Inject
 	private PlaceOrderService placeOrderService;
-
-	@RequestMapping(value = "/wms/placeorder/insertOrder2", method = RequestMethod.GET)
-	public String insertOrder(Model model) {
-		System.out.println("PlaceOrderController insertOrder");
-
-		return "wms/placeorder/orderForm";
-	}
 	
 	@RequestMapping(value = "/wms/placeorder/insertOrder", method = RequestMethod.GET)
 	public String ordersearch(Model model, HttpServletRequest request) throws Exception {
@@ -55,11 +48,6 @@ public class PlaceOrderController {
 		String order_date = request.getParameter("order_date");
 		String due_date = request.getParameter("due_date");
 		String item_name = request.getParameter("item_name");
-		
-		System.out.println("받은 order_num: "+order_num);
-		System.out.println("받은 order_date: "+order_date);
-		System.out.println("받은 due_date: "+due_date);
-		System.out.println("받은 item_name: "+item_name);
 		
 		int pageSize=10;
 		
@@ -146,10 +134,41 @@ public class PlaceOrderController {
 	@RequestMapping(value = "/wms/placeorder/findProducts", method = RequestMethod.GET)
 	public String findProducts(HttpServletRequest request, Model model) {
 		System.out.println("PlaceOrderController findProducts()");
-
-		List<Map<String, Object>> itemListMap = placeOrderService.getItemListMap();
+		
+		int pageSize=10;
+		
+		String pageNum=request.getParameter("pageNum");
+		if(pageNum==null) {
+			pageNum="1";
+		}
+		int currentPage=Integer.parseInt(pageNum);
+		
+		PageDTO pageDTO=new PageDTO();
+		pageDTO.setPageSize(pageSize);
+		pageDTO.setPageNum(pageNum);
+		pageDTO.setCurrentPage(currentPage);
+		
+		
+		List<Map<String, Object>> itemListMap = placeOrderService.getItemListMap(pageDTO);
+		
+		int count = placeOrderService.getItemListCount(pageDTO);
+		int pageBlock=10;
+		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+		int endPage=startPage+pageBlock-1;
+		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+		if(endPage > pageCount){
+			endPage = pageCount;
+		}
+		
+		pageDTO.setCount(count);
+		pageDTO.setPageBlock(pageBlock);
+		pageDTO.setStartPage(startPage);
+		pageDTO.setEndPage(endPage);
+		pageDTO.setPageCount(pageCount);
+		
 		model.addAttribute("itemListMap", itemListMap);
-
+		model.addAttribute("pageDTO", pageDTO);
+		
 		return "wms/placeorder/findProducts";
 	}
 
