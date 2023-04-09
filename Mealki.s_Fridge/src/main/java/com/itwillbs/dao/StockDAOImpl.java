@@ -1,6 +1,8 @@
 package com.itwillbs.dao;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.inject.Inject;
 
@@ -67,12 +69,21 @@ public class StockDAOImpl implements StockDAO {
 		
 		sqlSession.update(namespace+".updateStock", stockDTO);
 	}
+	
+	
+	@Override
+	public StockDTO selectItem(String itemNum) {
+		System.out.println("StockDAOImpl selectItem()");
+		Map<String, String> map = new HashMap<>();
+		map.put("itemNum", itemNum);
+		return sqlSession.selectOne(namespace+".selectItem", map);
+	}
 
 	@Override
-	public void deleteStock(String item_num) {
+	public void deleteStock(String itemNum) {
 		System.out.println("StockDAOImpl deleteStock()");
 		
-		sqlSession.delete(namespace+".deleteStock", item_num);
+		sqlSession.delete(namespace+".deleteStock", itemNum);
 		
 	}
 	

@@ -37,9 +37,12 @@ public class StoreController {
 		String e_num = request.getParameter("emp_num");
 		String item_name = request.getParameter("item_name");
 		
+		System.out.println("날짜"+startDate+endDate);
 		if(e_num==""||e_num==null) {e_num="0";}
 		
 		int emp_num = Integer.parseInt(e_num);
+		
+		System.out.println("dd "+ emp_num);
 		
 		int pageSize=15;
 		
@@ -63,12 +66,12 @@ public class StoreController {
 		if(startDate != null && !startDate.equals("")) {
 			java.util.Date date = sdf.parse(startDate);
 			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
-			pageDTO.setOrder_date(order_date1);
+			pageDTO.setStartDate(order_date1);
 		}
 		if(endDate != null && !endDate.equals("")) {
 			java.util.Date date2 = sdf.parse(endDate);
 			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
-			pageDTO.setDue_date(due_date1);
+			pageDTO.setEndDate(due_date1);
 		}	
 		
 		

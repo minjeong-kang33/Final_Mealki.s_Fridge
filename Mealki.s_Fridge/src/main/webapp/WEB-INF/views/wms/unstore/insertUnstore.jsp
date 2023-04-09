@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertUnStore.css">
@@ -67,7 +67,6 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">출고관리</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
                 </div>
                 
           <div class="contentbody"> 
@@ -125,7 +124,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -183,7 +182,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -227,7 +226,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' }">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->

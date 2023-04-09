@@ -107,7 +107,7 @@ public class ItemController {
 //		ItemDTO existingItem = itemService.getItemByNum(item_num);
 		
 		ItemDTO dto = new ItemDTO();
-//		StockDTO stockDTO = new StockDTO();
+		StockDTO stockDTO = new StockDTO(); //재고
 		
 //		dto.setItem_num(existingItem.getItem_num());
 //		dto.setItem_num(request.getParameter("item_num"));
@@ -130,10 +130,14 @@ public class ItemController {
 		}
 
 		itemService.save(dto);
-		//재고테이블에도 반영
-//		stockDTO.setItem_name(request.getParameter("item_name"));
-//		stockDTO.setItem_type(request.getParameter("item_type"));
-//		stockService.updateStock(stockDTO);
+		//식자재일때만 재고에도 반영
+		String item_num = request.getParameter("item_num");
+		if (item_num != null && item_num.startsWith("I")) {
+		    stockDTO.setItem_num(request.getParameter("item_num"));
+		    stockDTO.setItem_type(request.getParameter("item_type"));
+		    stockDTO.setItem_name(request.getParameter("item_name"));
+		    stockService.insertStock(stockDTO);
+		}
 		
 		return "redirect:/mdm/item/itemlist";
 	}
@@ -146,6 +150,7 @@ public class ItemController {
 		
 		for(String id : deleteId){
 			itemService.deleteItem(id);
+			stockService.deleteStock(id); //재고
 		}
 		
 		return "redirect:/mdm/item/itemlist";
@@ -156,7 +161,7 @@ public class ItemController {
 		System.out.println("ItemController save()");
 		
 		ItemDTO dto = new ItemDTO();
-//			StockDTO stockDTO = new StockDTO();
+		StockDTO stockDTO = new StockDTO(); //재고
 
 		String itemNum = request.getParameter("item_num");
 		if(StringUtils.isEmpty(itemNum)){
@@ -174,8 +179,10 @@ public class ItemController {
 
 			String newItemNum = String.format("%s%03d", prefix, newNum);
 			dto.setItem_num(newItemNum);
+			stockDTO.setItem_num(newItemNum); //재고
 		} else {
 			dto.setItem_num(itemNum);
+			stockDTO.setItem_num(itemNum); //재고
 		}
 
 		dto.setItem_type(request.getParameter("item_type"));
@@ -211,11 +218,12 @@ public class ItemController {
 		}
 		    
 		itemService.save(dto);
-		//재고테이블에도 반영
-//		stockDTO.setItem_name(request.getParameter("item_name"));
-//		stockDTO.setItem_num(newItemNum);
-//		stockDTO.setItem_type(request.getParameter("item_type"));
-//		stockService.insertStock(stockDTO);
+		// 식자재만 재고테이블에 추가
+	    if (stockDTO.getItem_num().startsWith("I")) {
+	        stockDTO.setItem_type(request.getParameter("item_type"));
+	        stockDTO.setItem_name(request.getParameter("item_name"));
+	        stockService.insertStock(stockDTO);
+	    }
 		
 		return "redirect:/mdm/item/itemlist";
 	}

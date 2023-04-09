@@ -36,7 +36,7 @@
 			</if>
 			
 			<if test="search_check == null or search_check.equals('')">
-        		and emp_status ='재직' or emp_status ='휴직'
+        		and (emp_status ='재직' or emp_status ='휴직')
         	</if>
     </select>
     
@@ -142,6 +142,7 @@
 				and department.dept_deptName like CONCAT('%', #{keyword}, '%')
 			</if>
 		order by department.dept_deptName, dept_position, dept_duty, emp_joinDate desc
+		limit #{startRow}, #{pageSize}  
     </select>
     
     	 <select id="yellowPageCount" resultType="java.lang.Integer">
@@ -152,7 +153,7 @@
 			 on dept_num = dept_deptNum
 			 where (emp_status = '재직' or emp_status = '휴직')
 			 
-			 			<if test="search_option == 'emp_Kname'.toString()">
+			<if test="search_option == 'emp_Kname'.toString()">
 				and emp_Kname like CONCAT('%', #{keyword}, '%')
 			</if>
 			

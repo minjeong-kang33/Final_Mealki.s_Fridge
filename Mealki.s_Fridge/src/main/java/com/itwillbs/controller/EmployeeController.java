@@ -250,7 +250,7 @@ public class EmployeeController {
 		String search_option = request.getParameter("search_option");
 		String keyword = request.getParameter("keyword");
 		
-		int pageSize=15;
+		int pageSize=14;
 		
 		String pageNum=request.getParameter("pageNum");
 		if(pageNum==null) {pageNum="1";}

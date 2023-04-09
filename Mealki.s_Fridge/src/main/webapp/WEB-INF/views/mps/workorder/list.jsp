@@ -89,21 +89,17 @@
 				<a href=# onclick="return ContractList();" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
 				작업지시서 등록
 				</a> 
-		<!-- 리스트 -->
+		
 				<div class="tab">
 				    <ul class="tabnav">
 				      <li><a href="#tab01">전체</a></li>
 				      <li><a href="#tab02">대기</a></li>
 				      <li><a href="#tab03">진행중</a></li>
 				      <li><a href="#tab04">완료</a></li>
-				      
-				      
 				    </ul>
 				    
 				    <div class="tabcontent">
-				    
 				      <div id="tab01">
-				      
 				      	<table border="1" id="orderlist_table">
 						<tr>
 							<th>작업지시번호</th>
@@ -117,208 +113,65 @@
 							<th>생산수량</th>
 							<th>작업상태</th>
 						</tr>
-						
-						<c:forEach var="WorkorderDTO" items="${workorderList}">				
-							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
-							<td>${WorkorderDTO.wo_num}</td>
-							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_empname}</td>
-							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.out_date}</td>
-							<td>${WorkorderDTO.manu_name}</td>
-							<td>${WorkorderDTO.item_name}</td>
-							<td>${WorkorderDTO.wo_qty}</td>
-							<td>${WorkorderDTO.pr_sum}</td>
-							<td>
-							<c:if test="${WorkorderDTO.wo_state == null}">
-							  <div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
-							</c:if>
-							<c:if test="${WorkorderDTO.wo_state == '진행중'}">
-							  <div class="btn btn-danger btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">진행중</div>
-							</c:if>
-							<c:if test="${WorkorderDTO.wo_state == '완료'}">
-							  <div class="btn btn-success btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">완료</div>
-							</c:if>
-
-							
-							</td>
-						</tr>
-						</c:forEach>
-						
-						</table>
-						<!-- 탭 페이징처리 -->
-						<div style="text-align: center; margin-top: 10px;">
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
-							</c:if>
-							
-							
-								<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-								<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
-								</c:forEach>
-							
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
-							</c:if>
-						</div>
-				      </div>
-				      
-			
-				    
- 		
- 	      
-				      
-				      <div id="tab02">
-				      	<table border="1" id="orderlist_table">
-						<tr>
-							<th>작업지시번호</th>
-							<th>수주번호</th>
-							<th>작업지시자</th>
-							<th>작업지시일자</th>
-							<th>납품예정일</th>
-							<th>라인명</th>
-							<th>품목명</th>
-							<th>지시수량</th>
-							<th>생산수량</th>
-							<th>작업상태</th>
-						</tr>
-						
 						<c:forEach var="WorkorderDTO" items="${workorderList}">
-						<c:if test="${WorkorderDTO.pr_sum == '0'}">
-							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
-							<td>${WorkorderDTO.wo_num}</td>
-							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_empname}</td>
-							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.out_date}</td>
-							<td>${WorkorderDTO.manu_name}</td>
-							<td>${WorkorderDTO.item_name}</td>
-							<td>${WorkorderDTO.wo_qty}</td>
-							<td>${WorkorderDTO.pr_sum}</td>
-							<td>
-							  <div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
-							</td>
-							
-						</tr>
-						</c:if>
+								<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
+									<td>${WorkorderDTO.wo_num}</td>
+									<td>${WorkorderDTO.business_num}</td>
+									<td>${WorkorderDTO.wo_empname}</td>
+									<td>${WorkorderDTO.wo_date}</td>
+									<td>${WorkorderDTO.out_date}</td>
+									<td>${WorkorderDTO.manu_name}</td>
+									<td>${WorkorderDTO.item_name}</td>
+									<td>${WorkorderDTO.wo_qty}</td>
+									<td>${WorkorderDTO.pr_sum}</td>
+							        <td>
+										<c:if test="${WorkorderDTO.wo_state == '대기'}">
+											<div class="btn btn-secondary btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">대기</div>
+										</c:if>
+										<c:if test="${WorkorderDTO.wo_state == '진행중'}">
+											<div class="btn btn-danger btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">진행중</div>
+										</c:if>
+										<c:if test="${WorkorderDTO.wo_state == '완료'}">
+											<div class="btn btn-success btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">완료</div>
+										</c:if>
+									</td>
+								</tr>
 						</c:forEach>
-						
-						</table>
-							<!-- 탭 페이징처리 -->
-						  <div style="text-align: center;">
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+					
+					</table>
+					<!-- 탭 페이징처리 -->
+					<div style="text-align: center;">
+						<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
-							</c:if>
-
-							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
+						</c:if>
+					
+						<c:forEach var="i" begin="${pageDTO.startPage}"
+							end="${pageDTO.endPage}" step="1">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
-							</c:forEach>
-
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
+						</c:forEach>
+					
+						<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
 							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
-							</c:if>
-						  </div>
+						</c:if>
+					</div>
+				      </div>
+				     
+				      <div id="tab02">
+				      	<jsp:include page="workordertable.jsp" >
+				      	<jsp:param value="대기" name="state"/>
+				      	</jsp:include>
 				      </div>
 				      
 				      <div id="tab03">
-				      	<table border="1" id="orderlist_table">
-						<tr>
-							<th>작업지시번호</th>
-							<th>수주번호</th>
-							<th>작업지시자</th>
-							<th>작업지시일자</th>
-							<th>납품예정일</th>
-							<th>라인명</th>
-							<th>품목명</th>
-							<th>지시수량</th>
-							<th>생산수량</th>
-							<th>작업상태</th>
-						</tr>
-						
-						<c:forEach var="WorkorderDTO" items="${workorderList}">	
-						<c:if test="${WorkorderDTO.wo_state == '진행중'}">			
-							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
-							<td>${WorkorderDTO.wo_num}</td>
-							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_empname}</td>
-							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.out_date}</td>
-							<td>${WorkorderDTO.manu_name}</td>
-							<td>${WorkorderDTO.item_name}</td>
-							<td>${WorkorderDTO.wo_qty}</td>
-							<td>${WorkorderDTO.pr_sum}</td>
-							<td>		
-							  <div class="btn btn-danger btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">진행중</div>
-							</td>
-						</tr>
-						</c:if>
-						</c:forEach>
-						
-						</table>
-						<!-- 탭 페이징처리 -->
-						  <div style="text-align: center;">
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
-							</c:if>
-
-							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
-							</c:forEach>
-
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
-							</c:if>
-						  </div>
+				      	<jsp:include page="workordertable.jsp" >
+				      	<jsp:param value="진행중" name="state"/>
+				      	</jsp:include>
 				      </div>
 				      
 				      <div id="tab04">
-				      	<table border="1" id="orderlist_table">
-						<tr>
-							<th>작업지시번호</th>
-							<th>수주번호</th>
-							<th>작업지시자</th>
-							<th>작업지시일자</th>
-							<th>납품예정일</th>
-							<th>라인명</th>
-							<th>품목명</th>
-							<th>지시수량</th>
-							<th>생산수량</th>
-							<th>작업상태</th>
-						</tr>
-						
-						<c:forEach var="WorkorderDTO" items="${workorderList}">	
-						<c:if test="${WorkorderDTO.wo_state == '완료'}">			
-							<tr onClick="WoUpdate('${WorkorderDTO.wo_num}');">
-							<td>${WorkorderDTO.wo_num}</td>
-							<td>${WorkorderDTO.business_num}</td>
-							<td>${WorkorderDTO.wo_empname}</td>
-							<td>${WorkorderDTO.wo_date}</td>
-							<td>${WorkorderDTO.out_date}</td>
-							<td>${WorkorderDTO.manu_name}</td>
-							<td>${WorkorderDTO.item_name}</td>
-							<td>${WorkorderDTO.wo_qty}</td>
-							<td>${WorkorderDTO.pr_sum}</td>
-							<td>		
-							  <div class="btn btn-success btn-rounded" id="IconButton6" style="padding-left:8px;  padding-right:8px; padding-top: 6px; padding-bottom: 6px;">완료</div>						</td>
-						</tr>
-						</c:if>
-						</c:forEach>
-						
-						</table>
-						<!-- 탭 페이징처리 -->
-						<div style="text-align: center;">
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a>
-							</c:if>
-
-							<c:forEach var="i" begin="${pageDTO.startPage}" end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
-							</c:forEach>
-
-							<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a>
-							</c:if>
-						  </div>
+				      	<jsp:include page="workordertable.jsp" >
+				      	<jsp:param value="완료" name="state"/>
+				      	</jsp:include>
 				      </div>
 				      
 				    </div>
@@ -376,17 +229,7 @@
 							};
 							
  					</script>
-        			<script type="text/javascript">
-// 						function WoUpdate(wo_num) {
-// 							var _width = '800';
-// 							var _height = '650';
-// 							var _left = Math.ceil((window.screen.width - _width) / 2);
-// 							var _top = Math.ceil((window.screen.height - _height) / 2);
-// 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
-// 							window.open(
-// 							"${pageContext.request.contextPath}/workorder/WoUpdate?wo_num="+wo_num,
-// 							"밀키의 냉장고",popOption);}
- 					</script> 
+
 
         			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
@@ -401,8 +244,7 @@
 							window.open(
 							"${pageContext.request.contextPath}/workorder/ContractList",
 							"작업지시등록",popOption);}
-					</script>
-      				<script type="text/javascript">
+				
   						$(function(){
   						$('.tabcontent > div').hide();
  						 $('.tabnav a').click(function () {

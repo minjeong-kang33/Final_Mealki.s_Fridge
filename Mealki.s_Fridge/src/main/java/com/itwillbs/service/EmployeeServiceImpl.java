@@ -76,6 +76,11 @@ public class EmployeeServiceImpl implements EmployeeService{
 	@Override
 	public List<Map<String, Object>> yellowPage(PageDTO pageDTO) {
 		System.out.println("EmployeeServiceImpl yellowPage");
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
 		return employeeDAO.yellowPage(pageDTO);
 	}
 

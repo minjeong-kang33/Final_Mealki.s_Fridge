@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -43,13 +44,15 @@
         <ul class="nav">
         
 <!--  사원관리 메뉴 -->
+
+		<c:if test="${sessionScope.dept_num eq '500' || sessionScope.dept_num eq '600'  }">	
           <li class="nav-item">
             <a class="nav-link" href="${pageContext.request.contextPath}/employee/empManage">
               <i class="icon-grid menu-icon"></i>
               <span class="menu-title">사원관리</span>
             </a>
           </li>
-      
+       </c:if>
 <!--  기준 정보 관리 -->      
            <li class="nav-item">
             <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">

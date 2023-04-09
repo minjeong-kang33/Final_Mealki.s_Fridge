@@ -22,7 +22,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/orderForm.css">
@@ -47,6 +47,11 @@
 function fun2() {
 	history.pushState(null, null, 'insertOrder');
 }
+function fun3(event) {
+	  event.preventDefault();
+	  alert('권한이 없습니다.');
+	  location.reload();
+	}
 </script>
 </head>
 <body>
@@ -60,7 +65,7 @@ function fun2() {
  
       
 <!-- 본문시작 -->
-      <div class="main-panel">
+      <div class="main-panel"> 
         <div class="content-wrapper">
           <div class="row">
             <div class="col-md-12 grid-margin">
@@ -73,12 +78,18 @@ function fun2() {
                 <div class="tab">
 				    <ul class="tabnav">
 				      <li><a href="#tab01">발주 현황</a></li>
-				      <li><a href="#tab02" onclick="fun2()">발주 등록</a></li>
+				      <c:choose>
+     					 <c:when test="${sessionScope.dept_num == 400}">
+       						 <li><a href="#tab02" onclick="fun2()">발주 등록</a></li>
+     					 </c:when>
+      					<c:otherwise>
+       						 <li><a onclick="fun3(event)">발주 등록</a></li>
+      					</c:otherwise>
+    				</c:choose>
 				    </ul>
 				    
 				    <div class="tabcontent">
 				      <div id="tab01">
-				      <!-- <h4> | 검색 </h4> -->
 <!--  발주 현황 시작 -->	
 			<div class="contentbody">       
 			<div id="top_table" >

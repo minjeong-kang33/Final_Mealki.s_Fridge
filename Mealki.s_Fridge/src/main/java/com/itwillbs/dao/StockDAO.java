@@ -21,7 +21,8 @@ public interface StockDAO {
 	
 	public void insertStock(StockDTO stockDTO);
 	
+	public StockDTO selectItem(String itemNum);
 	public void updateStock(StockDTO stockDTO);
 	
-	public void deleteStock(String item_num);
+	public void deleteStock(String itemNum);
 }

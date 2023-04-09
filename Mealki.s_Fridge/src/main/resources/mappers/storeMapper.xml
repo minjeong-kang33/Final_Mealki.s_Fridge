@@ -26,8 +26,8 @@
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
         
-        <if test="emp_num != null and !emp_num.equals('')">
-        	and emp_num like concat ('%',#{emp_num}, '%')
+        <if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
+        	and emp_num like concat ('%',#{emp_num}, '%') and sto_progress ='입고완료'
         </if>
         
         <if test="item_name != null and !item_name.equals('')">
@@ -35,13 +35,13 @@
         </if>
         
         <if test="startDate != null and !startDate.equals('')">
-        	and sto_date like concat ('%',#{startDate}, '%')
+        	and sto_date like concat ('%',#{startDate}, '%') and sto_progress ='입고완료'
         </if>
         
          <if test="endDate != null and !endDate.equals('')">
         	and sto_date like concat ('%',#{endDate}, '%')
         </if>
-       	order by sto_num, placeorder.order_num desc
+       	order by sto_progress, sto_num desc, placeorder.order_num desc
        	limit #{startRow}, #{pageSize}
 	</select>
 	
@@ -59,7 +59,7 @@
         	and sto_num like concat ('%',#{sto_num}, '%')
         </if>
         
-        <if test="emp_num != null and !emp_num.equals('')">
+        <if test="emp_num != null and !emp_num.equals('') and emp_num != 0">
         	and emp_num like concat ('%',#{emp_num}, '%')
         </if>
         
