@@ -91,7 +91,7 @@
  		    	 	<th>레시피이름</th>
            		 	<th>품목코드</th>
            	 	 	<th>식자재이름</th>
-           		 	<th>소요량</th>
+           		 	<th>소요량(g)</th>
            		 	<th>등록일</th>
            		 	<th>비고</th></tr>
 				
@@ -227,14 +227,19 @@ function fun1() {
 			    <td><input type="text" name="r_name" placeholder="레시피이름"></td>
 			    <td><input type="text" name="item_num" placeholder="품목코드" readonly ></td>
 			    <td><input type="text" name="item_name" placeholder="식자재이름" readonly ></td>
-			    <td><input type="text" name="r_qty" placeholder="소요량"></td>
+			    <td><input type="text" name="r_qty" placeholder="소요량(g)"></td>
 			    <td><input type="text" name="r_date" placeholder="등록일" readonly></td>
 			    <td><input type="text" name="r_etc" placeholder="비고"></td>`;
+			    
+			    let currentDate = new Date();
 
-// 			    newRow.querySelector("input[name='item_num']").addEventListener("click", function() {
-// 			    window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
-// 			  });
+			    // 날짜를 "yyyy.MM.dd" 형식의 문자열로 변환
+			    let formattedDate = currentDate.getFullYear() + "." + ("0" + (currentDate.getMonth() + 1)).slice(-2) + "." + ("0" + currentDate.getDate()).slice(-2);
 
+			    // "등록일" 입력란에 현재날짜 미리넣기
+			    newRow.querySelector("input[name='r_date']").value = formattedDate;
+
+			    
 			newRow.querySelector("input[name='item_num']").addEventListener("click", function() {
 				let focusedInput = this;
    			window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
@@ -275,7 +280,7 @@ function fun1() {
 		    <td><input type="text" name="r_name" value="\${r_name}" placeholder="레시피이름"></td>
 		    <td><input type="text" name="item_num" value="\${item_num}" placeholder="품목코드"></td>
 		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
-		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량"></td>
+		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량(g)"></td>
 		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일" readonly></td>
 		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`;
 

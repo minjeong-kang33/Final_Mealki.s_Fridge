@@ -26,8 +26,10 @@ tr:hover td{
 }
 
 #table_content th{
-	background-color: #e6e6f4;
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	background-color: #4B49AC;
+/* 	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px; */
+	color: white;
+	padding: 9px;
 	
 }
 
@@ -43,43 +45,27 @@ tr:hover td{
 
 /* 버튼 */
 button#addItemButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 12px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#updateItemButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 12px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#saveItemButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 12px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#deleteItemButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 12px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 #table_search {
@@ -93,7 +79,7 @@ button#deleteItemButton{
   border-radius: 20px;
   width: 35%;
   text-align: left;
-  box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+/*   box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px; */
 }
 
 .input-search {
@@ -108,4 +94,3 @@ button#deleteItemButton{
 .itemsearch-icon {
 	padding-top:5px;
 }
-

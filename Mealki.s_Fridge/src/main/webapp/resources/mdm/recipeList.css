@@ -12,6 +12,7 @@ tr:hover td{
 	text-align:left;
 	padding-left: 35px;
 	border-radius: 80px;
+	border-style: none;
 }
 
 #item_buttons{
@@ -26,9 +27,11 @@ tr:hover td{
 }
 
 #table_content th{
-	background-color: #e6e6f4;
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
-	
+	background-color: #4B49AC;
+/* 	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px; */
+	color: white;
+	padding: 6.5px;
+	font-weight: bolder;
 }
 
 #tableForm{
@@ -43,43 +46,27 @@ tr:hover td{
 
 /* 버튼 */
 button#addRecipeButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 13px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#updateRecipeButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 13px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#saveRecipeButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 13px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 button#deleteRecipeButton{
-	padding: 10px;
-	background-color: #D0CDE5;
-	color: black;
-	font-weight:bolder;
-	border: 1.5px solid #666470;
-/* 	border-style: none; */
-	box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+	padding: 13px;
+	background-color: #4B49AC;
+	color: white;
 }
 
 #table_search {
@@ -87,16 +74,14 @@ button#deleteRecipeButton{
   justify-content: center;
   align-items: center;
   background-color: #e6e6f4;
-  border: 1px solid #666470;
+/*   border: 1px solid #666470; */
   padding: 12px;
   margin-left:45px;
   border-radius: 20px;
   width: 35%;
   text-align: left;
-  box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px;
+/*   box-shadow:inset #ffffff 0px 5px 8px -1px,#ffffff 1px 3px 2px; */
 }
-
-
 
 .input-search {
   padding: 5px;
@@ -104,7 +89,6 @@ button#deleteRecipeButton{
   border: none;
   border-radius: 3px;
   font-size: 16px;
-  
 }
 
 .itemsearch-icon {
