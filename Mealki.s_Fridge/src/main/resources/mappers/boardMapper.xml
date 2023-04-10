@@ -4,8 +4,8 @@
 <mapper namespace="com.itwillbs.mappers.boardMapper">
 	
 	<insert id="insertBoard">
-    	insert into board(bo_num,bo_name,bo_title,bo_content,bo_count,bo_date,file,top_fixed) 
-    	values(#{bo_num},#{bo_name},#{bo_title},#{bo_content},#{bo_count},#{bo_date},#{file},#{top_fixed})
+    	insert into board(bo_num,bo_emp_num,bo_name,bo_title,bo_content,bo_count,bo_date,file,top_fixed) 
+    	values(#{bo_num},#{bo_emp_num},#{bo_name},#{bo_title},#{bo_content},#{bo_count},#{bo_date},#{file},#{top_fixed})
     </insert>
     
     <select id="getMaxBo_num" resultType="java.lang.Integer">

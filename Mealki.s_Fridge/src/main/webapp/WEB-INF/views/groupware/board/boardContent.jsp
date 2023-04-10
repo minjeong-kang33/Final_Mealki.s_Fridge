@@ -65,7 +65,8 @@
 		<tr><th>제목</th><td>&nbsp;&nbsp;${boardDTO.bo_title}</td></tr>
 		<tr><th>작성일</th><td>&nbsp;&nbsp;<fmt:formatDate value="${boardDTO.bo_date}" pattern="yyyy.MM.dd"/></td></tr>
 		<tr><th>조회수</th><td>&nbsp;&nbsp;${boardDTO.bo_count}</td></tr>
-		<tr><th>작성자</th><td>&nbsp;&nbsp;${boardDTO.bo_name}</td></tr>
+		<tr><th>작성자</th><td>&nbsp;&nbsp;${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
+					       				   sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${boardDTO.bo_name}</td></tr>
 		<tr><th style="height: 500px;">내용</th><td style="vertical-align: top;">&nbsp;&nbsp;${boardDTO.bo_content}</td></tr>		
 		<tr><th style="height: 50px;">첨부파일</th>
 		<td colspan="3"><a href="${pageContext.request.contextPath}/resources/groupware/upload/${boardDTO.file}" download>&nbsp;&nbsp;${boardDTO.file}</a></td></tr>		 
@@ -74,8 +75,7 @@
 		<c:if test="${! empty sessionScope.emp_num }">
 				<input type="button" value="글목록" class="btn btn-primary" style="color: #fff; background-color: #4B49AC; border-color: #4B49AC;"
 		 		onclick="location.href='${pageContext.request.contextPath}/groupware/board/noticeList'"><br>	
-		<c:set var="bo_name" value="${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
-						   sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" />	
+		<c:set var="bo_name" value="${sessionScope.emp_Kname}" />	
 		<c:if test="${boardDTO.bo_name eq bo_name}">	
 				<input type="button" value="글수정" class="btn btn-primary" style="color: #fff; background-color: #4B49AC; border-color: #4B49AC; margin-top: 5px;"
 			 	onclick="updateBoard('${pageContext.request.contextPath}/groupware/board/boardUpdate?bo_num=${boardDTO.bo_num}')"><br>

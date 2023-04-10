@@ -13,7 +13,14 @@ public class BoardDTO {
 	private int bo_status;
 	private int row_num;
 	private int top_fixed;
+	private int bo_emp_num;
 	
+	public int getBo_emp_num() {
+		return bo_emp_num;
+	}
+	public void setBo_emp_num(int bo_emp_num) {
+		this.bo_emp_num = bo_emp_num;
+	}
 	public int getTop_fixed() {
 		return top_fixed;
 	}

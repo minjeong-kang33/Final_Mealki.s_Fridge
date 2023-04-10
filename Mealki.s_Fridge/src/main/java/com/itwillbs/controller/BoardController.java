@@ -44,6 +44,7 @@ public class BoardController {
 	    
 	    BoardDTO boardDTO=new BoardDTO();
 	    boardDTO.setBo_name(request.getParameter("bo_name"));
+	    boardDTO.setBo_emp_num(Integer.parseInt(request.getParameter("bo_emp_num")));
 	    boardDTO.setBo_title(request.getParameter("bo_title"));
 	    boardDTO.setBo_content(request.getParameter("bo_content"));
 	    String topFixedParam = request.getParameter("top_fixed");

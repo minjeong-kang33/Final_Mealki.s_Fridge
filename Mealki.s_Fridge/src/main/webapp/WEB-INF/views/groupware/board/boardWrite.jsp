@@ -70,8 +70,8 @@
 					<tr><th>제목</th>
 					       <td><input type="text" name="bo_title" style="width:100%;"></td></tr>
 					<tr><th>작성자</th>
-					       <td><input type="text" name="bo_name" value="${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
-					       												sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${sessionScope.emp_Kname}" readonly style="width:100%;"></td></tr>
+					       <td><input type="text" name="bo_name" value="${sessionScope.emp_Kname}" readonly style="width:100%;">
+					       	   <input type="hidden" name="bo_emp_num" value="${sessionScope.emp_num}" readonly> </td></tr>
 					       
 					<tr><th>내용</th>
 						<td><textarea id="summernote" name="bo_content" style="text-align:left;"></textarea></td></tr>
