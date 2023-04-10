@@ -37,9 +37,10 @@
     </select>    
     
     <select id="getMaxRecipeNum" resultType="string" >
-      select r_num from recipe 
-      where (LENGTH(r_num) - LENGTH(REPLACE(r_num, 'R', ''))) = 1 ORDER BY CAST(SUBSTRING(r_num, 2) 
-      AS UNSIGNED) DESC LIMIT 1;
+      SELECT r_num
+    FROM recipe
+    ORDER BY CAST(SUBSTRING(r_num, 2) AS UNSIGNED) DESC
+    LIMIT 1;
     </select>
     
     <insert id="insertRecipe">

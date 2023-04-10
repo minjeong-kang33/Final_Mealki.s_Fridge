@@ -23,7 +23,8 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+
+ <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/itemList.css">	
@@ -111,7 +112,8 @@
 					    <td>${ItemDTO.supplier}</td>
 					    <td>${ItemDTO.supply_price}</td>
 					    <td>${ItemDTO.sales_price}</td>
-					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}" width="70" height="70"></td>
+					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}" width="70" height="70" onclick="showFullSizeImage('${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}')"></td>
+
 
 					    </tr>
 				    
@@ -187,7 +189,19 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
   
+  
   <script>
+//   이미지 선택시 크게보기 팝업창 생성
+  function showFullSizeImage(imageSrc) {
+	    var imgWidth = 450; 
+	    var imgHeight = 450; 
+
+	    var imgWindow = window.open("", "_blank", "width=" + imgWidth + ",height=" + imgHeight + ",scrollbars=yes,resizable=yes");
+	    imgWindow.document.write('<html><head><title>이미지</title><style>.full-size-image {max-width: 100%; max-height: 100%;}</style></head><body><img class="full-size-image" src="' + imageSrc + '"></body></html>');
+	    imgWindow.document.close();
+	}
+
+
 <!-- 	검색어 제어 -->
 function fun1() {
   var searchInput = document.forms["search"]["search"].value;
@@ -270,9 +284,7 @@ function fun1() {
     	  }
     	});
       
-      
-      
-      
+ // 품목번호에따른 품목유형 필터링
       function filterItemTypeOptions(prefix) {
         if (prefix === 'P') {
           selectItemType.innerHTML = `
@@ -328,8 +340,8 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"
-			    <input type="hidden" name="oldfile" value"\${item_image}">
+			    <td><input type="file" name="item_image" value="\${item_image}"  placeholder="이미지"
+			    <input type="hidden" name="oldfile" value="\${item_image}">
 			    </td>`;
 
 			    let selectItemType = element.querySelector("select[name='item_type']");
