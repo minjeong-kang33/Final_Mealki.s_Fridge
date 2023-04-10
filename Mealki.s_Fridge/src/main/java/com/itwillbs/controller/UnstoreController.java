@@ -61,13 +61,13 @@ public class UnstoreController {
 		if(startDate != null && !startDate.equals("")) {
 			java.util.Date date = sdf.parse(startDate);
 			java.sql.Date order_date1 = new java.sql.Date(date.getTime());
-			pageDTO.setOrder_date(order_date1);
+			pageDTO.setStartDate(order_date1);
 		}
 		if(endDate != null && !endDate.equals("")) {
 			java.util.Date date2 = sdf.parse(endDate);
 			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
-			pageDTO.setDue_date(due_date1);
-		}	
+			pageDTO.setEndDate(due_date1);
+		}		
 		
 		
 		//전체출고 리스트

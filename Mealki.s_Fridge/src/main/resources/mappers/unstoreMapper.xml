@@ -36,14 +36,13 @@
         <if test="item_name != null and !item_name.equals('')">
         	and products.item_name like concat ('%',#{item_name}, '%')
         </if>
-        
-        <if test="startDate != null and !startDate.equals('')">
-        	and sto_date like concat ('%',#{startDate}, '%')
-        </if>
-        
-         <if test="endDate != null and !endDate.equals('')">
-        	and sto_date like concat ('%',#{endDate}, '%')
-        </if>
+		<if test="startDate != null and !startDate.equals('')">
+		    and unsto_date <![CDATA[>=]]> #{startDate}
+		</if>
+		
+		<if test="endDate != null and !endDate.equals('')">
+		    and unsto_date <![CDATA[<=]]> #{endDate} + INTERVAL 1 DAY - INTERVAL 1 SECOND
+		</if>
         order by unsto_progress, unsto_num desc, workorder.wo_num desc
         limit #{startRow}, #{pageSize}       
         
@@ -72,13 +71,13 @@
         	and products.item_name like concat ('%',#{item_name}, '%')
         </if>
         
-        <if test="startDate != null and !startDate.equals('')">
-        	and sto_date like concat ('%',#{startDate}, '%')
-        </if>
-        
-         <if test="endDate != null and !endDate.equals('')">
-        	and sto_date like concat ('%',#{endDate}, '%')
-        </if>
+		<if test="startDate != null and !startDate.equals('')">
+		    and unsto_date <![CDATA[>=]]> #{startDate}
+		</if>
+		
+		<if test="endDate != null and !endDate.equals('')">
+		    and unsto_date <![CDATA[<=]]> #{endDate} + INTERVAL 1 DAY - INTERVAL 1 SECOND
+		</if>
         order by unsto_num)	as subquery
 	
 	</select>
