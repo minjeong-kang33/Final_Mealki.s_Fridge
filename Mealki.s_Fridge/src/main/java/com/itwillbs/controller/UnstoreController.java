@@ -72,7 +72,7 @@ public class UnstoreController {
 		
 		//전체출고 리스트
 		List<Map<String, Object>> unstoreList = unstoreService.getUnstoreList(pageDTO);
-
+		List<Map<String, Object>> unstoreList2 = unstoreService.getUnstoreList2();
 		
 		int count = unstoreService.getUnstoreListCount(pageDTO);
 		
@@ -98,6 +98,7 @@ public class UnstoreController {
 		model.addAttribute("endDate",endDate);
 		model.addAttribute("pageDTO",pageDTO);
 		model.addAttribute("unstoreList", unstoreList);	
+		model.addAttribute("unstoreList2",unstoreList2);
 		
 		
 		return "wms/unstore/insertUnstore";

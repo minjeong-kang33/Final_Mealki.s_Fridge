@@ -88,8 +88,33 @@
 		</if>
         order by unsto_progress, unsto_num desc, workorder.wo_num desc) as subquery
 
-</select>
+		</select>
 	
+
+	<select id="getUnstoreList2" resultType="map">
+		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
+				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num,
+				CASE 
+           		WHEN EXISTS (SELECT 1
+               				 FROM workorder_item
+               				 LEFT JOIN stock ON workorder_item.item_name = stock.item_name
+              				 WHERE workorder_item.wo_num = workorder.wo_num
+             			     AND stock.stk_qnt - workorder_item.wo_qty <![CDATA[<]]> 0 ) THEN '출고불가능'
+          		 WHEN COALESCE(unsto_progress, '미출고') = '출고완료' THEN '출고완료'
+          		 ELSE '출고가능'
+       			END as unstore_status
+		from unstore
+		right outer join workorder
+		on unstore.wo_num=workorder.wo_num
+		right outer join contract
+		on workorder.business_num = contract.business_num
+		where workorder.wo_available=1
+        order by unsto_progress, unsto_num desc, workorder.wo_num desc
+	</select>
+
+
+
 	
 	<insert id="insertUnstore">
 		insert into unstore (unsto_num, wo_num, item_name, unsto_date,
