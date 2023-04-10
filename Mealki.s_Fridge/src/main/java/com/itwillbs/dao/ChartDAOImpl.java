@@ -24,4 +24,10 @@ public class ChartDAOImpl implements ChartDAO{
 		
 		return sqlSession.selectList(namespace+".contract");
 	}
+
+	@Override
+	public List<ChartDTO> prochart() {
+		
+		return sqlSession.selectList(namespace+".prochart");
+	}
 }
