@@ -37,10 +37,10 @@
 		    AND products.item_name LIKE CONCAT('%', #{item_name}, '%')
 		</if>
 		<if test="startDate != null and !startDate.equals('')">
-		    and sto_date like concat ('%',#{startDate}, '%')
+		    and sto_date <![CDATA[>=]]> #{startDate}
 		</if>
 		<if test="endDate != null and !endDate.equals('')">
-		    and sto_date like concat ('%',#{endDate}, '%')
+		    and sto_date <![CDATA[<=]]> #{endDate} + INTERVAL 1 DAY - INTERVAL 1 SECOND
 		</if>
 		GROUP BY
 		    placeorder.order_num,
@@ -78,10 +78,10 @@
 		    AND products.item_name LIKE CONCAT('%', #{item_name}, '%')
 		</if>
 		<if test="startDate != null and !startDate.equals('')">
-		    and sto_date like concat ('%',#{startDate}, '%')
+		    and sto_date <![CDATA[>=]]> #{startDate}
 		</if>
 		<if test="endDate != null and !endDate.equals('')">
-		    and sto_date like concat ('%',#{endDate}, '%')
+		    and sto_date <![CDATA[<=]]> #{endDate} + INTERVAL 1 DAY - INTERVAL 1 SECOND
 		</if>
 		GROUP BY
 		    placeorder.order_num,
