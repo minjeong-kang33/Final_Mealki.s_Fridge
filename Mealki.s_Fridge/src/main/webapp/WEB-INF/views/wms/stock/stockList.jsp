@@ -96,10 +96,10 @@
 				</c:if>
 				
 				 <c:if test="${pageDTO.currentPage > 0}"> 
-					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+					<c:forEach var="i" begin="1" end="${pageDTO.endPage }" step="1">
 						<a href="${pageContext.request.contextPath}/wms/stock/stockList?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
 					</c:forEach>
-				 </c:if>
+				 </c:if> 
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 					<a href="${pageContext.request.contextPath}/wms/stock/stockList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>

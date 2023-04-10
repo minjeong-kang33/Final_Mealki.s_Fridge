@@ -1,6 +1,6 @@
+
 package com.itwillbs.controller;
 
-import java.text.SimpleDateFormat;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -14,9 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
-import com.itwillbs.domain.PlaceOrderDTO;
 import com.itwillbs.domain.StockDTO;
-import com.itwillbs.domain.StoreDTO;
 import com.itwillbs.domain.WarehouseDTO;
 import com.itwillbs.service.StockService;
 
@@ -26,7 +24,7 @@ public class StockController {
 	private StockService stockService;
 
 	@RequestMapping(value = "/wms/stock/stockList", method = RequestMethod.GET)
-	public String stockList(HttpServletRequest request, Model model) {
+	public String stockList(Model model, HttpServletRequest request) {
 		System.out.println("StockController stockList");
 		
 		String item_type = request.getParameter("item_type");
@@ -61,6 +59,11 @@ public class StockController {
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
+		System.out.println(count);
+		System.out.println(pageBlock);
+		System.out.println(startPage);
+		System.out.println(endPage);
+		System.out.println(pageCount);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);
@@ -98,11 +101,72 @@ public class StockController {
 		return "wms/stock/finditem_type";
 	}
 	
+//	@RequestMapping(value = "/wms/stock/stocksearch", method = RequestMethod.GET)
+//	public String stocksearch(Model model) throws Exception {
+//		System.out.println("StockController stocksearch");
+//		
+//		String item_type = request.getParameter("item_type");
+//		String item_num = request.getParameter("item_num");
+//		String item_name = request.getParameter("item_name");
+//		String whs_num = request.getParameter("whs_num");
+//		
+//		int pageSize=10;
+//		
+//		String pageNum=request.getParameter("pageNum");
+//		if(pageNum==null) {
+//			pageNum="1";
+//		}
+//		int currentPage=Integer.parseInt(pageNum);
+//		
+//		PageDTO pageDTO=new PageDTO();
+//		pageDTO.setPageSize(pageSize);
+//		pageDTO.setPageNum(pageNum);
+//		pageDTO.setCurrentPage(currentPage);
+//		pageDTO.setItem_type(item_type);
+//		pageDTO.setItem_num(item_num);
+//		pageDTO.setItem_name(item_name);
+//		pageDTO.setWhs_num(whs_num);
+//		
+//		List<StockDTO> stockList = stockService.getStockList(pageDTO);
+//		
+//		int count = stockService.getStockListCount(pageDTO);
+//		int pageBlock=10;
+//		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
+//		int endPage=startPage+pageBlock-1;
+//		int pageCount=count/pageSize+(count%pageSize==0?0:1);
+//		if(endPage > pageCount){
+//			endPage = pageCount;
+//		}
+//		System.out.println(count);
+//		System.out.println(pageBlock);
+//		System.out.println(startPage);
+//		System.out.println(endPage);
+//		System.out.println(pageCount);
+//		
+//		pageDTO.setCount(count);
+//		pageDTO.setPageBlock(pageBlock);
+//		pageDTO.setStartPage(startPage);
+//		pageDTO.setEndPage(endPage);
+//		pageDTO.setPageCount(pageCount);
+//		
+//		model.addAttribute("stockList", stockList);
+//		model.addAttribute("item_type",item_type);
+//		model.addAttribute("item_num",item_num);
+//		model.addAttribute("item_name",item_name);
+//		model.addAttribute("whs_num",whs_num);
+//		model.addAttribute("pageDTO", pageDTO);
+//		
+//		return "wms/stock/stockList";
+//	}
 	
 	@ResponseBody
 	@RequestMapping(value = "/wms/stock/updateQnt", method = RequestMethod.GET)
 	public String addStore(HttpServletRequest request, Model model) {
 		System.out.println("storeController updateQnt()");
+		 
+		System.out.println("item_num: "+request.getParameter("item_num"));
+		System.out.println("new_qnt: "+request.getParameter("new_qnt"));
+		
 		StockDTO stockDTO = new StockDTO();
 			
 		stockDTO.setItem_num(request.getParameter("item_num"));
