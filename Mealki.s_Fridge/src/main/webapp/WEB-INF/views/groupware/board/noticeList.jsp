@@ -94,16 +94,14 @@
 			<c:when test="${BoardDTO.top_fixed == 1}">
 			<td style="font-weight: bold; background-color:#e6e6f4;"><img src="${pageContext.request.contextPath}/resources/groupware/공지.png" width="25" height="25"></td>
 			<td style="font-weight: bold; text-align: left; background-color:#e6e6f4;">&nbsp;&nbsp;[중요] ${BoardDTO.bo_title}</td>
-			<td style="font-weight: bold; background-color:#e6e6f4;">${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
-					       				                               sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${BoardDTO.bo_name}</td>
+			<td style="font-weight: bold; background-color:#e6e6f4;">${BoardDTO.bo_name}</td>
 			<td style="font-weight: bold; background-color:#e6e6f4;"><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
 		    <td style="font-weight: bold; background-color:#e6e6f4;">${BoardDTO.bo_count}</td>
 			</c:when>
 			<c:otherwise>
 			<td>${BoardDTO.row_num}</td>
 			<td style="text-align: left;">&nbsp;&nbsp;${BoardDTO.bo_title}</td>
-			<td>${sessionScope.dept_num == 100 ? 'R&D' : sessionScope.dept_num == 200 ? '영업부' : sessionScope.dept_num == 300 ? '생산부' : 
-			      sessionScope.dept_num == 400 ? '자재부' : sessionScope.dept_num == 500 ? '인사부' : sessionScope.dept_num == 600 ? '전산부' : ''} ${BoardDTO.bo_name}</td>
+			<td>${BoardDTO.bo_name}</td>
 			<td><fmt:formatDate value="${BoardDTO.bo_date}" pattern="yyyy.MM.dd"/></td>
 		    <td>${BoardDTO.bo_count}</td>
 			</c:otherwise>
