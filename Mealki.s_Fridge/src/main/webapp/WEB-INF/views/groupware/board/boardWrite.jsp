@@ -54,7 +54,7 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">공지 사항</h3>
+                  <h3 class="font-weight-bold">공지사항</h3>
                 </div>
                 
           <div class="contentbody" > 
