@@ -260,18 +260,32 @@ var openWin;
      // 부모 창의 테이블의 행(row)을 선택
      var row =  clickedInput.closest('tr');
      row.querySelector('input[name="item_num"]').value = data.item_num;
-     row.querySelector('input[name="item_name"]').value = data.item_name;
-     row.querySelector('input[name="supplier"]').value = data.supplier;
-     row.querySelector('input[name="weight"]').value = data.weight;
-     row.querySelector('input[name="stk_qnt"]').value = data.stk_qnt;
-     /* 받아온 현재고량을 확인 후 10미만일 경우 빨간 글씨로 표시 */
-     var stk_qnt_input = row.querySelector('input[name="stk_qnt"]');
-     stk_qnt_input.value = data.stk_qnt;
-     if (stk_qnt_input.value < 10) {
-       stk_qnt_input.style.color = "red";
+     var get_item_num = row.querySelector('input[name="item_num"]');
+     /* 가지고 온 item_num이 이미 입력되어 있지 않은 지 확인 */
+     var item_num_inputs = document.querySelectorAll('input[name^="item_num"]');
+     var duplicated = false;
+     for (var i = 0; i < item_num_inputs.length; i++) {
+         if (item_num_inputs[i] !== get_item_num && item_num_inputs[i].value === get_item_num.value) {
+           alert('이미 입력된 상품입니다.');
+           get_item_num.value = '';
+           duplicated = true;
+           break;
+         }
      }
-     row.querySelector('input[name="supply_price"]').value = data.supply_price;
-     // 메시지 수신이 완료되었음을 자식 창에 알림
+     if (!duplicated) {
+         row.querySelector('input[name="item_name"]').value = data.item_name;
+         row.querySelector('input[name="supplier"]').value = data.supplier;
+         row.querySelector('input[name="weight"]').value = data.weight;
+         row.querySelector('input[name="stk_qnt"]').value = data.stk_qnt;
+         /* 받아온 현재고량을 확인 후 10미만일 경우 빨간 글씨로 표시 */
+         var stk_qnt_input = row.querySelector('input[name="stk_qnt"]');
+         stk_qnt_input.value = data.stk_qnt;
+         if (stk_qnt_input.value < 10) {
+           stk_qnt_input.style.color = "red";
+         }
+         row.querySelector('input[name="supply_price"]').value = data.supply_price;
+     }
+     // 메시지 수신이 완료되었음을 자식창에게 알림
      event.source.postMessage('received', event.origin);
    }
  });
@@ -296,6 +310,7 @@ $(document).on('change', '[id^="order_qty"]', function(){
         order_vat.val((order_qty * supply_price) * 0.1); // order_vat의 값을 계산하여 설정
 	}
 	}); 
+
 
 </script>
 <script type="text/javascript">
@@ -451,7 +466,7 @@ function add_column() {
     	cells[6].innerHTML = '<input type="text" name="supply_price" id="supply_price' + suffix + '" readonly onfocus="this.blur();">';
     	cells[7].innerHTML = '<input type="text" name="order_sum" id="order_sum' + suffix + '" readonly onfocus="this.blur();">';
     	cells[8].innerHTML = '<input type="text" name="order_vat" id="order_vat' + suffix + '" readonly onfocus="this.blur();">';
-    	cells[9].innerHTML = '<button type="button" name="del_column" id="IconButton6' + suffix + '" onclick="delete_column(this)" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px; background-color: #D3D5EE; border: none; padding: 5px; margin: 2px; width: 70px; border-radius: 13px; color: white;"">행 삭제</button>';
+    	cells[9].innerHTML = '<button type="button" name="del_column" id="IconButton6' + suffix + '" onclick="delete_column(this)" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px; background-color: #D3D5EE; border: none; padding: 5px; margin: 2px; width: 70px; border-radius: 13px; color: white; background-color: #bec1eb !important;"">행 삭제</button>';
     
    		columnCounter++; // 카운터 변수 증가
     
@@ -469,7 +484,7 @@ function add_column() {
     		this.style.backgroundColor = '#4B49AC';
   	   });
     	btn.addEventListener('mouseout', function() {
-    		this.style.backgroundColor = '#D3D5EE';
+    		this.style.backgroundColor = '#bec1eb';
  	   });
 	}else{
 		alert('최대 10개의 상품까지만 발주할 수 있습니다.');

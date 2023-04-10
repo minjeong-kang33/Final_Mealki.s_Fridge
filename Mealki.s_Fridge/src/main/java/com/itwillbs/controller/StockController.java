@@ -26,35 +26,8 @@ public class StockController {
 	private StockService stockService;
 
 	@RequestMapping(value = "/wms/stock/stockList", method = RequestMethod.GET)
-	public String stockList(Model model) {
+	public String stockList(HttpServletRequest request, Model model) {
 		System.out.println("StockController stockList");
-
-		return "wms/stock/stockList";
-	}
-
-	@RequestMapping(value = "/wms/stock/findWarehouse", method = RequestMethod.GET)
-	public String findWarehouse(HttpServletRequest request, Model model) {
-		System.out.println("StockController findWarehouse()");
-
-		List<WarehouseDTO> warehouseList = stockService.getWarehouseList();
-		model.addAttribute("warehouseList", warehouseList);
-
-		return "wms/stock/findWarehouse";
-	}
-	
-	@RequestMapping(value = "/wms/stock/finditem_type", method = RequestMethod.GET)
-	public String finditem_type(HttpServletRequest request, Model model) {
-		System.out.println("StockController finditem_type()");
-
-		List<ItemDTO> item_typeList = stockService.getItem_typeList();
-		model.addAttribute("item_typeList", item_typeList);
-
-		return "wms/stock/finditem_type";
-	}
-	
-	@RequestMapping(value = "/wms/stock/stocksearch", method = RequestMethod.GET)
-	public String stocksearch(Model model, HttpServletRequest request) throws Exception {
-		System.out.println("StockController stocksearch");
 		
 		String item_type = request.getParameter("item_type");
 		String item_num = request.getParameter("item_num");
@@ -88,11 +61,6 @@ public class StockController {
 		if(endPage > pageCount){
 			endPage = pageCount;
 		}
-		System.out.println(count);
-		System.out.println(pageBlock);
-		System.out.println(startPage);
-		System.out.println(endPage);
-		System.out.println(pageCount);
 		
 		pageDTO.setCount(count);
 		pageDTO.setPageBlock(pageBlock);
@@ -109,15 +77,32 @@ public class StockController {
 		
 		return "wms/stock/stockList";
 	}
+
+	@RequestMapping(value = "/wms/stock/findWarehouse", method = RequestMethod.GET)
+	public String findWarehouse(HttpServletRequest request, Model model) {
+		System.out.println("StockController findWarehouse()");
+
+		List<WarehouseDTO> warehouseList = stockService.getWarehouseList();
+		model.addAttribute("warehouseList", warehouseList);
+
+		return "wms/stock/findWarehouse";
+	}
+	
+	@RequestMapping(value = "/wms/stock/finditem_type", method = RequestMethod.GET)
+	public String finditem_type(HttpServletRequest request, Model model) {
+		System.out.println("StockController finditem_type()");
+
+		List<ItemDTO> item_typeList = stockService.getItem_typeList();
+		model.addAttribute("item_typeList", item_typeList);
+
+		return "wms/stock/finditem_type";
+	}
+	
 	
 	@ResponseBody
 	@RequestMapping(value = "/wms/stock/updateQnt", method = RequestMethod.GET)
 	public String addStore(HttpServletRequest request, Model model) {
 		System.out.println("storeController updateQnt()");
-		 
-		System.out.println("item_num: "+request.getParameter("item_num"));
-		System.out.println("new_qnt: "+request.getParameter("new_qnt"));
-		
 		StockDTO stockDTO = new StockDTO();
 			
 		stockDTO.setItem_num(request.getParameter("item_num"));
