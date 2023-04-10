@@ -294,10 +294,7 @@ function fun1() {
       element.innerHTML = `
 			    <td><input type="checkbox" name="selectItem"></td>
 			    <td>
-		        <select name="item_prefix">
-		          <option value="P">P</option>
-		          <option value="I">I</option>
-		        </select>
+			    <input type="hidden" name="item_prefix" value="\${itemNum.charAt(0)}">
 			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum} readonly></td>
 			    </td>
 			    <td>
@@ -319,22 +316,30 @@ function fun1() {
 			    <input type="hidden" name="oldfile" value"\${item_image}">
 			    </td>`;
 
-//       let selectItemPrefix = element.querySelector("select[name='item_prefix']");
-//       let inputItemNum = element.querySelector("input[name='item_num']");
+			    let selectItemType = element.querySelector("select[name='item_type']");
+			    filterItemTypeOptions(itemNum.charAt(0), itemType);
 
-//       selectItemPrefix.addEventListener("change", function() {
-//         let prefix = selectItemPrefix.value;
-//         let itemNum = "";
+			    function filterItemTypeOptions(prefix, selectedItemType) {
+			      let itemTypeOptions = '';
 
-//         if (prefix === "P") {
-//           itemNum = "P001";
-//         } else if (prefix === "I") {
-//           itemNum = "I001";
-//         }
-
-//         inputItemNum.value = itemNum;
-//       });
-    });
+			      if (prefix === 'P') {
+			        itemTypeOptions = `
+			          <option value="상온완제품">상온완제품</option>
+			          <option value="냉장완제품">냉장완제품</option>
+			          <option value="냉동완제품">냉동완제품</option>
+			        `;
+			      } else if (prefix === 'I') {
+			        itemTypeOptions = `
+			          <option value="상온식자재">상온식자재</option>
+			          <option value="냉장식자재">냉장식자재</option>
+			          <option value="냉동식자재">냉동식자재</option>
+			          `;
+			          }
+			          selectItemType.innerHTML = itemTypeOptions;
+			          selectItemType.value = selectedItemType;
+			          }
+			          });
+//     });
 
     // 삭제 버튼 추가
     document.getElementById("deleteItemButton").addEventListener("click", function() {
