@@ -157,7 +157,7 @@
           </div>
           <div class="row">
 <!-- 공지사항 시작 -->          
- <div class="col-md-11 grid-margin stretch-card" style="text-align: left;">
+ <div class="col-md-10 grid-margin stretch-card" style="text-align: left;">
     <div class="card">
         <div class="card-body">
             <p class="card-title">　공지사항</p>

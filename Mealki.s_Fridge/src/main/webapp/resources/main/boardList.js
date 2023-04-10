@@ -30,17 +30,17 @@ function loadNotices() {
               '</td>';
             noticeHTML +=
               '<td style=" width:15px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
-              formattedDate +
-              '</td>';
-            noticeHTML +=
-              '<td style=" width:15px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
               boardDTO.bo_name +
               '</td>';  
+            noticeHTML +=
+              '<td style=" width:15px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
+              formattedDate +
+              '</td>';
           } else {
             noticeHTML +=
               '<td class="bo-title-hover" style=" width:70px; text-align: left;">  ' + boardDTO.bo_title + '</td>';
-            noticeHTML += '<td style=" width:15px; text-align: center;">' + formattedDate + '</td>';
             noticeHTML += '<td style=" width:15px; text-align: center;">' + boardDTO.bo_name + '</td>';
+            noticeHTML += '<td style=" width:15px; text-align: center;">' + formattedDate + '</td>';
           }
           noticeHTML += '</tr>';
         }
