@@ -82,7 +82,7 @@ $(function(){
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
+          <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
 <%-- 			   <div>Total: ${total}</div> --%>
@@ -280,7 +280,7 @@ $(function(){
            		
  <!--  본문내용 끝 -->    
         
-<!--           </div> -->
+          </div>
 <!-- 페이징하실거면 여기서 시작 -->
      
 <!-- 페이징 끝 -->

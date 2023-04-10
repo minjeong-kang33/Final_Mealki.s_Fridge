@@ -97,13 +97,10 @@
 	<select id="WoInsert" resultType="com.itwillbs.domain.WorkorderDTO">
 		select c.business_num, r.item_num as ritem_num, c.item_num,
 		r.item_name as r_name, c.contract_qty, r.r_name as item_name,
-		round(r.r_qty/p.weight*c.contract_qty) as wo_qty
+		round(c.contract_qty*r.r_qty/p.weight) as wo_qty
 		from recipe r, contract c, products p
 		where r.r_name=c.item_name
-		and r.r_name=p.item_name
-		and r.r_name=(select item_name 
-					  from contract where
-					  business_num=#{num})
+		and r.item_name=p.item_name
 		and business_num=#{num}
 	</select>
 
@@ -111,17 +108,17 @@
 		select w.wo_num, c.business_num, date_format(w.wo_date,
 		'%Y년 %m월 %d일') as wo_date, r.item_num as ritem_num,
 		c.item_num, r.item_name as r_name, c.contract_qty, r.r_name as item_name, 
-		round(r.r_qty/p.weight*c.contract_qty) as wo_qty, w.manu_name,
+		round(c.contract_qty*r.r_qty/p.weight) as wo_qty, w.manu_name,
 				(case
 				when sum(p2.manu_tocount) <![CDATA[<]]> w.wo_qty then "진행중"
 				when sum(p2.manu_tocount) = w.wo_qty then "완료"
 				end) as wo_state
 		from recipe r join contract c on r.r_name = c.item_name
-		join products p on r.r_name = p.item_name
+		join products p on r.item_name = p.item_name
 		join workorder w on c.business_num=w.business_num
 		left outer join productstatus p2
 		on p2.wo_num=w.wo_num
-		where r.r_name=(select item_name from workorder where wo_num=#{num})
+		where r.r_name=w.item_name
 		and w.wo_num=#{num}
 		group by w.wo_num, c.business_num, r.item_num, c.item_num, r.item_name, c.contract_qty
 	</select>
@@ -141,7 +138,7 @@
 		from recipe r, contract c, products p, workorder w
 		where r.r_name= c.item_name
 		and w.business_num = c.business_num
-		and c.item_name = p.item_name
+		and r.item_name = p.item_name
 		and w.business_num=#{business_num}
 	</insert>
 
