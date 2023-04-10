@@ -67,16 +67,20 @@
 	</script>
 	
 	
-	<script>
-	/* 오늘 날짜 구하기 (발주일 고정값) */
-	document.getElementById('business_date').valueAsDate = new Date();	
-	alert(business_date);
+	<style>
+	table{
+     width: 100%;  
+    text-align: center; 
+   border-color: #6C7383;
+   border-collapse: collapse;
+  
+}
 	
-	/* 내일 날짜 구하기 (납기일 기본값)*/
-	var today = new Date();
-	var tomorrow = new Date(today.setDate(today.getDate() + 1));
-	document.getElementById('out_date').valueAsDate = tomorrow;
-	</script>
+ *{ 
+  padding: 0; 
+/*   border-width: 0; */
+  } 
+	</style>
 	
 	
 </head>

@@ -21,7 +21,7 @@
 			qc_qty,
 			incharge_name,
 			business_name,
-			COALESCE(out_progress,'대기')as out_progress
+			COALESCE(out_progress,'대기') as out_progress
 			from shipping
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like CONCAT('%', #{search},'%')
@@ -33,7 +33,19 @@
 	</select>
 <!-- 검색어	 -->
 	<select id="getShippingCount" resultType="java.lang.Integer">
-		select count(*) from shipping
+		select count(*) shipping_num, 
+			wo_num, 
+			item_num, 
+			item_name, 
+			date_format(delivery_date,'%Y-%m-%d') as delivery_date, 
+			date_format(out_date,'%Y-%m-%d') as out_date,
+			out_qty,
+			qc_qty,
+			incharge_name,
+			business_name,
+			COALESCE(out_progress,'대기') as out_progress
+			from shipping
+<!-- 		from shipping -->
 		
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like concat('%', #{search},'%')

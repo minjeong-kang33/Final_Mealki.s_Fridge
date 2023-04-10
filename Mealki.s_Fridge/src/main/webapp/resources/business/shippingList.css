@@ -13,7 +13,43 @@
 }
 
 #select_search{
-   width: 70%;
+   width: 60%;
+   float: left;
+}
+
+
+
+table{
+   width: 100%;
+   text-align: center;
+   border-color: #6C7383;
+   border-collapse: collapse;
+}
+#table_content{
+   table-layout: fixed;
+}
+
+tr:hover td{ background-color: #e6e6f4; }
+
+
+#table_content tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+#table_content th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
+.contentbody{
+   width: 100%;
+   height: 500px; 
+   padding: 20px 20px;
+}
+
+#select_search{
+   width: 60%;
    float: left;
 }
 
@@ -23,18 +59,6 @@
    margin-bottom: 30px;
    width: 5%;
 }
-
-.contentbody{
-   width: 100%;
-   height: 1000px; 
-   padding: 20px 20px;
-}
-
-
-
-
-td{
-	font-size: 12px;
 }
 
 /* 표 */

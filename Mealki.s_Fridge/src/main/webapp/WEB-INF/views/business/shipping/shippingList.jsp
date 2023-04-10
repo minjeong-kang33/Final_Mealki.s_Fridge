@@ -119,7 +119,7 @@ $(function(){
            	
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
-		       				<form name="store_form" method="get">
+		       				<form name="" method="get">
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
@@ -147,7 +147,8 @@ $(function(){
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td>${ShippingDTO.out_progress}</td>
+           			<td>
+           			${ShippingDTO.out_progress}</td>
            			<td>
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
@@ -183,7 +184,7 @@ $(function(){
 <!-- 대기 -->
 				<div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
-		       				<form name="store_form" method="get">
+		       				<form name="" method="get">
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
@@ -201,7 +202,7 @@ $(function(){
            		</tr>
            		
           		<c:forEach var="ShippingDTO" items="${resultList}">	
-           			
+           		<c:if test="${ShippingDTO.out_progress eq '대기' }">
            			<tr>
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
@@ -212,14 +213,15 @@ $(function(){
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td>${ShippingDTO.out_progress}></td>
+           			<td>
+           			${ShippingDTO.out_progress}></td>
            			<td>
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           					<input type="button" value="출하처리" class="shipping_submit_button">
+           					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
            			</td>
            			</tr>
-           			
+           			</c:if>
            		</c:forEach>
            		</table>
            		</form>
@@ -230,7 +232,7 @@ $(function(){
 <!--  완료 -->
 				<div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
-		       				<form name="store_form" method="get">
+		       				<form name="" method="get">
            		
            		<table border="1" class="shipping_total_table" style="width: 100%;">
            		<tr align="center">
@@ -259,9 +261,10 @@ $(function(){
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.business_name}</td>
-           			<td>${ShippingDTO.out_progress}</td>         				          				          				
            			<td>
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           			${ShippingDTO.out_progress}</td>         				          				          				
+           			<td>
+           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            				<input type="button" value="출하처리" class="shipping_submit_button">
            				</c:if>
            			</td>
