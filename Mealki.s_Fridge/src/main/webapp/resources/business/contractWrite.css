@@ -1,14 +1,16 @@
 @charset "UTF-8";
 
-table{
-   width: 100%;
-   text-align: center;
-   border-color: #6C7383;
-   border-collapse: collapse;
-}
+/* table{ */
+/*    width: 100%; */
+/*    text-align: center; */
+/*    border-color: #6C7383; */
+/*    border-collapse: collapse; */
+   
+/* } */
 #table_content{
    table-layout: fixed;
 }
+
 
 tr:hover td{ background-color: #e6e6f4; }
 
