@@ -132,6 +132,7 @@ public class StoreController {
 		  storeDTO.setSto_shelf(request.getParameter("sto_shelf"));
 		  storeDTO.setSto_shelfDetail(Integer.parseInt(request.getParameter("sto_shelfDetail")));
 		  storeDTO.setItem_name(request.getParameter("item_name"));
+		  storeDTO.setItem_num(request.getParameter("item_num"));
 
 		  storeService.insertStore(storeDTO);
 			 

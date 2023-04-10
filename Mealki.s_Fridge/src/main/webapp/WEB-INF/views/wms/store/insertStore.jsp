@@ -164,6 +164,7 @@ function content_print3(){
 											<td>${StoreDTO.sto_progress }</td> <!-- 진행현황 -->
 											<td>${StoreDTO.sto_empNum }</td> <!-- 담당자 -->
 											<td style="display: none;">${sessionScope.emp_num }</td>
+											<td style="display: none;">${StoreDTO.item_num }</td>
 											<td>
 												<c:if test="${StoreDTO.sto_progress eq '입고완료'}">
 													${StoreDTO.sto_shelf }
@@ -476,8 +477,9 @@ function storeDetail(order_num, item_name) {
 			var stk_qnt = tdArr[3]; //창고재고수량
 			var sto_progress = tdArr[4]; //진행상태
 			var sto_empNum = tdArr[5]; //담당자번호
-			var sto_shelf = tdArr[6]; //선반위치
-			var sto_shelfDetail =tdArr[7]; 
+			var item_num = tdArr[6]; //아이템번호
+			var sto_shelf = tdArr[7]; //선반위치
+			var sto_shelfDetail =tdArr[8]; 
 			
 			console.log("배열에 담긴 값 : "+tdArr);
 			//배열에 담긴 값 : OR20230322135957,순두부,50,0,미입고,323031601,A,1
@@ -487,7 +489,7 @@ function storeDetail(order_num, item_name) {
  				type :'GET',
  				data:{order_num:order_num,item_name:item_name,order_qty:order_qty,
  					stk_qnt:stk_qnt,sto_progress:sto_progress,sto_empNum:sto_empNum,
- 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail},
+ 					sto_shelf:sto_shelf,sto_shelfDetail:sto_shelfDetail,item_num:item_num},
  				success:function(result){
  				
  				alert(item_name +" "+ order_qty+"개가 입고처리 되었습니다.");
