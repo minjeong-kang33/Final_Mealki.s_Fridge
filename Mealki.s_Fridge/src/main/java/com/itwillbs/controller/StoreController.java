@@ -37,12 +37,9 @@ public class StoreController {
 		String e_num = request.getParameter("emp_num");
 		String item_name = request.getParameter("item_name");
 		
-		System.out.println("날짜"+startDate+endDate);
 		if(e_num==""||e_num==null) {e_num="0";}
 		
 		int emp_num = Integer.parseInt(e_num);
-		
-		System.out.println("dd "+ emp_num);
 		
 		int pageSize=15;
 		
@@ -73,6 +70,8 @@ public class StoreController {
 			java.sql.Date due_date1 = new java.sql.Date(date2.getTime());  
 			pageDTO.setEndDate(due_date1);
 		}	
+		
+		System.out.println("검색"+pageDTO.getStartDate()+" "+pageDTO.getEndDate());
 		
 		
 		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore(pageDTO);
