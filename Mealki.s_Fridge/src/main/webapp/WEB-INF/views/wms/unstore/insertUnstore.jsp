@@ -124,7 +124,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -154,14 +154,14 @@
 		        </div> <!--  탭 내용끝 -->	        	        
 	        
 			        <div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
-				        <div class="store_total_div" style="width: 100%;">
+				        <div class="store_total_div1" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">
 						<tr><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
 							 <th>납품처명</th><th>품명</th><th>주문수량</th>
 							 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
 							 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
-						<c:forEach var="unstoreDTO" items="${unstoreList }">
+						<c:forEach var="unstoreDTO" items="${unstoreList2 }">
 							<c:if test="${unstoreDTO.unsto_progress eq '미출고'}">
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
@@ -182,7 +182,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -198,14 +198,14 @@
 		        
 		             	        
 		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
-				        <div class="store_total_div" style="width: 100%;">
+				        <div class="store_total_div1" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">				  
 						<tr><th>출고관리번호</th><th>작업지시번호</th><th>상세</th>
 							 <th>납품처명</th><th>품명</th><th>주문수량</th>
 							 <th>재고확인</th><th>작업지시일자</th><th>납기일자</th>
 							 <th>진행현황</th><th>담당자</th><th>출고일자</th><th>출고처리</th></tr>
-						<c:forEach var="unstoreDTO" items="${unstoreList }">
+						<c:forEach var="unstoreDTO" items="${unstoreList2 }">
 							<c:if test="${unstoreDTO.unsto_progress eq '출고완료'}">							
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
@@ -226,7 +226,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->

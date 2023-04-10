@@ -11,6 +11,7 @@ public interface UnstoreService {
 	public void insertUnstore(UnstoreDTO unstoreDTO);
 	
 	public List<Map<String, Object>> getUnstoreList(PageDTO pageDTO);
+	public List<Map<String, Object>> getUnstoreList2();
 	
 	public int getUnstoreListCount (PageDTO pageDTO);
 	

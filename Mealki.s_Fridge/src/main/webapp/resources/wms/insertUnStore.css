@@ -71,3 +71,27 @@ ul,li {list-style:none;}
 .tabnav li a:hover,
 .tabnav li a.active{background:#fff; color:#4B49AC; }
 .tabcontent{padding: 20px; height:600px; border-top:none; background-color: #fff; margin-right: 50px; width: 100%}
+
+
+
+/* 스크롤바 */
+
+.store_total_div1{
+    overflow-y: auto;
+    width: 100%;
+    height: 100px;
+}
+
+.store_total_div1{
+	OVERFLOW-Y:auto; width:100%; height:500px;
+}
+
+.store_total_div1::-webkit-scrollbar{
+    width: 10px;
+}
+
+.store_total_div1::-webkit-scrollbar-thumb{
+    background-color: #ddd;
+    /* 스크롤바 둥글게 설정    */
+    border-radius: 10px;    
+}
