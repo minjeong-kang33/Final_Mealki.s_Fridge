@@ -5,15 +5,6 @@
 	text-align: center;
 }
 
-
-.notice-row:hover td {
-    text-decoration: underline;
-    
-  }
-
-.notice{
-	text-decoration: underline;
-	
+.bo-title-hover:hover {
+  text-decoration: underline;
 }
-
-
