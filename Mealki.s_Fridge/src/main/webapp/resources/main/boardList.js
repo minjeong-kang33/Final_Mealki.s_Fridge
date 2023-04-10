@@ -14,8 +14,7 @@ function loadNotices() {
     dataType: 'json',
     success: function (data) {
       let noticeHTML = '<table id="notice" class="table table-borderless">';
-      noticeHTML += '<thead class="thead-dark" ><tr></tr></thead><tbody>';
-        
+      
       data.forEach(function (boardDTO) {
         if (boardDTO.bo_status === 1) {
           const formattedDate = formatDate(boardDTO.bo_date);
@@ -26,17 +25,22 @@ function loadNotices() {
              '\'" style="cursor:pointer;">';
           if (boardDTO.top_fixed === 1) {
             noticeHTML +=
-              '<td style="width:90px; font-weight: bold; text-align: left; background-color:#e6e6f4;">&nbsp;&nbsp;[중요] ' +
+              '<td class="bo-title-hover" style="width:70px; font-weight: bold; text-align: left; background-color:#e6e6f4;">&nbsp;&nbsp;[중요] ' +
               boardDTO.bo_title +
               '</td>';
-           noticeHTML +=
-              '<td style=" width:10px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
+            noticeHTML +=
+              '<td style=" width:15px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
               formattedDate +
-              '</td>';    
+              '</td>';
+            noticeHTML +=
+              '<td style=" width:15px; font-weight: bold; text-align: center; background-color:#e6e6f4;">' +
+              boardDTO.bo_name +
+              '</td>';  
           } else {
             noticeHTML +=
-              '<td style=" width:90px; text-align: left;">  ' + boardDTO.bo_title + '</td>';
-            noticeHTML += '<td style=" width:10px; text-align: center;">' + formattedDate + '</td>';
+              '<td class="bo-title-hover" style=" width:70px; text-align: left;">  ' + boardDTO.bo_title + '</td>';
+            noticeHTML += '<td style=" width:15px; text-align: center;">' + formattedDate + '</td>';
+            noticeHTML += '<td style=" width:15px; text-align: center;">' + boardDTO.bo_name + '</td>';
           }
           noticeHTML += '</tr>';
         }
@@ -53,3 +57,4 @@ function loadNotices() {
 $(document).ready(function () {
   loadNotices();
 });
+
