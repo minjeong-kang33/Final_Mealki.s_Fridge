@@ -89,6 +89,30 @@
         
 	</select>
 	
+	
+		<select id="getPlaceOrderListStore2" resultType="map">
+		SELECT store.sto_num, CASE WHEN SUM(placeorder.order_qty) = SUM(store.sto_qty) THEN '입고완료'
+		       					   ELSE COALESCE(store.sto_progress, '미입고')
+		    					   END AS sto_progress,
+		    placeorder.order_num,placeorder.order_qty,products.item_name,store.sto_empNum,
+		    stock.stk_qnt,placeorder.emp_num,store.sto_shelf,store.sto_shelfDetail, placeorder.item_num,
+		    DATE_FORMAT(store.sto_date,'%Y-%m-%d') AS sto_date
+		FROM
+		    placeorder LEFT JOIN (SELECT sto_num,order_num,item_name,sto_date,sto_progress,
+		            					 sto_qty,sto_shelf, sto_shelfDetail,sto_empNum
+		       					  FROM store
+		       					  WHERE sto_progress = '입고완료') AS store ON placeorder.order_num = store.order_num AND placeorder.item_name = store.item_name
+		    LEFT JOIN products ON placeorder.item_num = products.item_num
+		    LEFT JOIN stock ON products.item_num = stock.item_num
+		GROUP BY
+		    placeorder.order_num,
+		    placeorder.item_name
+		ORDER BY
+		    sto_progress,
+		    sto_num DESC,
+		    placeorder.order_num DESC
+	</select>
+	
 	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
 			    sto_shelf,sto_shelfDetail,sto_empNum, item_name, item_num)

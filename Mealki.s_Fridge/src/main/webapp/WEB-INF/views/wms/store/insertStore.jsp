@@ -225,14 +225,14 @@ function content_print3(){
 	        
 	        
 	        
-		        <div id="tab02" style="width: 100%"> <!-- tab 1내용 -->
-				        <div class="store_total_div" style="width: 100%;">
+		        <div id="tab02" style="width: 100%"> <!-- tab 2내용 -->
+				        <div class="store_total_div1" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab02">				        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
-						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
+						        <c:forEach var="StoreDTO" items="${placeOrderListStore2}">
 						        	<c:if test="${StoreDTO.sto_progress eq'미입고'}">
 										<tr>
 											<td >${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
@@ -287,13 +287,13 @@ function content_print3(){
 		        </div> <!--  탭1내용끝 -->
 		        
 		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
-				        <div class="store_total_div" style="width: 100%;">
+				        <div class="store_total_div1" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab03">					        
 					        <table border="1" class="store_total_table" style="width: 100%;">
 								<tr><th>입고관리번호</th><th>발주관리번호</th><th>상세</th><th>품명</th><th>발주수량</th>
 								<th>재고수량</th><th>진행현황</th><th>담당자</th><th>선반위치</th><th>선반층</th><th>입고일자</th><th>입고처리</th></tr>
-						        <c:forEach var="StoreDTO" items="${PlaceOrderListStore}">
+						        <c:forEach var="StoreDTO" items="${placeOrderListStore2}">
 						        	<c:if test="${StoreDTO.sto_progress eq'입고완료'}">
 										<tr>
 											<td>${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
