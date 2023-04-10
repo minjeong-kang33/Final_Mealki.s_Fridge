@@ -36,17 +36,17 @@
 	<select id="getStockListCount"
 		resultType="java.lang.Integer">
 		select count(*) from stock
-		where 1=1 and item_type like '%식자재'
-		<if test="item_type != null">
+		 where 1=1
+		 <if test="item_type!=null and !item_type.equals('')">
 			and item_type = #{item_type}
-		</if>
-		<if test="item_num != null">
+		</if> 
+		 <if test="item_num!=null and !item_num.equals('')">
 			and item_num like CONCAT('%', #{item_num}, '%')
 		</if>
-		<if test="item_name != null">
-			and item_name like CONCAT('%', #{item_name}, '%')
+		<if test="item_name!=null and !item_name.equals('')">
+			and item_name like CONCAT('%',  #{item_name}, '%')
 		</if>
-		<if test="whs_num != null">
+		<if test="whs_num!=null and !whs_num.equals('')">
 			and whs_num = #{whs_num}
 		</if>
 	</select>
