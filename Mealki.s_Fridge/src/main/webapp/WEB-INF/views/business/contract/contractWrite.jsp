@@ -7,9 +7,6 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
-  
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -30,7 +27,7 @@
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractWrite.css">
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+	
 	<script type="text/javascript"></script>
 	
 	<script>
@@ -70,9 +67,10 @@
 	</script>
 	
 	
-	<script type="text/javascript">
+	<script>
 	/* 오늘 날짜 구하기 (발주일 고정값) */
 	document.getElementById('business_date').valueAsDate = new Date();	
+	alert(business_date);
 	
 	/* 내일 날짜 구하기 (납기일 기본값)*/
 	var today = new Date();
@@ -133,8 +131,8 @@
          	<td><input type="text" name="cust_name" id="cust_name"></td>
          	<td onclick="findProduct()"><input type="text" name="item_num" id="item_num"></td>
          	<td><input type="text" name="item_name" id="item_name"></td>
-         	<td><input type="date"  id="business_date" name="business_date"></td>
-         	<td><input type="date"  id="out_date" name="out_date"></td>
+         	<td><input type="date" id="business_date" name="business_date" readonly></td>
+         	<td><input type="date" id="out_date" name="out_date"></td>
 			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
          	<td onclick="findName2()"><input type="text" name="incharge_name" id="emp_Kname"></td>
          	<td><input type="text" name="contract_qty" id="contract_qty"></td>
@@ -183,6 +181,17 @@
   </div>
   <!-- container-scroller -->
 
+<script>
+/* 오늘 날짜 구하기 (발주일 고정값) */
+document.getElementById('business_date').valueAsDate = new Date();	
+	
+/* 내일 날짜 구하기 (납기일 기본값)*/
+var today = new Date();
+var tomorrow = new Date(today.setDate(today.getDate() + 5));
+document.getElementById('out_date').valueAsDate = tomorrow;
+</script>
+
+
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -204,6 +213,10 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-
+  
+  <!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
+  <script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  
 </body>
 </html>
