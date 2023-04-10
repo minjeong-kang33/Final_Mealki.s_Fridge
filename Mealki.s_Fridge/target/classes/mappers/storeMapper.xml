@@ -17,7 +17,7 @@
 		       					   ELSE COALESCE(store.sto_progress, '미입고')
 		    					   END AS sto_progress,
 		    placeorder.order_num,placeorder.order_qty,products.item_name,store.sto_empNum,
-		    stock.stk_qnt,placeorder.emp_num,store.sto_shelf,store.sto_shelfDetail,
+		    stock.stk_qnt,placeorder.emp_num,store.sto_shelf,store.sto_shelfDetail, placeorder.item_num,
 		    DATE_FORMAT(store.sto_date,'%Y-%m-%d') AS sto_date
 		FROM
 		    placeorder LEFT JOIN (SELECT sto_num,order_num,item_name,sto_date,sto_progress,
@@ -91,7 +91,7 @@
 	
 	<insert id="insertStore">
 		 insert into store (sto_num,order_num,sto_date,sto_progress,sto_qty,
-			    sto_shelf,sto_shelfDetail,sto_empNum, item_name)
+			    sto_shelf,sto_shelfDetail,sto_empNum, item_name, item_num)
 				  values (
 				    concat('ST',DATE_FORMAT(NOW(), '%y%m%d%H%i%S')),
 				    #{order_num}, 
@@ -101,7 +101,8 @@
 				    #{sto_shelf},
 				    #{sto_shelfDetail},
 				    #{sto_empNum},
-				    #{item_name}
+				    #{item_name},
+				    #{item_num}
 				  )
 	</insert>
 	
