@@ -12,9 +12,12 @@ public interface StoreService {
 	
 	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO);
 	
+	public List<Map<String, Object>> getPlaceOrderListStore2();
+	
 	public void insertStore(StoreDTO storeDTO);
 	
 	public int getStoreSearchListCount (PageDTO pageDTO);
 	
 	public List<Map<String, Object>> getStoreDetailList(String order_num, String item_name);
+	
 }

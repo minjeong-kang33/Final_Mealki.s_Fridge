@@ -75,7 +75,7 @@ public class StoreController {
 		
 		
 		List<Map<String, Object>> placeOrderListStore = storeService.getPlaceOrderListStore(pageDTO);
-		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
+		List<Map<String, Object>> placeOrderListStore2 = storeService.getPlaceOrderListStore2();		
 		
 		int count = storeService.getStoreSearchListCount(pageDTO);
 		
@@ -99,6 +99,8 @@ public class StoreController {
 		model.addAttribute("startDate",startDate);
 		model.addAttribute("endDate",endDate);
 		model.addAttribute("pageDTO",pageDTO);
+		model.addAttribute("PlaceOrderListStore", placeOrderListStore);
+		model.addAttribute("placeOrderListStore2",placeOrderListStore2);
 		
 		return "wms/store/insertStore";
 	}

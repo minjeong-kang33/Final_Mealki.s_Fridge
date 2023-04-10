@@ -12,6 +12,8 @@ public interface StoreDAO {
 	
 	public List<Map<String, Object>> getPlaceOrderListStore(PageDTO pageDTO);
 	
+	public List<Map<String, Object>> getPlaceOrderListStore2();
+	
 	public void insertStore(StoreDTO storeDTO);
 	
 	public int getStoreSearchListCount (PageDTO pageDTO);
