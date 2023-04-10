@@ -153,21 +153,23 @@ function fun1(){
     
      </div>
      
-     </div>
+<!--      </div> -->
+     
+     
 <!-- 페이징하실거면 여기서 시작 -->
-<div id="page_control">
+		<div id="page_control">
 				<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-				<a href="${pageContext.request.contextPath}/business/shipping/shippingList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
+				<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">Prev</a>
 				</c:if>
 				
 				
 				<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-				<a href="${pageContext.request.contextPath}/business/shipping/shippingList?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
+				<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 				</c:forEach>
 				
 				
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-				<a href="${pageContext.request.contextPath}/business/shipping/shippingList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
+				<a href="${pageContext.request.contextPath}/business/contract/contractList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">Next</a>
 				</c:if>
 				
 				</div>
@@ -177,7 +179,7 @@ function fun1(){
           </div>
           
         </div>
-        
+       </div> 
 <!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
         
         
