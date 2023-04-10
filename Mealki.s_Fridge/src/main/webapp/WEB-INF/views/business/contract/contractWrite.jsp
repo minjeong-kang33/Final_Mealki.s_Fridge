@@ -66,11 +66,10 @@
 				window.name="parentForm";
 				openWin=window.open("${pageContext.request.contextPath}/business/contract/findName2",
 					"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
-				}
-	
-	
-			
+				}	
 	</script>
+	
+	
 	<script type="text/javascript">
 	/* 오늘 날짜 구하기 (발주일 고정값) */
 	document.getElementById('business_date').valueAsDate = new Date();	
@@ -80,6 +79,8 @@
 	var tomorrow = new Date(today.setDate(today.getDate() + 1));
 	document.getElementById('out_date').valueAsDate = tomorrow;
 	</script>
+	
+	
 </head>
 
 
