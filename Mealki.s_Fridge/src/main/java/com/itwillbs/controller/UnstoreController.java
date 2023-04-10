@@ -88,6 +88,7 @@ public class UnstoreController {
 		pageDTO.setPageBlock(pageBlock);
 		pageDTO.setStartPage(startPage);
 		pageDTO.setEndPage(endPage);
+		System.out.println("endPage"+endPage);
 		pageDTO.setPageCount(pageCount);
 		
 		model.addAttribute("unsto_num",unsto_num);
