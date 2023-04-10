@@ -33,8 +33,6 @@ public class StoreDAOImpl implements StoreDAO {
 		System.out.println("StoreDAOImpl getPlaceOrderListStore");
 		
 		pageDTO.setStartRow(pageDTO.getStartRow()-1);
-		System.out.println(pageDTO.getStartDate());
-		System.out.println(pageDTO.getEndDate());
 		
 		return sqlSession.selectList(namespace + ".getPlaceOrderListStore",pageDTO);
 	}

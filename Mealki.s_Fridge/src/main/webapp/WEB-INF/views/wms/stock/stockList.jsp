@@ -56,7 +56,7 @@
             <div id="top_table" >
                <div id="table_search">
                <div id="select_search">
-                     <form name="search" method="get" action="${pageContext.request.contextPath}/wms/stock/stocksearch">
+                     <form name="search" method="get" action="${pageContext.request.contextPath}/wms/stock/stockList">
                        <span>상품유형 <input type="text" name="item_type" id="finditem_type" style="margin-left: 5px;"></span>
 			       	   <span style="margin-left: 10px;">품번<input type="text" name="item_num" style="margin-left: 5px;"></span>
 			   		   <span style="margin-left: 10px;">품명<input type="text" name="item_name" style="margin-left: 5px;"></span>
@@ -81,10 +81,10 @@
 		    			<td style="width: 50px;"><input type="text" name="new_stk_qnt" id="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="width: 70px; border-color: dark-grey; margin-left: 7px; margin-right: 7px;" value=""></td>
 		    			<c:choose>
 				    		<c:when test="${sessionScope.dept_num == 400}">
-				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="update_qnt(this)">수정</button></td>
+				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="update_qnt(this)" style="background-color: #bec1eb !important;">수정</button></td>
 				    		</c:when>
 				    		<c:otherwise>
-				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="alert('권한이 없습니다.')">수정</button></td>
+				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="alert('권한이 없습니다.')" style="background-color: #bec1eb !important;">수정</button></td>
 				    		</c:otherwise>
 						</c:choose>
 		    		</tr>
@@ -92,17 +92,17 @@
             </table>
             <div style="margin-left: 40%; margin-top: 10px;">
         	     <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
+					<a href="${pageContext.request.contextPath}/wms/stock/stockList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 이전]</a>
 				</c:if>
 				
-				 <c:if test="${pageDTO.currentPage > 0}"> <!-- end="${pageDTO.endPage }" -->
-					<c:forEach var="i" begin="${pageDTO.startPage }" end="4" step="1">
-						<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
+				 <c:if test="${pageDTO.currentPage > 0}"> 
+					<c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
+						<a href="${pageContext.request.contextPath}/wms/stock/stockList?pageNum=${i}&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">${i}</a> 
 					</c:forEach>
 				 </c:if>
 
 				<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-					<a href="${pageContext.request.contextPath}/wms/stock/stocksearch?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>
+					<a href="${pageContext.request.contextPath}/wms/stock/stockList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&item_type=${item_type }&item_num=${item_num }&item_name=${item_name }&whs_num=${whs_num}">[10페이지 다음]</a>
 				</c:if>  
 				
             </div>
@@ -214,34 +214,6 @@ function update_qnt(btn) {
         }
     });
 }
-/* function update_qnt() {
-		var str = "";
-		var update_qnt = $(this);
-		
-		var tr = update_qnt.parent().parent();
-		var td = tr.children();
-		
-		var item_num = td.eq(1).text();
-		var item_name = td.eq(2).text();
-		var new_qnt = td.eq(5).find('input[type="text"]').val(); 
-		
-		 $.ajax({
-				url:'updateQnt',
-				type :'GET',
-				data:{item_num:item_num, new_qnt:new_qnt},
-				success:function(result){
-				
-				alert(item_name +"의 재고가 "+ new_qnt+"개로 수정되었습니다.");
-				document.location.reload();
-				},
-				
-				error:function(request, status, error){
-					if (new_qnt === null || new_qnt === '') {
-						alert("실사량을 입력해주세요.");
-					}
-				}
-			}); 
-	} */
 </script>
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 </body>
