@@ -41,9 +41,6 @@ td{
 }
 
 /* 표 */
-.unstore_total_table{
-   table-layout: fixed;
-}
 
 .unstore_total_table tr{
    height: 32px;
@@ -55,7 +52,10 @@ td{
    color: #fff;
 }
 
-
+/* 페이징 */
+#pageDiv{
+	text-align: center; margin-top: 10px;
+}
 
 /* 탭 */
 ul,li {list-style:none;}

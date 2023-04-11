@@ -135,6 +135,8 @@
 					   </table>
 					 </form>  
 						<!-- 페이징 -->
+						
+					<div id="pageDiv">	
 						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 							<a href="${pageContext.request.contextPath}/wms/unstore/insertUnstore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 이전</a>
 						</c:if>
@@ -148,7 +150,7 @@
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/unstore/insertUnstore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>							
-	
+					</div>
 					        
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        	        
