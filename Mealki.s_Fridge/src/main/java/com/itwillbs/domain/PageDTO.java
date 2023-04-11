@@ -26,7 +26,7 @@ public class PageDTO {
 	private String whs_num;
 	
 	private String wo_num;
-	private int business_num;
+	private String business_num;
 	private Date out_date;
 	private Date dorder_date;
 	private Date dout_date;
@@ -255,12 +255,12 @@ public class PageDTO {
 	}
 
 
-	public int getBusiness_num() {
+	public String getBusiness_num() {
 		return business_num;
 	}
 
 
-	public void setBusiness_num(int business_num) {
+	public void setBusiness_num(String business_num) {
 		this.business_num = business_num;
 	}
 

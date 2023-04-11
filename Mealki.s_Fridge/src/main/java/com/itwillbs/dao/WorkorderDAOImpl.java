@@ -21,8 +21,9 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	@Override
 	public int getWorkorderCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getWorkorderCount()");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectOne(namespace+".getWorkorderCount");
+		return sqlSession.selectOne(namespace+".getWorkorderCount", pageDTO);
 	}
 
 	@Override
