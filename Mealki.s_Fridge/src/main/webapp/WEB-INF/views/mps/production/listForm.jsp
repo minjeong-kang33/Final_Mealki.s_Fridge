@@ -34,6 +34,8 @@
 <link rel="shortcut icon"
 	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/production.css">
+<%-- <script src="${pageContext.request.contextPath}/resources/mps/productchart.js"></script> --%>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
 </head>
 <body>
 
@@ -70,10 +72,9 @@
 												<input type="text" name="manu_name" id="search_manu_name">
 												<label>품명 : </label>
 												<input type="text" name="item_name" id="search_item_name">
-												<label>작업일시 : </label>
+												<label>작업마감일시 : </label>
 												<input type="date" name="manu_sdate" id="search_manu_sdate">
-												 - <label>마감일시 : </label>
-												<input type="date" name="manu_date" id="search_manu_date">
+												 - <input type="date" name="manu_date" id="search_manu_date">
 												<label>작업자 : </label>
 												<input type="text" name="emp_Kname" id="search_emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">
@@ -121,8 +122,12 @@
 												</c:forEach>
 											</tbody>
 									    </table>
-									    <div>
- 										 <canvas id="myChart"></canvas>
+									    <hr>
+									    <p>
+									    <div class="chart-wrap">
+									     <div id="production_bar">
+										 <h4>| 개인 생산 현황</h4>
+ 										 <canvas id="myChart" height="320"></canvas>
 										</div>
 									</div>
 								</div>
@@ -148,28 +153,77 @@
 							"${pageContext.request.contextPath}/mps/production/update?manu_date="+manu_date,
 							"밀키의 냉장고",popOption);}
 					</script>
-<!-- 					<script src="https://cdn.jsdelivr.net/npm/chart.js"></script> -->
-<!-- 					<script> -->
-<!-- 					  const ctx = document.getElementById('myChart'); -->
-<!-- 					  new Chart(ctx, { -->
-<!--     					type: 'bar', -->
-<!--     					data: { -->
-<!--       					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'], -->
-<!--       					datasets: [{ -->
-<!--         				label: '# of Votes', -->
-<!--         				data: [12, 19, 3, 5, 2, 3], -->
-<!--         				borderWidth: 1 -->
-<!--       								}] -->
-<!--     						}, -->
-<!-- 					    options: { -->
-<!-- 					      scales: { -->
-<!-- 					        y: { -->
-<!-- 					          beginAtZero: true -->
-<!-- 					        } -->
-<!-- 					      } -->
-<!-- 					    } -->
-<!-- 					  }); -->
-<!-- 					</script> -->
+<!-- 					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
+					<script>
+					
+					
+					
+					
+// 					$(document).redady(function(){
+// 						getGraph();
+// 					});
+
+// 					function getGraph(){
+// 						let name = [];
+// 						let num = [];
+
+// 					$.ajax({
+// 						url: "${pageContext.request.contextPath}/chart/product",
+// 						type: : "get",
+// 						data:{name:"${name}", pos_type:"ddd",
+// 						dataType:"json",
+// 						success:function(data){
+// // 							for (let i = 0; i<data.length; i++){
+// // 								name.push(data[i].pos_time);
+// // 								num.push(data[i].pos_count);
+// // 							}
+
+// 					new Chart(document.getElementById("line-chart"),{
+// 						type: 'bar',
+// 						data: {
+//        						labels: name,
+//        						datasets: [{
+// 								data:num,
+// 								label:"ddd",
+// 								borderColor:"#3e95cd",
+// 								fill: false
+//        						}
+//        						]
+// 						},
+// 						options: {
+// 							title: {
+// 								display:true,
+// 								text:'ㅁㅁㅁ'
+// 								}
+// 							}
+// 						});
+// 						},
+// 						error:function(){
+// 						alert("실패");	
+// 						}
+// 					})
+// 				}
+					
+// 					  const ctx = document.getElementById('myChart');
+// 					  new Chart(ctx, {
+//     					type: 'bar',
+//     					data: {
+//       					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
+//       					datasets: [{
+//         				label: '# of Votes',
+//         				data: [12, 19, 3, 5, 2, 3],
+//         				borderWidth: 1
+//       								}]
+//     						},
+// 					    options: {
+// 					      scales: {
+// 					        y: {
+// 					          beginAtZero: true
+// 					        }
+// 					      }
+// 					    }
+// 					  });
+					</script> 
 					
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
@@ -217,9 +271,11 @@
 		src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
 	<script
 		src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
-						<script src="${pageContext.request.contextPath}/resources/mps/productchart.js"></script>
-  					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
 	<!-- End custom js for this page-->
-
+	<script src="${pageContext.request.contextPath}/resources/mps/productchart.js"></script>
+  	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+	  <!-- jQuery -->  
+  	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </body>
 </html>

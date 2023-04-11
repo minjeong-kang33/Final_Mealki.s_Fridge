@@ -47,11 +47,14 @@
 			var manucode = $(this).find("option:selected").data("manucode");
 			var itemnum = $(this).find("option:selected").data("itemnum");
 			var sdate = $(this).find("option:selected").data("sdate");
+			var unstoqty = $(this).find("option:selected").data("unstoqty");
+			
 			$('input[name=manu_name]').attr('value',value);
 			$('input[name=wo_num]').attr('value',wonum);
 			$('input[name=item_name]').attr('value',item);
 			$('input[name=manu_code]').attr('value',manucode);
-			$('input[name=item_num]').attr('value',itemnum);			
+			$('input[name=item_num]').attr('value',itemnum);
+			$('input[name=unsto_qty]').attr('value',unstoqty);
 				});
 			});
 </script>
@@ -61,16 +64,30 @@
             var manu_fail = insertProduct.manu_fail.value;
             var manu_tocount = insertProduct.manu_tocount.value;
             var lineselect = insertProduct.lineselect.value;
-            if( lineselect == "" || lineselect == null){
+            var unsto_qty = insertProduct.unsto_qty.value;
+            
+            let check = /^[0-9]+$/; 
+            if (!check.test(manu_fail)) {
+           	alert("숫자만 입력가능 합니다.");
+           	console.log("숫자만 입력 가능합니다.");
+            }else if(!check.test(manu_tocount)){
+            	alert("숫자만 입력가능 합니다.");
+            }else if( lineselect == "" || lineselect == null){
             	alert("라인을 선택해 주세요");
             	insertProduct.lineselect.focus();
             }else if( manu_tocount == "0" || manu_tocount == null){
-                alert("수량을 확인해주세요");
+                alert("수량이 0이거나 값이 없습니다.");
                 insertProduct.manu_tocount.focus();
             }else if(manu_tocount > manu_fail){
-            	alert("수량을 확인해주세요");
+            	alert("불량이 생산량보다 많습니다.");
             	insertProduct.manu_fail.focus();
-            }else{
+            }else if(unsto_qty < manu_tocount){
+            	alert("생산량이 수주량 보다 많습니다.");
+            	insertProduct.manu_tocount.focus();
+            }else if(unsto_qty > manu_fail){
+            	alert("불량이 수주량 보다 많습니다.");
+            	insertProduct.manu_fail.focus();
+            }else {
             	$("#insertProduct").attr("action","${pageContext.request.contextPath}/mps/production/start").submit();
             }
         }
@@ -110,11 +127,10 @@
 												data-manucode="" data-itemnum="" selected="selected">라인을
 												선택하세요</option>
 											<c:forEach var="sel" items="${selectList}">
-												<c:if test="${sel.unsto_qty != sel.manu_tocount }">
+												<c:if test="${sel.unsto_qty != sel.manu_tocount}">
 													<option value="${sel.manu_name}" data-wonum="${sel.wo_num}"
-														data-itemname="${sel.item_name}"
-														data-manucode="${sel.manu_code}"
-														data-itemnum="${sel.item_num}">${sel.manu_name}</option>
+														data-itemname="${sel.item_name}" data-manucode="${sel.manu_code}"
+														data-itemnum="${sel.item_num}" data-unstoqty="${sel.unsto_qty}">${sel.manu_name}</option>
 												</c:if>
 											</c:forEach>
 										</select>
@@ -137,6 +153,7 @@
 										<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
 										<span> 불량 :</span> 
 										<input type="text" name="manu_fail" value="0" class="manu_fail">
+										<input type="hidden" name="unsto_qty" value="" class="unsto_qty">
 										<p>
 									</div>
 

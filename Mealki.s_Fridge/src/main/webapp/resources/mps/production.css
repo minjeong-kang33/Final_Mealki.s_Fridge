@@ -60,6 +60,7 @@ table {
 	text-align: center;
 	border-color: #6C7383;
 	margin: auto;
+	margin-bottom: 20px;
 }
 
 form {
@@ -145,4 +146,8 @@ td {
 	width: 200px;	
 }
 
+.chart-wrap{
+	margin-top : 20px;
+	height: 320px;
+}
 
