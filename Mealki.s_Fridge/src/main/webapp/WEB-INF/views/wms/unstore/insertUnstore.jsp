@@ -95,7 +95,7 @@
 	        </ul>
 	        <div class="tabcontent" >
 	        
-		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
+		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">
@@ -153,7 +153,7 @@
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        	        
 	        
-			        <div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
+			        <div id="tab02" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div1" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">
@@ -166,7 +166,7 @@
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${UnstoreDTO.wo_num}');"> <!-- 상세페이지 버튼 -->
+								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
 								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
