@@ -27,8 +27,38 @@
                      				<th class="th">사업자번호/생년월일</th><td><input type="text" name="business_num" value="${customerDTO.business_num}" readonly></td></tr>
                      <tr class="tr"><th class="th">대표자명</th><td><input type="text" name="boss_name" value="${customerDTO.boss_name}"></td>
                      				<th class="th">대표전화</th><td><input type="text" name="cust_tel" value="${customerDTO.cust_tel}"></td></tr>
-                     <tr class="tr"><th class="th">업태</th><td><input type="text" name="cust_uptae" value="${customerDTO.cust_uptae}"></td>
-                     				<th class="th">종목</th><td><input type="text" name="cust_jongmok" value="${customerDTO.cust_jongmok}"></td></tr>
+                     <tr class="tr"><th class="th" >업태</th>
+                     				<td><select name="cust_uptae" class="cust_uptae" >
+											<option value=""> 선택하세요 </option>
+											<option value="도매 및 소매업" <c:if test="${customerDTO.cust_uptae eq '도매 및 소매업' }"> selected</c:if>>도매 및 소매업</option>
+											<option value="도매 및 상품 중개업" <c:if test="${customerDTO.cust_uptae eq '도매 및 상품 중개업' }"> selected</c:if>>도매 및 상품 중개업</option>
+											<option value="숙박 및 음식점업" <c:if test="${customerDTO.cust_uptae eq '숙박 및 음식점업' }"> selected</c:if>>숙박 및 음식점업</option>									
+											<option value="그 외(개인)" <c:if test="${customerDTO.cust_uptae eq '그 외(개인)' }"> selected</c:if>>그 외(개인)</option>
+											<option value="그 외(단체)" <c:if test="${customerDTO.cust_uptae eq '그 외(단체)' }"> selected</c:if>>그 외(단체)</option>
+										</select></td>
+                     				<th class="th">종목</th>
+                     				<td><select name="cust_jongmok" class="cust_jongmok">
+											<option value=""> 선택하세요 </option>
+											<option value="상품 종합 중개업"<c:if test="${customerDTO.cust_jongmok eq '상품 종합 중개업' }"> selected</c:if>>상품 종합 중개업</option>
+											<option value="과실류 도/소매업" <c:if test="${customerDTO.cust_jongmok eq '과실류 도/소매업' }"> selected</c:if>>과실류 도/소매업</option>
+											<option value="채소류, 서류 및 향신작물류 도매업" <c:if test="${customerDTO.cust_jongmok eq '채소류, 서류 및 향신작물류 도매업' }"> selected</c:if>>채소류, 서류 및 향신작물류 도매업</option>
+											<option value="신선, 냉동 및 기타 수산물 도/소매업" <c:if test="${customerDTO.cust_jongmok eq '신선, 냉동 및 기타 수산물 도/소매업' }"> selected</c:if>>신선, 냉동 및 기타 수산물 도/소매업</option>
+											<option value="건어물 및 젓갈류 도/소매업" <c:if test="${customerDTO.cust_jongmok eq '건어물 및 젓갈류 도/소매업' }"> selected</c:if>>건어물 및 젓갈류 도/소매업</option>
+											<option value="빵류,과자류,당류,초콜릿 도/소매업" <c:if test="${customerDTO.cust_jongmok eq '빵류,과자류,당류,초콜릿 도/소매업' }"> selected</c:if>>빵류,과자류,당류,초콜릿 도/소매업</option>
+											<option value="육류 가공식품 도매업" <c:if test="${customerDTO.cust_jongmok eq '육류 가공식품 도매업' }"> selected</c:if>>육류 가공식품 도매업</option>
+											<option value="조미료 도매업" <c:if test="${customerDTO.cust_jongmok eq '조미료 도매업' }"> selected</c:if>>조미료 도매업</option>
+											<option value="기타 식료품 소매업" <c:if test="${customerDTO.cust_jongmok eq '기타 식료품 소매업' }"> selected</c:if>>기타 식료품 소매업</option>
+											<option value="기타 가공식품 도매업" <c:if test="${customerDTO.cust_jongmok eq '도매 및 소매업' }"> selected</c:if>>기타 가공식품 도매업</option>
+											<option value="낙농품 및 동ㆍ식물성 유지 도매업" <c:if test="${customerDTO.cust_jongmok eq '기타 가공식품 도매업' }"> selected</c:if>>낙농품 및 동ㆍ식물성 유지 도매업</option>
+											<option value="수산물 가공식품 도매업" <c:if test="${customerDTO.cust_jongmok eq '수산물 가공식품 도매업' }"> selected</c:if>>수산물 가공식품 도매업</option>
+											<option value="음료 소매업" <c:if test="${customerDTO.cust_jongmok eq '음료 소매업' }"> selected</c:if>>음료 소매업</option>
+											<option value="기타 음ㆍ식료품 위주 종합 소매업" <c:if test="${customerDTO.cust_jongmok eq '기타 음ㆍ식료품 위주 종합 소매업' }"> selected</c:if>>기타 음ㆍ식료품 위주 종합 소매업</option>
+											<option value="생활용 포장 및 위생용품, 봉투 및 유사 제품 도매업 " <c:if test="${customerDTO.cust_jongmok eq '생활용 포장 및 위생용품, 봉투 및 유사 제품 도매업' }"> selected</c:if>>생활용 포장 및 위생용품, 봉투 및 유사 제품 도매업</option>
+											<option value="종이 원지, 판지, 종이상자 도매업" <c:if test="${customerDTO.cust_jongmok eq '종이 원지, 판지, 종이상자 도매업' }"> selected</c:if>>종이 원지, 판지, 종이상자 도매업</option>
+											<option value="간이 음식 포장 판매 전문점" <c:if test="${customerDTO.cust_jongmok eq '간이 음식 포장 판매 전문점' }"> selected</c:if>>간이 음식 포장 판매 전문점</option>
+											<option value="그 외(개인)" <c:if test="${customerDTO.cust_jongmok eq '그 외(개인)' }"> selected</c:if>>그 외(개인)</option>
+											<option value="그 외(단체)" <c:if test="${customerDTO.cust_jongmok eq '그 외(단체)' }"> selected</c:if>>그 외(단체)</option>
+										</select></td></tr>
                      <tr class="tr"><th class="th">담당자 이름</th><td><input type="text" name="man_name" value="${customerDTO.man_name}"></td>
                      				<th class="th">담당자 전화번호</th><td><input type="text" name="man_tel" value="${customerDTO.man_tel}"></td></tr>
                      <tr class="tr"><th class="th">담당자 이메일</th><td><input type="text" name="man_email" value="${customerDTO.man_email}"></td>
