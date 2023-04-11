@@ -146,7 +146,7 @@ function content_print3(){
 	        
 	        <div class="tabcontent" >
 	        
-		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
+		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab01"> 
@@ -237,7 +237,7 @@ function content_print3(){
 										<tr>
 											<td >${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 											<td >${StoreDTO.order_num } </td><!-- 발주관리번호 -->
-											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
+											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}', '${StoreDTO.item_name}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
@@ -286,7 +286,7 @@ function content_print3(){
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
 		        
-		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
+		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div1" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab03">					        
