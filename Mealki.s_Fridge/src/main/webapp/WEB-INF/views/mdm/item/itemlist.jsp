@@ -433,11 +433,26 @@ function fun1() {
     })
 
 
-    // 품목저장 버튼 이벤트
     document.getElementById("saveItemButton").addEventListener("click", function() {
-      let form = document.getElementById("tableForm");
-      form.submit();
-    });
+  let selectItemPrefix = document.querySelector("select[name='item_prefix']");
+  let inputItemNum = document.querySelector("input[name='item_num']");
+  let selectItemType = document.querySelector("select[name='item_type']");
+  let inputItemName = document.querySelector("input[name='item_name']");
+  let inputWeight = document.querySelector("input[name='weight']");
+  let inputSupplier = document.querySelector("input[name='supplier']");
+  let inputSupplyPrice = document.querySelector("input[name='supply_price']");
+  let inputSalesPrice = document.querySelector("input[name='sales_price']");
+  
+  if ((selectItemPrefix.value === 'P' && (!inputItemName.value || !inputWeight.value || !inputSalesPrice.value)) ||
+      (selectItemPrefix.value === 'I' && (!inputItemName.value || !inputWeight.value || !inputSupplier.value || !inputSupplyPrice.value))) {
+    alert("입력란을 채워주세요.");
+    return;
+  }
+  
+  let form = document.getElementById("tableForm");
+  form.submit();
+});
+
 
     // 이미지 미리보기 기능
     function previewImage(input) {
