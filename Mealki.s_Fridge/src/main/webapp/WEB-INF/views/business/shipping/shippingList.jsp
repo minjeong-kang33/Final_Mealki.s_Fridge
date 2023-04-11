@@ -25,7 +25,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/shippingList.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/shipping/shippingList.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 <script type="text/javascript"></script>
 
@@ -58,6 +58,7 @@ $(function(){
 
 
 </script>
+
 </head>
 <body>
 
@@ -85,7 +86,7 @@ $(function(){
           <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-<%-- 			   <div>Total: ${total}</div> --%>
+			   <div>Total: ${total}</div>
 			   <div id="table_search">
 	<div id="select_search">
 		<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
@@ -100,29 +101,26 @@ $(function(){
 	</div>
 				
 	<div id="table_write" >
-		<button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
+		<button type="submit"  class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
 	</div> 	
-</div>		
+			</div>	
 
 
            <div class="tab">
            	<ul class="tabnav">
            		<li><a href="#tab01">전체</a></li>
-           		<li><a href="#tab01">대기</a></li>
-           		<li><a href="#tab02">완료</a></li>
+           		<li><a href="#tab02">대기</a></li>
+           		<li><a href="#tab03">완료</a></li>
            	</ul>	
-<!--            	<div align="center"> -->
-<!-- 					<button type="submit" class="btn btn-primary"  -->
-<%-- 					onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button> --%>
-<!-- 			</div> 		 -->
+			
            	<div class="tabcontent">
            	
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 		       				<form name="" method="get">
-           		
+		       				
            		<table border="1" class="shipping_total_table" style="width: 100%;">
-           		<tr align="center">
+           		<tr align="center"> 
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
