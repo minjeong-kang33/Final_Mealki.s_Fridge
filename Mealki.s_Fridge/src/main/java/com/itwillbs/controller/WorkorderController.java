@@ -29,30 +29,35 @@ public class WorkorderController {
 		System.out.println("WorkorderController workorderlist()");
 				
 		String wo_num=request.getParameter("wo_num");
-		String b=request.getParameter("business_num");
+		String business_num=request.getParameter("business_num");
 		String order_date=request.getParameter("order_date");
 		String out_date=request.getParameter("out_date");	
 		String dorder_date=request.getParameter("dorder_date");
 		String dout_date=request.getParameter("dout_date");
 		
-		if(b == "") {b= "0";}
-		if(b == null) {b= "0";}
 		
-		int business_num=Integer.parseInt(b);
+		
 		
 		System.out.println("wo_num : " + wo_num);
-		System.out.println("business_num : " + b);
+		System.out.println("business_num : " + business_num);
 		System.out.println("order_date : "+ order_date);
 		System.out.println("out_date : " + out_date);
 		// 한 화면에 보여줄 글 개수 설정
-		int pageSize=10;
+		int pageSize=15;
 		// 현페이지 번호 가져오기
 		String pageNum=request.getParameter("pageNum");
+		
 		if(pageNum==null) {
 			//pageNum 없으면 1페이지 설정
 			pageNum="1";
 		}
 		
+		if(business_num == "") {
+			business_num=null;
+		}
+		if(wo_num == "") {
+			wo_num=null;
+		}
 		if(order_date == "") {
 			order_date=null;
 		}
@@ -65,7 +70,12 @@ public class WorkorderController {
 		if(dout_date == "") {
 			dout_date=null;
 		}
-				
+		
+		System.out.println("wo_num : " + wo_num);
+		System.out.println("business_num : " + business_num);
+		System.out.println("order_date : "+ order_date);
+		System.out.println("out_date : " + out_date);
+		
 		// 페이지번호를 => 정수형 변경
 		int currentPage=Integer.parseInt(pageNum);	
 		PageDTO pageDTO=new PageDTO();
@@ -75,7 +85,7 @@ public class WorkorderController {
 		pageDTO.setWo_num(wo_num);
 		pageDTO.setBusiness_num(business_num);
 		
-		System.out.println("5");
+		
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		if(order_date!= null) {
 			java.util.Date date = sdf.parse(order_date);
@@ -98,15 +108,11 @@ public class WorkorderController {
 			pageDTO.setDout_date(dout_date1);
 		}
 		
-		
-		
-		System.out.println("6");
-		
 		List<WorkorderDTO> workorderList=workorderService.getworkorderList(pageDTO);
 				
 		// 페이징 처리
 		int count = workorderService.getWorkorderCount(pageDTO);
-		int pageBlock =10;
+		int pageBlock = 10;
 		int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 		int endPage=startPage+pageBlock-1;
 		int pageCount=count/pageSize+(count%pageSize==0?0:1);
