@@ -72,7 +72,7 @@
 												<input type="text" name="manu_name" id="search_manu_name">
 												<label>품명 : </label>
 												<input type="text" name="item_name" id="search_item_name">
-												<label>작업일시 : </label>
+												<label>검수 완료일자 : </label>
 												<input type="date" name="qc_sdate" id="search_manu_sdate">
 												<input type="date" name="qc_edate" id="search_manu_date">
 <!-- 												<label>작업일시 : </label> -->

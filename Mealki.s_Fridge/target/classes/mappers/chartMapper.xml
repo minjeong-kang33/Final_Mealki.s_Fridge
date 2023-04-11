@@ -13,7 +13,7 @@
 	</select>
 	
 	<select id="prochart" resultType="com.itwillbs.domain.ChartDTO">
-		select emp_Kname as name, count(emp_Kname) as num
+		select emp_Kname as name, sum(manu_tocount) as num
 		from productstatus
 		group by emp_Kname
 		order by num desc

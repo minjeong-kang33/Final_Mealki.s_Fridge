@@ -97,9 +97,10 @@
               <ul class="nav flex-column sub-menu">
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mps/workorder/list">작업지시관리</a></li>
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mps/production/list">생산관리(관리자)</a></li>
+                <c:if test="${sessionScope.dept_num eq '300'}">
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mps/production/write">생산관리</a></li>
+                </c:if>
                 <li class="nav-item"> <a class="nav-link" href="${pageContext.request.contextPath}/mps/quality/list">품질관리</a></li>
-                <li class="nav-item"> <a class="nav-link" href="#">설비관리</a></li>
               </ul>
             </div>
           </li>
