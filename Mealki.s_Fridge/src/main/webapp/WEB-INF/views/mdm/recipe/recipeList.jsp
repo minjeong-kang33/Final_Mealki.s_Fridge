@@ -130,15 +130,15 @@
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="paging">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+<a href="${pageContext.request.contextPath}/mdm/recipe/recipeList?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[다음]</a>
 </c:if>
 </div>
 
@@ -221,7 +221,13 @@ function fun1() {
     	    focusedInput.parentNode.nextElementSibling.querySelector("input[name='item_name']").value = itemName;
     	  }
     	}
-    
+
+	//r_qty는 숫자만 입력가능하게
+	function enforceNumericInput(inputElement) {
+  inputElement.addEventListener("input", function() {
+    this.value = this.value.replace(/[^0-9]/g, "");
+  });
+}
     
     // 레시피추가 버튼 이벤트
     document.getElementById("addRecipeButton").addEventListener("click", function() {
@@ -235,7 +241,7 @@ function fun1() {
 			    <td><input type="text" name="r_name" placeholder="레시피이름"></td>
 			    <td><input type="text" name="item_num" placeholder="품목코드" readonly ></td>
 			    <td><input type="text" name="item_name" placeholder="식자재이름" readonly ></td>
-			    <td><input type="text" name="r_qty" placeholder="소요량(g)"></td>
+			    <td><input type="text" name="r_qty" placeholder="소요량(g)-숫자입력"></td>
 			    <td><input type="text" name="r_date" placeholder="등록일" readonly></td>
 			    <td><input type="text" name="r_etc" placeholder="비고"></td>`;
 			    
@@ -247,6 +253,9 @@ function fun1() {
 			    // "등록일" 입력란에 현재날짜 미리넣기
 			    newRow.querySelector("input[name='r_date']").value = formattedDate;
 
+			    // r_qty 입력창에서 숫자만 입력 가능하게 설정
+			    let r_qtyInput = newRow.querySelector("input[name='r_qty']");
+			    enforceNumericInput(r_qtyInput);
 			    
 			newRow.querySelector("input[name='item_num']").addEventListener("click", function() {
 				let focusedInput = this;
@@ -292,12 +301,16 @@ function fun1() {
 		    <td><input type="text" name="r_name" value="\${r_name}" placeholder="레시피이름"></td>
 		    <td><input type="text" name="item_num" value="\${item_num}" placeholder="품목코드"></td>
 		    <td><input type="text" name="item_name" value="\${item_name}" placeholder="식자재이름"></td>
-		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량(g)"></td>
+		    <td><input type="text" name="r_qty" value="\${r_qty}" placeholder="소요량(g)-숫자입력"></td>
 		    <td><input type="text" name="r_date" value="\${r_date}" placeholder="등록일" readonly></td>
 		    <td><input type="text" name="r_etc" value="\${r_etc}" placeholder="비고"></td>`
 
     	  let inputItemNum = element.querySelector("input[name='item_num']");
 
+		    // r_qty 입력창에서 숫자만 입력 가능하게 설정
+		    let r_qtyInput = element.querySelector("input[name='r_qty']");
+		    enforceNumericInput(r_qtyInput);  
+		    
       inputItemNum.addEventListener("click", function() {
         let focusedInput = this;
         window.open("../../mdm/recipe/getItemList", "itemListPopup", "width=300, height=500");
@@ -339,11 +352,37 @@ function fun1() {
     })
 
 
-    // 품목저장 버튼 이벤트
-    document.getElementById("saveRecipeButton").addEventListener("click", function() {
-      let form = document.getElementById("tableForm");
-      form.submit();
-    });
+  // 품목저장 버튼 이벤트
+document.getElementById("saveRecipeButton").addEventListener("click", function() {
+  let itemTableRows = document.getElementById("itemTable").rows;
+  let isEmpty = false;
+  
+  for (let i = 1; i < itemTableRows.length; i++) {
+    let row = itemTableRows[i];
+    
+    // r_etc와 r_num을 제외한 입력란 검사
+    let inputs = row.querySelectorAll("input[name]:not([name='r_etc']):not([name='r_num'])");
+    
+    for (let j = 0; j < inputs.length; j++) {
+      if (inputs[j].value.trim() === "") {
+        isEmpty = true;
+        break;
+      }
+    }
+    
+    if (isEmpty) {
+      break;
+    }
+  }
+  
+  if (isEmpty) {
+    alert("입력란을 모두 채워주세요.");
+  } else {
+    // 저장 작업 수행
+    let form = document.getElementById("tableForm");
+    form.submit();
+  }
+});
 
     
     </script>
