@@ -58,7 +58,7 @@
           
 <!--  본문 내용 시작 -->
               <div class="insertImployeeBody" >
-            	<form action="${pageContext.request.contextPath}/employee/insertEmployeePro" method="post" enctype="multipart/form-data"> 
+            	<form action="${pageContext.request.contextPath}/employee/insertEmployeePro" method="post" enctype="multipart/form-data" name="insertEmployeeForm"> 
             	<!-- 사진부분 -->
             	<div class="imployeeImg"> 
             		<div class="img"><img id="preview" width="200" height="230" style="border-radius: 3px")/></div>
@@ -77,7 +77,7 @@
 						<div class="left">
 						<ul>
 							<li><label for="emp_Kname">이름</label> <input type="text" id="emp_Kname" name="emp_Kname" size="15" required onkeyup="this.value=this.value.replace(/[^가-힣ㄱ-ㅎㅏ-ㅣ\\s]/g,'')"></li>
-							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required placeholder="6자리 (901123)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
+							<li><label for="emp_birth">생년월일</label> <input type="text" id="emp_birth" name="emp_birth" size="15" required placeholder="6자리 (901123)" onKeyup="this.value=this.value.replace(/[^0-9]/g,'').substring(0,6);"></li>
 							<li><label for="emp_tel">내선번호</label> <input type="text" id="emp_tel" name="emp_tel" size="15" required onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></li>
 							<li><label for="emp_classification" class="emp_classification">직원분류</label>
 									<select name="emp_classification" class="emp_classification_Option">
@@ -146,7 +146,7 @@
 				<!-- 전송 버튼 -->
 				<fieldset>
 				<div class="submit_Btn">
-					<input type="submit" value="직원등록" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
+					<input type="button" value="직원등록" class="btn btn-primary btn-icon-text" id="insertEmployeeBtn" /> 
 					<input type="reset" value="초기화" class="btn btn-dark btn-icon-text" id="insertEmployeeReset">
 				</div>	
 				</fieldset>
@@ -235,5 +235,61 @@ window.onload = function(){
         }).open();
     });
 }
+</script>
+<script type="text/javascript">
+/* select null값 체크 */
+document.getElementById("insertEmployeeBtn").addEventListener("click", function() {
+	if (document.getElementById("emp_Kname").value.trim() == "") {
+		  alert("이름을 입력하세요.");
+		  document.getElementById("emp_Kname").focus();
+		  return;
+	}
+	if (document.getElementById("emp_Ename").value.trim() == "") {
+		  alert("영문이름을 입력하세요.");
+		  document.getElementById("emp_Ename").focus();
+		  return;
+	}
+	if (document.getElementById("emp_birth").value.trim() == "") {
+		  alert("생년월일을 입력하세요.");
+		  document.getElementById("emp_birth").focus();
+		  return;
+	}
+	if (!document.querySelector('input[name="emp_gender"]:checked')) {
+		  alert("성별을 선택하세요.");
+		  return;
+	}
+	if (document.getElementById("emp_tel").value.trim() == "") {
+		  alert("내선번호를 입력하세요.");
+		  document.getElementById("emp_tel").focus();
+		  return;
+	}
+	if (document.getElementById("emp_phone").value.trim() == "") {
+		  alert("휴대폰번호를 입력하세요.");
+		  document.getElementById("emp_phone").focus();
+		  return;
+	}
+	if (document.querySelector(".emp_classification_Option").value.trim() == "") {
+		  alert("직원분류를 선택하세요");
+		  document.querySelector(".emp_classification_Option").focus();
+		  return;
+	}
+	if (document.querySelector(".dept_num_option").value.trim() == "") {
+		  alert("부서를 선택하세요");
+		  document.querySelector(".dept_num_option").focus();
+		  return;
+	}
+	if (document.querySelector(".dept_position_option").value.trim() == "") {
+		  alert("직책을 선택하세요");
+		  document.querySelector(".dept_position_option").focus();
+		  return;
+	}
+	if (document.querySelector(".dept_duty_option").value.trim() == "") {
+		  alert("직위를 선택하세요");
+		  document.querySelector(".dept_duty_option").focus();
+		  return;
+	}
+	document.insertEmployeeForm.submit();
+	
+});
 </script>
 </html>
