@@ -6,7 +6,7 @@
 <head>
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
- <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
+  <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/wms/findWarehouse.css">
 <script src="http://code.jquery.com/jquery-3.2.1.min.js"></script>
