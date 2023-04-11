@@ -68,8 +68,9 @@
 		where qc_status.wo_num like '%WO%'
 	</select>
 
-	<select id="getEmployeeList" resultType="com.itwillbs.domain.ContractDTO">
-	select distinct incharge_name, business_name from contract
+	<select id="getEmployeeList" resultType="com.itwillbs.domain.EmployeeDTO">
+	select * from employee
+	where dept_num = 200
 	</select>
 
 	<update id="updateShipping">

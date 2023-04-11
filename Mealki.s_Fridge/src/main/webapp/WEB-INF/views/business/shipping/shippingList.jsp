@@ -60,9 +60,14 @@ $(function(){
 </script>
 <style>
 .btn btn-primary{
-	 width: 100px;
-
-	  height: 30px;
+	 width: 50px;
+	 height: 30px;
+}
+#table_write{
+   float: right;
+   margin-right: 5px;
+   margin-bottom: 30px;
+   width: 7%;
 }
 </style>
 </head>
@@ -130,6 +135,7 @@ $(function(){
 		       				<form name="" method="get">
 		       				
            		<table border="1" class="shipping_total_table" style="width: 100%;">
+           		
            		<tr align="center"> 
            			<th>작업지시번호</th>
            			<th>품목코드</th>
@@ -158,9 +164,13 @@ $(function(){
            			<td>
            			${ShippingDTO.out_progress}</td>
            			<td>
+           				<c:choose>
+           				<c:when test="${sessionScope.dept_num == 200}">
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
+           				</c:when>
+           				</c:choose>
            			</td>
            			</tr>
            		</c:forEach>
@@ -224,9 +234,13 @@ $(function(){
            			<td>
            			${ShippingDTO.out_progress}></td>
            			<td>
+           				<c:choose>
+           				<c:when test="${sessionScope.dept_num == 200}">
            				<c:if test="${ShippingDTO.out_progress eq '대기' }">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
+           				</c:when>
+           				</c:choose>
            			</td>
            			</tr>
            			</c:if>

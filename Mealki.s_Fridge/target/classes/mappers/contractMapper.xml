@@ -64,6 +64,7 @@
 	<select id="getContractListMap" resultType="map">
 		SELECT customer.cust_num, customer.cust_name
 		from customer 
+		where cust_gubun1 like '%납입처%'
 			
 	</select>
 	
