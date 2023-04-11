@@ -50,7 +50,7 @@
 	 {
 	  window.name = "parentForm";
 	  openWin = window.open("${pageContext.request.contextPath}/business/shipping/findEmp_num",
-	           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
+	           "childForm", "width=500, height=400, top=300, left=300, resizable = no, scrollbars = no");    
 	 }
 	 
 	 
@@ -92,8 +92,7 @@
           
 <!--  본문 내용 시작 -->
   
-
-    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
+    <form id="getShippingWrite" name="getShippingWrite" method="post" >
     	 
     	<table border="1" id="table_content">
     	<tr>
@@ -118,14 +117,14 @@
            			<td><input type="text" name="out_qty" id="out_qty"></td>
            			<td><input type="text" name="qc_qty" id="qc_qty"></td>
            			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="incharge_name"></td>
-           			<td><input type="text" name="business_name" id="business_name"></td>
+           			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
            			
            			</tr>
  </table>
    	
             
  <div align="center">
-<button type="submit" class="btn btn-primary" onclick="fun11()">저장</button>
+<button type="button" class="btn btn-primary" onclick="fun11()">저장</button>
 </div>
 </form>        
  <!--  본문내용 끝 -->    
@@ -155,28 +154,55 @@
   </div>
   <!-- container-scroller -->
 
+<script>
+var openWin;
 
+function findName()
+{
+	window.name="parentForm";
+	openWin=window.open("${pageContext.request.contextPath}/business/contract/findName",
+		"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
+	}
+</script>
 
 <script>
 /* 오늘 날짜 구하기 (발주일 고정값) */
 document.getElementById('delivery_date').valueAsDate = new Date();	
 	
 /* 내일 날짜 구하기 (납기일 기본값)*/
-var today = new Date();
-var tomorrow = new Date(today.setDate(today.getDate() + 5));
-document.getElementById('out_date').valueAsDate = tomorrow;
+// var today = new Date();
+// var tomorrow = new Date(today.setDate(today.getDate() + 5));
+// document.getElementById('out_date').valueAsDate = tomorrow;
+
+var now_utc = Date.now() // 지금 날짜를 밀리초로
+// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+document.getElementById("out_date").setAttribute("min", today);
+
 </script>
 
-<script type="text/javascript">
+<script>
+var item_num = document.getElementById("item_num");
 
+if (item_num.trim() === "") {
+    alert("입력 필드에 값을 입력해주세요!");
+  }
+}
+</script>
+
+
+<script type="text/javascript">
 function fun11(){
-var out_qty 
-var qc_qty 
+var out_qty = document.getElementById('out_qty').value;
+var qc_qty = document.getElementById('qc_qty').value;
 
 if (out_qty > qc_qty) {
-  
-  alert("출하량이 재고수량보다 많습니다!");
+ alert("출하량이 재고수량보다 많습니다!");
+}else{
+	$("#getShippingWrite").attr("action","${pageContext.request.contextPath}/shipping/WriteSave").submit();
 }
+
 }
 </script>
 

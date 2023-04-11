@@ -101,7 +101,7 @@
           
 <!--  본문 내용 시작 -->
 
-<form action="${pageContext.request.contextPath}/contract/WriteSave" method="post">        
+<form id="getContractWrite" name="getContractWrite" method="post">        
 <table border="1" id="table_content">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
@@ -125,14 +125,14 @@
          	<td><input type="date" id="out_date" name="out_date"></td>
 			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
          	<td onclick="findName2()"><input type="text" name="incharge_name" id="emp_Kname"></td>
-         	<td><input type="text" name="contract_qty" id="contract_qty"></td>
+         	<td><input type="number" name="contract_qty" id="contract_qty"></td>
          </tr>	
          
 </table>
 
        
 <div align="center">
-<button type="submit" class="btn btn-primary">저장</button>
+<button type="button" class="btn btn-primary" onclick="fun12()">저장</button>
 </div>         
 </form>             
           
@@ -174,11 +174,65 @@
 /* 오늘 날짜 구하기 (발주일 고정값) */
 document.getElementById('business_date').valueAsDate = new Date();	
 	
-/* 내일 날짜 구하기 (납기일 기본값)*/
-var today = new Date();
-var tomorrow = new Date(today.setDate(today.getDate() + 5));
-document.getElementById('out_date').valueAsDate = tomorrow;
+//  내일 날짜 구하기 (납기일 기본값)
+// var today = new Date();
+// var tomorrow = new Date(today.setDate(today.getDate() + 5));
+// document.getElementById('out_date').valueAsDate = tomorrow;
+
+var now_utc = Date.now() // 지금 날짜를 밀리초로
+// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+document.getElementById("out_date").setAttribute("min", today);
 </script>
+
+
+<script type="text/javascript">
+function fun12(){
+	var cust_num = document.getElementById('cust_num').value;
+	var cust_name = document.getElementById('cust_name').value;
+	var item_num = document.getElementById('item_num').value;
+	var item_name = document.getElementById('item_name').value;
+// 	var business_date = document.getElementById('business_date').value;
+	var out_date = document.getElementById('out_date').value;
+	var business_name = document.getElementById('business_name').value;
+	var emp_Kname = document.getElementById('emp_Kname').value;
+	var contract_qty = document.getElementById('contract_qty').value;
+	
+	if(cust_num == "" || cust_num == null){
+		alert("거래처코드를 선택해 주세요");
+	}
+	if(cust_name == "" || cust_name == null){
+		alert("거래처명을 선택해 주세요");
+ 	}
+	if(item_num == "" || item_num == null){
+		alert("품목코드를 선택해 주세요");
+	}
+	if(item_name == "" || item_name == null){
+		alert("품목명을 선택해 주세요");
+	}
+// 	if(business_date == "" || business_date == null){
+// 		alert("수주일자를 선택해 주세요");
+// 	}
+	if(out_date == "" || out_date == null){
+		alert("납품예정일을 선택해 주세요");
+	}
+	if(business_name == "" || business_name == null){
+		alert("수주업체를 선택해 주세요");
+	}
+	if(emp_Kname == "" || emp_Kname == null){
+		alert("담당자명을 선택해 주세요");
+	}
+	if(contract_qty == "" || contract_qty == null){
+		alert("수주수량을 선택해 주세요");
+	}
+	else{
+		$("#getContractWrite").attr("action","${pageContext.request.contextPath}/contract/WriteSave").submit();
+	}
+}
+</script>
+
+
 
 
   <!-- plugins:js -->

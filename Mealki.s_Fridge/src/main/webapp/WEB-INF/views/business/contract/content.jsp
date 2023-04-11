@@ -62,8 +62,8 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">수정삭제</h3>
-                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">수정시 수주수량 수정가능</span></h6>
+                  <h3 class="font-weight-bold">목록상세</h3>
+                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">수주수량 수정가능</span></h6>
                 </div>
                 
           <div class="contentbody"> 
