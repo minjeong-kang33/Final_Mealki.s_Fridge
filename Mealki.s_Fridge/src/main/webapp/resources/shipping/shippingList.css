@@ -30,6 +30,11 @@
    width: 5%;
 }
 
+.btn btn-primary{
+	 width: 100px;
+
+	  height: 30px;
+}
 
 
 /* 표 */

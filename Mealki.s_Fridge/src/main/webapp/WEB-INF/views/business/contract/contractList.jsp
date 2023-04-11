@@ -100,13 +100,17 @@ function fun1(){
 			         		 <option value="item_name"> 품목명 </option>
 			        		 <option value="business_name"> 수주업체 </option>
 						</select>
-						<input type="text" name="search" class="input_box">
-						<input type="submit" value="search">
+							<input type="text" name="search" class="input_box">
+							<input type="submit" value="search">
  					</form>
  				</div>
  				
 			   	<div id="table_write">
-        			<input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+				   	<c:choose>
+				   	<c:when test="${sessionScope.dept_num == 200}">
+	        			<input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+	        		</c:when>
+	        		</c:choose>
         		</div>     
         	</div>
         
