@@ -1,19 +1,12 @@
 @charset "UTF-8";
 
 table{
-   width: 80%;
+   width: 100%;
    text-align: center;
    border-color: #6C7383;
    border-collapse: collapse;
    
 }
-#table_content{
-   table-layout: fixed;
-}
-
-
-tr:hover td{ background-color: #e6e6f4; }
-
 
 #table_content tr{
    height: 32px;
@@ -31,6 +24,9 @@ tr:hover td{ background-color: #e6e6f4; }
    padding: 20px 20px;
 }
 
+#table_content input{
+	width:130px;
+}
 
 
 

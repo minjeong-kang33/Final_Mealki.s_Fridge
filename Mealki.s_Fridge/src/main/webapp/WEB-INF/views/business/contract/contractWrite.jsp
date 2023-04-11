@@ -66,13 +66,12 @@
 				}	
 	</script>
 	
-	<style>
-	
+<style>
+
+
 </style>	
 	
 </head>
-
-
 
 
 <body>
@@ -95,7 +94,7 @@
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
                   <h3 class="font-weight-bold">신규수주</h3>
-                  <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6>
+<!--                   <h6 class="font-weight-normal mb-0"> <span class="text-primary"></span></h6> -->
                 </div>
                 
           <div class="contentbody"> 
@@ -116,7 +115,7 @@
 			<th>담당자</th>
 			<th>수주수량</th>
          </tr>
-         <tr>
+         <tr >
 
          	<td onclick="findContract()"><input type="text" name="cust_num" id="cust_num"></td>
          	<td><input type="text" name="cust_name" id="cust_name"></td>
@@ -136,7 +135,6 @@
 <button type="submit" class="btn btn-primary">저장</button>
 </div>         
 </form>             
-          
           
           
           

@@ -58,7 +58,13 @@ $(function(){
 
 
 </script>
+<style>
+.btn btn-primary{
+	 width: 100px;
 
+	  height: 30px;
+}
+</style>
 </head>
 <body>
 
@@ -86,24 +92,28 @@ $(function(){
           <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-			   <div>Total: ${total}</div>
-			   <div id="table_search">
-	<div id="select_search">
-		<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
-			<select name="search_option" class="search_option">
-				<option value="">선택하세요</option>
-				<option value="product_name">품명</option>
-				<option value="item_num">품목코드</option>
-			</select>
-				<input type="text" name="search" class="input_box">
-				<input type="submit" value="search">		
-		  </form>
-	</div>
+	<div>Total: ${total}</div>
+		<div id="table_search">
+			<div id="select_search">
+				<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
+					<select name="search_option" class="search_option">
+						<option value="">선택하세요</option>
+						<option value="product_name">품명</option>
+						<option value="item_num">품목코드</option>
+					</select>
+						<input type="text" name="search" class="input_box">
+						<input type="submit" value="search">		
+		  		</form>
+		   </div>
 				
-	<div id="table_write" >
-		<button type="submit"  class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
-	</div> 	
-			</div>	
+			<div id="table_write" >
+				<c:choose>
+				 <c:when test="${sessionScope.dept_num == 200}">
+					<button type="submit"  class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
+				</c:when>
+				</c:choose>
+			</div> 	
+		</div>	
 
 
            <div class="tab">
@@ -135,7 +145,7 @@ $(function(){
            		</tr>
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
-           			<tr>
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
@@ -201,7 +211,7 @@ $(function(){
            		
           		<c:forEach var="ShippingDTO" items="${resultList}">	
            		<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           			<tr>
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
@@ -249,7 +259,7 @@ $(function(){
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
            			<c:if test="${ShippingDTO.out_progress eq '출하완료'}">
-           			<tr>
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>

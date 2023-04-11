@@ -56,6 +56,13 @@
 	 
 			 
 	</script>
+	
+	<style>
+   form{   
+   	width:100%;   
+   }   
+	</style>
+	
 </head>
 
 <body>
@@ -114,13 +121,13 @@
            			<td><input type="text" name="business_name" id="business_name"></td>
            			
            			</tr>
-    	</table>
-    	
+ </table>
+   	
             
  <div align="center">
-<button type="submit" class="btn btn-primary">저장</button>
+<button type="submit" class="btn btn-primary" onclick="fun11()">저장</button>
 </div>
-         
+</form>        
  <!--  본문내용 끝 -->    
         
           </div>
@@ -160,13 +167,19 @@ var tomorrow = new Date(today.setDate(today.getDate() + 5));
 document.getElementById('out_date').valueAsDate = tomorrow;
 </script>
 
-<!-- <script> -->
-// var out_qty ="";
-// var qc_qty ="";
-// if (out_qty > qc_qty){
-// 	alert("=====");
-// }
-<!-- </script> -->
+<script type="text/javascript">
+
+function fun11(){
+var out_qty 
+var qc_qty 
+
+if (out_qty > qc_qty) {
+  
+  alert("출하량이 재고수량보다 많습니다!");
+}
+}
+</script>
+
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -188,19 +201,6 @@ document.getElementById('out_date').valueAsDate = tomorrow;
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-<script type="text/javascript">
 
-
-// $(function(){
-// 		$(".shipping_write_button").click(function(){ 
-		
-// 			if(Number($(".out_qty").eq(i).val()) > Number($(".qc_qty").eq(i).val())){
-// 			alert("재고수량을 확인해주세요!");
-// 			$(".out_qty").eq(i).val(0);
-			
-// 					return false;
-// 			}
-// 		});
-</script>
 </body>
 </html>
