@@ -271,7 +271,7 @@ function fun1() {
         filterItemTypeOptions(prefix);
       });
 
-      
+      //품목코드의 유형에따른 입력란 제어
       newRow.querySelector("input[name='supply_price']").addEventListener("click", function() {
     	  if (selectItemPrefix.value === 'P') {
     	    alert('완제품(P)은 납입단가 입력이 불가합니다');
@@ -283,6 +283,19 @@ function fun1() {
     	    alert('식자재(I)는 출고단가 입력이 불가합니다');
     	  }
     	});
+    	
+    	// 중량, 납입단가, 출고단가 문자열 못쓰게 제어
+    	 newRow.querySelector("input[name='weight']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
+
+    	      newRow.querySelector("input[name='supply_price']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
+
+    	      newRow.querySelector("input[name='sales_price']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
       
  // 품목번호에따른 품목유형 필터링
       function filterItemTypeOptions(prefix) {
@@ -347,11 +360,14 @@ function fun1() {
 			    let selectItemType = element.querySelector("select[name='item_type']");
 			    filterItemTypeOptions(itemNum.charAt(0), itemType);
 
+			    
+			    //품목코드의 유형에따른 입력란 제어
 			    element.querySelector("input[name='supply_price']").addEventListener("click", function() {
 			        if (element.querySelector("input[name='item_prefix']").value === 'P') {
 			          alert('완제품(P)은 납입단가 입력이 불가합니다');
 			        }
 			      });
+			    
 
 			      element.querySelector("input[name='sales_price']").addEventListener("click", function() {
 			        if (element.querySelector("input[name='item_prefix']").value === 'I') {
@@ -359,7 +375,21 @@ function fun1() {
 			        }
 			      });
 			    
+			   // 중량, 납입단가, 출고단가 문자열 못쓰게 제어
 			    function filterItemTypeOptions(prefix, selectedItemType) {
+			    element.querySelector("input[name='weight']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+
+			      element.querySelector("input[name='supply_price']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+
+			      element.querySelector("input[name='sales_price']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+			      
+			      
 			      let itemTypeOptions = '';
 
 			      if (prefix === 'P') {
