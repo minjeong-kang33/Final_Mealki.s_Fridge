@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractWrite.css">
+	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/shipping/shippingWrite.css">
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
@@ -114,13 +114,8 @@
            			<td><input type="text" name="business_name" id="business_name"></td>
            			
            			</tr>
-<!--            			 <tr align="center"> -->
-<!-- 					<th colspan="9">					 -->
-<!-- 					<button type="submit" >저장</button>  -->
-<!-- 					</th> -->
-<!-- 					</tr>  -->
     	</table>
-    	  
+    	
             
  <div align="center">
 <button type="submit" class="btn btn-primary">저장</button>
@@ -153,6 +148,25 @@
   </div>
   <!-- container-scroller -->
 
+
+
+<script>
+/* 오늘 날짜 구하기 (발주일 고정값) */
+document.getElementById('delivery_date').valueAsDate = new Date();	
+	
+/* 내일 날짜 구하기 (납기일 기본값)*/
+var today = new Date();
+var tomorrow = new Date(today.setDate(today.getDate() + 5));
+document.getElementById('out_date').valueAsDate = tomorrow;
+</script>
+
+<!-- <script> -->
+// var out_qty ="";
+// var qc_qty ="";
+// if (out_qty > qc_qty){
+// 	alert("=====");
+// }
+<!-- </script> -->
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->

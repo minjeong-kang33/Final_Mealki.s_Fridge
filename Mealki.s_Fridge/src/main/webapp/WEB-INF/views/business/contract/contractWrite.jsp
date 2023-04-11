@@ -66,22 +66,9 @@
 				}	
 	</script>
 	
-	
 	<style>
-	table{
-     width: 100%;  
-    text-align: center; 
-   border-color: #6C7383;
-   border-collapse: collapse;
-  
-}
 	
- *{ 
-  padding: 0; 
-/*   border-width: 0; */
-  } 
-	</style>
-	
+</style>	
 	
 </head>
 

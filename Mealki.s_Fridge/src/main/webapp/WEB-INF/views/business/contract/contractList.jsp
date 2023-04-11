@@ -83,7 +83,7 @@ function fun1(){
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">수주관리</h3>
+                  <h3 class="font-weight-bold">수주현황</h3>
                   <h6 class="font-weight-normal mb-0"> <span class="text-primary">목록클릭시 수정삭제가능</span></h6>
                 </div>
                 
@@ -130,7 +130,7 @@ function fun1(){
          
          <c:forEach var="ContractDTO" items="${resultList}">
          
-         <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num}'">
+         <tr align="center"   style="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num}'">
          
          	
          	<td>${ContractDTO.item_name }</td>
