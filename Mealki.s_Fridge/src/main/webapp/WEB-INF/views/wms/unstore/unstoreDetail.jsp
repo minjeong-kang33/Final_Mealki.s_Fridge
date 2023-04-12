@@ -44,7 +44,7 @@
 <c:forEach var="UnstoreDTO" items="${unstoreDetailList}">
 	<tr><th>작업지시번호</th><td>${UnstoreDTO.wo_num }</td><th>납기일</th><td>${UnstoreDTO.out_date }</td><th>작업지시일자</th><td>${UnstoreDTO.wo_date }</td><th>작업지시 담당자 사번</th><td>${UnstoreDTO.wo_emp }</td></tr>
  <tr><th>출고관리번호</th><td>${UnstoreDTO.unsto_num }</td><th>출고진행현황</th><td>${UnstoreDTO.unsto_progress }</td><th>출고일자</th><td>${UnstoreDTO.unsto_date }</td><th>출고담당자 사번</th><td>${UnstoreDTO.emp_num }</td></tr>
-	<tr><th>품명</th><td colspan="3">${UnstoreDTO.item_name }</td><th>납품처명</th><td colspan="3">${UnstoreDTO.business_name }</td></tr>
+	<tr><th>품명</th><td colspan="3">${UnstoreDTO.item_name }</td><th>납품처명</th><td colspan="3">${UnstoreDTO.cust_name }</td></tr>
 </c:forEach>	
 </table>
 <br>

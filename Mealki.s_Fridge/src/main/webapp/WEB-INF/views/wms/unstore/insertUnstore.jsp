@@ -108,7 +108,7 @@
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -169,7 +169,7 @@
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -213,7 +213,7 @@
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -370,7 +370,7 @@
 		
 	
 		var wo_num = tdArr[0]; //작업지시번호
-		var business_name = tdArr[1]; //납품처명
+		var cust_name = tdArr[1]; //납품처명
 		var item_name = tdArr[2]; // 품명
 		var wo_qty = tdArr[3]; //주문수량
 	//	var sto_progress = tdArr[4]; //재고확인상태
@@ -386,7 +386,7 @@
 		$.ajax({
 				url:'addUntore',
 				type :'GET',
-				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
+				data:{wo_num:wo_num,cust_name:cust_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
 				success:function(result){
 				
 				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");
