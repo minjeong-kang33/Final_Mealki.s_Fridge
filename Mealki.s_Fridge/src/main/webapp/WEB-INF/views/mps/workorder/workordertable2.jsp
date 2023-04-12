@@ -49,7 +49,7 @@
 
 	<c:forEach var="i" begin="${pageDTO2.startPage}"
  		end="${pageDTO2.endPage}" step="1"> 
- 		<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum2=${i}&wo_num=${pageDTO2.wo_num}&order_date=${pageDTO2.order_date}&dorder_date=${pageDTO2.dorder_date}&business_num=${pageDTO2.business_num}&out_date=${pageDTO2.out_date}&dout_date=${pageDTO2.dout_date}#tab02">${i}</a>
+ 		<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum2=${i}&wo_num=${pageDTO.wo_num}&order_date=${pageDTO.order_date}&dorder_date=${pageDTO.dorder_date}&business_num=${pageDTO.business_num}&out_date=${pageDTO.out_date}&dout_date=${pageDTO.dout_date}#tab02">${i}</a>
 	</c:forEach> 
 
  	<c:if test="${pageDTO2.startPage>pageDTO2.pageBlock} "> 
