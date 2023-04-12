@@ -28,5 +28,17 @@ table{
 	width:130px;
 }
 
-
+#cust_num,
+#cust_name,
+#item_num,
+#item_name,
+#business_date,
+#out_date,
+#emp_Kname,
+#contract_qty {
+  width: 100%;
+  border-style: none;
+  background-color: transparent;
+  text-align: center;
+}
 

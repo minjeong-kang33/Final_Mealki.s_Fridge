@@ -118,16 +118,14 @@
          </tr>
          <tr >
 
-         	<td onclick="findContract()" style="width: 170px;"><input type="text" name="cust_num" id="cust_num" style="width: 100%; border-style: none; background-color: transparent;"></td>
-         	<!-- <td><input type="text" name="cust_name" id="cust_name"></td> -->
-         	<td style="width: 130px;"><input type="text" name="cust_name" id="cust_name" style="width: 100%; border-style: none;  text-align: center; background-color: transparent;" onfocus="this.blur();"></td>
-         	<td onclick="findProduct()""><input type="text" name="item_num" id="item_num" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
-         	<td style="width: 170px;"><input type="text" name="item_name" id="item_name" style="width: 100%; border-style: none; background-color: transparent;" onfocus="this.blur();"></td>
-         	<td style="width: 140px;"><input type="date" id="business_date" name="business_date" readonly style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
-         	<td style="width: 140px;"><input type="date" id="out_date" name="out_date" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
-			<!-- <td onclick="findName()"><input type="text" name="business_name" id="business_name"></td> -->
-         	<td onclick="findName2()" style="width: 140px;"><input type="text" name="incharge_name" id="emp_Kname" value="${sessionScope.emp_Kname}" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
-         	<td style="width: 140px;"><input type="number" name="contract_qty" id="contract_qty" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
+         	<td onclick="findContract()" style="width: 170px;"><input type="text" name="cust_num" id="cust_num"></td>
+         	<td onclick="findContract()" style="width: 130px;"><input type="text" name="cust_name" id="cust_name" onfocus="this.blur();"></td>
+         	<td onclick="findProduct()"><input type="text" name="item_num" id="item_num" ></td>
+         	<td onclick="findProduct()" style="width: 170px;"><input type="text" name="item_name" id="item_name" onfocus="this.blur();"></td>
+         	<td style="width: 140px;"><input type="date" id="business_date" name="business_date" readonly></td>
+         	<td style="width: 140px;"><input type="date" id="out_date" name="out_date" ></td>
+         	<td onclick="findName2()" style="width: 140px;"><input type="text" name="incharge_name" id="emp_Kname" value="${sessionScope.emp_Kname}"></td>
+         	<td style="width: 140px;"><input type="text" name="contract_qty" id="contract_qty" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');"></td>
          </tr>	
          
 </table>

@@ -7,13 +7,12 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
+<!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
+<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
   
   <!-- Required meta tags -->
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <title>Skydash Admin</title>
   <!-- plugins:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/feather/feather.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/vendors/ti-icons/css/themify-icons.css">
@@ -25,16 +24,13 @@
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/js/select.dataTables.min.css">
   <!-- End plugin css for this page -->
   <!-- inject:css -->
-  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
   <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractUpdate.css">
 	
-	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
-	
-	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-	<script type="text/javascript"></script>
+  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	
 	
 </head>
@@ -61,15 +57,13 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">메뉴명</h3>
-                  <h6 class="font-weight-normal mb-0">메뉴설명쓰 <span class="text-primary">강조쓰</span></h6>
+                  <h3 class="font-weight-bold">수주 수정</h3>
                 </div>
                 
-<!--           <div class="contentbody" style="background: pink;">  -->
           
 <!--  본문 내용 시작 -->
 <form action="${pageContext.request.contextPath}/contract/updatePro" method="post">
-<table>
+<table style="margin-top: 20px;">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
 			<th>수주번호</th>
@@ -78,23 +72,14 @@
 			<th>수주수량</th>
          </tr>
          <tr>
-         	<td><input type="text" name="business_num" value="${contractDTO.business_num }" readonly></td>
-         	<td><input type="text" name="item_name" value="${contractDTO.item_name }" readonly></td>
-         	<td><input type="text" name="business_name" value="${contractDTO.business_name }" readonly></td>
-         	<td><input type="text" name="contract_qty" value="${contractDTO.contract_qty }"></td>
+         	<td><input type="text" name="business_num" id="business_num" value="${contractDTO.business_num }" readonly onfocus="this.blur();"></td>
+         	<td><input type="text" name="item_name" id="item_name" value="${contractDTO.item_name }" readonly onfocus="this.blur();"></td>
+         	<td><input type="text" name="business_name" id="business_name" value="${contractDTO.cust_name }" readonly onfocus="this.blur();"></td>
+         	<td><input type="text" name="contract_qty" id="contract_qty" value="${contractDTO.contract_qty }"></td>
          	
          </tr>	
-         <tr align="center">
-			<th colspan="4">					
-			<button type="submit" class="btn btn-primary" >글수정</button>
-			</th>
-		</tr> 
-
-
-
-
-
 </table>
+		<button type="submit" class="btn btn-primary" >글수정</button>
  </form>         
           
           
@@ -110,7 +95,6 @@
         
 <!--           </div> -->
 <!-- 페이징하실거면 여기서 시작 -->
-     페이징
 <!-- 페이징 끝 -->
             </div>
             
