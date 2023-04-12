@@ -19,7 +19,7 @@ public class QualityDTO {
 		private String qc_edate;
 		
 //		불량 관련
-		private int fail_num;
+		private String fail_num;
 		private int fail_qty;
 		private String fail_reson;
 		private String fail_date;
@@ -113,10 +113,10 @@ public class QualityDTO {
 		}
 		
 //		불량 관련
-		public int getFail_num() {
+		public String getFail_num() {
 			return fail_num;
 		}
-		public void setFail_num(int fail_num) {
+		public void setFail_num(String fail_num) {
 			this.fail_num = fail_num;
 		}
 		public int getFail_qty() {
