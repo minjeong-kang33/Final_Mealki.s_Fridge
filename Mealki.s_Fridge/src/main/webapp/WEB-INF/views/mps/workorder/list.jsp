@@ -168,7 +168,7 @@
 				      </div>
 				     
 				      <div id="tab02">
-				      	<jsp:include page="workordertable.jsp" >
+				      	<jsp:include page="workordertable2.jsp" >
 				      	<jsp:param value="대기" name="state"/>
 				      	</jsp:include>
 				      </div>
@@ -256,15 +256,20 @@
 							"${pageContext.request.contextPath}/workorder/ContractList",
 							"작업지시등록",popOption);}
 				
-  						$(function(){
-  						$('.tabcontent > div').hide();
- 						 $('.tabnav a').click(function () {
-   						 $('.tabcontent > div').hide().filter(this.hash).fadeIn();
-    					$('.tabnav a').removeClass('active');
-    					$(this).addClass('active');
-    					return false;
-  						}).filter(':eq(0)').click();
-  						});
+						$(function() {
+							  $('.tabcontent > div').hide();
+							  $('.tabnav a').click(function() {
+							    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+							    $('.tabnav a').removeClass('active');
+							    $(this).addClass('active');
+							    return false;
+							  }).filter(':eq(0)').click();
+
+							  if (window.location.hash === '#tab02') {
+							    $('ul.tabnav li:nth-child(2) a').click();
+							    window.scrollTo(0, 0);
+							  }
+							});
   					</script>
   					
 	

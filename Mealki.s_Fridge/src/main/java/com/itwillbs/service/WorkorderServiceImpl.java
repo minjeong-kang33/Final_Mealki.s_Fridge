@@ -103,6 +103,26 @@ public class WorkorderServiceImpl implements WorkorderService{
 		workorderDAO.deleteWorkorder(wo_num);
 	}
 
+	@Override
+	public List<WorkorderDTO> getworkorderList2(PageDTO pageDTO) {
+		System.out.println("WorkorderServiceImpl getworkorderList2()");
+		int startRow=(pageDTO.getCurrentPage()-1)*pageDTO.getPageSize()+1;
+		int endRow = startRow+pageDTO.getPageSize()-1;
+		
+		pageDTO.setStartRow(startRow);
+		pageDTO.setEndRow(endRow);
+		
+		return workorderDAO.getWorkorderList2(pageDTO);
+	}
+
+	@Override
+	public int getWorkorderCount2(PageDTO pageDTO) {
+			System.out.println("WorkorderServiceImpl getWorkorderCount2()");
+		
+		
+		return workorderDAO.getWorkorderCount2(pageDTO);
+	}
+
 
 	
 	

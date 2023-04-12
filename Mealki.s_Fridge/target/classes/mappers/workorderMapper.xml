@@ -30,6 +30,37 @@
 		</if>
 		and wo_available=1
 	</select>
+	
+	<select id="getWorkorderCount2" resultType="java.lang.Integer">
+		select count(*) 
+		from workorder w
+		left outer join qc_status q on q.wo_num=w.wo_num
+		where q.qc_qty is null
+		<if test="wo_num != null">
+			and RIGHT(wo_num,12) = #{wo_num}
+		</if>
+		<if test="business_num != null">
+			and business_num = #{business_num}
+		</if>
+		<if test="order_date != null">
+			and date_format(wo_date, '%Y-%m-%d') <![CDATA[>=]]>
+			#{order_date}
+		</if>
+		<if test="dorder_date != null">
+			and date_format(wo_date, '%Y-%m-%d') <![CDATA[<=]]>
+			#{dorder_date}
+		</if>
+		<if test="out_date != null">
+			and date_format(out_date, '%Y-%m-%d') <![CDATA[>=]]>
+			#{out_date}
+		</if>
+		<if test="dout_date != null">
+			and date_format(out_date, '%Y-%m-%d') <![CDATA[<=]]>
+			#{out_date}
+		</if>
+		and wo_available=1
+	</select>
+	
 
 	<select id="getWorkorderList" resultType="com.itwillbs.domain.WorkorderDTO">
 		select w.wo_num, w.business_num, w.wo_date, date_format(c.out_date,
@@ -76,6 +107,52 @@
 		limit #{startRow}, #{pageSize}
 	</select>
 
+	<select id="getWorkorderList2" resultType="com.itwillbs.domain.WorkorderDTO">
+		select w.wo_num, w.business_num, w.wo_date, date_format(c.out_date,
+		'%Y-%m-%d') as out_date, w.wo_qty, w.manu_name, w.item_name, 
+		e.emp_Kname as wo_empname, sum(q.qc_qty) as pr_sum,
+				(case
+				when sum(q.qc_qty) <![CDATA[<]]> w.wo_qty
+				then "진행중"
+				when sum(q.qc_qty) = w.wo_qty 
+				then "완료"
+				else "대기"
+				end) as wo_state
+		from employee e join workorder w
+		on w.wo_emp=e.emp_num
+		join contract c
+		on w.business_num=c.business_num
+		left outer join qc_status q
+		on q.wo_num=w.wo_num
+		where wo_available=1
+		and q.qc_qty is null
+		<if test="wo_num != null">
+			and RIGHT(w.wo_num,12) = #{wo_num}
+		</if>
+		<if test="business_num != null">
+			and w.business_num = #{business_num}
+		</if>
+		<if test="order_date != null">
+			and date_format(w.wo_date, '%Y-%m-%d') <![CDATA[>=]]>
+			#{order_date}
+		</if>
+		<if test="dorder_date != null">
+			and date_format(w.wo_date, '%Y-%m-%d') <![CDATA[<=]]>
+			#{dorder_date}
+		</if>
+		<if test="out_date != null">
+			and date_format(c.out_date, '%Y-%m-%d') <![CDATA[>=]]>
+			#{out_date}
+		</if>
+		<if test="dout_date != null">
+			and date_format(c.out_date, '%Y-%m-%d') <![CDATA[<=]]>
+			#{out_date}
+		</if>
+		group by wo_num, business_num, wo_date, out_date, wo_qty, manu_name, item_name, wo_empname
+		order by wo_date desc
+		limit #{startRow}, #{pageSize}
+	</select>
+	
 	<select id="getContractCount" resultType="java.lang.Integer">
 		select count(*) 
 		FROM contract 
