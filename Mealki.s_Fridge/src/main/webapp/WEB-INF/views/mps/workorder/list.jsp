@@ -68,7 +68,7 @@
   					<tr>
     					<td>
     					<span>작업지시번호<input type="text" value="${param.wo_num}" name="wo_num"  style="margin-left: 25px; width:200px;" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력"></span>
-						<span style="margin-left: 10px;">작업지시일<input type="date" value="${param.order_date}" name="order_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dout_date}" name="dorder_date"></span>
+						<span style="margin-left: 10px;">작업지시일<input type="date" value="${param.order_date}" name="order_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dorder_date}" name="dorder_date"></span>
 						</td>
    						<td rowspan="2"> 
    						<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
