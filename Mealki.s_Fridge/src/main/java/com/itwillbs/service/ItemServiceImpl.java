@@ -69,14 +69,6 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.getCustomerList();
 	}
 
-//	@Override
-//	public ItemDTO getItemByNum(String item_num) {
-//		// TODO Auto-generated method stub
-//		return itemDAO.getItemByNum(item_num);
-//	}
-
-
-	
 	
 	 
 }

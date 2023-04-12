@@ -73,13 +73,5 @@ public class ItemDAOImpl implements ItemDAO {
 		return sqlSession.selectList(namespace+".getCustomerList");
 	}
 
-//	@Override
-//	public ItemDTO getItemByNum(String item_num) {
-//		// TODO Auto-generated method stub
-//		return sqlSession.selectOne(namespace+".getItemByNum", item_num);
-//	}
-
-	
-	
 
 }
