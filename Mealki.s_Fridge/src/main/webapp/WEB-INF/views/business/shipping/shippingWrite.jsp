@@ -92,7 +92,7 @@
           
 <!--  본문 내용 시작 -->
   
-    <form id="getShippingWrite" name="getShippingWrite" method="post" >
+    <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
     	 
     	<table border="1" id="table_content">
     	<tr>
@@ -102,7 +102,6 @@
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
            			<th>담당자</th>
            			<th>수주업체</th>
            			
@@ -114,17 +113,16 @@
            			<td><input type="text" name="item_name" id="item_name"></td>
            			<td><input type="date" name="delivery_date" id="delivery_date"></td>
            			<td><input type="date" name="out_date" id="out_date"></td>
-           			<td><input type="text" name="out_qty" id="out_qty"></td>
            			<td><input type="text" name="qc_qty" id="qc_qty"></td>
-           			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="incharge_name"></td>
-           			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
+           			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="emp_Kname"></td>
+           			<td onclick="findName()"><input type="text" name="cust_name" id="cust_name"></td>
            			
            			</tr>
  </table>
    	
             
  <div align="center">
-<button type="button" class="btn btn-primary" onclick="fun11()">저장</button>
+<button type="submit" class="btn btn-primary" >저장</button>
 </div>
 </form>        
  <!--  본문내용 끝 -->    
@@ -182,28 +180,21 @@ document.getElementById("out_date").setAttribute("min", today);
 
 </script>
 
-<script>
-var item_num = document.getElementById("item_num");
 
-if (item_num.trim() === "") {
-    alert("입력 필드에 값을 입력해주세요!");
-  }
-}
-</script>
 
 
 <script type="text/javascript">
-function fun11(){
-var out_qty = document.getElementById('out_qty').value;
-var qc_qty = document.getElementById('qc_qty').value;
+// function fun11(){
+// var out_qty = document.getElementById('out_qty').value;
+// var qc_qty = document.getElementById('qc_qty').value;
 
-if (out_qty > qc_qty) {
- alert("출하량이 재고수량보다 많습니다!");
-}else{
-	$("#getShippingWrite").attr("action","${pageContext.request.contextPath}/shipping/WriteSave").submit();
-}
+// if (out_qty > qc_qty) {
+//  alert("출하량이 재고수량보다 많습니다!");
+// }else{
+// 	$("#getShippingWrite").attr("action","${pageContext.request.contextPath}/shipping/WriteSave").submit();
+// }
 
-}
+// }
 </script>
 
   <!-- plugins:js -->

@@ -10,7 +10,9 @@ import org.springframework.stereotype.Repository;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.QualityDTO;
 import com.itwillbs.domain.ShippingDTO;
+import com.itwillbs.domain.WorkorderDTO;
 
 @Repository
 public class ShippingDAOImpl implements ShippingDAO{
@@ -70,6 +72,11 @@ public class ShippingDAOImpl implements ShippingDAO{
 	public void updateShipping(ShippingDTO shippingDTO) {
 		
 		sqlSession.update(namespace+".updateShipping",shippingDTO);
+	}
+
+	@Override
+	public List<WorkorderDTO> getShippingList() {
+		return sqlSession.selectList(namespace+".getShippingList");
 	}
 
 	
