@@ -129,7 +129,7 @@ $(function(){
            	</ul>	
 			
            	<div class="tabcontent">
-           	
+           		
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 		       				<form name="" method="get">
@@ -166,7 +166,7 @@ $(function(){
            			<td>
            				<c:choose>
            				<c:when test="${sessionScope.dept_num == 200}">
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
            				</c:when>
@@ -174,7 +174,7 @@ $(function(){
            			</td>
            			</tr>
            		</c:forEach>
-           	
+           		
            		</table>
            			
            		</form>
@@ -220,7 +220,7 @@ $(function(){
            		</tr>
            		
           		<c:forEach var="ShippingDTO" items="${resultList}">	
-           		<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           		<c:if test="${ShippingDTO.out_progress eq '대기'}">
            			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
@@ -232,11 +232,11 @@ $(function(){
            			<td>${ShippingDTO.incharge_name}</td>
            			<td>${ShippingDTO.cust_name}</td>
            			<td>
-           			${ShippingDTO.out_progress}></td>
+           			${ShippingDTO.out_progress}</td>
            			<td>
            				<c:choose>
            				<c:when test="${sessionScope.dept_num == 200}">
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
            				</c:when>

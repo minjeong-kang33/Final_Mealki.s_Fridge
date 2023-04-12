@@ -45,7 +45,6 @@
 			cust_name,
 			COALESCE(out_progress,'대기') as out_progress
 			from shipping
-<!-- 		from shipping -->
 		
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like concat('%', #{search},'%')
