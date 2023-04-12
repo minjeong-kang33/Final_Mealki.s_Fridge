@@ -42,17 +42,3 @@
 	</c:forEach>
 
 </table>
-<!-- <div style="text-align: center;"> -->
-<%-- 	<c:if test="${pageDTO.startPage>pageDTO.pageBlock} "> --%>
-<%-- 		<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage - pageDTO.pageBlock}">◀</a> --%>
-<%-- 	</c:if> --%>
-
-<%-- 	<c:forEach var="i" begin="${pageDTO.startPage}" --%>
-<%-- 		end="${pageDTO.endPage}" step="1"> --%>
-<%-- 		<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}&wo_num=${pageDTO.wo_num}&order_date=${pageDTO.order_date}&dorder_date=${pageDTO.dorder_date}&business_num=${pageDTO.business_num}&out_date=${pageDTO.out_date}&dout_date=${pageDTO.dout_date}">${i}</a> --%>
-<%-- 	</c:forEach> --%>
-
-<%-- 	<c:if test="${pageDTO.startPage>pageDTO.pageBlock} "> --%>
-<%-- 		<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${pageDTO.startPage + pageDTO.pageBlock}">▶</a> --%>
-<%-- 	</c:if> --%>
-<!-- </div> -->
