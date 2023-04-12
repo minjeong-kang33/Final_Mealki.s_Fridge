@@ -156,6 +156,7 @@
 <!-- 수주왕 끝-->         		
           </div>
           <div class="row">
+          
 <!-- 공지사항 시작 -->          
  <div class="col-md-7 grid-margin stretch-card" style="text-align: left;">
     <div class="card">
