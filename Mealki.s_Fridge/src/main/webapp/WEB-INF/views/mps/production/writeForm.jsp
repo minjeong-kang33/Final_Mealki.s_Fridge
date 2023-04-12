@@ -61,10 +61,10 @@
     <script type="text/javascript">
         function click1(){
             var QWForm = document.insertProduct;
-            var manu_fail = insertProduct.manu_fail.value;
-            var manu_tocount = insertProduct.manu_tocount.value;
+            var manu_fail = parseInt(insertProduct.manu_fail.value);
+            var manu_tocount = parseInt(insertProduct.manu_tocount.value);
             var lineselect = insertProduct.lineselect.value;
-            var unsto_qty = insertProduct.unsto_qty.value;
+            var unsto_qty = parseInt(insertProduct.unsto_qty.value);
             
             let check = /^[0-9]+$/; 
             if (!check.test(manu_fail)) {
@@ -75,17 +75,21 @@
             }else if( lineselect == "" || lineselect == null){
             	alert("라인을 선택해 주세요");
             	insertProduct.lineselect.focus();
-            }else if( manu_tocount == "0" || manu_tocount == null){
-                alert("수량이 0이거나 값이 없습니다.");
+            }else if( manu_tocount == null){
+                alert("수량이 값이 없습니다.");
                 insertProduct.manu_tocount.focus();
-            }else if(manu_tocount > manu_fail){
-            	alert("불량이 생산량보다 많습니다.");
-            	insertProduct.manu_fail.focus();
-            }else if(unsto_qty < manu_tocount){
+            } else if(manu_tocount > unsto_qty){
             	alert("생산량이 수주량 보다 많습니다.");
+            	console.log(manu_tocount);
+            	console.log(manu_fail);
+            	console.log(unsto_qty);
+            	
             	insertProduct.manu_tocount.focus();
-            }else if(unsto_qty > manu_fail){
+            } else if(manu_fail > unsto_qty){
             	alert("불량이 수주량 보다 많습니다.");
+//             	console.log(manu_tocount);
+//             	console.log(manu_fail);
+//             	console.log(unsto_qty);
             	insertProduct.manu_fail.focus();
             }else {
             	$("#insertProduct").attr("action","${pageContext.request.contextPath}/mps/production/start").submit();
@@ -153,7 +157,7 @@
 										<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
 										<span> 불량 :</span> 
 										<input type="text" name="manu_fail" value="0" class="manu_fail">
-										<input type="hidden" name="unsto_qty" value="" class="unsto_qty">
+										<input type="text" name="unsto_qty" value="" class="unsto_qty">
 										<p>
 									</div>
 
