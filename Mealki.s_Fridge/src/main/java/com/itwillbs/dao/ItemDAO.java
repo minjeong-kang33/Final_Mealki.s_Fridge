@@ -15,6 +15,5 @@ public interface ItemDAO {
 	void deleteItem(String itemNum);
 	ItemDTO selectItem(String itemNum);
 	String getMaxItemNum(String prefix);
-//	ItemDTO getItemByNum(String item_num);
 	List<CustomerDTO> getCustomerList();
 }

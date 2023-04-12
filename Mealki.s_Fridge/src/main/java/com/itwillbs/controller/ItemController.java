@@ -106,12 +106,10 @@ public class ItemController {
 	public String update(HttpServletRequest request, Model model, @RequestParam("item_image") MultipartFile file ) throws Exception {
 
 //		String item_num=request.getParameter("item_num");
-//		ItemDTO existingItem = itemService.getItemByNum(item_num);
 		
 		ItemDTO dto = new ItemDTO();
 		StockDTO stockDTO = new StockDTO(); //재고
 		
-//		dto.setItem_num(existingItem.getItem_num());
 //		dto.setItem_num(request.getParameter("item_num"));
 		dto.setItem_type(request.getParameter("item_type"));
 		dto.setItem_name(request.getParameter("item_name"));
