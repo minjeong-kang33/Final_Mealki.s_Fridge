@@ -9,18 +9,20 @@
 	 <insert id="contractInsertBoard">
     	INSERT INTO contract(business_num,
     						cust_num,
+    						cust_name,
     						item_num,
     						item_name,
-    						business_name,
+
     						business_date,
     						out_date,
     						incharge_name,
     						contract_qty) 
     	VALUES(#{business_num},
     			#{cust_num},
+    			#{cust_name},
     			#{item_num},
     			#{item_name},
-    			#{business_name},
+
     			#{business_date},
     			#{out_date},
     			#{incharge_name},
@@ -64,7 +66,7 @@
 	<select id="getContractListMap" resultType="map">
 		SELECT customer.cust_num, customer.cust_name
 		from customer 
-		where cust_gubun1 like '%납입처%'
+		where cust_gubun1 like '%납품처%'
 			
 	</select>
 	

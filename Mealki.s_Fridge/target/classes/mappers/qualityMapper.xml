@@ -59,8 +59,10 @@
 			<if test="manu_name != null and !manu_name.equals('')">and p.manu_name like CONCAT('%',#{manu_name},'%')</if>
 			<if test="item_name != null and !item_name.equals('')">and p.item_name like CONCAT('%',#{item_name},'%')</if>
 			<if test="emp_kname != null and !emp_kname.equals('')">and q.emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
-			<if test="qc_sdate != null and !qc_sdate.equals('') and qc_edate != null and !qc_edate.equals('')">OR qc_date between date(#{qc_sdate}) and DATE_ADD(date_format(#{qc_edate}, '%Y-%m-%d %H:%i:%s'), INTERVAL 1 DAY)</if>
-			<if test="fail_sdate != null and !fail_sdate.equals('') and fail_edate != null and !fail_edate.equals('')">OR fail_date between date(#{fail_sdate}) and date(#{fail_edate})+1</if>
+			<if test="qc_sdate != null and !qc_sdate.equals('')">and qc_date between date(#{qc_sdate}) and now()</if>
+			<if test="qc_edate != null and !qc_edate.equals('')">and qc_date between date(#{qc_sdate}) and DATE_ADD(date_format(#{qc_edate}, '%Y-%m-%d %h:%i:%s'), INTERVAL 1 DAY)</if>
+
+<!-- 			<if test="fail_sdate != null and !fail_sdate.equals('') and fail_edate != null and !fail_edate.equals('')">OR fail_date between date(#{fail_sdate}) and date(#{fail_edate})+1</if> -->
 		</where>
         group by p.wo_num
 		having manu_tocount is not null
@@ -88,11 +90,11 @@
 <!--     	insert 쿼리 -->
    		<insert id="insertQuality">
    			insert into qc_status (wo_num, manu_name, manu_code, item_name, item_num, qc_code, emp_Kname, qc_status, manu_tocount, qc_qty, manu_fail, qc_date)
-			values (#{wo_num}, #{manu_name}, #{manu_code}, #{item_name}, #{item_num}, #{qc_num}+1, #{emp_Kname}, #{qc_status}, #{manu_tocount}, #{qc_qty}, #{manu_fail}, DATE_FORMAT(now(), '%Y%m%d%H%i%s'));
+			values (#{wo_num}, #{manu_name}, #{manu_code}, #{item_name}, #{item_num}, #{qc_num}+1, #{emp_Kname}, #{qc_status}, #{manu_tocount}, #{qc_qty}, #{manu_fail}, DATE_FORMAT(now(), '%Y-%m-%d %h:%i:%s'));
     	</insert>
     	
     	<update id="updateQuality">
-   			update qc_status set qc_qty = #{qc_qty}, qc_status = #{qc_status}, qc_date = DATE_FORMAT(now(), '%Y%m%d%H%i%s'), manu_fail = #{manu_fail}
+   			update qc_status set qc_qty = #{qc_qty}, qc_status = #{qc_status}, qc_date = DATE_FORMAT(now(), '%Y-%m-%d %h:%i:%s'), manu_fail = #{manu_fail}
     		where qc_num = #{qc_num} 
     	</update>
     	
@@ -122,11 +124,11 @@
     		insert into defective(wo_num, manu_name,manu_code,item_name,item_num,emp_Kname,
 			fail_qty,fail_reson,fail_date)value ( #{wo_num}, #{manu_name}, #{manu_code}, #{item_name},
  			#{item_num}, #{emp_Kname}, #{fail_qty}, #{fail_reson},
- 			DATE_FORMAT(now(), '%Y%m%d%H%i%s'))
+ 			DATE_FORMAT(now(), '%Y-%m-%d %h:%i:%s'))
     	</insert>
     	
     	<update id="updateFail">
-   			update defective set fail_reson = #{fail_reson}, fail_date = DATE_FORMAT(now(), '%Y%m%d%H%i%s')
+   			update defective set fail_reson = #{fail_reson}, fail_date = DATE_FORMAT(now(), '%Y-%m-%d %h:%i:%s')
     		where fail_num = #{fail_num} 
     	</update>
 
