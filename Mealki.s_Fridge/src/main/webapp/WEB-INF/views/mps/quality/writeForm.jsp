@@ -32,11 +32,10 @@
     <script type="text/javascript">
         function click1(){
             var QWForm = document.getQualityWrite;
-            var qc_qty = getQualityWrite.qc_qty.value;
+            var qc_qty = parseInt(getQualityWrite.qc_qty.value);
             var wo_qty = getQualityWrite.wo_qty.value;
-            var manu_tocount = getQualityWrite.manu_tocount.value;
-            var manu_fail = getQualityWrite.manu_fail.value;
-            
+            var manu_tocount = parseInt(getQualityWrite.manu_tocount.value);
+            var manu_fail = parseInt(getQualityWrite.manu_fail.value);
             
             let check = /^[0-9]+$/; 
             if (!check.test(qc_qty)) {
@@ -54,7 +53,7 @@
             	console.log(qc_qty);
             	console.log(manu_tocount);
             	console.log(manu_fail);
-            }else if(manu_tocount < qc_qty){
+            }else if(qc_qty > manu_tocount){
             	alert("생산량보다 검수량이 많습니다.")
             	history.back();
             	console.log(wo_qty);
@@ -68,7 +67,7 @@
             	console.log(qc_qty);
             	console.log(manu_tocount);
             	console.log(manu_fail);
-            }else if(wo_qty < manu_fail){
+            }else if(manu_fail > qc_qty){
             	alert("검수량보다 불량이 많습니다.")
             	history.back();
             	console.log(wo_qty);
