@@ -373,7 +373,7 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}"  placeholder="이미지"
+			    <td><input type="file" name="item_image" value="\${item_image}"  placeholder="이미지">
 			    <input type="hidden" name="oldfile" value="\${item_image}">
 			    </td>`;
 	    
