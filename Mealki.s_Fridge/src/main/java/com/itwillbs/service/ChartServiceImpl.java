@@ -21,10 +21,4 @@ public class ChartServiceImpl implements ChartService{
 		return chartDAO.contract();
 	}
 
-	@Override
-	public List<ChartDTO> prochart() {
-		
-		return chartDAO.prochart();
-	}
-
 }

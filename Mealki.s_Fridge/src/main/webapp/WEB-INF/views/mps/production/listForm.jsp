@@ -124,12 +124,6 @@
 									    </table>
 									    <hr>
 									    <p>
-									    <div class="chart-wrap">
-									     <div id="production_bar">
-										 <h4>| 개인 생산 현황</h4>
- 										 <canvas id="myChart" height="320"></canvas>
-										</div>
-									</div>
 								</div>
 								<!--  본문내용 끝 -->
 
@@ -153,77 +147,6 @@
 							"${pageContext.request.contextPath}/mps/production/update?manu_date="+manu_date,
 							"밀키의 냉장고",popOption);}
 					</script>
-<!-- 					<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
-					<script>
-					
-					
-					
-					
-// 					$(document).redady(function(){
-// 						getGraph();
-// 					});
-
-// 					function getGraph(){
-// 						let name = [];
-// 						let num = [];
-
-// 					$.ajax({
-// 						url: "${pageContext.request.contextPath}/chart/product",
-// 						type: : "get",
-// 						data:{name:"${name}", pos_type:"ddd",
-// 						dataType:"json",
-// 						success:function(data){
-// // 							for (let i = 0; i<data.length; i++){
-// // 								name.push(data[i].pos_time);
-// // 								num.push(data[i].pos_count);
-// // 							}
-
-// 					new Chart(document.getElementById("line-chart"),{
-// 						type: 'bar',
-// 						data: {
-//        						labels: name,
-//        						datasets: [{
-// 								data:num,
-// 								label:"ddd",
-// 								borderColor:"#3e95cd",
-// 								fill: false
-//        						}
-//        						]
-// 						},
-// 						options: {
-// 							title: {
-// 								display:true,
-// 								text:'ㅁㅁㅁ'
-// 								}
-// 							}
-// 						});
-// 						},
-// 						error:function(){
-// 						alert("실패");	
-// 						}
-// 					})
-// 				}
-					
-// 					  const ctx = document.getElementById('myChart');
-// 					  new Chart(ctx, {
-//     					type: 'bar',
-//     					data: {
-//       					labels: ['Red', 'Blue', 'Yellow', 'Green', 'Purple', 'Orange'],
-//       					datasets: [{
-//         				label: '# of Votes',
-//         				data: [12, 19, 3, 5, 2, 3],
-//         				borderWidth: 1
-//       								}]
-//     						},
-// 					    options: {
-// 					      scales: {
-// 					        y: {
-// 					          beginAtZero: true
-// 					        }
-// 					      }
-// 					    }
-// 					  });
-					</script> 
 					
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
@@ -272,10 +195,5 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
 	<!-- End custom js for this page-->
-	<script src="${pageContext.request.contextPath}/resources/mps/productchart.js"></script>
-  	<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
-	  <!-- jQuery -->  
-  	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
-  	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
 </body>
 </html>

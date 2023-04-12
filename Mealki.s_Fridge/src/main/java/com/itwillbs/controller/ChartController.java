@@ -36,15 +36,4 @@ public class ChartController {
 		return contract;
 	}
 	
-	@RequestMapping(value = "/chart/product", method = RequestMethod.GET)
-	public ResponseEntity<List<ChartDTO>> proChart(){
-		System.out.println("ChartController prochart");
-		
-		List<ChartDTO> ProductionList=chartservice.prochart();
-		
-		ResponseEntity<List<ChartDTO>> production=
-				new ResponseEntity<List<ChartDTO>>(ProductionList,HttpStatus.OK);
-		
-		return production;
-	}
 }
