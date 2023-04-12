@@ -31,8 +31,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/productionwrite.css">
 <!--   Jquery -->
 
