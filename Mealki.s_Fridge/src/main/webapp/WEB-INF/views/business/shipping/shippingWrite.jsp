@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
+<!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script> -->
+<!-- <script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
