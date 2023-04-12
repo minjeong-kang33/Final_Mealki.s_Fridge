@@ -245,6 +245,20 @@
         			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
        				 <script type="text/javascript">
+		       				  const orderDateInput = document.querySelector('input[name="order_date"]');
+			       			  const dorderDateInput = document.querySelector('input[name="dorder_date"]');
+			       			  const outDateInput = document.getElementsByName('out_date')[0];
+			       		      const doutDateInput = document.getElementsByName('dout_date')[0];
+			       		  
+				       		  outDateInput.addEventListener('change', () => {
+				       		    doutDateInput.min = outDateInput.value;
+				       		  });
+			       			  orderDateInput.addEventListener('change', () => {
+			       			    dorderDateInput.min = orderDateInput.value;
+			       			  });
+			       			  
+			       			  
+			       			  
 						function ContractList() {
 							var _width = '630';
 							var _height = '350';
