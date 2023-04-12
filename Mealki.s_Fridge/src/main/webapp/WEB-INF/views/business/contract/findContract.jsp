@@ -5,7 +5,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>밀키의 냉장고</title>
  <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" />
 <link rel="stylesheet" type="text/css"
 	href="${pageContext.request.contextPath}/resources/business/findContract.css">
