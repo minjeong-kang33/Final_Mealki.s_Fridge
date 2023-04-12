@@ -62,12 +62,12 @@
             <div id="table_search">
 
             	<form name="search" action="${pageContext.request.contextPath}/mdm/recipe/recipeList" method="get" onsubmit="return fun1()" >
-	            	<select name="search_option">
+	            	<select name="search_option" class="search_option">
 	            		<option value="r_name"> 레시피이름 </option>
 	            		<option value="r_code"> 레시피코드 </option>
 	            	</select>
 	            <input type="text" name="search" class="input-search" >
-	            <input type="image"  class="itemsearch-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="27">
+	            <input type="image"  value="search"  class="itemsearch-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="27">
 
             	</form>
             </div>

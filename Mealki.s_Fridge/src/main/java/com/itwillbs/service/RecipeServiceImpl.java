@@ -40,10 +40,10 @@ public class RecipeServiceImpl implements RecipeService{
 	}
 
 	@Override
-	public int getRecipeCount() {
+	public int getRecipeCount(PageDTO pageDTO) {
 		System.out.println("RecipeServiceImpl getRecipeCount()");
 		
-		return recipeDAO.getRecipeCount();
+		return recipeDAO.getRecipeCount(pageDTO);
 	}
 
 	@Override
