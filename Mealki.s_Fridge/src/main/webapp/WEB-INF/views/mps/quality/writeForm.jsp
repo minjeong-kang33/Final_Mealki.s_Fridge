@@ -52,8 +52,8 @@
             	console.log(qc_qty);
             	console.log(manu_tocount);
             	console.log(manu_fail);
-            }else if(qc_qty > manu_tocount){
-            	alert("생산량보다 검수량이 많습니다.")
+            }else if(qc_qty > (manu_tocount-manu_fail)){
+            	alert("생산,불량이 검수량 보다 많습니다. ")
             	history.back();
             	console.log(wo_qty);
             	console.log(qc_qty);
