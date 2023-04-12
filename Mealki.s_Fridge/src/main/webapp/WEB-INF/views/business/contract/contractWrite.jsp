@@ -102,37 +102,39 @@
 <!--  본문 내용 시작 -->
 
 <form id="getContractWrite" name="getContractWrite" method="post">        
-<table border="1" id="table_content">
+<table border="1" id="table_content" style="width: 85%;">
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
 		<tr>
-			<th>거래처코드</th>
-			<th>거래처명</th>
+			<th>업체코드</th>
+			<th>수주업체</th>
+			<!-- <th>거래처명</th> -->
 			<th>품목코드</th>
 			<th>품목명</th>
 			<th>수주일자</th>
 			<th>납품예정일</th>
-			<th>수주업체</th>
+			<!-- <th>수주업체</th> -->
 			<th>담당자</th>
 			<th>수주수량</th>
          </tr>
          <tr >
 
-         	<td onclick="findContract()"><input type="text" name="cust_num" id="cust_num"></td>
-         	<td><input type="text" name="cust_name" id="cust_name"></td>
-         	<td onclick="findProduct()"><input type="text" name="item_num" id="item_num"></td>
-         	<td><input type="text" name="item_name" id="item_name"></td>
-         	<td><input type="date" id="business_date" name="business_date" readonly></td>
-         	<td><input type="date" id="out_date" name="out_date"></td>
-			<td onclick="findName()"><input type="text" name="business_name" id="business_name"></td>
-         	<td onclick="findName2()"><input type="text" name="incharge_name" id="emp_Kname"></td>
-         	<td><input type="number" name="contract_qty" id="contract_qty"></td>
+         	<td onclick="findContract()" style="width: 170px;"><input type="text" name="cust_num" id="cust_num" style="width: 100%; border-style: none; background-color: transparent;"></td>
+         	<!-- <td><input type="text" name="cust_name" id="cust_name"></td> -->
+         	<td style="width: 130px;"><input type="text" name="cust_name" id="cust_name" style="width: 100%; border-style: none;  text-align: center; background-color: transparent;" onfocus="this.blur();"></td>
+         	<td onclick="findProduct()""><input type="text" name="item_num" id="item_num" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
+         	<td style="width: 170px;"><input type="text" name="item_name" id="item_name" style="width: 100%; border-style: none; background-color: transparent;" onfocus="this.blur();"></td>
+         	<td style="width: 140px;"><input type="date" id="business_date" name="business_date" readonly style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
+         	<td style="width: 140px;"><input type="date" id="out_date" name="out_date" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
+			<!-- <td onclick="findName()"><input type="text" name="business_name" id="business_name"></td> -->
+         	<td onclick="findName2()" style="width: 140px;"><input type="text" name="incharge_name" id="emp_Kname" value="${sessionScope.emp_Kname}" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
+         	<td style="width: 140px;"><input type="number" name="contract_qty" id="contract_qty" style="width: 100%; border-style: none; text-align: center; background-color: transparent;"></td>
          </tr>	
          
 </table>
 
        
-<div align="center">
-<button type="button" class="btn btn-primary" onclick="fun12()">저장</button>
+<div>
+<button type="button" class="btn btn-primary" onclick="fun12()" style="margin-top: 15px; margin-left: 42%;">저장</button>
 </div>         
 </form>             
           
@@ -195,7 +197,7 @@ function fun12(){
 	var item_name = document.getElementById('item_name').value;
 // 	var business_date = document.getElementById('business_date').value;
 	var out_date = document.getElementById('out_date').value;
-	var business_name = document.getElementById('business_name').value;
+//	var business_name = document.getElementById('business_name').value;
 	var emp_Kname = document.getElementById('emp_Kname').value;
 	var contract_qty = document.getElementById('contract_qty').value;
 	
@@ -217,9 +219,9 @@ function fun12(){
 	if(out_date == "" || out_date == null){
 		alert("납품예정일을 선택해 주세요");
 	}
-	if(business_name == "" || business_name == null){
-		alert("수주업체를 선택해 주세요");
-	}
+// 	if(business_name == "" || business_name == null){
+//		alert("수주업체를 선택해 주세요");
+//	} 
 	if(emp_Kname == "" || emp_Kname == null){
 		alert("담당자명을 선택해 주세요");
 	}
