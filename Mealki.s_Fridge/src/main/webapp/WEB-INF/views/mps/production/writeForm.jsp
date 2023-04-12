@@ -87,9 +87,9 @@
             	insertProduct.manu_tocount.focus();
             } else if(manu_fail > unsto_qty){
             	alert("불량이 수주량 보다 많습니다.");
-//             	console.log(manu_tocount);
-//             	console.log(manu_fail);
-//             	console.log(unsto_qty);
+            	console.log(manu_tocount);
+            	console.log(manu_fail);
+            	console.log(unsto_qty);
             	insertProduct.manu_fail.focus();
             }else {
             	$("#insertProduct").attr("action","${pageContext.request.contextPath}/mps/production/start").submit();
@@ -157,7 +157,7 @@
 										<input type="text" name="emp_Kname" value="${productionDTO.emp_Kname}" readonly="readonly">
 										<span> 불량 :</span> 
 										<input type="text" name="manu_fail" value="0" class="manu_fail">
-										<input type="text" name="unsto_qty" value="" class="unsto_qty">
+										<input type="hidden" name="unsto_qty" value="" class="unsto_qty">
 										<p>
 									</div>
 
