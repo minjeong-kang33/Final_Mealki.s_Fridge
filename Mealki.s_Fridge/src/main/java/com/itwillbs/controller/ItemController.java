@@ -229,7 +229,7 @@ public class ItemController {
 	}
 
 	@RequestMapping(value = "mdm/item/getCustomerList", method = RequestMethod.GET)
-	public ModelAndView getItemList(ModelAndView mav) {
+	public ModelAndView getCustomerList(ModelAndView mav) {
 	  List<CustomerDTO> customerList = itemService.getCustomerList();
 	  mav.addObject("customerList", customerList);
 	  mav.setViewName("mdm/item/customerListPopup");

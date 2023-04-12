@@ -191,6 +191,7 @@
   
   
   <script>
+  
 //   이미지 선택시 크게보기 팝업창 생성
   function showFullSizeImage(imageSrc) {
 	    var imgWidth = 450; 
@@ -225,14 +226,14 @@ function fun1() {
       });
     });
     
-    //팝업창에서 전달받은 정보 -> 입력란 업데이트하는 함수추가
     function updateItemInfo(supplier) {
-    	  let focusedInput = document.activeElement;
-    	  if (focusedInput && focusedInput.name === 'supplier') {
-    	    focusedInput.value = supplier;
-    	    focusedInput.parentNode.nextElementSibling.querySelector("input[name='supplier']").value = supplier;
+    	  let supplierInput = document.getElementById("supplierInput");
+    	  if (supplierInput) {
+    	    supplierInput.value = supplier;
     	  }
     	}
+
+
     
 
     // 상품추가 버튼 이벤트
@@ -262,7 +263,7 @@ function fun1() {
 			    </td>
 			    <td><input type="text" name="item_name" placeholder="품목명"></td>
 			    <td><input type="text" name="weight" placeholder="중량(g)"></td>
-			    <td><input type="text" name="supplier" placeholder="납입처"></td>
+			    <td><input type="text" name="supplier" id="supplierInput" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" placeholder="출고 단가(원)"></td>
 			    <td><input type="file" name="item_image" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
@@ -346,7 +347,8 @@ function fun1() {
       let supplier = element.querySelector('td:nth-child(6)').textContent;
       let supply_price = element.querySelector('td:nth-child(7)').textContent;
       let sales_price = element.querySelector('td:nth-child(8)').textContent;
-      let item_image = element.querySelector('td:nth-child(9)').textContent;
+      let item_image = element.querySelector('td:nth-child(9) img').src;
+      let filename = item_image.substring(item_image.lastIndexOf('/') + 1);
 
 
       element.innerHTML = `
@@ -373,8 +375,8 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}"  placeholder="이미지">
-			    <input type="hidden" name="oldfile" value="\${item_image}">
+			    <td><input type="file" name="item_image"  placeholder="이미지">
+			    <input type="hidden" name="oldfile" value="${filename}">
 			    </td>`;
 	    
 			    let selectItemType = element.querySelector("select[name='item_type']");
