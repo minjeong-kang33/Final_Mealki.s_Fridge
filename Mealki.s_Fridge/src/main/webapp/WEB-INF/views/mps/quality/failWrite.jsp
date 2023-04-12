@@ -51,7 +51,7 @@
                 alert("사유를 적어주세요");
                 history.back();
             }else{
-            	$("#getFailWrite").attr("action","${pageContext.request.contextPath}/quality/failWritePro").submit();
+            	$("#getFailWrite").attr("action","${pageContext.request.contextPath}/quality/failUpdate").submit();
             }
         }
         
@@ -107,7 +107,7 @@
 			</c:if>
 			
 			<c:choose>
-				<c:when test="${qualityDTO.qc_qty eq null || qualityDTO.qc_qty eq '0'}">
+				<c:when test="${qualityDTO.fail_reson eq null || qualityDTO.fail_reson eq '0'}">
 				<button class="btn btn-primary" type="button" id="IconButton2" onclick="click1()">
 				저장</button>
 				</c:when>
