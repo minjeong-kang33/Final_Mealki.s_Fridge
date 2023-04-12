@@ -10,7 +10,9 @@ import org.springframework.stereotype.Service;
 import com.itwillbs.dao.ShippingDAO;
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.QualityDTO;
 import com.itwillbs.domain.ShippingDTO;
+import com.itwillbs.domain.WorkorderDTO;
 @Service
 public class ShippingServiceImpl implements ShippingService{
 	
@@ -72,6 +74,13 @@ public class ShippingServiceImpl implements ShippingService{
 	@Override
 	public void updateShipping(ShippingDTO shippingDTO) {
 		shippingDAO.updateShipping(shippingDTO);
+	}
+
+	
+	
+	@Override
+	public List<WorkorderDTO> getShippingList() {
+		return shippingDAO.getShippingList();
 	}
 
 	

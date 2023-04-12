@@ -77,7 +77,8 @@
 	</select>
 	
 	<select id="getNameList" resultType="com.itwillbs.domain.ContractDTO">
-	select distinct cust_name from contract
+	select distinct cust_name from customer
+	where cust_gubun1 = '납품처'
 	</select>
 	
 	<select id="getNameList2" resultType="com.itwillbs.domain.EmployeeDTO">

@@ -15,6 +15,14 @@ public class ShippingDTO {
 	private String incharge_name;
 	private String business_name;
 	private String out_progress;
+	private String cust_name;
+	
+	public String getCust_name() {
+		return cust_name;
+	}
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
+	}
 	public String getShipping_num() {
 		return shipping_num;
 	}

@@ -5,9 +5,9 @@
 
 	<insert id="shippingInsertBoard">
 		INSERT INTO shipping(shipping_num,wo_num,item_num,item_name,delivery_date,out_date,
-		out_qty,qc_qty,incharge_name,business_name)
+		out_qty,qc_qty,incharge_name,cust_name)
 		VALUES(#{shipping_num},#{wo_num},#{item_num},#{item_name},
-		#{delivery_date},#{out_date},#{out_qty},#{qc_qty},#{incharge_name},#{business_name})
+		#{delivery_date},#{out_date},#{out_qty},#{qc_qty},#{incharge_name},#{cust_name})
 	</insert>
 
 	<select id="getBoardList" resultType="com.itwillbs.domain.ShippingDTO">
@@ -20,7 +20,7 @@
 			out_qty,
 			qc_qty,
 			incharge_name,
-			business_name,
+			cust_name,
 			COALESCE(out_progress,'대기') as out_progress
 			from shipping
 		<if test="search_option == 'product_name'.toString()">
@@ -42,7 +42,7 @@
 			out_qty,
 			qc_qty,
 			incharge_name,
-			business_name,
+			cust_name,
 			COALESCE(out_progress,'대기') as out_progress
 			from shipping
 <!-- 		from shipping -->
@@ -63,10 +63,18 @@
 	<select id="getShippingListMap" resultType="map">
 		select qc_status.wo_num, 
 		qc_status.item_num, qc_status.item_name, qc_status.qc_qty
-		from qc_status  join workorder
+		from qc_status join workorder
 		on qc_status.wo_num = workorder.wo_num
-		where qc_status.wo_num like '%WO%'
+		where workorder.wo_num not in (select distinct wo_num from shipping);
+		
 	</select>
+	
+<!-- 	<select id="getShippingList" resultType="com.itwillbs.domain.WorkorderDTO"> -->
+<!-- 		select wo_num, item_num, item_name, qc_qty -->
+<!-- 		from qc_status -->
+<!-- 		where wo_num not in (select distinct wo_num from workorder) -->
+<!-- 		order by wo_num -->
+<!-- 	</select> -->
 
 	<select id="getEmployeeList" resultType="com.itwillbs.domain.EmployeeDTO">
 	select * from employee

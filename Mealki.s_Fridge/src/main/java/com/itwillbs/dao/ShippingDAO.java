@@ -5,7 +5,9 @@ import java.util.Map;
 
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.QualityDTO;
 import com.itwillbs.domain.ShippingDTO;
+import com.itwillbs.domain.WorkorderDTO;
 
 public interface ShippingDAO {
 
@@ -25,6 +27,8 @@ public interface ShippingDAO {
 	List<ContractDTO> getEmployeeList();
 
 	void updateShipping(ShippingDTO shippingDTO);
+
+	List<WorkorderDTO> getShippingList();
 
 	
 
