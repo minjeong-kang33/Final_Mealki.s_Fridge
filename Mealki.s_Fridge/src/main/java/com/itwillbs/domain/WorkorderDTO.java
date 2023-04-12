@@ -15,7 +15,7 @@ public class WorkorderDTO {
 	private String wo_state;
 	// contract 관련
 	private String item_name;
-	private String business_name;
+	private String cust_name;
 	private String business_date;
 	private String out_date;
 	private String item_num;
@@ -38,11 +38,11 @@ public class WorkorderDTO {
 	public void setItem_name(String item_name) {
 		this.item_name = item_name;
 	}
-	public String getBusiness_name() {
-		return business_name;
+	public String getCust_name() {
+		return cust_name;
 	}
-	public void setBusiness_name(String business_name) {
-		this.business_name = business_name;
+	public void setCust_name(String cust_name) {
+		this.cust_name = cust_name;
 	}
 	public String getBusiness_date() {
 		return business_date;

@@ -162,7 +162,7 @@
 	</select>
 
 	<select id="getcontractList" resultType="com.itwillbs.domain.WorkorderDTO">
-		SELECT business_num, item_name, contract_qty, business_name,
+		SELECT business_num, item_name, contract_qty, cust_name,
 		date_format(business_date,'%Y-%m-%d') as business_date,
 		date_format(out_date,'%Y-%m-%d') as out_date
 		FROM contract 
@@ -174,7 +174,7 @@
 	</select>
 
 	<select id="ContractSearch" resultType="com.itwillbs.domain.WorkorderDTO">
-		select business_num, item_name, contract_qty, business_name,
+		select business_num, item_name, contract_qty, cust_name,
 		date_format(business_date,'%Y-%m-%d') as business_date,
 		date_format(out_date,'%Y-%m-%d') as out_date
 		from contract

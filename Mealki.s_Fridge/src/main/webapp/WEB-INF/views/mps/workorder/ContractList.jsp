@@ -57,7 +57,7 @@
 				<td>${WorkorderDTO.business_num}</td>
 				<td>${WorkorderDTO.item_name}</td>
 				<td>${WorkorderDTO.contract_qty}</td>
-				<td>${WorkorderDTO.business_name}</td>
+				<td>${WorkorderDTO.cust_name}</td>
 				<td>${WorkorderDTO.business_date}</td>
 				<td>${WorkorderDTO.out_date}</td>
 			</tr>
