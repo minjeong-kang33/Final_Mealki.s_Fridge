@@ -143,7 +143,7 @@ $(function(){
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -157,10 +157,10 @@ $(function(){
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
            			${ShippingDTO.out_progress}</td>
            			<td>
@@ -212,7 +212,7 @@ $(function(){
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -227,10 +227,10 @@ $(function(){
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
            			${ShippingDTO.out_progress}></td>
            			<td>
@@ -264,7 +264,7 @@ $(function(){
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -279,10 +279,10 @@ $(function(){
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
            			${ShippingDTO.out_progress}</td>         				          				          				
            			<td>
