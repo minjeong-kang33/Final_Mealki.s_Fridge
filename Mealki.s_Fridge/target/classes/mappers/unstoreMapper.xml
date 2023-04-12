@@ -6,7 +6,7 @@
 <mapper namespace="com.itwillbs.mappers.unstoreMapper">
 	
 	<select id="getUnstoreList" resultType="map">
-		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.cust_name, 
 				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
 				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num,
 				CASE 
@@ -49,7 +49,7 @@
 	</select>
 	
 	<select id="getUnstoreListCount" resultType="java.lang.Integer">
-    select count(*) from (select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+    select count(*) from (select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.cust_name, 
 				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
 				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num,
 				CASE 
@@ -92,7 +92,7 @@
 	
 
 	<select id="getUnstoreList2" resultType="map">
-		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.cust_name, 
 				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
 				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num,
 				CASE 
@@ -141,7 +141,7 @@
 	
 	
 	<select id="getUnstoreDetailList" resultType="map">
-		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.business_name, 
+		select unsto_num,workorder.wo_num, DATE_FORMAT(workorder.wo_date,'%Y-%m-%d') as wo_date, workorder.wo_qty, contract.cust_name, 
 				contract.item_name, DATE_FORMAT(contract.out_date,'%Y-%m-%d') as out_date, COALESCE(unsto_progress,'미출고') as unsto_progress,
 				contract.item_num, DATE_FORMAT(unsto_date,'%Y-%m-%d') as unsto_date, emp_num, workorder.wo_emp
 		from unstore
