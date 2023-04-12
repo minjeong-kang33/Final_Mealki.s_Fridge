@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
+<!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script> -->
+<!-- <script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -27,7 +27,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+ <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/shipping/shippingWrite.css">
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>

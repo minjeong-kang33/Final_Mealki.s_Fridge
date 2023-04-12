@@ -38,10 +38,6 @@
                <span class="text-primary"> ${sessionScope.emp_Kname}</span> 님 
             </a>
             <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
-              <a class="dropdown-item">
-                <i class="ti-settings text-primary"></i>
-                Settings 
-              </a>
               <a class="dropdown-item" href="${pageContext.request.contextPath}/main/logout">
                 <i class="ti-power-off text-primary"></i>
                 로그아웃

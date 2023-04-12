@@ -25,9 +25,12 @@ table{
 }
 
 #table_content input{
-	width:130px;
+   width:100%;
+   background-color: transparent;
+   border: none;
+   text-align: center;
 }
 
-
-
-
+button {
+   margin-top: 20px;
+}

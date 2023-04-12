@@ -31,8 +31,7 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/quality.css">
 </head>
@@ -102,9 +101,9 @@
 												<td >품명</td>
 												<td >품번</td>
 												<td >검수자 </td>
-												<td >수주량</td>
-												<td >생산량 </td>
-												<td >검수량 </td>
+												<td style="width: 80px">수주량</td>
+												<td style="width: 80px">생산량 </td>
+												<td style="width: 80px">검수량 </td>
 												<td >불량  </td>
 												<td >검수완료일자  </td>
 												<td >검수상태 </td>
@@ -121,9 +120,9 @@
 														<td >${dto.item_name}</td>
 														<td >${dto.item_num}</td>
 														<td >${dto.emp_Kname}</td>
-														<td >${dto.wo_qty}</td>
-														<td >${dto.manu_tocount}</td>
-														<td >${dto.qc_qty}</td>
+														<td style="width: 80px">${dto.wo_qty}</td>
+														<td style="width: 80px">${dto.manu_tocount}</td>
+														<td style="width: 80px">${dto.qc_qty}</td>
 														<td >${dto.manu_fail}</td>
 														<td >${dto.qc_date}</td>
 														<c:choose>
