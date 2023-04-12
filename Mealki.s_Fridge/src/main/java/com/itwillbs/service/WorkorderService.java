@@ -27,6 +27,10 @@ public interface WorkorderService {
 
 	public void deleteWorkorder(String wo_num);
 
+	public List<WorkorderDTO> getworkorderList2(PageDTO pageDTO);
+
+	public int getWorkorderCount2(PageDTO pageDTO);
+
 }
 
 
