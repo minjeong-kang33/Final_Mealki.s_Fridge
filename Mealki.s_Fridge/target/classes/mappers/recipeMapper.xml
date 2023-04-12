@@ -11,7 +11,9 @@
 	</select>
 
 	 <select id="getRecipeList" resultType="com.itwillbs.domain.RecipeDTO">
-        select * from recipe
+          SELECT *
+ 		  FROM recipe
+   		 
         
         <if test="search_option == 'r_code'.toString()">
         where r_code like CONCAT('%',#{search},'%')
@@ -20,7 +22,7 @@
         where r_name  like CONCAT('%',#{search},'%')
         </if>
         
-        order by r_num desc
+        ORDER BY CAST(SUBSTRING(r_num, 2) AS UNSIGNED) DESC
         limit #{startRow}, #{pageSize}
     </select>
     
@@ -40,7 +42,7 @@
       SELECT r_num
     FROM recipe
     ORDER BY CAST(SUBSTRING(r_num, 2) AS UNSIGNED) DESC
-    LIMIT 1;
+    LIMIT 1
     </select>
     
     <insert id="insertRecipe">
