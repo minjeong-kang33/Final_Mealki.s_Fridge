@@ -11,6 +11,7 @@ import javax.inject.Inject;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.stereotype.Repository;
 
+import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 
@@ -32,10 +33,10 @@ public class ItemDAOImpl implements ItemDAO {
 	    }
 	 
 	 @Override
-	 public int getItemCount() {
+	 public int getItemCount(PageDTO pageDTO) {
 		 System.out.println("ItemDAOImpl getItemCount()");
 		 
-		 return sqlSession.selectOne(namespace+".getItemCount");
+		 return sqlSession.selectOne(namespace+".getItemCount", pageDTO);
 	 }
 
 	@Override
@@ -64,6 +65,12 @@ public class ItemDAOImpl implements ItemDAO {
 	public String getMaxItemNum(String prefix) {
 		// TODO Auto-generated method stub
 		return sqlSession.selectOne(namespace+".getMaxItemNum",prefix);
+	}
+
+	@Override
+	public List<CustomerDTO> getCustomerList() {
+		// TODO Auto-generated method stub
+		return sqlSession.selectList(namespace+".getCustomerList");
 	}
 
 //	@Override

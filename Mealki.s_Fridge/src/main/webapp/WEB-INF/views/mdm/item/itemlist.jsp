@@ -132,15 +132,15 @@
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="paging">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[다음]</a>
 </c:if>
 </div>
                 <br>* 품목코드의 P는 완제품, I는 식자재입니다.
@@ -224,6 +224,16 @@ function fun1() {
         }
       });
     });
+    
+    //팝업창에서 전달받은 정보 -> 입력란 업데이트하는 함수추가
+    function updateItemInfo(supplier) {
+    	  let focusedInput = document.activeElement;
+    	  if (focusedInput && focusedInput.name === 'supplier') {
+    	    focusedInput.value = supplier;
+    	    focusedInput.parentNode.nextElementSibling.querySelector("input[name='supplier']").value = supplier;
+    	  }
+    	}
+    
 
     // 상품추가 버튼 이벤트
     document.getElementById("addItemButton").addEventListener("click", function() {
@@ -261,6 +271,13 @@ function fun1() {
       let inputItemNum = newRow.querySelector("input[name='item_num']");
       let selectItemType = newRow.querySelector("select[name='item_type']");
 
+      newRow.querySelector("input[name='supplier']").addEventListener("click", function() {
+			let focusedInput = this;
+			window.open("../../mdm/item/getCustomerList", "customerListPopup", "width=300, height=500");
+		this.focus();
+		});
+      
+      
       // 초기 필터링 상태 설정
       filterItemTypeOptions(selectItemPrefix.value);
 
@@ -335,7 +352,10 @@ function fun1() {
       element.innerHTML = `
 			    <td><input type="checkbox" name="selectItem"></td>
 			    <td>
-			    <input type="hidden" name="item_prefix" value="\${itemNum.charAt(0)}">
+			    <select name="item_prefix" disabled>
+		          <option value="P">P</option>
+		          <option value="I">I</option>
+		        </select>
 			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum} readonly></td>
 			    </td>
 			    <td>
@@ -356,10 +376,15 @@ function fun1() {
 			    <td><input type="file" name="item_image" value="\${item_image}"  placeholder="이미지"
 			    <input type="hidden" name="oldfile" value="\${item_image}">
 			    </td>`;
-
+	    
 			    let selectItemType = element.querySelector("select[name='item_type']");
 			    filterItemTypeOptions(itemNum.charAt(0), itemType);
 
+			    element.querySelector("input[name='supplier']").addEventListener("click", function() {
+			        let focusedInput = this;
+			        window.open("../../mdm/item/getCustomerList", "customerListPopup", "width=300, height=500");
+			        this.focus();
+			      });
 			    
 			    //품목코드의 유형에따른 입력란 제어
 			    element.querySelector("input[name='supply_price']").addEventListener("click", function() {
@@ -432,7 +457,7 @@ function fun1() {
       }
     })
 
-
+	//품목 저장버튼 이벤트
     document.getElementById("saveItemButton").addEventListener("click", function() {
   let selectItemPrefix = document.querySelector("select[name='item_prefix']");
   let inputItemNum = document.querySelector("input[name='item_num']");

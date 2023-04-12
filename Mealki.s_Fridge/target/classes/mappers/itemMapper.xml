@@ -69,4 +69,10 @@
     where item_num = #{itemNum}
   </select>
 
+  <select id="getCustomerList" resultType="com.itwillbs.domain.CustomerDTO">
+  select cust_name from customer
+  where cust_gubun1="납입처"
+  </select>
+
+
 </mapper>

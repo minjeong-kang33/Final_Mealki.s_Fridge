@@ -65,7 +65,7 @@ public class RecipeController {
 			System.out.println(recipeList);
 			
 			// 페이징
-			int count = recipeService.getRecipeCount();
+			int count = recipeService.getRecipeCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;

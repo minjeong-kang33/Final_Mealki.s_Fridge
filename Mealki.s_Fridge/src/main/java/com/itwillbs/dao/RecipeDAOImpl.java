@@ -39,10 +39,10 @@ public class RecipeDAOImpl implements RecipeDAO {
 	}
 
 	@Override
-	public int getRecipeCount() {
+	public int getRecipeCount(PageDTO pageDTO) {
 		System.out.println("RecipeDAOImpl getRecipeCount()");
 		
-		 return sqlSession.selectOne(namespace+".getRecipeCount");
+		 return sqlSession.selectOne(namespace+".getRecipeCount", pageDTO);
 	}
 
 	@Override
