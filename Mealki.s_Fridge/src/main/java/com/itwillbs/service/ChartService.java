@@ -10,6 +10,4 @@ public interface ChartService {
 
 	List<ChartDTO> contract();
 
-	List<ChartDTO> prochart();
-
 }

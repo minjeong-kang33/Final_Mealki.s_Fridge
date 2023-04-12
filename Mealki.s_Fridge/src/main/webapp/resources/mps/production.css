@@ -36,7 +36,7 @@ tr:hover td {
 }
 
 #production_table tbody {
-	height: 300px;
+	height: 600px;
 	overflow : auto;
 	display:block;
 }
@@ -146,8 +146,4 @@ td {
 	width: 200px;	
 }
 
-.chart-wrap{
-	margin-top : 20px;
-	height: 320px;
-}
 

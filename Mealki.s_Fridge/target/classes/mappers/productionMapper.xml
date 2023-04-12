@@ -40,7 +40,7 @@
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select u.wo_num, l.manu_code, l.manu_name, u.item_name,u.item_num, u.unsto_qty, sum(p.manu_tocount)-q.manu_fail manu_tocount, q.manu_fail
+    	select u.wo_num, l.manu_code, l.manu_name, u.item_name,u.item_num, u.unsto_qty, sum(p.manu_tocount)-q.manu_fail manu_tocount, sum(p.manu_tocount) manu_tocount1, q.manu_fail
 		from productstatus p right join unstore u 
 		on p.wo_num = u.wo_num  right join workorder w on u.wo_num = w.wo_num
 		left join linecode l on l.manu_name = w.manu_name left join qc_status q on w.wo_num = q. wo_num

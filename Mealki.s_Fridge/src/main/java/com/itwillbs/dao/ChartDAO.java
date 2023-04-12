@@ -10,6 +10,5 @@ public interface ChartDAO {
 
 	List<ChartDTO> contract();
 
-	List<ChartDTO> prochart();
 
 }
