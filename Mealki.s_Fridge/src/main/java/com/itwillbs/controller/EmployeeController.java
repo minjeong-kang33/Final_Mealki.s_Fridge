@@ -131,11 +131,12 @@ public class EmployeeController {
 		  employeeDTO.setDept_duty(request.getParameter("dept_duty"));
 		  employeeDTO.setEmp_status("재직");
 		  
+		  if(!file.isEmpty()) {
 		  UUID uuid=UUID.randomUUID(); 
 		  String filename =uuid.toString()+"_"+file.getOriginalFilename();
 		  FileCopyUtils.copy(file.getBytes(), new File(employeeUploadPath,filename));
 		 
-		  employeeDTO.setEmp_img(filename);
+		  employeeDTO.setEmp_img(filename);} else employeeDTO.setEmp_img("emp_default.png");
 		  
 		  employeeService.insertEmployee(employeeDTO);
 		
