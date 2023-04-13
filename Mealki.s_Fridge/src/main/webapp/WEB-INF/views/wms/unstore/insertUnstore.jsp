@@ -124,7 +124,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'|| sessionScope.dept_num eq '300')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -184,7 +184,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'|| sessionScope.dept_num eq '300')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
@@ -228,7 +228,7 @@
 								<td style="display: none;">${unstoreDTO.item_num }</td> 
 								<td>${unstoreDTO.unsto_date }</td> <!-- 출고일자 -->
 								<td>
-									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
+									<c:if test="${unstoreDTO.unsto_progress eq '미출고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600'|| sessionScope.dept_num eq '300')}">
 										<input type="button" value="출고처리" class="unstore_submit_button">
 									</c:if>	
 								</td><!--출고처리 -->
