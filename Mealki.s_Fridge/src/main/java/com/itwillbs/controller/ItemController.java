@@ -215,7 +215,13 @@ public class ItemController {
 			FileCopyUtils.copy(file.getBytes(), new File(itemUploadPath, filename));
 
 			dto.setItem_image(filename);
-		}
+		}else {
+			String oldfile = request.getParameter("oldfile");
+		    if (oldfile != null && !oldfile.isEmpty()) {
+		      dto.setItem_image(oldfile);
+		    }
+		  }
+	
 		    
 		itemService.save(dto);
 		// 식자재만 재고테이블에 추가
