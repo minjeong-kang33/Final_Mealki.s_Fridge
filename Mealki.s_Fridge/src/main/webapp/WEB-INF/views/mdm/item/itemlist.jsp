@@ -347,8 +347,7 @@ function fun1() {
       let supplier = element.querySelector('td:nth-child(6)').textContent;
       let supply_price = element.querySelector('td:nth-child(7)').textContent;
       let sales_price = element.querySelector('td:nth-child(8)').textContent;
-      let item_image = element.querySelector('td:nth-child(9) img').src;
-      let filename = item_image.substring(item_image.lastIndexOf('/') + 1);
+      let item_image = element.querySelector('td:nth-child(9) img').getAttribute('src').split('/').pop();
 
 
       element.innerHTML = `
@@ -372,11 +371,11 @@ function fun1() {
 			    </td>
 			    <td><input type="text" name="item_name" value="\${item_name}" placeholder="품목명"></td>
 			    <td><input type="text" name="weight" value="\${weight}" placeholder="중량(g)"></td>
-			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
+			    <td><input type="text" name="supplier" id="supplierInput" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
 			    <td><input type="file" name="item_image"  placeholder="이미지">
-			    <input type="hidden" name="oldfile" value="${filename}">
+			    <input type="hidden" name="oldfile" value="\${item_image}">
 			    </td>`;
 	    
 			    let selectItemType = element.querySelector("select[name='item_type']");
