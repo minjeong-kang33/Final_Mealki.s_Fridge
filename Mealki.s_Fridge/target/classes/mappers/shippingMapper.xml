@@ -60,14 +60,22 @@
 	</select>
 
 	<select id="getShippingListMap" resultType="map">
-		select qc_status.wo_num, 
-		qc_status.item_num, qc_status.item_name, qc_status.qc_qty
-		from qc_status join workorder
-		on qc_status.wo_num = workorder.wo_num
-		where workorder.wo_num not in (select distinct wo_num from shipping);
+		select   distinct qc.wo_num, qc.item_num, qc.item_name, qc.qc_qty 
+		from qc_status qc join workorder w
+		on qc.wo_num = w.wo_num
+		join contract c
+		on c.contract_qty = qc.qc_qty
+        where w.wo_qty = c.contract_qty
+		 and qc.wo_num not in (select distinct wo_num from shipping)
+		
 		
 	</select>
-	
+<!-- 	select qc_status.wo_num,  -->
+<!-- 		qc_status.item_num, qc_status.item_name, qc_status.qc_qty -->
+<!-- 		from qc_status join workorder -->
+<!-- 		on qc_status.wo_num = workorder.wo_num -->
+<!-- 		where workorder.wo_num not in (select distinct wo_num from shipping) -->
+
 <!-- 	<select id="getShippingList" resultType="com.itwillbs.domain.WorkorderDTO"> -->
 <!-- 		select wo_num, item_num, item_name, qc_qty -->
 <!-- 		from qc_status -->
