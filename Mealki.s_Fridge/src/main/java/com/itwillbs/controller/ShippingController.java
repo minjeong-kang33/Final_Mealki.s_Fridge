@@ -15,7 +15,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.itwillbs.domain.ContractDTO;
 import com.itwillbs.domain.EmployeeDTO;
 import com.itwillbs.domain.PageDTO;
+import com.itwillbs.domain.QualityDTO;
 import com.itwillbs.domain.ShippingDTO;
+import com.itwillbs.domain.WorkorderDTO;
 import com.itwillbs.service.ShippingService;
 
 @Controller
@@ -98,6 +100,7 @@ public class ShippingController {
 		model.addAttribute("total", total);
 		model.addAttribute("totalPage", totalPage);
 		
+		
 		return "business/shipping/shippingList";
 		
 	}
@@ -123,7 +126,8 @@ public class ShippingController {
 
 		List<Map<String, Object>> itemListMap = shippingService.getShippingListMap();
 		model.addAttribute("itemListMap", itemListMap);
-
+//		List<WorkorderDTO> shippingList = shippingService.getShippingList();
+//		model.addAttribute("shippingList", shippingList);
 		return "business/shipping/findShipping";
 	}
 	

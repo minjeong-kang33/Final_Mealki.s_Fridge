@@ -27,7 +27,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
 
@@ -83,8 +83,8 @@ function fun1(){
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">수주관리</h3>
-                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">목록클릭시 수정삭제가능</span></h6>
+                  <h3 class="font-weight-bold">수주현황</h3>
+                  <!-- <h6 class="font-weight-normal mb-0"> <span class="text-primary">목록클릭시 수정삭제가능</span></h6> -->
                 </div>
                 
           <div class="contentbody"> 
@@ -98,15 +98,19 @@ function fun1(){
 						<select name="search_option" class="search_option">
 							 <option value=""> 선택하세요 </option>
 			         		 <option value="item_name"> 품목명 </option>
-			        		 <option value="business_name"> 수주업체 </option>
+			        		 <option value="cust_name"> 수주업체 </option>
 						</select>
-						<input type="text" name="search" class="input_box">
-						<input type="submit" value="search">
+							<input type="text" name="search" class="input_box">
+							<input type="submit" value="search">
  					</form>
  				</div>
  				
 			   	<div id="table_write">
-        			<input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+				   	<c:choose>
+				   	<c:when test="${sessionScope.dept_num == 200}">
+	        			<input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
+	        		</c:when>
+	        		</c:choose>
         		</div>     
         	</div>
         
@@ -117,29 +121,25 @@ function fun1(){
 <!-- 수주번호,거래처코드,품목코드,품목명,수주업체,수주일자,납품예정일,담당자코드,담당자 -->
       
 		<tr align="center">
-			
-			
-			<th>품목명</th>
-			<th>수주업체</th>
-			<th>수주일자</th>
-			<th>납품예정일</th>
-			<th>담당자</th>
-			<th>수주수량</th>
-         </tr>
-         
-         
-         <c:forEach var="ContractDTO" items="${resultList}">
-         
-         <tr align="center" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num}'">
-         
-         	
-         	<td>${ContractDTO.item_name }</td>
-         	<td>${ContractDTO.business_name }</td>
-			<td>${ContractDTO.business_date }</td>
-			<td>${ContractDTO.out_date }</td>
-         	<td>${ContractDTO.incharge_name }</td>
-         	<td>${ContractDTO.contract_qty }</td>
-         </tr>	
+ 			 <th>수주번호</th>
+  			 <th>품목명</th>
+  			 <th>수주업체</th>
+ 			 <th>수주일자</th>
+ 			 <th>납품예정일</th>
+ 			 <th>담당자</th>
+ 			 <th>수주수량</th>
+		</tr>
+
+		<c:forEach var="ContractDTO" items="${resultList}">
+  		<tr align="center" style="cursor:pointer;" onclick="location.href='${pageContext.request.contextPath}/business/contract/content?business_num=${ContractDTO.business_num}'">
+    		<td>${ContractDTO.business_num}</td>
+    		<td>${ContractDTO.item_name}</td>
+    		<td>${ContractDTO.cust_name}</td>
+    		<td>${ContractDTO.business_date}</td>
+    		<td>${ContractDTO.out_date}</td>
+    		<td>${ContractDTO.incharge_name}</td>
+   		 	<td>${ContractDTO.contract_qty}</td>
+  		</tr>	
          
          
          </c:forEach>

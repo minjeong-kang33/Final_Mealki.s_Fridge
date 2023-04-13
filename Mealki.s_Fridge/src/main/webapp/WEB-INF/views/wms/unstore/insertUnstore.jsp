@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertUnStore.css">
@@ -95,7 +95,7 @@
 	        </ul>
 	        <div class="tabcontent" >
 	        
-		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
+		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">
@@ -108,7 +108,7 @@
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -135,6 +135,8 @@
 					   </table>
 					 </form>  
 						<!-- 페이징 -->
+						
+					<div id="pageDiv">	
 						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 							<a href="${pageContext.request.contextPath}/wms/unstore/insertUnstore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 이전</a>
 						</c:if>
@@ -148,12 +150,12 @@
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/unstore/insertUnstore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&unsto_num=${unsto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>							
-	
+					</div>
 					        
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        	        
 	        
-			        <div id="tab02" style="width: 100%"> <!-- tab 3내용 -->
+			        <div id="tab02" style="width: 100%"> <!-- tab 2내용 -->
 				        <div class="store_total_div1" style="width: 100%;">
 		       				<form name="store_form" method="get">
 					  <table border="1" class="unstore_total_table" style="width: 100%;">
@@ -166,8 +168,8 @@
 							<tr>	 
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
-								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${UnstoreDTO.wo_num}');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -211,7 +213,7 @@
 								<td>${unstoreDTO.unsto_num }</td> <!-- 출고관리번호 -->
 								<td class="wo_num">${unstoreDTO.wo_num }</td> <!-- 작업지시번호 -->
 								<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="unstoreDetail('${unstoreDTO.wo_num }');"> <!-- 상세페이지 버튼 -->
-								<td>${unstoreDTO.business_name }</td><!-- 납품처명 -->
+								<td>${unstoreDTO.cust_name }</td><!-- 납품처명 -->
 								<td>${unstoreDTO.item_name }</td><!-- 품명 -->
 								<td>${unstoreDTO.wo_qty }</td><!-- 주문수량 -->
 								<td class="divresult">
@@ -368,7 +370,7 @@
 		
 	
 		var wo_num = tdArr[0]; //작업지시번호
-		var business_name = tdArr[1]; //납품처명
+		var cust_name = tdArr[1]; //납품처명
 		var item_name = tdArr[2]; // 품명
 		var wo_qty = tdArr[3]; //주문수량
 	//	var sto_progress = tdArr[4]; //재고확인상태
@@ -384,7 +386,7 @@
 		$.ajax({
 				url:'addUntore',
 				type :'GET',
-				data:{wo_num:wo_num,business_name:business_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
+				data:{wo_num:wo_num,cust_name:cust_name,item_name:item_name,wo_qty:wo_qty,wo_date:wo_date,out_date:out_date,emp_num:emp_num,item_num:item_num},
 				success:function(result){
 				
 				alert("발주번호 "+wo_num +"번이 출고처리 되었습니다.");

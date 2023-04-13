@@ -35,5 +35,5 @@ public class ChartController {
 		
 		return contract;
 	}
-
+	
 }

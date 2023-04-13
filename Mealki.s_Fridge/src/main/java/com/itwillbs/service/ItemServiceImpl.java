@@ -9,6 +9,7 @@ import javax.inject.Inject;
 import org.springframework.stereotype.Service;
 
 import com.itwillbs.dao.ItemDAO;
+import com.itwillbs.domain.CustomerDTO;
 import com.itwillbs.domain.ItemDTO;
 import com.itwillbs.domain.PageDTO;
 
@@ -33,10 +34,10 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public int getItemCount() {
+	public int getItemCount(PageDTO pageDTO) {
 		System.out.println("ItemServiceImpl getItemCount()");
 		
-		return itemDAO.getItemCount();
+		return itemDAO.getItemCount(pageDTO);
 	}
 
 
@@ -62,14 +63,12 @@ public class ItemServiceImpl implements ItemService {
 		return itemDAO.getMaxItemNum(prefix);
 	}
 
-//	@Override
-//	public ItemDTO getItemByNum(String item_num) {
-//		// TODO Auto-generated method stub
-//		return itemDAO.getItemByNum(item_num);
-//	}
+	@Override
+	public List<CustomerDTO> getCustomerList() {
+		// TODO Auto-generated method stub
+		return itemDAO.getCustomerList();
+	}
 
-
-	
 	
 	 
 }

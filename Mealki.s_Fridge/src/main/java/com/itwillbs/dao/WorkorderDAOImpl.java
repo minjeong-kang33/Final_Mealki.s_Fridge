@@ -21,8 +21,9 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 	@Override
 	public int getWorkorderCount(PageDTO pageDTO) {
 		System.out.println("WorkorderDAOImpl getWorkorderCount()");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
 		
-		return sqlSession.selectOne(namespace+".getWorkorderCount");
+		return sqlSession.selectOne(namespace+".getWorkorderCount", pageDTO);
 	}
 
 	@Override
@@ -92,6 +93,22 @@ public class WorkorderDAOImpl implements WorkorderDAO{
 		System.out.println("WorkorderDAOImpl deleteWorkorder()");
 		
 		sqlSession.update(namespace+".deleteWorkorder", wo_num);
+	}
+
+	@Override
+	public List<WorkorderDTO> getWorkorderList2(PageDTO pageDTO) {
+		System.out.println("WorkorderDAOImpl getWorkorderList2()");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectList(namespace+".getWorkorderList2", pageDTO);
+	}
+
+	@Override
+	public int getWorkorderCount2(PageDTO pageDTO) {
+		System.out.println("WorkorderDAOImpl getWorkorderCount2()");
+		pageDTO.setStartRow(pageDTO.getStartRow()-1);
+		
+		return sqlSession.selectOne(namespace+".getWorkorderCount2", pageDTO);
 	}
 
 	

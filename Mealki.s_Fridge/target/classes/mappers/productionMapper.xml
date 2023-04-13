@@ -25,12 +25,13 @@
 		date_format(manu_date, '%Y-%m-%d %H:%i:%s') manu_date from productstatus p join unstore u on p.wo_num = u.wo_num
     	<where>
     		<if test="wo_num != null and !wo_num.equals('')">p.wo_num like CONCAT('%',#{wo_num},'%') </if>
-			<if test="manu_name != null and !manu_name.equals('')">OR p.manu_name like CONCAT('%',#{manu_name},'%')</if>
-			<if test="item_name != null and !item_name.equals('')">OR p.item_name like CONCAT('%',#{item_name},'%')</if>
-			<if test="emp_Kname != null and !emp_Kname.equals('')">OR p.emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
-			<if test="manu_date != null and !manu_date.equals('')">OR manu_date between date_format(#{manu_date}, '%Y-%m-%d %H:%i:%s') and date_format(#{manu_date}, '%Y-%m-%d %H:%i:%s')+1</if>
+			<if test="manu_name != null and !manu_name.equals('')">and p.manu_name like CONCAT('%',#{manu_name},'%')</if>
+			<if test="item_name != null and !item_name.equals('')">and p.item_name like CONCAT('%',#{item_name},'%')</if>
+			<if test="emp_Kname != null and !emp_Kname.equals('')">and p.emp_Kname like CONCAT('%',#{emp_Kname},'%')</if>
+			<if test="manu_sdate != null and !manu_sdate.equals('')" >and manu_date between date_format(#{manu_sdate}, '%Y-%m-%d %H:%i:%s') and now() </if>
+			<if test="manu_date != null and !manu_date.equals('')">and manu_date between date_format(#{manu_sdate}, '%Y-%m-%d %H:%i:%s') and DATE_ADD(date_format(#{manu_date}, '%Y-%m-%d %H:%i:%s'), INTERVAL 1 DAY)</if>
     	</where>
-    	order by manu_date desc;
+    	order by manu_date desc
     </select>
     
     <select id="getemp_Knamesession" resultType="com.itwillbs.domain.ProductionDTO">
@@ -39,10 +40,10 @@
     </select>
     
     <select id="getselectList" resultMap="productionMap">
-    	select u.wo_num, l.manu_code, l.manu_name, u.item_name,u.item_num, u.unsto_qty,sum(p.manu_tocount) manu_tocount
+    	select u.wo_num, l.manu_code, l.manu_name, u.item_name,u.item_num, u.unsto_qty, sum(p.manu_tocount)-q.manu_fail manu_tocount, sum(p.manu_tocount) manu_tocount1, q.manu_fail
 		from productstatus p right join unstore u 
 		on p.wo_num = u.wo_num  right join workorder w on u.wo_num = w.wo_num
-		left join linecode l on l.manu_name = w.manu_name
+		left join linecode l on l.manu_name = w.manu_name left join qc_status q on w.wo_num = q. wo_num
 		where u.unsto_progress='출고완료' and w.wo_available = '1'
 		group by u.wo_num;
     </select>
@@ -50,13 +51,13 @@
     <update id="insertProduct">
 <!--     	update productstatus set manu_tocount=#{manu_tocount}, manu_fail=#{manu_fail}, manu_date=DATE_FORMAT(now(), '%Y%m%d%H%i%s') -->
 <!--     	where manu_num = #{manu_num} -->
-    	update productstatus set manu_tocount=#{manu_tocount}, manu_fail=#{manu_fail}, manu_date=DATE_FORMAT(now(), '%Y%m%d%h%i%s') 
+    	update productstatus set manu_tocount=#{manu_tocount}, manu_fail=#{manu_fail}, manu_date=DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s') 
 		where wo_num=#{wo_num} and manu_name=#{manu_name} and item_name=#{item_name} and emp_Kname=#{emp_Kname} and manu_date=#{manu_date}
     </update>
     
     <insert id="startProduct">
     	insert into productstatus(manu_name, wo_num, item_name, manu_code, item_num, emp_Kname, manu_tocount, manu_fail, manu_date) 
-    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num}, #{emp_Kname}, #{manu_tocount}, #{manu_fail}, DATE_FORMAT(now(), '%Y%m%d%h%i%s'))
+    	values(#{manu_name},#{wo_num},#{item_name},#{manu_code},#{item_num}, #{emp_Kname}, #{manu_tocount}, #{manu_fail}, DATE_FORMAT(now(), '%Y-%m-%d %H:%i:%s'))
     </insert>
     
     <select id="updateProduct" resultType="com.itwillbs.domain.ProductionDTO">

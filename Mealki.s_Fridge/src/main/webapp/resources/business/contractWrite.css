@@ -1,19 +1,12 @@
 @charset "UTF-8";
 
-/* table{ */
-/*    width: 100%; */
-/*    text-align: center; */
-/*    border-color: #6C7383; */
-/*    border-collapse: collapse; */
+table{
+   width: 100%;
+   text-align: center;
+   border-color: #6C7383;
+   border-collapse: collapse;
    
-/* } */
-#table_content{
-   table-layout: fixed;
 }
-
-
-tr:hover td{ background-color: #e6e6f4; }
-
 
 #table_content tr{
    height: 32px;
@@ -31,6 +24,21 @@ tr:hover td{ background-color: #e6e6f4; }
    padding: 20px 20px;
 }
 
+#table_content input{
+	width:130px;
+}
 
-
+#cust_num,
+#cust_name,
+#item_num,
+#item_name,
+#business_date,
+#out_date,
+#emp_Kname,
+#contract_qty {
+  width: 100%;
+  border-style: none;
+  background-color: transparent;
+  text-align: center;
+}
 

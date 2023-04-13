@@ -24,4 +24,5 @@ public class ChartDAOImpl implements ChartDAO{
 		
 		return sqlSession.selectList(namespace+".contract");
 	}
+
 }

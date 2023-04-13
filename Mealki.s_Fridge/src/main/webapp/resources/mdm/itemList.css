@@ -94,3 +94,8 @@ button#deleteItemButton{
 .itemsearch-icon {
 	padding-top:5px;
 }
+
+.full-size-image {
+        max-width: 9cm;
+        max-height: 9cm;
+    }

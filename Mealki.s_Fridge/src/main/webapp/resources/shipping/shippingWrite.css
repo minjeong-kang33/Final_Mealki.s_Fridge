@@ -1,0 +1,36 @@
+@charset "UTF-8";
+
+table{
+   width: 100%;
+   text-align: center;
+   border-color: #6C7383;
+   border-collapse: collapse;
+   
+}
+
+#table_content tr{
+   height: 32px;
+   table-layout: fixed;
+}
+
+#table_content th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
+.contentbody{
+   width: 100%;
+   height: 1000px; 
+   padding: 20px 20px;
+}
+
+#table_content input{
+   width:100%;
+   background-color: transparent;
+   border: none;
+   text-align: center;
+}
+
+button {
+   margin-top: 20px;
+}

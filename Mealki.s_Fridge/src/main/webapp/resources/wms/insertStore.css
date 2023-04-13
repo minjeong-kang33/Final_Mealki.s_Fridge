@@ -54,6 +54,11 @@ td{
 }
 
 
+/* 페이징 */
+#pageDiv{
+	text-align: center; margin-top: 10px;
+}
+
 
 /* 탭 */
 ul,li {list-style:none;}

@@ -5,9 +5,9 @@
 
 	<insert id="shippingInsertBoard">
 		INSERT INTO shipping(shipping_num,wo_num,item_num,item_name,delivery_date,out_date,
-		out_qty,qc_qty,incharge_name,business_name)
+		out_qty,qc_qty,incharge_name,cust_name)
 		VALUES(#{shipping_num},#{wo_num},#{item_num},#{item_name},
-		#{delivery_date},#{out_date},#{out_qty},#{qc_qty},#{incharge_name},#{business_name})
+		#{delivery_date},#{out_date},#{out_qty},#{qc_qty},#{incharge_name},#{cust_name})
 	</insert>
 
 	<select id="getBoardList" resultType="com.itwillbs.domain.ShippingDTO">
@@ -20,7 +20,7 @@
 			out_qty,
 			qc_qty,
 			incharge_name,
-			business_name,
+			cust_name,
 			COALESCE(out_progress,'대기') as out_progress
 			from shipping
 		<if test="search_option == 'product_name'.toString()">
@@ -42,10 +42,9 @@
 			out_qty,
 			qc_qty,
 			incharge_name,
-			business_name,
+			cust_name,
 			COALESCE(out_progress,'대기') as out_progress
 			from shipping
-<!-- 		from shipping -->
 		
 		<if test="search_option == 'product_name'.toString()">
 			where item_name like concat('%', #{search},'%')
@@ -61,15 +60,32 @@
 	</select>
 
 	<select id="getShippingListMap" resultType="map">
-		select qc_status.wo_num, 
-		qc_status.item_num, qc_status.item_name, qc_status.qc_qty
-		from qc_status  join workorder
-		on qc_status.wo_num = workorder.wo_num
-		where qc_status.wo_num like '%WO%'
+		select   distinct qc.wo_num, qc.item_num, qc.item_name, qc.qc_qty 
+		from qc_status qc join workorder w
+		on qc.wo_num = w.wo_num
+		join contract c
+		on c.contract_qty = qc.qc_qty
+        where w.wo_qty = c.contract_qty
+		 and qc.wo_num not in (select distinct wo_num from shipping)
+		
+		
 	</select>
+<!-- 	select qc_status.wo_num,  -->
+<!-- 		qc_status.item_num, qc_status.item_name, qc_status.qc_qty -->
+<!-- 		from qc_status join workorder -->
+<!-- 		on qc_status.wo_num = workorder.wo_num -->
+<!-- 		where workorder.wo_num not in (select distinct wo_num from shipping) -->
 
-	<select id="getEmployeeList" resultType="com.itwillbs.domain.ContractDTO">
-	select distinct incharge_name, business_name from contract
+<!-- 	<select id="getShippingList" resultType="com.itwillbs.domain.WorkorderDTO"> -->
+<!-- 		select wo_num, item_num, item_name, qc_qty -->
+<!-- 		from qc_status -->
+<!-- 		where wo_num not in (select distinct wo_num from workorder) -->
+<!-- 		order by wo_num -->
+<!-- 	</select> -->
+
+	<select id="getEmployeeList" resultType="com.itwillbs.domain.EmployeeDTO">
+	select * from employee
+	where dept_num = 200
 	</select>
 
 	<update id="updateShipping">

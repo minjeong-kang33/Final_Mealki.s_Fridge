@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" />
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/employee/empManagment.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/wms/insertStore.css">
@@ -146,7 +146,7 @@ function content_print3(){
 	        
 	        <div class="tabcontent" >
 	        
-		        <div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
+		        <div id="tab01" style="width: 100%"> <!-- tab 1내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab01"> 
@@ -205,7 +205,7 @@ function content_print3(){
 					        </div>
 					      </form>  
 						<!-- 페이징 -->
-						
+				<div id="pageDiv">		
 						<c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
 							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 이전</a>
 						</c:if>
@@ -219,7 +219,7 @@ function content_print3(){
 						<c:if test="${pageDTO.endPage < pageDTO.pageCount }">
 							<a href="${pageContext.request.contextPath}/wms/store/insertStore?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&sto_num=${sto_num}&startDate=${startDate}&endDate=${endDate}&emp_num=${emp_num}&item_name=${item_name}">10페이지 다음</a>
 						</c:if>
-
+				</div>
 			       		 </div>
 		        </div> <!--  탭 내용끝 -->	        
 	        
@@ -237,7 +237,7 @@ function content_print3(){
 										<tr>
 											<td >${StoreDTO.sto_num }</td> <!-- 입고관리번호 -->
 											<td >${StoreDTO.order_num } </td><!-- 발주관리번호 -->
-											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}');"> <!-- 상세페이지 버튼 -->
+											<td><img name="button" class="search-icon" src="${pageContext.request.contextPath}/resources/employee/icon-find.png" width="25" height="25" onClick="storeDetail('${StoreDTO.order_num}', '${StoreDTO.item_name}');"> <!-- 상세페이지 버튼 -->
 											<td>${StoreDTO.item_name }</td> <!-- 품명 -->
 											<td id="order_qty">${StoreDTO.order_qty }</td> <!-- 발주수량 -->
 											<td>${StoreDTO.stk_qnt }</td> <!-- 재고수량 -->
@@ -286,7 +286,7 @@ function content_print3(){
 			       		 </div>
 		        </div> <!--  탭1내용끝 -->
 		        
-		        <div id="tab03" style="width: 100%"> <!-- tab 2내용 -->
+		        <div id="tab03" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div1" style="width: 100%;">
 				        <form name="store_form" method="get">
 				        	<div id="store_table_tab03">					        

@@ -31,9 +31,9 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+<link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/quality.css">
 </head>
 <body>
 
@@ -54,44 +54,31 @@
 						<div class="row">
 							<div class="col-12 col-xl-8 mb-4 mb-xl-0">
 								<!--  제목을 적어주세요 -->
-								<h3 class="font-weight-bold">메뉴명</h3>
-								<h6 class="font-weight-normal mb-0">
-									메뉴설명쓰 <span class="text-primary">강조쓰</span>
+								<h3 class="font-weight-bold">품질 관리</h3>
 								</h6>
 							</div>
 
 							<div class="contentbody">
 
 								<!--  본문 내용 시작 -->
-								<div id="search_bar">
-									<div id="table_search">
-										<div id="select_search">
+								<div id="productionsearch_bar">
+									<div id="productiontable_search">
+										<div id="productionselect_search">
 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET">
-												<h4>검수 현황 조회</h4>
 												<label>작업지시번호 : </label>
-												<input type="text" name="wo_num">
+												<input type="text" name="wo_num" id="search_wo_num">
 												<label>라인명 : </label>
-												<input type="text" name="manu_name">
+												<input type="text" name="manu_name" id="search_manu_name">
 												<label>품명 : </label>
-												<input type="text" name="item_name">
-												<label>작업일시 : </label>
-												<input type="date" name="qc_sdate">
-												<input type="date" name="qc_edate">
+												<input type="text" name="item_name" id="search_item_name">
+												<label>검수 완료일자 : </label>
+												<input type="date" name="qc_sdate" id="search_manu_sdate">
+												<input type="date" name="qc_edate" id="search_manu_date">
+<!-- 												<label>작업일시 : </label> -->
+<!-- 												<input type="date" name="fail_sdate" id="search_manu_sdate"> -->
+<!-- 												 - <input type="date" name="fail_edate" id="search_manu_date"> -->
 												<label>검수자 : </label>
-												<input type="text" name="emp_Kname">
-<!-- 												<p> -->
-<!-- 												<h4>불량 현황 조회</h4> -->
-<!-- 												<label>검수번호 : </label> -->
-<!-- 												<input type="text" name="fail_num"> -->
-<!-- 												<label>라인명 : </label> -->
-<!-- 												<input type="text" name="manu_name"> -->
-<!-- 												<label>품명 : </label> -->
-<!-- 												<input type="text" name="item_name"> -->
-												<label>작업일시 : </label>
-												<input type="date" name="fail_sdate">
-												 - <input type="date" name="fail_edate">
-<!-- 												<label>검수자 : </label> -->
-<!-- 												<input type="text" name="demp_Kname"> -->
+												<input type="text" name="emp_Kname" id="search_emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">
 												조회
 												</button>
@@ -100,87 +87,87 @@
 									</div>
 								</div>
 								<br>
-								<div id="todaylistbody">
-									<div id="todaylist">
-									<h4>품질 작업 현황</h4>
-									<hr>
-										<table border='1' align="center">
+								<div id="production_body">
+									<div id="production_bar">
+									<h4>| 품질 작업 현황</h4>
+									<div class="scrollBar" >
+										<table border='1' id="production_table" style="width:100%">
+											<thead>
 											<tr align="center">
-												<th>검수번호</th>
-												<th>작업지시번호</th> 
-												<th>라인명</th>
-												<th>라인코드</th>
-												<th>품명</th>
-												<th>품번</th>
-												<th>검수자 </th>
-												<th>수주량</th>
-												<th>생산량 </th>
-												<th>검수량 </th>
-												<th>불량  </th>
-												<th>검수완료일자  </th>
-												<th>검수상태 </th>
+												<td >검수번호</td>
+												<td style="width: 150px">작업지시번호</td> 
+												<td >라인명</td>
+												<td >라인코드</td>
+												<td >품명</td>
+												<td >품번</td>
+												<td >검수자 </td>
+												<td style="width: 80px">수주량</td>
+												<td style="width: 80px">생산량 </td>
+												<td style="width: 80px">검수량 </td>
+												<td >불량  </td>
+												<td >검수완료일자  </td>
+												<td >검수상태 </td>
 									         </tr>
+									         </thead>
 <!-- 									         test -->
+											 <tbody>
 									       		<c:forEach var="dto" items="${qualityListMap}">
 													<tr onClick="writeForm('${dto.wo_num}');">
-														<td>${dto.qc_code}</td><td>${dto.wo_num}</td>
-														<td>${dto.manu_name}</td><td>${dto.manu_code}</td><td>${dto.item_name}</td>
-														<td>${dto.item_num}</td><td>${dto.emp_Kname}</td>
-														<td>${dto.wo_qty}</td><td>${dto.manu_tocount}</td>
-														<td>${dto.qc_qty}</td><td>${dto.manu_fail}</td>
-														<td>${dto.qc_date}</td><td>${dto.qc_status}</td>
+														<td >${dto.qc_code}</td>
+														<td style="width: 150px">${dto.wo_num}</td>
+														<td >${dto.manu_name}</td>
+														<td >${dto.manu_code}</td>
+														<td >${dto.item_name}</td>
+														<td >${dto.item_num}</td>
+														<td >${dto.emp_Kname}</td>
+														<td style="width: 80px">${dto.wo_qty}</td>
+														<td style="width: 80px">${dto.manu_tocount}</td>
+														<td style="width: 80px">${dto.qc_qty}</td>
+														<td >${dto.manu_fail}</td>
+														<td >${dto.qc_date}</td>
+														<c:choose>
+															<c:when test="${dto.qc_qty ne dto.wo_qty and !empty dto.qc_qty}">
+															<td >검수중</td>
+															</c:when>
+															<c:when test="${dto.qc_qty eq dto.wo_qty}">
+															<td >완료</td>
+															</c:when>
+															<c:otherwise>
+															<td >대기</td>
+															</c:otherwise>
+														</c:choose>
 													</tr>
 												</c:forEach>
+												</tbody>
 									    </table>
 									</div>
 								</div>
 								<br>
 								
 <!-- 								불량 리스트  -->
-								<div id="search_bar">
-									<div id="table_search">
-										<div id="select_search">
-<%-- 											<form action="${pageContext.request.contextPath}/mps/quality/list" method="GET"> --%>
-<!-- 												<label>검수번호 : </label> -->
-<!-- 												<input type="text" name="fail_num"> -->
-<!-- 												<label>라인명 : </label> -->
-<!-- 												<input type="text" name="manu_name"> -->
-<!-- 												<label>품명 : </label> -->
-<!-- 												<input type="text" name="item_name"> -->
-<!-- 												<label>작업일시 : </label> -->
-<!-- 												<input type="date" name="fail_date"> -->
-<!-- 												 - <input type="date" name="fail_date"> -->
-<!-- 												<label>검수자 : </label> -->
-<!-- 												<input type="text" name="emp_Kname"> -->
-<!-- 												<button class="btn btn-primary" type="submit" id="IconButton6"> -->
-<!-- 												<a>조회</a> -->
-<!-- 												</button> -->
-<!-- 											</form> -->
-										</div>
-									</div>
-								</div>
-								<br>
-								<div id="todaylistbody">
-									<div id="todaylist">
-									<h4>불량 현황</h4>
-									<hr>
-										<table border='1' align="center">
+								<div id="production_body">
+									<div id="production_body">
+									<h4>| 불량 현황</h4>
+									<div class="scrollBar" >
+										<table border='1' id="production_table" style="width:100%">
+										<thead>
 											<tr align="center" >
-												<th>불량번호</th>
-												<th>작업지시번호</th> 
-												<th>라인명</th>
-												<th>라인코드</th>
-												<th>품명</th>
-												<th>품번</th>
-												<th>검수자 </th>
-<!-- 												<th>불량코드 </th> -->
-												<th>불량수량  </th>
-												<th>검수완료일자  </th>
+												<td>불량번호</td>
+												<td>작업지시번호</td> 
+												<td>라인명</td>
+												<td>라인코드</td>
+												<td>품명</td>
+												<td>품번</td>
+												<td>검수자 </td>
+<!-- 												<td>불량코드 </td> -->
+												<td>불량수량  </td>
+												<td>검수완료일자  </td>
 									         </tr>
+									         </thead>
 <!-- 									         test -->
-
+											 <tbody>
 									       		<c:forEach var="fail" items="${qualityFailList}">
-									       		<c:if test="${fail.fail_qty ne null }">
+									       		<c:if test="${fail.fail_qty ne null and fail.fail_qty ne 0}">
 													<tr onClick="failWrite('${fail.wo_num}');">
 														<td>${fail.fail_num}</td><td>${fail.wo_num}</td>
 														<td>${fail.manu_name}</td><td>${fail.manu_code}</td>
@@ -190,6 +177,7 @@
 													</tr>
 												</c:if>
 												</c:forEach>
+											 </tbody>
 									    </table>
 									</div>
 								</div>
@@ -207,7 +195,7 @@
 					<script type="text/javascript">
 						function writeForm(wo_num) {
 							var _width = '800';
-							var _height = '650';
+							var _height = '500';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
@@ -219,7 +207,7 @@
 					<script type="text/javascript">
 						function failWrite(wo_num) {
 							var _width = '800';
-							var _height = '650';
+							var _height = '550';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;

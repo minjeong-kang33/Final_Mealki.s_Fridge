@@ -1,0 +1,149 @@
+@charset "UTF-8";
+
+.productionsearch_bar {
+	width: 80%;
+	height: 400px;
+}
+
+#productiontable_search {
+	background-color: #e6e6f4;
+	border-radius: 10px;
+	margin: auto;
+	padding-top: 7px;
+	padding-bottom: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
+	margin-bottom: 20px;
+	width: 95%;
+	height: 60px;
+}
+
+#productionselect_search {
+	width: 100%;
+	float: left;
+	padding-top: 10px;
+	margin: auto;
+}
+
+tr:hover td {
+	background-color: #e6e6f4;
+}
+
+#production_table thead {
+	background-color: #4B49AC;
+	color: #fff;
+	display:block;
+}
+
+#production_table tbody {
+	height: 600px;
+	overflow : auto;
+	display:block;
+}
+
+#production_table tr {
+	table-layout: fixed;
+	width: 100%;
+	display: inline-table;
+}
+
+/* #production_table th { */
+/* 	background-color: #4B49AC; */
+/* 	color: #fff; */
+/* 	width: 100%; */
+/* 	display: inline; */
+/* 	border-left: none; */
+/* } */
+
+table {
+	width: 100%;
+	text-align: center;
+	border-color: #6C7383;
+	margin: auto;
+	margin-bottom: 20px;
+}
+
+form {
+	width: 100%;
+	margin: auto;
+}
+
+h4 {
+	float: left;
+	width: 100%;
+	font-weight: 600;
+	margin-bottom: 20px;
+}
+
+.contentbody {
+	width: 100%;
+	height: 1000px;
+	padding: 20px 20px;
+}
+
+td {
+	border-left: none;
+}
+
+#search_wo_num {
+	width: 150px;
+}
+
+#search_manu_name {
+	width: 70px;
+}
+
+#search_item_name {
+	width: 100px;
+}
+
+#search_emp_Kname {
+	width: 80px;
+}
+
+#IconButton6{
+	margin-left: 20px;
+	padding-top: 8px; 
+	padding-bottom: 8px;
+}
+
+.tdwo_num{
+	width: 170px;	
+}
+
+.tdmanu_name{
+	width: 100px;	
+}
+
+.tdmanu_code{
+	width: 150px;	
+}
+
+.tditem_name{
+	width: 150px;	
+}
+
+.tditem_num{
+	width: 50px;	
+}
+
+.tdunsto_qty{
+	width: 50px;	
+}
+
+.tdmanu_tocount{
+	width: 100px;	
+}
+
+.tdmanu_fail{
+	width: 50px;	
+}
+
+.tdemp_Kname{
+	width: 100px;	
+}
+.tdmanu_date{
+	width: 200px;	
+}
+
+

@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 <title>밀키의 냉장고</title>
@@ -55,7 +55,7 @@
 			<td>${workorderDTO.business_num}</td>
 			<td>${workorderDTO.item_name}</td>
 			<td>${workorderDTO.contract_qty}</td>
-			<td>${workorderDTO.business_name}</td>
+			<td>${workorderDTO.cust_name}</td>
 			<td>${workorderDTO.business_date}</td>
 			<td>${workorderDTO.out_date}</td>
 		</tr>

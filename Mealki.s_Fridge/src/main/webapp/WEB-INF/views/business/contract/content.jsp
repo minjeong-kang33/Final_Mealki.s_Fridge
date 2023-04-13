@@ -8,8 +8,8 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
+<!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
+<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
   
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -28,7 +28,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" />
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractList.css">
 	
@@ -62,8 +62,7 @@
               <div class="row">
                 <div class="col-12 col-xl-8 mb-4 mb-xl-0">
 <!--  제목을 적어주세요 -->
-                  <h3 class="font-weight-bold">수정삭제</h3>
-                  <h6 class="font-weight-normal mb-0"> <span class="text-primary">수정시 수주수량 수정가능</span></h6>
+                  <h3 class="font-weight-bold">목록상세</h3>
                 </div>
                 
           <div class="contentbody"> 
@@ -88,7 +87,7 @@
          	<td>${contractDTO.cust_num }</td>
          	<td>${contractDTO.item_num }</td>
          	<td>${contractDTO.item_name }</td>
-         	<td>${contractDTO.business_name }</td>
+         	<td>${contractDTO.cust_name }</td>
          	<td>${contractDTO.business_date}</td>
          	<td>${contractDTO.out_date}</td>
          	<td>${contractDTO.incharge_name }</td>
@@ -110,7 +109,7 @@
 </table>
  
 
-<div align="center">
+<div align="center" style="margin-top: 15px;">
 <c:if test="${contractDTO.exists_in_workorder.equals('0')}">
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/update?business_num=${contractDTO.business_num}'">수정</button>
 			<button type="button" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/contract/delete?business_num=${contractDTO.business_num}'">삭제</button>

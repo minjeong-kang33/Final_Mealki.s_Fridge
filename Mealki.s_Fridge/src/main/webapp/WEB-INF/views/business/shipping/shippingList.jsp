@@ -24,8 +24,8 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/shippingList.css">
+  <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
+  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/shipping/shippingList.css">
 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 <script type="text/javascript"></script>
 
@@ -58,6 +58,18 @@ $(function(){
 
 
 </script>
+<style>
+.btn btn-primary{
+	 width: 50px;
+	 height: 30px;
+}
+#table_write{
+   float: right;
+   margin-right: 5px;
+   margin-bottom: 30px;
+   width: 7%;
+}
+</style>
 </head>
 <body>
 
@@ -85,51 +97,53 @@ $(function(){
           <div class="contentbody"> 
           
 <!--  본문 내용 시작 -->
-<%-- 			   <div>Total: ${total}</div> --%>
-			   <div id="table_search">
-	<div id="select_search">
-		<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
-			<select name="search_option" class="search_option">
-				<option value="">선택하세요</option>
-				<option value="product_name">품명</option>
-				<option value="item_num">품목코드</option>
-			</select>
-				<input type="text" name="search" class="input_box">
-				<input type="submit" value="search">		
-		  </form>
-	</div>
+	<div>Total: ${total}</div>
+		<div id="table_search">
+			<div id="select_search">
+				<form name="search" action="${pageContext.request.contextPath}/business/shipping/shippingList" method="get" onsubmit="fun1()">
+					<select name="search_option" class="search_option">
+						<option value="">선택하세요</option>
+						<option value="product_name">품명</option>
+						<option value="item_num">품목코드</option>
+					</select>
+						<input type="text" name="search" class="input_box">
+						<input type="submit" value="search">		
+		  		</form>
+		   </div>
 				
-	<div id="table_write" >
-		<button type="submit" class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
-	</div> 	
-</div>		
+			<div id="table_write" >
+				<c:choose>
+				 <c:when test="${sessionScope.dept_num == 200}">
+					<button type="submit"  class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
+				</c:when>
+				</c:choose>
+			</div> 	
+		</div>	
 
 
            <div class="tab">
            	<ul class="tabnav">
            		<li><a href="#tab01">전체</a></li>
-           		<li><a href="#tab01">대기</a></li>
-           		<li><a href="#tab02">완료</a></li>
+           		<li><a href="#tab02">대기</a></li>
+           		<li><a href="#tab03">완료</a></li>
            	</ul>	
-<!--            	<div align="center"> -->
-<!-- 					<button type="submit" class="btn btn-primary"  -->
-<%-- 					onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button> --%>
-<!-- 			</div> 		 -->
+			
            	<div class="tabcontent">
-           	
+           		
            		<div id="tab01" style="width: 100%"> <!-- tab 3내용 -->
 				        <div class="store_total_div" style="width: 100%;">
 		       				<form name="" method="get">
-           		
+		       				
            		<table border="1" class="shipping_total_table" style="width: 100%;">
-           		<tr align="center">
+           		
+           		<tr align="center"> 
            			<th>작업지시번호</th>
            			<th>품목코드</th>
            			<th>품명</th>
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -137,26 +151,30 @@ $(function(){
            		</tr>
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
-           			<tr>
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
            			${ShippingDTO.out_progress}</td>
            			<td>
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           				<c:choose>
+           				<c:when test="${sessionScope.dept_num == 200}">
+           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
+           				</c:when>
+           				</c:choose>
            			</td>
            			</tr>
            		</c:forEach>
-           	
+           		
            		</table>
            			
            		</form>
@@ -194,7 +212,7 @@ $(function(){
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -202,23 +220,27 @@ $(function(){
            		</tr>
            		
           		<c:forEach var="ShippingDTO" items="${resultList}">	
-           		<c:if test="${ShippingDTO.out_progress eq '대기' }">
-           			<tr>
+           		<c:if test="${ShippingDTO.out_progress eq '대기'}">
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
-           			${ShippingDTO.out_progress}></td>
+           			${ShippingDTO.out_progress}</td>
            			<td>
-           				<c:if test="${ShippingDTO.out_progress eq '대기' }">
+           				<c:choose>
+           				<c:when test="${sessionScope.dept_num == 200}">
+           				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
+           				</c:when>
+           				</c:choose>
            			</td>
            			</tr>
            			</c:if>
@@ -242,7 +264,7 @@ $(function(){
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
+<!--            			<th>재고수량</th> -->
            			<th>담당자</th>
            			<th>수주업체</th>
            			<th>출하상태</th>
@@ -251,16 +273,16 @@ $(function(){
            		
            		<c:forEach var="ShippingDTO" items="${resultList}">	
            			<c:if test="${ShippingDTO.out_progress eq '출하완료'}">
-           			<tr>
+           			<tr align="center">
            			<td>${ShippingDTO.wo_num}</td>
            			<td>${ShippingDTO.item_num}</td>
            			<td>${ShippingDTO.item_name}</td>
            			<td>${ShippingDTO.delivery_date}</td>
            			<td>${ShippingDTO.out_date}</td>
-           			<td>${ShippingDTO.out_qty}</td>
+<%--            			<td>${ShippingDTO.out_qty}</td> --%>
            			<td>${ShippingDTO.qc_qty}</td>
            			<td>${ShippingDTO.incharge_name}</td>
-           			<td>${ShippingDTO.business_name}</td>
+           			<td>${ShippingDTO.cust_name}</td>
            			<td>
            			${ShippingDTO.out_progress}</td>         				          				          				
            			<td>

@@ -1,0 +1,38 @@
+@charset "UTF-8";
+
+#business_num,
+#item_name,
+#business_name,
+#contract_qty{
+	text-align: center;
+}
+
+#business_num,
+#item_name,
+#business_name{
+	border: none;
+	background-color: transparent;
+}
+
+table {
+	border: 1px solid black;
+	margin: auto;
+	border-collapse: collapse;
+	width: 100%;
+	text-align: center;
+	margin-left: 4%;
+}
+
+th, td {
+	border: 1px solid black;
+}
+
+th{
+   background-color: #4B49AC;
+   color: #fff;
+}
+
+button {
+	margin-top: 20px;
+	margin-left: 45%;
+}

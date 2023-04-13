@@ -7,8 +7,8 @@
 <meta charset="UTF-8">
 <title>밀키의 냉장고</title>
 
-<script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script>
-<script src="/Mealki.s_Fridge/script/jquery-ui.js"></script>
+<!-- <script src="/Mealki.s_Fridge/script/jquery-1.12.4.js"></script> -->
+<!-- <script src="/Mealki.s_Fridge/script/jquery-ui.js"></script> -->
 
   <!-- Required meta tags -->
   <meta charset="utf-8">
@@ -27,8 +27,8 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/business/contractWrite.css">
+ <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
+	  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/shipping/shippingWrite.css">
 
 	<script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
 	<script type="text/javascript"></script>
@@ -50,12 +50,19 @@
 	 {
 	  window.name = "parentForm";
 	  openWin = window.open("${pageContext.request.contextPath}/business/shipping/findEmp_num",
-	           "childForm", "width=300, height=350,top=300, left=300, resizable = no, scrollbars = no");    
+	           "childForm", "width=500, height=400, top=300, left=300, resizable = no, scrollbars = no");    
 	 }
 	 
 	 
 			 
 	</script>
+	
+	<style>
+   form{   
+   	width:100%;   
+   }   
+	</style>
+	
 </head>
 
 <body>
@@ -85,7 +92,6 @@
           
 <!--  본문 내용 시작 -->
   
-
     <form action="${pageContext.request.contextPath}/shipping/WriteSave" method="post" >
     	 
     	<table border="1" id="table_content">
@@ -96,7 +102,6 @@
            			<th>출하일자</th>
            			<th>납품예정일</th>
            			<th>출하량</th>
-           			<th>재고수량</th>
            			<th>담당자</th>
            			<th>수주업체</th>
            			
@@ -108,24 +113,18 @@
            			<td><input type="text" name="item_name" id="item_name"></td>
            			<td><input type="date" name="delivery_date" id="delivery_date"></td>
            			<td><input type="date" name="out_date" id="out_date"></td>
-           			<td><input type="text" name="out_qty" id="out_qty"></td>
            			<td><input type="text" name="qc_qty" id="qc_qty"></td>
-           			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="incharge_name"></td>
-           			<td><input type="text" name="business_name" id="business_name"></td>
+           			<td onclick="findEmployee()"><input type="text" name="incharge_name" id="emp_Kname"></td>
+           			<td onclick="findName()"><input type="text" name="cust_name" id="cust_name"></td>
            			
            			</tr>
-<!--            			 <tr align="center"> -->
-<!-- 					<th colspan="9">					 -->
-<!-- 					<button type="submit" >저장</button>  -->
-<!-- 					</th> -->
-<!-- 					</tr>  -->
-    	</table>
-    	  
+ </table>
+   	
             
  <div align="center">
-<button type="submit" class="btn btn-primary">저장</button>
+<button type="submit" class="btn btn-primary" >저장</button>
 </div>
-         
+</form>        
  <!--  본문내용 끝 -->    
         
           </div>
@@ -153,6 +152,51 @@
   </div>
   <!-- container-scroller -->
 
+<script>
+var openWin;
+
+function findName()
+{
+	window.name="parentForm";
+	openWin=window.open("${pageContext.request.contextPath}/business/contract/findName",
+		"childForm", "width=500, height=400, top=300, left=300, resizable=no, scrollbars=no"	)
+	}
+</script>
+
+<script>
+/* 오늘 날짜 구하기 (발주일 고정값) */
+document.getElementById('delivery_date').valueAsDate = new Date();	
+	
+/* 내일 날짜 구하기 (납기일 기본값)*/
+// var today = new Date();
+// var tomorrow = new Date(today.setDate(today.getDate() + 5));
+// document.getElementById('out_date').valueAsDate = tomorrow;
+
+var now_utc = Date.now() // 지금 날짜를 밀리초로
+// getTimezoneOffset()은 현재 시간과의 차이를 분 단위로 반환
+var timeOff = new Date().getTimezoneOffset()*60000; // 분단위를 밀리초로 변환
+var today = new Date(now_utc-timeOff).toISOString().split("T")[0];
+document.getElementById("out_date").setAttribute("min", today);
+
+</script>
+
+
+
+
+<script type="text/javascript">
+// function fun11(){
+// var out_qty = document.getElementById('out_qty').value;
+// var qc_qty = document.getElementById('qc_qty').value;
+
+// if (out_qty > qc_qty) {
+//  alert("출하량이 재고수량보다 많습니다!");
+// }else{
+// 	$("#getShippingWrite").attr("action","${pageContext.request.contextPath}/shipping/WriteSave").submit();
+// }
+
+// }
+</script>
+
   <!-- plugins:js -->
   <script src="${pageContext.request.contextPath}/resources/maincss/vendors/js/vendor.bundle.base.js"></script>
   <!-- endinject -->
@@ -174,19 +218,6 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/dashboard.js"></script>
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
-<script type="text/javascript">
 
-
-// $(function(){
-// 		$(".shipping_write_button").click(function(){ 
-		
-// 			if(Number($(".out_qty").eq(i).val()) > Number($(".qc_qty").eq(i).val())){
-// 			alert("재고수량을 확인해주세요!");
-// 			$(".out_qty").eq(i).val(0);
-			
-// 					return false;
-// 			}
-// 		});
-</script>
 </body>
 </html>

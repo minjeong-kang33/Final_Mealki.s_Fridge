@@ -23,7 +23,8 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
+
+ <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
   <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mdm/itemList.css">	
@@ -111,7 +112,8 @@
 					    <td>${ItemDTO.supplier}</td>
 					    <td>${ItemDTO.supply_price}</td>
 					    <td>${ItemDTO.sales_price}</td>
-					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}" width="70" height="70"></td>
+					    <td><img src="${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}" width="70" height="70" onclick="showFullSizeImage('${pageContext.request.contextPath}/resources/mdm/upload/${(ItemDTO.item_image == null) ? 'default_image.png' : ItemDTO.item_image}')"></td>
+
 
 					    </tr>
 				    
@@ -130,15 +132,15 @@
 <!-- 페이징하실거면 여기서 시작 -->
 <div id="paging">
 <c:if test="${pageDTO.startPage > pageDTO.pageBlock }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }">[이전]</a>
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage - pageDTO.pageBlock }&search=${pageDTO.search}">[이전]</a>
 </c:if>
 
 <c:forEach var="i" begin="${pageDTO.startPage }" end="${pageDTO.endPage }" step="1">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}">${i}</a> 
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${i}&search=${pageDTO.search}">${i}</a> 
 </c:forEach>
 
 <c:if test="${pageDTO.endPage < pageDTO.pageCount }">
-<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }">[다음]</a>
+<a href="${pageContext.request.contextPath}/mdm/item/itemlist?pageNum=${pageDTO.startPage + pageDTO.pageBlock }&search=${pageDTO.search}">[다음]</a>
 </c:if>
 </div>
                 <br>* 품목코드의 P는 완제품, I는 식자재입니다.
@@ -187,7 +189,20 @@
   <script src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
   <!-- End custom js for this page-->
   
+  
   <script>
+  
+//   이미지 선택시 크게보기 팝업창 생성
+  function showFullSizeImage(imageSrc) {
+	    var imgWidth = 450; 
+	    var imgHeight = 450; 
+
+	    var imgWindow = window.open("", "_blank", "width=" + imgWidth + ",height=" + imgHeight + ",scrollbars=yes,resizable=yes");
+	    imgWindow.document.write('<html><head><title>이미지</title><style>.full-size-image {max-width: 100%; max-height: 100%;}</style></head><body><img class="full-size-image" src="' + imageSrc + '"></body></html>');
+	    imgWindow.document.close();
+	}
+
+
 <!-- 	검색어 제어 -->
 function fun1() {
   var searchInput = document.forms["search"]["search"].value;
@@ -197,7 +212,7 @@ function fun1() {
   }
   return true;
 }
- 
+
  
   <!-- 			체크박스 all선택 -->
     document.addEventListener("DOMContentLoaded", function() {
@@ -210,6 +225,16 @@ function fun1() {
         }
       });
     });
+    
+    function updateItemInfo(supplier) {
+    	  let supplierInput = document.getElementById("supplierInput");
+    	  if (supplierInput) {
+    	    supplierInput.value = supplier;
+    	  }
+    	}
+
+
+    
 
     // 상품추가 버튼 이벤트
     document.getElementById("addItemButton").addEventListener("click", function() {
@@ -238,7 +263,7 @@ function fun1() {
 			    </td>
 			    <td><input type="text" name="item_name" placeholder="품목명"></td>
 			    <td><input type="text" name="weight" placeholder="중량(g)"></td>
-			    <td><input type="text" name="supplier" placeholder="납입처"></td>
+			    <td><input type="text" name="supplier" id="supplierInput" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" placeholder="출고 단가(원)"></td>
 			    <td><input type="file" name="item_image" accept="image/*" onchange="previewImage(this)" placeholder="이미지"></td>`;
@@ -247,6 +272,13 @@ function fun1() {
       let inputItemNum = newRow.querySelector("input[name='item_num']");
       let selectItemType = newRow.querySelector("select[name='item_type']");
 
+      newRow.querySelector("input[name='supplier']").addEventListener("click", function() {
+			let focusedInput = this;
+			window.open("../../mdm/item/getCustomerList", "customerListPopup", "width=300, height=500");
+		this.focus();
+		});
+      
+      
       // 초기 필터링 상태 설정
       filterItemTypeOptions(selectItemPrefix.value);
 
@@ -257,6 +289,33 @@ function fun1() {
         filterItemTypeOptions(prefix);
       });
 
+      //품목코드의 유형에따른 입력란 제어
+      newRow.querySelector("input[name='supply_price']").addEventListener("click", function() {
+    	  if (selectItemPrefix.value === 'P') {
+    	    alert('완제품(P)은 납입단가 입력이 불가합니다');
+    	  }
+    	});
+
+    	newRow.querySelector("input[name='sales_price']").addEventListener("click", function() {
+    	  if (selectItemPrefix.value === 'I') {
+    	    alert('식자재(I)는 출고단가 입력이 불가합니다');
+    	  }
+    	});
+    	
+    	// 중량, 납입단가, 출고단가 문자열 못쓰게 제어
+    	 newRow.querySelector("input[name='weight']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
+
+    	      newRow.querySelector("input[name='supply_price']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
+
+    	      newRow.querySelector("input[name='sales_price']").addEventListener("input", function() {
+    	        this.value = this.value.replace(/\D/g, '');
+    	      });
+      
+ // 품목번호에따른 품목유형 필터링
       function filterItemTypeOptions(prefix) {
         if (prefix === 'P') {
           selectItemType.innerHTML = `
@@ -288,13 +347,17 @@ function fun1() {
       let supplier = element.querySelector('td:nth-child(6)').textContent;
       let supply_price = element.querySelector('td:nth-child(7)').textContent;
       let sales_price = element.querySelector('td:nth-child(8)').textContent;
-      let item_image = element.querySelector('td:nth-child(9)').textContent;
+      let item_image = element.querySelector('td:nth-child(9) img').src;
+      let filename = item_image.substring(item_image.lastIndexOf('/') + 1);
 
 
       element.innerHTML = `
 			    <td><input type="checkbox" name="selectItem"></td>
 			    <td>
-			    <input type="hidden" name="item_prefix" value="\${itemNum.charAt(0)}">
+			    <select name="item_prefix" disabled>
+		          <option value="P">P</option>
+		          <option value="I">I</option>
+		        </select>
 			    <input type="text" name="item_num" placeholder="품목 코드" value=\${itemNum} readonly></td>
 			    </td>
 			    <td>
@@ -312,14 +375,48 @@ function fun1() {
 			    <td><input type="text" name="supplier" value="\${supplier}" placeholder="납입처"></td>
 			    <td><input type="text" name="supply_price" value="\${supply_price}" placeholder="납입 단가(원)"></td>
 			    <td><input type="text" name="sales_price" value="\${sales_price}" placeholder="출고 단가(원)"></td>
-			    <td><input type="file" name="item_image" value="\${item_image}" accept="image/*" onchange="previewImage(this)" placeholder="이미지"
-			    <input type="hidden" name="oldfile" value"\${item_image}">
+			    <td><input type="file" name="item_image"  placeholder="이미지">
+			    <input type="hidden" name="oldfile" value="${filename}">
 			    </td>`;
-
+	    
 			    let selectItemType = element.querySelector("select[name='item_type']");
 			    filterItemTypeOptions(itemNum.charAt(0), itemType);
 
+			    element.querySelector("input[name='supplier']").addEventListener("click", function() {
+			        let focusedInput = this;
+			        window.open("../../mdm/item/getCustomerList", "customerListPopup", "width=300, height=500");
+			        this.focus();
+			      });
+			    
+			    //품목코드의 유형에따른 입력란 제어
+			    element.querySelector("input[name='supply_price']").addEventListener("click", function() {
+			        if (element.querySelector("input[name='item_prefix']").value === 'P') {
+			          alert('완제품(P)은 납입단가 입력이 불가합니다');
+			        }
+			      });
+			    
+
+			      element.querySelector("input[name='sales_price']").addEventListener("click", function() {
+			        if (element.querySelector("input[name='item_prefix']").value === 'I') {
+			          alert('식자재(I)는 출고단가 입력이 불가합니다');
+			        }
+			      });
+			    
+			   // 중량, 납입단가, 출고단가 문자열 못쓰게 제어
 			    function filterItemTypeOptions(prefix, selectedItemType) {
+			    element.querySelector("input[name='weight']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+
+			      element.querySelector("input[name='supply_price']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+
+			      element.querySelector("input[name='sales_price']").addEventListener("input", function() {
+			        this.value = this.value.replace(/\D/g, '');
+			      });
+			      
+			      
 			      let itemTypeOptions = '';
 
 			      if (prefix === 'P') {
@@ -362,12 +459,27 @@ function fun1() {
       }
     })
 
-
-    // 품목저장 버튼 이벤트
+	//품목 저장버튼 이벤트
     document.getElementById("saveItemButton").addEventListener("click", function() {
-      let form = document.getElementById("tableForm");
-      form.submit();
-    });
+  let selectItemPrefix = document.querySelector("select[name='item_prefix']");
+  let inputItemNum = document.querySelector("input[name='item_num']");
+  let selectItemType = document.querySelector("select[name='item_type']");
+  let inputItemName = document.querySelector("input[name='item_name']");
+  let inputWeight = document.querySelector("input[name='weight']");
+  let inputSupplier = document.querySelector("input[name='supplier']");
+  let inputSupplyPrice = document.querySelector("input[name='supply_price']");
+  let inputSalesPrice = document.querySelector("input[name='sales_price']");
+  
+  if ((selectItemPrefix.value === 'P' && (!inputItemName.value || !inputWeight.value || !inputSalesPrice.value)) ||
+      (selectItemPrefix.value === 'I' && (!inputItemName.value || !inputWeight.value || !inputSupplier.value || !inputSupplyPrice.value))) {
+    alert("입력란을 채워주세요.");
+    return;
+  }
+  
+  let form = document.getElementById("tableForm");
+  form.submit();
+});
+
 
     // 이미지 미리보기 기능
     function previewImage(input) {

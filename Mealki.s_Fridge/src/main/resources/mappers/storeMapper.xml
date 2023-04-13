@@ -144,12 +144,9 @@
 
 	<select id="getStoreDetailList" resultType="map">
 		  SELECT sto_num, placeorder.order_num, DATE_FORMAT(sto_date,'%Y-%m-%d') AS sto_date, 
-		      CASE
-		          WHEN store.sto_qty IS NULL THEN '미입고'
-		          WHEN store.sto_qty <![CDATA[<]]> placeorder.order_qty THEN '발주완료'
-		          WHEN placeorder.order_qty THEN '입고완료' <![CDATA[<=]]> store.sto_qty 
-		      END AS sto_progress, 
-		      
+									CASE WHEN SUM(placeorder.order_qty) = SUM(store.sto_qty) THEN '입고완료'
+		       					   ELSE COALESCE(store.sto_progress, '미입고')
+		    					   END AS sto_progress,
 		      sto_qty, sto_shelf, sto_shelfDetail, sto_empNum, 
 		      DATE_FORMAT(placeorder.order_date,'%Y-%m-%d') AS order_date,
 		      DATE_FORMAT(placeorder.due_date,'%Y-%m-%d') AS due_date, 

@@ -31,9 +31,10 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/maincss/css/vert	ical-layout-light/style.css">
 <!-- endinject -->
-<link rel="shortcut icon"
-	href="${pageContext.request.contextPath}/resources/maincss/images/favicon.png" />
-
+<link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
+<link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/production.css">
+<%-- <script src="${pageContext.request.contextPath}/resources/mps/productchart.js"></script> --%>
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script> -->
 </head>
 <body>
 
@@ -54,70 +55,74 @@
 						<div class="row">
 							<div class="col-12 col-xl-8 mb-4 mb-xl-0">
 								<!--  제목을 적어주세요 -->
-								<h3 class="font-weight-bold">메뉴명</h3>
-								<h6 class="font-weight-normal mb-0">
-									메뉴설명쓰 <span class="text-primary">강조쓰</span>
-								</h6>
+								<h3 class="font-weight-bold">생산 리스트</h3>
 							</div>
 
 							<div class="contentbody">
 
 								<!--  본문 내용 시작 -->
-								<div id="search_bar">
-									<div id="table_search">
-										<div id="select_search">
+								<div id="productionsearch_bar">
+									<div id="productiontable_search">
+										<div id="productionselect_search">
 											<form action="${pageContext.request.contextPath}/mps/production/list" method="GET">
 												<label>작업지시번호 : </label>
-												<input type="text" name="wo_num">
+												<input type="text" name="wo_num" id="search_wo_num">
 												<label>라인명 : </label>
-												<input type="text" name="manu_name">
+												<input type="text" name="manu_name" id="search_manu_name">
 												<label>품명 : </label>
-												<input type="text" name="item_name">
-												<label>작업일시 : </label>
-												<input type="date" name="manu_sdate">
-												 - <label>마감일시 : </label>
-												<input type="date" name="manu_date">
+												<input type="text" name="item_name" id="search_item_name">
+												<label>작업마감일시 : </label>
+												<input type="date" name="manu_sdate" id="search_manu_sdate">
+												 - <input type="date" name="manu_date" id="search_manu_date">
 												<label>작업자 : </label>
-												<input type="text" name="emp_Kname">
+												<input type="text" name="emp_Kname" id="search_emp_Kname">
 												<button class="btn btn-primary" type="submit" id="IconButton6">
-												<a>조회</a>
+												조회
 												</button>
 											</form>
 										</div>
 									</div>
+									<br>
 								</div>
-								<br>
-								<div id="todaylistbody">
-									<div id="todaylist">
-									<h4>일일 작업 현황</h4>
-									<hr>
-										<table border='1' align="center">
+								
+								<div id="production_body">
+									<div id="production_bar">
+									<h4>| 일일 작업 현황</h4>
+									<div class="scrollBar" >
+										<table border='1' id="production_table">
+											<thead>
 											<tr align="center">
-												<th>작업지시번호</th> 
-												<th>라인명</th>
-												<th>라인코드</th>
-												<th>품명</th>
-												<th>품번</th>
-												<th>수주량</th>
-												<th>하루생산량</th>
-												<th>불량</th>
-												<th>작업자</th>
-<!-- 												<th>작업시작일</th> -->
-												<th>작업마감일</th>
+												<td class="tdwo_num">작업지시번호</td> 
+												<td class="tdmanu_name">라인명</td>
+												<td class="tdmanu_code">라인코드</td>
+												<td class="tditem_name">품명</td>
+												<td class="tditem_num">품번</td>
+												<td class="tdunsto_qty">수주량</td>
+												<td class="tdmanu_tocount">하루생산량</td>
+												<td class="tdmanu_fail">불량</td>
+												<td class="tdemp_Kname">작업자</td>
+												<td class="tdmanu_date">작업마감일</td>
 									         </tr>
-									         
+									         </thead>
+									         <tbody>
 									       		<c:forEach var="dto" items="${productionListMap}">
 														<tr onClick="updateForm('${dto.manu_date}');">
-															<td>${dto.wo_num}</td><td>${dto.manu_name}</td>
-															<td>${dto.manu_code}</td><td>${dto.item_name}</td>
-															<td>${dto.item_num}</td><td>${dto.unsto_qty}</td>
-															<td>${dto.manu_tocount}</td><td>${dto.manu_fail}</td>
-															<td>${dto.emp_Kname}</td><td>${dto.manu_date}</td>
+															<td class="tdwo_num">${dto.wo_num}</td>
+															<td class="tdmanu_name">${dto.manu_name}</td>
+															<td class="tdmanu_code">${dto.manu_code}</td>
+															<td class="tditem_name">${dto.item_name}</td>
+															<td class="tditem_num">${dto.item_num}</td>
+															<td class="tdunsto_qty">${dto.unsto_qty}</td>
+															<td class="tdmanu_tocount">${dto.manu_tocount}</td>
+															<td class="tdmanu_fail">${dto.manu_fail}</td>
+															<td class="tdemp_Kname">${dto.emp_Kname}</td>
+															<td class="tdmanu_date">${dto.manu_date}</td>
 														</tr>
 												</c:forEach>
-											
+											</tbody>
 									    </table>
-									</div>
+									    <hr>
+									    <p>
 								</div>
 								<!--  본문내용 끝 -->
 
@@ -133,7 +138,7 @@
 					<script type="text/javascript">
 						function updateForm(manu_date) {
 							var _width = '800';
-							var _height = '650';
+							var _height = '500';
 							var _left = Math.ceil((window.screen.width - _width) / 2);
 							var _top = Math.ceil((window.screen.height - _height) / 2);
 							let popOption = 'width='+ _width+ ', height='+ _height+ ', left='+ _left+ ', top='+ _top;
@@ -141,6 +146,7 @@
 							"${pageContext.request.contextPath}/mps/production/update?manu_date="+manu_date,
 							"밀키의 냉장고",popOption);}
 					</script>
+					
 				<!-- 이 밑으로 무언가 쓰지 마세요 페이징도 이 위에서 처리되야함. -->
 
 				<!-- 푸터시작 -->
@@ -188,6 +194,5 @@
 	<script
 		src="${pageContext.request.contextPath}/resources/maincss/js/Chart.roundedBarCharts.js"></script>
 	<!-- End custom js for this page-->
-
 </body>
 </html>

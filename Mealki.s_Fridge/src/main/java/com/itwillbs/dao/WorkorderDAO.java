@@ -27,6 +27,10 @@ public interface WorkorderDAO {
 
 	public void deleteWorkorder(String wo_num);
 
+	public List<WorkorderDTO> getWorkorderList2(PageDTO pageDTO);
+
+	public int getWorkorderCount2(PageDTO pageDTO);
+
 
 	
 }

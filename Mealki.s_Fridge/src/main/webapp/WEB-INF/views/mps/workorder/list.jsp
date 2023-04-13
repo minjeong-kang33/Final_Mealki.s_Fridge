@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-  <link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/maincss/css/blank.css">
  <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
  <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js"></script>
@@ -68,7 +68,7 @@
   					<tr>
     					<td>
     					<span>작업지시번호<input type="text" value="${param.wo_num}" name="wo_num"  style="margin-left: 25px; width:200px;" class="input_box" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" placeholder="숫자만 입력"></span>
-						<span style="margin-left: 10px;">작업지시일<input type="date" value="${param.order_date}" name="order_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dout_date}" name="dorder_date"></span>
+						<span style="margin-left: 10px;">작업지시일<input type="date" value="${param.order_date}" name="order_date" style="margin-left: 25px;"> ~ <input type="date" value="${param.dorder_date}" name="dorder_date"></span>
 						</td>
    						<td rowspan="2"> 
    						<button class="btn btn-primary" type="submit" id="IconButton6" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;"><a>조회</a></button>
@@ -158,7 +158,7 @@
 					
 						<c:forEach var="i" begin="${pageDTO.startPage}"
 							end="${pageDTO.endPage}" step="1">
-							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}">${i}</a>
+							<a href="${pageContext.request.contextPath}/mps/workorder/list?pageNum=${i}&wo_num=${pageDTO.wo_num}&order_date=${pageDTO.order_date}&dorder_date=${pageDTO.dorder_date}&business_num=${pageDTO.business_num}&out_date=${pageDTO.out_date}&dout_date=${pageDTO.dout_date}">${i}</a>
 						</c:forEach>
 					
 						<c:if test="${pageDTO.startPage>pageDTO.pageBlock} ">
@@ -168,7 +168,7 @@
 				      </div>
 				     
 				      <div id="tab02">
-				      	<jsp:include page="workordertable.jsp" >
+				      	<jsp:include page="workordertable2.jsp" >
 				      	<jsp:param value="대기" name="state"/>
 				      	</jsp:include>
 				      </div>
@@ -245,6 +245,20 @@
         			 <script type="text/javascript" src="${pageContext.request.contextPath}/resources/script/jquery-3.6.3.js">
 					 </script>
        				 <script type="text/javascript">
+		       				  const orderDateInput = document.querySelector('input[name="order_date"]');
+			       			  const dorderDateInput = document.querySelector('input[name="dorder_date"]');
+			       			  const outDateInput = document.getElementsByName('out_date')[0];
+			       		      const doutDateInput = document.getElementsByName('dout_date')[0];
+			       		  
+				       		  outDateInput.addEventListener('change', () => {
+				       		    doutDateInput.min = outDateInput.value;
+				       		  });
+			       			  orderDateInput.addEventListener('change', () => {
+			       			    dorderDateInput.min = orderDateInput.value;
+			       			  });
+			       			  
+			       			  
+			       			  
 						function ContractList() {
 							var _width = '630';
 							var _height = '350';
@@ -256,15 +270,20 @@
 							"${pageContext.request.contextPath}/workorder/ContractList",
 							"작업지시등록",popOption);}
 				
-  						$(function(){
-  						$('.tabcontent > div').hide();
- 						 $('.tabnav a').click(function () {
-   						 $('.tabcontent > div').hide().filter(this.hash).fadeIn();
-    					$('.tabnav a').removeClass('active');
-    					$(this).addClass('active');
-    					return false;
-  						}).filter(':eq(0)').click();
-  						});
+						$(function() {
+							  $('.tabcontent > div').hide();
+							  $('.tabnav a').click(function() {
+							    $('.tabcontent > div').hide().filter(this.hash).fadeIn();
+							    $('.tabnav a').removeClass('active');
+							    $(this).addClass('active');
+							    return false;
+							  }).filter(':eq(0)').click();
+
+							  if (window.location.hash === '#tab02') {
+							    $('ul.tabnav li:nth-child(2) a').click();
+							    window.scrollTo(0, 0);
+							  }
+							});
   					</script>
   					
 	

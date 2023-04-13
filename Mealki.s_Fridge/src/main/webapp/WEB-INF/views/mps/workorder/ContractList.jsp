@@ -23,7 +23,7 @@
   <!-- inject:css -->
   <link rel="stylesheet" href="${pageContext.request.contextPath}/resources/maincss/css/vertical-layout-light/style.css">
   <!-- endinject -->
-<link rel="shortcut icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-16x16.png" /> 
+   <link rel="icon" href="${pageContext.request.contextPath}/resources/maincss/images/favicon-32x32.png" /> 
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/reset.css">
 <link rel="stylesheet" type="text/css" href="${pageContext.request.contextPath}/resources/mps/workorder.css">
 
@@ -57,7 +57,7 @@
 				<td>${WorkorderDTO.business_num}</td>
 				<td>${WorkorderDTO.item_name}</td>
 				<td>${WorkorderDTO.contract_qty}</td>
-				<td>${WorkorderDTO.business_name}</td>
+				<td>${WorkorderDTO.cust_name}</td>
 				<td>${WorkorderDTO.business_date}</td>
 				<td>${WorkorderDTO.out_date}</td>
 			</tr>

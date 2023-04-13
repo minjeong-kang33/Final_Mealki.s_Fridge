@@ -13,33 +13,8 @@
 }
 
 #select_search{
-   width: 60%;
+   width: 70%;
    float: left;
-}
-
-
-
-table{
-   width: 100%;
-   text-align: center;
-   border-color: #6C7383;
-   border-collapse: collapse;
-}
-#table_content{
-   table-layout: fixed;
-}
-
-tr:hover td{ background-color: #e6e6f4; }
-
-
-#table_content tr{
-   height: 32px;
-   table-layout: fixed;
-}
-
-#table_content th{
-   background-color: #4B49AC;
-   color: #fff;
 }
 
 .contentbody{
@@ -48,18 +23,19 @@ tr:hover td{ background-color: #e6e6f4; }
    padding: 20px 20px;
 }
 
-#select_search{
-   width: 60%;
-   float: left;
-}
-
 #table_write{
    float: right;
    margin-right: 5px;
    margin-bottom: 30px;
-   width: 5%;
+   width: 7%;
 }
+
+.btn btn-primary{
+	 width: 100px;
+
+	  height: 30px;
 }
+
 
 /* 표 */
 .shipping_total_table{

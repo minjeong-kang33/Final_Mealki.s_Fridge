@@ -65,7 +65,7 @@ public class RecipeController {
 			System.out.println(recipeList);
 			
 			// 페이징
-			int count = recipeService.getRecipeCount();
+			int count = recipeService.getRecipeCount(pageDTO);
 			int pageBlock=10;
 			int startPage=(currentPage-1)/pageBlock*pageBlock+1;
 			int endPage=startPage+pageBlock-1;
@@ -128,19 +128,15 @@ public class RecipeController {
 		    
 		    int newRNumValue;
 		    if (maxRNum != null && !maxRNum.isEmpty()) {
-		        try {
-		            int currentRNum = Integer.parseInt(maxRNum.substring(1));
+		    	 int currentRNum = Integer.parseInt(maxRNum.substring(1));
 		            newRNumValue = currentRNum + 1;
-		        } catch (NumberFormatException e) {
-		            System.err.println("Invalid r_num format: " + maxRNum);
+		        } else {
 		            newRNumValue = 1;
 		        }
-		    } else {
-		        newRNumValue = 1;
+		        
+		        r_num = "R" + newRNumValue;
 		    }
-		    r_num = "R" + newRNumValue;
-			}else { 
-			}
+			
 			dto.setR_num(r_num);
 //			dto.setR_num(newRNum);
 //			dto.setR_num(request.getParameter("r_num"));

@@ -9,18 +9,20 @@
 	 <insert id="contractInsertBoard">
     	INSERT INTO contract(business_num,
     						cust_num,
+    						cust_name,
     						item_num,
     						item_name,
-    						business_name,
+
     						business_date,
     						out_date,
     						incharge_name,
     						contract_qty) 
     	VALUES(#{business_num},
     			#{cust_num},
+    			#{cust_name},
     			#{item_num},
     			#{item_name},
-    			#{business_name},
+
     			#{business_date},
     			#{out_date},
     			#{incharge_name},
@@ -28,15 +30,15 @@
     </insert>
 	
 	<select id="getBoardList" resultType="com.itwillbs.domain.ContractDTO">
-        SELECT item_name,business_name, date_format(business_date,'%Y-%m-%d') as business_date,
+        SELECT item_name, cust_name, date_format(business_date,'%Y-%m-%d') as business_date,
         date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty, business_num
         from contract
        
         <if test="search_option == 'item_name'.toString()">
         where item_name  like CONCAT('%',#{search},'%')
         </if>
-        <if test="search_option == 'business_name'.toString()">
-        where business_name  like CONCAT('%',#{search},'%')
+        <if test="search_option == 'cust_name'.toString()">
+        where cust_name  like CONCAT('%',#{search},'%')
         </if>
         order by business_num desc
 		limit #{startRow}, #{pageSize}
@@ -44,16 +46,17 @@
     
 <!-- 검색어 -->
 	 <select id="getContractCount" resultType="java.lang.Integer">
-        select count(*) from contract
+        select count(*) from (SELECT item_name, cust_name, date_format(business_date,'%Y-%m-%d') as business_date,
+        date_format(out_date,'%Y-%m-%d') as out_date,incharge_name,contract_qty, business_num
+        from contract
        
         <if test="search_option == 'item_name'.toString()">
         where item_name  like CONCAT('%',#{search},'%')
         </if>
-        <if test="search_option == 'business_name'.toString()">
-        where business_name  like CONCAT('%',#{search},'%')
+        <if test="search_option == 'cust_name'.toString()">
+        where cust_name  like CONCAT('%',#{search},'%')
         </if>
-        
-      
+        order by business_num desc) as subquery
     </select>
 
 	 <select id="selectContractTotal" resultType="java.lang.Integer">
@@ -64,6 +67,7 @@
 	<select id="getContractListMap" resultType="map">
 		SELECT customer.cust_num, customer.cust_name
 		from customer 
+		where cust_gubun1 like '%납품처%'
 			
 	</select>
 	
@@ -73,7 +77,8 @@
 	</select>
 	
 	<select id="getNameList" resultType="com.itwillbs.domain.ContractDTO">
-	select distinct business_name from contract
+	select distinct cust_name from customer
+	where cust_gubun1 = '납품처'
 	</select>
 	
 	<select id="getNameList2" resultType="com.itwillbs.domain.EmployeeDTO">
@@ -82,7 +87,7 @@
 	</select>
 	
 	<select id="getBoard" resultType="com.itwillbs.domain.ContractDTO">
-		select business_num, cust_num, item_num,item_name,business_name,business_date,
+		select business_num, cust_num, item_num,item_name,cust_name,business_date,
 		out_date,incharge_name,contract_qty,
 		
 		(CASE WHEN EXISTS (
