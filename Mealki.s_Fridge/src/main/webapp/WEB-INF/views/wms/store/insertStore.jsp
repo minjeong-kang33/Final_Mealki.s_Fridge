@@ -273,7 +273,7 @@ function content_print3(){
 											</td>
 											<td>${StoreDTO.sto_date }</td>
 											<td>
-												<c:if test="${StoreDTO.sto_progress eq '미입고'&& (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
+												<c:if test="${StoreDTO.sto_progress eq '미입고' && (sessionScope.dept_num eq '400' || sessionScope.dept_num eq '600')}">
 												<input type="button" class="store_submit_button" value="입고처리">
 												</c:if>
 											</td> <!-- 입고처리 -->
