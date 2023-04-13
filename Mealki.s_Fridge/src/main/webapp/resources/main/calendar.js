@@ -2,7 +2,7 @@
   var calendarEl = document.getElementById('calendar');
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
-    googleCalendarApiKey: 'API키 저장안함',
+    googleCalendarApiKey: 'AIzaSyDwtxfKI-6YrDq4f1pcRWLw52Ql9Nprk58',
     headerToolbar: {
         left: 'prev',
         center: 'title',
