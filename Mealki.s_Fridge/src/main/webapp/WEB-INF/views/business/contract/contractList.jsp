@@ -107,7 +107,7 @@ function fun1(){
  				
 			   	<div id="table_write">
 				   	<c:choose>
-				   	<c:when test="${sessionScope.dept_num == 200}">
+				   	<c:when test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">
 	        			<input type="button" class="btn btn-primary" value="신규" onclick="location.href='${pageContext.request.contextPath}/business/contract/contractWrite'" >
 	        		</c:when>
 	        		</c:choose>

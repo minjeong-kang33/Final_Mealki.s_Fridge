@@ -89,7 +89,7 @@
 				
 				
 				<c:choose>
-				    <c:when test="${sessionScope.dept_num == 300}">
+				    <c:when test="${sessionScope.dept_num == 300 || sessionScope.dept_num == 600}">
 				        <a href=# onclick="return ContractList();" class="btn btn-primary" style="margin-left: 20px; padding-top: 8px; padding-bottom: 8px;">
 						작업지시서 등록
 						</a> 

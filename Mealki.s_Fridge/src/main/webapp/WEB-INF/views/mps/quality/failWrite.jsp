@@ -96,11 +96,11 @@
 			</div>
 			
 			<p>
-			<c:if test="${sessionScope.dept_num eq '300' }">
+			<c:if test="${sessionScope.dept_num eq '300'  || sessionScope.dept_num == 600}">
 			<span id="reason">사유 : </span> 
 			<textarea name="fail_reson" class="reason"cols="30" rows="5">${qualityDTO.fail_reson}</textarea><br>
 			</c:if>
-			<c:if test="${sessionScope.dept_num ne '300' }">
+			<c:if test="${sessionScope.dept_num ne '300'  || sessionScope.dept_num == 600}">
 			<span id="reason">사유 : </span> 
 			<textarea name="fail_reson" class="reason"cols="30" rows="5" readonly="readonly">${qualityDTO.fail_reson}</textarea><br>
 			</c:if>

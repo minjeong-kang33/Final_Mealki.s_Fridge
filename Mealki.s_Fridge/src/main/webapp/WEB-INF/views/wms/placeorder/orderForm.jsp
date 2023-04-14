@@ -79,7 +79,7 @@ function fun3(event) {
 				    <ul class="tabnav">
 				      <li><a href="#tab01">발주 현황</a></li>
 				      <c:choose>
-     					 <c:when test="${sessionScope.dept_num == 400}">
+     					 <c:when test="${sessionScope.dept_num == 400 || sessionScope.dept_num == 600}">
        						 <li><a href="#tab02" onclick="fun2()">발주 등록</a></li>
      					 </c:when>
       					<c:otherwise>

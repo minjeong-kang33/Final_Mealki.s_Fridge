@@ -32,7 +32,7 @@
                   </div>
                </div>
                <div id="buttons" style="text-align:center;">
-				<c:if test="${sessionScope.dept_num == 200}">		
+				<c:if test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">		
 					<input type="button" value="수정하기" class="btn btn-primary" onclick="updateCustomer('${pageContext.request.contextPath}/business/customer/updateCustomer?business_num=${customerDTO.business_num}')"> 
 					<input type="button" value="삭제하기" class="btn btn-primary" onclick="deleteCustomer('${pageContext.request.contextPath}/business/customer/deleteCustomer?business_num=${customerDTO.business_num}')">
 			 	</c:if>

@@ -71,7 +71,7 @@
             	
             	<div id="table_write">
             	<c:choose>
-				    <c:when test="${sessionScope.dept_num == 200}">
+				    <c:when test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">
 				        <input type="button" class="btn btn-primary" id="new_customer" value="신규등록" onclick="insertCust()">
 				    </c:when>
 				    <c:otherwise>

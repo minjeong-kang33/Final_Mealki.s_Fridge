@@ -77,7 +77,7 @@ function click1(){
 					<span>품명 :</span>
 					<input type="text" name = "manu_code" value="${updateProduct.manu_code}" readonly="readonly">
 					<c:choose>
-						<c:when test="${sessionScope.emp_num == '323040801'}">
+						<c:when test="${sessionScope.emp_num == '323040801' || sessionScope.dept_num == 600}">
 							<span>생산량 :</span>
 							<input type="text" name = "manu_tocount" value="${updateProduct.manu_tocount}">
 						</c:when>
@@ -95,7 +95,7 @@ function click1(){
 					<span>작업자 : </span>
 					<input type="text" name = "emp_Kname" value="${updateProduct.emp_Kname}" readonly="readonly">
 					<c:choose>
-						<c:when test="${sessionScope.emp_num == '323040801'}">
+						<c:when test="${sessionScope.emp_num == '323040801' || sessionScope.dept_num == 600}">
 							<span>불량 :</span>
 							<input type="text" name = "manu_fail" value="${updateProduct.manu_fail}">
 					</c:when>
@@ -107,7 +107,7 @@ function click1(){
 					
 					<input type="hidden" name = "manu_date" value="${updateProduct.manu_date}">
 					</div>
-				<c:if test="${sessionScope.emp_num == '323040801'}">	
+				<c:if test="${sessionScope.emp_num == '323040801' || sessionScope.dept_num == 600}">	
             	<button class="btn btn-primary" type="submit" id="IconButton2" formaction="${pageContext.request.contextPath}/mps/production/writePro">
 				수정
 				</button>
