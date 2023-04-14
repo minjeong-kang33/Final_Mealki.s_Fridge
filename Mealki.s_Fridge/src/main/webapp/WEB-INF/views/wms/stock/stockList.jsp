@@ -80,7 +80,7 @@
 		    			<td id="stk_qnt">${StockDTO.stk_qnt}</td><td>${StockDTO.whs_num}</td>
 		    			<td style="width: 50px;"><input type="text" name="new_stk_qnt" id="new_stk_qnt" onKeyup="this.value=this.value.replace(/[^0-9]/g,'');" style="width: 70px; border-color: dark-grey; margin-left: 7px; margin-right: 7px;" value=""></td>
 		    			<c:choose>
-				    		<c:when test="${sessionScope.dept_num == 400}">
+				    		<c:when test="${sessionScope.dept_num == 400 || sessionScope.dept_num == 600}">
 				        		<td style="width: 90px;"><button type="button" class="update_qnt" id="update_qnt" onclick="update_qnt(this)" style="background-color: #bec1eb !important;">수정</button></td>
 				    		</c:when>
 				    		<c:otherwise>

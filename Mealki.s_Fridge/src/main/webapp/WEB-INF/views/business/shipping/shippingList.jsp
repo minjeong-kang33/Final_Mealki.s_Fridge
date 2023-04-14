@@ -113,7 +113,7 @@ $(function(){
 				
 			<div id="table_write" >
 				<c:choose>
-				 <c:when test="${sessionScope.dept_num == 200}">
+				 <c:when test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">
 					<button type="submit"  class="btn btn-primary" onclick="location.href='${pageContext.request.contextPath}/business/shipping/shippingWrite'" >신규</button>
 				</c:when>
 				</c:choose>
@@ -165,7 +165,7 @@ $(function(){
            			${ShippingDTO.out_progress}</td>
            			<td>
            				<c:choose>
-           				<c:when test="${sessionScope.dept_num == 200}">
+           				<c:when test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">
            				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>
@@ -235,7 +235,7 @@ $(function(){
            			${ShippingDTO.out_progress}</td>
            			<td>
            				<c:choose>
-           				<c:when test="${sessionScope.dept_num == 200}">
+           				<c:when test="${sessionScope.dept_num == 200 || sessionScope.dept_num == 600}">
            				<c:if test="${ShippingDTO.out_progress eq '대기'}">
            					<input type="button" value="출하처리" class="shipping_submit_button" onclick="location.href='${pageContext.request.contextPath}/business/shipping/addShipping?shipping_num=${ShippingDTO.shipping_num}'">
            				</c:if>

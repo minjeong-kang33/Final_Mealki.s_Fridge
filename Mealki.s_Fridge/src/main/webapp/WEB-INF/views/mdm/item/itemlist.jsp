@@ -76,7 +76,7 @@
 <!-- 		상품추가 및 상품저장 버튼 -->
 	<div id="item_buttons">
     <c:choose>
-        <c:when test="${sessionScope.dept_num == 100}">
+        <c:when test="${sessionScope.dept_num == 100 || sessionScope.dept_num == 600}">
             <button class="btn btn-primary" type="button" id="addItemButton">＋품목추가</button>
             <button class="btn btn-primary" type="button" id="updateItemButton">✎품목수정</button>
             <button class="btn btn-primary" type="button" id="saveItemButton">✓품목저장</button>

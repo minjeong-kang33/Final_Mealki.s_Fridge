@@ -148,11 +148,11 @@
 			
 			<span>생산량 : </span> 
 			<input type="text" name="manu_tocount" class="manu_tocount" value="${qualityDTO.manu_tocount}" readonly="readonly">
-			<c:if test="${sessionScope.dept_num eq '300' }">
+			<c:if test="${sessionScope.dept_num eq '300'  || sessionScope.dept_num == 600}">
 				<span>검수량 : </span>
 				<input type="text" name="qc_qty" class="qc_qty" value="${qualityDTO.qc_qty}" > 
 			</c:if>
-				<c:if test="${sessionScope.dept_num ne '300' }">
+				<c:if test="${sessionScope.dept_num ne '300'  || sessionScope.dept_num == 600}">
 				<span>검수량 : </span>
 				<input type="text" name="qc_qty" class="qc_qty" value="${qualityDTO.qc_qty}" readonly="readonly"> 
 			</c:if> 
@@ -178,16 +178,16 @@
 			<input type="text" name="wo_qty" class="wo_qty" value="${qualityDTO.wo_qty}" readonly="readonly">
 			
 			
-			<c:if test="${sessionScope.dept_num eq '300' }">
+			<c:if test="${sessionScope.dept_num eq '300'  || sessionScope.dept_num == 600}">
 				<span>불량 : </span> 
 				<input type="text" name="manu_fail" class="manu_fail" value="0"> 
 			</c:if>
-			<c:if test="${sessionScope.dept_num ne '300' }">
+			<c:if test="${sessionScope.dept_num ne '300'  || sessionScope.dept_num == 600}">
 				<span>불량 : </span> 
 				<input type="text" name="manu_fail" class="manu_fail" value="${qualityDTO.manu_fail}" readonly="readonly">  
 			</c:if> 
 			</div>
-			<c:if test="${sessionScope.dept_num eq '300' }">
+			<c:if test="${sessionScope.dept_num eq '300'  || sessionScope.dept_num == 600}">
 				<c:choose>
 					<c:when test="${qualityDTO.qc_qty eq null || qualityDTO.qc_qty eq '0'}">
 					<button class="btn btn-primary" type="button" id="IconButton2" onclick="click1()">

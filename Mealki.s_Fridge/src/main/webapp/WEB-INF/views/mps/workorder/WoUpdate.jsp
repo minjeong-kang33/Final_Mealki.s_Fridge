@@ -107,7 +107,7 @@
 	<!-- 생산이 진행중이거나 완료시 작업지시서 수정삭제 불가 -->
 	<c:if test="${empty woState}">
 		<c:choose>
-			<c:when test="${sessionScope.dept_num == 300}">
+			<c:when test="${sessionScope.dept_num == 300 || sessionScope.dept_num == 600}">
 				<input type="submit" onclick="return confirmUpdate()" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="수정" formaction="${pageContext.request.contextPath}/mps/workorder/WoUpdatePro">
 				<input type="submit" onclick="return confirmDelete()" class="btn btn-primary" style="margin-left: 10px; padding-top: 5px; padding-bottom: 5px;" value="삭제" formaction="${pageContext.request.contextPath}/mps/workorder/WoDelete">
 			</c:when>
