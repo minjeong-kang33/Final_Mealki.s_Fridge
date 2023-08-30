@@ -3,7 +3,7 @@
 
   var calendar = new FullCalendar.Calendar(calendarEl, {
 
-    googleCalendarApiKey: 'AIzaSyDwtxfKI-6YrDq4f1pcRWLw52Ql9Nprk58',
+    googleCalendarApiKey: '생략',
 
     headerToolbar: {
         left: 'prev',
