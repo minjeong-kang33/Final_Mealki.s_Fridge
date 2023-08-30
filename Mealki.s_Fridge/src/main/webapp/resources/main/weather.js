@@ -1,6 +1,6 @@
 function loadJSON(callback){
 
-	var url = "https://api.openweathermap.org/data/2.5/weather?lat=35.1028&lon=129.0403&appid=d16297588a3864a1c944d0fb394e2423"
+	var url = "https://api.openweathermap.org/data/2.5/weather?lat=35.1028&lon=129.0403&appid=생략"
 
 	var request = new XMLHttpRequest();
 	request.overrideMimeType("application/json");
